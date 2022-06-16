@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "vinery",
   "version": "${version}",
 
-  "name": "Example Mod",
+  "name": "Vinery",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Me!"
+    "DanikingRD"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "daniking.vinery.Vinery"
+    ],
+    "client": [
+      "daniking.vinery.ClientSetup"
     ]
   },
   "mixins": [

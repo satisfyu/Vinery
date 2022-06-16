@@ -1,9 +1,10 @@
 {
   "required": false,
   "minVersion": "0.8",
-  "package": "net.fabricmc.example.mixin",
+  "package": "daniking.vinery.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "FoxEntityEatSweetBerriesGoalMixin"
   ],
   "client": [
   ],
