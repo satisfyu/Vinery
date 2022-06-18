@@ -53,6 +53,16 @@ public class ObjectRegistry {
         return item;
     }
 
+
+    public static void init() {
+        for (Map.Entry<Identifier, Block> entry : BLOCKS.entrySet()) {
+            Registry.register(Registry.BLOCK, entry.getKey(), entry.getValue());
+        }
+        for (Map.Entry<Identifier, Item> entry : ITEMS.entrySet()) {
+            Registry.register(Registry.ITEM, entry.getKey(), entry.getValue());
+        }
+    }
+
     private static Item.Settings getSettings() {
         return new Item.Settings().group(Vinery.CREATIVE_TAB);
     }
@@ -71,15 +81,6 @@ public class ObjectRegistry {
 
     public static Map<Identifier, Item> getItems() {
         return Collections.unmodifiableMap(ITEMS);
-    }
-
-    public static void init() {
-        for (Map.Entry<Identifier, Block> entry : BLOCKS.entrySet()) {
-            Registry.register(Registry.BLOCK, entry.getKey(), entry.getValue());
-        }
-        for (Map.Entry<Identifier, Item> entry : ITEMS.entrySet()) {
-            Registry.register(Registry.ITEM, entry.getKey(), entry.getValue());
-        }
     }
 
 }

@@ -51,4 +51,7 @@ public class GrapeBush extends SweetBerryBushBlock {
             case WHITE -> new ItemStack(ObjectRegistry.WHITE_GRAPE);
         };
     }
+    public Type getType() {
+        return type;
+    }
 }

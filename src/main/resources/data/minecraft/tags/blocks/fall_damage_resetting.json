@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "vinery:red_grape_bush"
+    "vinery:red_grape_bush",
+    "vinery:white_grape_bush"
   ]
 }
