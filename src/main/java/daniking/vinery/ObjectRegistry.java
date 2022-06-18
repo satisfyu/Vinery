@@ -1,7 +1,9 @@
 package daniking.vinery;
 
 import daniking.vinery.block.GrapeBush;
+import daniking.vinery.block.RockBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -28,6 +30,11 @@ public class ObjectRegistry {
     public static final Block WHITE_GRAPE_BUSH = register("white_grape_bush", new GrapeBush(getBushSettings(), GrapeBush.Type.WHITE), false);
     public static final Item WHITE_GRAPE = register("white_grape", new Item(getSettings().food(FoodComponents.SWEET_BERRIES)));
     public static final Item WHITE_GRAPE_SEEDS = register("white_grape_seeds", new GrapeBushSeedItem(WHITE_GRAPE_BUSH, getSettings(), GrapeBush.Type.WHITE));
+    // Misc
+    public static final Block ROCKS = register("rocks", new RockBlock(getRockSettings()));
+    public static final Block ROCKS_VARIANT_B = register("rocks_variant_b", new RockBlock(getRockSettings()), false);
+
+    public static final Block ROCKS_VARIANT_C = register("rocks_variant_c", new RockBlock(getRockSettings()), false);
 
 //    public static final Block WHITE_VINE = register("white_vine", new WhiteVineBlock(getVineSettings()));
 //    public static final Block POT = register("pot", new Block(FabricBlockSettings.of(Material.STONE).strength(2.5F).requiresTool()));
@@ -73,6 +80,11 @@ public class ObjectRegistry {
 
     private static Block.Settings getBushSettings() {
         return FabricBlockSettings.copyOf(Blocks.SWEET_BERRY_BUSH);
+    }
+
+    private static AbstractBlock.Settings getRockSettings() {
+        return FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque();
+
     }
 
     public static Map<Identifier, Block> getBlocks() {

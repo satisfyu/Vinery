@@ -37,7 +37,7 @@ public class VineryWorldFeatures {
                 Biome.Category.TAIGA,
                 Biome.Category.RIVER,
                 Biome.Category.SWAMP,
-                Biome.Category.DESERT,
+                Biome.Category.JUNGLE,
         };
     }
 }
