@@ -6,10 +6,8 @@ import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.LootTableEntry;
-import net.minecraft.tag.ItemTags;
 import net.minecraft.util.Identifier;
 
 public class Vinery implements ModInitializer {
@@ -26,7 +24,7 @@ public class Vinery implements ModInitializer {
                 supplier.withPool(LootPool.builder().with(LootTableEntry.builder(resourceLocation).weight(1)).build());
             }
         });
-        VineryWorldFeatures.init();
+        ModWorldFeatures.init();
     }
 }
 

@@ -3,9 +3,7 @@ package daniking.vinery;
 import daniking.vinery.block.GrapeBush;
 import daniking.vinery.block.RockBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Item;
@@ -83,7 +81,7 @@ public class ObjectRegistry {
     }
 
     private static AbstractBlock.Settings getRockSettings() {
-        return FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque();
+        return FabricBlockSettings.of(Material.STONE, MapColor.STONE_GRAY).requiresTool().strength(1.5f, 3.0f).nonOpaque();
 
     }
 

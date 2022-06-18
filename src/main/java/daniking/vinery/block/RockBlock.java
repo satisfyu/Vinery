@@ -23,7 +23,6 @@ public class RockBlock extends Block {
         return SHAPE;
     }
 
-
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
