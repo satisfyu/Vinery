@@ -12,7 +12,6 @@ public class ClientSetup implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        BlockRenderLayerMap.INSTANCE.putBlock(ObjectRegistry.RED_GRAPE_BUSH, RenderLayer.getCutout());
-
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ObjectRegistry.RED_GRAPE_BUSH, ObjectRegistry.WHITE_GRAPE_BUSH);
     }
 }

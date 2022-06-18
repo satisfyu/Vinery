@@ -1,12 +1,12 @@
 package daniking.vinery;
 
 import daniking.vinery.block.GrapeBush;
-import daniking.vinery.block.WhiteVineBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.FoodComponents;
+import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -19,17 +19,17 @@ public class ObjectRegistry {
     private static final Map<Identifier, Item> ITEMS = new LinkedHashMap<>();
     private static final Map<Identifier, Block> BLOCKS = new LinkedHashMap<>();
 
-    public static final Block RED_GRAPE_BUSH = register("red_grape_bush", new GrapeBush(getBushSettings()), false);
     // Red Grapes
-    public static final Item RED_GRAPE = register("red_grape", new AliasedBlockItem(RED_GRAPE_BUSH, getSettings().food(FoodComponents.SWEET_BERRIES)));
-    public static final Item RED_GRAPE_SEEDS = register("red_grape_seeds", new Item(getSettings()));
+    public static final Block RED_GRAPE_BUSH = register("red_grape_bush", new GrapeBush(getBushSettings(), GrapeBush.Type.RED), false);
+    public static final Item RED_GRAPE = register("red_grape", new Item(getSettings().food(FoodComponents.SWEET_BERRIES)));
+    public static final Item RED_GRAPE_SEEDS = register("red_grape_seeds", new GrapeBushSeedItem(RED_GRAPE_BUSH, getSettings(), GrapeBush.Type.RED));
 
-//
-//    // White Grapes
-//    public static final Item WHITE_GRAPE_SEEDS = register("white_grape_seeds", new Item(getSettings()));
+    // White Grapes
+    public static final Block WHITE_GRAPE_BUSH = register("white_grape_bush", new GrapeBush(getBushSettings(), GrapeBush.Type.WHITE), false);
+    public static final Item WHITE_GRAPE = register("white_grape", new Item(getSettings().food(FoodComponents.SWEET_BERRIES)));
+    public static final Item WHITE_GRAPE_SEEDS = register("white_grape_seeds", new GrapeBushSeedItem(WHITE_GRAPE_BUSH, getSettings(), GrapeBush.Type.WHITE));
+
 //    public static final Block WHITE_VINE = register("white_vine", new WhiteVineBlock(getVineSettings()));
-//    public static final Item WHITE_GRAPE = register("white_grape", new Item(getSettings()));
-//
 //    public static final Block POT = register("pot", new Block(FabricBlockSettings.of(Material.STONE).strength(2.5F).requiresTool()));
 //    public static final Block BARREL = register("barrel", new Block(FabricBlockSettings.of(Material.WOOD).strength(2.5F).requiresTool()));
 //    public static final Block GRAPEVINE = register("grapevine", new GrapeBush(getVineSettings()));

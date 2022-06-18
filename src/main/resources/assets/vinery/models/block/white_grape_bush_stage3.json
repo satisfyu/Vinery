@@ -1,7 +1,7 @@
 {
-	"credit": "Made with Blockbench",
+	"cwhiteit": "Made with Blockbench",
 	"textures": {
-		"1": "vinery:block/red_grapevine",
+		"1": "vinery:block/white_grapevine",
 		"2": "vinery:block/grape_bush_large",
 		"particle": "vinery:block/grape_bush_large"
 	},

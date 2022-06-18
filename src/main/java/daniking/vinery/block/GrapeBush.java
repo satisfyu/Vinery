@@ -17,13 +17,15 @@ import net.minecraft.world.World;
 
 public class GrapeBush extends SweetBerryBushBlock {
 
-    public GrapeBush(Settings settings) {
-        super(settings);
+    public enum Type {
+        RED,
+        WHITE
     }
+    private final Type type;
 
-    @Override
-    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        return new ItemStack(ObjectRegistry.RED_GRAPE);
+    public GrapeBush(Settings settings, Type type) {
+        super(settings);
+        this.type = type;
     }
 
     @Override
@@ -34,12 +36,19 @@ public class GrapeBush extends SweetBerryBushBlock {
             return ActionResult.PASS;
         } else if (i > 1) {
             int j = 1 + world.random.nextInt(2);
-            dropStack(world, pos, new ItemStack(ObjectRegistry.RED_GRAPE, j + (bl ? 1 : 0)));
+            dropStack(world, pos, new ItemStack(this.type == Type.RED ? ObjectRegistry.RED_GRAPE : ObjectRegistry.WHITE_GRAPE, j + (bl ? 1 : 0)));
             world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             world.setBlockState(pos, state.with(AGE, 1), 2);
             return ActionResult.success(world.isClient);
         } else {
             return super.onUse(state, world, pos, player, hand, hit);
         }
+    }
+    @Override
+    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+        return switch (this.type) {
+            case RED -> new ItemStack(ObjectRegistry.RED_GRAPE);
+            case WHITE -> new ItemStack(ObjectRegistry.WHITE_GRAPE);
+        };
     }
 }
