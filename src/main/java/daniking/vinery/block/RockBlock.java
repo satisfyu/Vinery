@@ -30,7 +30,7 @@ public class RockBlock extends Block {
         final BlockState toPlace;
         if (n < 0.33) {
             toPlace = this.getDefaultState();
-        } else if (n < 0.66){
+        } else if (n < 0.66) {
             toPlace = ObjectRegistry.ROCKS_VARIANT_B.getDefaultState();
         } else {
             toPlace = ObjectRegistry.ROCKS_VARIANT_C.getDefaultState();

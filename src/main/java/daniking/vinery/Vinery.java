@@ -1,5 +1,6 @@
 package daniking.vinery;
 
+import daniking.vinery.world.VineryConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
@@ -24,7 +25,7 @@ public class Vinery implements ModInitializer {
                 supplier.withPool(LootPool.builder().with(LootTableEntry.builder(resourceLocation).weight(1)).build());
             }
         });
-        ModWorldFeatures.init();
+        VineryConfiguredFeatures.init();
     }
 }
 
