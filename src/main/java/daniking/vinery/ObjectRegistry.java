@@ -2,6 +2,7 @@ package daniking.vinery;
 
 import daniking.vinery.block.GrapeBush;
 import daniking.vinery.block.GrassFlowerBlock;
+import daniking.vinery.block.RedVineBlock;
 import daniking.vinery.block.RockBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -30,6 +31,11 @@ public class ObjectRegistry {
     public static final Item WHITE_GRAPE = register("white_grape", new Item(getSettings().food(FoodComponents.SWEET_BERRIES)));
     public static final Item WHITE_GRAPE_SEEDS = register("white_grape_seeds", new GrapeBushSeedItem(WHITE_GRAPE_BUSH, getSettings(), GrapeBush.Type.WHITE));
 
+    // Vines
+    public static final Block EMPTY_RED_VINE = register("empty_red_vine", new RedVineBlock(FabricBlockSettings.copyOf(Blocks.VINE), RedVineBlock.Variant.Empty));
+    public static final Block RED_VINE = register("red_vine", new RedVineBlock(FabricBlockSettings.copyOf(Blocks.VINE), RedVineBlock.Variant.A));
+    public static final Block RED_VINE_VARIANT_B = register("red_vine_variant_b", new RedVineBlock(FabricBlockSettings.copyOf(Blocks.VINE), RedVineBlock.Variant.B), false);
+    public static final Block RED_VINE_VARIANT_C = register("red_vine_variant_c", new RedVineBlock(FabricBlockSettings.copyOf(Blocks.VINE), RedVineBlock.Variant.C), false);
     // Rocks
     public static final Block ROCKS = register("rocks", new RockBlock(getRockSettings()));
     public static final Block ROCKS_VARIANT_B = register("rocks_variant_b", new RockBlock(getRockSettings()), false);

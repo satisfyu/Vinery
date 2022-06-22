@@ -1,0 +1,509 @@
+{
+
+	"multipart": [
+		{
+			"when": {
+				"up": "true",
+				"age": 0
+			},
+			"apply": {
+				"model": "vinery:block/empty_red_vine",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "true",
+				"age": 1
+			},
+			"apply": {
+				"model": "vinery:block/red_vine",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "true",
+				"age": 2
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_b",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "true",
+				"age": 2
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_c",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 0
+			},
+			"apply": {
+				"model": "vinery:block/empty_red_vine",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 1
+			},
+			"apply": {
+				"model": "vinery:block/red_vine",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 2
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_b",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 3
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_c",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"north": "true",
+				"age": 0
+			},
+			"apply": {
+				"model": "vinery:block/empty_red_vine"
+			}
+		},
+		{
+			"when": {
+				"north": "true",
+				"age": 1
+			},
+			"apply": {
+				"model": "vinery:block/red_vine"
+			}
+		},
+		{
+			"when": {
+				"north": "true",
+				"age": 2
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_b"
+			}
+		},
+		{
+			"when": {
+				"north": "true",
+				"age": 3
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_c"
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 0
+			},
+			"apply": {
+				"model": "vinery:block/empty_red_vine"
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 1
+			},
+			"apply": {
+				"model": "vinery:block/red_vine"
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 2
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_b"
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 3
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_c"
+			}
+		},
+		{
+			"when": {
+				"west": "true",
+				"age": 0
+			},
+			"apply": {
+				"model": "vinery:block/empty_red_vine",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"west": "true",
+				"age": 1
+			},
+			"apply": {
+				"model": "vinery:block/red_vine",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"west": "true",
+				"age": 2
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_b",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"west": "true",
+				"age": 3
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_c",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 0
+			},
+			"apply": {
+				"model": "vinery:block/empty_red_vine",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 1
+			},
+			"apply": {
+				"model": "vinery:block/red_vine",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 2
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_b",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 3
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_c",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"south": "true",
+				"age": 0
+			},
+			"apply": {
+				"model": "vinery:block/empty_red_vine",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"south": "true",
+				"age": 1
+			},
+			"apply": {
+				"model": "vinery:block/red_vine",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"south": "true",
+				"age": 2
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_b",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"south": "true",
+				"age": 3
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_c",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 0
+			},
+			"apply": {
+				"model": "vinery:block/empty_red_vine",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 1
+			},
+			"apply": {
+				"model": "vinery:block/red_vine",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 2
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_b",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 3
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_c",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"east": "true",
+				"age": 0
+			},
+			"apply": {
+				"model": "vinery:block/empty_red_vine",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"east": "true",
+				"age": 1
+			},
+			"apply": {
+				"model": "vinery:block/red_vine",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"east": "true",
+				"age": 2
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_b",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"east": "true",
+				"age": 3
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_c",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 0
+			},
+			"apply": {
+				"model": "vinery:block/empty_red_vine",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 1
+			},
+			"apply": {
+				"model": "vinery:block/red_vine",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 2
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_b",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "false",
+				"north": "false",
+				"west": "false",
+				"south": "false",
+				"east": "false",
+				"age": 3
+			},
+			"apply": {
+				"model": "vinery:block/red_vine_variant_c",
+				"y": 90,
+				"uvlock": true
+			}
+		}
+	]
+}
