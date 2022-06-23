@@ -1,14 +1,12 @@
 package daniking.vinery;
 
-import daniking.vinery.block.GrapeBush;
-import daniking.vinery.block.GrassFlowerBlock;
-import daniking.vinery.block.RedVineBlock;
-import daniking.vinery.block.RockBlock;
+import daniking.vinery.block.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Item;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -48,11 +46,7 @@ public class ObjectRegistry {
     public static final Block PINK_GRASS_FLOWER_VARIANT_B = register("pink_grass_flower_variant_b", new GrassFlowerBlock(getGrassSettings(), GrassFlowerBlock.Type.PINK), false);
     public static final Block WHITE_GRASS_FLOWER = register("white_grass_flower", new GrassFlowerBlock(getGrassSettings(), GrassFlowerBlock.Type.WHITE));
 
-//    public static final Block WHITE_VINE = register("white_vine", new WhiteVineBlock(getVineSettings()));
-//    public static final Block POT = register("pot", new Block(FabricBlockSettings.of(Material.STONE).strength(2.5F).requiresTool()));
-//    public static final Block BARREL = register("barrel", new Block(FabricBlockSettings.of(Material.WOOD).strength(2.5F).requiresTool()));
-//    public static final Block GRAPEVINE = register("grapevine", new GrapeBush(getVineSettings()));
-
+    public static final Block GRAPEVINE_STEM = register("grapevine_stem", new GrapevineStemBlock(getGrapevineSettings().ticksRandomly()));
     private static <T extends Block> T register(String path, T block) {
         return register(path, block, true);
     }
@@ -100,6 +94,10 @@ public class ObjectRegistry {
 
     private static AbstractBlock.Settings getGrassSettings() {
         return FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).nonOpaque();
+    }
+
+    private static AbstractBlock.Settings getGrapevineSettings() {
+        return FabricBlockSettings.of(Material.WOOD).strength(2.0F).sounds(BlockSoundGroup.WOOD);
     }
 
     public static Map<Identifier, Block> getBlocks() {
