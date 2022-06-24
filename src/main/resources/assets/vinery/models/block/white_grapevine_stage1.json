@@ -4,7 +4,7 @@
 		"0": "vinery:block/grapevine_leave_dark",
 		"1": "vinery:block/grapevine_log",
 		"2": "vinery:block/grapevine_log_top",
-		"3": "vinery:block/red_grapevine",
+		"3": "vinery:block/white_grapevine",
 		"particle": "vinery:block/grapevine_leave_dark"
 	},
 	"elements": [

@@ -35,8 +35,8 @@ public class GrapeBush extends SweetBerryBushBlock {
         if (!bl && player.getStackInHand(hand).isOf(Items.BONE_MEAL)) {
             return ActionResult.PASS;
         } else if (i > 1) {
-            int j = 1 + world.random.nextInt(2);
-            dropStack(world, pos, new ItemStack(this.type == Type.RED ? ObjectRegistry.RED_GRAPE : ObjectRegistry.WHITE_GRAPE, j + (bl ? 1 : 0)));
+            int x = world.random.nextInt(2);
+            dropStack(world, pos, new ItemStack(this.type == Type.RED ? ObjectRegistry.RED_GRAPE : ObjectRegistry.WHITE_GRAPE, x + (bl ? 1 : 0)));
             world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             world.setBlockState(pos, state.with(AGE, 1), 2);
             return ActionResult.success(world.isClient);
