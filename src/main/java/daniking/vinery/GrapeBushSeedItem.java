@@ -20,9 +20,11 @@ public class GrapeBushSeedItem extends AliasedBlockItem {
         this.type = type;
     }
 
+    public GrapeBush.Type getType() {
+        return type;
+    }
 
-
-//    @Override
+    //    @Override
 //    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
 //        if (user instanceof PlayerEntity) {
 //            final double n = Math.random();
