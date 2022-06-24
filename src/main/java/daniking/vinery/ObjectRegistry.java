@@ -30,10 +30,10 @@ public class ObjectRegistry {
     public static final Item WHITE_GRAPE_SEEDS = register("white_grape_seeds", new GrapeBushSeedItem(WHITE_GRAPE_BUSH, getSettings(), GrapeBush.Type.WHITE));
 
     // Vines
-    public static final Block EMPTY_RED_VINE = register("empty_red_vine", new RedVineBlock(FabricBlockSettings.copyOf(Blocks.VINE), RedVineBlock.Variant.Empty));
-    public static final Block RED_VINE = register("red_vine", new RedVineBlock(FabricBlockSettings.copyOf(Blocks.VINE), RedVineBlock.Variant.A));
-    public static final Block RED_VINE_VARIANT_B = register("red_vine_variant_b", new RedVineBlock(FabricBlockSettings.copyOf(Blocks.VINE), RedVineBlock.Variant.B), false);
-    public static final Block RED_VINE_VARIANT_C = register("red_vine_variant_c", new RedVineBlock(FabricBlockSettings.copyOf(Blocks.VINE), RedVineBlock.Variant.C), false);
+//    public static final Block EMPTY_RED_VINE = register("empty_red_vine", new RedVineBlock(FabricBlockSettings.copyOf(Blocks.VINE), RedVineBlock.Variant.Empty));
+//    public static final Block RED_VINE = register("red_vine", new RedVineBlock(FabricBlockSettings.copyOf(Blocks.VINE), RedVineBlock.Variant.A));
+//    public static final Block RED_VINE_VARIANT_B = register("red_vine_variant_b", new RedVineBlock(FabricBlockSettings.copyOf(Blocks.VINE), RedVineBlock.Variant.B), false);
+//    public static final Block RED_VINE_VARIANT_C = register("red_vine_variant_c", new RedVineBlock(FabricBlockSettings.copyOf(Blocks.VINE), RedVineBlock.Variant.C), false);
     // Rocks
     public static final Block ROCKS = register("rocks", new RockBlock(getRockSettings()));
     public static final Block ROCKS_VARIANT_B = register("rocks_variant_b", new RockBlock(getRockSettings()), false);
@@ -46,7 +46,7 @@ public class ObjectRegistry {
     public static final Block PINK_GRASS_FLOWER_VARIANT_B = register("pink_grass_flower_variant_b", new GrassFlowerBlock(getGrassSettings(), GrassFlowerBlock.Type.PINK), false);
     public static final Block WHITE_GRASS_FLOWER = register("white_grass_flower", new GrassFlowerBlock(getGrassSettings(), GrassFlowerBlock.Type.WHITE));
 
-    public static final Block GRAPEVINE_STEM = register("grapevine_stem", new GrapevineStemBlock(getGrapevineSettings().ticksRandomly()));
+    public static final Block GRAPEVINE_STEM = register("grapevine_stem", new GrapevineStemBlock(getGrapevineSettings()));
     private static <T extends Block> T register(String path, T block) {
         return register(path, block, true);
     }
@@ -93,7 +93,7 @@ public class ObjectRegistry {
     }
 
     private static AbstractBlock.Settings getGrassSettings() {
-        return FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).nonOpaque();
+        return FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).ticksRandomly().nonOpaque();
     }
 
     private static AbstractBlock.Settings getGrapevineSettings() {

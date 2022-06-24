@@ -23,18 +23,4 @@ public class GrapeBushSeedItem extends AliasedBlockItem {
     public GrapeBush.Type getType() {
         return type;
     }
-
-    //    @Override
-//    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-//        if (user instanceof PlayerEntity) {
-//            final double n = Math.random();
-//            // 20% chance
-//            if (n < 0.2) {
-//                final int max = 3;
-//                final int randomCount = user.getRandom().nextInt(max) + 1;
-//                ((PlayerEntity) user).getInventory().insertStack(new ItemStack(this.type == GrapeBush.Type.RED ? ObjectRegistry.RED_GRAPE_SEEDS : ObjectRegistry.WHITE_GRAPE_SEEDS, randomCount));
-//            }
-//        }
-//        return super.finishUsing(stack, world, user);
-//    }
 }
