@@ -53,7 +53,7 @@ public class GrapevineStemBlock extends Block implements Waterloggable, Fertiliz
         }
     }
 
-    public static final EnumProperty<GrapevineType> TYPE = EnumProperty.of("type", GrapevineType.class);
+    private static final EnumProperty<GrapevineType> TYPE = EnumProperty.of("type", GrapevineType.class);
 
     public GrapevineStemBlock(Settings settings) {
         super(settings);
