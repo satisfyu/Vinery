@@ -1,6 +1,10 @@
-package daniking.vinery;
+package daniking.vinery.registry;
 
+import daniking.vinery.GrapeBushSeedItem;
+import daniking.vinery.Vinery;
+import daniking.vinery.VineryIdentifier;
 import daniking.vinery.block.*;
+import daniking.vinery.util.GrapevineType;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
@@ -20,14 +24,14 @@ public class ObjectRegistry {
     private static final Map<Identifier, Block> BLOCKS = new LinkedHashMap<>();
 
     // Red Grapes
-    public static final Block RED_GRAPE_BUSH = register("red_grape_bush", new GrapeBush(getBushSettings(), GrapeBush.Type.RED), false);
-    public static final Item RED_GRAPE = register("red_grape", new Item(getSettings().food(FoodComponents.SWEET_BERRIES)));
-    public static final Item RED_GRAPE_SEEDS = register("red_grape_seeds", new GrapeBushSeedItem(RED_GRAPE_BUSH, getSettings(), GrapeBush.Type.RED));
+    public static final Block RED_GRAPE_BUSH = register("red_grape_bush", new GrapeBush(getBushSettings(), GrapevineType.RED), false);
+    public static final Item RED_GRAPE = register("red_grape", new GrapeItem(getSettings().food(FoodComponents.SWEET_BERRIES), GrapevineType.RED));
+    public static final Item RED_GRAPE_SEEDS = register("red_grape_seeds", new GrapeBushSeedItem(RED_GRAPE_BUSH, getSettings(), GrapevineType.RED));
 
     // White Grapes
-    public static final Block WHITE_GRAPE_BUSH = register("white_grape_bush", new GrapeBush(getBushSettings(), GrapeBush.Type.WHITE), false);
-    public static final Item WHITE_GRAPE = register("white_grape", new Item(getSettings().food(FoodComponents.SWEET_BERRIES)));
-    public static final Item WHITE_GRAPE_SEEDS = register("white_grape_seeds", new GrapeBushSeedItem(WHITE_GRAPE_BUSH, getSettings(), GrapeBush.Type.WHITE));
+    public static final Block WHITE_GRAPE_BUSH = register("white_grape_bush", new GrapeBush(getBushSettings(), GrapevineType.WHITE), false);
+    public static final Item WHITE_GRAPE = register("white_grape", new GrapeItem(getSettings().food(FoodComponents.SWEET_BERRIES), GrapevineType.WHITE));
+    public static final Item WHITE_GRAPE_SEEDS = register("white_grape_seeds", new GrapeBushSeedItem(WHITE_GRAPE_BUSH, getSettings(), GrapevineType.WHITE));
 
     // Vines
 //    public static final Block EMPTY_RED_VINE = register("empty_red_vine", new RedVineBlock(FabricBlockSettings.copyOf(Blocks.VINE), RedVineBlock.Variant.Empty));
@@ -47,6 +51,10 @@ public class ObjectRegistry {
     public static final Block WHITE_GRASS_FLOWER = register("white_grass_flower", new GrassFlowerBlock(getGrassSettings(), GrassFlowerBlock.Type.WHITE));
 
     public static final Block GRAPEVINE_STEM = register("grapevine_stem", new GrapevineStemBlock(getGrapevineSettings()));
+
+    public static final Block GRAPEVINE_LEAVES = register("grapevine_leaves", new GrapevineLeaves(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
+
+    public static final Block GRAPEVINE_POT =  register("grapevine_pot", new GrapevinePotBlock(FabricBlockSettings.copyOf(Blocks.BARREL)));
     private static <T extends Block> T register(String path, T block) {
         return register(path, block, true);
     }
@@ -65,7 +73,6 @@ public class ObjectRegistry {
         ITEMS.put(id, item);
         return item;
     }
-
 
     public static void init() {
         for (Map.Entry<Identifier, Block> entry : BLOCKS.entrySet()) {
@@ -93,11 +100,11 @@ public class ObjectRegistry {
     }
 
     private static AbstractBlock.Settings getGrassSettings() {
-        return FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).ticksRandomly().nonOpaque();
+        return FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).nonOpaque();
     }
 
     private static AbstractBlock.Settings getGrapevineSettings() {
-        return FabricBlockSettings.of(Material.WOOD).strength(2.0F).sounds(BlockSoundGroup.WOOD);
+        return FabricBlockSettings.of(Material.WOOD).strength(2.0F).ticksRandomly().sounds(BlockSoundGroup.WOOD);
     }
 
     public static Map<Identifier, Block> getBlocks() {

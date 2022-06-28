@@ -1,0 +1,11 @@
+{
+  "block.grapevine_pot.squeeze": {
+    "sounds": [
+      "vinery:block/grapevine_pot/squeeze1",
+      "vinery:block/grapevine_pot/squeeze2",
+      "vinery:block/grapevine_pot/squeeze3",
+      "vinery:block/grapevine_pot/squeeze4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  }
+}

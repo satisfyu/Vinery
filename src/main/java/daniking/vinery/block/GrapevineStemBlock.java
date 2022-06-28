@@ -1,9 +1,9 @@
 package daniking.vinery.block;
 
 import daniking.vinery.GrapeBushSeedItem;
-import daniking.vinery.ObjectRegistry;
+import daniking.vinery.registry.ObjectRegistry;
+import daniking.vinery.util.GrapevineType;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -21,7 +21,6 @@ import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -40,24 +39,12 @@ public class GrapevineStemBlock extends Block implements Waterloggable, Fertiliz
     private static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     private static final int MAX_AGE = 4;
     private static final IntProperty AGE = IntProperty.of("age", 0, MAX_AGE);
-
-    private enum GrapevineType implements StringIdentifiable {
-        RED,
-        WHITE;
-        public String toString() {
-            return this.asString();
-        }
-        @Override
-        public String asString() {
-            return this == RED ? "red" : "white";
-        }
-    }
-
     private static final EnumProperty<GrapevineType> TYPE = EnumProperty.of("type", GrapevineType.class);
+    private static final BooleanProperty HAS_GROWTH_LEAVES = BooleanProperty.of("has_growth_leaves");
 
     public GrapevineStemBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false).with(AGE, 0));
+        this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false).with(AGE, 0).with(HAS_GROWTH_LEAVES, false));
     }
 
     @Override
@@ -70,7 +57,7 @@ public class GrapevineStemBlock extends Block implements Waterloggable, Fertiliz
                     if (!player.isCreative()) {
                         stack.decrement(1);
                     }
-                    world.setBlockState(pos, withAge(age + 1, seed.getType() == GrapeBush.Type.RED ? GrapevineType.RED : GrapevineType.WHITE), 3);
+                    world.setBlockState(pos, withAge(age + 1, seed.getType() == GrapevineType.RED ? GrapevineType.RED : GrapevineType.WHITE), 3);
                     world.playSound(player, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PLACE, SoundCategory.AMBIENT, 1.0F, 1.0F);
                     return ActionResult.SUCCESS;
                 }
@@ -94,15 +81,35 @@ public class GrapevineStemBlock extends Block implements Waterloggable, Fertiliz
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (isMature(state)) return;
-        if (hasTrunk(world, pos) && state.get(AGE) > 0) {
+        if (!isMature(state) && hasTrunk(world, pos) && state.get(AGE) > 0) {
            final int i;
            if (world.getBaseLightLevel(pos, 0) >= 9 && (i = state.get(AGE)) < MAX_AGE) {
                world.setBlockState(pos, this.withAge(i + 1, state.get(TYPE)), Block.NOTIFY_LISTENERS);
            }
        }
+        if (hasGrowthLeaves(state)) return;
+        if (hasTrunk(world, pos) && state.get(AGE) > 2) {
+            final BlockPos belowPos = pos.down();
+            // Check four cardinal directions
+            final int count = MathHelper.nextInt(world.random, 1, 4);
+            for (int i = 0; i < count; i++) {
+                final int dirId = MathHelper.nextInt(world.random, 3, 5);
+                final Direction dir = Direction.byId(dirId);
+                // This is not possible anyway
+                if (dir == Direction.DOWN || dir == Direction.UP) {
+                    continue;
+                }
+                final BlockPos offset = belowPos.offset(dir);
+                if (world.getBlockState(offset).isAir()) {
+                    world.setBlockState(offset, ObjectRegistry.GRAPEVINE_LEAVES.getDefaultState().with(Properties.PERSISTENT, true), Block.NOTIFY_LISTENERS);
+                    world.setBlockState(pos, state.with(HAS_GROWTH_LEAVES, true));
+                }
+            }
+        }
     }
-
+    public boolean hasGrowthLeaves(BlockState state) {
+        return state.get(HAS_GROWTH_LEAVES);
+    }
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (state.get(AGE) > 2) {
@@ -140,7 +147,7 @@ public class GrapevineStemBlock extends Block implements Waterloggable, Fertiliz
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return Objects.requireNonNull(super.getPlacementState(ctx)).with(Properties.WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER).with(AGE ,0);
+        return Objects.requireNonNull(super.getPlacementState(ctx)).with(Properties.WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER).with(AGE ,0).with(HAS_GROWTH_LEAVES, false);
     }
 
     @Override
@@ -163,7 +170,7 @@ public class GrapevineStemBlock extends Block implements Waterloggable, Fertiliz
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED, AGE, TYPE);
+        builder.add(WATERLOGGED, AGE, TYPE, HAS_GROWTH_LEAVES);
     }
 
     public boolean isMature(BlockState state) {

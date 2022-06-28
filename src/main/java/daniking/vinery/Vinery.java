@@ -1,5 +1,7 @@
 package daniking.vinery;
 
+import daniking.vinery.registry.ObjectRegistry;
+import daniking.vinery.registry.VinerySoundEvents;
 import daniking.vinery.world.VineryConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -26,6 +28,7 @@ public class Vinery implements ModInitializer {
             }
         });
         VineryConfiguredFeatures.init();
+        VinerySoundEvents.init();
     }
 }
 

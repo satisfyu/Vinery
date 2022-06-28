@@ -1,6 +1,6 @@
 package daniking.vinery.block;
 
-import daniking.vinery.ObjectRegistry;
+import daniking.vinery.registry.ObjectRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;

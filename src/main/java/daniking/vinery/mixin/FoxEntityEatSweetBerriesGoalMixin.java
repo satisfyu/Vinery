@@ -1,7 +1,8 @@
 package daniking.vinery.mixin;
 
-import daniking.vinery.ObjectRegistry;
+import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.block.GrapeBush;
+import daniking.vinery.util.GrapevineType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
@@ -46,7 +47,7 @@ public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToTargetPosG
         }
     }
 
-    private void pickGrapes(BlockState state, GrapeBush.Type type) {
+    private void pickGrapes(BlockState state, GrapevineType type) {
         final int age = state.get(GrapeBush.AGE);
         state.with(GrapeBush.AGE, 1);
         int j = 1 + field_17975.world.random.nextInt(2) + (age == 3 ? 1 : 0);
@@ -63,7 +64,7 @@ public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToTargetPosG
         field_17975.world.setBlockState(this.targetPos, state.with(GrapeBush.AGE, 1), 2);
     }
 
-    private static ItemStack getGrapeFor(GrapeBush.Type type) {
+    private static ItemStack getGrapeFor(GrapevineType type) {
         return switch (type) {
             case RED -> new ItemStack(ObjectRegistry.RED_GRAPE_BUSH);
             case WHITE -> new ItemStack(ObjectRegistry.WHITE_GRAPE);

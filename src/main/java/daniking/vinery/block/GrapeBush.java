@@ -1,6 +1,7 @@
 package daniking.vinery.block;
 
-import daniking.vinery.ObjectRegistry;
+import daniking.vinery.registry.ObjectRegistry;
+import daniking.vinery.util.GrapevineType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,13 +18,9 @@ import net.minecraft.world.World;
 
 public class GrapeBush extends SweetBerryBushBlock {
 
-    public enum Type {
-        RED,
-        WHITE
-    }
-    private final Type type;
+    private final GrapevineType type;
 
-    public GrapeBush(Settings settings, Type type) {
+    public GrapeBush(Settings settings, GrapevineType type) {
         super(settings);
         this.type = type;
     }
@@ -36,7 +33,7 @@ public class GrapeBush extends SweetBerryBushBlock {
             return ActionResult.PASS;
         } else if (i > 1) {
             int x = world.random.nextInt(2);
-            dropStack(world, pos, new ItemStack(this.type == Type.RED ? ObjectRegistry.RED_GRAPE : ObjectRegistry.WHITE_GRAPE, x + (bl ? 1 : 0)));
+            dropStack(world, pos, new ItemStack(this.type == GrapevineType.RED ? ObjectRegistry.RED_GRAPE : ObjectRegistry.WHITE_GRAPE, x + (bl ? 1 : 0)));
             world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             world.setBlockState(pos, state.with(AGE, 1), 2);
             return ActionResult.success(world.isClient);
@@ -51,7 +48,7 @@ public class GrapeBush extends SweetBerryBushBlock {
             case WHITE -> new ItemStack(ObjectRegistry.WHITE_GRAPE);
         };
     }
-    public Type getType() {
+    public GrapevineType getType() {
         return type;
     }
 }

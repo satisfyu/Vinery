@@ -1,5 +1,6 @@
 package daniking.vinery;
 
+import daniking.vinery.registry.ObjectRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

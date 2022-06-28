@@ -1,6 +1,7 @@
 package daniking.vinery;
 
 import daniking.vinery.block.GrapeBush;
+import daniking.vinery.util.GrapevineType;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,14 +14,14 @@ import net.minecraft.world.World;
 
 public class GrapeBushSeedItem extends AliasedBlockItem {
 
-    private final GrapeBush.Type type;
+    private final GrapevineType type;
 
-    public GrapeBushSeedItem(Block block, Settings settings, GrapeBush.Type type) {
+    public GrapeBushSeedItem(Block block, Settings settings, GrapevineType type) {
         super(block, settings);
         this.type = type;
     }
 
-    public GrapeBush.Type getType() {
+    public GrapevineType getType() {
         return type;
     }
 }
