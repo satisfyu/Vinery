@@ -55,6 +55,9 @@ public class ObjectRegistry {
     public static final Block GRAPEVINE_LEAVES = register("grapevine_leaves", new GrapevineLeaves(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
 
     public static final Block GRAPEVINE_POT =  register("grapevine_pot", new GrapevinePotBlock(FabricBlockSettings.copyOf(Blocks.BARREL)));
+    public static final Block STOVE = register("stove", new StoveBlock(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(state -> state.get(StoveBlock.LIT) ? 13 : 0)));
+    public static final Item CRUSTY_BREAD = register("crusty_bread", new Item(getSettings()));
+
     private static <T extends Block> T register(String path, T block) {
         return register(path, block, true);
     }

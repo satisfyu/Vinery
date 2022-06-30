@@ -1,0 +1,9 @@
+{
+  "type": "vinery:stove_cooking",
+  "ingredient": {
+    "item": "minecraft:wheat"
+  },
+  "item": "vinery:crusty_bread",
+  "count": 3,
+  "experience": 0.35
+}

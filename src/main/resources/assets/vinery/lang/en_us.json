@@ -21,8 +21,10 @@
   "block.vinery.red_grapevine": "Red Grapevine",
   "block.vinery.grapevine_leaves": "Grapevine Leaves",
   "block.vinery.grapevine_pot": "Grapevine Pot",
+  "block.vinery.stove": "Stove",
   "item.vinery.red_grape": "Red Grape",
   "item.vinery.red_grape_seeds": "Red Grape Seeds",
   "item.vinery.white_grape": "White Grape",
-  "item.vinery.white_grape_seeds": "White Grape Seeds"
+  "item.vinery.white_grape_seeds": "White Grape Seeds",
+  "item.vinery.crusty_bread": "Crusty Bread"
 }

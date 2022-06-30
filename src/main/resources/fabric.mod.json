@@ -22,7 +22,7 @@
       "daniking.vinery.Vinery"
     ],
     "client": [
-      "daniking.vinery.ClientSetup"
+      "daniking.vinery.client.ClientSetup"
     ]
   },
   "mixins": [

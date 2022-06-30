@@ -1,7 +1,6 @@
 package daniking.vinery;
 
-import daniking.vinery.registry.ObjectRegistry;
-import daniking.vinery.registry.VinerySoundEvents;
+import daniking.vinery.registry.*;
 import daniking.vinery.world.VineryConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -21,6 +20,9 @@ public class Vinery implements ModInitializer {
     @Override
     public void onInitialize() {
         ObjectRegistry.init();
+        VineryBlockEntityTypes.init();
+        VineryScreenHandlerTypes.init();
+        VineryRecipeTypes.init();
         LootTableLoadingCallback.EVENT.register((resourceManager, manager, id, supplier, setter) -> {
             final Identifier resourceLocation = new VineryIdentifier("inject/seeds");
             if (Blocks.GRASS.getLootTableId().equals(id) || Blocks.TALL_GRASS.getLootTableId().equals(id) || Blocks.FERN.getLootTableId().equals(id)) {
