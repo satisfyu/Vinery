@@ -6,6 +6,8 @@ import daniking.vinery.VineryIdentifier;
 import daniking.vinery.block.*;
 import daniking.vinery.util.GrapevineType;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponents;
@@ -58,6 +60,9 @@ public class ObjectRegistry {
     public static final Block STOVE = register("stove", new StoveBlock(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(state -> state.get(StoveBlock.LIT) ? 13 : 0)));
     public static final Item CRUSTY_BREAD = register("crusty_bread", new Item(getSettings()));
 
+    // Cherry
+    public static final Block CHERRY_PLANKS = register("cherry_planks", new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+
     private static <T extends Block> T register(String path, T block) {
         return register(path, block, true);
     }
@@ -84,6 +89,9 @@ public class ObjectRegistry {
         for (Map.Entry<Identifier, Item> entry : ITEMS.entrySet()) {
             Registry.register(Registry.ITEM, entry.getKey(), entry.getValue());
         }
+        FuelRegistry fuelRegistry = FuelRegistry.INSTANCE;
+        FlammableBlockRegistry flammableRegistry = FlammableBlockRegistry.getDefaultInstance();
+        flammableRegistry.add(CHERRY_PLANKS, 5, 20);
     }
 
     private static Item.Settings getSettings() {
