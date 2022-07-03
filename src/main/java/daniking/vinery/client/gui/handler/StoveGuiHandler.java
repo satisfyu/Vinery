@@ -85,7 +85,6 @@ public class StoveGuiHandler extends ScreenHandler {
     @Override
     public ItemStack transferSlot(PlayerEntity player, int index) {
         ItemStack stack;
-        System.out.println(isIngredient(Items.STICK.getDefaultStack()));
         final Slot slot = this.getSlot(index);
         if (slot != null && slot.hasStack()) {
             final ItemStack stackInSlot = slot.getStack();

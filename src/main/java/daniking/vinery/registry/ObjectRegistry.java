@@ -70,6 +70,7 @@ public class ObjectRegistry {
     public static final Block STRIPPED_OLD_CHERRY_WOOD = registerLog("stripped_old_cherry_wood");
     public static final Block OLD_CHERRY_WOOD = register("old_cherry_wood", new StrippableLogBlock(getLogBlockSettings(), () -> STRIPPED_OLD_CHERRY_WOOD));
     public static final Block CHERRY_SLAB = register("cherry_slab", new SlabBlock(getSlabSettings()));
+    public static final Block CHERRY_STAIRS = register("cherry_stairs", new StairsBlock(CHERRY_PLANKS.getDefaultState(), AbstractBlock.Settings.copy(CHERRY_PLANKS)));
 
     private static PillarBlock registerLog(String path) {
         return register(path, new PillarBlock(getLogBlockSettings()));
@@ -112,6 +113,7 @@ public class ObjectRegistry {
         flammableRegistry.add(OLD_CHERRY_WOOD, 5, 5);
         flammableRegistry.add(STRIPPED_OLD_CHERRY_WOOD, 5, 5);
         flammableRegistry.add(CHERRY_SLAB, 5, 20);
+        flammableRegistry.add(CHERRY_STAIRS, 5, 20);
     }
 
     private static Item.Settings getSettings() {
