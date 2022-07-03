@@ -7,6 +7,7 @@ import daniking.vinery.block.*;
 import daniking.vinery.util.GrapevineType;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponents;
@@ -71,6 +72,8 @@ public class ObjectRegistry {
     public static final Block OLD_CHERRY_WOOD = register("old_cherry_wood", new StrippableLogBlock(getLogBlockSettings(), () -> STRIPPED_OLD_CHERRY_WOOD));
     public static final Block CHERRY_SLAB = register("cherry_slab", new SlabBlock(getSlabSettings()));
     public static final Block CHERRY_STAIRS = register("cherry_stairs", new StairsBlock(CHERRY_PLANKS.getDefaultState(), AbstractBlock.Settings.copy(CHERRY_PLANKS)));
+    public static final Block CHERRY_FENCE = register("cherry_fence", new FenceBlock(AbstractBlock.Settings.copy(Blocks.OAK_FENCE)));
+    public static final Block CHERRY_FENCE_GATE = register("cherry_fence_gate", new FenceGateBlock(AbstractBlock.Settings.copy(Blocks.OAK_FENCE)));
 
     private static PillarBlock registerLog(String path) {
         return register(path, new PillarBlock(getLogBlockSettings()));
@@ -114,6 +117,11 @@ public class ObjectRegistry {
         flammableRegistry.add(STRIPPED_OLD_CHERRY_WOOD, 5, 5);
         flammableRegistry.add(CHERRY_SLAB, 5, 20);
         flammableRegistry.add(CHERRY_STAIRS, 5, 20);
+        flammableRegistry.add(CHERRY_FENCE, 5, 20);
+        flammableRegistry.add(CHERRY_FENCE_GATE, 5, 20);
+        FuelRegistry fuelRegistry = FuelRegistry.INSTANCE;
+        fuelRegistry.add(CHERRY_FENCE, 300);
+        fuelRegistry.add(CHERRY_FENCE_GATE, 300);
     }
 
     private static Item.Settings getSettings() {
