@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:cherry_log"
+          "name": "vinery:stripped_old_cherry_wood"
         }
       ],
       "conditions": [

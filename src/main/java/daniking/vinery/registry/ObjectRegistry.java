@@ -7,7 +7,6 @@ import daniking.vinery.block.*;
 import daniking.vinery.util.GrapevineType;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponents;
@@ -62,6 +61,19 @@ public class ObjectRegistry {
 
     // Cherry
     public static final Block CHERRY_PLANKS = register("cherry_planks", new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+    public static final Block STRIPPED_CHERRY_LOG = registerLog("stripped_cherry_log");
+    public static final Block CHERRY_LOG = register("cherry_log", new StrippableLogBlock(getLogBlockSettings(), () -> STRIPPED_CHERRY_LOG));
+    public static final Block STRIPPED_OLD_CHERRY_LOG = registerLog("stripped_old_cherry_log");
+    public static final Block OLD_CHERRY_LOG = register("old_cherry_log", new StrippableLogBlock(getLogBlockSettings(), () -> STRIPPED_OLD_CHERRY_LOG));
+    public static final Block STRIPPED_CHERRY_WOOD = registerLog("stripped_cherry_wood");
+    public static final Block CHERRY_WOOD = register("cherry_wood", new StrippableLogBlock(getLogBlockSettings(), () -> STRIPPED_CHERRY_WOOD));
+
+    public static final Block STRIPPED_OLD_CHERRY_WOOD = registerLog("stripped_old_cherry_wood");
+    public static final Block OLD_CHERRY_WOOD = register("old_cherry_wood", new StrippableLogBlock(getLogBlockSettings(), () -> STRIPPED_OLD_CHERRY_WOOD));;
+
+    private static PillarBlock registerLog(String path) {
+        return register(path, new PillarBlock(getLogBlockSettings()));
+    }
 
     private static <T extends Block> T register(String path, T block) {
         return register(path, block, true);
@@ -89,9 +101,17 @@ public class ObjectRegistry {
         for (Map.Entry<Identifier, Item> entry : ITEMS.entrySet()) {
             Registry.register(Registry.ITEM, entry.getKey(), entry.getValue());
         }
-        FuelRegistry fuelRegistry = FuelRegistry.INSTANCE;
         FlammableBlockRegistry flammableRegistry = FlammableBlockRegistry.getDefaultInstance();
         flammableRegistry.add(CHERRY_PLANKS, 5, 20);
+        flammableRegistry.add(STRIPPED_CHERRY_LOG, 5, 5);
+        flammableRegistry.add(STRIPPED_OLD_CHERRY_LOG, 5, 5);
+        flammableRegistry.add(CHERRY_LOG, 5, 5);
+        flammableRegistry.add(OLD_CHERRY_LOG, 5, 5);
+        flammableRegistry.add(STRIPPED_CHERRY_WOOD, 5, 5);
+        flammableRegistry.add(CHERRY_WOOD, 5, 5);
+        flammableRegistry.add(OLD_CHERRY_WOOD, 5, 5);
+        flammableRegistry.add(STRIPPED_OLD_CHERRY_WOOD, 5, 5);
+
     }
 
     private static Item.Settings getSettings() {
@@ -117,6 +137,11 @@ public class ObjectRegistry {
     private static AbstractBlock.Settings getGrapevineSettings() {
         return FabricBlockSettings.of(Material.WOOD).strength(2.0F).ticksRandomly().sounds(BlockSoundGroup.WOOD);
     }
+
+    private static AbstractBlock.Settings getLogBlockSettings() {
+        return AbstractBlock.Settings.of(Material.WOOD).strength(2.0F).sounds(BlockSoundGroup.WOOD);
+    }
+
 
     public static Map<Identifier, Block> getBlocks() {
         return Collections.unmodifiableMap(BLOCKS);

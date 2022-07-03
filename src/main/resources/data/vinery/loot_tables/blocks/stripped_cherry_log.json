@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:cherry_log"
+          "name": "vinery:stripped_cherry_log"
         }
       ],
       "conditions": [
