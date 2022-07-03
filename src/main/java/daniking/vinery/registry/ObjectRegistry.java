@@ -67,9 +67,9 @@ public class ObjectRegistry {
     public static final Block OLD_CHERRY_LOG = register("old_cherry_log", new StrippableLogBlock(getLogBlockSettings(), () -> STRIPPED_OLD_CHERRY_LOG));
     public static final Block STRIPPED_CHERRY_WOOD = registerLog("stripped_cherry_wood");
     public static final Block CHERRY_WOOD = register("cherry_wood", new StrippableLogBlock(getLogBlockSettings(), () -> STRIPPED_CHERRY_WOOD));
-
     public static final Block STRIPPED_OLD_CHERRY_WOOD = registerLog("stripped_old_cherry_wood");
-    public static final Block OLD_CHERRY_WOOD = register("old_cherry_wood", new StrippableLogBlock(getLogBlockSettings(), () -> STRIPPED_OLD_CHERRY_WOOD));;
+    public static final Block OLD_CHERRY_WOOD = register("old_cherry_wood", new StrippableLogBlock(getLogBlockSettings(), () -> STRIPPED_OLD_CHERRY_WOOD));
+    public static final Block CHERRY_SLAB = register("cherry_slab", new SlabBlock(getSlabSettings()));
 
     private static PillarBlock registerLog(String path) {
         return register(path, new PillarBlock(getLogBlockSettings()));
@@ -111,7 +111,7 @@ public class ObjectRegistry {
         flammableRegistry.add(CHERRY_WOOD, 5, 5);
         flammableRegistry.add(OLD_CHERRY_WOOD, 5, 5);
         flammableRegistry.add(STRIPPED_OLD_CHERRY_WOOD, 5, 5);
-
+        flammableRegistry.add(CHERRY_SLAB, 5, 20);
     }
 
     private static Item.Settings getSettings() {
@@ -140,6 +140,10 @@ public class ObjectRegistry {
 
     private static AbstractBlock.Settings getLogBlockSettings() {
         return AbstractBlock.Settings.of(Material.WOOD).strength(2.0F).sounds(BlockSoundGroup.WOOD);
+    }
+
+    private static AbstractBlock.Settings getSlabSettings() {
+        return getLogBlockSettings().resistance(3.0F);
     }
 
 
