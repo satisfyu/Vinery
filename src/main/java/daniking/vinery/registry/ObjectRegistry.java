@@ -23,6 +23,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 public class ObjectRegistry {
 
@@ -89,6 +90,7 @@ public class ObjectRegistry {
     public static final Block CHERRY_LEAVES_VARIANT = register("cherry_leaves_variant", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).nonOpaque()));
     public static final Block PINK_CHERRY_LEAVES =  register("pink_cherry_leaves", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
     public static final Block PINK_CHERRY_LEAVES_VARIANT =  register("pink_cherry_leaves_variant", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
+    public static final Block STACKABLE_LOG = register("stackable_log", new StackableLogBlock(getLogBlockSettings().nonOpaque()));
 
     private static PillarBlock registerLog(String path) {
         return register(path, new PillarBlock(getLogBlockSettings()));
@@ -138,6 +140,7 @@ public class ObjectRegistry {
         FuelRegistry fuelRegistry = FuelRegistry.INSTANCE;
         fuelRegistry.add(CHERRY_FENCE, 300);
         fuelRegistry.add(CHERRY_FENCE_GATE, 300);
+        fuelRegistry.add(STACKABLE_LOG,  300);
     }
 
     private static Item.Settings getSettings() {

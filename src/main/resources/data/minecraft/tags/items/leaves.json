@@ -1,9 +1,10 @@
-
 {
   "replace": false,
   "values": [
     "vinery:cherry_leaves",
-    "vinery:cherry_leaves_variant"
-
+    "vinery:cherry_leaves_variant",
+    "vinery:pink_leaves",
+    "vinery:pink_leaves_variant"
   ]
 }
+

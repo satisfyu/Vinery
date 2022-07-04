@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "vinery:block/stackable_log"
+    },
+    "type=double,fired=true": {
+      "model": "vinery:block/stackable_log_double_fired"
+    },
+    "type=double,fired=false": {
+      "model": "vinery:block/stackable_log_double"
+    },
+    "type=top": {
+      "model": "vinery:block/stackable_log_top"
+    }
+  }
+}
