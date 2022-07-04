@@ -85,6 +85,10 @@ public class ObjectRegistry {
     public static final TerraformSignBlock CHERRY_SIGN = register("cherry_sign", new TerraformSignBlock(CHERRY_SIGN_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_SIGN)), false);
     public static final Block CHERRY_WALL_SIGN = register("cherry_wall_sign", new TerraformWallSignBlock(CHERRY_SIGN_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN)), false);
     public static final Item CHERRY_SIGN_ITEM = register("cherry_sign", new SignItem(getSettings().maxCount(16), CHERRY_SIGN, CHERRY_WALL_SIGN));
+    public static final Block CHERRY_LEAVES = register("cherry_leaves", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).nonOpaque()));
+    public static final Block CHERRY_LEAVES_VARIANT = register("cherry_leaves_variant", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).nonOpaque()));
+    public static final Block PINK_CHERRY_LEAVES =  register("pink_cherry_leaves", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
+    public static final Block PINK_CHERRY_LEAVES_VARIANT =  register("pink_cherry_leaves_variant", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
 
     private static PillarBlock registerLog(String path) {
         return register(path, new PillarBlock(getLogBlockSettings()));
@@ -178,3 +182,4 @@ public class ObjectRegistry {
     }
 
 }
+

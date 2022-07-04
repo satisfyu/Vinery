@@ -15,6 +15,6 @@ public class VineryBoatTypes {
     public static void init() {
         Item cherryBoat = TerraformBoatItemHelper.registerBoatItem(new VineryIdentifier("cherry_boat"), () -> cherry, Vinery.CREATIVE_TAB);
         cherry = new TerraformBoatType.Builder().item(cherryBoat).build();
-        Registry.register(TerraformBoatTypeRegistry.INSTANCE,new VineryIdentifier("cherry"), cherry);
+        Registry.register(TerraformBoatTypeRegistry.INSTANCE, new VineryIdentifier("cherry"), cherry);
     }
 }
