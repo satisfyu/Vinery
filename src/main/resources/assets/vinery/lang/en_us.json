@@ -38,9 +38,15 @@
   "block.vinery.cherry_button": "Cherry Button",
   "block.vinery.cherry_pressure_plate": "Cherry Pressure Plate",
   "block.vinery.cherry_door": "Cherry Door",
+  "block.vinery.cherry_trapdoor": "Cherry Trapdoor",
+  "block.vinery.cherry_sign": "Cherry Sign",
+  "block.vinery.cherry_wall_sign": "Cherry Sign",
   "item.vinery.red_grape": "Red Grape",
   "item.vinery.red_grape_seeds": "Red Grape Seeds",
   "item.vinery.white_grape": "White Grape",
   "item.vinery.white_grape_seeds": "White Grape Seeds",
-  "item.vinery.crusty_bread": "Crusty Bread"
+  "item.vinery.crusty_bread": "Crusty Bread",
+  "item.vinery.cherry_sign": "Cherry Sign",
+  "item.vinery.cherry_boat": "Cherry Boat",
+  "entity.vinery.cherry_boat": "Cherry Boat"
 }

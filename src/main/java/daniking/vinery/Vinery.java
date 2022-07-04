@@ -29,6 +29,7 @@ public class Vinery implements ModInitializer {
                 supplier.withPool(LootPool.builder().with(LootTableEntry.builder(resourceLocation).weight(1)).build());
             }
         });
+        VineryBoatTypes.init();
         VineryConfiguredFeatures.init();
         VinerySoundEvents.init();
     }

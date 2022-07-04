@@ -15,6 +15,10 @@ repositories {
 		name "rei"
 		url "https://maven.shedaniel.me"
 	}
+	maven {
+		name "terraform wood api, trinkets"
+		url "https://maven.terraformersmc.com"
+	}
 }
 
 dependencies {
@@ -27,6 +31,10 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
+	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
+
+
 }
 
 processResources {
