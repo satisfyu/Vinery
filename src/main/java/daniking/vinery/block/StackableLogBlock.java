@@ -2,7 +2,6 @@ package daniking.vinery.block;
 
 import net.minecraft.block.*;
 import net.minecraft.block.enums.SlabType;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -10,13 +9,11 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShovelItem;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -25,8 +22,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Random;
 
 public class StackableLogBlock extends SlabBlock implements Waterloggable {
     public static final EnumProperty<SlabType> TYPE = Properties.SLAB_TYPE;
@@ -45,7 +40,7 @@ public class StackableLogBlock extends SlabBlock implements Waterloggable {
             world.setBlockState(pos, state.with(FIRED, true), Block.NOTIFY_ALL);
             world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.NEUTRAL, 1.0F, 1.0F);
             return ActionResult.SUCCESS;
-        } else if (stack.getItem() instanceof ShovelItem && stackSize == SlabType.DOUBLE) {
+        } else if (stack.getItem() instanceof ShovelItem && stackSize == SlabType.DOUBLE && state.get(FIRED)) {
             world.setBlockState(pos, state.with(FIRED, false));
             world.playSound(player, pos, SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             final boolean clientSide = world.isClient();

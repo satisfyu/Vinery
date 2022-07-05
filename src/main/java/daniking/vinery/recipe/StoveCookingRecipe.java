@@ -81,6 +81,11 @@ public class StoveCookingRecipe implements Recipe<Inventory> {
         return VineryRecipeTypes.STOVE_RECIPE_TYPE;
     }
 
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
+
     public static class Serializer implements RecipeSerializer<StoveCookingRecipe> {
 
         @Override
