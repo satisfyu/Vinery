@@ -1,24 +1,32 @@
 {
-	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"textures": {
-		"2": "vinery:block/grass_block_side",
-		"3": "vinery:block/dirt",
-		"4": "vinery:block/grass_block_side_2",
-		"5": "vinery:block/grass_block_top",
-		"6": "vinery:block/pink_flower_2",
-		"particle": "vinery:block/grass_block_side"
+		"particle": "block/dirt",
+		"bottom": "block/dirt",
+		"top": "block/grass_block_top",
+		"side": "block/grass_block_side",
+		"overlay": "block/grass_block_side_overlay",
+		"6": "vinery:block/pink_flower_2"
 	},
 	"elements": [
-		{
-			"from": [0, 0, 0],
-			"to": [16, 16, 16],
+		{   "from": [ 0, 0, 0 ],
+			"to": [ 16, 16, 16 ],
 			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#4"},
-				"east": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#4"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#5"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#3"}
+				"down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#bottom", "cullface": "down" },
+				"up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#top",    "cullface": "up", "tintindex": 0 },
+				"north": { "uv": [ 0, 0, 16, 16 ], "texture": "#side",   "cullface": "north" },
+				"south": { "uv": [ 0, 0, 16, 16 ], "texture": "#side",   "cullface": "south" },
+				"west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side",   "cullface": "west" },
+				"east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side",   "cullface": "east" }
+			}
+		},
+		{   "from": [ 0, 0, 0 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"north": { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "north" },
+				"south": { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "south" },
+				"west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "west" },
+				"east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "east" }
 			}
 		},
 		{
@@ -33,36 +41,5 @@
 				"up": {"uv": [0, 0, 16, 16], "texture": "#6"}
 			}
 		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"rotation": [75, 45, 0],
-			"translation": [0, 2.5, 0],
-			"scale": [0.375, 0.375, 0.375]
-		},
-		"thirdperson_lefthand": {
-			"rotation": [75, 45, 0],
-			"translation": [0, 2.5, 0],
-			"scale": [0.375, 0.375, 0.375]
-		},
-		"firstperson_righthand": {
-			"rotation": [0, 45, 0],
-			"scale": [0.4, 0.4, 0.4]
-		},
-		"firstperson_lefthand": {
-			"rotation": [0, 225, 0],
-			"scale": [0.4, 0.4, 0.4]
-		},
-		"ground": {
-			"translation": [0, 3, 0],
-			"scale": [0.25, 0.25, 0.25]
-		},
-		"gui": {
-			"rotation": [30, 225, 0],
-			"scale": [0.625, 0.625, 0.625]
-		},
-		"fixed": {
-			"scale": [0.5, 0.5, 0.5]
-		}
-	}
+	]
 }
