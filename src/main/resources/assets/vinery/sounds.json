@@ -7,5 +7,10 @@
       "vinery:block/grapevine_pot/squeeze4"
     ],
     "subtitle": "subtitles.block.generic.place"
+  },
+  "block.cooking_pot.juice_boiling": {
+    "sounds": [
+      "vinery:block/cooking_pot/juice_boiling"
+    ]
   }
 }

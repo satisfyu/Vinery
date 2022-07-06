@@ -5,17 +5,25 @@ import daniking.vinery.world.VineryConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.LootTableEntry;
+import net.minecraft.tag.BlockTags;
+import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 
 public class Vinery implements ModInitializer {
 
     public static final String MODID = "vinery";
     public static final ItemGroup CREATIVE_TAB = FabricItemGroupBuilder.build(new VineryIdentifier("creative_tab"), () -> new ItemStack(ObjectRegistry.RED_GRAPE));
+    public static final TagKey<Block> ALLOWS_COOKING_ON_POT = TagKey.of(Registry.BLOCK_KEY, new VineryIdentifier("allows_cooking_on_pot"));
 
     @Override
     public void onInitialize() {
@@ -32,6 +40,7 @@ public class Vinery implements ModInitializer {
         VineryBoatTypes.init();
         VineryConfiguredFeatures.init();
         VinerySoundEvents.init();
+
     }
 }
 

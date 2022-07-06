@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ISI",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "iron_ingot"
+    },
+    "S": {
+      "item": "wooden_shovel"
+    }
+  },
+  "result": {
+    "item": "vinery:cooking_pot"
+  }
+}

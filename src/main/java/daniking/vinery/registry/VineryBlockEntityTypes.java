@@ -1,6 +1,7 @@
 package daniking.vinery.registry;
 
 import daniking.vinery.VineryIdentifier;
+import daniking.vinery.block.entity.CookingPotEntity;
 import daniking.vinery.block.entity.StoveBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
@@ -16,6 +17,7 @@ public class VineryBlockEntityTypes {
     private static final Map<Identifier, BlockEntityType<?>> BLOCK_ENTITY_TYPES = new HashMap<>();
 
     public static final BlockEntityType<StoveBlockEntity> STOVE_BLOCK_ENTITY = create("stove", FabricBlockEntityTypeBuilder.create(StoveBlockEntity::new, ObjectRegistry.STOVE).build());
+    public static final BlockEntityType<CookingPotEntity> COOKING_POT_BLOCK_ENTITY = create("cooking_pot", FabricBlockEntityTypeBuilder.create(CookingPotEntity::new, ObjectRegistry.COOKING_POT).build());
 
     private static <T extends BlockEntityType<?>> T create(final String path, final T type) {
         BLOCK_ENTITY_TYPES.put(new VineryIdentifier(path), type);
