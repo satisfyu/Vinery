@@ -91,6 +91,7 @@ public class ObjectRegistry {
     public static final Block PINK_CHERRY_LEAVES =  register("pink_cherry_leaves", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
     public static final Block PINK_CHERRY_LEAVES_VARIANT =  register("pink_cherry_leaves_variant", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
     public static final Block STACKABLE_LOG = register("stackable_log", new StackableLogBlock(getLogBlockSettings().nonOpaque()));
+    public static final Item CHERRY = register("cherry", new Item(getSettings().food(FoodComponents.COOKIE)));
 
     private static PillarBlock registerLog(String path) {
         return register(path, new PillarBlock(getLogBlockSettings()));
