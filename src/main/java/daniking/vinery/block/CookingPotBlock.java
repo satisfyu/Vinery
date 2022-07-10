@@ -77,10 +77,10 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         final ItemStack stack = player.getStackInHand(hand);
         final BlockEntity entity = world.getBlockEntity(pos);
-        if (entity instanceof CookingPotEntity pot && stack.isOf(ObjectRegistry.CHERRY)) {
+        if (entity instanceof CookingPotEntity pot && stack.isOf(ObjectRegistry.CHERRY_JAM.asItem())) {
             if (pot.insertCherry(player.isCreative() ? stack.copy() : stack)) {
                 world.setBlockState(pos, this.getDefaultState().with(COOKING, false).with(HAS_CHERRIES_INSIDE, true), Block.NOTIFY_ALL);
-                return ActionResult.success(world.isClient());
+                return ActionResult.SUCCESS;
             }
         }
         return super.onUse(state, world, pos, player, hand, hit);

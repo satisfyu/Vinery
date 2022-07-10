@@ -10,6 +10,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class CherryJamBlock extends Block {
@@ -27,9 +29,21 @@ public class CherryJamBlock extends Block {
         if (stack.getItem() == this.asItem()) {
             if (state.get(STACK) < 3) {
                 world.setBlockState(pos, this.getDefaultState().with(STACK, world.getBlockState(pos).get(STACK) + 1), Block.NOTIFY_ALL);
+                stack.decrement(1);
+                return ActionResult.SUCCESS;
             }
         }
         return super.onUse(state, world, pos, player, hand, hit);
+    }
+
+    @Override
+    public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
+        return true;
+    }
+
+
+    public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+        return stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
     }
 
     @Override

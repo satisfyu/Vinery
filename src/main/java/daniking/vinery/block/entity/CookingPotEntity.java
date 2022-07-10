@@ -50,13 +50,13 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
         Inventories.writeNbt(nbt, this.cherryInventory);
     }
 
-    public boolean insertCherry(ItemStack cherry) {
-        if (cherry != null && !cherry.isEmpty() && getNotEmptyStacks() != MAX_CAPACITY) {
+    public boolean insertCherry(ItemStack cherryJam) {
+        if (cherryJam != null && !cherryJam.isEmpty() && getNotEmptyStacks() != MAX_CAPACITY) {
             for (int i = 0; i < this.cherryInventory.size(); i++) {
                 final ItemStack stackInInv = this.cherryInventory.get(i);
                 if (stackInInv.isEmpty()) {
-                    this.cherryInventory.set(i, cherry.split(1));
-                    cherry.decrement(1);
+                    this.cherryInventory.set(i, new ItemStack(cherryJam.getItem(), 1));
+                    cherryJam.decrement(1);
                     updateListeners();
                     return true;
                 }
