@@ -49,7 +49,7 @@ public class GrapevinePotBlock extends Block {
     private static final int MAX_STORAGE = 9;
     private static final IntProperty STAGE = IntProperty.of("stage", 0, MAX_STAGE);
     private static final IntProperty STORAGE = IntProperty.of("storage", 0, MAX_STORAGE);
-
+    private static final int DECREMENT_PER_WINE_BOTTLE = 3;
     private static final EnumProperty<GrapevineType> GRAPEVINE_TYPE = EnumProperty.of("type", GrapevineType.class);
 
     public GrapevinePotBlock(Settings settings) {
@@ -79,11 +79,28 @@ public class GrapevinePotBlock extends Block {
         }
     }
 
+    private boolean canTakeWine(BlockState state, ItemStack stackInHand) {
+        final int storage = state.get(STORAGE);
+        final int stage = state.get(STAGE);
+        if (canTakeWine(storage) && stage == MAX_STAGE) {
+            return stackInHand.isOf(ObjectRegistry.WINE_BOTTLE.asItem());
+        } else {
+            return false;
+        }
+    }
+    private boolean canTakeWine(int storage) {
+        return switch (storage) {
+            case 3, 6, 9 -> true;
+            default -> false;
+        };
+    }
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         final ItemStack stack = player.getStackInHand(hand);
         if (state.get(STAGE) > 3 || state.get(STORAGE) >= MAX_STORAGE) {
-            return ActionResult.PASS;
+            if (stack.getItem() instanceof GrapeItem) {
+                return ActionResult.PASS;
+            }
         }
         if (stack.getItem() instanceof GrapeItem grape) {
             if (!player.isCreative()) stack.decrement(1);
@@ -116,6 +133,27 @@ public class GrapevinePotBlock extends Block {
                 world.playSound(player, pos, SoundEvents.BLOCK_CORAL_BLOCK_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
             return ActionResult.SUCCESS;
+        } else if (stack.isOf(ObjectRegistry.WINE_BOTTLE.asItem())) {
+            if (canTakeWine(state, stack)) {
+                final ItemStack output = switch (state.get(GRAPEVINE_TYPE)) {
+                    case RED -> new ItemStack(ObjectRegistry.RED_GRAPEJUICE_WINE_BOTTLE);
+                    case WHITE -> new ItemStack(ObjectRegistry.WHITE_GRAPEJUICE_WINE_BOTTLE)
+                };
+                int storage = state.get(STORAGE);
+                int newStorage = (storage - DECREMENT_PER_WINE_BOTTLE);
+                if (newStorage == 0) {
+                    world.setBlockState(pos, world.getBlockState(pos).with(STORAGE,0).with(STAGE, 0), Block.NOTIFY_ALL);
+                } else {
+                    world.setBlockState(pos, world.getBlockState(pos).with(STORAGE, newStorage), Block.NOTIFY_ALL);
+                }
+                if (!player.isCreative()) stack.decrement(1);
+                if (!player.getInventory().insertStack(output)) {
+                    player.dropItem(output, false, false);
+                }
+                return ActionResult.SUCCESS;
+            }
+
+
         }
         return ActionResult.PASS;
     }

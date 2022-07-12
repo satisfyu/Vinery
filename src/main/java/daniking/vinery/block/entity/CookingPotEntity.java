@@ -2,22 +2,20 @@ package daniking.vinery.block.entity;
 
 import daniking.vinery.Vinery;
 import daniking.vinery.block.CookingPotBlock;
+import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.registry.VineryBlockEntityTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryEntryList;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 
 import java.util.Collections;
@@ -28,8 +26,9 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 
     private DefaultedList<ItemStack> cherryInventory;
     private static final int MAX_CAPACITY = 4;
-    private static final int MAX_COOKING_TIME = 60; // Time in ticks (30s)
+    private static final int MAX_COOKING_TIME = 600; // Time in ticks (30s)
     private int cookingTime = MAX_COOKING_TIME;
+    private boolean isDone = false;
     public CookingPotEntity(BlockPos pos, BlockState state) {
         super(VineryBlockEntityTypes.COOKING_POT_BLOCK_ENTITY, pos, state);
         this.cherryInventory = DefaultedList.ofSize(MAX_CAPACITY, ItemStack.EMPTY);
@@ -40,6 +39,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
         super.readNbt(nbt);
         this.cherryInventory = DefaultedList.ofSize(MAX_CAPACITY, ItemStack.EMPTY);
         nbt.putInt("CookingTime", this.cookingTime);
+        nbt.putBoolean("isDone", this.isDone);
         Inventories.readNbt(nbt, this.cherryInventory);
     }
 
@@ -47,6 +47,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         this.cookingTime = nbt.getInt("CookingTime");
+        this.isDone = nbt.getBoolean("isDone");
         Inventories.writeNbt(nbt, this.cherryInventory);
     }
 
@@ -89,7 +90,12 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
         }
         final var optionalList = Registry.BLOCK.getEntryList(Vinery.ALLOWS_COOKING_ON_POT);
         final var entryList = optionalList.orElse(null);
-
+        if (this.isDone && this.getNotEmptyStacks() == 0) {
+            reset(world, state);
+        }
+        if (state.get(CookingPotBlock.COOKING) && this.getNotEmptyStacks() == 0) {
+            reset(world, state);
+        }
         if (entryList != null) {
             // TODO: deprecated
             if (entryList.contains(belowState.getBlock().getRegistryEntry())) {
@@ -112,10 +118,17 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
                         // Check cooking time
                         if (this.cookingTime == 0) {
                             dirty = true;
-                            ItemScatterer.spawn(world, pos, this.cherryInventory);
-                            clearCherryInventory();
+                            this.isDone = true;
+                            world.setBlockState(pos, state.with(CookingPotBlock.COOKING, false), Block.NOTIFY_ALL);
+//                            ItemScatterer.spawn(world, pos, this.cherryInventory);
+//                            clearCherryInventory();
                             world.updateListeners(pos, state, state, Block.NOTIFY_ALL);
 
+                        }
+                    } else {
+                        if (this.cookingTime > 0) {
+                            this.cookingTime = 0;
+                            world.setBlockState(pos, state.with(CookingPotBlock.COOKING, false), Block.NOTIFY_ALL);
                         }
                     }
                 } else {
@@ -130,6 +143,35 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
             }
         }
 
+    }
+    private void reset(World world, BlockState state) {
+        this.cookingTime = 0;
+        world.setBlockState(pos, state.with(CookingPotBlock.COOKING, false), Block.NOTIFY_ALL);
+        this.isDone = false;
+        clearCherryInventory();
+        markDirty();
+    }
+    public void onFinish(PlayerEntity player, ItemStack emptyJar) {
+        if (this.isDone()) {
+            final ItemStack output = new ItemStack(ObjectRegistry.CHERRY_JAM);
+            if (!player.getInventory().insertStack(output)) {
+                player.dropItem(output, false, false);
+            }
+            if (!player.isCreative()) emptyJar.decrement(1);
+            final int i = this.getNotEmptyStacks() - 1;
+            if (i >= 0) {
+                this.cherryInventory.set(i, ItemStack.EMPTY);
+            }
+            updateListeners();
+        } else if (this.cookingTime == 0) {
+            reset(world, getCachedState());
+        }
+    }
+    public boolean isDone() {
+        return this.cookingTime == 0 && isDone;
+    }
+    public DefaultedList<ItemStack> getCherryInventory() {
+        return cherryInventory;
     }
 
     private void clearCherryInventory() {

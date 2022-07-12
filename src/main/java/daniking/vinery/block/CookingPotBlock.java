@@ -7,11 +7,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
@@ -24,9 +26,11 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -77,14 +81,38 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         final ItemStack stack = player.getStackInHand(hand);
         final BlockEntity entity = world.getBlockEntity(pos);
-        if (entity instanceof CookingPotEntity pot && stack.isOf(ObjectRegistry.CHERRY_JAM.asItem())) {
-            if (pot.insertCherry(player.isCreative() ? stack.copy() : stack)) {
-                world.setBlockState(pos, this.getDefaultState().with(COOKING, false).with(HAS_CHERRIES_INSIDE, true), Block.NOTIFY_ALL);
-                return ActionResult.SUCCESS;
+        if (entity instanceof CookingPotEntity pot) {
+            if (stack.isOf(ObjectRegistry.CHERRY)) {
+                if (pot.insertCherry(player.isCreative() ? stack.copy() : stack)) {
+                    world.setBlockState(pos, this.getDefaultState().with(COOKING, false).with(HAS_CHERRIES_INSIDE, true), Block.NOTIFY_ALL);
+                    return ActionResult.SUCCESS;
+                }
+            } else {
+                if (stack.isOf(ObjectRegistry.CHERRY_JAR.asItem())) {
+                    // Consume empty jar and give cherry jam
+                    pot.onFinish(player, stack);
+                    return ActionResult.SUCCESS;
+                }
             }
         }
         return super.onUse(state, world, pos, player, hand, hit);
     }
+
+
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (!state.isOf(newState.getBlock())) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof CookingPotEntity pot) {
+                if (world instanceof ServerWorld) {
+                    ItemScatterer.spawn(world, pos, pot.getCherryInventory());
+                }
+                world.updateComparators(pos, this);
+            }
+            super.onStateReplaced(state, world, pos, newState, moved);
+        }
+    }
+
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (state.get(COOKING)) {

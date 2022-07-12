@@ -12,10 +12,8 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.FoodComponents;
-import net.minecraft.item.Item;
-import net.minecraft.item.SignItem;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.*;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -61,6 +59,9 @@ public class ObjectRegistry {
     public static final Block GRAPEVINE_LEAVES = register("grapevine_leaves", new GrapevineLeaves(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
 
     public static final Block GRAPEVINE_POT =  register("grapevine_pot", new GrapevinePotBlock(FabricBlockSettings.copyOf(Blocks.BARREL)));
+    public static final Block RED_GRAPEJUICE_WINE_BOTTLE = register("red_grapejuice_wine_bottle", new RedGrapejuiceWineBottle(getWineSettings()));
+    public static final Block WHITE_GRAPEJUICE_WINE_BOTTLE = register("white_grapejuice_wine_bottle", new WhiteGrapejuiceWineBottle(getWineSettings()));
+
     public static final Block STOVE = register("stove", new StoveBlock(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(state -> state.get(StoveBlock.LIT) ? 13 : 0)));
     public static final Item CRUSTY_BREAD = register("crusty_bread", new Item(getSettings()));
 
@@ -93,8 +94,15 @@ public class ObjectRegistry {
     public static final Block STACKABLE_LOG = register("stackable_log", new StackableLogBlock(getLogBlockSettings().nonOpaque()));
     public static final Item CHERRY = register("cherry", new Item(getSettings().food(FoodComponents.COOKIE)));
     public static final Block COOKING_POT = register("cooking_pot", new CookingPotBlock(FabricBlockSettings.of(Material.STONE).breakInstantly().nonOpaque()));
+    public static final Block CHERRY_JAR = register("cherry_jar", new CherryJamBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque()));
     public static final Block CHERRY_JAM = register("cherry_jam", new CherryJamBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque()));
 
+    public static final Item VINEMAKER_APRON = register("vinemaker_apron", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings()));
+    public static final Item VINEMAKER_GLOVES = register("vinemaker_gloves", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings()));
+    public static final Item VINEMAKER_BOOTS = register("vinemaker_boots", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings()));
+    public static final Block FERMENTATION_BARREL = register("fermentation_barrel", new FermentationBarrelBlock(AbstractBlock.Settings.copy(Blocks.BARREL).nonOpaque()));
+
+    public static final Block WINE_BOTTLE = register("wine_bottle", new WineBottleBlock(AbstractBlock.Settings.copy(Blocks.GLASS).breakInstantly().nonOpaque()));
     private static PillarBlock registerLog(String path) {
         return register(path, new PillarBlock(getLogBlockSettings()));
     }
@@ -119,7 +127,6 @@ public class ObjectRegistry {
     }
 
     public static void init() {
-
         for (Map.Entry<Identifier, Block> entry : BLOCKS.entrySet()) {
             Registry.register(Registry.BLOCK, entry.getKey(), entry.getValue());
         }
@@ -144,6 +151,7 @@ public class ObjectRegistry {
         fuelRegistry.add(CHERRY_FENCE, 300);
         fuelRegistry.add(CHERRY_FENCE_GATE, 300);
         fuelRegistry.add(STACKABLE_LOG,  300);
+        fuelRegistry.add(FERMENTATION_BARREL, 300);
     }
 
     private static Item.Settings getSettings() {
@@ -178,7 +186,9 @@ public class ObjectRegistry {
         return getLogBlockSettings().resistance(3.0F);
     }
 
-
+    private static AbstractBlock.Settings getWineSettings() {
+        return AbstractBlock.Settings.copy(Blocks.GLASS).nonOpaque().breakInstantly();
+    }
     public static Map<Identifier, Block> getBlocks() {
         return Collections.unmodifiableMap(BLOCKS);
     }

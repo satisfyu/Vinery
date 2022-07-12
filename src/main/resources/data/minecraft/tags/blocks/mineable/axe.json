@@ -8,6 +8,7 @@
     "vinery:cherry_log",
     "vinery:old_cherry_log",
     "vinery:cherry_planks",
-    "vinery:stackable_log"
+    "vinery:stackable_log",
+    "vinery:fermentation_barrel"
   ]
 }

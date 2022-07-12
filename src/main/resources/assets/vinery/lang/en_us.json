@@ -47,7 +47,12 @@
   "block.vinery.pink_cherry_leaves_variant": "Pink Cherry Leaves Variant",
   "block.vinery.stackable_log": "Stackable Log",
   "block.vinery.cooking_pot": "Cooking Pot",
+  "block.vinery.cherry_jar": "Cherry Jar",
   "block.vinery.cherry_jam": "Cherry Jam",
+  "block.vinery.fermentation_barrel": "Fermentation Barrel",
+  "block.vinery.wine_bottle": "Wine Bottle",
+  "block.vinery.red_grapejuice_wine_bottle": "Red Grapejuice Wine Bottle",
+  "block.vinery.white_grapejuice_wine_bottle": "White Grapejuice Wine Bottle",
   "item.vinery.red_grape": "Red Grape",
   "item.vinery.red_grape_seeds": "Red Grape Seeds",
   "item.vinery.white_grape": "White Grape",
@@ -56,5 +61,8 @@
   "item.vinery.cherry_sign": "Cherry Sign",
   "item.vinery.cherry_boat": "Cherry Boat",
   "item.vinery.cherry": "Cherry",
+  "item.vinery.vinemaker_apron": "Vinemaker Apron",
+  "item.vinery.vinemaker_gloves": "Vinemaker Gloves",
+  "item.vinery.vinemaker_boots": "Vinemaker Boots",
   "entity.vinery.cherry_boat": "Cherry Boat"
 }
