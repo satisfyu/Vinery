@@ -1,6 +1,7 @@
 package daniking.vinery.registry;
 
 import daniking.vinery.VineryIdentifier;
+import daniking.vinery.recipe.FermentationBarrelRecipe;
 import daniking.vinery.recipe.StoveCookingRecipe;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
@@ -18,6 +19,9 @@ public class VineryRecipeTypes {
 
     public static final RecipeType<StoveCookingRecipe> STOVE_RECIPE_TYPE = create("stove_cooking");
     public static final RecipeSerializer<StoveCookingRecipe> STOVE_COOKING_RECIPE_SERIALIZER = create("stove_cooking", new StoveCookingRecipe.Serializer());
+
+    public static final RecipeType<FermentationBarrelRecipe> FERMENTATION_BARREL_RECIPE_TYPE = create("wine_fermentation");
+    public static final RecipeSerializer<FermentationBarrelRecipe> FERMENTATION_BARREL_RECIPE_SERIALIZER = create("wine_fermentation", new FermentationBarrelRecipe.Serializer());
 
     private static <T extends Recipe<?>> RecipeSerializer<T> create(String name, RecipeSerializer<T> serializer) {
         RECIPE_SERIALIZERS.put(new VineryIdentifier(name), serializer);

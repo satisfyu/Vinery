@@ -2,7 +2,10 @@ package daniking.vinery.block.entity;
 
 import daniking.vinery.Vinery;
 import daniking.vinery.client.gui.handler.FermentationBarrelGuiHandler;
+import daniking.vinery.recipe.FermentationBarrelRecipe;
+import daniking.vinery.recipe.StoveCookingRecipe;
 import daniking.vinery.registry.VineryBlockEntityTypes;
+import daniking.vinery.registry.VineryRecipeTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -28,6 +31,8 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
     private final DefaultedList<ItemStack> inventory;
     public static final int CAPACITY = 6;
     public static final int COOKING_TIME_IN_TICKS = 1800; // 90s or 3 minutes
+    private static final int BOTTLE_INPUT_SLOT = 0;
+    private static final int OUTPUT_SLOT = 1;
 
     public FermentationBarrelBlockEntity(BlockPos pos, BlockState state) {
         super(VineryBlockEntityTypes.FERMENTATION_BARREL_ENTITY, pos, state);
@@ -50,6 +55,49 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
 
     @Override
     public void tick(World world, BlockPos pos, BlockState state, FermentationBarrelBlockEntity blockEntity) {
+        if (world.isClient) return;
+
+        final var recipeType = world.getRecipeManager()
+                .getFirstMatch(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE, blockEntity, world)
+                .orElse(null);
+
+        if (canCraft(recipeType)) {
+            final ItemStack bottle = this.getStack(BOTTLE_INPUT_SLOT);
+            if (bottle.getCount() > 1) {
+                removeStack(BOTTLE_INPUT_SLOT, 1);
+            } else if (bottle.getCount() == 1) {
+                setStack(BOTTLE_INPUT_SLOT, ItemStack.EMPTY);
+            }
+        }
+        if (canCraft(recipeType)) {
+
+        }
+
+    }
+
+    private boolean canCraft(FermentationBarrelRecipe recipe) {
+        if (recipe == null || recipe.getOutput().isEmpty()) {
+            return false;
+        } else if (areInputsEmpty()) {
+            return false;
+        } else if (this.getStack(BOTTLE_INPUT_SLOT).isEmpty()) {
+            return false;
+        } else {
+            return this.getStack(OUTPUT_SLOT).isEmpty();
+        }
+    }
+
+    private boolean areInputsEmpty() {
+        int emptyStacks = 0;
+        for (int i = 2; i < 6; i++) {
+            if (this.getStack(i).isEmpty()) emptyStacks++;
+        }
+        return emptyStacks == 4;
+    }
+    private void craft(FermentationBarrelRecipe recipe) {
+        if (!canCraft(recipe)) {
+            return;
+        }
 
     }
 
