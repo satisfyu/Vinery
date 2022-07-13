@@ -1,12 +1,17 @@
 package daniking.vinery.block.entity;
 
 import daniking.vinery.Vinery;
+import daniking.vinery.block.RedGrapejuiceWineBottle;
+import daniking.vinery.block.WineBottleBlock;
 import daniking.vinery.client.gui.handler.FermentationBarrelGuiHandler;
 import daniking.vinery.recipe.FermentationBarrelRecipe;
 import daniking.vinery.recipe.StoveCookingRecipe;
 import daniking.vinery.registry.VineryBlockEntityTypes;
 import daniking.vinery.registry.VineryRecipeTypes;
+import daniking.vinery.util.WineTypeProvider;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -16,6 +21,7 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -26,13 +32,41 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class FermentationBarrelBlockEntity extends BlockEntity implements Inventory, BlockEntityTicker<FermentationBarrelBlockEntity>, NamedScreenHandlerFactory, PropertyDelegate {
+public class FermentationBarrelBlockEntity extends BlockEntity implements Inventory, BlockEntityTicker<FermentationBarrelBlockEntity>, NamedScreenHandlerFactory {
 
-    private final DefaultedList<ItemStack> inventory;
+    private DefaultedList<ItemStack> inventory;
     public static final int CAPACITY = 6;
     public static final int COOKING_TIME_IN_TICKS = 1800; // 90s or 3 minutes
     private static final int BOTTLE_INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
+    private int fermentationTime = 0;
+    private int totalFermentationTime;
+
+    private final PropertyDelegate propertyDelegate = new PropertyDelegate() {
+
+        @Override
+        public int get(int index) {
+            return switch (index) {
+                case 0 -> FermentationBarrelBlockEntity.this.fermentationTime;
+                case 1 -> FermentationBarrelBlockEntity.this.totalFermentationTime;
+                default -> 0;
+            };
+        }
+
+
+        @Override
+        public void set(int index, int value) {
+            switch (index) {
+                case 0 -> FermentationBarrelBlockEntity.this.fermentationTime = value;
+                case 1 -> FermentationBarrelBlockEntity.this.totalFermentationTime = value;
+            }
+        }
+
+        @Override
+        public int size() {
+            return 2;
+        }
+    };
 
     public FermentationBarrelBlockEntity(BlockPos pos, BlockState state) {
         super(VineryBlockEntityTypes.FERMENTATION_BARREL_ENTITY, pos, state);
@@ -43,7 +77,9 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
+        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
         Inventories.readNbt(nbt, this.inventory);
+        this.fermentationTime = nbt.getShort("FermentationTime");
     }
 
 
@@ -51,26 +87,29 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, this.inventory);
+        nbt.putShort("FermentationTime", (short) this.fermentationTime);
     }
 
     @Override
     public void tick(World world, BlockPos pos, BlockState state, FermentationBarrelBlockEntity blockEntity) {
         if (world.isClient) return;
-
+        boolean dirty = false;
         final var recipeType = world.getRecipeManager()
                 .getFirstMatch(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE, blockEntity, world)
                 .orElse(null);
-
         if (canCraft(recipeType)) {
-            final ItemStack bottle = this.getStack(BOTTLE_INPUT_SLOT);
-            if (bottle.getCount() > 1) {
-                removeStack(BOTTLE_INPUT_SLOT, 1);
-            } else if (bottle.getCount() == 1) {
-                setStack(BOTTLE_INPUT_SLOT, ItemStack.EMPTY);
+            this.fermentationTime++;
+
+            if (this.fermentationTime == this.totalFermentationTime) {
+                this.fermentationTime = 0;
+                craft(recipeType);
+                dirty = true;
             }
+        } else {
+            this.fermentationTime = 0;
         }
-        if (canCraft(recipeType)) {
-
+        if (dirty) {
+            markDirty();
         }
 
     }
@@ -83,6 +122,16 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
         } else if (this.getStack(BOTTLE_INPUT_SLOT).isEmpty()) {
             return false;
         } else {
+            final Block block = Block.getBlockFromItem(this.getStack(BOTTLE_INPUT_SLOT).getItem());
+            if (block == null || block == Blocks.AIR) {
+                return false;
+            }
+            if (!(block instanceof WineTypeProvider wine)) {
+                return false;
+            }
+            if (wine.getType() != recipe.getWineType()) {
+                return false;
+            }
             return this.getStack(OUTPUT_SLOT).isEmpty();
         }
     }
@@ -98,18 +147,38 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
         if (!canCraft(recipe)) {
             return;
         }
+        final ItemStack recipeOutput = recipe.getOutput();
+        final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
+        if (outputSlotStack.isEmpty()) {
+            setStack(OUTPUT_SLOT, recipeOutput.copy());
+        } else if (outputSlotStack.isOf(recipeOutput.getItem())) {
+            outputSlotStack.increment(recipeOutput.getCount());
+        }
+        // Decrement bottles
+        final ItemStack bottle = this.getStack(BOTTLE_INPUT_SLOT);
+        if (bottle.getCount() > 1) {
+            removeStack(BOTTLE_INPUT_SLOT, 1);
+        } else if (bottle.getCount() == 1) {
+            setStack(BOTTLE_INPUT_SLOT, ItemStack.EMPTY);
+        }
 
+        // Decrement ingredient
+        for (Ingredient entry : recipe.getIngredients()) {
+            if (entry.test(this.getStack(2))) {
+                removeStack(2, 1);
+            }
+            if (entry.test(this.getStack(3))) {
+                removeStack(3, 1);
+            }
+            if (entry.test(this.getStack(4))) {
+                removeStack(4, 1);
+            }
+            if (entry.test(this.getStack(5))) {
+                removeStack(5, 1);
+            }
+        }
     }
 
-    @Override
-    public int get(int index) {
-        return 0;
-    }
-
-    @Override
-    public void set(int index, int value) {
-
-    }
 
     @Override
     public int size() {
@@ -144,11 +213,13 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
         if (stack.getCount() > this.getMaxCountPerStack()) {
             stack.setCount(this.getMaxCountPerStack());
         }
-//        if (slot == INGREDIENT_SLOT && !dirty) {
-//            this.cookTimeTotal = TOTAL_COOKING_TIME;
-//            this.cookTime = 0;
-//            this.markDirty();
-//        }
+        if (slot == BOTTLE_INPUT_SLOT || slot == 2 || slot == 3 || slot == 4|| slot == 5) {
+            if (!dirty) {
+                this.totalFermentationTime = 50;
+                this.fermentationTime = 0;
+                markDirty();
+            }
+        }
     }
     @Override
     public boolean canPlayerUse(PlayerEntity player) {
@@ -173,6 +244,6 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new FermentationBarrelGuiHandler(syncId, inv, this, this);
+        return new FermentationBarrelGuiHandler(syncId, inv, this, this.propertyDelegate);
     }
 }

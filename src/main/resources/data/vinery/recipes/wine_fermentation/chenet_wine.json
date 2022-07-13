@@ -1,0 +1,21 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    }
+  ],
+  "wineType": "red",
+  "result": {
+    "item": "vinery:chenet_wine"
+  }
+}

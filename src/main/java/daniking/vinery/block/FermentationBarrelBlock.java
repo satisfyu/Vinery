@@ -4,11 +4,16 @@ import daniking.vinery.block.entity.FermentationBarrelBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.StateManager;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -17,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class FermentationBarrelBlock extends Block implements BlockEntityProvider {
+public class FermentationBarrelBlock extends HorizontalFacingBlock implements BlockEntityProvider {
 
     public FermentationBarrelBlock(Settings settings) {
         super(settings);
@@ -32,6 +37,12 @@ public class FermentationBarrelBlock extends Block implements BlockEntityProvide
         } else {
             return ActionResult.PASS;
         }
+    }
+
+
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
     }
 
     @Override
@@ -50,7 +61,22 @@ public class FermentationBarrelBlock extends Block implements BlockEntityProvide
 
     @Nullable
     @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return (world1, pos, state1, blockEntity) -> {
+            if (blockEntity instanceof BlockEntityTicker<?>) {
+                ((BlockEntityTicker) blockEntity).tick(world, pos, state1, blockEntity);
+            }
+        };
+    }
+
+    @Nullable
+    @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new FermentationBarrelBlockEntity(pos, state);
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
     }
 }

@@ -1,17 +1,19 @@
 package daniking.vinery.block;
 
-import daniking.vinery.util.WineType;
-import daniking.vinery.util.WineTypeProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.GlassBlock;
-import net.minecraft.block.GrassBlock;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
-public class WhiteGrapejuiceWineBottle extends GlassBlock implements WineTypeProvider {
+public class EmptyWineBottleBlock extends GlassBlock {
 
     public static final VoxelShape SHAPE = VoxelShapes.union(
             createCuboidShape(6, 0, 6, 10, 9, 10),
@@ -19,8 +21,7 @@ public class WhiteGrapejuiceWineBottle extends GlassBlock implements WineTypePro
             createCuboidShape(6.35, 12.25, 6.35,9.65, 13.55, 9.65),
             createCuboidShape(7.25, 10.25, 7.25, 8.75, 11.75, 8.75)
     );
-
-    public WhiteGrapejuiceWineBottle(Settings settings) {
+    public EmptyWineBottleBlock(Settings settings) {
         super(settings);
     }
 
@@ -30,7 +31,7 @@ public class WhiteGrapejuiceWineBottle extends GlassBlock implements WineTypePro
     }
 
     @Override
-    public WineType getType() {
-        return WineType.WHITE;
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        return super.onUse(state, world, pos, player, hand, hit);
     }
 }

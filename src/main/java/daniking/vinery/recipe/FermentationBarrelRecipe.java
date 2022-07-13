@@ -3,7 +3,9 @@ package daniking.vinery.recipe;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import daniking.vinery.registry.VineryRecipeTypes;
+import daniking.vinery.util.GrapevineType;
 import daniking.vinery.util.VineryUtils;
+import daniking.vinery.util.WineType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -18,16 +20,43 @@ public class FermentationBarrelRecipe implements Recipe<Inventory> {
     private final Identifier identifier;
     private final DefaultedList<Ingredient> inputs;
     private final ItemStack output;
+    private final String wineType;
 
-    public FermentationBarrelRecipe(Identifier identifier, DefaultedList<Ingredient> inputs, ItemStack output) {
+    public FermentationBarrelRecipe(Identifier identifier, DefaultedList<Ingredient> inputs, String wineType, ItemStack output) {
         this.identifier = identifier;
         this.inputs = inputs;
         this.output = output;
+        this.wineType = wineType;
     }
 
     @Override
     public boolean matches(Inventory inventory, World world) {
-        return VineryUtils.inventoryMatches(inventory, inputs);
+        int matchingStacks = 0;
+        for (final Ingredient entry : this.inputs) {
+            if (entry.test(inventory.getStack(2))) {
+                matchingStacks++;
+            } else if (entry.test(inventory.getStack(3))) {
+                matchingStacks++;
+            } else if (entry.test(inventory.getStack(4))) {
+                matchingStacks++;
+            } else if (entry.test(inventory.getStack(5))) {
+                matchingStacks++;
+            }
+        }
+        return matchingStacks == this.inputs.size();
+    }
+
+    public WineType getWineType() {
+        return switch (this.wineType) {
+            case "red" -> WineType.RED;
+            case "white" -> WineType.WHITE;
+            default -> throw new IllegalArgumentException("Invalid wine type was set");
+        };
+    }
+
+    @Override
+    public DefaultedList<Ingredient> getIngredients() {
+        return this.inputs;
     }
 
     @Override
@@ -70,7 +99,7 @@ public class FermentationBarrelRecipe implements Recipe<Inventory> {
             } else if (ingredients.size() > 4) {
                 throw new JsonParseException("Too many ingredients for Fermentation Barrel");
             } else {
-                return new FermentationBarrelRecipe(id, ingredients, ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result")));
+                return new FermentationBarrelRecipe(id, ingredients, JsonHelper.getString(json, "wineType"), ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result")));
             }
         }
 
@@ -78,7 +107,7 @@ public class FermentationBarrelRecipe implements Recipe<Inventory> {
         public FermentationBarrelRecipe read(Identifier id, PacketByteBuf buf) {
             final var ingredients  = DefaultedList.ofSize(buf.readVarInt(), Ingredient.EMPTY);
             ingredients.replaceAll(ignored -> Ingredient.fromPacket(buf));
-            return new FermentationBarrelRecipe(id, ingredients, buf.readItemStack());
+            return new FermentationBarrelRecipe(id, ingredients, buf.readString(), buf.readItemStack());
         }
 
         @Override
@@ -87,6 +116,7 @@ public class FermentationBarrelRecipe implements Recipe<Inventory> {
             for (Ingredient ingredient : recipe.inputs) {
                 ingredient.write(buf);
             }
+            buf.writeString(recipe.getWineType().toString());
             buf.writeItemStack(recipe.getOutput());
         }
     }

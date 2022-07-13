@@ -2,29 +2,23 @@ package daniking.vinery.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class CherryJamBlock extends Block {
+public class StackableBlock extends Block {
 
     public static final IntProperty STACK = IntProperty.of("stack", 1, 3);
 
-    public CherryJamBlock(Settings settings) {
+    public StackableBlock(Settings settings) {
         super(settings);
         setDefaultState(this.getDefaultState().with(STACK, 1));
     }

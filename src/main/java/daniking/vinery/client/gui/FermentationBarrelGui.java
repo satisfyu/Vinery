@@ -32,7 +32,9 @@ public class FermentationBarrelGui extends HandledScreen<FermentationBarrelGuiHa
         RenderSystem.setShaderTexture(0, BG);
         final int posX = this.x;
         final int posY = this.y;
-        this.drawTexture(matrices, posX, posY, 0, 0, this.backgroundWidth, this.backgroundHeight);
+        this.drawTexture(matrices, posX, posY, 0, 0, this.backgroundWidth - 1, this.backgroundHeight);
+        final int  k = (this.handler).getCookProgress();
+        this.drawTexture(matrices, posX + 89, posY + 34, 175, 14, k + 1, 16);
 
     }
 }

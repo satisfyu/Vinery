@@ -1,0 +1,21 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    }
+  ],
+  "wineType": "white",
+  "result": {
+    "item": "vinery:clark_wine"
+  }
+}

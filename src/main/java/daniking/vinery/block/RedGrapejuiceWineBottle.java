@@ -1,5 +1,7 @@
 package daniking.vinery.block;
 
+import daniking.vinery.util.WineType;
+import daniking.vinery.util.WineTypeProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.GlassBlock;
 import net.minecraft.block.ShapeContext;
@@ -8,7 +10,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
-public class RedGrapejuiceWineBottle extends GlassBlock {
+public class RedGrapejuiceWineBottle extends GlassBlock implements WineTypeProvider {
     public static final VoxelShape SHAPE = VoxelShapes.union(
             createCuboidShape(6, 0, 6, 10, 9, 10),
             createCuboidShape(6.75, 9, 6.75, 9.25, 12.5, 9.25),
@@ -23,5 +25,11 @@ public class RedGrapejuiceWineBottle extends GlassBlock {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
+    }
+
+
+    @Override
+    public WineType getType() {
+        return WineType.RED;
     }
 }
