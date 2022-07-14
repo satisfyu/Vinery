@@ -31,7 +31,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<StoveBlockEntity>, Inventory, NamedScreenHandlerFactory, PropertyDelegate {
+public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<StoveBlockEntity>, Inventory, NamedScreenHandlerFactory {
 
     private DefaultedList<ItemStack> inventory;
 
@@ -49,6 +49,33 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
 
     protected static final int TOTAL_COOKING_TIME = 240;
 
+    private final PropertyDelegate propertyDelegate = new PropertyDelegate() {
+        @Override
+        public int get(int index) {
+            return switch (index) {
+                case 0 -> StoveBlockEntity.this.burnTime;
+                case 1 -> StoveBlockEntity.this.burnTimeTotal;
+                case 2 -> StoveBlockEntity.this.cookTime;
+                case 3 -> StoveBlockEntity.this.cookTimeTotal;
+                default -> 0;
+            };
+        }
+
+        @Override
+        public void set(int index, int value) {
+            switch (index) {
+                case 0 -> StoveBlockEntity.this.burnTime = value;
+                case 1 -> StoveBlockEntity.this.burnTimeTotal = value;
+                case 2 -> StoveBlockEntity.this.cookTime = value;
+                case 3 -> StoveBlockEntity.this.cookTimeTotal = value;
+            }
+        }
+
+        @Override
+        public int size() {
+            return 4;
+        }
+    };
     public StoveBlockEntity(BlockPos pos, BlockState state) {
         super(VineryBlockEntityTypes.STOVE_BLOCK_ENTITY, pos, state);
         this.inventory = DefaultedList.ofSize(4, ItemStack.EMPTY);
@@ -187,26 +214,6 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
     }
 
 
-    @Override
-    public int get(int index) {
-        return switch (index) {
-            case 0 -> this.burnTime;
-            case 1 -> this.burnTimeTotal;
-            case 2 -> this.cookTime;
-            case 3 -> this.cookTimeTotal;
-            default -> 0;
-        };
-    }
-
-    @Override
-    public void set(int index, int value) {
-        switch (index) {
-            case 0 -> this.burnTime = value;
-            case 1 -> this.burnTimeTotal = value;
-            case 2 -> this.cookTime = value;
-            case 3 -> this.cookTimeTotal = value;
-        }
-    }
 
     @Override
     public int size() {
@@ -270,6 +277,6 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new StoveGuiHandler(syncId, inv, this, this);
+        return new StoveGuiHandler(syncId, inv, this, this.propertyDelegate);
     }
 }
