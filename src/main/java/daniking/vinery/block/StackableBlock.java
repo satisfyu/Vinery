@@ -40,8 +40,7 @@ public class StackableBlock extends Block {
     public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
         return true;
     }
-
-
+    
     public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
         return stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
     }

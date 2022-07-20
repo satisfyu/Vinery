@@ -7,6 +7,7 @@ import daniking.vinery.GrapeBushSeedItem;
 import daniking.vinery.Vinery;
 import daniking.vinery.VineryIdentifier;
 import daniking.vinery.block.*;
+import daniking.vinery.block.BannerBlock;
 import daniking.vinery.util.GrapevineType;
 import daniking.vinery.util.WineType;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -162,6 +163,10 @@ public class ObjectRegistry {
     public static final Block NOIR_WINE = register("noir_wine", new WineBottleBlock(getWineSettings(), WineType.RED));
     public static final Block CLARK_WINE = register("clark_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE));
     public static final Block MELLOHI_WINE = register("mellohi_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE));
+    
+    public static final Block BANNER = register("banner", new BannerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().nonOpaque()));
+    public static final Block BIG_TABLE = register("big_table", new BigTableBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 2.0F)));
+    
     private static PillarBlock registerLog(String path) {
         return register(path, new PillarBlock(getLogBlockSettings()));
     }

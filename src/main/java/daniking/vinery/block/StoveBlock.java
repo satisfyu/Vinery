@@ -42,7 +42,6 @@ public class StoveBlock extends Block implements BlockEntityProvider {
         this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(LIT, false));
     }
 
-
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         final BlockEntity entity = world.getBlockEntity(pos);
