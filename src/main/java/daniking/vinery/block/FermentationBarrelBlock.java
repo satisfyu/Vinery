@@ -1,10 +1,7 @@
 package daniking.vinery.block;
 
 import daniking.vinery.block.entity.FermentationBarrelBlockEntity;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -19,10 +16,31 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class FermentationBarrelBlock extends HorizontalFacingBlock implements BlockEntityProvider {
+
+    public static final VoxelShape SHAPE = VoxelShapes.union(
+            createCuboidShape(7, 18, 7,9, 22, 9),
+            createCuboidShape(6.75, 18.5, 6.75,9.25, 21.5, 9.25),
+                createCuboidShape(6.75, 5.75, 18,9.25, 8.25, 20),
+            createCuboidShape(7, 6, 16,9, 8, 20.4),
+            createCuboidShape(1, 5, 0,15, 17, 16),
+            createCuboidShape(15, 5, 0,16, 17, 16),
+            createCuboidShape(0, 5, 0,1, 17, 16),
+            createCuboidShape(1, 17, 0,15, 18, 16),
+            createCuboidShape(0, 0, 12,16, 2, 15),
+            createCuboidShape(0.5, 2, 12,15.5, 4, 15),
+            createCuboidShape(1, 1, 4,2, 2, 12),
+            createCuboidShape(1, 3, 0.9,15, 5, 15.1),
+            createCuboidShape(0, 0, 1, 16, 2, 4),
+            createCuboidShape(0.5, 2, 1,15.5, 4, 4),
+            createCuboidShape(14, 1, 4,15, 2, 12)
+    );
 
     public FermentationBarrelBlock(Settings settings) {
         super(settings);
@@ -43,6 +61,11 @@ public class FermentationBarrelBlock extends HorizontalFacingBlock implements Bl
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
     }
 
     @Override
