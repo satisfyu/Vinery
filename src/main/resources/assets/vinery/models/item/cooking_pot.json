@@ -1,3 +1,6 @@
 {
-  "parent": "vinery:block/cooking_pot_stage0"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "vinery:item/cooking_pot"
+  }
 }

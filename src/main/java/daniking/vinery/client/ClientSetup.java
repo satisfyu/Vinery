@@ -3,6 +3,7 @@ package daniking.vinery.client;
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import daniking.vinery.VineryIdentifier;
+import daniking.vinery.client.gui.CookingPotGui;
 import daniking.vinery.client.gui.FermentationBarrelGui;
 import daniking.vinery.client.gui.StoveGui;
 import daniking.vinery.registry.ObjectRegistry;
@@ -35,6 +36,7 @@ public class ClientSetup implements ClientModInitializer {
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> GrassColors.getColor(1.0, 0.5), ObjectRegistry.PINK_GRASS_FLOWER, ObjectRegistry.PINK_GRASS_FLOWER_VARIANT_B, ObjectRegistry.RED_GRASS_FLOWER, ObjectRegistry.RED_GRASS_FLOWER_VARIANT_B, ObjectRegistry.WHITE_GRASS_FLOWER);
         HandledScreens.register(VineryScreenHandlerTypes.STOVE_GUI_HANDLER, StoveGui::new);
         HandledScreens.register(VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER, FermentationBarrelGui::new);
+        HandledScreens.register(VineryScreenHandlerTypes.COOKING_POT_SCREEN_HANDLER, CookingPotGui::new);
         TerraformBoatClientHelper.registerModelLayer(new VineryIdentifier("cherry"));
     }
 }

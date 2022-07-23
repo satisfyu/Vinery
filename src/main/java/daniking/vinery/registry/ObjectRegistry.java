@@ -146,8 +146,8 @@ public class ObjectRegistry {
     public static final Block CHERRY_JAM = register("cherry_jam",
             new StackableBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque()));
 
-    public static final Item VINEMAKER_APRON = register("vinemaker_apron", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings()));
-    public static final Item VINEMAKER_GLOVES = register("vinemaker_gloves", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings()));
+    public static final Item VINEMAKER_APRON = register("vinemaker_apron", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings()));
+    public static final Item VINEMAKER_GLOVES = register("vinemaker_gloves", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings()));
     public static final Item VINEMAKER_BOOTS = register("vinemaker_boots", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings()));
     public static final Block FERMENTATION_BARREL = register("fermentation_barrel",
             new FermentationBarrelBlock(AbstractBlock.Settings.copy(Blocks.BARREL).nonOpaque()));
@@ -160,7 +160,6 @@ public class ObjectRegistry {
     public static final Block NOIR_WINE = register("noir_wine", new WineBottleBlock(getWineSettings(), WineType.RED));
     public static final Block CLARK_WINE = register("clark_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE));
     public static final Block MELLOHI_WINE = register("mellohi_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE));
-    
     public static final Block BANNER = register("banner", new BannerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().nonOpaque()));
     public static final Block BIG_TABLE = register("big_table", new BigTableBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 2.0F)));
     
