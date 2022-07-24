@@ -33,5 +33,10 @@ public class CookingPotGui extends HandledScreen<CookingPotGuiHandler> {
         final int posX = this.x;
         final int posY = this.y;
         this.drawTexture(matrices, posX, posY, 0, 0, this.backgroundWidth - 1, this.backgroundHeight);
+        final int progress = this.handler.getScaledProgress();
+        this.drawTexture(matrices, posX + 89, posY + 26, 176, 16, progress + 1, 16);
+        if (handler.isBeingBurned()) {
+            this.drawTexture(matrices, posX + 124, posY + 56, 176, 0, 17, 15);
+        }
     }
 }

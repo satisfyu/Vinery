@@ -3,8 +3,12 @@ package daniking.vinery.block.entity;
 import daniking.vinery.Vinery;
 import daniking.vinery.block.CookingPotBlock;
 import daniking.vinery.client.gui.handler.CookingPotGuiHandler;
+import daniking.vinery.recipe.CookingPotRecipe;
+import daniking.vinery.recipe.StoveCookingRecipe;
 import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.registry.VineryBlockEntityTypes;
+import daniking.vinery.registry.VineryRecipeTypes;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -16,9 +20,12 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -32,18 +39,19 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<CookingPotEntity>, Inventory, NamedScreenHandlerFactory {
-
+public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<CookingPotEntity>, Inventory, ExtendedScreenHandlerFactory {
 
     private DefaultedList<ItemStack> inventory;
     private static final int MAX_CAPACITY = 8;
     private static final int MAX_COOKING_TIME = 60; // Time in ticks (30s)
     private int cookingTime = MAX_COOKING_TIME;
+    private static final int BOTTLE_INPUT_SLOT = 6;
+    private static final int OUTPUT_SLOT = 7;
+    private static final int INGREDIENTS_AREA = 2 * 3;
 
-    private static int BOTTLE_INPUT_SLOT = 6;
-    private static int OUTPUT_SLOT = 7;
+    private boolean isBeingBurned = false;
     private int totalCookingTime;
-    private boolean isDone = false;
+
 
     private final PropertyDelegate delegate;
     public CookingPotEntity(BlockPos pos, BlockState state) {
@@ -78,188 +86,123 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         this.inventory = DefaultedList.ofSize(MAX_CAPACITY, ItemStack.EMPTY);
-        nbt.putInt("CookingTime", this.cookingTime);
-        nbt.putBoolean("isDone", this.isDone);
         Inventories.readNbt(nbt, this.inventory);
+        nbt.putInt("CookingTime", this.cookingTime);
+        nbt.putBoolean("isBeingBurned", this.isBeingBurned);
     }
 
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         this.cookingTime = nbt.getInt("CookingTime");
-        this.isDone = nbt.getBoolean("isDone");
+        this.isBeingBurned = nbt.getBoolean("isBeingBurned");
         Inventories.writeNbt(nbt, this.inventory);
     }
 
-    public boolean insertCherry(ItemStack cherryJam) {
-        if (cherryJam != null && !cherryJam.isEmpty() && getNotEmptyStacks() != MAX_CAPACITY) {
-            for (int i = 0; i < this.inventory.size(); i++) {
-                final ItemStack stackInInv = this.inventory.get(i);
-                if (stackInInv.isEmpty()) {
-                    this.inventory.set(i, new ItemStack(cherryJam.getItem(), 1));
-                    cherryJam.decrement(1);
-                    updateListeners();
-                    return true;
+    public boolean isBeingBurned() {
+        if (getWorld() == null) throw new NullPointerException("Null world invoked");
+        final BlockState belowState = this.getWorld().getBlockState(getPos().down());
+        final var optionalList = Registry.BLOCK.getEntryList(Vinery.ALLOWS_COOKING_ON_POT);
+        final var entryList = optionalList.orElse(null);
+        if (entryList == null) {
+            return false;
+        } else if (!entryList.contains(belowState.getBlock().getRegistryEntry())) {
+            return false;
+        } else return belowState.get(Properties.LIT);
+
+    }
+
+    private boolean canCraft(CookingPotRecipe recipe) {
+        if (recipe == null || recipe.getOutput().isEmpty()) {
+            return false;
+        }  else if (!this.getStack(BOTTLE_INPUT_SLOT).isOf(recipe.getContainer().getItem())) {
+            return false;
+        } else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
+            return true;
+        } else {
+            final ItemStack recipeOutput = recipe.getOutput();
+            final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
+            final int outputSlotCount = outputSlotStack.getCount();
+            if (!outputSlotStack.isItemEqualIgnoreDamage(recipeOutput)) {
+                return false;
+            } else if (outputSlotCount < this.getMaxCountPerStack() && outputSlotCount < outputSlotStack.getMaxCount()) {
+                return true;
+            } else {
+                return outputSlotCount < recipeOutput.getMaxCount();
+            }
+        }
+    }
+
+    private void craft(CookingPotRecipe recipe) {
+        if (!canCraft(recipe)) {
+            return;
+        }
+        final ItemStack recipeOutput = recipe.getOutput();
+        final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
+        if (outputSlotStack.isEmpty()) {
+            setStack(OUTPUT_SLOT, recipeOutput.copy());
+        } else if (outputSlotStack.isOf(recipeOutput.getItem())) {
+            outputSlotStack.increment(recipeOutput.getCount());
+        }
+        final DefaultedList<Ingredient> ingredients = recipe.getIngredients();
+        // each slot can only be used once because in canMake we only checked if decrement by 1 still retains the recipe
+        // otherwise recipes can break when an ingredient is used multiple times
+        boolean[] slotUsed = new boolean[INGREDIENTS_AREA];
+        for (int i = 0; i < recipe.getIngredients().size(); i++) {
+            Ingredient ingredient = ingredients.get(i);
+            // Looks for the best slot to take it from
+            final ItemStack bestSlot = this.getStack(i);
+            if (ingredient.test(bestSlot) && !slotUsed[i]) {
+                slotUsed[i] = true;
+                bestSlot.decrement(1);
+            } else {
+                // check all slots in search of the ingredient
+                for (int j = 0; j < INGREDIENTS_AREA; j++) {
+                    ItemStack stack = this.getStack(j);
+                    if (ingredient.test(stack) && !slotUsed[j]) {
+                        slotUsed[j] = true;
+                        stack.decrement(1);
+                    }
                 }
             }
         }
-        return false;
-    }
-    private void updateListeners() {
-        this.markDirty();
-        Objects.requireNonNull(this.getWorld()).updateListeners(this.getPos(), this.getCachedState(), this.getCachedState(), 3);
-    }
-
-    private int getNotEmptyStacks() {
-        int c = 0;
-        for (ItemStack entry : this.inventory) {
-            if (!entry.isEmpty()) c++;
-        }
-        return c;
-    }
-
-    private boolean isCooking() {
-        return this.cookingTime > 0;
-    }
-
-    private boolean isBurning() {
-        return false;
-    }
-
-    private boolean canCraft() {
-        if (!hasAllInputs()) {
-            return false;
-        } else if (this.getStack(BOTTLE_INPUT_SLOT).isEmpty()) {
-            return false;
-        } else return this.getStack(OUTPUT_SLOT).isEmpty();
-    }
-
-    private boolean hasAllInputs() {
-        int c = (int) inventory.stream().filter(stack -> !stack.isEmpty()).count();
-        return c == MAX_CAPACITY;
-    }
-    private void craft() {
-        if (!canCraft()) {
-            return;
-        }
+        this.getStack(BOTTLE_INPUT_SLOT).decrement(1);
     }
 
 
     @Override
     public void tick(World world, BlockPos pos, BlockState state, CookingPotEntity blockEntity) {
-        final BlockState belowState = world.getBlockState(pos.down());
-        if (!belowState.contains(Properties.LIT)) {
+        if (world.isClient()) {
             return;
         }
-        final var optionalList = Registry.BLOCK.getEntryList(Vinery.ALLOWS_COOKING_ON_POT);
-        final var entryList = optionalList.orElse(null);
-        if (entryList == null) {
-            return;
-        }
-        if (!entryList.contains(belowState.getBlock().getRegistryEntry())) {
-            return;
-        }
-        // There is a valid block on lit state
+        this.isBeingBurned = isBeingBurned();
+        if (!this.isBeingBurned) return;
         boolean dirty = false;
-
-//        if (this.isDone && this.getNotEmptyStacks() == 0) {
-//            reset(world, state);
-//        }
-//        if (state.get(CookingPotBlock.COOKING) && this.getNotEmptyStacks() == 0) {
-//            reset(world, state);
-//        }
-//        if (entryList != null) {
-//            // TODO: deprecated
-//            if (entryList.contains(belowState.getBlock().getRegistryEntry())) {
-//                final boolean isCooking = this.isCooking();
-//                boolean dirty = false;
-//                if (isCooking) {
-//                    --this.cookingTime;
-//                }
-//                // Check amount of cherry stacks
-//                if (getNotEmptyStacks() == MAX_CAPACITY) {
-//                    // Validate that the below state is on lit
-//                    if (belowState.get(Properties.LIT)) {
-//                        // Start burning
-//                        if (!state.get(CookingPotBlock.COOKING)) {
-//                            dirty = true;
-//                            this.cookingTime = MAX_COOKING_TIME;
-//                            world.setBlockState(pos, state.with(CookingPotBlock.COOKING, true), Block.NOTIFY_ALL);
-//                            return;
-//                        }
-//                        // Check cooking time
-//                        if (this.cookingTime == 0) {
-//                            dirty = true;
-//                            this.isDone = true;
-//                            world.setBlockState(pos, state.with(CookingPotBlock.COOKING, false), Block.NOTIFY_ALL);
-////                            ItemScatterer.spawn(world, pos, this.cherryInventory);
-////                            clearCherryInventory();
-//                            world.updateListeners(pos, state, state, Block.NOTIFY_ALL);
-//
-//                        }
-//                    } else {
-//                        if (this.cookingTime > 0) {
-//                            this.cookingTime = 0;
-//                            world.setBlockState(pos, state.with(CookingPotBlock.COOKING, false), Block.NOTIFY_ALL);
-//                        }
-//                    }
-//                } else {
-//                    if (this.isCooking() || state.get(CookingPotBlock.COOKING)) {
-//                        world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.HAS_CHERRIES_INSIDE, false).with(CookingPotBlock.COOKING, false), Block.NOTIFY_ALL);
-//                        this.cookingTime = 0;
-//                    }
-//                }
-//                if (dirty) {
-//                    markDirty();
-//                }
-//            }
-//        }
-
-    }
-    private void reset(World world, BlockState state) {
-        this.cookingTime = 0;
-        world.setBlockState(pos, state.with(CookingPotBlock.COOKING, false), Block.NOTIFY_ALL);
-        this.isDone = false;
-        clearCherryInventory();
-        markDirty();
-    }
-    public void onFinish(PlayerEntity player, ItemStack emptyJar) {
-        if (this.isDone()) {
-            final ItemStack output = new ItemStack(ObjectRegistry.CHERRY_JAM);
-            if (!player.getInventory().insertStack(output)) {
-                player.dropItem(output, false, false);
+        final var recipe = world.getRecipeManager()
+                .getFirstMatch(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE, this, world)
+                .orElse(null);
+        boolean canCraft = canCraft(recipe);
+        if (canCraft) {
+            ++this.cookingTime;
+            if (this.cookingTime == this.totalCookingTime) {
+                this.cookingTime = 0;
+                craft(recipe);
+                dirty = true;
             }
-            if (!player.isCreative()) emptyJar.decrement(1);
-            final int i = this.getNotEmptyStacks() - 1;
-            if (i >= 0) {
-                this.inventory.set(i, ItemStack.EMPTY);
-            }
-            updateListeners();
-        } else if (this.cookingTime == 0) {
-            reset(world, getCachedState());
+        } else if (!canCraft(recipe)){
+            this.cookingTime = 0;
         }
-    }
-    public boolean isDone() {
-        return this.cookingTime == 0 && isDone;
-    }
-    public DefaultedList<ItemStack> getInventory() {
-        return inventory;
-    }
-
-    private void clearCherryInventory() {
-        Collections.fill(this.inventory, ItemStack.EMPTY);
+        if (canCraft) {
+            world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.HAS_CHERRIES_INSIDE, true), Block.NOTIFY_ALL);
+            dirty = true;
+        } else if (state.get(CookingPotBlock.HAS_CHERRIES_INSIDE)) {
+            world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.HAS_CHERRIES_INSIDE, false), Block.NOTIFY_ALL);
+            dirty = true;
+        }
+        if (dirty) markDirty();
     }
 
-    @Override
-    public Text getDisplayName() {
-        return new TranslatableText(this.getCachedState().getBlock().getTranslationKey());
-    }
 
-    @Nullable
-    @Override
-    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new CookingPotGuiHandler(syncId, inv, this, this.delegate);
-    }
 
     @Override
     public int size() {
@@ -288,17 +231,14 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 
     @Override
     public void setStack(int slot, ItemStack stack) {
-        final ItemStack stackInSlot = this.inventory.get(slot);
-        boolean dirty = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(stackInSlot) && ItemStack.areNbtEqual(stack, stackInSlot);
         this.inventory.set(slot, stack);
         if (stack.getCount() > this.getMaxCountPerStack()) {
             stack.setCount(this.getMaxCountPerStack());
         }
-//        if (slot == INGREDIENT_SLOT && !dirty) {
-//            this.cookTimeTotal = TOTAL_COOKING_TIME;
-//            this.cookTime = 0;
-//            this.markDirty();
-//        }
+        if (totalCookingTime == 0) {
+            this.totalCookingTime = MAX_COOKING_TIME;
+        }
+        this.markDirty();
     }
 
     @Override
@@ -314,7 +254,21 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
     public void clear() {
         inventory.clear();
     }
+    @Override
+    public Text getDisplayName() {
+        return new TranslatableText(this.getCachedState().getBlock().getTranslationKey());
+    }
 
+    @Nullable
+    @Override
+    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+        return new CookingPotGuiHandler(syncId, inv, this, this.delegate);
+    }
+
+    @Override
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBoolean(this.isBeingBurned);
+    }
 }
 
 

@@ -1,31 +1,40 @@
 package daniking.vinery.client.gui.handler;
 
+import daniking.vinery.block.entity.CookingPotEntity;
 import daniking.vinery.registry.VineryScreenHandlerTypes;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class CookingPotGuiHandler extends ScreenHandler {
 
     private final PropertyDelegate propertyDelegate;
-
-    public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory) {
+    private final World world;
+    private boolean isBeingBurned;
+    public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf packet) {
         this(syncId, playerInventory, new SimpleInventory(8), new ArrayPropertyDelegate(2));
+        this.isBeingBurned = packet.readBoolean();
     }
 
     public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
         super(VineryScreenHandlerTypes.COOKING_POT_SCREEN_HANDLER, syncId);
         buildBlockEntityContainer(inventory);
         buildPlayerContainer(playerInventory);
+        this.world = playerInventory.player.getWorld();
         this.propertyDelegate = propertyDelegate;
         addProperties(this.propertyDelegate);
     }
+
     private void buildBlockEntityContainer(Inventory inventory) {
         for (int row = 0; row < 2; row++) {
             for (int slot = 0; slot < 3; slot++) {
@@ -53,9 +62,21 @@ public class CookingPotGuiHandler extends ScreenHandler {
         return true;
     }
 
+    public boolean isBeingBurned() {
+        return isBeingBurned;
+    }
+
     @Override
     public ItemStack transferSlot(PlayerEntity player, int index) {
         return ItemStack.EMPTY;
     }
 
+    public int getScaledProgress() {
+        final int progress = this.propertyDelegate.get(0);
+        final int totalProgress = this.propertyDelegate.get(1);
+        if (totalProgress == 0 || progress == 0) {
+            return 0;
+        }
+        return progress * 22 / totalProgress;
+    }
 }

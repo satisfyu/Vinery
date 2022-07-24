@@ -1,33 +1,33 @@
 {
   "variants": {
     "facing=east,has_cherries=false": {
-      "model": "vinery:block/cooking_pot_stage0",
+      "model": "vinery:block/cooking_pot",
       "y": 90
     },
     "facing=east,has_cherries=true": {
-      "model": "vinery:block/cooking_pot_stage1",
+      "model": "vinery:block/cooking_pot_cherries",
       "y": 90
     },
     "facing=north,has_cherries=false": {
-      "model": "vinery:block/cooking_pot_stage0"
+      "model": "vinery:block/cooking_pot"
     },
     "facing=north,has_cherries=true": {
-      "model": "vinery:block/cooking_pot_stage1"
+      "model": "vinery:block/cooking_pot_cherries"
     },
     "facing=south,has_cherries=false": {
-      "model": "vinery:block/cooking_pot_stage0",
+      "model": "vinery:block/cooking_pot",
       "y": 180
     },
     "facing=south,has_cherries=true": {
-      "model": "vinery:block/cooking_pot_stage1",
+      "model": "vinery:block/cooking_pot_cherries",
       "y": 180
     },
     "facing=west,has_cherries=false": {
-      "model": "vinery:block/cooking_pot_stage0",
+      "model": "vinery:block/cooking_pot",
       "y": 270
     },
     "facing=west,has_cherries=true": {
-      "model": "vinery:blrock/cooking_pot_stage1",
+      "model": "vinery:block/cooking_pot_cherries",
       "y": 270
     }
   }
