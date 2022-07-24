@@ -1,7 +1,14 @@
 package daniking.vinery.client.gui.handler;
 
+import daniking.vinery.Vinery;
+import daniking.vinery.block.StoveBlock;
 import daniking.vinery.block.entity.CookingPotEntity;
+import daniking.vinery.block.entity.StoveBlockEntity;
+import daniking.vinery.client.gui.handler.slot.StoveOutputSlot;
+import daniking.vinery.recipe.CookingPotRecipe;
+import daniking.vinery.registry.VineryRecipeTypes;
 import daniking.vinery.registry.VineryScreenHandlerTypes;
+import daniking.vinery.util.VineryUtils;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -12,9 +19,12 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.stream.Stream;
 
 public class CookingPotGuiHandler extends ScreenHandler {
 
@@ -42,7 +52,12 @@ public class CookingPotGuiHandler extends ScreenHandler {
             }
         }
         this.addSlot(new Slot(inventory, 6,92, 55));
-        this.addSlot(new Slot(inventory, 7, 124, 28));
+        this.addSlot(new Slot(inventory, 7, 124, 28) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
     }
 
     private void buildPlayerContainer(PlayerInventory playerInventory) {
@@ -66,9 +81,51 @@ public class CookingPotGuiHandler extends ScreenHandler {
         return isBeingBurned;
     }
 
+
     @Override
     public ItemStack transferSlot(PlayerEntity player, int index) {
+        ItemStack stack;
+        final Slot slot = this.getSlot(index);
+        if (slot != null && slot.hasStack()) {
+            final ItemStack stackInSlot = slot.getStack();
+            stack = stackInSlot.copy();
+            if (VineryUtils.isIndexInRange(index, 0, 7)) {
+                if (!this.insertItem(stackInSlot, 8, 43, true)) {
+                    return ItemStack.EMPTY;
+                }
+                slot.onQuickTransfer(stackInSlot, stack);
+
+            } else if (isItemIngredient(stackInSlot)) {
+                if (!this.insertItem(stackInSlot, 0, 5, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (isItemContainer(stack)) {
+                if (!this.insertItem(stackInSlot, 6, 7, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+            if (stackInSlot.isEmpty()) {
+                slot.setStack(ItemStack.EMPTY);
+            } else {
+                slot.markDirty();
+            }
+            if (stackInSlot.getCount() == stack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+            slot.onTakeItem(player, stackInSlot);
+        }
         return ItemStack.EMPTY;
+    }
+
+    private boolean isItemIngredient(ItemStack stack) {
+        return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
+    }
+
+    private Stream<CookingPotRecipe> recipeStream() {
+        return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE).stream();
+    }
+    private boolean isItemContainer(ItemStack stack) {
+        return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getContainer().isOf(stack.getItem()));
     }
 
     public int getScaledProgress() {
@@ -79,4 +136,6 @@ public class CookingPotGuiHandler extends ScreenHandler {
         }
         return progress * 22 / totalProgress;
     }
+
+
 }

@@ -1,9 +1,7 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"1": "vinery:block/pot_stick",
-		"2": "vinery:block/cooking_pot",
-		"3": "vinery:block/red_grapejuice"
+		"2": "vinery:block/cooking_pot_cherries"
 	},
 	"elements": [
 		{
@@ -15,7 +13,7 @@
 				"east": {"uv": [8, 0, 12, 3.5], "texture": "#2"},
 				"south": {"uv": [8, 0, 12, 3.5], "texture": "#2"},
 				"west": {"uv": [8, 0, 12, 3.5], "texture": "#2"},
-				"up": {"uv": [11, 10, 2, 1], "rotation": 90, "texture": "#3"},
+				"up": {"uv": [4, 3.5, 0, 0], "rotation": 90, "texture": "#2"},
 				"down": {"uv": [4, 4, 0, 8], "rotation": 270, "texture": "#2"}
 			}
 		},
@@ -155,15 +153,16 @@
 			"to": [11.6181, 16.59834, 10.75],
 			"rotation": {"angle": -22.5, "axis": "z", "origin": [10.9931, 10.34834, 12.375]},
 			"faces": {
-				"north": {"uv": [3, 0, 4, 10], "texture": "#1"},
-				"east": {"uv": [0, 0, 1, 10], "texture": "#1"},
-				"south": {"uv": [1, 0, 2, 10], "texture": "#1"},
-				"west": {"uv": [2, 0, 3, 10], "texture": "#1"},
-				"up": {"uv": [5, 1, 4, 0], "rotation": 90, "texture": "#1"},
-				"down": {"uv": [5, 1, 4, 2], "rotation": 270, "texture": "#1"}
+				"north": {"uv": [15.5, 0, 16, 5.5], "texture": "#2"},
+				"east": {"uv": [15, 0, 15.5, 5.5], "texture": "#2"},
+				"south": {"uv": [15.5, 0, 15, 5.5], "texture": "#2"},
+				"west": {"uv": [15.5, 0, 16, 5.5], "texture": "#2"},
+				"up": {"uv": [15, 1, 14.5, 0.5], "rotation": 90, "texture": "#2"},
+				"down": {"uv": [15, 0, 14.5, 0.5], "rotation": 270, "texture": "#2"}
 			}
 		}
 	],
+	"display": {},
 	"groups": [
 		{
 			"name": "bone",

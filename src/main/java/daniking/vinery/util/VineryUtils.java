@@ -46,4 +46,8 @@ public class VineryUtils {
         }
         return ingredients;
     }
+
+    public static boolean isIndexInRange(int index, int startInclusive, int endInclusive) {
+        return index >= startInclusive && index <= endInclusive;
+    }
 }
