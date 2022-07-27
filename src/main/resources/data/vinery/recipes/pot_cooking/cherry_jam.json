@@ -1,0 +1,23 @@
+{
+  "type": "vinery:pot_cooking",
+  "ingredients": [
+    {
+      "item": "vinery:cherry"
+    },
+    {
+      "item": "vinery:cherry"
+    },
+    {
+      "item": "vinery:cherry"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "container": {
+    "item": "vinery:cherry_jar"
+  },
+  "result": {
+    "item": "vinery:cherry_jam"
+  }
+}

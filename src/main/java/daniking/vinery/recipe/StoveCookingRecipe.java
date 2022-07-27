@@ -34,6 +34,7 @@ public class StoveCookingRecipe implements Recipe<Inventory> {
         return this.input.test(inventory.getStack(StoveGuiHandler.INGREDIENT_SLOT));
     }
 
+
     @Override
     public ItemStack craft(Inventory inventory) {
         return output.copy();

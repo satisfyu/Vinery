@@ -89,6 +89,10 @@ public class FermentationBarrelRecipe implements Recipe<Inventory> {
         return VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE;
     }
 
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
     public static class Serializer implements RecipeSerializer<FermentationBarrelRecipe> {
 
         @Override

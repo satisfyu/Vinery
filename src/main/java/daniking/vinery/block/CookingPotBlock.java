@@ -7,19 +7,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -30,7 +27,6 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -43,34 +39,12 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty HAS_CHERRIES_INSIDE = BooleanProperty.of("has_cherries");
-    public static final BooleanProperty COOKING = Properties.LIT;
 
-    private static final VoxelShape SHAPE = VoxelShapes.union(
-            createCuboidShape(6.1, 0.5, 6.1, 9.6, 1, 9.6),
-            createCuboidShape(6, 4, 6, 6.5, 4.75, 10),
-            createCuboidShape(6, 0, 6, 6.5, 4, 10),
-            createCuboidShape(9.5, 0, 6, 10, 4, 10),
-            createCuboidShape(6.25, 3.75, 5, 6.75, 4.5, 6),
-            createCuboidShape(6.25, 3.75, 10,6.75, 4.5, 11),
-            createCuboidShape(9.25, 3.75, 5,9.75, 4.5, 6),
-            createCuboidShape(9.25, 3.75, 10, 9.75, 4.5, 11),
-            createCuboidShape(6.5, 4, 6, 9.5, 4.75, 6.5),
-            createCuboidShape(6.5, 0, 6, 9.5, 4, 6.5),
-            createCuboidShape(6.5, 0, 9.5, 9.5, 4, 10),
-            createCuboidShape(6.75, 3.75, 5, 9.25, 4.5, 5.5),
-            createCuboidShape(6.75, 3.75, 10.5,9.25, 4.5, 11),
-            createCuboidShape(6.5, 4, 9.5, 9.5, 4.75, 10),
-            createCuboidShape(9.5, 4, 6, 10, 4.75, 10)
-    );
     public CookingPotBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(HAS_CHERRIES_INSIDE, false).with(COOKING, false));
+        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(HAS_CHERRIES_INSIDE, false));
     }
 
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
-    }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
@@ -79,23 +53,13 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        final ItemStack stack = player.getStackInHand(hand);
         final BlockEntity entity = world.getBlockEntity(pos);
-        if (entity instanceof CookingPotEntity pot) {
-            if (stack.isOf(ObjectRegistry.CHERRY)) {
-                if (pot.insertCherry(player.isCreative() ? stack.copy() : stack)) {
-                    world.setBlockState(pos, this.getDefaultState().with(COOKING, false).with(HAS_CHERRIES_INSIDE, true), Block.NOTIFY_ALL);
-                    return ActionResult.SUCCESS;
-                }
-            } else {
-                if (stack.isOf(ObjectRegistry.CHERRY_JAR.asItem())) {
-                    // Consume empty jar and give cherry jam
-                    pot.onFinish(player, stack);
-                    return ActionResult.SUCCESS;
-                }
-            }
+        if (entity instanceof NamedScreenHandlerFactory factory) {
+            player.openHandledScreen(factory);
+            return ActionResult.SUCCESS;
+        } else {
+            return super.onUse(state, world, pos, player, hand, hit);
         }
-        return super.onUse(state, world, pos, player, hand, hit);
     }
 
 
@@ -105,7 +69,7 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof CookingPotEntity pot) {
                 if (world instanceof ServerWorld) {
-                    ItemScatterer.spawn(world, pos, pot.getCherryInventory());
+                    ItemScatterer.spawn(world, pos, pot);
                 }
                 world.updateComparators(pos, this);
             }
@@ -115,26 +79,26 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
 
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (state.get(COOKING)) {
-            double d = (double)pos.getX() + 0.5;
-            double e = pos.getY();
-            double f = (double)pos.getZ() + 1.0;
-            if (random.nextDouble() < 0.3) {
-                world.playSound(d, e, f, VinerySoundEvents.BLOCK_COOKING_POT_JUICE_BOILING, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
-            }
-            Direction direction = state.get(FACING);
-            Direction.Axis axis = direction.getAxis();
-            double h = random.nextDouble() * 0.6 - 0.3;
-            double i = axis == Direction.Axis.X ? (double)direction.getOffsetX() * 0.52 : h;
-            double j = random.nextDouble() * 6.0 / 16.0;
-            double k = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * 0.52 : h;
-            world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
-            world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0, 0.0, 0.0);
-        }
+//        if (state.get(COOKING)) {
+//            double d = (double)pos.getX() + 0.5;
+//            double e = pos.getY();
+//            double f = (double)pos.getZ() + 1.0;
+//            if (random.nextDouble() < 0.3) {
+//                world.playSound(d, e, f, VinerySoundEvents.BLOCK_COOKING_POT_JUICE_BOILING, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+//            }
+//            Direction direction = state.get(FACING);
+//            Direction.Axis axis = direction.getAxis();
+//            double h = random.nextDouble() * 0.6 - 0.3;
+//            double i = axis == Direction.Axis.X ? (double)direction.getOffsetX() * 0.52 : h;
+//            double j = random.nextDouble() * 6.0 / 16.0;
+//            double k = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * 0.52 : h;
+//            world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+//            world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+//        }
     }
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING, HAS_CHERRIES_INSIDE, COOKING);
+        builder.add(FACING, HAS_CHERRIES_INSIDE);
     }
 
     @Nullable
