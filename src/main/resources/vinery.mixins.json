@@ -4,6 +4,7 @@
   "package": "daniking.vinery.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "AbstractCauldronBlockAccessor",
     "FoxEntityEatSweetBerriesGoalMixin"
   ],
   "client": [

@@ -15,6 +15,7 @@ public class VinerySoundEvents {
 
     public static final SoundEvent BLOCK_GRAPEVINE_POT_SQUEEZE = create("block.grapevine_pot.squeeze");
     public static final SoundEvent BLOCK_COOKING_POT_JUICE_BOILING = create("block.cooking_pot.juice_boiling");
+    public static final SoundEvent BLOCK_FAUCET = create("block.kitchen_sink.faucet");
 
     private static SoundEvent create(String name) {
         final Identifier id = new VineryIdentifier(name);

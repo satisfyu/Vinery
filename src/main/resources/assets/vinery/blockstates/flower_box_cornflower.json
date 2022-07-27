@@ -1,0 +1,51 @@
+{
+  "variants": {
+    "facing=east,side=center": {
+      "model": "vinery:block/flower_box_center_cornflower",
+      "y": 90
+    },
+    "facing=north,side=center": {
+      "model": "vinery:block/flower_box_center_cornflower"
+    },
+    "facing=south,side=center": {
+      "model": "vinery:block/flower_box_center_cornflower",
+      "y": 180
+    },
+    "facing=west,side=center": {
+      "model": "vinery:block/flower_box_center_cornflower",
+      "y": 270
+    },
+
+    "facing=east,side=top": {
+      "model": "vinery:block/flower_box_top_cornflower",
+      "y": -90
+    },
+    "facing=north,side=top": {
+      "model": "vinery:block/flower_box_top_cornflower",
+      "y": 180
+    },
+    "facing=south,side=top": {
+      "model": "vinery:block/flower_box_top_cornflower"
+    },
+    "facing=west,side=top": {
+      "model": "vinery:block/flower_box_top_cornflower",
+      "y": 90
+    },
+
+    "facing=east,side=bottom": {
+      "model": "vinery:block/flower_box_bottom_cornflower",
+      "y": -90
+    },
+    "facing=north,side=bottom": {
+      "model": "vinery:block/flower_box_bottom_cornflower",
+      "y": 180
+    },
+    "facing=south,side=bottom": {
+      "model": "vinery:block/flower_box_bottom_cornflower"
+    },
+    "facing=west,side=bottom": {
+      "model": "vinery:block/flower_box_bottom_cornflower",
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "type=bottom,variant=0": {
+      "model": "vinery:block/coarse_dirt_slab_1"
+    },
+    "type=double,,variant=0": {
+      "model": "vinery:block/coarse_dirt_slab_full_1"
+    },
+    "type=top,,variant=0": {
+      "model": "vinery:block/coarse_dirt_slab_top_1"
+    },
+    "type=bottom,variant=1": {
+      "model": "vinery:block/coarse_dirt_slab_2"
+    },
+    "type=double,,variant=1": {
+      "model": "vinery:block/coarse_dirt_slab_full_2"
+    },
+    "type=top,,variant=1": {
+      "model": "vinery:block/coarse_dirt_slab_top_2"
+    },
+    "type=bottom,variant=2": {
+      "model": "vinery:block/coarse_dirt_slab_3"
+    },
+    "type=double,,variant=2": {
+      "model": "vinery:block/coarse_dirt_slab_full_3"
+    },
+    "type=top,,variant=2": {
+      "model": "vinery:block/coarse_dirt_slab_top_3"
+    }
+  }
+}

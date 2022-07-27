@@ -12,5 +12,11 @@
     "sounds": [
       "vinery:block/cooking_pot/juice_boiling"
     ]
+  },
+  "block.kitchen_sink.faucet": {
+    "sounds": [
+      "vinery:block/kitchen_sink/faucet",
+      "vinery:block/kitchen_sink/faucet1"
+    ]
   }
 }

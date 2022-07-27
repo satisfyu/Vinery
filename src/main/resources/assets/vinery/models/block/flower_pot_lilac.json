@@ -1,0 +1,7 @@
+{
+  "parent": "vinery:block/flower_pot_main",
+  "textures": {
+	"4": "vinery:block/planted_lilac_bottom",
+	"5": "vinery:block/planted_lilac_top"
+  }
+}
