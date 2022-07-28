@@ -166,9 +166,10 @@ public class ObjectRegistry {
     public static final Block NOIR_WINE = register("noir_wine", new WineBottleBlock(getWineSettings(), WineType.RED));
     public static final Block CLARK_WINE = register("clark_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE));
     public static final Block MELLOHI_WINE = register("mellohi_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE));
-    
-    /////////////////////////////////////// 4732
-    
+
+    public static final Block BOLVAR_WINE = register("bolvar_wine", new WineBottleBlock(getWineSettings(), WineType.RED));
+    public static final Block CHERRY_WINE = register("cherry_wine", new WineBottleBlock(getWineSettings(), WineType.RED));
+
     public static final Block BANNER = register("banner", new BannerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().nonOpaque()));
     public static final Block WINE_BOX = register("wine_box", new WineBoxBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).nonOpaque()));
     public static final Block BIG_TABLE = register("big_table", new BigTableBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 2.0F)));
@@ -206,7 +207,7 @@ public class ObjectRegistry {
     public static final Block FLOWER_BOX_BLUE_RED_TULIP = register("flower_box_red_tulip", new FlowerBoxBlock(Blocks.RED_TULIP,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
     public static final Block FLOWER_BOX_BLUE_WHITE_TULIP = register("flower_box_white_tulip", new FlowerBoxBlock(Blocks.WHITE_TULIP,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
     public static final Block FLOWER_BOX_BLUE_WHITER_ROSE = register("flower_box_whiter_rose", new FlowerBoxBlock(Blocks.WITHER_ROSE,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
-    
+
     public static final Block FLOWER_POT = register("flower_pot", new FlowerPotBlock(FabricBlockSettings.copy(Blocks.FLOWER_POT)));
     
     // Items

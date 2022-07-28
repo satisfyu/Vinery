@@ -1,3 +1,6 @@
 {
-  "parent": "vinery:block/mellohi_wine_stack1"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "vinery:item/chenet_wine"
+  }
 }

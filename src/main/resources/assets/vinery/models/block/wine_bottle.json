@@ -1,13 +1,13 @@
 {
-	"credit": "Made with Blockbench",
+	"credit": "Made by Satisfy",
 	"textures": {
 		"0": "vinery:block/wine_bottle_empty",
 		"particle": "vinery:block/wine_bottle_empty"
 	},
 	"elements": [
 		{
-			"from": [6, 0, 6],
-			"to": [10, 9, 10],
+			"from": [6, 0.01, 6],
+			"to": [10, 9.01, 10],
 			"rotation": {"angle": 0, "axis": "y", "origin": [14, 8, 14]},
 			"faces": {
 				"north": {"uv": [3, 7.5, 0.5, 12], "texture": "#0"},
@@ -19,8 +19,8 @@
 			}
 		},
 		{
-			"from": [10, 0, 6],
-			"to": [6, 9, 10],
+			"from": [10, 0.01, 6],
+			"to": [6, 9.01, 10],
 			"rotation": {"angle": 0, "axis": "y", "origin": [18, 8, 14]},
 			"faces": {
 				"north": {"uv": [0.5, 7.5, 3, 12], "texture": "#0"},
