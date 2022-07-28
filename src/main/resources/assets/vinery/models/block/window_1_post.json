@@ -1,0 +1,7 @@
+{
+  "parent": "block/template_glass_pane_post",
+  "textures": {
+    "pane": "vinery:block/window_1",
+    "edge": "vinery:block/window_1_top"
+  }
+}

@@ -8,6 +8,8 @@ import daniking.vinery.Vinery;
 import daniking.vinery.VineryIdentifier;
 import daniking.vinery.block.*;
 import daniking.vinery.block.BannerBlock;
+import daniking.vinery.block.FacingBlock;
+import daniking.vinery.block.FlowerPotBlock;
 import daniking.vinery.util.GrapevineType;
 import daniking.vinery.util.WineType;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -149,7 +151,10 @@ public class ObjectRegistry {
     public static final Item VINEMAKER_APRON = register("vinemaker_apron", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings()));
     public static final Item VINEMAKER_GLOVES = register("vinemaker_gloves", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings()));
     public static final Item VINEMAKER_LEGGINGS = register("vinemaker_leggings", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings()));
-    public static final Item VINEMAKER_BOOTS = register("vinemaker_boots", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings()));
+
+    public static final Item VINEMAKER_BOOTS = register("vinemaker_boots",
+            new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings()));
+
     public static final Block FERMENTATION_BARREL = register("fermentation_barrel",
             new FermentationBarrelBlock(AbstractBlock.Settings.copy(Blocks.BARREL).nonOpaque()));
 
@@ -161,9 +166,52 @@ public class ObjectRegistry {
     public static final Block NOIR_WINE = register("noir_wine", new WineBottleBlock(getWineSettings(), WineType.RED));
     public static final Block CLARK_WINE = register("clark_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE));
     public static final Block MELLOHI_WINE = register("mellohi_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE));
-    public static final Block BANNER = register("banner", new BannerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().nonOpaque()));
-    public static final Block BIG_TABLE = register("big_table", new BigTableBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 2.0F)));
     
+    /////////////////////////////////////// 4732
+    
+    public static final Block BANNER = register("banner", new BannerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().nonOpaque()));
+    public static final Block WINE_BOX = register("wine_box", new WineBoxBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).nonOpaque()));
+    public static final Block BIG_TABLE = register("big_table", new BigTableBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 2.0F)));
+    public static final Block BIG_BOTTLE = register("big_bottle", new BigBottleBlock(AbstractBlock.Settings.copy(Blocks.GLASS).breakInstantly().nonOpaque()));
+    public static final Block WHITE_GRAPE_CRATE = register("white_grape_crate", new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+    public static final Block RED_GRAPE_CRATE = register("red_grape_crate", new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+    public static final Block LOAM = register("loam", new Block(FabricBlockSettings.of(Material.SOIL).strength(2.0F, 3.0F).sounds(BlockSoundGroup.SAND)));
+    public static final Block WINE_PRESS = register("wine_press", new WinePressBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block WINDOW_1 = register("window_1", new PaneBlock(FabricBlockSettings.copy(Blocks.GLASS_PANE)));
+    public static final Block WINDOW_2 = register("window_2", new PaneBlock(FabricBlockSettings.copy(Blocks.GLASS_PANE)));
+    public static final Block COARSE_DIRT_SLAB = register("coarse_dirt_slab", new VariantSlabBlock(FabricBlockSettings.copy(Blocks.COARSE_DIRT)));
+    public static final Block DIRT_SLAB = register("dirt_slab", new VariantSlabBlock(FabricBlockSettings.copy(Blocks.DIRT)));
+    public static final Block GRASS_SLAB = register("grass_slab", new VariantSlabBlock(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)));
+    public static final Block KITCHEN_SINK = register("kitchen_sink", new KitchenSinkBlock(FabricBlockSettings.copy(Blocks.IRON_BLOCK).nonOpaque()));
+    
+    // Wine Racks
+    public static final Block WINE_RACK_1 = register("wine_rack_1", new WineRackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD), 12));
+    public static final Block WINE_RACK_2 = register("wine_rack_2", new WineRackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD), 4));
+    public static final Block WINE_RACK_3 = register("wine_rack_3", new WineRackStorageBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+    public static final Block WINE_RACK_4 = register("wine_rack_4", new FacingBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+    public static final Block WINE_RACK_5 = register("wine_rack_5", new WineRackStorageBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+    
+    // Flower Box
+    public static final Block FLOWER_BOX = register("flower_box", new FlowerBoxBlock(Blocks.AIR,FabricBlockSettings.copy(Blocks.FLOWER_POT)));
+    public static final Block FLOWER_BOX_ALLIUM = register("flower_box_allium", new FlowerBoxBlock(Blocks.ALLIUM,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
+    public static final Block FLOWER_BOX_AZURE_BLUET = register("flower_box_azure_bluet", new FlowerBoxBlock(Blocks.AZURE_BLUET,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
+    public static final Block FLOWER_BOX_BLUE_ORCHID = register("flower_box_blue_orchid", new FlowerBoxBlock(Blocks.BLUE_ORCHID,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
+    public static final Block FLOWER_BOX_BLUE_CORNFLOWER = register("flower_box_cornflower", new FlowerBoxBlock(Blocks.CORNFLOWER,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
+    public static final Block FLOWER_BOX_BLUE_DANDELION = register("flower_box_dandelion", new FlowerBoxBlock(Blocks.DANDELION,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
+    public static final Block FLOWER_BOX_BLUE_LILY_OF_THE_VALLEY = register("flower_box_lily_of_the_valley", new FlowerBoxBlock(Blocks.LILY_OF_THE_VALLEY,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
+    public static final Block FLOWER_BOX_BLUE_ORANGE_TULIP = register("flower_box_orange_tulip", new FlowerBoxBlock(Blocks.ORANGE_TULIP,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
+    public static final Block FLOWER_BOX_BLUE_OXEYE_DAISY = register("flower_box_oxeye_daisy", new FlowerBoxBlock(Blocks.OXEYE_DAISY,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
+    public static final Block FLOWER_BOX_BLUE_PINK_TULIP = register("flower_box_pink_tulip", new FlowerBoxBlock(Blocks.PINK_TULIP,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
+    public static final Block FLOWER_BOX_BLUE_POPPY = register("flower_box_poppy", new FlowerBoxBlock(Blocks.POPPY,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
+    public static final Block FLOWER_BOX_BLUE_RED_TULIP = register("flower_box_red_tulip", new FlowerBoxBlock(Blocks.RED_TULIP,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
+    public static final Block FLOWER_BOX_BLUE_WHITE_TULIP = register("flower_box_white_tulip", new FlowerBoxBlock(Blocks.WHITE_TULIP,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
+    public static final Block FLOWER_BOX_BLUE_WHITER_ROSE = register("flower_box_whiter_rose", new FlowerBoxBlock(Blocks.WITHER_ROSE,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
+    
+    public static final Block FLOWER_POT = register("flower_pot", new FlowerPotBlock(FabricBlockSettings.copy(Blocks.FLOWER_POT)));
+    
+    // Items
+    public static final Item FAUCET = register("faucet", new Item(getSettings()));
+
     private static PillarBlock registerLog(String path) {
         return register(path, new PillarBlock(getLogBlockSettings()));
     }

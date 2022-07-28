@@ -1,0 +1,51 @@
+{
+  "variants": {
+    "facing=east,side=center": {
+      "model": "vinery:block/flower_box_center_white_tulip",
+      "y": 90
+    },
+    "facing=north,side=center": {
+      "model": "vinery:block/flower_box_center_white_tulip"
+    },
+    "facing=south,side=center": {
+      "model": "vinery:block/flower_box_center_white_tulip",
+      "y": 180
+    },
+    "facing=west,side=center": {
+      "model": "vinery:block/flower_box_center_white_tulip",
+      "y": 270
+    },
+
+    "facing=east,side=top": {
+      "model": "vinery:block/flower_box_top_white_tulip",
+      "y": -90
+    },
+    "facing=north,side=top": {
+      "model": "vinery:block/flower_box_top_white_tulip",
+      "y": 180
+    },
+    "facing=south,side=top": {
+      "model": "vinery:block/flower_box_top_white_tulip"
+    },
+    "facing=west,side=top": {
+      "model": "vinery:block/flower_box_top_white_tulip",
+      "y": 90
+    },
+
+    "facing=east,side=bottom": {
+      "model": "vinery:block/flower_box_bottom_white_tulip",
+      "y": -90
+    },
+    "facing=north,side=bottom": {
+      "model": "vinery:block/flower_box_bottom_white_tulip",
+      "y": 180
+    },
+    "facing=south,side=bottom": {
+      "model": "vinery:block/flower_box_bottom_white_tulip"
+    },
+    "facing=west,side=bottom": {
+      "model": "vinery:block/flower_box_bottom_white_tulip",
+      "y": 90
+    }
+  }
+}

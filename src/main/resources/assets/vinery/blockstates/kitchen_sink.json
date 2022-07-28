@@ -1,0 +1,71 @@
+{
+  "variants": {
+    "facing=east,filled=false,has_faucet=false": {
+      "model": "vinery:block/kitchen_sink",
+      "y": 0
+    },
+    "facing=north,filled=false,has_faucet=false": {
+      "model": "vinery:block/kitchen_sink",
+      "y": -90
+    },
+    "facing=south,filled=false,has_faucet=false": {
+      "model": "vinery:block/kitchen_sink",
+      "y": 90
+    },
+    "facing=west,filled=false,has_faucet=false": {
+      "model": "vinery:block/kitchen_sink",
+      "y": 180
+    },
+
+    "facing=east,filled=false,has_faucet=true": {
+      "model": "vinery:block/kitchen_sink_faucet",
+      "y": 0
+    },
+    "facing=north,filled=false,has_faucet=true": {
+      "model": "vinery:block/kitchen_sink_faucet",
+      "y": -90
+    },
+    "facing=south,filled=false,has_faucet=true": {
+      "model": "vinery:block/kitchen_sink_faucet",
+      "y": 90
+    },
+    "facing=west,filled=false,has_faucet=true": {
+      "model": "vinery:block/kitchen_sink_faucet",
+      "y": 180
+    },
+
+    "facing=east,filled=true,has_faucet=true": {
+      "model": "vinery:block/kitchen_sink_faucet_water",
+      "y": 0
+    },
+    "facing=north,filled=true,has_faucet=true": {
+      "model": "vinery:block/kitchen_sink_faucet_water",
+      "y": -90
+    },
+    "facing=south,filled=true,has_faucet=true": {
+      "model": "vinery:block/kitchen_sink_faucet_water",
+      "y": 90
+    },
+    "facing=west,filled=true,has_faucet=true": {
+      "model": "vinery:block/kitchen_sink_faucet_water",
+      "y": 180
+    },
+
+    "facing=east,filled=true,has_faucet=false": {
+      "model": "vinery:block/kitchen_sink_water",
+      "y": 0
+    },
+    "facing=north,filled=true,has_faucet=false": {
+      "model": "vinery:block/kitchen_sink_water",
+      "y": -90
+    },
+    "facing=south,filled=true,has_faucet=false": {
+      "model": "vinery:block/kitchen_sink_water",
+      "y": 90
+    },
+    "facing=west,filled=true,has_faucet=false": {
+      "model": "vinery:block/kitchen_sink_water",
+      "y": 180
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "content=none": {
+      "model": "vinery:block/flower_pot_empty"
+    },
+    "content=lilac": {
+      "model": "vinery:block/flower_pot_lilac"
+    },
+    "content=peony": {
+      "model": "vinery:block/flower_pot_peony"
+    },
+    "content=rose_bush": {
+      "model": "vinery:block/flower_pot_rose_bush"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "vinery:block/flower_box_center_main",
+  "textures": {
+    "10": "minecraft:block/azure_bluet"
+  }
+}

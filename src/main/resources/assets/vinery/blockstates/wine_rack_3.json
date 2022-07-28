@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,open=false": {
+      "model": "vinery:block/wine_rack_3",
+      "y": 90
+    },
+    "facing=north,open=false": {
+      "model": "vinery:block/wine_rack_3"
+    },
+    "facing=south,open=false": {
+      "model": "vinery:block/wine_rack_3",
+      "y": 180
+    },
+    "facing=west,open=false": {
+      "model": "vinery:block/wine_rack_3",
+      "y": 270
+    },
+    "facing=east,open=true": {
+      "model": "vinery:block/wine_rack_3_open",
+      "y": 90
+    },
+    "facing=north,open=true": {
+      "model": "vinery:block/wine_rack_3_open"
+    },
+    "facing=south,open=true": {
+      "model": "vinery:block/wine_rack_3_open",
+      "y": 180
+    },
+    "facing=west,open=true": {
+      "model": "vinery:block/wine_rack_3_open",
+      "y": 270
+    }
+  }
+}

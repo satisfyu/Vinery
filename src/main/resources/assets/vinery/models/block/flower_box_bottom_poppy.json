@@ -1,0 +1,6 @@
+{
+  "parent": "vinery:block/flower_box_bottom_main",
+  "textures": {
+    "10": "minecraft:block/poppy"
+  }
+}
