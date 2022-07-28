@@ -146,8 +146,9 @@ public class ObjectRegistry {
     public static final Block CHERRY_JAM = register("cherry_jam",
             new StackableBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque()));
 
-    public static final Item VINEMAKER_APRON = register("vinemaker_apron", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings()));
+    public static final Item VINEMAKER_APRON = register("vinemaker_apron", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings()));
     public static final Item VINEMAKER_GLOVES = register("vinemaker_gloves", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings()));
+    public static final Item VINEMAKER_LEGGINGS = register("vinemaker_leggings", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings()));
     public static final Item VINEMAKER_BOOTS = register("vinemaker_boots", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings()));
     public static final Block FERMENTATION_BARREL = register("fermentation_barrel",
             new FermentationBarrelBlock(AbstractBlock.Settings.copy(Blocks.BARREL).nonOpaque()));
