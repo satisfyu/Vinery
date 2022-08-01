@@ -1,5 +1,6 @@
 package daniking.vinery.world;
 
+import com.google.common.collect.ImmutableList;
 import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.VineryIdentifier;
 import daniking.vinery.block.GrapeBush;
@@ -9,16 +10,27 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
+import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
+import net.minecraft.world.gen.foliage.RandomSpreadFoliagePlacer;
 import net.minecraft.world.gen.placementmodifier.*;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
+import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
+import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
+import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer;
+import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
 import java.util.List;
 
@@ -42,6 +54,8 @@ public class VineryConfiguredFeatures {
     public static final RegistryEntry<PlacedFeature> PINK_GRASS_FLOWERS_PATCH = PlacedFeatures.register(VineryIdentifier.asString("pink_grass_flower_chance"), PINK_GRASS_FLOWERS, RarityFilterPlacementModifier.of(144), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
     public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> WHITE_GRASS_FLOWERS = ConfiguredFeatures.register(VineryIdentifier.asString("white_grass_flower"),  Feature.RANDOM_PATCH, getFlowerGrassConfig(ObjectRegistry.WHITE_GRASS_FLOWER));
     public static final RegistryEntry<PlacedFeature> WHITE_GRASS_FLOWERS_PATCH = PlacedFeatures.register(VineryIdentifier.asString("white_grass_flower_chance"), WHITE_GRASS_FLOWERS, RarityFilterPlacementModifier.of(144), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> CHERRY = ConfiguredFeatures.register(VineryIdentifier.asString("cherry"), Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(ObjectRegistry.CHERRY_LOG), new StraightTrunkPlacer(5, 2, 0), new WeightedBlockStateProvider(new DataPool.Builder<BlockState>().add(ObjectRegistry.CHERRY_LEAVES.getDefaultState(), 1).add(ObjectRegistry.CHERRY_LEAVES_VARIANT.getDefaultState(), 1)), new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build());
+    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> OLD_CHERRY = ConfiguredFeatures.register(VineryIdentifier.asString("old_growth_cherry"), Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(ObjectRegistry.OLD_CHERRY_LOG), new LargeOakTrunkPlacer(4, 14, 2), new WeightedBlockStateProvider(new DataPool.Builder<BlockState>().add(ObjectRegistry.PINK_CHERRY_LEAVES.getDefaultState(), 1).add(ObjectRegistry.PINK_CHERRY_LEAVES_VARIANT.getDefaultState(), 1)), new RandomSpreadFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), ConstantIntProvider.create(2), 50), new TwoLayersFeatureSize(1, 1, 2)).decorators(ImmutableList.of(new BeehiveTreeDecorator(0.5f), new TrunkVineTreeDecorator())).forceDirt().build());
 //    public static final RegistryEntry<ConfiguredFeature<SimpleBlockFeatureConfig, ?>> EMPTY_RED_VINES = ConfiguredFeatures.register(VineryIdentifier.asString("empty_red_vines"), VINES_FEATURE, new SimpleBlockFeatureConfig(BlockStateProvider.of(ObjectRegistry.EMPTY_RED_VINE)));
 //    public static final RegistryEntry<PlacedFeature> EMPTY_RED_VINES_CHANCE = PlacedFeatures.register(VineryIdentifier.asString("empty_red_vines_chance"), EMPTY_RED_VINES, CountPlacementModifier.of(14), SquarePlacementModifier.of(), HeightRangePlacementModifier.uniform(YOffset.fixed(64), YOffset.fixed(100)), BiomePlacementModifier.of(), BlockFilterPlacementModifier.of(createBlockPredicate(List.of(Blocks.GRASS_BLOCK, Blocks.STONE))));
 

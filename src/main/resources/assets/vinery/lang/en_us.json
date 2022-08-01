@@ -82,6 +82,8 @@
   "block.vinery.grass_slab": "Grass Slab",
   "block.vinery.window_2": "Window",
   "block.vinery.kitchen_sink": "Kitchen Sink",
+  "block.vinery.cherry_sapling": "Cherry Sapling",
+  "block.vinery.old_cherry_sapling": "Old Cherry Sapling",
   "item.vinery.red_grape": "Red Grape",
   "item.vinery.red_grape_seeds": "Red Grape Seeds",
   "item.vinery.white_grape": "White Grape",
@@ -96,5 +98,6 @@
   "item.vinery.vinemaker_boots": "Vinemaker Boots",
   "item.vinery.faucet": "Faucet",
   "entity.vinery.cherry_boat": "Cherry Boat",
-  "container.wine_rack": "Wine Rack"
+  "container.wine_rack": "Wine Rack",
+  "entity.minecraft.villager.winemaker": "Winemaker"
 }

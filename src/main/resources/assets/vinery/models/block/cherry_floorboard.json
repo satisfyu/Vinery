@@ -1,8 +1,8 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"0": "cherry_floor_board",
-		"particle": "cherry_floor_board"
+		"0": "vinery:block/cherry_floorboard",
+		"particle": "vinery:block/cherry_floorboard"
 	},
 	"elements": [
 		{

@@ -4,13 +4,12 @@
   "version": "${version}",
 
   "name": "Vinery",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "This is a mod about winemaking!",
   "authors": [
     "DanikingRD"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/DanikingRD/Vinery"
   },
 
   "license": "CC0-1.0",
