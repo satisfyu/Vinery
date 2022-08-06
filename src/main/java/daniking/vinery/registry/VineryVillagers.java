@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public class VineryVillagers {
-    public static final  PointOfInterestType WINEMAKER_POI = PointOfInterestHelper.register(new Identifier("vinery", "winemaker_poi"), 1, 12, ObjectRegistry.WINE_PRESS);
+    public static final PointOfInterestType WINEMAKER_POI = PointOfInterestHelper.register(new Identifier("vinery", "winemaker_poi"), 1, 12, ObjectRegistry.WINE_PRESS);
     public static final VillagerProfession WINEMAKER = Registry.register(Registry.VILLAGER_PROFESSION, new Identifier("vinery", "winemaker"), VillagerProfessionBuilder.create().id(new Identifier("vinery", "winemaker")).workstation(WINEMAKER_POI).build());
 
     public static void init() {

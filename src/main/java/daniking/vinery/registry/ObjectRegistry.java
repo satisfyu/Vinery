@@ -20,6 +20,9 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
@@ -32,6 +35,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.function.Consumer;
 
 public class ObjectRegistry {
 
@@ -91,10 +95,10 @@ public class ObjectRegistry {
 
     public static final Block GRAPEVINE_POT = register("grapevine_pot",
             new GrapevinePotBlock(FabricBlockSettings.copyOf(Blocks.BARREL)));
-    public static final Block RED_GRAPEJUICE_WINE_BOTTLE = register("red_grapejuice_wine_bottle",
-            new RedGrapejuiceWineBottle(getWineSettings()));
-    public static final Block WHITE_GRAPEJUICE_WINE_BOTTLE = register("white_grapejuice_wine_bottle",
-            new WhiteGrapejuiceWineBottle(getWineSettings()));
+    public static final Block RED_GRAPEJUICE_WINE_BOTTLE = registerWine("red_grapejuice_wine_bottle",
+            new RedGrapejuiceWineBottle(getWineSettings()), null);
+    public static final Block WHITE_GRAPEJUICE_WINE_BOTTLE = registerWine("white_grapejuice_wine_bottle",
+            new WhiteGrapejuiceWineBottle(getWineSettings()), null);
 
     public static final Block STOVE = register("stove", new StoveBlock(
             FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(state -> state.get(StoveBlock.LIT) ? 13 : 0)));
@@ -185,14 +189,14 @@ public class ObjectRegistry {
     public static final Block WINE_BOTTLE = register("wine_bottle",
             new EmptyWineBottleBlock(AbstractBlock.Settings.copy(Blocks.GLASS).breakInstantly().nonOpaque()));
 
-    public static final Block CHENET_WINE = register("chenet_wine", new WineBottleBlock(getWineSettings(), WineType.RED));
-    public static final Block KING_DANIS_WINE = register("king_danis_wine", new WineBottleBlock(getWineSettings(), WineType.RED));
-    public static final Block NOIR_WINE = register("noir_wine", new WineBottleBlock(getWineSettings(), WineType.RED));
-    public static final Block CLARK_WINE = register("clark_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE));
-    public static final Block MELLOHI_WINE = register("mellohi_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE));
+    public static final Block CHENET_WINE = registerWine("chenet_wine", new WineBottleBlock(getWineSettings(), WineType.RED), StatusEffects.JUMP_BOOST);
+    public static final Block KING_DANIS_WINE = registerWine("king_danis_wine", new WineBottleBlock(getWineSettings(), WineType.RED), StatusEffects.FIRE_RESISTANCE);
+    public static final Block NOIR_WINE = registerWine("noir_wine", new WineBottleBlock(getWineSettings(), WineType.RED), StatusEffects.WATER_BREATHING);
+    public static final Block CLARK_WINE = registerWine("clark_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE), StatusEffects.LUCK);
+    public static final Block MELLOHI_WINE = registerWine("mellohi_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE), StatusEffects.LEVITATION);
 
-    public static final Block BOLVAR_WINE = register("bolvar_wine", new WineBottleBlock(getWineSettings(), WineType.RED));
-    public static final Block CHERRY_WINE = register("cherry_wine", new WineBottleBlock(getWineSettings(), WineType.RED));
+    public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings(), WineType.RED), StatusEffects.GLOWING);
+    public static final Block CHERRY_WINE = registerWine("cherry_wine", new WineBottleBlock(getWineSettings(), WineType.RED), StatusEffects.SPEED);
 
     public static final Block BANNER = register("banner", new BannerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().nonOpaque()));
     public static final Block WINE_BOX = register("wine_box", new WineBoxBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).nonOpaque()));
@@ -254,6 +258,26 @@ public class ObjectRegistry {
         return block;
     }
 
+    private static <T extends Block> T registerWine(String path, T block, StatusEffect effect) {
+        final Identifier id = new VineryIdentifier(path);
+        BLOCKS.put(id, block);
+        ITEMS.put(id, new BlockItem(block, getSettings(settings -> settings.food(wineFoodComponent(effect)))));
+        return block;
+    }
+
+    private static FoodComponent wineFoodComponent(StatusEffect effect) {
+        FoodComponent.Builder component = new FoodComponent.Builder().hunger(1);
+        if(effect != null) component.statusEffect(new StatusEffectInstance(effect, 45 * 20), 1.0f);
+        return component.build();
+    }
+
+    private static <T extends Block> T register(String path, T block, Consumer<Item.Settings> settingsConsumer) {
+        final Identifier id = new VineryIdentifier(path);
+        BLOCKS.put(id, block);
+        ITEMS.put(id, new BlockItem(block, getSettings(settingsConsumer)));
+        return block;
+    }
+
     private static <T extends Item> T register(String path, T item) {
         final Identifier id = new VineryIdentifier(path);
         ITEMS.put(id, item);
@@ -288,8 +312,14 @@ public class ObjectRegistry {
         fuelRegistry.add(FERMENTATION_BARREL, 300);
     }
 
+    private static Item.Settings getSettings(Consumer<Item.Settings> consumer) {
+        Item.Settings settings = new Item.Settings().group(Vinery.CREATIVE_TAB);
+        consumer.accept(settings);
+        return settings;
+    }
+
     private static Item.Settings getSettings() {
-        return new Item.Settings().group(Vinery.CREATIVE_TAB);
+        return getSettings(settings -> {});
     }
 
     private static Block.Settings getVineSettings() {
