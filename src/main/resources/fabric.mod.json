@@ -22,6 +22,9 @@
     ],
     "client": [
       "daniking.vinery.client.ClientSetup"
+    ],
+    "fabric-datagen": [
+      "daniking.vinery.data.DataGen"
     ]
   },
   "mixins": [
