@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#S",
+        "S#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:clay_ball"
+        },
+        "S": {
+            "item": "minecraft:sand"
+        }
+    },
+    "result": {
+        "item": "vinery:loam",
+        "count": 2
+    }
+}

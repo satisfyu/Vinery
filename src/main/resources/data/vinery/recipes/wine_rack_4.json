@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#_#",
+        "_ _",
+        "#_#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:spruce_planks"
+        },
+        "_": {
+            "item": "minecraft:spruce_slab"
+        }
+    },
+    "result": {
+        "item": "vinery:wine_rack_4",
+        "count": 1
+    }
+}

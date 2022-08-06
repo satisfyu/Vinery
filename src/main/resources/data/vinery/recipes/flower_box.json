@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "SSS"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:podzol"
+        },
+        "S": {
+            "item": "minecraft:spruce_planks"
+        }
+    },
+    "result": {
+        "item": "vinery:flower_box",
+        "count": 1
+    }
+}

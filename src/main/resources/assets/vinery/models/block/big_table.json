@@ -1,5 +1,5 @@
 {
-	"credit": "Made with Blockbench",
+	"credit": "Made by Satisfy",
 	"textures": {
 		"0": "vinery:block/big_table",
 		"particle": "vinery:block/big_table"
@@ -17,8 +17,8 @@
 			}
 		},
 		{
-			"from": [-15, 15, 1],
-			"to": [15, 15.5, 15],
+			"from": [-15, 15.5, 1],
+			"to": [15, 16, 15],
 			"faces": {
 				"up": {"uv": [0, 0, 16, 8], "texture": "#0"}
 			}
@@ -72,12 +72,6 @@
 			}
 		}
 	],
-	"display": {
-		"gui": {
-			"translation": [3.75, 0, 0],
-			"scale": [0.46289, 0.44336, 1]
-		}
-	},
 	"groups": [
 		{
 			"name": "Box",

@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "_G_",
+        "___"
+    ],
+    "key": {
+        "_": {
+            "item": "minecraft:spruce_slab"
+        },
+        "G": {
+            "item": "minecraft:glass"
+        }
+    },
+    "result": {
+        "item": "vinery:wine_box",
+        "count": 1
+    }
+}

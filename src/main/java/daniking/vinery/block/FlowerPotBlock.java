@@ -96,11 +96,11 @@ public class FlowerPotBlock extends Block {
 	
 	public static VoxelShape makeShape() {
 		VoxelShape shape = VoxelShapes.empty();
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0, 0.125, 0.875, 0.625, 0.875), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0.5625, 0, 1, 0.8125, 0.125), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0.5625, 0.875, 1, 0.8125, 1), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0.5625, 0.125, 0.125, 0.8125, 0.875), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.875, 0.5625, 0.125, 1, 0.8125, 0.875), BooleanBiFunction.OR);
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.78125, 0.421875, 0.21875, 0.875, 0.609375, 0.78125), BooleanBiFunction.OR);
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.21875, 0, 0.21875, 0.78125, 0.46875, 0.78125), BooleanBiFunction.OR);
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.421875, 0.125, 0.875, 0.609375, 0.21875), BooleanBiFunction.OR);
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.421875, 0.78125, 0.875, 0.609375, 0.875), BooleanBiFunction.OR);
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.421875, 0.21875, 0.21875, 0.609375, 0.78125), BooleanBiFunction.OR);
 		
 		return shape;
 	}
