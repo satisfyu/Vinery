@@ -1,16 +1,17 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "__",
-        "__"
-    ],
-    "key": {
-        "_": {
-            "item": "vinery:cherry_slab"
-        }
-    },
-    "result": {
-        "item": "vinery:cherry_floorboard",
-        "count": 1
+  "type": "minecraft:crafting_shaped",
+  "group": "floorboard",
+  "pattern": [
+    "# #",
+    " # ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "vinery:cherry_wood"
     }
+  },
+  "result": {
+    "item": "vinery:cherry_floorboard"
+  }
 }

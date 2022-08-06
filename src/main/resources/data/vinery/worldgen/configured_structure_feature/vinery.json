@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:village",
+  "config": {
+    "start_pool": "vinery:vinery",
+    "size": 1
+  },
+  "biomes": "#vinery:has_structure/vinery",
+  "adapt_noise": true,
+  "spawn_overrides": {
+    "creature": {
+      "bounding_box": "piece",
+      "spawns": [
+        {
+          "type": "minecraft:villager",
+          "weight": 1,
+          "minCount": 1,
+          "maxCount": 1
+        }
+      ]
+    }
+  }
+}

@@ -1,5 +1,5 @@
 {
-	"credit": "Made with Blockbench",
+	"credit": "Made by Satisfy",
 	"textures": {
 		"0": "vinery:block/grapevine_pot",
 		"1": "vinery:block/red_grapevine",
@@ -149,8 +149,8 @@
 			}
 		},
 		{
-			"from": [7, 4, 4],
-			"to": [9, 5, 6],
+			"from": [7, 5, 4],
+			"to": [9, 6, 6],
 			"faces": {
 				"north": {"uv": [4, 7, 7, 8], "texture": "#1"},
 				"east": {"uv": [4, 7, 7, 8], "texture": "#1"},

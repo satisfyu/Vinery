@@ -19,6 +19,8 @@ repositories {
 		name "terraform wood api, trinkets"
 		url "https://maven.terraformersmc.com"
 	}
+
+	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 }
 
 dependencies {
@@ -33,6 +35,7 @@ dependencies {
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
 	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
+	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.18:3.0.54'
 }
 
 processResources {
@@ -60,6 +63,31 @@ jar {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
 }
+
+sourceSets {
+	main{
+		resources {
+			srcDirs += [
+					'src/main/generated'
+			]
+		}
+	}
+}
+
+loom {
+	runs {
+		datagen {
+			server()
+
+			name "Minecraft Data"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+
+			runDir "build/datagen"
+		}
+	}
+}
+assemble.dependsOn runDatagen
 
 // configure the maven publication
 publishing {
