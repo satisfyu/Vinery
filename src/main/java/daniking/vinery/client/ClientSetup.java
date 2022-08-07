@@ -35,9 +35,10 @@ public class ClientSetup implements ClientModInitializer {
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ObjectRegistry.CHERRY_SIGN.getTexture()));
         //ObjectRegistry.EMPTY_RED_VINE, ObjectRegistry.RED_VINE, ObjectRegistry.RED_VINE_VARIANT_B, ObjectRegistry.RED_VINE_VARIANT_C
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout().getCutout(), ObjectRegistry.RED_GRAPE_BUSH, ObjectRegistry.WHITE_GRAPE_BUSH,
-                                               ObjectRegistry.CHERRY_DOOR, ObjectRegistry.STACKABLE_LOG, ObjectRegistry.COOKING_POT,
+                                               ObjectRegistry.CHERRY_DOOR, ObjectRegistry.CHERRY_DOOR_WITH_IRON_BARS, ObjectRegistry.CHERRY_DOOR_WITH_WINDOWS, ObjectRegistry.STACKABLE_LOG, ObjectRegistry.COOKING_POT,
                                                ObjectRegistry.CHERRY_JAM, ObjectRegistry.CHERRY_JAR, ObjectRegistry.FERMENTATION_BARREL,
                                                 ObjectRegistry.MELLOHI_WINE, ObjectRegistry.CLARK_WINE, ObjectRegistry.BOLVAR_WINE, ObjectRegistry.CHERRY_WINE
+
 
         );
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ObjectRegistry.ROCKS, ObjectRegistry.ROCKS_VARIANT_B, ObjectRegistry.ROCKS_VARIANT_C,

@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/door_bottom_rh",
+	"textures": {
+		"top": "vinery:block/cherry_door_with_windows_top",
+		"bottom": "vinery:block/cherry_door_bottom"
+	}
+}

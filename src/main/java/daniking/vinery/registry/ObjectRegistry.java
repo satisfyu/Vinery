@@ -134,6 +134,9 @@ public class ObjectRegistry {
             PressurePlateBlock.ActivationRule.EVERYTHING, AbstractBlock.Settings.copy(Blocks.OAK_PRESSURE_PLATE)));
     public static final Block CHERRY_DOOR = register("cherry_door",
             new DoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_DOOR)));
+    public static final Block CHERRY_DOOR_WITH_IRON_BARS = register("cherry_door_with_iron_bars", new DoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_DOOR)));
+    public static final Block CHERRY_DOOR_WITH_WINDOWS = register("cherry_door_with_windows", new DoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_DOOR)));
+
     public static final Block CHERRY_TRAPDOOR = register("cherry_trapdoor",
             new TrapdoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_TRAPDOOR)));
     private static final Identifier CHERRY_SIGN_TEXTURE = new VineryIdentifier("entity/sign/cherry");
