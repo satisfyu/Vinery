@@ -10,6 +10,7 @@ import daniking.vinery.block.*;
 import daniking.vinery.block.BannerBlock;
 import daniking.vinery.block.FacingBlock;
 import daniking.vinery.block.FlowerPotBlock;
+import daniking.vinery.item.DrinkBlockItem;
 import daniking.vinery.item.StrawHatItem;
 import daniking.vinery.util.GrapevineType;
 import daniking.vinery.util.WineType;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 public class ObjectRegistry {
@@ -201,7 +203,7 @@ public class ObjectRegistry {
     public static final Block BANNER = register("banner", new BannerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().nonOpaque()));
     public static final Block WINE_BOX = register("wine_box", new WineBoxBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).nonOpaque()));
     public static final Block BIG_TABLE = register("big_table", new BigTableBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 2.0F)));
-    public static final Block BIG_BOTTLE = register("big_bottle", new BigBottleBlock(AbstractBlock.Settings.copy(Blocks.GLASS).breakInstantly().nonOpaque()));
+    public static final Block BIG_BOTTLE = register("big_bottle", new BigBottleBlock(AbstractBlock.Settings.copy(Blocks.GLASS).breakInstantly().nonOpaque()), true, DrinkBlockItem::new, settings -> settings.food(new FoodComponent.Builder().hunger(2).build()));
     public static final Block WHITE_GRAPE_CRATE = register("white_grape_crate", new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
     public static final Block RED_GRAPE_CRATE = register("red_grape_crate", new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
     public static final Block LOAM = register("loam", new Block(FabricBlockSettings.of(Material.SOIL).strength(2.0F, 3.0F).sounds(BlockSoundGroup.SAND)));
@@ -250,32 +252,30 @@ public class ObjectRegistry {
     }
 
     private static <T extends Block> T register(String path, T block, boolean registerItem) {
+        return register(path, block, registerItem, settings -> {});
+    }
+
+    private static <T extends Block> T register(String path, T block, boolean registerItem, Consumer<Item.Settings> consumer) {
+        return register(path, block, registerItem, BlockItem::new, consumer);
+    }
+
+    private static <T extends Block> T register(String path, T block, boolean registerItem, BiFunction<T, Item.Settings, ? extends BlockItem> function,  Consumer<Item.Settings> consumer) {
         final Identifier id = new VineryIdentifier(path);
         BLOCKS.put(id, block);
         if (registerItem) {
-            ITEMS.put(id, new BlockItem(block, getSettings()));
+            ITEMS.put(id, function.apply(block, getSettings(consumer)));
         }
         return block;
     }
 
     private static <T extends Block> T registerWine(String path, T block, StatusEffect effect) {
-        final Identifier id = new VineryIdentifier(path);
-        BLOCKS.put(id, block);
-        ITEMS.put(id, new BlockItem(block, getSettings(settings -> settings.food(wineFoodComponent(effect)))));
-        return block;
+        return register(path, block, true, DrinkBlockItem::new, settings -> settings.food(wineFoodComponent(effect)));
     }
 
     private static FoodComponent wineFoodComponent(StatusEffect effect) {
         FoodComponent.Builder component = new FoodComponent.Builder().hunger(1);
         if(effect != null) component.statusEffect(new StatusEffectInstance(effect, 45 * 20), 1.0f);
         return component.build();
-    }
-
-    private static <T extends Block> T register(String path, T block, Consumer<Item.Settings> settingsConsumer) {
-        final Identifier id = new VineryIdentifier(path);
-        BLOCKS.put(id, block);
-        ITEMS.put(id, new BlockItem(block, getSettings(settingsConsumer)));
-        return block;
     }
 
     private static <T extends Item> T register(String path, T item) {
