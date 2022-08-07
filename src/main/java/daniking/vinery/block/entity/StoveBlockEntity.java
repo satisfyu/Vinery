@@ -19,6 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -43,8 +44,7 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
     protected float experience;
 
     protected static final int FUEL_SLOT = StoveGuiHandler.FUEL_SLOT;
-    protected static final int BUCKET_SLOT = StoveGuiHandler.BUCKET_SLOT;
-    protected static final int INGREDIENT_SLOT = StoveGuiHandler.INGREDIENT_SLOT;
+    protected static final int[] INGREDIENT_SLOTS = {1, 2, 3};
     protected static final int OUTPUT_SLOT = StoveGuiHandler.OUTPUT_SLOT;
 
     protected static final int TOTAL_COOKING_TIME = 240;
@@ -78,7 +78,7 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
     };
     public StoveBlockEntity(BlockPos pos, BlockState state) {
         super(VineryBlockEntityTypes.STOVE_BLOCK_ENTITY, pos, state);
-        this.inventory = DefaultedList.ofSize(4, ItemStack.EMPTY);
+        this.inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
     }
 
     public void dropExperience(ServerWorld world, Vec3d pos) {
@@ -88,7 +88,7 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
-        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
+        this.inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
         Inventories.readNbt(nbt, this.inventory);
         this.burnTime = nbt.getShort("BurnTime");
         this.cookTime = nbt.getShort("CookTime");
@@ -121,7 +121,8 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
         if (initialBurningState) {
             --this.burnTime;
         }
-        final StoveCookingRecipe recipe = world.getRecipeManager().getFirstMatch(VineryRecipeTypes.STOVE_RECIPE_TYPE, blockEntity, world).orElse(null);
+
+        final StoveCookingRecipe recipe = world.getRecipeManager().getFirstMatch(VineryRecipeTypes.STOVE_RECIPE_TYPE, this, world).orElse(null);
         if (!initialBurningState && canCraft(recipe)) {
             this.burnTime = this.burnTimeTotal = this.getTotalBurnTime(this.getStack(FUEL_SLOT));
             if (burnTime > 0) {
@@ -161,13 +162,8 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
     protected boolean canCraft(StoveCookingRecipe recipe) {
         if (recipe == null || recipe.getOutput().isEmpty()) {
             return false;
-        } else if (this.getStack(BUCKET_SLOT).isEmpty()) {
+        } else if (this.getStack(FUEL_SLOT).isEmpty()) {
             return false;
-        } else if (!this.getStack(BUCKET_SLOT).isOf(Items.WATER_BUCKET)) {
-            return false;
-        } else if (this.getStack(INGREDIENT_SLOT).isEmpty()) {
-            return false;
-            // If the output slot is empty, we don't need more checks
         } else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
             return true;
         } else {
@@ -195,13 +191,18 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
         } else if (outputSlotStack.isOf(recipeOutput.getItem())) {
             outputSlotStack.increment(recipeOutput.getCount());
         }
-        final ItemStack bucket =  this.getStack(BUCKET_SLOT);
-        final ItemStack ingredient = this.getStack(INGREDIENT_SLOT);
-        this.experience += recipe.getExperience();
-        if (bucket.getItem().hasRecipeRemainder()) {
-            setStack(BUCKET_SLOT, new ItemStack(bucket.getItem().getRecipeRemainder()));
+        final DefaultedList<Ingredient> ingredients = recipe.getIngredients();
+        for (int i = 0; i < ingredients.size(); i++) {
+            Ingredient ingredient = ingredients.get(i);
+            final ItemStack bestSlot = this.getStack(i);
+            if (ingredient.test(bestSlot)) {
+                boolean withRemainder = bestSlot.getItem().hasRecipeRemainder();
+                bestSlot.decrement(1);
+                final Item remainder = bestSlot.getItem().getRecipeRemainder();
+                if (withRemainder && remainder != null) this.setStack(i, remainder.getDefaultStack());
+            }
         }
-        ingredient.decrement(1);
+        this.experience += recipe.getExperience();
     }
 
     protected int getTotalBurnTime(ItemStack fuel) {
@@ -248,7 +249,7 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
         if (stack.getCount() > this.getMaxCountPerStack()) {
             stack.setCount(this.getMaxCountPerStack());
         }
-        if (slot == INGREDIENT_SLOT && !dirty) {
+        if (slot == INGREDIENT_SLOTS[0] || slot == INGREDIENT_SLOTS[1] || slot == INGREDIENT_SLOTS[2] && !dirty) {
             this.cookTimeTotal = TOTAL_COOKING_TIME;
             this.cookTime = 0;
             this.markDirty();

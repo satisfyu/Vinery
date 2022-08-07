@@ -8,10 +8,10 @@
       "item": "minecraft:wheat"
     },
     {
-      "item": "minecraft:water_bucket"
+      "item": "minecraft:milk_bucket"
     }
   ],
-  "item": "vinery:crusty_bread",
+  "item": "vinery:toast",
   "count": 3,
   "experience": 0.35
 }

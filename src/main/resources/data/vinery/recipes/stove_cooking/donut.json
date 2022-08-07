@@ -5,13 +5,13 @@
       "item": "minecraft:wheat"
     },
     {
-      "item": "minecraft:wheat"
+      "item": "minecraft:sugar"
     },
     {
-      "item": "minecraft:water_bucket"
+      "item": "minecraft:sweet_berries"
     }
   ],
-  "item": "vinery:crusty_bread",
+  "item": "vinery:chocolate_bread",
   "count": 3,
   "experience": 0.35
 }

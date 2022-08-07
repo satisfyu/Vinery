@@ -22,12 +22,11 @@ public class StoveGuiHandler extends ScreenHandler {
     private final PropertyDelegate delegate;
 
     public static final int FUEL_SLOT = 0;
-    public static final int BUCKET_SLOT = 1;
-    public static final int INGREDIENT_SLOT = 2;
-    public static final int OUTPUT_SLOT = 3;
+    public static final int INGREDIENT_SLOT_START_INDEX = 1;
+    public static final int OUTPUT_SLOT = 4;
     private final World world;
     public StoveGuiHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(4), new ArrayPropertyDelegate(4));
+        this(syncId, playerInventory, new SimpleInventory(5), new ArrayPropertyDelegate(4));
     }
 
     public StoveGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
@@ -41,7 +40,7 @@ public class StoveGuiHandler extends ScreenHandler {
         this.addSlot(new ExtendedSlot(this.inventory, 2, 56, 17, this::isIngredient));
         this.addSlot(new ExtendedSlot(this.inventory, 3, 74, 17, this::isIngredient));
 
-        this.addSlot(new StoveOutputSlot(playerInventory.player, this.inventory, 3, 116,  35));
+        this.addSlot(new StoveOutputSlot(playerInventory.player, this.inventory, 4, 116,  35));
 
         int i;
         for (i = 0; i < 3; ++i) {
@@ -96,13 +95,13 @@ public class StoveGuiHandler extends ScreenHandler {
             } else {
                 // Ingredient
                 if (this.isIngredient(stackInSlot)) {
-                    if (!this.insertItem(stackInSlot, INGREDIENT_SLOT, OUTPUT_SLOT, false)) {
+                    if (!this.insertItem(stackInSlot, INGREDIENT_SLOT_START_INDEX, OUTPUT_SLOT, false)) {
                         return ItemStack.EMPTY;
                     }
                 }
                 // Fuel
                 if (isFuel(stackInSlot)) {
-                    if (!this.insertItem(stackInSlot, FUEL_SLOT, BUCKET_SLOT, false)) {
+                    if (!this.insertItem(stackInSlot, FUEL_SLOT, INGREDIENT_SLOT_START_INDEX, false)) {
                         return ItemStack.EMPTY;
                     }
                 }
@@ -121,7 +120,7 @@ public class StoveGuiHandler extends ScreenHandler {
     }
 
     private boolean isIngredient(ItemStack stack) {
-        return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.STOVE_RECIPE_TYPE).stream().anyMatch(recipe -> recipe.getInputs().test(stack));
+        return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.STOVE_RECIPE_TYPE).stream().anyMatch(recipe -> recipe.getInputs().stream().anyMatch(x -> x.test(stack)));
     }
     private static boolean isFuel(ItemStack stack) {
         return AbstractFurnaceBlockEntity.canUseAsFuel(stack);
