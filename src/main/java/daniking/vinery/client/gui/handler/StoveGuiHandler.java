@@ -10,7 +10,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -35,13 +34,13 @@ public class StoveGuiHandler extends ScreenHandler {
         super(VineryScreenHandlerTypes.STOVE_GUI_HANDLER, syncId);
         this.inventory = inventory;
         this.world = playerInventory.player.world;
-        // Fuel
+
         this.addSlot(new ExtendedSlot(this.inventory, 0, 56, 53, StoveGuiHandler::isFuel));
-        // Bucket
-        this.addSlot(new ExtendedSlot(this.inventory, 1, 44, 17, stack -> stack.isOf(Items.WATER_BUCKET)));
-        // Ingredient
-        this.addSlot(new ExtendedSlot(this.inventory, 2, 67, 17, this::isIngredient));
-        // Output
+
+        this.addSlot(new ExtendedSlot(this.inventory, 1, 38, 17, this::isIngredient));
+        this.addSlot(new ExtendedSlot(this.inventory, 2, 56, 17, this::isIngredient));
+        this.addSlot(new ExtendedSlot(this.inventory, 3, 74, 17, this::isIngredient));
+
         this.addSlot(new StoveOutputSlot(playerInventory.player, this.inventory, 3, 116,  35));
 
         int i;
@@ -101,12 +100,6 @@ public class StoveGuiHandler extends ScreenHandler {
                         return ItemStack.EMPTY;
                     }
                 }
-                // Bucket
-                if (stackInSlot.getItem() == Items.WATER_BUCKET) {
-                    if (!this.insertItem(stackInSlot, BUCKET_SLOT, INGREDIENT_SLOT, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                }
                 // Fuel
                 if (isFuel(stackInSlot)) {
                     if (!this.insertItem(stackInSlot, FUEL_SLOT, BUCKET_SLOT, false)) {
@@ -128,7 +121,7 @@ public class StoveGuiHandler extends ScreenHandler {
     }
 
     private boolean isIngredient(ItemStack stack) {
-        return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.STOVE_RECIPE_TYPE).stream().anyMatch(recipe -> recipe.getInput().test(stack));
+        return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.STOVE_RECIPE_TYPE).stream().anyMatch(recipe -> recipe.getInputs().test(stack));
     }
     private static boolean isFuel(ItemStack stack) {
         return AbstractFurnaceBlockEntity.canUseAsFuel(stack);
