@@ -1,31 +1,64 @@
 {
-  "variants": {
-    "type=bottom,variant=0": {
-      "model": "vinery:block/grass_slab_1"
-    },
-    "type=double,,variant=0": {
-      "model": "minecraft:block/grass_block"
-    },
-    "type=top,,variant=0": {
-      "model": "vinery:block/grass_slab_top_1"
-    },
-    "type=bottom,variant=1": {
-      "model": "vinery:block/grass_slab_2"
-    },
-    "type=double,,variant=1": {
-      "model": "minecraft:block/grass_block"
-    },
-    "type=top,,variant=1": {
-      "model": "vinery:block/grass_slab_top_2"
-    },
-    "type=bottom,variant=2": {
-      "model": "vinery:block/grass_slab_3"
-    },
-    "type=double,,variant=2": {
-      "model": "minecraft:block/grass_block"
-    },
-    "type=top,,variant=2": {
-      "model": "vinery:block/grass_slab_top_3"
+    "variants": {
+        "snowy=false,type=bottom": [
+            {
+                "model": "vinery:block/grass_slab"
+            },
+            {
+                "model": "vinery:block/grass_slab",
+                "y": 90
+            },
+            {
+                "model": "vinery:block/grass_slab",
+                "y": 180
+            },
+            {
+                "model": "vinery:block/grass_slab",
+                "y": 270
+            }
+        ],
+        "snowy=true,type=bottom": {
+            "model": "vinery:block/grass_slab_snow"
+        },
+        "snowy=false,type=top": [
+            {
+                "model": "vinery:block/grass_slab_top"
+            },
+            {
+                "model": "vinery:block/grass_slab_top",
+                "y": 90
+            },
+            {
+                "model": "vinery:block/grass_slab_top",
+                "y": 180
+            },
+            {
+                "model": "vinery:block/grass_slab_top",
+                "y": 270
+            }
+        ],
+        "snowy=true,type=top": {
+            "model": "vinery:block/grass_slab_top_snow"
+        },
+        "snowy=false,type=double": [
+            {
+                "model": "minecraft:block/grass_block"
+            },
+            {
+                "model": "minecraft:block/grass_block",
+                "y": 90
+            },
+            {
+                "model": "minecraft:block/grass_block",
+                "y": 180
+            },
+            {
+                "model": "minecraft:block/grass_block",
+                "y": 270
+            }
+        ],
+        "snowy=true,type=double": {
+            "model": "minecraft:block/grass_block_snow"
+        }
     }
-  }
 }
