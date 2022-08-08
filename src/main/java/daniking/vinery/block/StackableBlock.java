@@ -28,7 +28,7 @@ public class StackableBlock extends Block {
         final ItemStack stack = player.getStackInHand(hand);
         if (stack.getItem() == this.asItem()) {
             if (state.get(STACK) < 3) {
-                world.setBlockState(pos, this.getDefaultState().with(STACK, world.getBlockState(pos).get(STACK) + 1), Block.NOTIFY_ALL);
+                world.setBlockState(pos, state.with(STACK, state.get(STACK) + 1), Block.NOTIFY_ALL);
                 if (!player.isCreative()) stack.decrement(1);
                 return ActionResult.SUCCESS;
             }
