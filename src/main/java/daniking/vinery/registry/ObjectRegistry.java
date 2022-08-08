@@ -134,6 +134,9 @@ public class ObjectRegistry {
             PressurePlateBlock.ActivationRule.EVERYTHING, AbstractBlock.Settings.copy(Blocks.OAK_PRESSURE_PLATE)));
     public static final Block CHERRY_DOOR = register("cherry_door",
             new DoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_DOOR)));
+    public static final Block CHERRY_DOOR_WITH_IRON_BARS = register("cherry_door_with_iron_bars", new DoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_DOOR)));
+    public static final Block CHERRY_DOOR_WITH_WINDOWS = register("cherry_door_with_windows", new DoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_DOOR)));
+
     public static final Block CHERRY_TRAPDOOR = register("cherry_trapdoor",
             new TrapdoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_TRAPDOOR)));
     private static final Identifier CHERRY_SIGN_TEXTURE = new VineryIdentifier("entity/sign/cherry");
@@ -165,7 +168,8 @@ public class ObjectRegistry {
         @Nullable
         @Override
         protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
-            return VineryConfiguredFeatures.CHERRY;
+            if (random.nextBoolean()) return VineryConfiguredFeatures.CHERRY;
+            return VineryConfiguredFeatures.CHERRY_VARIANT;
         }
     }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)));
 
@@ -173,7 +177,13 @@ public class ObjectRegistry {
         @Nullable
         @Override
         protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
-            return VineryConfiguredFeatures.OLD_CHERRY;
+            if (random.nextBoolean()) {
+                if (bees) return VineryConfiguredFeatures.OLD_CHERRY_BEE;
+                return VineryConfiguredFeatures.OLD_CHERRY;
+            } else {
+                if (bees) return VineryConfiguredFeatures.OLD_CHERRY_VARIANT_WITH_BEE;
+                return VineryConfiguredFeatures.OLD_CHERRY_VARIANT;
+            }
         }
     }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)), true);
 
@@ -242,6 +252,10 @@ public class ObjectRegistry {
     
     // Items
     public static final Item FAUCET = register("faucet", new Item(getSettings()));
+    public static final Item CHOCOLATE_BREAD = register("chocolate_bread", new Item(getSettings().food(FoodComponents.BREAD)));
+    public static final Item TOAST = register("toast", new Item(getSettings().food(FoodComponents.BEETROOT_SOUP)));
+    public static final Item DONUT = register("donut", new Item(getSettings().food(FoodComponents.CARROT)));
+    public static final Item CROSSAINT = register("crossaint", new Item(getSettings().food(FoodComponents.COOKIE)));
 
     private static PillarBlock registerLog(String path) {
         return register(path, new PillarBlock(getLogBlockSettings()));

@@ -1,0 +1,17 @@
+{
+  "type": "vinery:stove_cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "item": "vinery:toast",
+  "count": 3,
+  "experience": 0.35
+}

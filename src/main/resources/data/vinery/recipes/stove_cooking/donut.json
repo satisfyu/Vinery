@@ -1,0 +1,17 @@
+{
+  "type": "vinery:stove_cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    }
+  ],
+  "item": "vinery:chocolate_bread",
+  "count": 3,
+  "experience": 0.35
+}
