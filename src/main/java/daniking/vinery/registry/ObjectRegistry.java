@@ -168,7 +168,8 @@ public class ObjectRegistry {
         @Nullable
         @Override
         protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
-            return VineryConfiguredFeatures.CHERRY;
+            if (random.nextBoolean()) return VineryConfiguredFeatures.CHERRY;
+            return VineryConfiguredFeatures.CHERRY_VARIANT;
         }
     }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)));
 
@@ -176,7 +177,13 @@ public class ObjectRegistry {
         @Nullable
         @Override
         protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
-            return VineryConfiguredFeatures.OLD_CHERRY;
+            if (random.nextBoolean()) {
+                if (bees) return VineryConfiguredFeatures.OLD_CHERRY_BEE;
+                return VineryConfiguredFeatures.OLD_CHERRY;
+            } else {
+                if (bees) return VineryConfiguredFeatures.OLD_CHERRY_VARIANT_WITH_BEE;
+                return VineryConfiguredFeatures.OLD_CHERRY_VARIANT;
+            }
         }
     }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)), true);
 
