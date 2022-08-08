@@ -13,7 +13,7 @@ public class VineryUtils {
 
     public static boolean matchesRecipe(Inventory inventory, DefaultedList<Ingredient> recipe, int startIndex, int endIndex) {
         final List<ItemStack> validStacks = new ArrayList<>();
-        for (int i = startIndex; i < endIndex; i++) {
+        for (int i = startIndex; i <= endIndex; i++) {
             final ItemStack stackInSlot = inventory.getStack(i);
             if (!stackInSlot.isEmpty()) validStacks.add(stackInSlot);
         }

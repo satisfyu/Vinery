@@ -134,6 +134,9 @@ public class ObjectRegistry {
             PressurePlateBlock.ActivationRule.EVERYTHING, AbstractBlock.Settings.copy(Blocks.OAK_PRESSURE_PLATE)));
     public static final Block CHERRY_DOOR = register("cherry_door",
             new DoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_DOOR)));
+    public static final Block CHERRY_DOOR_WITH_IRON_BARS = register("cherry_door_with_iron_bars", new DoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_DOOR)));
+    public static final Block CHERRY_DOOR_WITH_WINDOWS = register("cherry_door_with_windows", new DoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_DOOR)));
+
     public static final Block CHERRY_TRAPDOOR = register("cherry_trapdoor",
             new TrapdoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_TRAPDOOR)));
     private static final Identifier CHERRY_SIGN_TEXTURE = new VineryIdentifier("entity/sign/cherry");
@@ -212,7 +215,7 @@ public class ObjectRegistry {
     public static final Block WINDOW_2 = register("window_2", new PaneBlock(FabricBlockSettings.copy(Blocks.GLASS_PANE)));
     public static final Block COARSE_DIRT_SLAB = register("coarse_dirt_slab", new VariantSlabBlock(FabricBlockSettings.copy(Blocks.COARSE_DIRT)));
     public static final Block DIRT_SLAB = register("dirt_slab", new VariantSlabBlock(FabricBlockSettings.copy(Blocks.DIRT)));
-    public static final Block GRASS_SLAB = register("grass_slab", new VariantSlabBlock(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)));
+    public static final Block GRASS_SLAB = register("grass_slab", new SnowyVariantSlabBlock(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)));
     public static final Block KITCHEN_SINK = register("kitchen_sink", new KitchenSinkBlock(FabricBlockSettings.copy(Blocks.IRON_BLOCK).nonOpaque()));
     
     // Wine Racks
@@ -242,6 +245,10 @@ public class ObjectRegistry {
     
     // Items
     public static final Item FAUCET = register("faucet", new Item(getSettings()));
+    public static final Item CHOCOLATE_BREAD = register("chocolate_bread", new Item(getSettings().food(FoodComponents.BREAD)));
+    public static final Item TOAST = register("toast", new Item(getSettings().food(FoodComponents.BEETROOT_SOUP)));
+    public static final Item DONUT = register("donut", new Item(getSettings().food(FoodComponents.CARROT)));
+    public static final Item CROSSAINT = register("crossaint", new Item(getSettings().food(FoodComponents.COOKIE)));
 
     private static PillarBlock registerLog(String path) {
         return register(path, new PillarBlock(getLogBlockSettings()));
