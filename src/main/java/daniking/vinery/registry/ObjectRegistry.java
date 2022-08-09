@@ -104,7 +104,7 @@ public class ObjectRegistry {
 
     public static final Block STOVE = register("stove", new StoveBlock(
             FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(state -> state.get(StoveBlock.LIT) ? 13 : 0)));
-    public static final Item CRUSTY_BREAD = register("crusty_bread", new Item(getSettings()));
+    public static final Block CRUSTY_BREAD = register("crusty_bread", new BreadBlock(AbstractBlock.Settings.copy(Blocks.CAKE).nonOpaque()));
 
     // Cherry
     public static final Block CHERRY_PLANKS = register("cherry_planks",
