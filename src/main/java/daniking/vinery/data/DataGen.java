@@ -1,6 +1,8 @@
 package daniking.vinery.data;
 
 import daniking.vinery.Vinery;
+import daniking.vinery.VineryIdentifier;
+import daniking.vinery.block.BreadBlock;
 import daniking.vinery.block.FlowerPotBlock;
 import daniking.vinery.block.StackableBlock;
 import daniking.vinery.block.WineRackBlock;
@@ -65,6 +67,14 @@ public class DataGen implements DataGeneratorEntrypoint {
                 registerWine(generator, ObjectRegistry.KING_DANIS_WINE);
                 registerWine(generator, ObjectRegistry.MELLOHI_WINE);
                 registerWine(generator, ObjectRegistry.NOIR_WINE);
+
+                        generator.blockStateCollector.accept(
+                                VariantsBlockStateSupplier
+                                        .create(ObjectRegistry.CRUSTY_BREAD)
+                                        .coordinate(BlockStateModelGenerator.createNorthDefaultHorizontalRotationStates())
+                                        .coordinate(BlockStateVariantMap.create(BreadBlock.JAM, BreadBlock.BITES)
+                                                .register((jam, bite) -> BlockStateVariant.create().put(VariantSettings.MODEL, new VineryIdentifier("block/bread_" + (jam ? "jam_" : "") + bite)))));
+
             }
 
             @Override
@@ -76,13 +86,20 @@ public class DataGen implements DataGeneratorEntrypoint {
                 registerItem(generator, ObjectRegistry.KING_DANIS_WINE);
                 registerItem(generator, ObjectRegistry.MELLOHI_WINE);
                 registerItem(generator, ObjectRegistry.NOIR_WINE);
+                registerItem(generator, ObjectRegistry.CRUSTY_BREAD);
             }
 
             private void registerWine(BlockStateModelGenerator generator, Block block) {
+                registerWine(generator, block, true);
+            }
+
+            private void registerWine(BlockStateModelGenerator generator, Block block, boolean isStack) {
+                String suffix = isStack ? "_stack" : "";
+
                 generator.blockStateCollector.accept(
                         VariantsBlockStateSupplier
                                 .create(block).coordinate(createWestDefaultHorizontalRotationStates())
-                                .coordinate(BlockStateVariantMap.create(StackableBlock.STACK).register(stack -> BlockStateVariant.create().put(VariantSettings.MODEL, TextureMap.getSubId(ObjectRegistry.KING_DANIS_WINE, "_stack" + stack)))));
+                                .coordinate(BlockStateVariantMap.create(StackableBlock.STACK).register(stack -> BlockStateVariant.create().put(VariantSettings.MODEL, TextureMap.getSubId(block, suffix + stack)))));
             }
 
             private <T extends ItemConvertible> void registerItem(ItemModelGenerator generator, T t) {
