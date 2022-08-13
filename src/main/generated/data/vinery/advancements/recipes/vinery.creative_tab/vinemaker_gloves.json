@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "vinery:vinemaker_gloves"
+    ]
+  },
+  "criteria": {
+    "has_leather": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:vinemaker_gloves"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "vinery:vinemaker_gloves"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_leather",
+      "has_the_recipe"
+    ]
+  ]
+}

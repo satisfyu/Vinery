@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "vinery:kitchen_sink"
+    ]
+  },
+  "criteria": {
+    "has_cauldron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:cauldron"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "vinery:kitchen_sink"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cauldron",
+      "has_the_recipe"
+    ]
+  ]
+}

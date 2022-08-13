@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "vinery:cherry_wood"
+    ]
+  },
+  "criteria": {
+    "has_cherry_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:cherry_log"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "vinery:cherry_wood"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cherry_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

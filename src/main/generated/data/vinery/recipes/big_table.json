@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "big_table",
+  "pattern": [
+    "iii",
+    "SSS"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "S": {
+      "item": "minecraft:spruce_planks"
+    }
+  },
+  "result": {
+    "item": "vinery:big_table"
+  }
+}

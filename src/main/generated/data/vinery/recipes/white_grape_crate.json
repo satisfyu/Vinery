@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "grape_crate",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "vinery:white_grape"
+    }
+  },
+  "result": {
+    "item": "vinery:white_grape_crate"
+  }
+}

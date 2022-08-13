@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "vinery:cherry_logs"
+    }
+  ],
+  "result": {
+    "item": "vinery:cherry_planks"
+  }
+}

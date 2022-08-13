@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "vinery:dirt_slab"
+    ]
+  },
+  "criteria": {
+    "has_dirt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:dirt"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "vinery:dirt_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dirt",
+      "has_the_recipe"
+    ]
+  ]
+}

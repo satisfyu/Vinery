@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stripped_wood",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "vinery:stripped_cherry_log"
+    }
+  },
+  "result": {
+    "item": "vinery:stripped_cherry_wood",
+    "count": 3
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "vinery:stove"
+    ]
+  },
+  "criteria": {
+    "has_campfire": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:campfire"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "vinery:stove"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_campfire",
+      "has_the_recipe"
+    ]
+  ]
+}

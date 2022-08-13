@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wine_rack",
+  "pattern": [
+    "#_#",
+    "_O_",
+    "#_#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:spruce_planks"
+    },
+    "_": {
+      "item": "minecraft:spruce_slab"
+    },
+    "O": {
+      "item": "minecraft:oak_trapdoor"
+    }
+  },
+  "result": {
+    "item": "vinery:wine_rack_1"
+  }
+}

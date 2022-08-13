@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "grapewine_stem",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:oak_log"
+    }
+  },
+  "result": {
+    "item": "vinery:grapevine_stem"
+  }
+}

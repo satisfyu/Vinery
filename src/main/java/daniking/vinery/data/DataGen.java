@@ -6,7 +6,9 @@ import daniking.vinery.block.BreadBlock;
 import daniking.vinery.block.FlowerPotBlock;
 import daniking.vinery.block.StackableBlock;
 import daniking.vinery.block.WineRackBlock;
+import daniking.vinery.data.recipe.ExtendedShapedRecipeJsonBuilder;
 import daniking.vinery.registry.ObjectRegistry;
+import daniking.vinery.registry.VineryBoatTypes;
 import daniking.vinery.util.EnumTallFlower;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -23,6 +25,7 @@ import net.minecraft.data.server.BlockLootTableGenerator;
 import net.minecraft.data.server.RecipeProvider;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
@@ -34,9 +37,14 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.StatePredicate;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.state.property.Properties;
+import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.math.Direction;
 
 import java.util.function.Consumer;
+import java.util.stream.Stream;
+
+import static daniking.vinery.data.recipe.ExtendedShapedRecipeJsonBuilder.createExtended;
 
 public class DataGen implements DataGeneratorEntrypoint {
     @Override
@@ -44,16 +52,183 @@ public class DataGen implements DataGeneratorEntrypoint {
         fabricDataGenerator.addProvider(gen -> new FabricRecipeProvider(gen) {
             @Override
             protected void generateRecipes(Consumer<RecipeJsonProvider> exporter) {
-                ShapedRecipeJsonBuilder.create(ObjectRegistry.STRAW_HAT)
-                        .group("straw_hat")
-                        .pattern(" X ")
-                        .pattern(" G ")
-                        .pattern("XXX")
-                        .criterion("has_wheat", RecipeProvider.conditionsFromItem(Items.WHEAT))
-                        .input('X', Ingredient.ofItems(Items.WHEAT))
-                        .input('G', Ingredient.ofItems(Items.RED_WOOL))
-                        .offerTo(exporter);
+                shapeless(exporter, "banner", ObjectRegistry.BANNER, "has_red_grape", ObjectRegistry.RED_GRAPE, Items.WHITE_BANNER, ObjectRegistry.RED_GRAPE);
+                shaped(exporter, "big_bottle", ObjectRegistry.BIG_BOTTLE, "has_glass", Items.GLASS, "##", "##", "##", '#', Items.GLASS);
+                shaped(exporter, "big_table", ObjectRegistry.BIG_TABLE, "has_iron_ingot", Items.IRON_INGOT, "iii", "SSS", 'i', Items.IRON_INGOT, 'S', Items.SPRUCE_PLANKS);
+                shaped(exporter, "boat", VineryBoatTypes.cherry.getItem(), "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, "# #", "###", '#', ObjectRegistry.CHERRY_PLANKS);
+                shapeless(exporter, "wooden_button", ObjectRegistry.CHERRY_BUTTON, "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, ObjectRegistry.CHERRY_PLANKS);
+                shaped(exporter, "door", ObjectRegistry.CHERRY_DOOR, "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, "##", "##", "##", '#', ObjectRegistry.CHERRY_PLANKS);
+                shapeless(exporter, "door", ObjectRegistry.CHERRY_DOOR_WITH_IRON_BARS, "has_iron_bars", Items.IRON_BARS, ObjectRegistry.CHERRY_DOOR, Items.IRON_BARS);
+                shaped(exporter, "wooden_fence", ObjectRegistry.CHERRY_FENCE, 3, "has_stick", Items.STICK, "W#W", "W#W", 'W', ObjectRegistry.CHERRY_PLANKS, '#', Items.STICK);
+                shaped(exporter, "wooden_fence", ObjectRegistry.CHERRY_FENCE_GATE, 3, "has_stick", Items.STICK, "#W#", "#W#", 'W', ObjectRegistry.CHERRY_PLANKS, '#', Items.STICK);
+                shaped(exporter, "floorboard", ObjectRegistry.CHERRY_FLOORBOARD, "has_cherry_floorboard", ObjectRegistry.CHERRY_WOOD, "# #", " # ", "# #", '#', ObjectRegistry.CHERRY_WOOD);
+                shaped(exporter, "cooking_pot", ObjectRegistry.COOKING_POT, "has_iron_ingot", Items.IRON_INGOT, "ISI", "III", 'I', Items.IRON_INGOT, 'S', Items.WOODEN_SHOVEL);
+                shaped(exporter, "cherry_jar", ObjectRegistry.CHERRY_JAR, "has_glass", Items.GLASS, "S", "G", "G", 'S', Items.OAK_SLAB, 'G', Items.GLASS);
+                shapeless(exporter, "planks", ObjectRegistry.CHERRY_PLANKS, 4, "has_cherry_logs", Vinery.CHERRY_LOGS, Vinery.CHERRY_LOGS);
+                shaped(exporter, "wooden_pressure_plate", ObjectRegistry.CHERRY_PRESSURE_PLATE, "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, "##", '#', ObjectRegistry.CHERRY_PLANKS);
+                shaped(exporter, "wooden_sign", ObjectRegistry.CHERRY_SIGN, 3, "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, "###", "###", " X ", '#', ObjectRegistry.CHERRY_PLANKS, 'X', Items.STICK);
+                shaped(exporter, "slab", ObjectRegistry.CHERRY_SLAB, 6, "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, "###", '#', ObjectRegistry.CHERRY_PLANKS);
+                shaped(exporter, "stairs", ObjectRegistry.CHERRY_STAIRS, 4, "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, "#  ", "## ", "###", '#', ObjectRegistry.CHERRY_PLANKS);
+                shaped(exporter, "wooden_trapdoor", ObjectRegistry.CHERRY_TRAPDOOR, 4, "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, "###", "###", '#', ObjectRegistry.CHERRY_PLANKS);
+                shaped(exporter, "wood", ObjectRegistry.CHERRY_WOOD, 3, "has_cherry_wood", ObjectRegistry.CHERRY_LOG, "##", "##", '#', ObjectRegistry.CHERRY_LOG);
+                shapeless(exporter, "slab", ObjectRegistry.COARSE_DIRT_SLAB, "has_coarse_dirt", Items.COARSE_DIRT, Items.COARSE_DIRT, Items.COARSE_DIRT, Items.COARSE_DIRT);
+                shapeless(exporter, "slab", ObjectRegistry.DIRT_SLAB, "has_dirt", Items.DIRT, Items.DIRT, Items.DIRT, Items.DIRT);
+                shaped(exporter, "faucet", ObjectRegistry.FAUCET, "has_iron_ingot", Items.IRON_INGOT, "iii", "i i", "  W", 'i', Items.IRON_INGOT, 'W', Items.WATER_BUCKET);
+                shaped(exporter, "fermentation_barrel", ObjectRegistry.FERMENTATION_BARREL, "has_barrel", Items.BARREL, " B ", "S S", 'B', Items.STICK, 'S', Items.BARREL);
+                shaped(exporter, "flower_box", ObjectRegistry.FLOWER_BOX, "has_podzol", Items.PODZOL, "###", "SSS", '#', Items.PODZOL, 'S', Items.SPRUCE_PLANKS);
+                shaped(exporter, "grapewine_pot", ObjectRegistry.GRAPEVINE_POT, "has_spruce_planks", Items.SPRUCE_PLANKS, "_ _", "SSS", '_', Items.SPRUCE_SLAB, 'S', Items.SPRUCE_PLANKS);
+                shaped(exporter, "grapewine_stem", ObjectRegistry.GRAPEVINE_STEM, "has_oak_log", Items.OAK_LOG, "#", "#", '#', Items.OAK_LOG);
+                shapeless(exporter, "slab", ObjectRegistry.GRASS_SLAB, "has_grass_block", Items.GRASS_BLOCK, Items.GRASS_BLOCK, Items.GRASS_BLOCK, Items.GRASS_BLOCK);
+                shaped(exporter, "kitchen_sink", ObjectRegistry.KITCHEN_SINK, "has_cauldron", Items.CAULDRON, "iCi", "BBB", 'i', Items.IRON_INGOT, 'C', Items.CAULDRON, 'B', Items.BRICKS);
+                shaped(exporter, "loam", ObjectRegistry.LOAM, 2, "has_clay_ball", Items.CLAY_BALL, "#S", "S#", '#', Items.CLAY_BALL, 'S', Items.SAND);
+                shaped(exporter, "wood", ObjectRegistry.OLD_CHERRY_WOOD, 3, "has_old_cherry_wood", ObjectRegistry.OLD_CHERRY_LOG, "##", "##", '#', ObjectRegistry.OLD_CHERRY_LOG);
+                shaped(exporter, "grape_crate", ObjectRegistry.RED_GRAPE_CRATE, "has_red_grape", ObjectRegistry.RED_GRAPE, "###", "###", "###", '#', ObjectRegistry.RED_GRAPE);
+                shaped(exporter, "stackable_logs", ObjectRegistry.STACKABLE_LOG, "has_oak_log", Items.OAK_LOG, "SSS", "###", 'S',Items.STICK, '#', Items.OAK_LOG);
+                shaped(exporter, "stove", ObjectRegistry.STOVE, "has_campfire", Items.CAMPFIRE, "III", "BCB", 'I', Items.IRON_INGOT, 'B', Items.BRICKS, 'C', Items.CAMPFIRE);
+                shaped(exporter, "stripped_wood", ObjectRegistry.STRIPPED_CHERRY_WOOD, 3, "has_stripped_cherry_log", ObjectRegistry.STRIPPED_CHERRY_LOG, "##", "##", '#', ObjectRegistry.STRIPPED_CHERRY_LOG);
+                shaped(exporter, "stripped_wood", ObjectRegistry.STRIPPED_OLD_CHERRY_LOG, 3, "has_stripped_old_cherry_log", ObjectRegistry.STRIPPED_OLD_CHERRY_LOG, "##", "##", '#', ObjectRegistry.STRIPPED_OLD_CHERRY_LOG);
+                shaped(exporter, "straw_hat", ObjectRegistry.STRAW_HAT, "has_wheat", Items.WHEAT, " X ", " G ", " X ", 'X', Items.WHEAT, 'G', Items.RED_WOOL);
+                shaped(exporter, "vinemaker_apron", ObjectRegistry.VINEMAKER_APRON, "has_red_wool", Items.RED_WOOL, "# #", "###", "###", '#', Items.RED_WOOL);
+                shaped(exporter, "vinemaker_boots", ObjectRegistry.VINEMAKER_BOOTS, "has_brown_wool", Items.BROWN_WOOL, "# #", "# #", '#', Items.BROWN_WOOL);
+                shaped(exporter, "vinemaker_gloves", ObjectRegistry.VINEMAKER_GLOVES, "has_leather", ObjectRegistry.VINEMAKER_GLOVES, "L L", "# #", 'L', Items.LEATHER, '#', Items.BROWN_WOOL);
+                shaped(exporter, "grape_crate", ObjectRegistry.WHITE_GRAPE_CRATE, "has_white_grape", ObjectRegistry.WHITE_GRAPE, "###", "###", "###", '#', ObjectRegistry.WHITE_GRAPE);
+                shaped(exporter, "wine_bottle", ObjectRegistry.WINE_BOTTLE, "has_glass_bottle", Items.GLASS_BOTTLE, "#", "#", '#', Items.GLASS_BOTTLE);
+                shaped(exporter, "wine_box", ObjectRegistry.WINE_BOX, "has_glass", Items.GLASS, "_G_", "___", '_', Items.SPRUCE_SLAB, 'G', Items.GLASS);
+                shaped(exporter, "wine_press", ObjectRegistry.WINE_PRESS, "has_iron_trapdoor", Items.IRON_TRAPDOOR, " # ", "/B/", "/ /", '#', Items.IRON_TRAPDOOR, '/', Items.STICK, 'B', Items.BARREL);
+                shaped(exporter, "wine_rack", ObjectRegistry.WINE_RACK_1, "has_spruce_planks", Items.SPRUCE_PLANKS, "#_#", "_O_", "#_#", '#', Items.SPRUCE_PLANKS, '_', Items.SPRUCE_SLAB, 'O', Items.OAK_TRAPDOOR);
+                shaped(exporter, "wine_rack", ObjectRegistry.WINE_RACK_2, "has_spruce_planks", Items.SPRUCE_PLANKS, "# #", " _ ", "# #", '#', Items.SPRUCE_PLANKS, '_', Items.SPRUCE_SLAB);
+                shaped(exporter, "wine_rack", ObjectRegistry.WINE_RACK_3, "has_spruce_planks", Items.SPRUCE_PLANKS, "# #", " B ", "# #", '#', Items.SPRUCE_PLANKS, 'B', Items.BARREL);
+                shaped(exporter, "wine_rack", ObjectRegistry.WINE_RACK_4, "has_spruce_planks", Items.SPRUCE_PLANKS, "#_#", "_ _", "#_#", '#', Items.SPRUCE_PLANKS, '_', Items.SPRUCE_SLAB);
+                shaped(exporter, "wine_rack", ObjectRegistry.WINE_RACK_5, "has_spruce_planks", Items.SPRUCE_PLANKS, "#_#", "_B_", "#B#", '#', Items.SPRUCE_PLANKS, '_', Items.SPRUCE_SLAB, 'B', Items.BARREL);
+            }
 
+            public ExtendedShapedRecipeJsonBuilder shaped(String group, ItemConvertible output, String criterionName, Object criterionItem) {
+                return createExtended(output).group(group).criterion(criterionName, criterionItem);
+            }
+
+            private ExtendedShapedRecipeJsonBuilder shaped(String group, ItemConvertible output, int count, String criterionName, Object criterionItem) {
+                return createExtended(output, count).group(group).criterion(criterionName, criterionItem);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, char name1, Object item1) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).input(name1, item1).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, int count, String criterionName, Object criterionItem, String row1, char name1, Object item1) {
+                shaped(group, output, count, criterionName, criterionItem).pattern(row1).input(name1, item1).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, char name1, Object item1, char name2, Object item2) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).input(name1, item1).input(name2, item2).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, char name1, Object item1, char name2, Object item2, char name3, Object item3) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).input(name1, item1).input(name2, item2).input(name3, item3).offerTo(exporter);
+            }
+
+            public ShapedRecipeJsonBuilder shaped(String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2) {
+                return shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, char name1, Object item1) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).input(name1, item1).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, int count, String criterionName, Object criterionItem, String row1, String row2, char name1, Object item1) {
+                shaped(group, output, count, criterionName, criterionItem).pattern(row1).pattern(row2).input(name1, item1).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, char name1, Object item1, char name2, Object item2) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).input(name1, item1).input(name2, item2).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, int count, String criterionName, Object criterionItem, String row1, String row2, char name1, Object item1, char name2, Object item2) {
+                shaped(group, output, count, criterionName, criterionItem).pattern(row1).pattern(row2).input(name1, item1).input(name2, item2).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, char name1, Object item1, char name2, Object item2, char name3, Object item3) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).input(name1, item1).input(name2, item2).input(name3, item3).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, char name1, Object item1, char name2, Object item2, char name3, Object item3, char name4, Object item4) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).input(name1, item1).input(name2, item2).input(name3, item3).input(name4, item4).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, char name1, Object item1, char name2, Object item2, char name3, Object item3, char name4, Object item4, char name5, Object item5) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).input(name1, item1).input(name2, item2).input(name3, item3).input(name4, item4).input(name5, item5).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, char name1, Object item1, char name2, Object item2, char name3, Object item3, char name4, Object item4, char name5, Object item5, char name6, Object item6) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).input(name1, item1).input(name2, item2).input(name3, item3).input(name4, item4).input(name5, item5).input(name6, item6).offerTo(exporter);
+            }
+
+            public ShapedRecipeJsonBuilder shaped(String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, String row3) {
+                return shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).pattern(row3);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, String row3, char name1, Object item1) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).pattern(row3).input(name1, item1).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, int count, String criterionName, Object criterionItem, String row1, String row2, String row3, char name1, Object item1) {
+                shaped(group, output, count, criterionName, criterionItem).pattern(row1).pattern(row2).pattern(row3).input(name1, item1).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, String row3, char name1, Object item1, char name2, Object item2) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).pattern(row3).input(name1, item1).input(name2, item2).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, int count, String criterionName, Object criterionItem, String row1, String row2, String row3, char name1, Object item1, char name2, Object item2) {
+                shaped(group, output, count, criterionName, criterionItem).pattern(row1).pattern(row2).pattern(row3).input(name1, item1).input(name2, item2).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, String row3, char name1, Object item1, char name2, Object item2, char name3, Object item3) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).pattern(row3).input(name1, item1).input(name2, item2).input(name3, item3).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, String row3, char name1, Object item1, char name2, Object item2, char name3, Object item3, char name4, Object item4) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).pattern(row3).input(name1, item1).input(name2, item2).input(name3, item3).input(name4, item4).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, String row3, char name1, Object item1, char name2, Object item2, char name3, Object item3, char name4, Object item4, char name5, Object item5) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).pattern(row3).input(name1, item1).input(name2, item2).input(name3, item3).input(name4, item4).input(name5, item5).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, String row3, char name1, Object item1, char name2, Object item2, char name3, Object item3, char name4, Object item4, char name5, Object item5, char name6, Object item6) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).pattern(row3).input(name1, item1).input(name2, item2).input(name3, item3).input(name4, item4).input(name5, item5).input(name6, item6).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, String row3, char name1, Object item1, char name2, Object item2, char name3, Object item3, char name4, Object item4, char name5, Object item5, char name6, Object item6, char name7, Object item7) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).pattern(row3).input(name1, item1).input(name2, item2).input(name3, item3).input(name4, item4).input(name5, item5).input(name6, item6).input(name7, item7).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, String row3, char name1, Object item1, char name2, Object item2, char name3, Object item3, char name4, Object item4, char name5, Object item5, char name6, Object item6, char name7, Object item7, char name8, Object item8) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).pattern(row3).input(name1, item1).input(name2, item2).input(name3, item3).input(name4, item4).input(name5, item5).input(name6, item6).input(name7, item7).input(name8, item8).offerTo(exporter);
+            }
+
+            public void shaped(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, String row1, String row2, String row3, char name1, Object item1, char name2, Object item2, char name3, Object item3, char name4, Object item4, char name5, Object item5, char name6, Object item6, char name7, Object item7, char name8, Object item8, char name9, Object item9) {
+                shaped(group, output, criterionName, criterionItem).pattern(row1).pattern(row2).pattern(row3).input(name1, item1).input(name2, item2).input(name3, item3).input(name4, item4).input(name5, item5).input(name6, item6).input(name7, item7).input(name8, item8).input(name9, item9).offerTo(exporter);
+            }
+
+            public void shapeless(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, String criterionName, Object criterionItem, Object... items) {
+                shapeless(exporter, group, output, 1, criterionName, criterionItem, items);
+            }
+
+            public void shapeless(Consumer<RecipeJsonProvider> exporter, String group, ItemConvertible output, int count, String criterionName, Object criterionItem, Object... items) {
+                ShapelessRecipeJsonBuilder builder = ShapelessRecipeJsonBuilder.create(output).group(group);
+
+                if(criterionItem instanceof ItemConvertible item) builder.criterion(criterionName, RecipeProvider.conditionsFromItem(item));
+                if(criterionItem instanceof TagKey key) builder.criterion(criterionName, RecipeProvider.conditionsFromTag(key));
+                Stream.of(items).map(a -> {
+                    if(a instanceof ItemConvertible item) return Ingredient.ofItems(item);
+                    if(a instanceof TagKey tag) return Ingredient.fromTag(tag);
+                    return Ingredient.empty();
+                }).forEach(builder::input);
+                builder.offerTo(exporter);
             }
         });
 

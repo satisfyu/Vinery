@@ -7,14 +7,14 @@
   "biomes": "#vinery:has_structure/vinery",
   "adapt_noise": true,
   "spawn_overrides": {
-    "creature": {
+    "misc": {
       "bounding_box": "piece",
       "spawns": [
         {
           "type": "minecraft:villager",
           "weight": 1,
           "minCount": 1,
-          "maxCount": 1
+          "maxCount": 4
         }
       ]
     }
