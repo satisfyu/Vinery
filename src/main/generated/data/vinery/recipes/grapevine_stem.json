@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "grapewine_stem",
+  "group": "grapevine_stem",
   "pattern": [
     "#",
     "#"
@@ -11,6 +11,7 @@
     }
   },
   "result": {
-    "item": "vinery:grapevine_stem"
+    "item": "vinery:grapevine_stem",
+    "count": 4
   }
 }

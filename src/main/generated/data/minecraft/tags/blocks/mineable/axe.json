@@ -9,6 +9,13 @@
     "vinery:old_cherry_log",
     "vinery:cherry_planks",
     "vinery:stackable_log",
-    "vinery:fermentation_barrel"
+    "vinery:fermentation_barrel",
+    "vinery:cherry_floorboard",
+    "vinery:red_grape_crate",
+    "vinery:white_grape_crate",
+    "vinery:flower_box",
+    "vinery:wine_press",
+    "vinery:wine_box",
+    "#vinery:wine_racks"
   ]
 }

@@ -30,15 +30,15 @@
                   "condition": "minecraft:block_state_property",
                   "block": "vinery:flower_pot",
                   "properties": {
-                    "content": "lilac"
+                    "content": "none"
                   }
                 }
               ],
-              "count": 2.0,
+              "count": 1.0,
               "add": false
             }
           ],
-          "name": "minecraft:lilac"
+          "name": "minecraft:air"
         },
         {
           "type": "minecraft:item",
@@ -50,7 +50,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "vinery:flower_pot",
                   "properties": {
-                    "content": "peony"
+                    "content": "lilac"
                   }
                 }
               ],
@@ -58,7 +58,7 @@
               "add": false
             }
           ],
-          "name": "minecraft:peony"
+          "name": "minecraft:lilac"
         },
         {
           "type": "minecraft:item",
@@ -79,6 +79,26 @@
             }
           ],
           "name": "minecraft:rose_bush"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "vinery:flower_pot",
+                  "properties": {
+                    "content": "peony"
+                  }
+                }
+              ],
+              "count": 1.0,
+              "add": false
+            }
+          ],
+          "name": "minecraft:peony"
         }
       ],
       "conditions": [

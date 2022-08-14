@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "vinery:item/crossaint"
+    "layer0": "vinery:item/milk_bread"
   }
 }

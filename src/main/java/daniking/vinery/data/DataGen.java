@@ -2,10 +2,7 @@ package daniking.vinery.data;
 
 import daniking.vinery.Vinery;
 import daniking.vinery.VineryIdentifier;
-import daniking.vinery.block.BreadBlock;
-import daniking.vinery.block.FlowerPotBlock;
-import daniking.vinery.block.StackableBlock;
-import daniking.vinery.block.WineRackBlock;
+import daniking.vinery.block.*;
 import daniking.vinery.data.recipe.ExtendedShapedRecipeJsonBuilder;
 import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.registry.VineryBoatTypes;
@@ -32,12 +29,14 @@ import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LeafEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.StatePredicate;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.state.property.Properties;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.BlockTags;
+import net.minecraft.tag.ItemTags;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.math.Direction;
 
@@ -54,13 +53,14 @@ public class DataGen implements DataGeneratorEntrypoint {
             protected void generateRecipes(Consumer<RecipeJsonProvider> exporter) {
                 shapeless(exporter, "banner", ObjectRegistry.BANNER, "has_red_grape", ObjectRegistry.RED_GRAPE, Items.WHITE_BANNER, ObjectRegistry.RED_GRAPE);
                 shaped(exporter, "big_bottle", ObjectRegistry.BIG_BOTTLE, "has_glass", Items.GLASS, "##", "##", "##", '#', Items.GLASS);
+                shaped(exporter, "flower_pot", ObjectRegistry.FLOWER_POT, "has_brick", Items.BRICK, "# #", "# #", " # ", '#', Items.BRICK);
                 shaped(exporter, "big_table", ObjectRegistry.BIG_TABLE, "has_iron_ingot", Items.IRON_INGOT, "iii", "SSS", 'i', Items.IRON_INGOT, 'S', Items.SPRUCE_PLANKS);
                 shaped(exporter, "boat", VineryBoatTypes.cherry.getItem(), "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, "# #", "###", '#', ObjectRegistry.CHERRY_PLANKS);
                 shapeless(exporter, "wooden_button", ObjectRegistry.CHERRY_BUTTON, "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, ObjectRegistry.CHERRY_PLANKS);
                 shaped(exporter, "door", ObjectRegistry.CHERRY_DOOR, "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, "##", "##", "##", '#', ObjectRegistry.CHERRY_PLANKS);
                 shapeless(exporter, "door", ObjectRegistry.CHERRY_DOOR_WITH_IRON_BARS, "has_iron_bars", Items.IRON_BARS, ObjectRegistry.CHERRY_DOOR, Items.IRON_BARS);
                 shaped(exporter, "wooden_fence", ObjectRegistry.CHERRY_FENCE, 3, "has_stick", Items.STICK, "W#W", "W#W", 'W', ObjectRegistry.CHERRY_PLANKS, '#', Items.STICK);
-                shaped(exporter, "wooden_fence", ObjectRegistry.CHERRY_FENCE_GATE, 3, "has_stick", Items.STICK, "#W#", "#W#", 'W', ObjectRegistry.CHERRY_PLANKS, '#', Items.STICK);
+                shaped(exporter, "wooden_fence_gate", ObjectRegistry.CHERRY_FENCE_GATE, 3, "has_stick", Items.STICK, "#W#", "#W#", 'W', ObjectRegistry.CHERRY_PLANKS, '#', Items.STICK);
                 shaped(exporter, "floorboard", ObjectRegistry.CHERRY_FLOORBOARD, "has_cherry_floorboard", ObjectRegistry.CHERRY_WOOD, "# #", " # ", "# #", '#', ObjectRegistry.CHERRY_WOOD);
                 shaped(exporter, "cooking_pot", ObjectRegistry.COOKING_POT, "has_iron_ingot", Items.IRON_INGOT, "ISI", "III", 'I', Items.IRON_INGOT, 'S', Items.WOODEN_SHOVEL);
                 shaped(exporter, "cherry_jar", ObjectRegistry.CHERRY_JAR, "has_glass", Items.GLASS, "S", "G", "G", 'S', Items.OAK_SLAB, 'G', Items.GLASS);
@@ -76,8 +76,8 @@ public class DataGen implements DataGeneratorEntrypoint {
                 shaped(exporter, "faucet", ObjectRegistry.FAUCET, "has_iron_ingot", Items.IRON_INGOT, "iii", "i i", "  W", 'i', Items.IRON_INGOT, 'W', Items.WATER_BUCKET);
                 shaped(exporter, "fermentation_barrel", ObjectRegistry.FERMENTATION_BARREL, "has_barrel", Items.BARREL, " B ", "S S", 'B', Items.STICK, 'S', Items.BARREL);
                 shaped(exporter, "flower_box", ObjectRegistry.FLOWER_BOX, "has_podzol", Items.PODZOL, "###", "SSS", '#', Items.PODZOL, 'S', Items.SPRUCE_PLANKS);
-                shaped(exporter, "grapewine_pot", ObjectRegistry.GRAPEVINE_POT, "has_spruce_planks", Items.SPRUCE_PLANKS, "_ _", "SSS", '_', Items.SPRUCE_SLAB, 'S', Items.SPRUCE_PLANKS);
-                shaped(exporter, "grapewine_stem", ObjectRegistry.GRAPEVINE_STEM, "has_oak_log", Items.OAK_LOG, "#", "#", '#', Items.OAK_LOG);
+                shaped(exporter, "grapevine_pot", ObjectRegistry.GRAPEVINE_POT, "has_spruce_planks", Items.SPRUCE_PLANKS, "_ _", "SSS", '_', Items.SPRUCE_SLAB, 'S', Items.SPRUCE_PLANKS);
+                shaped(exporter, "grapevine_stem", ObjectRegistry.GRAPEVINE_STEM, 4, "has_oak_log", Items.OAK_LOG, "#", "#", '#', Items.OAK_LOG);
                 shapeless(exporter, "slab", ObjectRegistry.GRASS_SLAB, "has_grass_block", Items.GRASS_BLOCK, Items.GRASS_BLOCK, Items.GRASS_BLOCK, Items.GRASS_BLOCK);
                 shaped(exporter, "kitchen_sink", ObjectRegistry.KITCHEN_SINK, "has_cauldron", Items.CAULDRON, "iCi", "BBB", 'i', Items.IRON_INGOT, 'C', Items.CAULDRON, 'B', Items.BRICKS);
                 shaped(exporter, "loam", ObjectRegistry.LOAM, 2, "has_clay_ball", Items.CLAY_BALL, "#S", "S#", '#', Items.CLAY_BALL, 'S', Items.SAND);
@@ -90,7 +90,7 @@ public class DataGen implements DataGeneratorEntrypoint {
                 shaped(exporter, "straw_hat", ObjectRegistry.STRAW_HAT, "has_wheat", Items.WHEAT, " X ", " G ", " X ", 'X', Items.WHEAT, 'G', Items.RED_WOOL);
                 shaped(exporter, "vinemaker_apron", ObjectRegistry.VINEMAKER_APRON, "has_red_wool", Items.RED_WOOL, "# #", "###", "###", '#', Items.RED_WOOL);
                 shaped(exporter, "vinemaker_boots", ObjectRegistry.VINEMAKER_BOOTS, "has_brown_wool", Items.BROWN_WOOL, "# #", "# #", '#', Items.BROWN_WOOL);
-                shaped(exporter, "vinemaker_gloves", ObjectRegistry.VINEMAKER_GLOVES, "has_leather", ObjectRegistry.VINEMAKER_GLOVES, "L L", "# #", 'L', Items.LEATHER, '#', Items.BROWN_WOOL);
+                shaped(exporter, "vinemaker_leggings", ObjectRegistry.VINEMAKER_LEGGINGS, "has_gold_ingot", Items.GOLD_INGOT, "XUX", "I N", "N I", 'X', Items.LEATHER, 'U', Items.GOLD_INGOT, 'I', Items.WHITE_WOOL, 'N', Items.BLUE_WOOL);
                 shaped(exporter, "grape_crate", ObjectRegistry.WHITE_GRAPE_CRATE, "has_white_grape", ObjectRegistry.WHITE_GRAPE, "###", "###", "###", '#', ObjectRegistry.WHITE_GRAPE);
                 shaped(exporter, "wine_bottle", ObjectRegistry.WINE_BOTTLE, "has_glass_bottle", Items.GLASS_BOTTLE, "#", "#", '#', Items.GLASS_BOTTLE);
                 shaped(exporter, "wine_box", ObjectRegistry.WINE_BOX, "has_glass", Items.GLASS, "_G_", "___", '_', Items.SPRUCE_SLAB, 'G', Items.GLASS);
@@ -243,13 +243,15 @@ public class DataGen implements DataGeneratorEntrypoint {
                 registerWine(generator, ObjectRegistry.MELLOHI_WINE);
                 registerWine(generator, ObjectRegistry.NOIR_WINE);
 
-                        generator.blockStateCollector.accept(
-                                VariantsBlockStateSupplier
-                                        .create(ObjectRegistry.CRUSTY_BREAD)
-                                        .coordinate(BlockStateModelGenerator.createNorthDefaultHorizontalRotationStates())
-                                        .coordinate(BlockStateVariantMap.create(BreadBlock.JAM, BreadBlock.BITES)
-                                                .register((jam, bite) -> BlockStateVariant.create().put(VariantSettings.MODEL, new VineryIdentifier("block/bread_" + (jam ? "jam_" : "") + bite)))));
+                generator.blockStateCollector.accept(
+                        VariantsBlockStateSupplier
+                                .create(ObjectRegistry.CRUSTY_BREAD)
+                                .coordinate(BlockStateModelGenerator.createNorthDefaultHorizontalRotationStates())
+                                .coordinate(BlockStateVariantMap.create(BreadBlock.JAM, BreadBlock.BITES)
+                                        .register((jam, bite) -> BlockStateVariant.create().put(VariantSettings.MODEL, new VineryIdentifier("block/bread_" + (jam ? "jam_" : "") + bite)))));
 
+                registerLeaves(generator, ObjectRegistry.CHERRY_LEAVES);
+                registerLeaves(generator, ObjectRegistry.PINK_CHERRY_LEAVES);
             }
 
             @Override
@@ -262,6 +264,15 @@ public class DataGen implements DataGeneratorEntrypoint {
                 registerItem(generator, ObjectRegistry.MELLOHI_WINE);
                 registerItem(generator, ObjectRegistry.NOIR_WINE);
                 registerItem(generator, ObjectRegistry.CRUSTY_BREAD);
+            }
+
+            private void registerLeaves(BlockStateModelGenerator generator, Block block) {
+                generator.blockStateCollector.accept(
+                        VariantsBlockStateSupplier
+                                .create(block)
+                                .coordinate(BlockStateVariantMap.create(VariantLeavesBlock.VARIANT)
+                                        .register(variant -> BlockStateVariant.create()
+                                                .put(VariantSettings.MODEL, TextureMap.getSubId(block, (variant !=0 ? "_variant" : ""))))));
             }
 
             private void registerWine(BlockStateModelGenerator generator, Block block) {
@@ -289,6 +300,15 @@ public class DataGen implements DataGeneratorEntrypoint {
         fabricDataGenerator.addProvider(generator -> new FabricTagProvider.BlockTagProvider(generator) {
             @Override
             protected void generateTags() {
+                getOrCreateTagBuilder(Vinery.WINE_RACK)
+                        .add(
+                                ObjectRegistry.WINE_RACK_1,
+                                ObjectRegistry.WINE_RACK_2,
+                                ObjectRegistry.WINE_RACK_3,
+                                ObjectRegistry.WINE_RACK_4,
+                                ObjectRegistry.WINE_RACK_5
+                        );
+
                 getOrCreateTagBuilder(Vinery.CAN_NOT_CONNECT).add(
                         ObjectRegistry.BIG_BOTTLE,
                         ObjectRegistry.WINE_BOTTLE,
@@ -301,6 +321,44 @@ public class DataGen implements DataGeneratorEntrypoint {
                         ObjectRegistry.NOIR_WINE,
                         ObjectRegistry.RED_GRAPEJUICE_WINE_BOTTLE,
                         ObjectRegistry.WHITE_GRAPEJUICE_WINE_BOTTLE);
+
+                getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(
+                        ObjectRegistry.RED_GRAPE_BUSH,
+                        ObjectRegistry.WHITE_GRAPE_BUSH,
+                        ObjectRegistry.GRAPEVINE_STEM,
+                        ObjectRegistry.CHERRY_PLANKS,
+                        ObjectRegistry.CHERRY_LOG,
+                        ObjectRegistry.OLD_CHERRY_LOG,
+                        ObjectRegistry.CHERRY_PLANKS,
+                        ObjectRegistry.STACKABLE_LOG,
+                        ObjectRegistry.FERMENTATION_BARREL,
+                        ObjectRegistry.CHERRY_FLOORBOARD,
+                        ObjectRegistry.RED_GRAPE_CRATE,
+                        ObjectRegistry.WHITE_GRAPE_CRATE,
+                        ObjectRegistry.FLOWER_BOX,
+                        ObjectRegistry.WINE_PRESS,
+                        ObjectRegistry.WINE_BOX
+                ).addTag(Vinery.WINE_RACK);
+
+                getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
+                        ObjectRegistry.ROCKS,
+                        ObjectRegistry.ROCKS_VARIANT_B,
+                        ObjectRegistry.ROCKS_VARIANT_C,
+                        ObjectRegistry.STOVE,
+                        ObjectRegistry.WINDOW_2,
+                        ObjectRegistry.WINDOW_1,
+                        ObjectRegistry.BIG_TABLE,
+                        ObjectRegistry.KITCHEN_SINK,
+                        ObjectRegistry.FLOWER_POT,
+                        ObjectRegistry.COOKING_POT
+                );
+
+                getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE).add(
+                        ObjectRegistry.LOAM,
+                        ObjectRegistry.COARSE_DIRT_SLAB,
+                        ObjectRegistry.DIRT_SLAB,
+                        ObjectRegistry.GRASS_SLAB
+                );
             }
         });
 
@@ -312,25 +370,18 @@ public class DataGen implements DataGeneratorEntrypoint {
                 addDrop(ObjectRegistry.BIG_BOTTLE);
                 addDrop(ObjectRegistry.COARSE_DIRT_SLAB, createSlab(ObjectRegistry.COARSE_DIRT_SLAB));
                 addDrop(ObjectRegistry.DIRT_SLAB, createSlab(ObjectRegistry.DIRT_SLAB));
+                addDrop(ObjectRegistry.GRASS_SLAB, createSlab(ObjectRegistry.GRASS_SLAB));
                 addDrop(ObjectRegistry.RED_GRAPE_CRATE);
                 addDrop(ObjectRegistry.WHITE_GRAPE_CRATE);
                 addDrop(ObjectRegistry.FLOWER_POT, drops(ObjectRegistry.FLOWER_POT)
                         .pool(BlockLootTableGenerator.addSurvivesExplosionCondition(ObjectRegistry.FLOWER_POT, LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(1.0f))
-                                .with(ItemEntry.builder(Blocks.LILAC)
-                                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0f))
-                                                .conditionally(BlockStatePropertyLootCondition.builder(ObjectRegistry.FLOWER_POT)
-                                                        .properties(StatePredicate.Builder.create().exactMatch(FlowerPotBlock.CONTENT, EnumTallFlower.LILAC)))))
-                                .with(ItemEntry.builder(Blocks.PEONY)
-                                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f))
-                                                .conditionally(BlockStatePropertyLootCondition.builder(ObjectRegistry.FLOWER_POT)
-                                                        .properties(StatePredicate.Builder.create().exactMatch(FlowerPotBlock.CONTENT, EnumTallFlower.PEONY)))))
-                                .with(ItemEntry.builder(Blocks.ROSE_BUSH)
-                                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f))
-                                                .conditionally(BlockStatePropertyLootCondition.builder(ObjectRegistry.FLOWER_POT)
-                                                        .properties(StatePredicate.Builder.create().exactMatch(FlowerPotBlock.CONTENT, EnumTallFlower.ROSE_BUSH))))
-                                        .build()
-                ))));
+                                        .with(flowerPot(EnumTallFlower.NONE))
+                                        .with(flowerPot(EnumTallFlower.LILAC))
+                                        .with(flowerPot(EnumTallFlower.ROSE_BUSH))
+                                        .with(flowerPot(EnumTallFlower.PEONY)))
+                                .build()
+                ));
                 addDrop(ObjectRegistry.FLOWER_BOX);
                 addDrop(ObjectRegistry.FLOWER_BOX_ALLIUM, flowerBox(Blocks.ALLIUM));
                 addDrop(ObjectRegistry.FLOWER_BOX_AZURE_BLUET, flowerBox(Blocks.AZURE_BLUET));
@@ -348,7 +399,9 @@ public class DataGen implements DataGeneratorEntrypoint {
 
                 addDropWithSilkTouch(ObjectRegistry.WINDOW_1);
                 addDropWithSilkTouch(ObjectRegistry.WINDOW_2);
-
+                addDrop(ObjectRegistry.BOLVAR_WINE);
+                addDrop(ObjectRegistry.CHERRY_WINE);
+                addDrop(ObjectRegistry.CHERRY_FLOORBOARD);
                 addDrop(ObjectRegistry.LOAM);
                 addDrop(ObjectRegistry.KITCHEN_SINK);
                 addDrop(ObjectRegistry.WINE_PRESS);
@@ -361,17 +414,26 @@ public class DataGen implements DataGeneratorEntrypoint {
                 addDrop(ObjectRegistry.WINE_RACK_5, nameableContainerDrops(ObjectRegistry.WINE_RACK_5));
             }
 
+            private LeafEntry.Builder<?> flowerPot(EnumTallFlower flower) {
+                return ItemEntry.builder(flower.getFlower())
+                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f))
+                                .conditionally(BlockStatePropertyLootCondition.builder(ObjectRegistry.FLOWER_POT)
+                                        .properties(StatePredicate.Builder.create().exactMatch(FlowerPotBlock.CONTENT, flower))));
+            }
+
             private void addWineRack(Block wineRack, int i) {
                 LootTable.Builder builder = drops(wineRack);
 
+                LootPool.Builder builderLootTable = BlockLootTableGenerator.addSurvivesExplosionCondition(wineRack, LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0f)));
+
                 for (int stage = 1; stage < i+1; stage++) {
-                    builder.pool(BlockLootTableGenerator.addSurvivesExplosionCondition(wineRack, LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0f))
-                            .with(ItemEntry.builder(ObjectRegistry.BIG_BOTTLE)
-                                    .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(i))
-                                            .conditionally(BlockStatePropertyLootCondition.builder(wineRack)
-                                                    .properties(StatePredicate.Builder.create().exactMatch(WineRackBlock.STAGE, i)))))
-                    ));
+                    builderLootTable.with(ItemEntry.builder(ObjectRegistry.BIG_BOTTLE)
+                            .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(i))
+                                    .conditionally(BlockStatePropertyLootCondition.builder(wineRack)
+                                            .properties(StatePredicate.Builder.create().exactMatch(WineRackBlock.STAGE, i)))));
                 }
+
+                builder.pool(builderLootTable);
 
                 addDrop(wineRack, builder);
             }

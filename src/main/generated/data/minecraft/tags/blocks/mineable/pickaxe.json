@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "vinery:rocks",
+    "vinery:rocks_variant_b",
+    "vinery:rocks_variant_c",
+    "vinery:stove",
+    "vinery:window_2",
+    "vinery:window_1",
+    "vinery:big_table",
+    "vinery:kitchen_sink",
+    "vinery:flower_pot",
+    "vinery:cooking_pot"
+  ]
+}

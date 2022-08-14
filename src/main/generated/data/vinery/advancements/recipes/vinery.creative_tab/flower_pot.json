@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "vinery:vinemaker_gloves"
+      "vinery:flower_pot"
     ]
   },
   "criteria": {
-    "has_leather": {
+    "has_brick": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "vinery:vinemaker_gloves"
+              "minecraft:brick"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "vinery:vinemaker_gloves"
+        "recipe": "vinery:flower_pot"
       }
     }
   },
   "requirements": [
     [
-      "has_leather",
+      "has_brick",
       "has_the_recipe"
     ]
   ]
