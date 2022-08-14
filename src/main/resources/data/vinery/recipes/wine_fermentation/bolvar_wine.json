@@ -8,14 +8,14 @@
       "item": "vinery:red_grapejuice_wine_botte"
     },
     {
-      "item": "minecraft:sweet_berries"
+      "item": "minecraft:honey_bottle"
     },
     {
-      "item": "minecraft:sweet_berries"
+      "item": "vinery:cherries"
     }
   ],
   "wineType": "empty",
   "result": {
-    "item": "vinery:chenet_wine"
+    "item": "vinery:bolvar_wine"
   }
 }

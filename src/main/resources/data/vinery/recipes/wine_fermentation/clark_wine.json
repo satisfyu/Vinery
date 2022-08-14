@@ -2,10 +2,10 @@
   "type": "vinery:wine_fermentation",
   "ingredients": [
     {
-      "item": "minecraft:glass_bottle"
+      "item": "vinery:white_grapejuice_wine_botte"
     },
     {
-      "item": "minecraft:glass_bottle"
+      "item": "vinery:white_grapejuice_wine_botte"
     },
     {
       "item": "minecraft:sweet_berries"
@@ -14,7 +14,7 @@
       "item": "minecraft:sweet_berries"
     }
   ],
-  "wineType": "white",
+  "wineType": "empty",
   "result": {
     "item": "vinery:clark_wine"
   }

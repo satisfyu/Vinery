@@ -2,13 +2,13 @@
   "type": "vinery:wine_fermentation",
   "ingredients": [
     {
-      "item": "minecraft:glass_bottle"
+      "item": "vinery:red_grapejuice_wine_botte"
     },
     {
-      "item": "minecraft:glass_bottle"
+      "item": "vinery:red_grapejuice_wine_botte"
     }
   ],
-  "wineType": "red",
+  "wineType": "empty",
   "result": {
     "item": "vinery:chenet_wine"
   }
