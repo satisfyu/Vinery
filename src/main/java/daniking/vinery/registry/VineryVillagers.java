@@ -38,14 +38,13 @@ public class VineryVillagers {
             factories.add(new SellItemFactory(ObjectRegistry.COOKING_POT, 3, 1, 10));
             factories.add(new SellItemFactory(ObjectRegistry.FLOWER_BOX, 3, 1, 10));
         });
-        TradeOfferHelper.registerVillagerOffers(WINEMAKER, 4, factories -> {
-            factories.add(new SellItemFactory(ObjectRegistry.VINEMAKER_GLOVES, 15, 1, 10));
-        });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 5, factories -> {
             factories.add(new SellItemFactory(ObjectRegistry.WINE_BOX, 10, 1, 10));
             factories.add(new SellItemFactory(ObjectRegistry.BIG_BOTTLE, 5, 1, 10));
             factories.add(new SellItemFactory(ObjectRegistry.BIG_BOTTLE, 5, 1, 10));
         });
+
+//        TradeOfferHelper.registerWanderingTraderOffers();
     }
 
     static class BuyForOneDiamondFactory implements TradeOffers.Factory {

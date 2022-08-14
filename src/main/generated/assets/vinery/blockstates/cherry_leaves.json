@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "variant=0": {
+      "model": "vinery:block/cherry_leaves"
+    },
+    "variant=1": {
+      "model": "vinery:block/cherry_leaves_variant"
+    }
+  }
+}

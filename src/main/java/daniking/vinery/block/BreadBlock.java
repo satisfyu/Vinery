@@ -78,6 +78,8 @@ public class BreadBlock extends FacingBlock {
         else player.getHungerManager().add(6, 9.6f);
         int i = state.get(BITES);
         world.emitGameEvent(player, GameEvent.EAT, pos);
+        world.playSound(null, pos, SoundEvents.BLOCK_CAKE_ADD_CANDLE, SoundCategory.BLOCKS, 1.0f, 1.0f);
+
         if (i < 3) {
             world.setBlockState(pos, state.with(BITES, i + 1), Block.NOTIFY_ALL);
         } else {
