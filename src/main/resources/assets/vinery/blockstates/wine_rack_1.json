@@ -194,6 +194,66 @@
     "facing=west,stage=12": {
       "model": "vinery:block/wine_rack_stage_12",
       "y": 270
+    },
+    "facing=east,stage=13": {
+      "model": "vinery:block/wine_rack_stage_0",
+      "y": 90
+    },
+    "facing=north,stage=13": {
+      "model": "vinery:block/wine_rack_stage_0"
+    },
+    "facing=south,stage=13": {
+      "model": "vinery:block/wine_rack_stage_0",
+      "y": 180
+    },
+    "facing=west,stage=13": {
+      "model": "vinery:block/wine_rack_stage_0",
+      "y": 270
+    },
+    "facing=east,stage=14": {
+      "model": "vinery:block/wine_rack_stage_0",
+      "y": 90
+    },
+    "facing=north,stage=14": {
+      "model": "vinery:block/wine_rack_stage_0"
+    },
+    "facing=south,stage=14": {
+      "model": "vinery:block/wine_rack_stage_0",
+      "y": 180
+    },
+    "facing=west,stage=14": {
+      "model": "vinery:block/wine_rack_stage_0",
+      "y": 270
+    },
+    "facing=east,stage=15": {
+      "model": "vinery:block/wine_rack_stage_0",
+      "y": 90
+    },
+    "facing=north,stage=15": {
+      "model": "vinery:block/wine_rack_stage_0"
+    },
+    "facing=south,stage=15": {
+      "model": "vinery:block/wine_rack_stage_0",
+      "y": 180
+    },
+    "facing=west,stage=15": {
+      "model": "vinery:block/wine_rack_stage_0",
+      "y": 270
+    },
+    "facing=east,stage=16": {
+      "model": "vinery:block/wine_rack_stage_0",
+      "y": 90
+    },
+    "facing=north,stage=16": {
+      "model": "vinery:block/wine_rack_stage_0"
+    },
+    "facing=south,stage=16": {
+      "model": "vinery:block/wine_rack_stage_0",
+      "y": 180
+    },
+    "facing=west,stage=16": {
+      "model": "vinery:block/wine_rack_stage_0",
+      "y": 270
     }
   }
 }

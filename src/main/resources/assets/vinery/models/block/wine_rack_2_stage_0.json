@@ -4,6 +4,7 @@
 		"2": "vinery:block/spruce_planks",
 		"6": "vinery:block/drawer_side",
 		"5": "vinery:block/big_bottle",
+		"missing": "vinery:block/spruce_planks",
 		"particle": "vinery:block/spruce_planks"
 	},
 	"elements": [

@@ -7,6 +7,7 @@
 		"4": "vinery:block/spruce_planks",
 		"5": "vinery:block/deepslate_tiles",
 		"6": "vinery:block/glass_2",
+		"missing": "vinery:block/spruce_planks",
 		"particle": "vinery:block/king_danis_wine_bottle"
 	},
 	"elements": [

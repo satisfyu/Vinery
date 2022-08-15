@@ -61,7 +61,7 @@ public class DataGen implements DataGeneratorEntrypoint {
                 shapeless(exporter, "door", ObjectRegistry.CHERRY_DOOR_WITH_IRON_BARS, "has_iron_bars", Items.IRON_BARS, ObjectRegistry.CHERRY_DOOR, Items.IRON_BARS);
                 shaped(exporter, "wooden_fence", ObjectRegistry.CHERRY_FENCE, 3, "has_stick", Items.STICK, "W#W", "W#W", 'W', ObjectRegistry.CHERRY_PLANKS, '#', Items.STICK);
                 shaped(exporter, "wooden_fence_gate", ObjectRegistry.CHERRY_FENCE_GATE, 3, "has_stick", Items.STICK, "#W#", "#W#", 'W', ObjectRegistry.CHERRY_PLANKS, '#', Items.STICK);
-                shaped(exporter, "floorboard", ObjectRegistry.CHERRY_FLOORBOARD, "has_cherry_floorboard", ObjectRegistry.CHERRY_WOOD, "# #", " # ", "# #", '#', ObjectRegistry.CHERRY_WOOD);
+                shaped(exporter, "floorboard", ObjectRegistry.CHERRY_FLOORBOARD, "has_cherry_wood", ObjectRegistry.CHERRY_WOOD, "#  ", "###", "  #", '#', ObjectRegistry.CHERRY_WOOD);
                 shaped(exporter, "cooking_pot", ObjectRegistry.COOKING_POT, "has_iron_ingot", Items.IRON_INGOT, "ISI", "III", 'I', Items.IRON_INGOT, 'S', Items.WOODEN_SHOVEL);
                 shaped(exporter, "cherry_jar", ObjectRegistry.CHERRY_JAR, "has_glass", Items.GLASS, "S", "G", "G", 'S', Items.OAK_SLAB, 'G', Items.GLASS);
                 shapeless(exporter, "planks", ObjectRegistry.CHERRY_PLANKS, 4, "has_cherry_logs", Vinery.CHERRY_LOGS, Vinery.CHERRY_LOGS);
@@ -74,7 +74,7 @@ public class DataGen implements DataGeneratorEntrypoint {
                 shapeless(exporter, "slab", ObjectRegistry.COARSE_DIRT_SLAB, "has_coarse_dirt", Items.COARSE_DIRT, Items.COARSE_DIRT, Items.COARSE_DIRT, Items.COARSE_DIRT);
                 shapeless(exporter, "slab", ObjectRegistry.DIRT_SLAB, "has_dirt", Items.DIRT, Items.DIRT, Items.DIRT, Items.DIRT);
                 shaped(exporter, "faucet", ObjectRegistry.FAUCET, "has_iron_ingot", Items.IRON_INGOT, "iii", "i i", "  W", 'i', Items.IRON_INGOT, 'W', Items.WATER_BUCKET);
-                shaped(exporter, "fermentation_barrel", ObjectRegistry.FERMENTATION_BARREL, "has_barrel", Items.BARREL, " B ", "S S", 'B', Items.STICK, 'S', Items.BARREL);
+                shaped(exporter, "fermentation_barrel", ObjectRegistry.FERMENTATION_BARREL, "has_barrel", Items.BARREL, " B ", "S S", 'B', Items.BARREL, 'S', Items.STICK);
                 shaped(exporter, "flower_box", ObjectRegistry.FLOWER_BOX, "has_podzol", Items.PODZOL, "###", "SSS", '#', Items.PODZOL, 'S', Items.SPRUCE_PLANKS);
                 shaped(exporter, "grapevine_pot", ObjectRegistry.GRAPEVINE_POT, "has_spruce_planks", Items.SPRUCE_PLANKS, "_ _", "SSS", '_', Items.SPRUCE_SLAB, 'S', Items.SPRUCE_PLANKS);
                 shaped(exporter, "grapevine_stem", ObjectRegistry.GRAPEVINE_STEM, 4, "has_oak_log", Items.OAK_LOG, "#", "#", '#', Items.OAK_LOG);
@@ -100,6 +100,8 @@ public class DataGen implements DataGeneratorEntrypoint {
                 shaped(exporter, "wine_rack", ObjectRegistry.WINE_RACK_3, "has_spruce_planks", Items.SPRUCE_PLANKS, "# #", " B ", "# #", '#', Items.SPRUCE_PLANKS, 'B', Items.BARREL);
                 shaped(exporter, "wine_rack", ObjectRegistry.WINE_RACK_4, "has_spruce_planks", Items.SPRUCE_PLANKS, "#_#", "_ _", "#_#", '#', Items.SPRUCE_PLANKS, '_', Items.SPRUCE_SLAB);
                 shaped(exporter, "wine_rack", ObjectRegistry.WINE_RACK_5, "has_spruce_planks", Items.SPRUCE_PLANKS, "#_#", "_B_", "#B#", '#', Items.SPRUCE_PLANKS, '_', Items.SPRUCE_SLAB, 'B', Items.BARREL);
+                shaped(exporter, "window", ObjectRegistry.WINDOW_1, "has_black_stained_glass_pane", Items.BLACK_STAINED_GLASS_PANE, "XOI", "OOO", "IOX", 'X', Items.YELLOW_STAINED_GLASS_PANE, 'O', Items.BLACK_STAINED_GLASS_PANE, 'I', Items.ORANGE_STAINED_GLASS_PANE);
+                shaped(exporter, "window", ObjectRegistry.WINDOW_2, "has_black_stained_glass_pane", Items.BLACK_STAINED_GLASS_PANE, "XXX", "XXX", "XXX", 'X', Items.BLACK_STAINED_GLASS_PANE);
             }
 
             public ExtendedShapedRecipeJsonBuilder shaped(String group, ItemConvertible output, String criterionName, Object criterionItem) {
@@ -286,6 +288,8 @@ public class DataGen implements DataGeneratorEntrypoint {
                         VariantsBlockStateSupplier
                                 .create(block).coordinate(createWestDefaultHorizontalRotationStates())
                                 .coordinate(BlockStateVariantMap.create(StackableBlock.STACK).register(stack -> BlockStateVariant.create().put(VariantSettings.MODEL, TextureMap.getSubId(block, suffix + stack)))));
+
+
             }
 
             private <T extends ItemConvertible> void registerItem(ItemModelGenerator generator, T t) {

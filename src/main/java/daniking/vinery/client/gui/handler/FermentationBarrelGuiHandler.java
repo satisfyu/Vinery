@@ -28,7 +28,7 @@ public class FermentationBarrelGuiHandler extends ScreenHandler  {
 
         // Wine input
         this.addSlot(new ExtendedSlot(inventory, 0, 63, 50, stack -> {
-            return stack.isOf(Item.fromBlock(ObjectRegistry.RED_GRAPEJUICE_WINE_BOTTLE)) || stack.isOf(Item.fromBlock(ObjectRegistry.WHITE_GRAPEJUICE_WINE_BOTTLE));
+            return stack.isOf(Item.fromBlock(ObjectRegistry.WINE_BOTTLE));
         }));
         // Output
         this.addSlot(new StoveOutputSlot(playerInventory.player, inventory, 1, 125,  35));

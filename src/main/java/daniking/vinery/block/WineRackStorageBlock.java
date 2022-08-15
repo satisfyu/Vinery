@@ -28,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public class WineRackStorageBlock extends BlockWithEntity {
-	public static final DirectionProperty FACING = Properties.FACING;
+	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 	public static final BooleanProperty OPEN = Properties.OPEN;
 	
 	public WineRackStorageBlock(AbstractBlock.Settings settings) {

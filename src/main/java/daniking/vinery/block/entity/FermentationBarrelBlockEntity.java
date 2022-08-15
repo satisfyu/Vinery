@@ -1,20 +1,15 @@
 package daniking.vinery.block.entity;
 
-import daniking.vinery.Vinery;
-import daniking.vinery.block.RedGrapejuiceWineBottle;
-import daniking.vinery.block.WineBottleBlock;
+import daniking.vinery.block.EmptyWineBottleBlock;
 import daniking.vinery.client.gui.handler.FermentationBarrelGuiHandler;
 import daniking.vinery.recipe.FermentationBarrelRecipe;
-import daniking.vinery.recipe.StoveCookingRecipe;
+import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.registry.VineryBlockEntityTypes;
 import daniking.vinery.registry.VineryRecipeTypes;
-import daniking.vinery.util.WineTypeProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -123,13 +118,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
             return false;
         } else {
             final Block block = Block.getBlockFromItem(this.getStack(BOTTLE_INPUT_SLOT).getItem());
-            if (block == null || block == Blocks.AIR) {
-                return false;
-            }
-            if (!(block instanceof WineTypeProvider wine)) {
-                return false;
-            }
-            if (wine.getType() != recipe.getWineType()) {
+            if (block != ObjectRegistry.WINE_BOTTLE) {
                 return false;
             }
             return this.getStack(OUTPUT_SLOT).isEmpty();

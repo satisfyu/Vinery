@@ -13,7 +13,6 @@ import daniking.vinery.block.FlowerPotBlock;
 import daniking.vinery.item.DrinkBlockItem;
 import daniking.vinery.item.StrawHatItem;
 import daniking.vinery.util.GrapevineType;
-import daniking.vinery.util.WineType;
 import daniking.vinery.world.VineryConfiguredFeatures;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -155,14 +154,14 @@ public class ObjectRegistry {
 
     public static final Block WINE_BOTTLE = register("wine_bottle", new EmptyWineBottleBlock(AbstractBlock.Settings.copy(Blocks.GLASS).breakInstantly().nonOpaque()));
 
-    public static final Block CHENET_WINE = registerWine("chenet_wine", new WineBottleBlock(getWineSettings(), WineType.RED), StatusEffects.JUMP_BOOST);
-    public static final Block KING_DANIS_WINE = registerWine("king_danis_wine", new WineBottleBlock(getWineSettings(), WineType.RED), StatusEffects.FIRE_RESISTANCE);
-    public static final Block NOIR_WINE = registerWine("noir_wine", new WineBottleBlock(getWineSettings(), WineType.RED), StatusEffects.WATER_BREATHING);
-    public static final Block CLARK_WINE = registerWine("clark_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE), StatusEffects.LUCK);
-    public static final Block MELLOHI_WINE = registerWine("mellohi_wine", new WineBottleBlock(getWineSettings(), WineType.WHITE), StatusEffects.LEVITATION);
+    public static final Block CHENET_WINE = registerWine("chenet_wine", new WineBottleBlock(getWineSettings()), StatusEffects.JUMP_BOOST);
+    public static final Block KING_DANIS_WINE = registerWine("king_danis_wine", new WineBottleBlock(getWineSettings()), StatusEffects.FIRE_RESISTANCE);
+    public static final Block NOIR_WINE = registerWine("noir_wine", new WineBottleBlock(getWineSettings()), StatusEffects.WATER_BREATHING);
+    public static final Block CLARK_WINE = registerWine("clark_wine", new WineBottleBlock(getWineSettings()), StatusEffects.LUCK);
+    public static final Block MELLOHI_WINE = registerWine("mellohi_wine", new WineBottleBlock(getWineSettings()), StatusEffects.LEVITATION);
 
-    public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings(), WineType.RED), StatusEffects.GLOWING);
-    public static final Block CHERRY_WINE = registerWine("cherry_wine", new WineBottleBlock(getWineSettings(), WineType.RED), StatusEffects.SPEED);
+    public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings()), StatusEffects.GLOWING);
+    public static final Block CHERRY_WINE = registerWine("cherry_wine", new WineBottleBlock(getWineSettings()), StatusEffects.SPEED);
 
     public static final Block BANNER = register("banner", new BannerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().nonOpaque()));
     public static final Block WINE_BOX = register("wine_box", new WineBoxBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).nonOpaque()));
