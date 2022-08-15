@@ -1,0 +1,14 @@
+{
+    "variants": {
+        "": [
+			{ "model": "vinery:block/leaves/cherry_leaves" },
+			{ "model": "vinery:block/leaves/cherry_leaves_variant" },
+			{ "model": "vinery:block/leaves/cherry_leaves", "y": 90 },
+			{ "model": "vinery:block/leaves/cherry_leaves_variant", "y": 90 },
+			{ "model": "vinery:block/leaves/cherry_leaves", "y": 180 },
+			{ "model": "vinery:block/leaves/cherry_leaves_variant", "y": 180 },
+			{ "model": "vinery:block/leaves/cherry_leaves", "y": 270 },
+			{ "model": "vinery:block/leaves/cherry_leaves_variant", "y": 270 }
+		]
+    }
+}
