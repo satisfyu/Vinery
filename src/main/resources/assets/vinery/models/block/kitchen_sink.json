@@ -1,6 +1,6 @@
 {
 	"credit": "Made by Satisfy",
-	"parent": "adorn:block/templates/rotatable",
+	"parent": "vinery:block/templates/rotatable",
 	"textures": {
 		"2": "vinery:block/sink_top",
 		"3": "vinery:block/sink_bottom",
