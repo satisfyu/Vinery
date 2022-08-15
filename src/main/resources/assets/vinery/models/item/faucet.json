@@ -1,6 +1,6 @@
 {
-	"credit": "Made with Blockbench",
-	"parent": "adorn:block/templates/rotatable",
+	"credit": "Made by satisfy",
+	"parent": "vinery:block/templates/rotatable",
 	"textures": {
 		"5": "vinery:block/faucet"
 	},
