@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "vinery:cherry_floorboard"
+      "vinery:window_1"
     ]
   },
   "criteria": {
-    "has_cherry_wood": {
+    "has_black_stained_glass_pane": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "vinery:cherry_planks"
+              "minecraft:black_stained_glass_pane"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "vinery:cherry_floorboard"
+        "recipe": "vinery:window_1"
       }
     }
   },
   "requirements": [
     [
-      "has_cherry_wood",
+      "has_black_stained_glass_pane",
       "has_the_recipe"
     ]
   ]

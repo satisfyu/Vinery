@@ -2,10 +2,10 @@
   "type": "vinery:wine_fermentation",
   "ingredients": [
     {
-      "item": "vinery:white_grapejuice_wine_botte"
+      "item": "vinery:white_grapejuice_wine_bottle"
     },
     {
-      "item": "vinery:white_grapejuice_wine_botte"
+      "item": "vinery:white_grapejuice_wine_bottle"
     },
     {
       "item": "minecraft:honey_bottle"
@@ -14,7 +14,6 @@
       "item": "minecraft:honey_bottle"
     }
   ],
-  "wineType": "empty",
   "result": {
     "item": "vinery:mellohi_wine"
   }

@@ -5,6 +5,7 @@
 		"2": "vinery:block/sink_top",
 		"3": "vinery:block/sink_bottom",
 		"7": "vinery:block/sink_side",
+		"missing": "vinery:block/spruce_planks",
 		"particle": "vinery:block/sink_side"
 	},
 	"elements": [

@@ -7,10 +7,10 @@
   ],
   "key": {
     "B": {
-      "item": "minecraft:stick"
+      "item": "minecraft:barrel"
     },
     "S": {
-      "item": "minecraft:barrel"
+      "item": "minecraft:stick"
     }
   },
   "result": {

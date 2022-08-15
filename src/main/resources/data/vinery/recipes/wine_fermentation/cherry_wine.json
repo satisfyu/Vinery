@@ -2,19 +2,18 @@
   "type": "vinery:wine_fermentation",
   "ingredients": [
     {
-      "item": "vinery:red_grapejuice_wine_botte"
+      "item": "vinery:red_grapejuice_wine_bottle"
     },
     {
-      "item": "vinery:red_grapejuice_wine_botte"
+      "item": "vinery:red_grapejuice_wine_bottle"
     },
     {
-      "item": "vinery:cherries"
+      "item": "vinery:cherry"
     },
     {
-      "item": "vinery:cherries"
+      "item": "vinery:cherry"
     }
   ],
-  "wineType": "empty",
   "result": {
     "item": "vinery:cherry_wine"
   }

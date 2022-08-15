@@ -7,6 +7,7 @@
 		"4": "vinery:block/water_still",
 		"5": "vinery:block/faucet",
 		"7": "vinery:block/sink_side",
+		"missing": "vinery:block/spruce_planks",
 		"particle": "vinery:block/sink_side"
 	},
 	"elements": [
