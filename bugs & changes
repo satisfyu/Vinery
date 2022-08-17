@@ -12,18 +12,17 @@ bugs:
 
 changes: 
 
-- jerry jam & jerry jar shouldnt connect to walls, fences and windows
 - cooking pot shouldnt connect to walls, fences and windows 
-- wine rack 4 should be usable as a shelf 
-- wine box texture should be changed to 16x16 
-- bread voxel shape 
 - when placing a cooking pot on a stove the stove should be turned on
-- villager trades are really expensive - he should take emeralds instead of diamonds 
+
 
 additions: 
 - add loam stairs and slabs 
-- add wandering trader 
 - add trapdoor variants 
 - add more tooltips to wine 
 - add tooltip to faucet 
+"Usable on a kitchen sink"
+- add a recipe book to cooking pot and fermentation barrel  
 - add set bonus
+- wine rack 4 should be usable as a shelf 
+- bread voxel shape 
