@@ -5,7 +5,6 @@
 		"2": "vinery:block/sink_top",
 		"3": "vinery:block/sink_bottom",
 		"7": "vinery:block/sink_side",
-		"missing": "vinery:block/spruce_planks",
 		"particle": "vinery:block/sink_side"
 	},
 	"elements": [
@@ -14,11 +13,11 @@
 			"to": [13, 16, 2.975],
 			"faces": {
 				"north": {"uv": [6, 0, 14, 4], "texture": "#7", "cullface": "south"},
-				"east": {"uv": [8, 5, 8.5, 6], "texture": "#missing"},
+				"east": {"uv": [8, 5, 8.5, 6], "texture": "#3"},
 				"south": {"uv": [16, 4, 13, 12], "rotation": 90, "texture": "#2", "cullface": "up"},
-				"west": {"uv": [8.5, 5, 9, 6], "texture": "#missing"},
+				"west": {"uv": [8.5, 5, 9, 6], "texture": "#3"},
 				"up": {"uv": [16, 4, 13, 12], "rotation": 90, "texture": "#2", "cullface": "up"},
-				"down": {"uv": [14.75, 12.5, 12.75, 13], "texture": "#missing"}
+				"down": {"uv": [12.75, 12.5, 10.75, 13], "texture": "#3"}
 			}
 		},
 		{
@@ -31,7 +30,7 @@
 				"south": {"uv": [0, 0, 5, 4], "texture": "#7", "cullface": "south"},
 				"west": {"uv": [0, 0, 16, 4], "texture": "#7", "cullface": "west"},
 				"up": {"uv": [0, 4, 16, 0], "rotation": 90, "texture": "#2", "cullface": "up"},
-				"down": {"uv": [12.25, 4, 11, 8], "texture": "#missing"}
+				"down": {"uv": [12.25, 4, 11, 8], "texture": "#3"}
 			}
 		},
 		{
@@ -52,11 +51,11 @@
 			"to": [13, 16, 16],
 			"faces": {
 				"north": {"uv": [0, 4, 3, 12], "rotation": 90, "texture": "#2", "cullface": "up"},
-				"east": {"uv": [8.5, 11, 9, 12], "texture": "#missing"},
+				"east": {"uv": [7.5, 6, 8, 7], "texture": "#3"},
 				"south": {"uv": [6, 0, 14, 4], "texture": "#7", "cullface": "south"},
-				"west": {"uv": [2.25, 13, 2.75, 14], "texture": "#missing"},
+				"west": {"uv": [2.25, 13, 2.75, 14], "texture": "#3"},
 				"up": {"uv": [3, 4, 0, 12], "rotation": 90, "texture": "#2", "cullface": "up"},
-				"down": {"uv": [15, 0, 13, 0.5], "texture": "#missing"}
+				"down": {"uv": [13, 3, 11, 3.5], "texture": "#3"}
 			}
 		},
 		{
