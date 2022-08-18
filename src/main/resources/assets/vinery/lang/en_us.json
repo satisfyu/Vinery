@@ -104,5 +104,6 @@
   "item.vinery.milk_bread": "Milk Bread",
   "entity.vinery.cherry_boat": "Cherry Boat",
   "container.wine_rack": "Wine Rack",
-  "entity.minecraft.villager.winemaker": "Winemaker"
+  "entity.minecraft.villager.winemaker": "Winemaker",
+  "item.vinery.gloves": "Gloves"
 }

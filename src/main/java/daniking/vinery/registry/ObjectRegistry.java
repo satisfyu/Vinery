@@ -209,6 +209,8 @@ public class ObjectRegistry {
     public static final Item TOAST = register("toast", new Item(getSettings().food(FoodComponents.BEETROOT_SOUP)));
     public static final Item DONUT = register("donut", new Item(getSettings().food(FoodComponents.CARROT)));
     public static final Item MILK_BREAD = register("milk_bread", new Item(getSettings().food(FoodComponents.COOKIE)));
+    public static final Item GLOVES = register("gloves", new Item(getSettings()));
+
 
     private static PillarBlock registerLog(String path) {
         return register(path, new PillarBlock(getLogBlockSettings()));
