@@ -85,7 +85,8 @@ public class ObjectRegistry {
     public static final Block RED_GRAPEJUICE_WINE_BOTTLE = registerWine("red_grapejuice_wine_bottle", new RedGrapejuiceWineBottle(getWineSettings()), null);
     public static final Block WHITE_GRAPEJUICE_WINE_BOTTLE = registerWine("white_grapejuice_wine_bottle", new WhiteGrapejuiceWineBottle(getWineSettings()), null);
 
-    public static final Block STOVE = register("stove", new StoveBlock(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(state -> state.get(StoveBlock.LIT) ? 13 : 0)));
+    public static final Block WOOD_FIRED_OVEN = register("wood_fired_oven", new WoodFiredOvenBlock(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(state -> state.get(WoodFiredOvenBlock.LIT) ? 13 : 0)));
+    public static final Block STOVE = register("stove", new StoveBlock(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(state -> 13)));
     public static final Block CRUSTY_BREAD = register("crusty_bread", new BreadBlock(AbstractBlock.Settings.copy(Blocks.CAKE).nonOpaque()));
 
     // Cherry

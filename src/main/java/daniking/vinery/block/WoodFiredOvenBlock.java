@@ -2,9 +2,12 @@ package daniking.vinery.block;
 
 import daniking.vinery.block.entity.WoodFiredOvenBlockEntity;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
@@ -28,14 +31,41 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class StoveBlock extends Block {
+public class WoodFiredOvenBlock extends Block implements BlockEntityProvider {
 
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty LIT = Properties.LIT;
 
-    public StoveBlock(Settings settings) {
+    public WoodFiredOvenBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(LIT, false));
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        final BlockEntity entity = world.getBlockEntity(pos);
+        if (entity instanceof NamedScreenHandlerFactory factory) {
+            player.openHandledScreen(factory);
+            return ActionResult.success(world.isClient());
+        } else {
+            return ActionResult.PASS;
+        }
+    }
+
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.isOf(newState.getBlock())) {
+            return;
+        }
+        final BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof WoodFiredOvenBlockEntity entity) {
+            if (world instanceof ServerWorld) {
+                ItemScatterer.spawn(world, pos, entity);
+                entity.dropExperience((ServerWorld) world, Vec3d.ofCenter(pos));
+            }
+            world.updateComparators(pos, this);
+        }
+        super.onStateReplaced(state, world, pos, newState, moved);
     }
 
     @Nullable
@@ -47,6 +77,22 @@ public class StoveBlock extends Block {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, LIT);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return (theWorld, pos, theState, blockEntity) -> {
+            if (blockEntity instanceof BlockEntityTicker<?>) {
+                ((BlockEntityTicker) blockEntity).tick(theWorld, pos, theState, blockEntity);
+            }
+        };
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new WoodFiredOvenBlockEntity(pos, state);
     }
 
     @Override
