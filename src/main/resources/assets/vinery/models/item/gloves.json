@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "vinery:items/gloves"
+    "layer0": "vinery:item/gloves"
   }
 }
