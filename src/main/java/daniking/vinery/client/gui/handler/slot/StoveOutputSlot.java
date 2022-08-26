@@ -1,6 +1,6 @@
 package daniking.vinery.client.gui.handler.slot;
 
-import daniking.vinery.block.entity.StoveBlockEntity;
+import daniking.vinery.block.entity.WoodFiredOvenBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -46,8 +46,8 @@ public class StoveOutputSlot extends Slot {
     @Override
     protected void onCrafted(ItemStack stack) {
         stack.onCraft(this.player.world, this.player, this.amount);
-        if (this.player instanceof ServerPlayerEntity && this.inventory instanceof StoveBlockEntity && player.world instanceof ServerWorld) {
-            ((StoveBlockEntity)this.inventory).dropExperience((ServerWorld) this.player.world, player.getPos());
+        if (this.player instanceof ServerPlayerEntity && this.inventory instanceof WoodFiredOvenBlockEntity && player.world instanceof ServerWorld) {
+            ((WoodFiredOvenBlockEntity)this.inventory).dropExperience((ServerWorld) this.player.world, player.getPos());
         }
         this.amount = 0;
     }

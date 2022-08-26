@@ -1,15 +1,9 @@
 package daniking.vinery.client.gui.handler;
 
-import daniking.vinery.Vinery;
-import daniking.vinery.block.StoveBlock;
-import daniking.vinery.block.entity.CookingPotEntity;
-import daniking.vinery.block.entity.StoveBlockEntity;
-import daniking.vinery.client.gui.handler.slot.StoveOutputSlot;
 import daniking.vinery.recipe.CookingPotRecipe;
 import daniking.vinery.registry.VineryRecipeTypes;
 import daniking.vinery.registry.VineryScreenHandlerTypes;
 import daniking.vinery.util.VineryUtils;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -19,9 +13,7 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.stream.Stream;

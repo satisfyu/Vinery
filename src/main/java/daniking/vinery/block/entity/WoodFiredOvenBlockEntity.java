@@ -1,6 +1,7 @@
 package daniking.vinery.block.entity;
 
 import daniking.vinery.block.StoveBlock;
+import daniking.vinery.block.WoodFiredOvenBlock;
 import daniking.vinery.client.gui.handler.StoveGuiHandler;
 import daniking.vinery.recipe.StoveCookingRecipe;
 import daniking.vinery.registry.VineryBlockEntityTypes;
@@ -17,7 +18,6 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -32,7 +32,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<StoveBlockEntity>, Inventory, NamedScreenHandlerFactory {
+public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntityTicker<WoodFiredOvenBlockEntity>, Inventory, NamedScreenHandlerFactory {
 
     private DefaultedList<ItemStack> inventory;
 
@@ -53,10 +53,10 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
         @Override
         public int get(int index) {
             return switch (index) {
-                case 0 -> StoveBlockEntity.this.burnTime;
-                case 1 -> StoveBlockEntity.this.burnTimeTotal;
-                case 2 -> StoveBlockEntity.this.cookTime;
-                case 3 -> StoveBlockEntity.this.cookTimeTotal;
+                case 0 -> WoodFiredOvenBlockEntity.this.burnTime;
+                case 1 -> WoodFiredOvenBlockEntity.this.burnTimeTotal;
+                case 2 -> WoodFiredOvenBlockEntity.this.cookTime;
+                case 3 -> WoodFiredOvenBlockEntity.this.cookTimeTotal;
                 default -> 0;
             };
         }
@@ -64,10 +64,10 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
         @Override
         public void set(int index, int value) {
             switch (index) {
-                case 0 -> StoveBlockEntity.this.burnTime = value;
-                case 1 -> StoveBlockEntity.this.burnTimeTotal = value;
-                case 2 -> StoveBlockEntity.this.cookTime = value;
-                case 3 -> StoveBlockEntity.this.cookTimeTotal = value;
+                case 0 -> WoodFiredOvenBlockEntity.this.burnTime = value;
+                case 1 -> WoodFiredOvenBlockEntity.this.burnTimeTotal = value;
+                case 2 -> WoodFiredOvenBlockEntity.this.cookTime = value;
+                case 3 -> WoodFiredOvenBlockEntity.this.cookTimeTotal = value;
             }
         }
 
@@ -76,8 +76,8 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
             return 4;
         }
     };
-    public StoveBlockEntity(BlockPos pos, BlockState state) {
-        super(VineryBlockEntityTypes.STOVE_BLOCK_ENTITY, pos, state);
+    public WoodFiredOvenBlockEntity(BlockPos pos, BlockState state) {
+        super(VineryBlockEntityTypes.WOOD_FIRED_OVEN_BLOCK_ENTITY, pos, state);
         this.inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
     }
 
@@ -112,7 +112,7 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
     }
 
     @Override
-    public void tick(World world, BlockPos pos, BlockState state, StoveBlockEntity blockEntity) {
+    public void tick(World world, BlockPos pos, BlockState state, WoodFiredOvenBlockEntity blockEntity) {
         if (world.isClient) {
             return;
         }
@@ -148,8 +148,8 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
             this.cookTime = 0;
         }
         if (initialBurningState != isBurning()) {
-            if (state.get(StoveBlock.LIT) != (burnTime > 0)) {
-                world.setBlockState(pos, state.with(StoveBlock.LIT, burnTime > 0), Block.NOTIFY_ALL);
+            if (state.get(WoodFiredOvenBlock.LIT) != (burnTime > 0)) {
+                world.setBlockState(pos, state.with(WoodFiredOvenBlock.LIT, burnTime > 0), Block.NOTIFY_ALL);
                 dirty = true;
             }
         }
