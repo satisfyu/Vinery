@@ -6,7 +6,9 @@
   "mixins": [
     "AbstractCauldronBlockAccessor",
     "BlockMixin",
-    "FoxEntityEatSweetBerriesGoalMixin"
+    "BoneMealItemMixin",
+    "FoxEntityEatSweetBerriesGoalMixin",
+    "WanderingTraderManagerMixin"
   ],
   "client": [
   ],

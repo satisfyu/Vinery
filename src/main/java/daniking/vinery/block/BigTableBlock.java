@@ -12,6 +12,8 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Util;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
@@ -47,7 +49,6 @@ public class BigTableBlock extends HorizontalFacingBlock {
 			map.put(direction, VineryUtils.rotateShape(Direction.EAST, direction, voxelShapeSupplier.get()));
 		}
 	});
-
 	
 	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 	
@@ -63,23 +64,14 @@ public class BigTableBlock extends HorizontalFacingBlock {
 			return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 		}
 	}
-
-
+	
 	private static Direction getDirectionTowardsOtherPart(BedPart part, Direction direction) {
 		return part == BedPart.FOOT ? direction : direction.getOpposite();
 	}
 
 	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		if (!world.isClient && player.isCreative()) {
-			BedPart bedPart = state.get(PART);
-			if (bedPart == BedPart.FOOT) {
-				BlockPos blockPos = pos.offset(getDirectionTowardsOtherPart(bedPart, state.get(FACING)));
-				BlockState blockState = world.getBlockState(blockPos);
-				if (blockState.isOf(this) && blockState.get(PART) == BedPart.HEAD) {
-					world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL | Block.SKIP_DROPS);
-					world.syncWorldEvent(player, WorldEvents.BLOCK_BROKEN, blockPos, Block.getRawIdFromState(blockState));
-				}
-			}
+			removeOtherPart(world, pos, state, player);
 		}
 
 		super.onBreak(world, pos, state, player);
@@ -107,15 +99,32 @@ public class BigTableBlock extends HorizontalFacingBlock {
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.onPlaced(world, pos, state, placer, itemStack);
 		if (!world.isClient) {
-			BlockPos blockPos = pos.offset(state.get(FACING));
-			world.setBlockState(blockPos, state.with(PART, BedPart.HEAD), Block.NOTIFY_ALL);
-			world.updateNeighbors(pos, Blocks.AIR);
-			state.updateNeighbors(world, pos, Block.NOTIFY_ALL);
+			placeOtherPart(world, pos, state);
 		}
 	}
 
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(FACING, PART);
+	}
+	
+	private void placeOtherPart(World world, BlockPos pos, BlockState state) {
+		BlockPos blockPos = pos.offset(state.get(FACING));
+		world.setBlockState(blockPos, state.with(PART, BedPart.HEAD), Block.NOTIFY_ALL);
+		world.updateNeighbors(pos, Blocks.AIR);
+		state.updateNeighbors(world, pos, Block.NOTIFY_ALL);
+	}
+	
+	private void removeOtherPart(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+		BedPart bedPart = state.get(PART);
+		if (bedPart == BedPart.FOOT) {
+			BlockPos blockPos = pos.offset(getDirectionTowardsOtherPart(bedPart, state.get(FACING)));
+			BlockState blockState = world.getBlockState(blockPos);
+			if (blockState.isOf(this) && blockState.get(PART) == BedPart.HEAD) {
+				world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL | Block.SKIP_DROPS);
+				if (player != null)
+					world.syncWorldEvent(player, WorldEvents.BLOCK_BROKEN, blockPos, Block.getRawIdFromState(blockState));
+			}
+		}
 	}
 }

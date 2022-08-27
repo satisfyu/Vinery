@@ -12,6 +12,7 @@ import daniking.vinery.block.FacingBlock;
 import daniking.vinery.block.FlowerPotBlock;
 import daniking.vinery.item.DrinkBlockItem;
 import daniking.vinery.item.StrawHatItem;
+import daniking.vinery.item.WinemakerArmorItem;
 import daniking.vinery.util.GrapevineType;
 import daniking.vinery.world.VineryConfiguredFeatures;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -37,6 +38,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
+
+import static daniking.vinery.registry.VineryEntites.MULE;
+import static daniking.vinery.registry.VineryEntites.WANDERING_WINEMAKER;
 
 public class ObjectRegistry {
 
@@ -146,10 +150,9 @@ public class ObjectRegistry {
     }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)), true);
 
     public static final Item STRAW_HAT = register("straw_hat", new StrawHatItem(getSettings()));
-    public static final Item VINEMAKER_APRON = register("vinemaker_apron", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings()));
-    public static final Item VINEMAKER_LEGGINGS = register("vinemaker_leggings", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings()));
-
-    public static final Item VINEMAKER_BOOTS = register("vinemaker_boots", new ArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings()));
+    public static final Item VINEMAKER_APRON = register("vinemaker_apron", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings()));
+    public static final Item VINEMAKER_LEGGINGS = register("vinemaker_leggings", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings()));
+    public static final Item VINEMAKER_BOOTS = register("vinemaker_boots", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings()));
 
     public static final Block FERMENTATION_BARREL = register("fermentation_barrel", new FermentationBarrelBlock(AbstractBlock.Settings.copy(Blocks.BARREL).nonOpaque()));
 
@@ -164,6 +167,8 @@ public class ObjectRegistry {
     public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings()), StatusEffects.GLOWING);
     public static final Block CHERRY_WINE = registerWine("cherry_wine", new WineBottleBlock(getWineSettings()), StatusEffects.SPEED);
 
+    ////////////////////////////////// 4732 //////////////////////////////////
+    
     public static final Block BANNER = register("banner", new BannerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().nonOpaque()));
     public static final Block WINE_BOX = register("wine_box", new WineBoxBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).nonOpaque()));
     public static final Block BIG_TABLE = register("big_table", new BigTableBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 2.0F)));
@@ -182,9 +187,9 @@ public class ObjectRegistry {
     // Wine Racks
     public static final Block WINE_RACK_1 = register("wine_rack_1", new WineRackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD), 12));
     public static final Block WINE_RACK_2 = register("wine_rack_2", new WineRackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD), 4));
-    public static final Block WINE_RACK_3 = register("wine_rack_3", new WineRackStorageBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+    public static final Block WINE_RACK_3 = register("wine_rack_3", new WineRackStorageBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD), VinerySoundEvents.WINE_RACK_3_OPEN, VinerySoundEvents.WINE_RACK_3_CLOSE));
     public static final Block WINE_RACK_4 = register("wine_rack_4", new FacingBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
-    public static final Block WINE_RACK_5 = register("wine_rack_5", new WineRackStorageBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+    public static final Block WINE_RACK_5 = register("wine_rack_5", new WineRackStorageBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD), VinerySoundEvents.WINE_RACK_5_OPEN, VinerySoundEvents.WINE_RACK_5_CLOSE));
     
     // Flower Box
     public static final Block FLOWER_BOX = register("flower_box", new FlowerBoxBlock(Blocks.AIR,FabricBlockSettings.copy(Blocks.FLOWER_POT)));
@@ -206,6 +211,12 @@ public class ObjectRegistry {
     
     // Items
     public static final Item FAUCET = register("faucet", new Item(getSettings()));
+    public static final Item MULE_SPAWN_EGG = register("mule_spawn_egg", new SpawnEggItem(MULE, 0x8b7867, 0x5a4e43, getSettings()));
+    public static final Item WANDERING_WINEMAKER_SPAWN_EGG = register("wandering_winemaker_spawn_egg", new SpawnEggItem(WANDERING_WINEMAKER, 0xb78272, 0x3c4a73, getSettings()));
+    
+    ////////////////////////////////// 4732 Finish //////////////////////////////////
+    
+    // Items
     public static final Item CHOCOLATE_BREAD = register("chocolate_bread", new Item(getSettings().food(FoodComponents.BREAD)));
     public static final Item TOAST = register("toast", new Item(getSettings().food(FoodComponents.BEETROOT_SOUP)));
     public static final Item DONUT = register("donut", new Item(getSettings().food(FoodComponents.CARROT)));

@@ -2,29 +2,29 @@ package daniking.vinery.client;
 
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
+import daniking.vinery.Vinery;
 import daniking.vinery.VineryIdentifier;
 import daniking.vinery.client.gui.CookingPotGui;
 import daniking.vinery.client.gui.FermentationBarrelGui;
 import daniking.vinery.client.gui.StoveGui;
+import daniking.vinery.client.render.entity.SimpleGeoRenderer;
+import daniking.vinery.client.render.entity.WanderingWinemakerRenderer;
 import daniking.vinery.client.render.feature.StrawHatRenderer;
 import daniking.vinery.registry.ObjectRegistry;
+import daniking.vinery.registry.VineryEntites;
 import daniking.vinery.registry.VineryScreenHandlerTypes;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.fabric.impl.client.rendering.ColorProviderRegistryImpl;
-import net.minecraft.block.Blocks;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.color.world.GrassColors;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.util.SpriteIdentifier;
-import net.minecraft.client.world.BiomeColorCache;
-import net.minecraft.world.biome.BiomeEffects;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
 @Environment(EnvType.CLIENT)
@@ -72,5 +72,8 @@ public class ClientSetup implements ClientModInitializer {
         TerraformBoatClientHelper.registerModelLayer(new VineryIdentifier("cherry"));
 
         GeoArmorRenderer.registerArmorRenderer(new StrawHatRenderer(), ObjectRegistry.STRAW_HAT);
+        
+        EntityRendererRegistry.register(VineryEntites.MULE, mgr -> new SimpleGeoRenderer<>(mgr, Vinery.MODID, "wandering_mule"));
+        EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
     }
 }

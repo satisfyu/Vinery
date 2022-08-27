@@ -1,5 +1,6 @@
 package daniking.vinery.block.entity;
 
+import daniking.vinery.block.WineRackStorageBlock;
 import daniking.vinery.registry.VineryBlockEntityTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
@@ -120,6 +121,7 @@ public class WineRackBlockEntity extends LootableContainerBlockEntity {
 	}
 	
 	public void setOpen(BlockState state, boolean open) {
+		if(state.getBlock() instanceof WineRackStorageBlock rack) rack.playSound(world, this.getPos(), open);
 		this.world.setBlockState(this.getPos(), state.with(Properties.OPEN, open), 3);
 	}
 	

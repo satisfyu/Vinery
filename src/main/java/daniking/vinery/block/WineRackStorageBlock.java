@@ -12,6 +12,8 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -30,9 +32,13 @@ import java.util.Random;
 public class WineRackStorageBlock extends BlockWithEntity {
 	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 	public static final BooleanProperty OPEN = Properties.OPEN;
-	
-	public WineRackStorageBlock(AbstractBlock.Settings settings) {
+	private final SoundEvent openSound;
+	private final SoundEvent closeSound;
+
+	public WineRackStorageBlock(AbstractBlock.Settings settings, SoundEvent openSound, SoundEvent closeSound) {
 		super(settings);
+		this.openSound = openSound;
+		this.closeSound = closeSound;
 		this.setDefaultState(((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(OPEN, false));
 	}
 	
@@ -121,5 +127,8 @@ public class WineRackStorageBlock extends BlockWithEntity {
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
 	}
-	
+
+	public void playSound(World world, BlockPos pos, boolean open) {
+		world.playSound(null, pos, open ? openSound : closeSound, SoundCategory.BLOCKS, 1.0f, 1.0f);
+	}
 }
