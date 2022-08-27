@@ -22,6 +22,7 @@
   "block.vinery.grapevine_leaves": "Grapevine Leaves",
   "block.vinery.grapevine_pot": "Grapevine Pot",
   "block.vinery.stove": "Stove",
+  "block.vinery.wood_fired_oven": "Wood Fired Oven",
   "block.vinery.cherry_planks": "Cherry Planks",
   "block.vinery.stripped_cherry_log": "Stripped Cherry Log",
   "block.vinery.cherry_log": "Cherry Log",
@@ -111,5 +112,6 @@
   "entity.vinery.wandering_winemaker": "Wandering Winemaker",
   "vinery.tooltip.winemaker_armor": "Winemaker's Desire:",
   "vinery.tooltip.winemaker_armor2": "Full set bonus:",
-  "vinery.tooltip.winemaker_armor3": "Bonemeal wont get consumed anymore."
+  "vinery.tooltip.winemaker_armor3": "Bonemeal wont get consumed anymore.",
+  "item.vinery.gloves": "Gloves"
 }

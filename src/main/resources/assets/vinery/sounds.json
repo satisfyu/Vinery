@@ -18,5 +18,25 @@
       "vinery:block/kitchen_sink/faucet",
       "vinery:block/kitchen_sink/faucet1"
     ]
+  },
+  "block.wine_rack_3.close": {
+    "sounds": [
+      "vinery:block/wine_rack/wine_rack_3_close"
+    ]
+  },
+  "block.wine_rack_3.open": {
+    "sounds": [
+      "vinery:block/wine_rack/wine_rack_3_open"
+    ]
+  },
+  "block.wine_rack_5.close": {
+    "sounds": [
+      "vinery:block/wine_rack/wine_rack_5_close"
+    ]
+  },
+  "block.wine_rack_5.open": {
+    "sounds": [
+      "vinery:block/wine_rack_5_open"
+    ]
   }
 }

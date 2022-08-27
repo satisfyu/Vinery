@@ -84,7 +84,21 @@ public class DataGen implements DataGeneratorEntrypoint {
                 shaped(exporter, "wood", ObjectRegistry.OLD_CHERRY_WOOD, 3, "has_old_cherry_wood", ObjectRegistry.OLD_CHERRY_LOG, "##", "##", '#', ObjectRegistry.OLD_CHERRY_LOG);
                 shaped(exporter, "grape_crate", ObjectRegistry.RED_GRAPE_CRATE, "has_red_grape", ObjectRegistry.RED_GRAPE, "###", "###", "###", '#', ObjectRegistry.RED_GRAPE);
                 shaped(exporter, "stackable_logs", ObjectRegistry.STACKABLE_LOG, "has_oak_log", Items.OAK_LOG, "SSS", "###", 'S',Items.STICK, '#', Items.OAK_LOG);
-                shaped(exporter, "stove", ObjectRegistry.STOVE, "has_campfire", Items.CAMPFIRE, "III", "BCB", 'I', Items.IRON_INGOT, 'B', Items.BRICKS, 'C', Items.CAMPFIRE);
+                shaped(exporter, "wood_fired_oven", ObjectRegistry.WOOD_FIRED_OVEN, "has_campfire", Items.CAMPFIRE,
+                        "III",
+                        "BCB",
+                        "LLL",
+                        'I', Items.IRON_INGOT,
+                        'B', Items.BRICKS,
+                        'C', Items.CAMPFIRE,
+                        'L', BlockTags.LOGS);
+                shaped(exporter, "stove", ObjectRegistry.STOVE, "has_campfire", Items.CAMPFIRE,
+                        "III",
+                        "BCB",
+                        "BBB",
+                        'I', Items.IRON_INGOT,
+                        'B', Items.BRICKS,
+                        'C', Items.CAMPFIRE);
                 shaped(exporter, "stripped_wood", ObjectRegistry.STRIPPED_CHERRY_WOOD, 3, "has_stripped_cherry_log", ObjectRegistry.STRIPPED_CHERRY_LOG, "##", "##", '#', ObjectRegistry.STRIPPED_CHERRY_LOG);
                 shaped(exporter, "stripped_wood", ObjectRegistry.STRIPPED_OLD_CHERRY_LOG, 3, "has_stripped_old_cherry_log", ObjectRegistry.STRIPPED_OLD_CHERRY_LOG, "##", "##", '#', ObjectRegistry.STRIPPED_OLD_CHERRY_LOG);
                 shaped(exporter, "straw_hat", ObjectRegistry.STRAW_HAT, "has_wheat", Items.WHEAT, " X ", " G ", " X ", 'X', Items.WHEAT, 'G', Items.RED_WOOL);
@@ -264,14 +278,14 @@ public class DataGen implements DataGeneratorEntrypoint {
 
             public BlockStateVariant computerBigTable(Direction direction, BedPart part) {
                 BlockStateVariant variant = switch (direction) {
-                    case EAST -> BlockStateVariant.create().put(VariantSettings.Y, part == BedPart.HEAD ? VariantSettings.Rotation.R0 : VariantSettings.Rotation.R180);
-                    case SOUTH -> BlockStateVariant.create().put(VariantSettings.Y, part == BedPart.HEAD ? VariantSettings.Rotation.R90 : VariantSettings.Rotation.R270);
-                    case WEST -> BlockStateVariant.create().put(VariantSettings.Y, part == BedPart.HEAD ? VariantSettings.Rotation.R180 : VariantSettings.Rotation.R0);
-                    case NORTH -> BlockStateVariant.create().put(VariantSettings.Y, part == BedPart.HEAD ? VariantSettings.Rotation.R270 : VariantSettings.Rotation.R90);
+                    case EAST -> BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R0);
+                    case SOUTH -> BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R90);
+                    case WEST -> BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R180);
+                    case NORTH -> BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R270);
                     default -> BlockStateVariant.create();
                 };
 
-                return variant.put(VariantSettings.MODEL, TextureMap.getId(ObjectRegistry.BIG_TABLE));
+                return variant.put(VariantSettings.MODEL, part == BedPart.FOOT ? TextureMap.getSubId(ObjectRegistry.BIG_TABLE, "_adv") : TextureMap.getId(ObjectRegistry.BIG_TABLE));
             }
 
             @Override
@@ -367,6 +381,7 @@ public class DataGen implements DataGeneratorEntrypoint {
                         ObjectRegistry.ROCKS,
                         ObjectRegistry.ROCKS_VARIANT_B,
                         ObjectRegistry.ROCKS_VARIANT_C,
+                        ObjectRegistry.WOOD_FIRED_OVEN,
                         ObjectRegistry.STOVE,
                         ObjectRegistry.WINDOW_2,
                         ObjectRegistry.WINDOW_1,
@@ -389,6 +404,7 @@ public class DataGen implements DataGeneratorEntrypoint {
             @Override
             protected void generateBlockLootTables() {
                 addDrop(ObjectRegistry.BANNER);
+                addDrop(ObjectRegistry.STOVE);
                 addDrop(ObjectRegistry.BIG_TABLE);
                 addDrop(ObjectRegistry.BIG_BOTTLE);
                 addDrop(ObjectRegistry.COARSE_DIRT_SLAB, createSlab(ObjectRegistry.COARSE_DIRT_SLAB));

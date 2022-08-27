@@ -3,6 +3,7 @@ package daniking.vinery.block;
 import daniking.vinery.block.entity.CookingPotEntity;
 import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.registry.VinerySoundEvents;
+import daniking.vinery.util.VineryUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -24,6 +25,8 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.Util;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -33,9 +36,38 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class CookingPotBlock extends Block implements BlockEntityProvider {
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.25, 0.00625, 0.203125, 0.796875, 0.084375, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0.625, 0.1875, 0.8125, 0.7421875, 0.265625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 0.625, 0.265625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.734375, 0.8125, 0.625, 0.8125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8125, 0.5859375, 0.2265625, 0.96875, 0.703125, 0.3046875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.03125, 0.5859375, 0.2265625, 0.1875, 0.703125, 0.3046875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8125, 0.5859375, 0.6953125, 0.96875, 0.703125, 0.7734375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.03125, 0.5859375, 0.6953125, 0.1875, 0.703125, 0.7734375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.734375, 0.625, 0.265625, 0.8125, 0.7421875, 0.734375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.734375, 0, 0.265625, 0.8125, 0.625, 0.734375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0, 0.265625, 0.265625, 0.625, 0.734375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.890625, 0.5859375, 0.3046875, 0.96875, 0.703125, 0.6953125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.03125, 0.5859375, 0.3046875, 0.109375, 0.703125, 0.6953125), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0.625, 0.265625, 0.265625, 0.7421875, 0.734375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.1875, 0.625, 0.734375, 0.8125, 0.7421875, 0.8125), BooleanBiFunction.OR);
+        return shape;
+    };
+
+    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+        for (Direction direction : Stream.of(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST).toList()) {
+            map.put(direction, VineryUtils.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+        }
+    });
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty HAS_CHERRIES_INSIDE = BooleanProperty.of("has_cherries");
@@ -48,7 +80,7 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, Direction.NORTH);
+        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
     }
 
     @Override
@@ -99,6 +131,11 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, HAS_CHERRIES_INSIDE);
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE.get(state.get(FACING));
     }
 
     @Nullable

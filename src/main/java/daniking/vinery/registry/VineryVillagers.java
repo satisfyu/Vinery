@@ -27,8 +27,8 @@ public class VineryVillagers {
 
     public static void init() {
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 1, factories -> {
-            factories.add(new BuyForOneDiamondFactory(ObjectRegistry.RED_GRAPE, 2, 12, 10));
-            factories.add(new BuyForOneDiamondFactory(ObjectRegistry.WHITE_GRAPE, 2, 12, 10));
+            factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.RED_GRAPE, 2, 12, 10));
+            factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.WHITE_GRAPE, 2, 12, 10));
         });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 2, factories -> {
             factories.add(new SellItemFactory(ObjectRegistry.BIG_BOTTLE, 1, 1, 10));
@@ -47,14 +47,14 @@ public class VineryVillagers {
 //        TradeOfferHelper.registerWanderingTraderOffers();
     }
 
-    static class BuyForOneDiamondFactory implements TradeOffers.Factory {
+    static class BuyForOneEmeraldFactory implements TradeOffers.Factory {
         private final Item buy;
         private final int price;
         private final int maxUses;
         private final int experience;
         private final float multiplier;
 
-        public BuyForOneDiamondFactory(ItemConvertible item, int price, int maxUses, int experience) {
+        public BuyForOneEmeraldFactory(ItemConvertible item, int price, int maxUses, int experience) {
             this.buy = item.asItem();
             this.price = price;
             this.maxUses = maxUses;
@@ -65,7 +65,7 @@ public class VineryVillagers {
         @Override
         public TradeOffer create(Entity entity, Random random) {
             ItemStack itemStack = new ItemStack(this.buy, this.price);
-            return new TradeOffer(itemStack, new ItemStack(Items.DIAMOND), this.maxUses, this.experience, this.multiplier);
+            return new TradeOffer(itemStack, new ItemStack(Items.EMERALD), this.maxUses, this.experience, this.multiplier);
         }
     }
 
@@ -109,7 +109,7 @@ public class VineryVillagers {
         @Override
         public TradeOffer create(Entity entity, Random random) {
             return new TradeOffer(
-                    new ItemStack(Items.DIAMOND, this.price), new ItemStack(this.sell.getItem(), this.count), this.maxUses, this.experience, this.multiplier
+                    new ItemStack(Items.EMERALD, this.price), new ItemStack(this.sell.getItem(), this.count), this.maxUses, this.experience, this.multiplier
             );
         }
     }
