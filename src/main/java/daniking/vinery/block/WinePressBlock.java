@@ -2,6 +2,8 @@ package daniking.vinery.block;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -20,6 +22,16 @@ public class WinePressBlock extends FacingBlock {
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return state.get(FACING) == Direction.SOUTH || state.get(FACING) == Direction.NORTH ? SHAPE_WE : SHAPE_NS;
+	}
+	
+	@Override
+	public BlockState rotate(BlockState state, BlockRotation rotation) {
+		return state.with(FACING, rotation.rotate(state.get(FACING)));
+	}
+	
+	@Override
+	public BlockState mirror(BlockState state, BlockMirror mirror) {
+		return state.rotate(mirror.getRotation(state.get(FACING)));
 	}
 	
 	public static VoxelShape makeShapeWE() {

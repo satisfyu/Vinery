@@ -102,7 +102,14 @@
   "item.vinery.toast": "Toast",
   "item.vinery.donut": "Donut",
   "item.vinery.milk_bread": "Milk Bread",
+  "item.vinery.mule_spawn_egg": "Mule Spawn Egg",
+  "item.vinery.wandering_winemaker_spawn_egg": "Wandering Winemaker Spawn Egg",
   "entity.vinery.cherry_boat": "Cherry Boat",
   "container.wine_rack": "Wine Rack",
-  "entity.minecraft.villager.winemaker": "Winemaker"
+  "entity.minecraft.villager.winemaker": "Winemaker",
+  "entity.vinery.mule": "Mule",
+  "entity.vinery.wandering_winemaker": "Wandering Winemaker",
+  "vinery.tooltip.winemaker_armor": "Winemaker's Desire:",
+  "vinery.tooltip.winemaker_armor2": "Full set bonus:",
+  "vinery.tooltip.winemaker_armor3": "Bonemeal wont get consumed anymore."
 }

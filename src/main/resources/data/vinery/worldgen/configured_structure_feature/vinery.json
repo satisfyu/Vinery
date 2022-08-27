@@ -11,7 +11,7 @@
       "bounding_box": "piece",
       "spawns": [
         {
-          "type": "minecraft:villager",
+          "type": "minecraft:vill3ager",
           "weight": 1,
           "minCount": 1,
           "maxCount": 4

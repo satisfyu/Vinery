@@ -342,7 +342,8 @@ public class DataGen implements DataGeneratorEntrypoint {
                         ObjectRegistry.MELLOHI_WINE,
                         ObjectRegistry.NOIR_WINE,
                         ObjectRegistry.RED_GRAPEJUICE_WINE_BOTTLE,
-                        ObjectRegistry.WHITE_GRAPEJUICE_WINE_BOTTLE);
+                        ObjectRegistry.WHITE_GRAPEJUICE_WINE_BOTTLE
+                     );
 
                 getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(
                         ObjectRegistry.RED_GRAPE_BUSH,

@@ -45,6 +45,7 @@ public class Vinery implements ModInitializer {
         VineryConfiguredFeatures.init();
         VinerySoundEvents.init();
         VineryVillagers.init();
+        VineryEntites.init();
     }
 }
 

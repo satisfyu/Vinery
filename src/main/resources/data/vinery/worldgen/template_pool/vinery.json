@@ -5,10 +5,17 @@
     {
       "weight": 1,
       "element": {
-        "location": "vinery:vinery",
-        "processors": "minecraft:empty",
+        "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
+        "location": "vinery:vinery",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:empty_pool_element",
+        "projection": "rigid"
       }
     }
   ]
