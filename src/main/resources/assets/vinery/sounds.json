@@ -36,7 +36,7 @@
   },
   "block.wine_rack_5.open": {
     "sounds": [
-      "vinery:block/wine_rack_5_open"
+      "vinery:block/wine_rack/wine_rack_5_open"
     ]
   }
 }

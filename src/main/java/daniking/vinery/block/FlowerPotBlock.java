@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.ActionResult;
@@ -21,6 +22,10 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.event.GameEvent;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class FlowerPotBlock extends Block {
 	protected static final VoxelShape SHAPE = makeShape();
@@ -93,7 +98,15 @@ public class FlowerPotBlock extends Block {
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
-	
+
+	@Override
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+		List<ItemStack> list = new ArrayList<>();
+		list.add(new ItemStack(this));
+		Optional.of(state.get(CONTENT)).filter(a -> a != EnumTallFlower.NONE).map(EnumTallFlower::getFlower).map(ItemStack::new).ifPresent(list::add);
+		return list;
+	}
+
 	public static VoxelShape makeShape() {
 		VoxelShape shape = VoxelShapes.empty();
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.78125, 0.421875, 0.21875, 0.875, 0.609375, 0.78125), BooleanBiFunction.OR);

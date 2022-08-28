@@ -274,6 +274,8 @@ public class DataGen implements DataGeneratorEntrypoint {
                                 .create(ObjectRegistry.BIG_TABLE)
                                 .coordinate(BlockStateVariantMap.create(BigTableBlock.FACING, BigTableBlock.PART).register(this::computerBigTable))
                 );
+
+                generator.registerParentedItemModel();
             }
 
             public BlockStateVariant computerBigTable(Direction direction, BedPart part) {
