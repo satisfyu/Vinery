@@ -3,6 +3,7 @@ package daniking.vinery.data;
 import daniking.vinery.Vinery;
 import daniking.vinery.VineryIdentifier;
 import daniking.vinery.block.*;
+import daniking.vinery.data.family.BlockFamilies;
 import daniking.vinery.data.recipe.ExtendedShapedRecipeJsonBuilder;
 import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.registry.VineryBoatTypes;
@@ -13,12 +14,14 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.advancement.criterion.CriterionConditions;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.enums.BedPart;
 import net.minecraft.block.enums.SlabType;
 import net.minecraft.data.client.*;
+import net.minecraft.data.family.BlockFamily;
 import net.minecraft.data.server.BlockLootTableGenerator;
 import net.minecraft.data.server.RecipeProvider;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
@@ -116,6 +119,10 @@ public class DataGen implements DataGeneratorEntrypoint {
                 shaped(exporter, "wine_rack", ObjectRegistry.WINE_RACK_5, "has_spruce_planks", Items.SPRUCE_PLANKS, "#_#", "_B_", "#B#", '#', Items.SPRUCE_PLANKS, '_', Items.SPRUCE_SLAB, 'B', Items.BARREL);
                 shaped(exporter, "window", ObjectRegistry.WINDOW_1, "has_black_stained_glass_pane", Items.BLACK_STAINED_GLASS_PANE, "XOI", "OOO", "IOX", 'X', Items.YELLOW_STAINED_GLASS_PANE, 'O', Items.BLACK_STAINED_GLASS_PANE, 'I', Items.ORANGE_STAINED_GLASS_PANE);
                 shaped(exporter, "window", ObjectRegistry.WINDOW_2, "has_black_stained_glass_pane", Items.BLACK_STAINED_GLASS_PANE, "XXX", "XXX", "XXX", 'X', Items.BLACK_STAINED_GLASS_PANE);
+
+                createStairsRecipe(ObjectRegistry.LOAM_STAIRS, Ingredient.ofItems(ObjectRegistry.LOAM.asItem())).group("stairs").criterion("loam", RecipeProvider.conditionsFromItem(ObjectRegistry.LOAM)).offerTo(exporter);
+                createSlabRecipe(ObjectRegistry.LOAM_SLAB, Ingredient.ofItems(ObjectRegistry.LOAM.asItem())).group("slabs").criterion("loam", RecipeProvider.conditionsFromItem(ObjectRegistry.LOAM)).offerTo(exporter);
+
             }
 
             public ExtendedShapedRecipeJsonBuilder shaped(String group, ItemConvertible output, String criterionName, Object criterionItem) {
@@ -275,7 +282,11 @@ public class DataGen implements DataGeneratorEntrypoint {
                                 .coordinate(BlockStateVariantMap.create(BigTableBlock.FACING, BigTableBlock.PART).register(this::computerBigTable))
                 );
 
-                generator.registerParentedItemModel();
+                registerFamily(generator, BlockFamilies.LOAM);
+            }
+
+            private void registerFamily(BlockStateModelGenerator generator, BlockFamily family) {
+                generator.registerCubeAllModelTexturePool(family.getBaseBlock()).family(family);
             }
 
             public BlockStateVariant computerBigTable(Direction direction, BedPart part) {
@@ -437,6 +448,9 @@ public class DataGen implements DataGeneratorEntrypoint {
                 addDrop(ObjectRegistry.FLOWER_BOX_BLUE_RED_TULIP, flowerBox(Blocks.RED_TULIP));
                 addDrop(ObjectRegistry.FLOWER_BOX_BLUE_WHITE_TULIP, flowerBox(Blocks.WHITE_TULIP));
                 addDrop(ObjectRegistry.FLOWER_BOX_BLUE_WHITER_ROSE, flowerBox(Blocks.POTTED_WITHER_ROSE));
+
+                addDrop(ObjectRegistry.LOAM_SLAB, BlockLootTableGenerator::slabDrops);
+                addDrop(ObjectRegistry.LOAM_STAIRS, BlockLootTableGenerator::slabDrops);
 
                 addDropWithSilkTouch(ObjectRegistry.WINDOW_1);
                 addDropWithSilkTouch(ObjectRegistry.WINDOW_2);

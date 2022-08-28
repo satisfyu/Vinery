@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "vinery:block/loam",
+    "top": "vinery:block/loam",
+    "side": "vinery:block/loam"
+  }
+}
