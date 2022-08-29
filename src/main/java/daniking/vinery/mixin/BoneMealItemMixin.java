@@ -14,10 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BoneMealItem.class)
 public abstract class BoneMealItemMixin {
-	//	@Inject(method = "useOnFertilizable", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;decrement(I)V", shift = At.Shift.BEFORE), cancellable = true)
-	//	private static void useOnFertilizable(ItemStack stack, World world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-	//
-	//	}
 	
 	@Inject(method = "useOnBlock", at = @At("RETURN"))
 	public void useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
