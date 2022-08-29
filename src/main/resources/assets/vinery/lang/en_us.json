@@ -115,5 +115,7 @@
   "vinery.tooltip.winemaker_armor": "Winemaker's Desire:",
   "vinery.tooltip.winemaker_armor2": "Full set bonus:",
   "vinery.tooltip.winemaker_armor3": "Bonemeal wont get consumed anymore.",
-  "item.vinery.gloves": "Gloves"
+  "item.vinery.gloves": "Gloves",
+  "item.vinery.faucet.tooltip.shift":"Some sort of an infinite water resource",
+  "item.vinery.faucet.tooltip": "Press §eSHIFT§r for more Information"
 }
