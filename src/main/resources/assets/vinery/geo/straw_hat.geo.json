@@ -4,7 +4,7 @@
 		{
 			"description": {
 				"identifier": "geometry.vinery:straw_hate",
-				"texture_width": 16,
+				"texture_width": 32,
 				"texture_height": 16,
 				"visible_bounds_width": 3,
 				"visible_bounds_height": 3.5,
