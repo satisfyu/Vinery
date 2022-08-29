@@ -28,7 +28,7 @@ public class VineryEntites {
 	                                                                                                );
 	
 	public static void init() {
-		FabricDefaultAttributeRegistry.register(MULE, LlamaEntity.createMobAttributes());
+		FabricDefaultAttributeRegistry.register(MULE, LlamaEntity.createLlamaAttributes());
 		FabricDefaultAttributeRegistry.register(WANDERING_WINEMAKER, WanderingWinemakerEntity.createMobAttributes());
 	}
 	
