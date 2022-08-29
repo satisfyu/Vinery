@@ -6,7 +6,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Rarity;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -15,7 +14,7 @@ import java.util.List;
 
 public class FaucetItem extends Item {
 	
-	public FaucetItem(Rarity uncommon, Settings settings) {
+	public FaucetItem(Settings settings) {
 		super(settings);
 	}
 	
