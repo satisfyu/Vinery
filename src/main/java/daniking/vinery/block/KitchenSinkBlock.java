@@ -2,9 +2,11 @@ package daniking.vinery.block;
 
 import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.registry.VinerySoundEvents;
+import daniking.vinery.util.VineryUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.TransparentBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
@@ -16,10 +18,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -30,15 +29,33 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class KitchenSinkBlock extends Block {
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Supplier;
+
+import static net.minecraft.block.BedBlock.getOppositePartDirection;
+
+public class KitchenSinkBlock extends TransparentBlock {
 	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 	public static final BooleanProperty FILLED = BooleanProperty.of("filled");
 	public static final BooleanProperty HAS_FAUCET = BooleanProperty.of("has_faucet");
 	
-	protected static final VoxelShape SHAPE_N = makeShapeN();
-	protected static final VoxelShape SHAPE_S = makeShapeS();
-	protected static final VoxelShape SHAPE_E = makeShapeE();
-	protected static final VoxelShape SHAPE_W = makeShapeW();
+	private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+		VoxelShape shape = VoxelShapes.empty();
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0.75, 0, 0.8125, 1, 0.1859375), BooleanBiFunction.OR);
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.01, 0.75, 0, 0.3125, 1, 1), BooleanBiFunction.OR);
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0.75, 0.8125, 0.8125, 1, 1), BooleanBiFunction.OR);
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8125, 0.75, 0, 0.9375, 1, 1), BooleanBiFunction.OR);
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(-0.01, 0, 0, 0.8125, 0.75, 1), BooleanBiFunction.OR);
+		
+		return shape;
+	};
+	
+	public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+		for (Direction direction : Direction.Type.HORIZONTAL) {
+			map.put(direction, VineryUtils.rotateShape(Direction.EAST, direction, voxelShapeSupplier.get()));
+		}
+	});
 	
 	public KitchenSinkBlock(Settings settings) {
 		super(settings);
@@ -70,11 +87,6 @@ public class KitchenSinkBlock extends Block {
 			player.setStackInHand(hand, new ItemStack(Items.WATER_BUCKET));
 			return ActionResult.SUCCESS;
 		}
-		
-//		CauldronBehavior cauldronBehavior = ((AbstractCauldronBlockAccessor) Blocks.CAULDRON).getBehaviorMap().get(item);
-//		if (cauldronBehavior != null) {
-//			return cauldronBehavior.interact(state, world, pos, player, hand, itemStack);
-//		}
 		return ActionResult.PASS;
 	}
 	
@@ -91,19 +103,7 @@ public class KitchenSinkBlock extends Block {
 	
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		Direction facing = state.get(FACING);
-		switch (facing) {
-			case NORTH:
-				return SHAPE_N;
-			case SOUTH:
-				return SHAPE_S;
-			case EAST:
-				return SHAPE_E;
-			case WEST:
-				return SHAPE_W;
-			default:
-				return SHAPE_N;
-		}
+		return SHAPE.get(state.get(FACING));
 	}
 	
 	@Override
@@ -116,47 +116,4 @@ public class KitchenSinkBlock extends Block {
 		return state.rotate(mirror.getRotation(state.get(FACING)));
 	}
 	
-	public static VoxelShape makeShapeE() {
-		VoxelShape shape = VoxelShapes.empty();
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0.75, 0, 0.8125, 1, 0.1859375), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0.75, 0, 0.3125, 1, 1), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0.75, 0.8125, 0.8125, 1, 1), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8125, 0.75, 0, 0.9375, 1, 1), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0, 0, 0.8125, 0.75, 1), BooleanBiFunction.OR);
-		
-		return shape;
-	}
-	
-	public static VoxelShape makeShapeW() {
-		VoxelShape shape = VoxelShapes.empty();
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.21875, 0.75, 0.8140625, 0.71875, 1, 1), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.71875, 0.75, 0, 1.03125, 1, 1), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.21875, 0.75, 0, 0.71875, 1, 0.1875), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.09375, 0.75, 0, 0.21875, 1, 1), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.21875, 0, 0, 1.03125, 0.75, 1), BooleanBiFunction.OR);
-		
-		return shape;
-	}
-	
-	public static VoxelShape makeShapeN() {
-		VoxelShape shape = VoxelShapes.empty();
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.015625, 0.75, 0.203125, 0.20156249999999998, 1, 0.703125), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.015625, 0.75, 0.703125, 1.015625, 1, 1.015625), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.828125, 0.75, 0.203125, 1.015625, 1, 0.703125), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.015625, 0.75, 0.078125, 1.015625, 1, 0.203125), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.015625, 0, 0.203125, 1.015625, 0.75, 1.015625), BooleanBiFunction.OR);
-		
-		return shape;
-	}
-	
-	public static VoxelShape makeShapeS() {
-		VoxelShape shape = VoxelShapes.empty();
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8296875, 0.75, 0.296875, 1.015625, 1, 0.796875), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.015625, 0.75, -0.015625, 1.015625, 1, 0.296875), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.015625, 0.75, 0.296875, 0.203125, 1, 0.796875), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.015625, 0.75, 0.796875, 1.015625, 1, 0.921875), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.015625, 0, -0.015625, 1.015625, 0.75, 0.796875), BooleanBiFunction.OR);
-		
-		return shape;
-	}
 }
