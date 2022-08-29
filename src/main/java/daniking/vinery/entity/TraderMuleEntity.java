@@ -31,7 +31,7 @@ public class TraderMuleEntity extends TraderLlamaEntity implements IAnimatable {
 		this.goalSelector.add(4, new AnimalMateGoal(this, 1.0));
 		this.goalSelector.add(5, new TemptGoal(this, 1.0, Ingredient.ofItems(Items.HAY_BLOCK), false));
 		this.goalSelector.add(6, new FollowParentGoal(this, 1.0));
-		this.goalSelector.add(7, new WanderAroundFarGoal(this, 0.7));
+		this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 6.0f));
 		this.goalSelector.add(9, new LookAroundGoal(this));
 	}
