@@ -11,6 +11,7 @@ import daniking.vinery.block.BannerBlock;
 import daniking.vinery.block.FacingBlock;
 import daniking.vinery.block.FlowerPotBlock;
 import daniking.vinery.item.DrinkBlockItem;
+import daniking.vinery.item.FaucetItem;
 import daniking.vinery.item.StrawHatItem;
 import daniking.vinery.item.WinemakerArmorItem;
 import daniking.vinery.util.GrapevineType;
@@ -208,7 +209,7 @@ public class ObjectRegistry {
     public static final Block FLOWER_POT = register("flower_pot", new FlowerPotBlock(FabricBlockSettings.copy(Blocks.FLOWER_POT)));
     
     // Items
-    public static final Item FAUCET = register("faucet", new Item(getSettings()));
+    public static final Item FAUCET = register("faucet", new FaucetItem(getSettings()));
     public static final Item MULE_SPAWN_EGG = register("mule_spawn_egg", new SpawnEggItem(MULE, 0x8b7867, 0x5a4e43, getSettings()));
     public static final Item WANDERING_WINEMAKER_SPAWN_EGG = register("wandering_winemaker_spawn_egg", new SpawnEggItem(WANDERING_WINEMAKER, 0xb78272, 0x3c4a73, getSettings()));
 
@@ -216,7 +217,6 @@ public class ObjectRegistry {
     public static final Item VINEMAKER_APRON = register("vinemaker_apron", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings()));
     public static final Item VINEMAKER_LEGGINGS = register("vinemaker_leggings", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings()));
     public static final Item VINEMAKER_BOOTS = register("vinemaker_boots", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings()));
-
 
     ////////////////////////////////// 4732 Finish //////////////////////////////////
     
