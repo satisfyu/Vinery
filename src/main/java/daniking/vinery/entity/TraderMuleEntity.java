@@ -2,12 +2,16 @@ package daniking.vinery.entity;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.LlamaEntity;
 import net.minecraft.entity.passive.TraderLlamaEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -63,4 +67,36 @@ public class TraderMuleEntity extends TraderLlamaEntity implements IAnimatable {
 	protected LlamaEntity createChild() {
 		return null;
 	}
+	
+	@Override
+	protected SoundEvent getAmbientSound() {
+		super.getAmbientSound();
+		return SoundEvents.ENTITY_DONKEY_AMBIENT;
+	}
+	
+	@Override
+	protected SoundEvent getAngrySound() {
+		super.getAngrySound();
+		return SoundEvents.ENTITY_DONKEY_ANGRY;
+	}
+	
+	@Override
+	protected SoundEvent getDeathSound() {
+		super.getDeathSound();
+		return SoundEvents.ENTITY_DONKEY_DEATH;
+	}
+	
+	@Override
+	@Nullable
+	protected SoundEvent getEatSound() {
+		return SoundEvents.ENTITY_DONKEY_EAT;
+	}
+	
+	@Override
+	protected SoundEvent getHurtSound(DamageSource source) {
+		super.getHurtSound(source);
+		return SoundEvents.ENTITY_DONKEY_HURT;
+	}
+	
+	
 }
