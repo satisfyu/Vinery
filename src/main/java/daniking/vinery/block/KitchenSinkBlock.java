@@ -33,8 +33,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import static net.minecraft.block.BedBlock.getOppositePartDirection;
-
 public class KitchenSinkBlock extends TransparentBlock {
 	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 	public static final BooleanProperty FILLED = BooleanProperty.of("filled");

@@ -21,8 +21,8 @@ public class StoveGuiHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate delegate;
 
-    public static final int FUEL_SLOT = 0;
-    public static final int INGREDIENT_SLOT_START_INDEX = 1;
+    public static final int FUEL_SLOT = 3;
+    public static final int INGREDIENT_SLOT_START_INDEX = 0;
     public static final int OUTPUT_SLOT = 4;
     private final World world;
     public StoveGuiHandler(int syncId, PlayerInventory playerInventory) {
@@ -34,11 +34,11 @@ public class StoveGuiHandler extends ScreenHandler {
         this.inventory = inventory;
         this.world = playerInventory.player.world;
 
-        this.addSlot(new ExtendedSlot(this.inventory, 0, 56, 53, StoveGuiHandler::isFuel));
 
-        this.addSlot(new ExtendedSlot(this.inventory, 1, 38, 17, this::isIngredient));
-        this.addSlot(new ExtendedSlot(this.inventory, 2, 56, 17, this::isIngredient));
-        this.addSlot(new ExtendedSlot(this.inventory, 3, 74, 17, this::isIngredient));
+        this.addSlot(new ExtendedSlot(this.inventory, 0, 38, 17, this::isIngredient));
+        this.addSlot(new ExtendedSlot(this.inventory, 1, 56, 17, this::isIngredient));
+        this.addSlot(new ExtendedSlot(this.inventory, 2, 74, 17, this::isIngredient));
+        this.addSlot(new ExtendedSlot(this.inventory, 3, 56, 53, StoveGuiHandler::isFuel));
 
         this.addSlot(new StoveOutputSlot(playerInventory.player, this.inventory, 4, 116,  35));
 
@@ -101,7 +101,7 @@ public class StoveGuiHandler extends ScreenHandler {
                 }
                 // Fuel
                 if (isFuel(stackInSlot)) {
-                    if (!this.insertItem(stackInSlot, FUEL_SLOT, INGREDIENT_SLOT_START_INDEX, false)) {
+                    if (!this.insertItem(stackInSlot, 2, 4, false)) {
                         return ItemStack.EMPTY;
                     }
                 }
