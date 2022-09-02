@@ -1,6 +1,5 @@
 package daniking.vinery.recipe;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import daniking.vinery.registry.VineryRecipeTypes;
@@ -30,7 +29,7 @@ public class StoveCookingRecipe implements Recipe<Inventory> {
 
     @Override
     public boolean matches(Inventory inventory, World world) {
-        return VineryUtils.matchesRecipe(inventory, inputs, 1, 3);
+        return VineryUtils.matchesRecipe(inventory, inputs, 0, 2);
     }
 
 

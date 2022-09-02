@@ -32,5 +32,4 @@ public class VineryEntites {
 		FabricDefaultAttributeRegistry.register(MULE, LlamaEntity.createLlamaAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2f));
 		FabricDefaultAttributeRegistry.register(WANDERING_WINEMAKER, WanderingWinemakerEntity.createMobAttributes());
 	}
-	
 }

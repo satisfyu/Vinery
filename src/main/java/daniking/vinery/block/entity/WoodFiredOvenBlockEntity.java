@@ -1,6 +1,5 @@
 package daniking.vinery.block.entity;
 
-import daniking.vinery.block.StoveBlock;
 import daniking.vinery.block.WoodFiredOvenBlock;
 import daniking.vinery.client.gui.handler.StoveGuiHandler;
 import daniking.vinery.recipe.StoveCookingRecipe;
@@ -44,7 +43,7 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
     protected float experience;
 
     protected static final int FUEL_SLOT = StoveGuiHandler.FUEL_SLOT;
-    protected static final int[] INGREDIENT_SLOTS = {1, 2, 3};
+    protected static final int[] INGREDIENT_SLOTS = {0, 1, 2};
     protected static final int OUTPUT_SLOT = StoveGuiHandler.OUTPUT_SLOT;
 
     protected static final int TOTAL_COOKING_TIME = 240;
@@ -191,15 +190,34 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
         } else if (outputSlotStack.isOf(recipeOutput.getItem())) {
             outputSlotStack.increment(recipeOutput.getCount());
         }
+
+
         final DefaultedList<Ingredient> ingredients = recipe.getIngredients();
-        for (int i = 0; i < ingredients.size(); i++) {
+        boolean[] slotUsed = new boolean[3];
+        for (int i = 0; i < recipe.getIngredients().size(); i++) {
             Ingredient ingredient = ingredients.get(i);
-            final ItemStack bestSlot = this.getStack(i);
-            if (ingredient.test(bestSlot)) {
-                boolean withRemainder = bestSlot.getItem().hasRecipeRemainder();
+            // Looks for the best slot to take it from
+            ItemStack bestSlot = getStack(i);
+            if (ingredient.test(bestSlot) && !slotUsed[i]) {
+                slotUsed[i] = true;
+                ItemStack remainderStack = getRemainderItem(bestSlot);
                 bestSlot.decrement(1);
-                final Item remainder = bestSlot.getItem().getRecipeRemainder();
-                if (withRemainder && remainder != null) this.setStack(i, remainder.getDefaultStack());
+                if (!remainderStack.isEmpty()) {
+                    setStack(i, remainderStack);
+                }
+            } else {
+                // check all slots in search of the ingredient
+                for (int j = 0; j < 3; j++) {
+                    ItemStack stack = getStack(j);
+                    if (ingredient.test(stack) && !slotUsed[j]) {
+                        slotUsed[j] = true;
+                        ItemStack remainderStack = getRemainderItem(stack);
+                        stack.decrement(1);
+                        if (!remainderStack.isEmpty()) {
+                           setStack(j, remainderStack);
+                        }
+                    }
+                }
             }
         }
         this.experience += recipe.getExperience();
@@ -213,7 +231,12 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
             return AbstractFurnaceBlockEntity.createFuelTimeMap().getOrDefault(item, 0);
         }
     }
-
+    private ItemStack getRemainderItem(ItemStack stack) {
+        if (stack.getItem().hasRecipeRemainder()) {
+            return new ItemStack(stack.getItem().getRecipeRemainder());
+        }
+        return ItemStack.EMPTY;
+    }
 
 
     @Override
