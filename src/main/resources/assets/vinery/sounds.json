@@ -16,7 +16,8 @@
   "block.kitchen_sink.faucet": {
     "sounds": [
       "vinery:block/kitchen_sink/faucet",
-      "vinery:block/kitchen_sink/faucet1"
+      "vinery:block/kitchen_sink/faucet1",
+      "vinery:block/kitchen_sink/faucet2"
     ]
   },
   "block.wine_rack_3.close": {

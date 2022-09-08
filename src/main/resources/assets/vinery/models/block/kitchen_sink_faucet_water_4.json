@@ -3,6 +3,7 @@
 	"textures": {
 		"2": "vinery:block/sink_top",
 		"3": "vinery:block/sink_bottom",
+		"4": "vinery:block/water_still",
 		"5": "vinery:block/faucet",
 		"7": "vinery:block/sink_side",
 		"particle": "vinery:block/sink_side"
@@ -68,6 +69,18 @@
 				"west": {"uv": [2.016, 4.016, 15.984, 15.984], "texture": "#7"},
 				"up": {"uv": [2.016, 2.016, 13.984, 13.984], "rotation": 270, "texture": "#3"},
 				"down": {"uv": [15.984, 4.016, 0.016, 15.984], "rotation": 180, "texture": "#7"}
+			}
+		},
+		{
+			"from": [3, 12.5, 3],
+			"to": [12.95, 12.5, 10.95],
+			"faces": {
+				"north": {"uv": [0, 0, 9.95, 0], "texture": "#4"},
+				"east": {"uv": [0, 0, 7.95, 0], "texture": "#4"},
+				"south": {"uv": [0, 0, 9.95, 0], "texture": "#4"},
+				"west": {"uv": [0, 0, 7.95, 0], "texture": "#4"},
+				"up": {"uv": [0, 0, 9.95, 7.95], "texture": "#4"},
+				"down": {"uv": [0, 0, 9.95, 7.95], "texture": "#4"}
 			}
 		},
 		{
@@ -207,6 +220,7 @@
 		8,
 		9,
 		10,
-		11
+		11,
+		12
 	]
 }
