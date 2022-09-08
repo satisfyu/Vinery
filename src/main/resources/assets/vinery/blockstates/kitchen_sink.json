@@ -49,18 +49,18 @@
     },
 
     "facing=east,filled=true,has_faucet=false": {
-      "model": "vinery:block/kitchen_sink_water",
+      "model": "vinery:block/kitchen_sink_faucet_water_4",
       "y": 90
     },
     "facing=north,filled=true,has_faucet=false": {
-      "model": "vinery:block/kitchen_sink_water"
+      "model": "vinery:block/kitchen_sink_faucet_water_4"
     },
     "facing=south,filled=true,has_faucet=false": {
-      "model": "vinery:block/kitchen_sink_water",
+      "model": "vinery:block/kitchen_sink_faucet_water_4",
       "y": 180
     },
     "facing=west,filled=true,has_faucet=false": {
-      "model": "vinery:block/kitchen_sink_water",
+      "model": "vinery:block/kitchen_sink_faucet_water_4",
       "y": 270
     }
   }

@@ -458,7 +458,7 @@ public class DataGen implements DataGeneratorEntrypoint {
                 addDrop(ObjectRegistry.CHERRY_WINE);
                 addDrop(ObjectRegistry.CHERRY_FLOORBOARD);
                 addDrop(ObjectRegistry.LOAM);
-                addDrop(ObjectRegistry.KITCHEN_SINK);
+                addDrop(ObjectRegistry. KITCHEN_SINK);
                 addDrop(ObjectRegistry.WINE_PRESS);
                 addDrop(ObjectRegistry.WINE_BOX);
                 addDrop(ObjectRegistry.BIG_TABLE, block -> dropsWithProperty(block, BigTableBlock.PART, BedPart.HEAD));
