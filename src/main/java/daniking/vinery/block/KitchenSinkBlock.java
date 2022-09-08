@@ -60,7 +60,7 @@ public class KitchenSinkBlock extends Block {
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, 1.0f, 1.0f);
 			return ActionResult.SUCCESS;
 		} else if (item == Items.WATER_BUCKET && !state.get(FILLED)) {
-			world.setBlockState(pos, state.with(FILLED, true), Block.NOTIFY_ALL);
+			world.setBlockState(pos, this.getDefaultState().with(HAS_FAUCET, state.get(HAS_FAUCET)).with(FILLED, true), Block.NOTIFY_ALL);
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
 			player.setStackInHand(hand, new ItemStack(Items.BUCKET));
 			return ActionResult.SUCCESS;
