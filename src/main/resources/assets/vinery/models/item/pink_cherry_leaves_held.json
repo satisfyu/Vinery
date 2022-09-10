@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/leaves",
   "textures": {
-    "all": "vinery:block/pink_cherry_leaves"
+    "all": "vinery:block/pink_cherry_leaves_bottom"
   }
 }
