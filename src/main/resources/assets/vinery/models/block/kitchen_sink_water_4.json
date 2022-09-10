@@ -4,7 +4,7 @@
 	"textures": {
 		"2": "vinery:block/kitchen_sink",
 		"4": "vinery:block/water_still",
-		"particle": "vinery:block/kitchen_sink"
+		"particle": "vinery:block/water_still"
 	},
 	"elements": [
 		{
