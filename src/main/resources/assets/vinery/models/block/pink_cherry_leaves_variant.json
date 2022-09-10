@@ -1,11 +1,11 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"0": "vinery:block/pink_cherry_leaves_inner",
-		"1": "vinery:block/pink_cherry_leaves_bushy",
+		"0": "vinery:block/pink_cherry_leaves_bottom",
+		"1": "vinery:block/pink_cherry_leaves_drop",
 		"2": "vinery:block/pink_cherry_leaves_bushy_2",
 		"3": "vinery:block/pink_cherry_leaves",
-		"particle": "vinery:block/pink_cherry_leaves_inner"
+		"particle": "vinery:block/pink_cherry_leaves_bottom"
 	},
 	"elements": [
 		{
