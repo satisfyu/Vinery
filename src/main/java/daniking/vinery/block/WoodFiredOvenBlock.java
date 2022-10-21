@@ -97,15 +97,15 @@ public class WoodFiredOvenBlock extends Block implements BlockEntityProvider {
 
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (!state.get(LIT)) {
+        if (!state.get(LIT))
             return;
-        }
+
         double d = (double)pos.getX() + 0.5;
         double e = pos.getY() + 0.24;
         double f = (double)pos.getZ() + 0.5;
-        if (random.nextDouble() < 0.1) {
+        if (random.nextDouble() < 0.1)
             world.playSound(d, e, f, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
-        }
+
         Direction direction = state.get(FACING);
         Direction.Axis axis = direction.getAxis();
         double h = random.nextDouble() * 0.6 - 0.3;

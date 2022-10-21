@@ -50,9 +50,9 @@ public class KitchenSinkBlock extends Block {
 		Item item = itemStack.getItem();
 		if (item == ObjectRegistry.FAUCET && !state.get(HAS_FAUCET)) {
 			world.setBlockState(pos, state.with(HAS_FAUCET, true), Block.NOTIFY_ALL);
-			if (!player.isCreative()) {
+			if (!player.isCreative())
 				itemStack.decrement(1);
-			}
+
 			return ActionResult.SUCCESS;
 		} else if (itemStack.isEmpty() && state.get(HAS_FAUCET) && !state.get(FILLED)) {
 			world.setBlockState(pos, state.with(HAS_FAUCET, true).with(FILLED, true), Block.NOTIFY_ALL);
@@ -60,14 +60,18 @@ public class KitchenSinkBlock extends Block {
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, 1.0f, 1.0f);
 			return ActionResult.SUCCESS;
 		} else if (item == Items.WATER_BUCKET && !state.get(FILLED)) {
-			world.setBlockState(pos, this.getDefaultState().with(HAS_FAUCET, state.get(HAS_FAUCET)).with(FILLED, true), Block.NOTIFY_ALL);
+			world.setBlockState(pos, state.with(HAS_FAUCET, state.get(HAS_FAUCET)).with(FILLED, true), Block.NOTIFY_ALL);
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
-			player.setStackInHand(hand, new ItemStack(Items.BUCKET));
+			if (!player.isCreative())
+				player.setStackInHand(hand, new ItemStack(Items.BUCKET));
+
 			return ActionResult.SUCCESS;
 		} else if (item == Items.BUCKET && state.get(FILLED)) {
 			world.setBlockState(pos, state.with(FILLED, false), Block.NOTIFY_ALL);
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
-			player.setStackInHand(hand, new ItemStack(Items.WATER_BUCKET));
+			if (!player.isCreative())
+				player.setStackInHand(hand, new ItemStack(Items.WATER_BUCKET));
+
 			return ActionResult.SUCCESS;
 		}
 		return ActionResult.PASS;
