@@ -4,7 +4,7 @@ import daniking.vinery.registry.*;
 import daniking.vinery.world.VineryConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
@@ -31,10 +31,10 @@ public class Vinery implements ModInitializer {
         VineryBlockEntityTypes.init();
         VineryScreenHandlerTypes.init();
         VineryRecipeTypes.init();
-        LootTableLoadingCallback.EVENT.register((resourceManager, manager, id, supplier, setter) -> {
+        LootTableEvents.MODIFY.register((resourceManager, manager, id, supplier, setter) -> {
             final Identifier resourceLocation = new VineryIdentifier("inject/seeds");
             if (Blocks.GRASS.getLootTableId().equals(id) || Blocks.TALL_GRASS.getLootTableId().equals(id) || Blocks.FERN.getLootTableId().equals(id)) {
-                supplier.withPool(LootPool.builder().with(LootTableEntry.builder(resourceLocation).weight(1)).build());
+                supplier.pool(LootPool.builder().with(LootTableEntry.builder(resourceLocation).weight(1)).build());
             }
         });
         VineryBoatTypes.init();

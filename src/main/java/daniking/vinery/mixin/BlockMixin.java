@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Block.class)
 public class BlockMixin {
-    @Inject(method = "Lnet/minecraft/block/Block;cannotConnect(Lnet/minecraft/block/BlockState;)Z", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "cannotConnect(Lnet/minecraft/block/BlockState;)Z", at = @At("HEAD"), cancellable = true)
     private static void checkCannotConnect(BlockState state, CallbackInfoReturnable<Boolean> cir) {
         if(state.isIn(Vinery.CAN_NOT_CONNECT)) cir.setReturnValue(true);
     }

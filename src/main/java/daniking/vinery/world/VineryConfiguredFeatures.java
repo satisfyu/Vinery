@@ -8,16 +8,14 @@ import daniking.vinery.block.GrapeBush;
 import daniking.vinery.world.feature.VineryVinesFeature;
 import net.fabricmc.fabric.api.biome.v1.*;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.*;
@@ -27,7 +25,6 @@ import net.minecraft.world.gen.foliage.RandomSpreadFoliagePlacer;
 import net.minecraft.world.gen.placementmodifier.*;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
-import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
 import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
 import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer;
@@ -73,47 +70,18 @@ public class VineryConfiguredFeatures {
     public static void init() {
         Registry.register(Registry.FEATURE, new VineryIdentifier("vines_feature"), VINES_FEATURE);
         BiomeModification world = BiomeModifications.create(new VineryIdentifier("world_features"));
-        world.add(ModificationPhase.ADDITIONS, BiomeSelectors.categories(getBushCategories()), ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, RED_GRAPE_PATCH_CHANCE.value()));
-        world.add(ModificationPhase.ADDITIONS, BiomeSelectors.categories(getBushCategories()),  ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, WHITE_GRAPE_PATCH_CHANCE.value()));
-        world.add(ModificationPhase.ADDITIONS, BiomeSelectors.categories(getBushCategories()), ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, ROCKS_PATCH_CHANCE.value()));
-        world.add(ModificationPhase.ADDITIONS, BiomeSelectors.categories(getBushCategories()), ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, ROCKS_VARIANT_B_PATCH_CHANCE.value()));
-        world.add(ModificationPhase.ADDITIONS, BiomeSelectors.categories(getBushCategories()), ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, ROCKS_VARIANT_C_PATCH_CHANCE.value()));
-        world.add(ModificationPhase.ADDITIONS, BiomeSelectors.categories(getGrassFlowerCategories()), ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, RED_GRASS_FLOWERS_PATCH.value()));
-        world.add(ModificationPhase.ADDITIONS, BiomeSelectors.categories(getGrassFlowerCategories()), ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, PINK_GRASS_FLOWERS_PATCH.value()));
-        world.add(ModificationPhase.ADDITIONS, BiomeSelectors.categories(getGrassFlowerCategories()), ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, WHITE_GRASS_FLOWERS_PATCH.value()));
+        Predicate<BiomeSelectionContext> bushBiomes = BiomeSelectors.includeByKey(BiomeKeys.FOREST, BiomeKeys.PLAINS, BiomeKeys.TAIGA, BiomeKeys.RIVER, BiomeKeys.SWAMP, BiomeKeys.JUNGLE);
+        Predicate<BiomeSelectionContext> grassFlowerBiomes = BiomeSelectors.includeByKey(BiomeKeys.PLAINS, BiomeKeys.TAIGA, BiomeKeys.RIVER, BiomeKeys.SWAMP);
+        world.add(ModificationPhase.ADDITIONS, bushBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, RED_GRAPE_PATCH_CHANCE.value()));
+        world.add(ModificationPhase.ADDITIONS, bushBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, WHITE_GRAPE_PATCH_CHANCE.value()));
+        world.add(ModificationPhase.ADDITIONS, bushBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, ROCKS_PATCH_CHANCE.value()));
+        world.add(ModificationPhase.ADDITIONS, bushBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, ROCKS_VARIANT_B_PATCH_CHANCE.value()));
+        world.add(ModificationPhase.ADDITIONS, bushBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, ROCKS_VARIANT_C_PATCH_CHANCE.value()));
+        world.add(ModificationPhase.ADDITIONS, grassFlowerBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, RED_GRASS_FLOWERS_PATCH.value()));
+        world.add(ModificationPhase.ADDITIONS, grassFlowerBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, PINK_GRASS_FLOWERS_PATCH.value()));
+        world.add(ModificationPhase.ADDITIONS, grassFlowerBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, WHITE_GRASS_FLOWERS_PATCH.value()));
         world.add(ModificationPhase.ADDITIONS, getTreesSelector(), ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, TREE_CHERRY.value()));
         world.add(ModificationPhase.ADDITIONS, getTreesSelector(), ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, TREE_CHERRY_OLD.value()));
-    }
-
-    private static Biome.Category[] getBushCategories() {
-        return new Biome.Category[] {
-                Biome.Category.FOREST,
-                Biome.Category.PLAINS,
-                Biome.Category.TAIGA,
-                Biome.Category.RIVER,
-                Biome.Category.SWAMP,
-                Biome.Category.JUNGLE,
-        };
-    }
-
-    private static Biome.Category[] getGrassFlowerCategories() {
-        return new Biome.Category[] {
-                Biome.Category.PLAINS,
-                Biome.Category.MOUNTAIN,
-                Biome.Category.TAIGA,
-                Biome.Category.RIVER,
-                Biome.Category.SWAMP,
-        };
-    }
-
-    private static Biome.Category[] getVinesCategories() {
-        return new Biome.Category[] {
-                Biome.Category.PLAINS,
-                Biome.Category.FOREST,
-                Biome.Category.MOUNTAIN,
-                Biome.Category.TAIGA,
-                Biome.Category.RIVER,
-        };
     }
  
 	private static Predicate<BiomeSelectionContext> getTreesSelector() {
@@ -121,7 +89,7 @@ public class VineryConfiguredFeatures {
 	}
 
     private static BlockPredicate createBlockPredicate(List<Block> validGround) {
-        return !validGround.isEmpty() ? BlockPredicate.bothOf(BlockPredicate.IS_AIR, BlockPredicate.matchingBlocks(validGround, new BlockPos(0,-1, 0))) : BlockPredicate.IS_AIR;
+        return !validGround.isEmpty() ? BlockPredicate.bothOf(BlockPredicate.IS_AIR, BlockPredicate.matchingBlocks(validGround)) : BlockPredicate.IS_AIR;
     }
 
 }

@@ -69,7 +69,7 @@ public class ClientSetup implements ClientModInitializer {
         HandledScreens.register(VineryScreenHandlerTypes.STOVE_GUI_HANDLER, StoveGui::new);
         HandledScreens.register(VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER, FermentationBarrelGui::new);
         HandledScreens.register(VineryScreenHandlerTypes.COOKING_POT_SCREEN_HANDLER, CookingPotGui::new);
-        TerraformBoatClientHelper.registerModelLayer(new VineryIdentifier("cherry"));
+        TerraformBoatClientHelper.registerModelLayers(new VineryIdentifier("cherry"));
 
         GeoArmorRenderer.registerArmorRenderer(new StrawHatRenderer(), ObjectRegistry.STRAW_HAT);
         

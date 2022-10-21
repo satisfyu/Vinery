@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(FoxEntity.EatSweetBerriesGoal.class)
+@Mixin(FoxEntity.EatBerriesGoal.class)
 public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToTargetPosGoal {
     @Final
     @Shadow
@@ -39,7 +39,7 @@ public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToTargetPosG
         }
     }
 
-    @Inject(method = "eatSweetBerry", at = @At("TAIL"))
+    @Inject(method = "eatBerries", at = @At("TAIL"))
     private void eatGrapes(CallbackInfo ci) {
         final BlockState state = field_17975.world.getBlockState(this.targetPos);
         if (state.getBlock() instanceof GrapeBush bush) {

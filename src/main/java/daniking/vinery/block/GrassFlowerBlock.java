@@ -4,8 +4,7 @@ import daniking.vinery.registry.ObjectRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.GrassBlock;
 import net.minecraft.item.ItemPlacementContext;
-
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class GrassFlowerBlock extends GrassBlock {
 

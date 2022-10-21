@@ -14,6 +14,7 @@ import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.level.ServerWorldProperties;
 import net.minecraft.world.poi.PointOfInterestStorage;
 import net.minecraft.world.poi.PointOfInterestType;
+import net.minecraft.world.poi.PointOfInterestTypes;
 import net.minecraft.world.spawner.Spawner;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
@@ -40,7 +41,7 @@ public abstract class WanderingTraderManagerMixin implements Spawner {
 			BlockPos blockPos = playerEntity.getBlockPos();
 			int i = 48;
 			PointOfInterestStorage pointOfInterestStorage = world.getPointOfInterestStorage();
-			Optional<BlockPos> optional = pointOfInterestStorage.getPosition(PointOfInterestType.MEETING.getCompletionCondition(), pos -> true, blockPos, 48, PointOfInterestStorage.OccupationStatus.ANY);
+			Optional<BlockPos> optional = pointOfInterestStorage.getPosition(type -> type.matchesKey(PointOfInterestTypes.MEETING), pos -> true, blockPos, 48, PointOfInterestStorage.OccupationStatus.ANY);
 			BlockPos blockPos2 = optional.orElse(blockPos);
 			BlockPos blockPos3 = this.getNearbySpawnPos(world, blockPos2, 48);
 			if (blockPos3 != null && this.doesNotSuffocateAt(world, blockPos3)) {

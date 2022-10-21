@@ -28,7 +28,6 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -256,7 +255,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
     }
     @Override
     public Text getDisplayName() {
-        return new TranslatableText(this.getCachedState().getBlock().getTranslationKey());
+        return Text.translatable(this.getCachedState().getBlock().getTranslationKey());
     }
 
     @Nullable

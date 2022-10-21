@@ -1,6 +1,5 @@
 package daniking.vinery.block;
 
-import com.terraformersmc.terraform.leaves.block.TerraformLeavesBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

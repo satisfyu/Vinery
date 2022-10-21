@@ -5,7 +5,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -23,9 +22,9 @@ public class FaucetItem extends Item {
 		tooltip.add(Text.of("Can be placed on a kitchen sink."));
 
 		if (Screen.hasShiftDown()) {
-			tooltip.add(new TranslatableText("item.vinery.faucet.tooltip.shift"));
+			tooltip.add(Text.translatable("item.vinery.faucet.tooltip.shift"));
 		} else {
-			tooltip.add(new TranslatableText("item.vinery.faucet.tooltip"));
+			tooltip.add(Text.translatable("item.vinery.faucet.tooltip"));
 	}
 
 

@@ -31,12 +31,16 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
-	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+
+	modApi "dev.architectury:architectury-fabric:${project.architectury_version}"
+
+	modCompileOnly("me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}")
+	modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}")
+
 	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
 	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
-	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.18:3.0.54'
-	include 'software.bernie.geckolib:geckolib-fabric-1.18:3.0.54'
+
+	modImplementation('software.bernie.geckolib:geckolib-fabric-1.19:3.1.26')
 }
 
 processResources {
