@@ -3,13 +3,15 @@
 	"textures": {
 		"1": "vinery:block/grapevine_leaves_bushy",
 		"2": "vinery:block/grapevine_leaves",
-		"particle": "vinery:block/grapevine_leaves"
+		"3": "vinery:block/grapevine_leaves_red_stage1",
+		"6": "vinery:block/grapevine_stem",
+		"particle": "vinery:block/grapevine_stem"
 	},
 	"elements": [
 		{
-			"from": [9.35355, -7, -7.06066],
-			"to": [9.35355, 25, 24.93934],
-			"rotation": {"angle": -45, "axis": "y", "origin": [8.35355, 25, 6.93934]},
+			"from": [9.35355, -10, -7.06066],
+			"to": [9.35355, 22, 24.93934],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8.35355, 22, 6.93934]},
 			"faces": {
 				"north": {"uv": [0, 0, 0, 16], "texture": "#1"},
 				"east": {"uv": [0, 0, 16, 16], "texture": "#1"},
@@ -20,9 +22,9 @@
 			}
 		},
 		{
-			"from": [8, -7, -9.06066],
-			"to": [8, 25, 22.93934],
-			"rotation": {"angle": 45, "axis": "y", "origin": [8.35355, 25, 6.93934]},
+			"from": [8, -10, -9.06066],
+			"to": [8, 22, 22.93934],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8.35355, 22, 6.93934]},
 			"faces": {
 				"north": {"uv": [0, 0, 0, 16], "texture": "#1"},
 				"east": {"uv": [0, 0, 16, 16], "texture": "#1"},
@@ -33,14 +35,25 @@
 			}
 		},
 		{
-			"from": [0, 0, 0],
-			"to": [16, 16, 16],
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, 3, 0]},
+			"from": [6, 0, 6],
+			"to": [10, 16, 10],
 			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"east": {"uv": [16, 0, 0, 16], "texture": "#2"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"north": {"uv": [0, 0, 4, 16], "texture": "#6"},
+				"east": {"uv": [0, 0, 4, 16], "texture": "#6"},
+				"south": {"uv": [0, 0, 4, 16], "texture": "#6"},
+				"west": {"uv": [0, 0, 4, 16], "texture": "#6"},
+				"up": {"uv": [4, 0, 8, 4], "texture": "#6"},
+				"down": {"uv": [4, 0, 8, 4], "texture": "#6"}
+			}
+		},
+		{
+			"from": [0, -3, 0],
+			"to": [16, 13, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"east": {"uv": [16, 0, 0, 16], "texture": "#3"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#3"},
 				"up": {"uv": [0, 0, 16, 16], "texture": "#2"},
 				"down": {"uv": [0, 0, 16, 16], "texture": "#2"}
 			}
@@ -51,7 +64,7 @@
 			"name": "Grapevines",
 			"origin": [8, 8, 8],
 			"color": 0,
-			"children": [0, 1, 2]
+			"children": [0, 1, 2, 3]
 		}
 	]
 }
