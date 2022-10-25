@@ -1,6 +1,5 @@
 {
 	"credit": "Made by Satisfy",
-	"texture_size": [32, 32],
 	"textures": {
 		"2": "vinery:block/kitchen_sink",
 		"particle": "vinery:block/kitchen_sink"

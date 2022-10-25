@@ -1,6 +1,6 @@
 {   "parent": "block/slab",
     "textures": {
-        "particle": "block/dirt",
+        "particle": "block/grass_block_top",
         "bottom": "block/dirt",
         "top": "block/grass_block_top",
         "side": "block/grass_block_side",
