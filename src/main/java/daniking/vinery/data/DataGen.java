@@ -54,7 +54,6 @@ public class DataGen implements DataGeneratorEntrypoint {
         fabricDataGenerator.addProvider(gen -> new FabricRecipeProvider(gen) {
             @Override
             protected void generateRecipes(Consumer<RecipeJsonProvider> exporter) {
-                shapeless(exporter, "banner", ObjectRegistry.BANNER, "has_red_grape", ObjectRegistry.RED_GRAPE, Items.WHITE_BANNER, ObjectRegistry.RED_GRAPE);
                 shaped(exporter, "big_bottle", ObjectRegistry.BIG_BOTTLE, "has_glass", Items.GLASS, "##", "##", "##", '#', Items.GLASS);
                 shaped(exporter, "flower_pot", ObjectRegistry.FLOWER_POT, "has_brick", Items.BRICK, "# #", "# #", " # ", '#', Items.BRICK);
                 shaped(exporter, "big_table", ObjectRegistry.BIG_TABLE, "has_iron_ingot", Items.IRON_INGOT, "iii", "SSS", 'i', Items.IRON_INGOT, 'S', Items.SPRUCE_PLANKS);
@@ -415,7 +414,6 @@ public class DataGen implements DataGeneratorEntrypoint {
         fabricDataGenerator.addProvider(generator -> new FabricBlockLootTableProvider(generator) {
             @Override
             protected void generateBlockLootTables() {
-                addDrop(ObjectRegistry.BANNER);
                 addDrop(ObjectRegistry.STOVE);
                 addDrop(ObjectRegistry.BIG_TABLE);
                 addDrop(ObjectRegistry.BIG_BOTTLE);

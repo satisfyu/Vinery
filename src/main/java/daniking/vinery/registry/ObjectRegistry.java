@@ -7,7 +7,6 @@ import daniking.vinery.GrapeBushSeedItem;
 import daniking.vinery.Vinery;
 import daniking.vinery.VineryIdentifier;
 import daniking.vinery.block.*;
-import daniking.vinery.block.BannerBlock;
 import daniking.vinery.block.FacingBlock;
 import daniking.vinery.block.FlowerPotBlock;
 import daniking.vinery.item.DrinkBlockItem;
@@ -163,7 +162,6 @@ public class ObjectRegistry {
 
     ////////////////////////////////// 4732 //////////////////////////////////
     
-    public static final Block BANNER = register("banner", new BannerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().nonOpaque()));
     public static final Block WINE_BOX = register("wine_box", new WineBoxBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).nonOpaque()));
     public static final Block BIG_TABLE = register("big_table", new BigTableBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 2.0F)));
     public static final Block BIG_BOTTLE = register("big_bottle", new BigBottleBlock(AbstractBlock.Settings.copy(Blocks.GLASS).breakInstantly().nonOpaque()), true, DrinkBlockItem::new, settings -> settings.food(new FoodComponent.Builder().hunger(2).build()));
