@@ -1,12 +1,8 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"0": "vinery:block/dirt",
-		"1": "vinery:block/dirt1",
-		"2": "vinery:block/dirt3",
-		"3": "vinery:block/dirt4",
-		"4": "vinery:block/dirt5",
-		"particle": "vinery:block/dirt"
+		"0": "blocks/dirt",
+		"particle": "blocks/dirt"
 	},
 	"elements": [
 		{
@@ -14,11 +10,11 @@
 			"to": [16, 16, 16],
 			"faces": {
 				"north": {"uv": [0, 0, 16, 8], "texture": "#0"},
-				"east": {"uv": [0, 3, 16, 11], "texture": "#4"},
-				"south": {"uv": [0, 8, 16, 16], "texture": "#3"},
-				"west": {"uv": [0, 8, 16, 16], "texture": "#2"},
+				"east": {"uv": [0, 3, 16, 11], "texture": "#0"},
+				"south": {"uv": [0, 8, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 8, 16, 16], "texture": "#0"},
 				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#1"}
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
 			}
 		}
 	],

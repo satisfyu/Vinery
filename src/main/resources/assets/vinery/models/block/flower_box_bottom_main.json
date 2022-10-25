@@ -3,7 +3,6 @@
 	"ambientocclusion": false,
 	"textures": {
 		"2": "vinery:block/flower_box",
-		"3": "minecraft:block/podzol_top",
 		"particle": "vinery:block/flower_box"
 	},
 	"elements": [
@@ -83,7 +82,7 @@
 			"from": [1, 0, 10],
 			"to": [15, 4.5, 15],
 			"faces": {
-				"up": {"uv": [2, 2, 16, 6], "texture": "#3"},
+				"up": {"uv": [1, 6, 15, 10], "texture": "#2"},
 				"down": {"uv": [1, 1, 15, 5], "texture": "#2", "cullface": "down"}
 			}
 		},

@@ -1,6 +1,8 @@
 {
   "parent": "minecraft:block/fence_inventory",
   "textures": {
-    "texture": "vinery:block/cherry_planks"
+    "texture": "vinery:block/cherry_planks0",
+    "1": "vinery:block/cherry_planks0"
   }
 }
+
