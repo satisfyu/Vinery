@@ -61,7 +61,6 @@ public class DataGen implements DataGeneratorEntrypoint {
                 shaped(exporter, "boat", VineryBoatTypes.cherry.getItem(), "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, "# #", "###", '#', ObjectRegistry.CHERRY_PLANKS);
                 shapeless(exporter, "wooden_button", ObjectRegistry.CHERRY_BUTTON, "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, ObjectRegistry.CHERRY_PLANKS);
                 shaped(exporter, "door", ObjectRegistry.CHERRY_DOOR, "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, "##", "##", "##", '#', ObjectRegistry.CHERRY_PLANKS);
-                shapeless(exporter, "door", ObjectRegistry.CHERRY_DOOR_WITH_IRON_BARS, "has_iron_bars", Items.IRON_BARS, ObjectRegistry.CHERRY_DOOR, Items.IRON_BARS);
                 shaped(exporter, "wooden_fence", ObjectRegistry.CHERRY_FENCE, 3, "has_stick", Items.STICK, "W#W", "W#W", 'W', ObjectRegistry.CHERRY_PLANKS, '#', Items.STICK);
                 shaped(exporter, "wooden_fence_gate", ObjectRegistry.CHERRY_FENCE_GATE, 3, "has_stick", Items.STICK, "#W#", "#W#", 'W', ObjectRegistry.CHERRY_PLANKS, '#', Items.STICK);
                 shaped(exporter, "floorboard", ObjectRegistry.CHERRY_FLOORBOARD, "has_cherry_wood", ObjectRegistry.CHERRY_WOOD, "#  ", "###", "  #", '#', ObjectRegistry.CHERRY_WOOD);
