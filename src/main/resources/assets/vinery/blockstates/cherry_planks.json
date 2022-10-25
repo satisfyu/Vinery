@@ -1,7 +1,18 @@
 {
-  "variants": {
-    "": {
-      "model": "vinery:block/cherry_planks"
-    }
-  }
+    "variants": {
+        "": [ { "model": "block/cherry_planks0", "weight":1 }
+,{ "model": "block/cherry_planks1", "weight":1 }
+,{ "model": "block/cherry_planks2", "weight":1 }
+,{ "model": "block/cherry_planks3", "weight":1 }
+,{ "model": "block/cherry_planks4", "weight":1 }
+,{ "model": "block/cherry_planks5", "weight":2 }
+,{ "model": "block/cherry_planks6", "weight":2 }
+,{ "model": "block/cherry_planks7", "weight":2 }
+,{ "model": "block/cherry_planks8", "weight":2 }
+,{ "model": "block/cherry_planks9", "weight":1 }
+,{ "model": "block/cherry_planks10", "weight":1 }
+,{ "model": "block/cherry_planks11", "weight":1 }
+,{ "model": "block/cherry_planks12", "weight":1}
+
+ ]   }
 }
