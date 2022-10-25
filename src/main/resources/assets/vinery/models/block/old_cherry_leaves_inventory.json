@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "meadow:block/alpine_birch_leaves_top"
+  }
+}
