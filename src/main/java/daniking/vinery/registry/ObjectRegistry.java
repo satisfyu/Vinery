@@ -116,7 +116,6 @@ public class ObjectRegistry {
     public static final Block CHERRY_WALL_SIGN = register("cherry_wall_sign", new TerraformWallSignBlock(CHERRY_SIGN_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN)), false);
     public static final Item CHERRY_SIGN_ITEM = register("cherry_sign", new SignItem(getSettings().maxCount(16), CHERRY_SIGN, CHERRY_WALL_SIGN));
     public static final Block CHERRY_LEAVES = register("cherry_leaves", new VariantLeavesBlock());
-    public static final Block PINK_CHERRY_LEAVES = register("pink_cherry_leaves", new VariantLeavesBlock());
     public static final Block STACKABLE_LOG = register("stackable_log", new StackableLogBlock(getLogBlockSettings().nonOpaque()));
     public static final Item CHERRY = register("cherry", new Item(getSettings().food(FoodComponents.COOKIE)));
     public static final Block COOKING_POT = register("cooking_pot", new CookingPotBlock(FabricBlockSettings.of(Material.STONE).breakInstantly().nonOpaque()));
