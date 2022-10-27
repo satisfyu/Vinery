@@ -1,21 +1,22 @@
 {
-	"credit": "Made with Blockbench",
+	"credit": "Made by Satisfy",
 	"textures": {
-		"4": "vinery:block/crate_bottom",
-		"5": "vinery:block/red_grape_crate_side",
-		"6": "vinery:block/red_grape_crate_top",
-		"particle": "vinery:block/crate_bottom"
+		"3": "vinery:block/bag_side_handle",
+		"4": "vinery:block/bag_bottom",
+		"7": "vinery:block/bag_side",
+		"8": "vinery:block/bag_top_red_grapes",
+		"particle": "vinery:block/bag_bottom"
 	},
 	"elements": [
 		{
 			"from": [0, 0, 0],
 			"to": [16, 16, 16],
 			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#5"},
-				"east": {"uv": [0, 0, 16, 16], "texture": "#5"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#5"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#5"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#6"},
+				"north": {"uv": [0, 0, 16, 16], "texture": "#7"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#7"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#8"},
 				"down": {"uv": [0, 0, 16, 16], "texture": "#4"}
 			}
 		}
