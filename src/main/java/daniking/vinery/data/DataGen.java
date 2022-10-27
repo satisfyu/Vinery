@@ -115,8 +115,7 @@ public class DataGen implements DataGeneratorEntrypoint {
                 shaped(exporter, "wine_rack", ObjectRegistry.WINE_RACK_3, "has_spruce_planks", Items.SPRUCE_PLANKS, "# #", " B ", "# #", '#', Items.SPRUCE_PLANKS, 'B', Items.BARREL);
                 shaped(exporter, "wine_rack", ObjectRegistry.WINE_RACK_4, "has_spruce_planks", Items.SPRUCE_PLANKS, "#_#", "_ _", "#_#", '#', Items.SPRUCE_PLANKS, '_', Items.SPRUCE_SLAB);
                 shaped(exporter, "wine_rack", ObjectRegistry.WINE_RACK_5, "has_spruce_planks", Items.SPRUCE_PLANKS, "#_#", "_B_", "#B#", '#', Items.SPRUCE_PLANKS, '_', Items.SPRUCE_SLAB, 'B', Items.BARREL);
-                shaped(exporter, "window", ObjectRegistry.WINDOW_1, "has_black_stained_glass_pane", Items.BLACK_STAINED_GLASS_PANE, "XOI", "OOO", "IOX", 'X', Items.YELLOW_STAINED_GLASS_PANE, 'O', Items.BLACK_STAINED_GLASS_PANE, 'I', Items.ORANGE_STAINED_GLASS_PANE);
-                shaped(exporter, "window", ObjectRegistry.WINDOW_2, "has_black_stained_glass_pane", Items.BLACK_STAINED_GLASS_PANE, "XXX", "XXX", "XXX", 'X', Items.BLACK_STAINED_GLASS_PANE);
+                shaped(exporter, "window", ObjectRegistry.WINDOW, "has_black_stained_glass_pane", Items.BLACK_STAINED_GLASS_PANE, "XOI", "OOO", "IOX", 'X', Items.YELLOW_STAINED_GLASS_PANE, 'O', Items.BLACK_STAINED_GLASS_PANE, 'I', Items.ORANGE_STAINED_GLASS_PANE);
 
                 createStairsRecipe(ObjectRegistry.LOAM_STAIRS, Ingredient.ofItems(ObjectRegistry.LOAM.asItem())).group("stairs").criterion("loam", RecipeProvider.conditionsFromItem(ObjectRegistry.LOAM)).offerTo(exporter);
                 createSlabRecipe(ObjectRegistry.LOAM_SLAB, Ingredient.ofItems(ObjectRegistry.LOAM.asItem())).group("slabs").criterion("loam", RecipeProvider.conditionsFromItem(ObjectRegistry.LOAM)).offerTo(exporter);
@@ -272,7 +271,6 @@ public class DataGen implements DataGeneratorEntrypoint {
                                         .register((jam, bite) -> BlockStateVariant.create().put(VariantSettings.MODEL, new VineryIdentifier("block/bread_" + (jam ? "jam_" : "") + bite)))));
 
                 registerLeaves(generator, ObjectRegistry.CHERRY_LEAVES);
-                registerLeaves(generator, ObjectRegistry.PINK_CHERRY_LEAVES);
 
                 generator.blockStateCollector.accept(
                         VariantsBlockStateSupplier
@@ -394,8 +392,7 @@ public class DataGen implements DataGeneratorEntrypoint {
                         ObjectRegistry.ROCKS_VARIANT_C,
                         ObjectRegistry.WOOD_FIRED_OVEN,
                         ObjectRegistry.STOVE,
-                        ObjectRegistry.WINDOW_2,
-                        ObjectRegistry.WINDOW_1,
+                        ObjectRegistry.WINDOW,
                         ObjectRegistry.BIG_TABLE,
                         ObjectRegistry.KITCHEN_SINK,
                         ObjectRegistry.FLOWER_POT,
@@ -449,8 +446,7 @@ public class DataGen implements DataGeneratorEntrypoint {
                 addDrop(ObjectRegistry.LOAM_SLAB, BlockLootTableGenerator::slabDrops);
                 addDrop(ObjectRegistry.LOAM_STAIRS, BlockLootTableGenerator::slabDrops);
 
-                addDropWithSilkTouch(ObjectRegistry.WINDOW_1);
-                addDropWithSilkTouch(ObjectRegistry.WINDOW_2);
+                addDropWithSilkTouch(ObjectRegistry.WINDOW);
                 addDrop(ObjectRegistry.BOLVAR_WINE);
                 addDrop(ObjectRegistry.CHERRY_WINE);
                 addDrop(ObjectRegistry.CHERRY_FLOORBOARD);

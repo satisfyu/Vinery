@@ -1,0 +1,349 @@
+{
+  "multipart": [
+
+    {
+      "when": {
+        "part": 3
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_top_post"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "part": 3
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_top_side"
+      }
+    },
+    {
+      "when": {
+        "east": "true",
+        "part": 3
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_top_side",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "true",
+        "part": 3
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_top_side_alt"
+      }
+    },
+    {
+      "when": {
+        "west": "true",
+        "part": 3
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_top_side_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "part": 3
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_top_noside"
+      }
+    },
+    {
+      "when": {
+        "east": "false",
+        "part": 3
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_top_noside_alt"
+      }
+    },
+    {
+      "when": {
+        "south": "false",
+        "part": 3
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_top_noside_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "west": "false",
+        "part": 3
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_top_noside",
+        "y": 270
+      }
+    },
+
+
+
+    {
+      "when": {
+        "part": 2
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_mid_post"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "part": 2
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_mid_side"
+      }
+    },
+    {
+      "when": {
+        "east": "true",
+        "part": 2
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_mid_side",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "true",
+        "part": 2
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_mid_side_alt"
+      }
+    },
+    {
+      "when": {
+        "west": "true",
+        "part": 2
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_mid_side_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "part": 2
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_mid_noside"
+      }
+    },
+    {
+      "when": {
+        "east": "false",
+        "part": 2
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_mid_noside_alt"
+      }
+    },
+    {
+      "when": {
+        "south": "false",
+        "part": 2
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_mid_noside_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "west": "false",
+        "part": 2
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_mid_noside",
+        "y": 270
+      }
+    },
+
+
+
+    {
+      "when": {
+        "part": 1
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_bottom_post"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "part": 1
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_bottom_side"
+      }
+    },
+    {
+      "when": {
+        "east": "true",
+        "part": 1
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_bottom_side",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "true",
+        "part": 1
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_bottom_side_alt"
+      }
+    },
+    {
+      "when": {
+        "west": "true",
+        "part": 1
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_bottom_side_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "part": 1
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_bottom_noside"
+      }
+    },
+    {
+      "when": {
+        "east": "false",
+        "part": 1
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_bottom_noside_alt"
+      }
+    },
+    {
+      "when": {
+        "south": "false",
+        "part": 1
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_bottom_noside_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "west": "false",
+        "part": 1
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_bottom_noside",
+        "y": 270
+      }
+    },
+
+
+    {
+      "when": {
+        "part": 0
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_main_post"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "part": 0
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_main_side"
+      }
+    },
+    {
+      "when": {
+        "east": "true",
+        "part": 0
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_main_side",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "true",
+        "part": 0
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_main_side_alt"
+      }
+    },
+    {
+      "when": {
+        "west": "true",
+        "part": 0
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_main_side_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "part": 0
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_main_noside"
+      }
+    },
+    {
+      "when": {
+        "east": "false",
+        "part": 0
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_main_noside_alt"
+      }
+    },
+    {
+      "when": {
+        "south": "false",
+        "part": 0
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_main_noside_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "west": "false",
+        "part": 0
+      },
+      "apply": {
+        "model": "vinery:block/glass_pane_main_noside",
+        "y": 270
+      }
+    }
+  ]
+}
