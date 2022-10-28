@@ -2,8 +2,8 @@
 	"credit": "Made by Satisfy",
 	"parent": "block/block",
 	"textures": {
-		"0": "minecraft:block/stackable_log",
-		"particle": "minecraft:block/stackable_log"
+		"0": "blocks/stackable_log",
+		"particle": "blocks/stackable_log"
 	},
 	"elements": [
 		{

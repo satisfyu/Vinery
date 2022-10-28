@@ -7,7 +7,19 @@
 	},
 	"elements": [
 		{
-			"from": [5, 1, 0.5],
+			"from": [0.5, 11.5, 1],
+			"to": [15.5, 12, 15],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#6"},
+				"east": {"uv": [0, 4, 16, 5], "texture": "#6"},
+				"south": {"uv": [0, 11, 16, 12], "texture": "#6"},
+				"west": {"uv": [0, 7, 16, 8], "texture": "#6"},
+				"up": {"uv": [1, 0, 16, 14], "texture": "#2"},
+				"down": {"uv": [1, 0, 16, 14], "texture": "#2"}
+			}
+		},
+		{
+			"from": [5.5, 1, 0.5],
 			"to": [6, 15, 15.5],
 			"faces": {
 				"north": {"uv": [0, 0, 16, 1], "rotation": 270, "texture": "#6"},
@@ -20,9 +32,9 @@
 		},
 		{
 			"from": [10, 1, 0.5],
-			"to": [11, 15, 15.5],
+			"to": [10.5, 15, 15.5],
 			"faces": {
-				"north": {"uv": [0, 0, 14, 1], "rotation": 270, "texture": "#6"},
+				"north": {"uv": [0, 0, 16, 1], "rotation": 270, "texture": "#6"},
 				"east": {"uv": [0, 14, 15, 0], "texture": "#6"},
 				"south": {"uv": [0, 15, 15, 0], "texture": "#6"},
 				"west": {"uv": [0, 14, 15, 0], "texture": "#6"},
@@ -31,8 +43,8 @@
 			}
 		},
 		{
-			"from": [0.5, 9.75, 1],
-			"to": [15.5, 10.75, 15],
+			"from": [0.5, 7.5, 1],
+			"to": [15.5, 8, 15],
 			"faces": {
 				"north": {"uv": [0, 0, 16, 1], "texture": "#6"},
 				"east": {"uv": [0, 4, 16, 5], "texture": "#6"},
@@ -43,8 +55,8 @@
 			}
 		},
 		{
-			"from": [0.5, 5, 1],
-			"to": [15.5, 6, 15],
+			"from": [0.5, 4, 1],
+			"to": [15.5, 4.5, 15],
 			"faces": {
 				"north": {"uv": [0, 0, 16, 1], "texture": "#6"},
 				"east": {"uv": [0, 4, 16, 5], "texture": "#6"},
@@ -121,33 +133,22 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [75, 45, 0],
-			"translation": [0, 2.5, 0],
-			"scale": [0.375, 0.375, 0.375]
-		},
-		"thirdperson_lefthand": {
-			"rotation": [75, 45, 0],
-			"translation": [0, 2.5, 0],
-			"scale": [0.375, 0.375, 0.375]
+			"rotation": [167, 0, 0],
+			"scale": [0.3, 0.3, 0.3]
 		},
 		"firstperson_righthand": {
-			"rotation": [0, 45, 0],
-			"scale": [0.4, 0.4, 0.4]
-		},
-		"firstperson_lefthand": {
-			"rotation": [0, 225, 0],
-			"scale": [0.4, 0.4, 0.4]
+			"rotation": [96, 0, -89],
+			"scale": [0.3, 0.3, 0.3]
 		},
 		"ground": {
-			"translation": [0, 3, 0],
-			"scale": [0.25, 0.25, 0.25]
+			"scale": [0.3, 0.3, 0.3]
 		},
 		"gui": {
-			"rotation": [30, 225, 0],
-			"scale": [0.625, 0.625, 0.625]
+			"rotation": [-180, 0, 0],
+			"translation": [8.1, 0, 0]
 		},
 		"fixed": {
-			"scale": [0.5, 0.5, 0.5]
+			"translation": [7.75, 0, 0]
 		}
 	},
 	"groups": [
@@ -160,26 +161,13 @@
 					"name": "Inner",
 					"origin": [0, 0, 0],
 					"color": 0,
-					"children": [0, 1, 2, 3]
+					"children": [0, 1, 2, 3, 4]
 				},
-				4,
 				5,
 				6,
 				7,
-				8
-			]
-		},
-		{
-			"name": "bottle_group",
-			"origin": [8, 8, 8],
-			"color": 0,
-			"children": [
-				{
-					"name": "bottle",
-					"origin": [0, 0, 0],
-					"color": 0,
-					"children": []
-				}
+				8,
+				9
 			]
 		}
 	]

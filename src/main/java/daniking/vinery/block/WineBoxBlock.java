@@ -55,6 +55,8 @@ public class WineBoxBlock extends Block {
 		}
 		return super.onUse(state, world, pos, player, hand, hit);
 	}
+
+
 	
 	@Override
 	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {

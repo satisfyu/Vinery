@@ -2,7 +2,8 @@
 	"credit": "Made by Satisfy",
 	"texture_size": [64, 64],
 	"textures": {
-		"6": "vinery:block/wine/chenet_wine"
+		"6": "vinery:block/wine/chenet_wine",
+		"particle": "vinery:block/wine/chenet_wine"
 	},
 	"elements": [
 		{

@@ -2,7 +2,7 @@
 	"credit": "Made by Satisfy",
 	"texture_size": [64, 64],
 	"textures": {
-		"5": "vinery:block/wine/mellohi_wine"
+		"5": "vinery:block/wine/mellohi_wine",
 		"particle": "vinery:block/wine/mellohi_wine"
 
 	},
@@ -139,7 +139,7 @@
 	},
 	"groups": [
 		{
-			"name": "alchy",
+			"name": "mellohi",
 			"origin": [0, 0, 0],
 			"color": 0,
 			"children": [0, 1, 2, 3, 4, 5, 6]

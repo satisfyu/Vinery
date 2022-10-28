@@ -150,12 +150,11 @@ public class ObjectRegistry {
 
     public static final Block WINE_BOTTLE = register("wine_bottle", new EmptyWineBottleBlock(AbstractBlock.Settings.copy(Blocks.GLASS).breakInstantly().nonOpaque()));
 
-    public static final Block CHENET_WINE = registerWine("chenet_wine", new WineBottleBlock(getWineSettings()), StatusEffects.JUMP_BOOST);
-    public static final Block KING_DANIS_WINE = registerWine("king_danis_wine", new WineBottleBlock(getWineSettings()), StatusEffects.FIRE_RESISTANCE);
+    public static final Block CHENET_WINE = registerWine("chenet_wine", new ChenetBottleBlock(getWineSettings()), StatusEffects.JUMP_BOOST);
+    public static final Block KING_DANIS_WINE = registerWine("king_danis_wine", new FacingBlock(getWineSettings()), StatusEffects.LUCK);
     public static final Block NOIR_WINE = registerWine("noir_wine", new WineBottleBlock(getWineSettings()), StatusEffects.WATER_BREATHING);
-    public static final Block CLARK_WINE = registerWine("clark_wine", new WineBottleBlock(getWineSettings()), StatusEffects.LUCK);
-    public static final Block MELLOHI_WINE = registerWine("mellohi_wine", new WineBottleBlock(getWineSettings()), StatusEffects.LEVITATION);
-
+    public static final Block CLARK_WINE = registerWine("clark_wine", new WineBottleBlock(getWineSettings()), StatusEffects.FIRE_RESISTANCE);
+    public static final Block MELLOHI_WINE = registerWine("mellohi_wine", new FacingBlock(getWineSettings()), StatusEffects.STRENGTH);
     public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings()), StatusEffects.GLOWING);
     public static final Block CHERRY_WINE = registerWine("cherry_wine", new WineBottleBlock(getWineSettings()), StatusEffects.SPEED);
 
@@ -163,7 +162,6 @@ public class ObjectRegistry {
     
     public static final Block WINE_BOX = register("wine_box", new WineBoxBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).nonOpaque()));
     public static final Block BIG_TABLE = register("big_table", new BigTableBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 2.0F)));
-    public static final Block BIG_BOTTLE = register("big_bottle", new BigBottleBlock(AbstractBlock.Settings.copy(Blocks.GLASS).breakInstantly().nonOpaque()), true, DrinkBlockItem::new, settings -> settings.food(new FoodComponent.Builder().hunger(2).build()));
     public static final Block WHITE_GRAPE_CRATE = register("white_grape_crate", new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
     public static final Block RED_GRAPE_CRATE = register("red_grape_crate", new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
     public static final Block LOAM = register("loam", new Block(FabricBlockSettings.of(Material.SOIL).strength(2.0F, 3.0F).sounds(BlockSoundGroup.SAND)));
