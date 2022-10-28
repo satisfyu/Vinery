@@ -53,8 +53,8 @@ public class WineRackBlock extends Block {
 		final ItemStack stack = player.getStackInHand(hand);
 		if (player.isSneaking() && state.get(STAGE) > 0) {
 			world.setBlockState(pos, state.with(STAGE, state.get(STAGE) - 1), 3);
-			player.giveItemStack(new ItemStack(ObjectRegistry.BIG_BOTTLE));
-		} else if (stack.getItem() == ObjectRegistry.BIG_BOTTLE.asItem() && state.get(STAGE) < MAX_STAGE) {
+			player.giveItemStack(new ItemStack(ObjectRegistry.CHERRY_WINE));
+		} else if (stack.getItem() == ObjectRegistry.CHERRY_WINE.asItem() && state.get(STAGE) < MAX_STAGE) {
 			world.setBlockState(pos, state.with(STAGE, state.get(STAGE) + 1), 3);
 			if (!player.isCreative())
 				stack.decrement(1);
@@ -76,7 +76,7 @@ public class WineRackBlock extends Block {
 
 		int amount = MathHelper.clamp(state.get(STAGE), 0, MAX_STAGE);
 
-		if(amount > 0) list.add(new ItemStack(ObjectRegistry.BIG_BOTTLE, amount));
+		if(amount > 0) list.add(new ItemStack(ObjectRegistry.CHERRY_WINE, amount));
 		return list;
 	}
 

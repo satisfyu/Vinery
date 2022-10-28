@@ -2,8 +2,8 @@
 	"credit": "Made by Satisfy",
 	"ambientocclusion": false,
 	"textures": {
-		"1": "vinery:block/sweet_berry_bush_stage1",
-		"particle": "vinery:block/sweet_berry_bush_stage0"
+		"1": "vinery:block/grape_bush_stage2",
+		"particle": "vinery:block/grape_bush_stage2"
 	},
 	"elements": [
 		{

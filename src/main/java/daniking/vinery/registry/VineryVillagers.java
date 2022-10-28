@@ -33,7 +33,6 @@ public class VineryVillagers {
             factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.WHITE_GRAPE, 2, 12, 10));
         });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 2, factories -> {
-            factories.add(new SellItemFactory(ObjectRegistry.BIG_BOTTLE, 1, 1, 10));
             factories.add(new SellItemFactory(ObjectRegistry.WINE_BOTTLE, 1, 2, 10));
         });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 3, factories -> {
@@ -42,8 +41,6 @@ public class VineryVillagers {
         });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 5, factories -> {
             factories.add(new SellItemFactory(ObjectRegistry.WINE_BOX, 10, 1, 10));
-            factories.add(new SellItemFactory(ObjectRegistry.BIG_BOTTLE, 5, 1, 10));
-            factories.add(new SellItemFactory(ObjectRegistry.BIG_BOTTLE, 5, 1, 10));
         });
 
 //        TradeOfferHelper.registerWanderingTraderOffers();

@@ -18,7 +18,6 @@ public class WanderingWinemakerEntity extends WanderingTraderEntity {
 			new SellItemFactory(ObjectRegistry.WHITE_GRAPE_SEEDS, 1, 1, 8, 1),
 			new SellItemFactory(ObjectRegistry.CHERRY_SAPLING, 3, 1, 8, 1),
 			new SellItemFactory(ObjectRegistry.OLD_CHERRY_SAPLING, 5, 1, 8, 1),
-			new SellItemFactory(ObjectRegistry.BIG_BOTTLE, 2, 1, 8, 1),
 			new SellItemFactory(ObjectRegistry.RED_GRAPE, 2, 1, 8, 1),
 			new SellItemFactory(ObjectRegistry.RED_GRAPEJUICE_WINE_BOTTLE, 2, 1, 8, 1),
 			new SellItemFactory(ObjectRegistry.WHITE_GRAPEJUICE_WINE_BOTTLE, 2, 1, 8, 1),

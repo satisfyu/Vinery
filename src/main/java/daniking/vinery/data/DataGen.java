@@ -54,7 +54,6 @@ public class DataGen implements DataGeneratorEntrypoint {
         fabricDataGenerator.addProvider(gen -> new FabricRecipeProvider(gen) {
             @Override
             protected void generateRecipes(Consumer<RecipeJsonProvider> exporter) {
-                shaped(exporter, "big_bottle", ObjectRegistry.BIG_BOTTLE, "has_glass", Items.GLASS, "##", "##", "##", '#', Items.GLASS);
                 shaped(exporter, "flower_pot", ObjectRegistry.FLOWER_POT, "has_brick", Items.BRICK, "# #", "# #", " # ", '#', Items.BRICK);
                 shaped(exporter, "big_table", ObjectRegistry.BIG_TABLE, "has_iron_ingot", Items.IRON_INGOT, "iii", "SSS", 'i', Items.IRON_INGOT, 'S', Items.SPRUCE_PLANKS);
                 shaped(exporter, "boat", VineryBoatTypes.cherry.getItem(), "has_cherry_planks", ObjectRegistry.CHERRY_PLANKS, "# #", "###", '#', ObjectRegistry.CHERRY_PLANKS);
@@ -355,7 +354,6 @@ public class DataGen implements DataGeneratorEntrypoint {
                         );
 
                 getOrCreateTagBuilder(Vinery.CAN_NOT_CONNECT).add(
-                        ObjectRegistry.BIG_BOTTLE,
                         ObjectRegistry.WINE_BOTTLE,
                         ObjectRegistry.BOLVAR_WINE,
                         ObjectRegistry.CHENET_WINE,
@@ -413,7 +411,6 @@ public class DataGen implements DataGeneratorEntrypoint {
             protected void generateBlockLootTables() {
                 addDrop(ObjectRegistry.STOVE);
                 addDrop(ObjectRegistry.BIG_TABLE);
-                addDrop(ObjectRegistry.BIG_BOTTLE);
                 addDrop(ObjectRegistry.COARSE_DIRT_SLAB, createSlab(ObjectRegistry.COARSE_DIRT_SLAB));
                 addDrop(ObjectRegistry.DIRT_SLAB, createSlab(ObjectRegistry.DIRT_SLAB));
                 addDrop(ObjectRegistry.GRASS_SLAB, createSlab(ObjectRegistry.GRASS_SLAB));
@@ -475,7 +472,7 @@ public class DataGen implements DataGeneratorEntrypoint {
                 LootPool.Builder builderLootTable = BlockLootTableGenerator.addSurvivesExplosionCondition(wineRack, LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0f)));
 
                 for (int stage = 1; stage < i+1; stage++) {
-                    builderLootTable.with(ItemEntry.builder(ObjectRegistry.BIG_BOTTLE)
+                    builderLootTable.with(ItemEntry.builder(ObjectRegistry.CHERRY_WINE)
                             .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(i))
                                     .conditionally(BlockStatePropertyLootCondition.builder(wineRack)
                                             .properties(StatePredicate.Builder.create().exactMatch(WineRackBlock.STAGE, i)))));
