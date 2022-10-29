@@ -4,7 +4,7 @@
       "model": "vinery:block/cherry_slab"
     },
     "type=double": {
-      "model": "vinery:block/cherry_planks"
+      "model": "vinery:block/cherry_slab_double"
     },
     "type=top": {
       "model": "vinery:block/cherry_slab_top"

@@ -22,6 +22,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.state.property.Property;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -71,6 +72,7 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty HAS_CHERRIES_INSIDE = BooleanProperty.of("has_cherries");
+    private static final Property<Boolean> COOKING = BooleanProperty.of("has_cherries");
 
     public CookingPotBlock(Settings settings) {
         super(settings);
@@ -111,22 +113,24 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
 
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-//        if (state.get(COOKING)) {
-//            double d = (double)pos.getX() + 0.5;
-//            double e = pos.getY();
-//            double f = (double)pos.getZ() + 1.0;
-//            if (random.nextDouble() < 0.3) {
-//                world.playSound(d, e, f, VinerySoundEvents.BLOCK_COOKING_POT_JUICE_BOILING, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
-//            }
-//            Direction direction = state.get(FACING);
-//            Direction.Axis axis = direction.getAxis();
-//            double h = random.nextDouble() * 0.6 - 0.3;
-//            double i = axis == Direction.Axis.X ? (double)direction.getOffsetX() * 0.52 : h;
-//            double j = random.nextDouble() * 6.0 / 16.0;
-//            double k = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * 0.52 : h;
-//            world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
-//            world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0, 0.0, 0.0);
-//        }
+        if (state.get(COOKING)) {
+            double d = (double)pos.getX() + 0.5;
+            double e = pos.getY();
+            double f = (double)pos.getZ() + 1.0;
+            if (random.nextDouble() < 0.3) {
+                world.playSound(d, e, f, VinerySoundEvents.BLOCK_COOKING_POT_JUICE_BOILING, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+            }
+            Direction direction = state.get(FACING);
+            Direction.Axis axis = direction.getAxis();
+            double h = random.nextDouble() * 0.6 - 0.3;
+            double i = axis == Direction.Axis.X ? (double)direction.getOffsetX() * 0.52 : h;
+            double j = random.nextDouble() * 6.0 / 16.0;
+            double k = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * 0.52 : h;
+            world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+            world.addParticle(ParticleTypes.BUBBLE_COLUMN_UP, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+            world.addParticle(ParticleTypes.BUBBLE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+            world.addParticle(ParticleTypes.BUBBLE_POP, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+        }
     }
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

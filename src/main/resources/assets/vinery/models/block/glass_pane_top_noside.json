@@ -1,6 +1,17 @@
 {
-  "parent": "minecraft:block/template_glass_pane_noside",
-  "textures": {
-    "pane": "vinery:block/window_top"
-  }
+	"credit": "Made by Satisfy",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "vinery:block/window_top",
+		"pane": "vinery:block/window_top"
+	},
+	"elements": [
+		{
+			"from": [7, 0, 7],
+			"to": [9, 16, 9],
+			"faces": {
+				"north": {"uv": [9, 0, 7, 16], "texture": "#pane"}
+			}
+		}
+	]
 }

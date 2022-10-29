@@ -1,3 +1,6 @@
 {
-  "parent": "vinery:block/wine_box_empty_closed"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "vinery:item/wine_box"
+  }
 }

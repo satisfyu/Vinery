@@ -1,78 +1,48 @@
 {
   "variants": {
     "facing=east,stage=0": {
-      "model": "vinery:block/wine_rack2_stage0",
+      "model": "vinery:block/wine_rack2_stage0_small",
       "y": 90
     },
     "facing=north,stage=0": {
-      "model": "vinery:block/wine_rack2_stage0"
+      "model": "vinery:block/wine_rack2_stage0_small"
     },
     "facing=south,stage=0": {
-      "model": "vinery:block/wine_rack2_stage0",
+      "model": "vinery:block/wine_rack2_stage0_small",
       "y": 180
     },
     "facing=west,stage=0": {
-      "model": "vinery:block/wine_rack2_stage0",
+      "model": "vinery:block/wine_rack2_stage0_small",
       "y": 270
     },
     "facing=east,stage=1": {
-      "model": "vinery:block/wine_rack2_stage1",
+      "model": "vinery:block/wine_rack2_stage1_small",
       "y": 90
     },
     "facing=north,stage=1": {
-      "model": "vinery:block/wine_rack2_stage1"
+      "model": "vinery:block/wine_rack2_stage1_small"
     },
     "facing=south,stage=1": {
-      "model": "vinery:block/wine_rack2_stage1",
+      "model": "vinery:block/wine_rack2_stage1_small",
       "y": 180
     },
     "facing=west,stage=1": {
-      "model": "vinery:block/wine_rack2_stage1",
+      "model": "vinery:block/wine_rack2_stage1_small",
       "y": 270
     },
     "facing=east,stage=2": {
-      "model": "vinery:block/wine_rack2_stage2",
+      "model": "vinery:block/wine_rack2_stage2_small",
       "y": 90
     },
     "facing=north,stage=2": {
-      "model": "vinery:block/wine_rack2_stage2"
+      "model": "vinery:block/wine_rack2_stage2_small"
     },
     "facing=south,stage=2": {
-      "model": "vinery:block/wine_rack2_stage2",
+      "model": "vinery:block/wine_rack2_stage2_small",
       "y": 180
     },
     "facing=west,stage=2": {
-      "model": "vinery:block/wine_rack2_stage2",
-      "y": 270
-    },
-    "facing=east,stage=3": {
-      "model": "vinery:block/wine_rack2_stage3",
-      "y": 90
-    },
-    "facing=north,stage=3": {
-      "model": "vinery:block/wine_rack2_stage3"
-    },
-    "facing=south,stage=3": {
-      "model": "vinery:block/wine_rack2_stage3",
-      "y": 180
-    },
-    "facing=west,stage=3": {
-      "model": "vinery:block/wine_rack2_stage3",
-      "y": 270
-    },
-    "facing=east,stage=4": {
-      "model": "vinery:block/wine_rack2_stage4",
-      "y": 90
-    },
-    "facing=north,stage=4": {
-      "model": "vinery:block/wine_rack2_stage4"
-    },
-    "facing=south,stage=4": {
-      "model": "vinery:block/wine_rack2_stage4",
-      "y": 180
-    },
-    "facing=west,stage=4": {
-      "model": "vinery:block/wine_rack2_stage4",
+      "model": "vinery:block/wine_rack2_stage2_small",
       "y": 270
     }
   }

@@ -4,6 +4,7 @@ import daniking.vinery.block.entity.WoodFiredOvenBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.SmokerBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
@@ -25,32 +26,12 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class StoveBlock extends Block {
-
-    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-    public static final BooleanProperty LIT = Properties.LIT;
-
+public class StoveBlock extends SmokerBlock {
     public StoveBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(LIT, false));
     }
 
-    @Nullable
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
-    }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING, LIT);
-    }
-
-    @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (!state.get(LIT))
-            return;
-
         double d = (double)pos.getX() + 0.5;
         double e = pos.getY() + 0.24;
         double f = (double)pos.getZ() + 0.5;
@@ -65,15 +46,6 @@ public class StoveBlock extends Block {
         double k = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * 0.52 : h;
         world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
         world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0, 0.0, 0.0);
-    }
-    
-    @Override
-    public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return state.with(FACING, rotation.rotate(state.get(FACING)));
-    }
-    
-    @Override
-    public BlockState mirror(BlockState state, BlockMirror mirror) {
-        return state.rotate(mirror.getRotation(state.get(FACING)));
+
     }
 }

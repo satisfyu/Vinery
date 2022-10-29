@@ -386,8 +386,6 @@ public class DataGen implements DataGeneratorEntrypoint {
 
                 getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
                         ObjectRegistry.ROCKS,
-                        ObjectRegistry.ROCKS_VARIANT_B,
-                        ObjectRegistry.ROCKS_VARIANT_C,
                         ObjectRegistry.WOOD_FIRED_OVEN,
                         ObjectRegistry.STOVE,
                         ObjectRegistry.WINDOW,

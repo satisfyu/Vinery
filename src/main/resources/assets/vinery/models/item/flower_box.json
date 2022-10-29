@@ -1,3 +1,6 @@
 {
-  "parent": "vinery:block/flower_box_center"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "vinery:item/flower_box"
+  }
 }

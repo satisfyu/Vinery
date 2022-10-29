@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class VineryVillagers {
     private static final VineryIdentifier WINEMAKER_POI_IDENTIFIER = new VineryIdentifier("winemaker_poi");
-    public static final PointOfInterestType WINEMAKER_POI = PointOfInterestHelper.register(WINEMAKER_POI_IDENTIFIER, 1, 12, ObjectRegistry.WINE_PRESS);
+    public static final PointOfInterestType WINEMAKER_POI = PointOfInterestHelper.register(WINEMAKER_POI_IDENTIFIER, 1, 18, ObjectRegistry.WINE_PRESS);
     public static final VillagerProfession WINEMAKER = Registry.register(Registry.VILLAGER_PROFESSION, new Identifier("vinery", "winemaker"), VillagerProfessionBuilder.create().id(new Identifier("vinery", "winemaker")).workstation(RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY, WINEMAKER_POI_IDENTIFIER)).build());
 
     public static void init() {

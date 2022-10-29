@@ -1,7 +1,7 @@
 {
-  "parent": "minecraft:block/template_glass_pane_post",
-  "textures": {
-    "pane": "vinery:block/window_mid",
-    "edge": "vinery:block/window_pane_top"
-  }
+	"credit": "Made by Satisfy",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "vinery:block/window_mid"
+	}
 }

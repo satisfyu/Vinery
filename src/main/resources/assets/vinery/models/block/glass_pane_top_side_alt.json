@@ -1,7 +1,21 @@
 {
-  "parent": "minecraft:block/template_glass_pane_side_alt",
-  "textures": {
-    "pane": "vinery:block/window_top",
-    "edge": "vinery:block/window_pane_top"
-  }
+	"credit": "Made by Satisfy",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "vinery:block/window_top",
+		"pane": "vinery:block/window_top",
+		"edge": "vinery:block/window_pane_top"
+	},
+	"elements": [
+		{
+			"from": [7, 0, 9],
+			"to": [9, 16, 16],
+			"faces": {
+				"east": {"uv": [0, 0, 7, 16], "texture": "#pane"},
+				"south": {"uv": [7, 0, 9, 16], "texture": "#edge", "cullface": "south"},
+				"west": {"uv": [7, 0, 0, 16], "texture": "#pane"},
+				"up": {"uv": [7, 0, 9, 7], "texture": "#edge"}
+			}
+		}
+	]
 }
