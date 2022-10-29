@@ -385,7 +385,6 @@ public class DataGen implements DataGeneratorEntrypoint {
                 ).addTag(Vinery.WINE_RACK);
 
                 getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
-                        ObjectRegistry.ROCKS,
                         ObjectRegistry.WOOD_FIRED_OVEN,
                         ObjectRegistry.STOVE,
                         ObjectRegistry.WINDOW,

@@ -18,7 +18,9 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class ChenetBlock extends Block {
-    private static final VoxelShape SHAPE = VoxelShapes.cuboid(0.0625, 0, 0.0625, 0.9375, 0.75, 0.9375);
+    private static final VoxelShape SHAPE =
+            VoxelShapes.cuboid(0.44375, 0.45, 0.44375, 0.55625, 0.675, 0.55625);
+
 
     public static final IntProperty STACK = IntProperty.of("stack", 1, 2);
 

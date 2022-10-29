@@ -183,7 +183,6 @@ public class ObjectRegistry {
 
     public static final Block BASKET = register("basket", new Block(FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()));
     public static final Block COOKING_POT = register("cooking_pot", new CookingPotBlock(FabricBlockSettings.of(Material.STONE).breakInstantly().nonOpaque()));
-    public static final Block ROCKS = register("rocks", new Block(getRockSettings()));
     public static final Block STACKABLE_LOG = register("stackable_log", new StackableLogBlock(getLogBlockSettings().nonOpaque()));
     public static final Item FAUCET = register("faucet", new FaucetItem(getSettings()));
 
@@ -289,10 +288,6 @@ public class ObjectRegistry {
         return FabricBlockSettings.copyOf(Blocks.SWEET_BERRY_BUSH);
     }
 
-    private static AbstractBlock.Settings getRockSettings() {
-        return FabricBlockSettings.of(Material.STONE, MapColor.STONE_GRAY).requiresTool().strength(1.0F, 3.0F)
-                .nonOpaque();
-    }
 
     private static AbstractBlock.Settings getGrassSettings() {
         return FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).nonOpaque();

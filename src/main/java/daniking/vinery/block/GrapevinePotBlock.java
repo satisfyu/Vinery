@@ -34,12 +34,14 @@ public class GrapevinePotBlock extends Block {
             Block.createCuboidShape(0.0, 0.0, 0.0, 1.0, 10.0,  16.0),
             Block.createCuboidShape(1.0, 0.0, 0.0, 15.0, 10.0, 1.0),
             Block.createCuboidShape(1.0, 0.0, 15.0, 15.0, 10.0, 16.0),
-            Block.createCuboidShape(0, 4, -0.5, 16.0, 6, 0.0),
-            Block.createCuboidShape(0, 4, 16, 16, 6,16),
-            Block.createCuboidShape(16, 4, -0.5, 16.5, 6, 16),
-            Block.createCuboidShape(0, 4, 0, 0, 5, 16),
+            Block.createCuboidShape(0, 0, 0, 16.0, 6, 0.0),
+            Block.createCuboidShape(0, 0, 16, 16, 6,16),
+            Block.createCuboidShape(16, 0, 0, 16, 6, 16),
+            Block.createCuboidShape(0, 0, 0, 0, 5, 16),
             Block.createCuboidShape(1, 1, 1, 15, 1, 15)
     );
+    
+    
 
     private static final VoxelShape SMASHING_SHAPE = VoxelShapes.union(
             FILLING_SHAPE,
