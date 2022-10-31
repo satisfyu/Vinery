@@ -78,6 +78,9 @@
   "block.vinery.cherry_sapling": "Cherry Sapling",
   "block.vinery.old_cherry_sapling": "Old Cherry Sapling",
   "block.vinery.crusty_bread": "Crusty Bread",
+  "block.vinery.table": "Table",
+  "block.vinery.chair": "Chair",
+  "block.vinery.basket": "Basket",
   "item.vinery.red_grape": "Red Grape",
   "item.vinery.red_grape_seeds": "Red Grape Seeds",
   "item.vinery.white_grape": "White Grape",
@@ -107,5 +110,7 @@
   "vinery.tooltip.winemaker_armor3": "Bonemeal wont get consumed anymore.",
   "item.vinery.gloves": "Gloves",
   "item.vinery.faucet.tooltip.shift":"Some sort of an infinite water resource",
-  "item.vinery.faucet.tooltip": "Press §eSHIFT§r for more Information"
+  "item.vinery.faucet.tooltip": "Press §eSHIFT§r for more Information",
+
+
 }
