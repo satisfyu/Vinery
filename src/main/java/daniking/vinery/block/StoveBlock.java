@@ -26,7 +26,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class StoveBlock extends SmokerBlock {
+public class StoveBlock extends FacingBlock {
     public StoveBlock(Settings settings) {
         super(settings);
     }
