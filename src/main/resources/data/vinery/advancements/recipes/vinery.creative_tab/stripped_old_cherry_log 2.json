@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "vinery:stripped_old_cherry_log"
+    ]
+  },
+  "criteria": {
+    "has_stripped_old_cherry_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:stripped_old_cherry_log"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "vinery:stripped_old_cherry_log"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stripped_old_cherry_log",
+      "has_the_recipe"
+    ]
+  ]
+}

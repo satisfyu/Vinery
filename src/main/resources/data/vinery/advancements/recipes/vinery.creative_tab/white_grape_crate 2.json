@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "vinery:white_grape_crate"
+    ]
+  },
+  "criteria": {
+    "has_white_grape": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:white_grape"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "vinery:white_grape_crate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_white_grape",
+      "has_the_recipe"
+    ]
+  ]
+}

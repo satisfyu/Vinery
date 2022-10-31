@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "grapevine_pot",
+  "pattern": [
+    "_ _",
+    "SSS"
+  ],
+  "key": {
+    "_": {
+      "item": "minecraft:spruce_slab"
+    },
+    "S": {
+      "item": "minecraft:spruce_planks"
+    }
+  },
+  "result": {
+    "item": "vinery:grapevine_pot"
+  }
+}

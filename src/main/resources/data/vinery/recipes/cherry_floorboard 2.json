@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " ##",
+        "###",
+        "## "
+    ],
+    "key": {
+        "#": {
+            "item": "vinery:cherry_planks"
+        }
+    },
+    "result": {
+        "item": "vinery:cherry_floorboard",
+        "count": 4
+    }
+}

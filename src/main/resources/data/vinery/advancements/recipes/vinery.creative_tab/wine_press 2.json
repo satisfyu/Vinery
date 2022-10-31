@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "vinery:wine_press"
+    ]
+  },
+  "criteria": {
+    "has_iron_trapdoor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:iron_trapdoor"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "vinery:wine_press"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_iron_trapdoor",
+      "has_the_recipe"
+    ]
+  ]
+}

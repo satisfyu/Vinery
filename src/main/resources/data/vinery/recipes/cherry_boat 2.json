@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "vinery:cherry_planks"
+    }
+  },
+  "result": {
+    "item": "vinery:cherry_boat"
+  }
+}

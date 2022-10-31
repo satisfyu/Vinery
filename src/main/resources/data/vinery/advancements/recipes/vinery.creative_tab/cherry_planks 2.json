@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "vinery:cherry_planks"
+    ]
+  },
+  "criteria": {
+    "has_cherry_logs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "vinery:cherry_logs"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "vinery:cherry_planks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cherry_logs",
+      "has_the_recipe"
+    ]
+  ]
+}

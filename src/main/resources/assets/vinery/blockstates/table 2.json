@@ -1,0 +1,52 @@
+{
+  "variants": {
+
+    "facing=east,type=single": {
+      "model": "vinery:block/table",
+      "y": 90
+    },
+    "facing=north,type=single": {
+      "model": "vinery:block/table"
+    },
+    "facing=south,type=single": {
+      "model": "vinery:block/table",
+      "y": 180
+    },
+    "facing=west,type=single": {
+      "model": "vinery:block/table",
+      "y": 270
+    },
+
+    "facing=east,type=left": {
+      "model": "vinery:block/table_connected_support",
+      "y": 90
+    },
+    "facing=north,type=left": {
+      "model": "vinery:block/table_connected_support"
+    },
+    "facing=south,type=left": {
+      "model": "vinery:block/table_connected_support",
+      "y": 180
+    },
+    "facing=west,type=left": {
+      "model": "vinery:block/table_connected_support",
+      "y": 270
+    },
+
+    "facing=east,type=right": {
+      "model": "vinery:block/table_connected_support",
+      "y": 270
+    },
+    "facing=north,type=right": {
+      "model": "vinery:block/table_connected_support",
+      "y": 180
+    },
+    "facing=south,type=right": {
+      "model": "vinery:block/table_connected_support"
+    },
+    "facing=west,type=right": {
+      "model": "vinery:block/table_connected_support",
+      "y": 90
+    }
+  }
+}

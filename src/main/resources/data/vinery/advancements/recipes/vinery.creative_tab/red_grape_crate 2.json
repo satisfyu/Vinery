@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "vinery:red_grape_crate"
+    ]
+  },
+  "criteria": {
+    "has_red_grape": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:red_grape"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "vinery:red_grape_crate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_grape",
+      "has_the_recipe"
+    ]
+  ]
+}

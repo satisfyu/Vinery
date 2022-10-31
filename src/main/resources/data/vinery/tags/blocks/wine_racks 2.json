@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "vinery:wine_rack_1",
+    "vinery:wine_rack_2",
+    "vinery:wine_rack_3",
+    "vinery:wine_rack_4",
+    "vinery:wine_rack_5"
+  ]
+}

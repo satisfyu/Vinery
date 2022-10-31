@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "vinery:coarse_dirt_slab"
+    ]
+  },
+  "criteria": {
+    "has_coarse_dirt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:coarse_dirt"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "vinery:coarse_dirt_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_coarse_dirt",
+      "has_the_recipe"
+    ]
+  ]
+}

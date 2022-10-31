@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "fermentation_barrel",
+  "pattern": [
+    " B ",
+    "S S"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:barrel"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "vinery:fermentation_barrel"
+  }
+}
