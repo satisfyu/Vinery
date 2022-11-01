@@ -1,6 +1,7 @@
 package daniking.vinery.block;
 
 import daniking.vinery.block.entity.WoodFiredOvenBlockEntity;
+import daniking.vinery.registry.DamageSourceRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -8,6 +9,9 @@ import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
@@ -50,6 +54,8 @@ public class WoodFiredOvenBlock extends Block implements BlockEntityProvider {
             return ActionResult.PASS;
         }
     }
+
+
 
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
@@ -113,5 +119,16 @@ public class WoodFiredOvenBlock extends Block implements BlockEntityProvider {
         double k = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * 0.52 : h;
         world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
         world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+    }
+
+    @Override
+    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+        boolean isLit = world.getBlockState(pos).get(LIT);
+        if (isLit && !entity.isFireImmune() && entity instanceof LivingEntity livingEntity &&
+                !EnchantmentHelper.hasFrostWalker(livingEntity)) {
+            entity.damage(DamageSourceRegistry.STOVE_BLOCK, 1.f);
+        }
+
+        super.onSteppedOn(world, pos, state, entity);
     }
 }
