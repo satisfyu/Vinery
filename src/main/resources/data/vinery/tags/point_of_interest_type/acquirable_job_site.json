@@ -1,7 +1,6 @@
 {
   "values":
   [
-    "vinery:wine_press"
-  ],
-  "replace": false
+    "vinery:winemaker_poi"
+  ]
 }

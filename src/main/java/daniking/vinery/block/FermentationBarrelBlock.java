@@ -6,6 +6,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
@@ -28,25 +29,21 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class FermentationBarrelBlock extends HorizontalFacingBlock implements BlockEntityProvider {
+    // TODO: Deal with voxel shape situation
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> VoxelShapes.union(
-            createCuboidShape(7, 18, 7,9, 22, 9),
-            createCuboidShape(6.75, 18.5, 6.75,9.25, 21.5, 9.25),
+            createCuboidShape(0.4375, 1.0625, 0.4375, 0.5625, 1.25, 0.5625),
+            createCuboidShape(0.5, 0.1875, 1.125, 0.5625, 0.6875, 1.1875),
             createCuboidShape(6.75, 5.75, 18,9.25, 8.25, 20),
-            createCuboidShape(7, 6, 16,9, 8, 20.4),
-            createCuboidShape(1, 5, 0,15, 17, 16),
-            createCuboidShape(15, 5, 0,16, 17, 16),
-            createCuboidShape(0, 5, 0,1, 17, 16),
-            createCuboidShape(1, 17, 0,15, 18, 16),
-            createCuboidShape(0, 0, 12,16, 2, 15),
-            createCuboidShape(0.5, 2, 12,15.5, 4, 15),
-            createCuboidShape(1, 1, 4,2, 2, 12),
-            createCuboidShape(1, 3, 0.9,15, 5, 15.1),
-            createCuboidShape(0, 0, 1, 16, 2, 4),
-            createCuboidShape(0.5, 2, 1,15.5, 4, 4),
-            createCuboidShape(14, 1, 4,15, 2, 12));
+            createCuboidShape(0.0625, 0.1875, 0, 0.9375, 1.0625, 1),
+            createCuboidShape(0.0625, 0, 0.75, 0.9375, 0.125, 0.9375),
+            createCuboidShape(0.0625, 0, 0.0625, 0.9375, 0.125, 0.25),
+            createCuboidShape(0.125, 0.125, 0.75, 0.875, 0.1875, 0.9375),
+            createCuboidShape(0.125, 0.125, 0.0625, 0.875, 0.1875, 0.25),
+            createCuboidShape(0.125, 0.0625, 0.25, 0.1875, 0.125, 0.75),
+            createCuboidShape(0.8125, 0.0625, 0.25, 0.875, 0.125, 0.75),
+            createCuboidShape(0.4375, 0.3125, 1, 0.625, 0.5, 1.25));
 
     public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Type.HORIZONTAL.stream().toList()) {
@@ -77,7 +74,27 @@ public class FermentationBarrelBlock extends HorizontalFacingBlock implements Bl
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE.get(state.get(FACING));
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.4375, 0.59375, 0.4375, 0.5625, 0.84375, 0.5625));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.4375, 0.96875, 0.4375, 0.5625, 1.03125, 0.5625));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.353935625, 0.0019275, 0.249875, 0.64520125, 0.4396775, 0.750125));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.1875, 0.40625, 0.25, 0.8125, 0.59375, 0.75));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(-0.1875, 0.15625, 0.5, 0.3125, 0.71875, 0.5));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.6875, 0.15625, 0.5, 1.1875, 0.71875, 0.5));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.51261, 0.028476875, 0.2500625, 0.699985, 0.465851875, 0.7499375));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.300015, 0.028476875, 0.2500625, 0.48739, 0.465851875, 0.7499375));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.375, 0.84375, 0.375, 0.625, 0.96875, 0.625));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.203769375, 0.3994225, 0.2624375, 0.797644375, 0.5620475, 0.7375625));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.35850375, 0.0169225, 0.2613125, 0.625769375, 0.3994225, 0.7375625));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.5250475, 0.040914375, 0.2625, 0.6875475, 0.453414375, 0.7375));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.3124525, 0.040914375, 0.2625, 0.4749525, 0.453414375, 0.7375));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.175, 0.425, 0.2375, 0.825, 0.4875, 0.7625));
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.375, -0.25, 0.234375, 0.6875, 0, 0.234375));
+
+        //if (MinecraftClient.getInstance().player != null)
+        //    VineryUtils.rotateShape(state.get(FACING), MinecraftClient.getInstance().player.getHorizontalFacing(), shape);
+
+        return shape;
     }
 
     @Override
