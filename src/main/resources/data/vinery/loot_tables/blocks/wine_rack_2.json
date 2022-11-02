@@ -38,7 +38,7 @@
               "add": false
             }
           ],
-          "name": "vinery:big_bottle"
+          "name": "vinery:wine_rack_2"
         },
         {
           "type": "minecraft:item",
@@ -58,7 +58,7 @@
               "add": false
             }
           ],
-          "name": "vinery:big_bottle"
+          "name": "vinery:wine_rack_2"
         },
         {
           "type": "minecraft:item",
@@ -78,7 +78,7 @@
               "add": false
             }
           ],
-          "name": "vinery:big_bottle"
+          "name": "vinery:wine_rack_2"
         },
         {
           "type": "minecraft:item",
@@ -98,7 +98,7 @@
               "add": false
             }
           ],
-          "name": "vinery:big_bottle"
+          "name": "vinery:wine_rack_2"
         }
       ],
       "conditions": [

@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "vinery:cherry_door",
-    "vinery:cherry_door_with_iron_bars",
-    "vinery:cherry_door_with_windows"
+    "vinery:cherry_door"
   ]
 }

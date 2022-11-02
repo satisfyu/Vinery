@@ -39,7 +39,7 @@
   "block.vinery.cherry_floorboard": "Cherry Floorboard",
   "block.vinery.pink_cherry_leaves": "Pink Cherry Leaves",
   "block.vinery.stackable_log": "Stackable Log",
-  "block.vinery.cooking_pot": "Cooking Pot",
+  "block.vinery.coopot": "Cooking Pot",
   "block.vinery.cherry_jar": "Cherry Jar",
   "block.vinery.cherry_jam": "Cherry Jam",
   "block.vinery.fermentation_barrel": "Fermentation Barrel",
@@ -111,7 +111,5 @@
   "vinery.tooltip.winemaker_armor3": "Bonemeal wont get consumed anymore.",
   "item.vinery.gloves": "Gloves",
   "item.vinery.faucet.tooltip.shift":"Some sort of an infinite water resource",
-  "item.vinery.faucet.tooltip": "Press §eSHIFT§r for more Information",
-
-
+  "item.vinery.faucet.tooltip": "Press §eSHIFT§r for more Information"
 }

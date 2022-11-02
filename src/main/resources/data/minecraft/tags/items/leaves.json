@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "vinery:cherry_leaves",
-    "vinery:pink_cherry_leaves"
+    "vinery:cherry_leaves"
   ]
 }

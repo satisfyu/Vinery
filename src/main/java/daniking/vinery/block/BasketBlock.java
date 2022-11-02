@@ -1,8 +1,10 @@
 package daniking.vinery.block;
 
+import daniking.vinery.Vinery;
 import daniking.vinery.registry.ObjectRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -19,6 +21,9 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,6 +44,8 @@ public class BasketBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        Vinery.LOGGER.info("Used Basket Block!");
+
         if (world.isClient)
             return ActionResult.SUCCESS;
         final ItemStack stack = player.getStackInHand(hand);
@@ -52,6 +59,41 @@ public class BasketBlock extends Block {
             return ActionResult.SUCCESS;
         }
         return super.onUse(state, world, pos, player, hand, hit);
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
+    {
+        VoxelShape shape = VoxelShapes.empty();
+
+        if (state.get(STAGE) == 0)
+        {
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.1875, 0, 0.25, 0.25, 0.3125, 0.75));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.1875, 0.3125, 0.4375, 0.1875, 0.5625, 0.5625));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.8125, 0.3125, 0.4375, 0.8125, 0.5625, 0.5625));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.1875, 0.5625, 0.4375, 0.8125, 0.5625, 0.5625));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.75, 0, 0.25, 0.8125, 0.3125, 0.75));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.25, 0, 0.75, 0.75, 0.3125, 0.8125));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.25, 0, 0.1875, 0.75, 0.3125, 0.25));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.24925, -0.00075, 0.24925, 0.75075, 0.06175, 0.75075));
+        }
+        else if (state.get(STAGE) == 1)
+        {
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.1875, 0, 0.25, 0.25, 0.3125, 0.75));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.1875, 0.3125, 0.4375, 0.1875, 0.5625, 0.5625));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.8125, 0.3125, 0.4375, 0.8125, 0.5625, 0.5625));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.1875, 0.5625, 0.4375, 0.8125, 0.5625, 0.5625));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.75, 0, 0.25, 0.8125, 0.3125, 0.75));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.25, 0, 0.75, 0.75, 0.3125, 0.8125));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.25, 0, 0.1875, 0.75, 0.3125, 0.25));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.24925, -0.00075, 0.24925, 0.75075, 0.25075, 0.75075));
+        }
+        else
+        {
+            shape = VoxelShapes.fullCube();
+        }
+
+        return shape;
     }
 
     @Nullable

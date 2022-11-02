@@ -32,6 +32,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class KitchenSinkBlock extends Block {
 	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
@@ -82,7 +83,19 @@ public class KitchenSinkBlock extends Block {
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
 	}
-	
+
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
+	{
+		return Stream.of(
+				Block.createCuboidShape(13, 12, 3, 16, 16, 12),
+				Block.createCuboidShape(0, 12, 3, 2.975, 16, 12),
+				Block.createCuboidShape(0, 12, 12, 16, 16, 16),
+				Block.createCuboidShape(0, 12, 0, 16, 16, 3),
+				Block.createCuboidShape(0, 0, 2, 16, 12, 16)
+		).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
+	}
+
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(FACING, FILLED, HAS_FAUCET);
