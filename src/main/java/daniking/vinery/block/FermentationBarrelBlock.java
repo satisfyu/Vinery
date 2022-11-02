@@ -16,6 +16,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.Util;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -31,22 +32,20 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class FermentationBarrelBlock extends HorizontalFacingBlock implements BlockEntityProvider {
-    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> VoxelShapes.union(
-            createCuboidShape(7, 18, 7,9, 22, 9),
-            createCuboidShape(6.75, 18.5, 6.75,9.25, 21.5, 9.25),
-            createCuboidShape(6.75, 5.75, 18,9.25, 8.25, 20),
-            createCuboidShape(7, 6, 16,9, 8, 20.4),
-            createCuboidShape(1, 5, 0,15, 17, 16),
-            createCuboidShape(15, 5, 0,16, 17, 16),
-            createCuboidShape(0, 5, 0,1, 17, 16),
-            createCuboidShape(1, 17, 0,15, 18, 16),
-            createCuboidShape(0, 0, 12,16, 2, 15),
-            createCuboidShape(0.5, 2, 12,15.5, 4, 15),
-            createCuboidShape(1, 1, 4,2, 2, 12),
-            createCuboidShape(1, 3, 0.9,15, 5, 15.1),
-            createCuboidShape(0, 0, 1, 16, 2, 4),
-            createCuboidShape(0.5, 2, 1,15.5, 4, 4),
-            createCuboidShape(14, 1, 4,15, 2, 12));
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.4375, 1.0625, 0.4375, 0.5625, 1.25, 0.5625), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.5, 0.1875, 1.125, 0.5625, 0.6875, 1.1875), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0.1875, 0, 0.9375, 1.0625, 1), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0, 0.75, 0.9375, 0.125, 0.9375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0, 0.0625, 0.9375, 0.125, 0.25), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.125, 0.75, 0.875, 0.1875, 0.9375), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.125, 0.0625, 0.875, 0.1875, 0.25), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.0625, 0.25, 0.1875, 0.125, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8125, 0.0625, 0.25, 0.875, 0.125, 0.75), BooleanBiFunction.OR);
+        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.4375, 0.3125, 1, 0.625, 0.5, 1.25), BooleanBiFunction.OR);
+        return shape;
+    };
 
     public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Type.HORIZONTAL.stream().toList()) {
