@@ -2,7 +2,7 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"0": "vinery:block/basket",
-		"particle": "vinery:block/basket"
+		"particle": "vinery:block/bag_side"
 	},
 	"elements": [
 		{
