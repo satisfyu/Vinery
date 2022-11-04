@@ -96,6 +96,7 @@ public class KitchenSinkBlock extends Block {
 		).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 	}
 
+
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(FACING, FILLED, HAS_FAUCET);

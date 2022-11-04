@@ -61,8 +61,7 @@ public class CherryWineBlock extends WineBottleBlock
             shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.5, 0, 0.5625, 0.75, 0.6875, 0.8125));
             shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.5125, 0.0125, 0.575, 0.7375, 0.675, 0.8));
             shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.486875, 0.236875, 0.549375, 0.763125, 0.450625, 0.825625));
-            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.549375, 0.299375, 0.174375, 0.825625, 0.513125, 0.450625));
-            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.4875, 0.425, 0.55, 0.7625, 0.4875, 0.825));
+            shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.4875, 0.425, 0.55, 0.7625, 0.5125, 0.825));
         }
         else
         {
