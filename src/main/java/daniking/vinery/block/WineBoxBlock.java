@@ -83,23 +83,21 @@ public class WineBoxBlock extends Block {
 	
 	private static VoxelShape makeShapeS() {
 		VoxelShape shape = VoxelShapes.empty();
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0, 0.3125, 0.09375, 0.3125, 0.6875), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.90625, 0, 0.3125, 0.9375, 0.3125, 0.6875), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.09375, 0, 0.3125, 0.90625, 0.3125, 0.34375), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.09375, 0.03125, 0.34375, 0.90625, 0.09375, 0.65625), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.09375, 0, 0.65625, 0.90625, 0.3125, 0.6875), BooleanBiFunction.OR);
-
+	shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0, 0.28125, 0.9375, 0.3125, 0.34375), BooleanBiFunction.OR);
+	shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0, 0.65625, 0.9375, 0.3125, 0.71875), BooleanBiFunction.OR);
+	shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.875, 0, 0.34375, 0.9375, 0.3125, 0.65625), BooleanBiFunction.OR);
+	shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.0625, 0, 0.34375, 0.125, 0.3125, 0.65625), BooleanBiFunction.OR);
+	shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0, 0.34375, 0.875, 0.125, 0.65625), BooleanBiFunction.OR);
 		return shape;
 	}
 	
 	private static VoxelShape makeShapeE() {
 		VoxelShape shape = VoxelShapes.empty();
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0, 0.0625, 0.6875, 0.3125, 0.09375), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0, 0.90625, 0.6875, 0.3125, 0.9375), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.65625, 0, 0.09375, 0.6875, 0.3125, 0.90625), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.34375, 0.03125, 0.09375, 0.65625, 0.09375, 0.90625), BooleanBiFunction.OR);
-		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.3125, 0, 0.09375, 0.34375, 0.3125, 0.90625), BooleanBiFunction.OR);
-
+	shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.65625, 0, 0.0625, 0.71875, 0.3125, 0.9375), BooleanBiFunction.OR);
+	shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.28125, 0, 0.0625, 0.34375, 0.3125, 0.9375), BooleanBiFunction.OR);
+	shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.34375, 0, 0.875, 0.65625, 0.3125, 0.9375), BooleanBiFunction.OR);
+	shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.34375, 0, 0.0625, 0.65625, 0.3125, 0.125), BooleanBiFunction.OR);
+	shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.34375, 0, 0.125, 0.65625, 0.125, 0.875), BooleanBiFunction.OR);
 		return shape;
 	}
 	

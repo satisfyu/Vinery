@@ -31,10 +31,7 @@ public class WineBottleBlock extends StackableBlock {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.4375, 0.6875, 0.4375, 0.5625, 0.9375, 0.5625));
-        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.375, 0, 0.375, 0.625, 0.6875, 0.625));
-        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.3625, 0.425, 0.3625, 0.6375, 0.5125, 0.6375));
-
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 0.875, 0.8125));
         return shape;
     }
 

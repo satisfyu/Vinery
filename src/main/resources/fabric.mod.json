@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "vinery",
-  "version": "${version}",
+  "version": "1.0",
 
   "name": "Vinery",
   "description": "Vinery contains nearly everything needed for not only creating wine but also for building up your own vinery.",
@@ -9,10 +9,9 @@
     "DanikingRD, satisfy_u, waterpicker, 4732"
   ],
   "contact": {
-    "sources": "https://github.com/DanikingRD/Vinery"
+    "sources": ""
   },
 
-  "license": "CC0-1.0",
   "icon": "assets/vinery/icon.png",
 
   "environment": "*",
@@ -22,9 +21,6 @@
     ],
     "client": [
       "daniking.vinery.client.ClientSetup"
-    ],
-    "fabric-datagen": [
-      "daniking.vinery.data.DataGen"
     ]
   },
   "mixins": [

@@ -9,19 +9,20 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
 public class RedGrapejuiceWineBottle extends GlassBlock {
-    public static final VoxelShape SHAPE = VoxelShapes.union(
-            createCuboidShape(6, 0, 6, 10, 9, 10),
-            createCuboidShape(6.75, 9, 6.75, 9.25, 12.5, 9.25),
-            createCuboidShape(6.35, 12.25, 6.35,9.65, 13.55, 9.65),
-            createCuboidShape(7.25, 10.25, 7.25, 8.75, 11.75, 8.75)
-    );
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 0.875, 0.8125));
+        return shape;
+    }
+
 
     public RedGrapejuiceWineBottle(Settings settings) {
         super(settings);
     }
 
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
-    }
+    ;
+
 }
+
+
