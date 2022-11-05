@@ -9,12 +9,10 @@ import daniking.vinery.VineryIdentifier;
 import daniking.vinery.block.*;
 import daniking.vinery.block.FacingBlock;
 import daniking.vinery.block.FlowerPotBlock;
-import daniking.vinery.item.DrinkBlockItem;
-import daniking.vinery.item.FaucetItem;
-import daniking.vinery.item.StrawHatItem;
-import daniking.vinery.item.WinemakerArmorItem;
+import daniking.vinery.item.*;
 import daniking.vinery.util.GrapevineType;
 import daniking.vinery.world.VineryConfiguredFeatures;
+import me.shedaniel.clothconfig2.api.Tooltip;
 import net.fabricmc.fabric.api.networking.v1.S2CPlayChannelEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -57,7 +55,7 @@ public class ObjectRegistry {
     public static final Item WHITE_GRAPE_SEEDS = register("white_grape_seeds", new GrapeBushSeedItem(WHITE_GRAPE_BUSH, getSettings(), GrapevineType.WHITE));
     public static final Item WHITE_GRAPE = register("white_grape", new GrapeItem(getSettings().food(FoodComponents.SWEET_BERRIES), GrapevineType.WHITE));
 
-    public static final Item CHERRY = register("cherry", new Item(getSettings().food(FoodComponents.COOKIE)));
+    public static final Item CHERRY = register("cherry", new CherryItem(getSettings().food(FoodComponents.COOKIE)));
 
     public static final Block CHERRY_SAPLING = register("cherry_sapling", new SaplingBlock(new SaplingGenerator() {
         @Nullable
@@ -156,7 +154,7 @@ public class ObjectRegistry {
     public static final Block NOIR_WINE = registerWine("noir_wine", new WineBottleBlock(getWineSettings()), StatusEffects.WATER_BREATHING);
     public static final Block CLARK_WINE = registerWine("clark_wine", new WineBottleBlock(getWineSettings()), StatusEffects.FIRE_RESISTANCE);
     public static final Block MELLOHI_WINE = registerWine("mellohi_wine", new MellohiWineBlock(getWineSettings()), StatusEffects.STRENGTH);
-    public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings()), StatusEffects.GLOWING);
+    public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings()), StatusEffects.HEALTH_BOOST);
     public static final Block CHERRY_WINE = registerWine("cherry_wine", new CherryWineBlock(getWineSettings()), StatusEffects.SPEED);
     public static final Block CHERRY_JAR = register("cherry_jar", new CherryJarBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque()));
     public static final Block CHERRY_JAM = register("cherry_jam", new CherryJamBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque()));
@@ -193,7 +191,7 @@ public class ObjectRegistry {
     public static final Item TOAST = register("toast", new Item(getSettings().food(FoodComponents.BEETROOT_SOUP)));
     public static final Item DONUT = register("donut", new Item(getSettings().food(FoodComponents.CARROT)));
     public static final Item MILK_BREAD = register("milk_bread", new Item(getSettings().food(FoodComponents.COOKIE)));
-    public static final Item GLOVES = register("gloves", new Item(getSettings()));
+    public static final Item GLOVES = register("gloves", new GlovesItem(getSettings()));
     public static final Block CRUSTY_BREAD = register("crusty_bread", new BreadBlock(AbstractBlock.Settings.copy(Blocks.CAKE).nonOpaque()));
 
     public static final Item MULE_SPAWN_EGG = register("mule_spawn_egg", new SpawnEggItem(MULE, 0x8b7867, 0x5a4e43, getSettings()));

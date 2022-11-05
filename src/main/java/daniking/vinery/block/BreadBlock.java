@@ -2,6 +2,8 @@ package daniking.vinery.block;
 
 import daniking.vinery.registry.ObjectRegistry;
 import net.minecraft.block.*;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,7 +18,9 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.ItemTags;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -27,6 +31,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
+
+import java.util.List;
 
 public class BreadBlock extends FacingBlock {
     public static final IntProperty BITES = IntProperty.of("bites", 0, 3);
@@ -124,6 +130,18 @@ public class BreadBlock extends FacingBlock {
     @Override
     public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
         return false;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("block.vinery.breadblock.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+
+        if (Screen.hasShiftDown()) {
+            tooltip.add(Text.translatable("block.vinery.breadblock.tooltip.shift_1"));
+            tooltip.add(Text.translatable("block.vinery.breadblock.tooltip.shift_2"));
+        } else {
+            tooltip.add(Text.translatable("block.vinery.breadblock.tooltip.tooltip_shift"));
+        }
     }
 }
 

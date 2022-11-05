@@ -1,7 +1,13 @@
 package daniking.vinery.block;
 
+import daniking.vinery.registry.DamageSourceRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.SlabType;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -9,19 +15,28 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShovelItem;
+import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+
+import java.util.List;
 
 public class StackableLogBlock extends SlabBlock implements Waterloggable {
     public static final EnumProperty<SlabType> TYPE = Properties.SLAB_TYPE;
@@ -31,6 +46,8 @@ public class StackableLogBlock extends SlabBlock implements Waterloggable {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(FIRED, false).with(WATERLOGGED, false));
     }
+
+
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -71,5 +88,46 @@ public class StackableLogBlock extends SlabBlock implements Waterloggable {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(TYPE, FIRED, Properties.WATERLOGGED);
+    }
+
+
+        public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if ((state.get(FIRED))) {
+            if (random.nextInt(10) == 0) {
+                world.playSound((double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5F + random.nextFloat(), random.nextFloat() * 0.7F + 0.6F, false);
+                double x = (double) pos.getX() + random.nextDouble();
+                double y = (double) pos.getY() + random.nextDouble() * 0.5D + 1.5D;
+                double z = (double) pos.getZ() + random.nextDouble();
+                world.addParticle(ParticleTypes.LAVA, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, (double)(random.nextFloat() / 2.0F), 5.0E-5, (double)(random.nextFloat() / 2.0F));
+                world.addParticle(ParticleTypes.SMOKE, (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 0.4, (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, 0.005, 0.0);
+                world.addParticle(ParticleTypes.SMOKE, x, y, z, -0.03 + random.nextDouble() * 0.06, +random.nextDouble() * 0.1, -0.03 + random.nextDouble() * 0.06);
+                world.addParticle(ParticleTypes.LARGE_SMOKE, x, y, z, -0.03 + random.nextDouble() * 0.06, +random.nextDouble() * 0.1, -0.03 + random.nextDouble() * 0.06);
+            }
+        }
+    }
+
+
+
+    @Override
+    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("block.vinery.log.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+
+        if (Screen.hasShiftDown()) {
+            tooltip.add(Text.translatable("block.vinery.log.tooltip.shift_1"));
+            tooltip.add(Text.translatable("block.vinery.log.tooltip.shift_2"));
+        } else {
+            tooltip.add(Text.translatable("block.vinery.log.tooltip.tooltip_shift"));
+        }
+    }
+
+    @Override
+    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+        boolean isLit = world.getBlockState(pos).get(FIRED);
+        if (isLit && !entity.isFireImmune() && entity instanceof LivingEntity livingEntity &&
+                !EnchantmentHelper.hasFrostWalker(livingEntity)) {
+            entity.damage(DamageSourceRegistry.STOVE_BLOCK, 1.f);
+        }
+
+        super.onSteppedOn(world, pos, state, entity);
     }
 }

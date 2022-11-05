@@ -103,7 +103,25 @@
   "vinery.tooltip.winemaker_armor2": "Voller Setbonus:",
   "vinery.tooltip.winemaker_armor3": "Knochenmehl wird nicht mehr verbraucht.",
   "item.vinery.gloves": "Handschuhe",
-  "item.vinery.faucet.tooltip.shift":"Eine Unendliche Wasserressource",
-  "item.vinery.faucet.tooltip": "Halte SHIFT Für Mehr Informationen"
+  "item.vinery.faucet.tooltip.main": "Kann an einer Spüle befestigt werden.",
+  "item.vinery.faucet.tooltip.shift":"Dient als eine Art Unendliche Wasserressource",
+  "item.vinery.faucet.tooltip": "Halte SHIFT Für Mehr Informationen",
+  "block.vinery.grapevinepotblock.tooltip": "Wird verwendet um Trauben zu verarbeiten",
+  "block.vinery.fermentationbarrelblock.tooltip": "Wird verwendet um Traubensaft reifen zu lassen",
+  "block.vinery.chenetblock.tooltip": "Wein",
+  "block.vinery.breadblock.tooltip": "Kann platziert werden",
+  "block.vinery.breadblock.tooltip.shift_1": "Schmeckt eventuell besser",
+  "block.vinery.breadblock.tooltip.shift_2": "mit ein wenig Marmelade ..?",
+  "block.vinery.breadblock.tooltip.tooltip_shift":"Halte SHIFT Für Mehr Informationen",
+  "block.vinery.basket.tooltip": "Kann platziert werden",
+  "block.vinery.canbeplaced.tooltip": "Kann platziert werden",
+  "block.vinery.log.tooltip": "Ein verbessertes Lagerfeuer",
+  "block.vinery.log.tooltip.shift_1": "Kann entzündet werden um",
+  "block.vinery.log.tooltip.shift_2": "ein Leuchtfeuer zu entfachen",
+  "block.vinery.log.tooltip.tooltip_shift":"Halte SHIFT Für Mehr Informationen",
+  "item.vinery.gloves.tooltip": "Eine selten gefundene Handwerkszutat",
+  "item.vinery.grapevine.tooltip": "Handwerkszutat",
+  "item.vinery.cherry.tooltip": "Handwerkszutat",
+  "block.vinery.stem.tooltip": "Wird verwendet um Weinreben wachsen zu lassen"
 
 }

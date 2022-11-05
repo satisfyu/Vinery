@@ -4,6 +4,7 @@ import daniking.vinery.GrapeBushSeedItem;
 import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.util.GrapevineType;
 import net.minecraft.block.*;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -19,7 +20,9 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -32,6 +35,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Objects;
 
 public class GrapevineStemBlock extends Block implements Waterloggable, Fertilizable {
@@ -190,5 +194,10 @@ public class GrapevineStemBlock extends Block implements Waterloggable, Fertiliz
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         boneMealGrow(world, state, pos);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("block.vinery.stem.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }
