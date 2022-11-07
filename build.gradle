@@ -19,8 +19,14 @@ repositories {
 		name "terraform wood api, trinkets"
 		url "https://maven.terraformersmc.com"
 	}
-
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+
+	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
+		content {
+			includeGroup "maven.modrinth"
+		}
 }
 
 dependencies {
@@ -29,11 +35,13 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	modApi "dev.architectury:architectury-fabric:${project.architectury_version}"
 	include "dev.architectury:architectury-fabric:${project.architectury_version}"
+
+	modImplementation "maven.modrinth:Wd844r7Q:1.19-01"
+	include("maven.modrinth:Wd844r7Q:1.19-01")
 
 	include(modCompileOnly("me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"))
 	include(modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"))
@@ -90,4 +98,5 @@ publishing {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 	}
+}
 }
