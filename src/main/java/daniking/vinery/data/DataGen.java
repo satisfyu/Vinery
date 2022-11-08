@@ -481,12 +481,12 @@ public class DataGen implements DataGeneratorEntrypoint {
 
                 LootPool.Builder builderLootTable = BlockLootTableGenerator.addSurvivesExplosionCondition(wineRack, LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0f)));
 
-                for (int stage = 1; stage < i+1; stage++) {
-                    builderLootTable.with(ItemEntry.builder(ObjectRegistry.BIG_BOTTLE)
-                            .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(i))
-                                    .conditionally(BlockStatePropertyLootCondition.builder(wineRack)
-                                            .properties(StatePredicate.Builder.create().exactMatch(WineRackBlock.STAGE, i)))));
-                }
+//                for (int stage = 1; stage < i+1; stage++) {
+//                    builderLootTable.with(ItemEntry.builder(ObjectRegistry.BIG_BOTTLE)
+//                            .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(i))
+//                                    .conditionally(BlockStatePropertyLootCondition.builder(wineRack)
+//                                            .properties(StatePredicate.Builder.create().exactMatch(WineRackBlock.STAGE, i)))));
+//                }
 
                 builder.pool(builderLootTable);
 

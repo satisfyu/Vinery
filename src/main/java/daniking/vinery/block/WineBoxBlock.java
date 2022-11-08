@@ -1,12 +1,13 @@
 package daniking.vinery.block;
 
-import daniking.vinery.registry.ObjectRegistry;
+import daniking.vinery.block.entity.GeckoStorageBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -25,7 +26,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class WineBoxBlock extends Block {
+public class WineBoxBlock extends WineRackBlock {
 	private static final VoxelShape SHAPE_S = makeShapeS();
 	private static final VoxelShape SHAPE_E = makeShapeE();
 	
@@ -34,7 +35,7 @@ public class WineBoxBlock extends Block {
 	public static final BooleanProperty HAS_BOTTLE = BooleanProperty.of("has_bottle");
 	
 	public WineBoxBlock(Settings settings) {
-		super(settings);
+		super(settings, 1, 0);
 		this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(OPEN, false).with(HAS_BOTTLE, false));
 	}
 	
@@ -42,18 +43,20 @@ public class WineBoxBlock extends Block {
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (world.isClient) return ActionResult.SUCCESS;
 		final ItemStack stack = player.getStackInHand(hand);
-		if (player.isSneaking()) {
+		if (player.isSneaking() && stack.isEmpty()) {
 			world.setBlockState(pos, state.with(OPEN, !state.get(OPEN)), Block.NOTIFY_ALL);
-		} else if (stack.getItem() == ObjectRegistry.KING_DANIS_WINE.asItem() && !state.get(HAS_BOTTLE) && state.get(OPEN)) {
-			world.setBlockState(pos, state.with(HAS_BOTTLE, true), Block.NOTIFY_ALL);
-			if (!player.isCreative()) stack.decrement(1);
-			return ActionResult.SUCCESS;
-		} else if (state.get(HAS_BOTTLE) && state.get(OPEN)) {
-			world.setBlockState(pos, state.with(HAS_BOTTLE, false), Block.NOTIFY_ALL);
-			player.giveItemStack(new ItemStack(ObjectRegistry.KING_DANIS_WINE));
-			return ActionResult.SUCCESS;
+		} else if (state.get(OPEN) && !player.isSneaking() && stack.isEmpty()) {
+			GeckoStorageBlockEntity blockEntity = (GeckoStorageBlockEntity) world.getBlockEntity(pos);
+			if (blockEntity != null && blockEntity.getNonEmptySlotCount() > 0) {
+				player.setStackInHand(hand, blockEntity.getFirstNonEmptyStack().copy());
+				blockEntity.removeFirstNonEmptyStack();
+				((ServerPlayerEntity) player).networkHandler.sendPacket(blockEntity.toUpdatePacket());
+				return ActionResult.SUCCESS;
+			}
+		} else if (state.get(OPEN) && !player.isSneaking() && !stack.isEmpty()) {
+			return super.onUse(state, world, pos, player, hand, hit);
 		}
-		return super.onUse(state, world, pos, player, hand, hit);
+		return ActionResult.PASS;
 	}
 	
 	@Override

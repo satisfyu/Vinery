@@ -1,11 +1,9 @@
 package daniking.vinery.block;
 
-import daniking.vinery.block.entity.WineRackBlockEntity;
+import daniking.vinery.block.entity.WineRackStorageBlockEntity;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BarrelBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
@@ -14,12 +12,10 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.state.property.Property;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -48,7 +44,7 @@ public class WineRackStorageBlock extends BlockWithEntity {
 			return ActionResult.SUCCESS;
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof WineRackBlockEntity blockEntity1) {
+			if (blockEntity instanceof WineRackStorageBlockEntity blockEntity1) {
 				player.openHandledScreen(blockEntity1);
 			}
 			
@@ -72,7 +68,7 @@ public class WineRackStorageBlock extends BlockWithEntity {
 	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof WineRackBlockEntity blockEntity1) {
+		if (blockEntity instanceof WineRackStorageBlockEntity blockEntity1) {
 			blockEntity1.tick();
 		}
 	}
@@ -80,7 +76,7 @@ public class WineRackStorageBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new WineRackBlockEntity(pos, state);
+		return new WineRackStorageBlockEntity(pos, state);
 	}
 	
 	@Override
@@ -92,7 +88,7 @@ public class WineRackStorageBlock extends BlockWithEntity {
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		if (itemStack.hasCustomName()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof WineRackBlockEntity blockEntity1) {
+			if (blockEntity instanceof WineRackStorageBlockEntity blockEntity1) {
 				blockEntity1.setCustomName(itemStack.getName());
 			}
 		}

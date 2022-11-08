@@ -21,23 +21,23 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class WineRackBlockEntity extends LootableContainerBlockEntity {
+public class WineRackStorageBlockEntity extends LootableContainerBlockEntity {
 	private DefaultedList<ItemStack> inventory;
 	private ViewerCountManager stateManager;
 	
-	public WineRackBlockEntity(BlockPos pos, BlockState state) {
-		super(VineryBlockEntityTypes.WINE_RACK_ENTITY, pos, state);
+	public WineRackStorageBlockEntity(BlockPos pos, BlockState state) {
+		super(VineryBlockEntityTypes.WINE_RACK_STORAGE_ENTITY, pos, state);
 		this.inventory = DefaultedList.ofSize(18, ItemStack.EMPTY);
 		this.stateManager = new ViewerCountManager() {
 			
 			@Override
 			protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
-				WineRackBlockEntity.this.setOpen(state, true);
+				WineRackStorageBlockEntity.this.setOpen(state, true);
 			}
 			
 			@Override
 			protected void onContainerClose(World world, BlockPos pos, BlockState state) {
-				WineRackBlockEntity.this.setOpen(state, false);
+				WineRackStorageBlockEntity.this.setOpen(state, false);
 			}
 			
 			@Override
@@ -48,7 +48,7 @@ public class WineRackBlockEntity extends LootableContainerBlockEntity {
 			protected boolean isPlayerViewing(PlayerEntity player) {
 				if (player.currentScreenHandler instanceof GenericContainerScreenHandler) {
 					Inventory inventory = ((GenericContainerScreenHandler)player.currentScreenHandler).getInventory();
-					return inventory == WineRackBlockEntity.this;
+					return inventory == WineRackStorageBlockEntity.this;
 				} else {
 					return false;
 				}
