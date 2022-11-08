@@ -26,6 +26,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
@@ -100,6 +101,8 @@ public class ObjectRegistry {
     public static final Block FERMENTATION_BARREL = register("fermentation_barrel", new FermentationBarrelBlock(AbstractBlock.Settings.copy(Blocks.BARREL).nonOpaque()));
 
     public static final Block WINE_PRESS = register("wine_press", new WinePressBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+
+    public static final Block CHAIR = register("chair", new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 3.0f).sounds(BlockSoundGroup.WOOD)));
     public static final Block TABLE = register("table", new TableBlock(FabricBlockSettings.copy(Blocks.OAK_PLANKS)));
     public static final Block WOOD_FIRED_OVEN = register("wood_fired_oven", new WoodFiredOvenBlock(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(state -> state.get(WoodFiredOvenBlock.LIT) ? 13 : 0)));
     public static final Block STOVE = register("stove", new StoveBlock(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(12)));
@@ -183,15 +186,15 @@ public class ObjectRegistry {
     public static final Block STACKABLE_LOG = register("stackable_log", new StackableLogBlock(getLogBlockSettings().nonOpaque()));
     public static final Item FAUCET = register("faucet", new FaucetItem(getSettings()));
 
-    public static final Item STRAW_HAT = register("straw_hat", new StrawHatItem(getSettings()));
-    public static final Item VINEMAKER_APRON = register("vinemaker_apron", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings()));
-    public static final Item VINEMAKER_LEGGINGS = register("vinemaker_leggings", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings()));
-    public static final Item VINEMAKER_BOOTS = register("vinemaker_boots", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings()));
+    public static final Item STRAW_HAT = register("straw_hat", new StrawHatItem(getSettings().rarity(Rarity.RARE)));
+    public static final Item VINEMAKER_APRON = register("vinemaker_apron", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings().rarity(Rarity.EPIC)));
+    public static final Item VINEMAKER_LEGGINGS = register("vinemaker_leggings", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings().rarity(Rarity.RARE)));
+    public static final Item VINEMAKER_BOOTS = register("vinemaker_boots", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings().rarity(Rarity.RARE)));
     public static final Item CHOCOLATE_BREAD = register("chocolate_bread", new Item(getSettings().food(FoodComponents.BREAD)));
     public static final Item TOAST = register("toast", new Item(getSettings().food(FoodComponents.BEETROOT_SOUP)));
     public static final Item DONUT = register("donut", new Item(getSettings().food(FoodComponents.CARROT)));
     public static final Item MILK_BREAD = register("milk_bread", new Item(getSettings().food(FoodComponents.COOKIE)));
-    public static final Item GLOVES = register("gloves", new GlovesItem(getSettings()));
+    public static final Item GLOVES = register("gloves", new GlovesItem(getSettings().rarity(Rarity.RARE)));
     public static final Block CRUSTY_BREAD = register("crusty_bread", new BreadBlock(AbstractBlock.Settings.copy(Blocks.CAKE).nonOpaque()));
 
     public static final Item MULE_SPAWN_EGG = register("mule_spawn_egg", new SpawnEggItem(MULE, 0x8b7867, 0x5a4e43, getSettings()));
