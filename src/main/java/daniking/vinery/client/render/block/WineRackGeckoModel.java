@@ -8,22 +8,23 @@ import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class WineRackGeckoModel extends AnimatedGeoModel<GeckoStorageBlockEntity> {
+
     @Override
-    public Identifier getAnimationFileLocation(GeckoStorageBlockEntity e) {
+    public Identifier getAnimationResource(GeckoStorageBlockEntity e) {
         return new Identifier(Vinery.MODID, "animations/empty.animation.json");
     }
 
     @Override
-    public Identifier getModelLocation(GeckoStorageBlockEntity e) {
+    public Identifier getModelResource(GeckoStorageBlockEntity e) {
         return new Identifier(Vinery.MODID, "geo/" + e.getModelName() + ".geo.json");
     }
 
     @Override
-    public Identifier getTextureLocation(GeckoStorageBlockEntity e) {
+    public Identifier getTextureResource(GeckoStorageBlockEntity e) {
         if (e.getCachedState().getBlock() instanceof WineBoxBlock) {
             return new Identifier(Vinery.MODID, "textures/block/wine_box.png");
         } else if (e.getCachedState().getBlock() instanceof DisplayRackBlock) {
-            return new Identifier(Vinery.MODID, "textures/block/wine_rack_4.png");
+            return new Identifier(Vinery.MODID, "textures/block/shelf.png");
         }
         return new Identifier(Vinery.MODID, "textures/block/wine_rack_ref.png");
     }

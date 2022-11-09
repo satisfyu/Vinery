@@ -64,7 +64,7 @@ public class WineRackStorageBlock extends BlockWithEntity {
 			super.onStateReplaced(state, world, pos, newState, moved);
 		}
 	}
-
+/*
 	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -72,6 +72,8 @@ public class WineRackStorageBlock extends BlockWithEntity {
 			blockEntity1.tick();
 		}
 	}
+
+ */
 
 	@Nullable
 	@Override
