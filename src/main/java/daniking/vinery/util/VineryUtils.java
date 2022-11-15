@@ -21,9 +21,6 @@ public class VineryUtils {
             final ItemStack stackInSlot = inventory.getStack(i);
             if (!stackInSlot.isEmpty()) validStacks.add(stackInSlot);
         }
-        if (validStacks.size() != recipe.size()) {
-            return false;
-        }
         for (Ingredient entry : recipe) {
             boolean matches = false;
             for (ItemStack item : validStacks) {

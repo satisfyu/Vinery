@@ -103,7 +103,7 @@ public class CookingPotRecipe implements Recipe<Inventory> {
             recipe.inputs.forEach(entry -> entry.write(buf));
             buf.writeItemStack(recipe.getContainer());
             buf.writeItemStack(recipe.getOutput());
-
         }
     }
+    
 }

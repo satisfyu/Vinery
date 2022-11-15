@@ -1,5 +1,6 @@
 package daniking.vinery.item;
 
+import daniking.vinery.client.ClientSetup;
 import daniking.vinery.registry.ObjectRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
@@ -24,7 +25,7 @@ public class WinemakerArmorItem extends ArmorItem {
 
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, @NotNull List<Text> tooltip, TooltipContext context) {
-		PlayerEntity player = MinecraftClient.getInstance().player;
+		PlayerEntity player = ClientSetup.getClientPlayer();
 		if (player == null) return;
 		ItemStack helmet = player.getEquippedStack(EquipmentSlot.HEAD);
 		ItemStack chestplate = player.getEquippedStack(EquipmentSlot.CHEST);

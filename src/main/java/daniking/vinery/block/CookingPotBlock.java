@@ -123,7 +123,7 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (state.get(COOKING)) {
             double d = (double)pos.getX() + 0.5;
-            double e = pos.getY();
+            double e = pos.getY() + 0.3;
             double f = (double)pos.getZ() + 1.0;
             if (random.nextDouble() < 0.3) {
                 world.playSound(d, e, f, VinerySoundEvents.BLOCK_COOKING_POT_JUICE_BOILING, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
@@ -140,6 +140,7 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
             world.addParticle(ParticleTypes.BUBBLE_POP, d + i, e + j, f + k, 0.0, 0.0, 0.0);
         }
     }
+    
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, HAS_CHERRIES_INSIDE);
