@@ -84,18 +84,22 @@ public class KitchenSinkBlock extends Block {
 		return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
 	}
 
-	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-	{
-		return Stream.of(
-				Block.createCuboidShape(13, 12, 3, 16, 16, 12),
-				Block.createCuboidShape(0, 12, 3, 2.975, 16, 12),
-				Block.createCuboidShape(0, 12, 12, 16, 16, 16),
-				Block.createCuboidShape(0, 12, 0, 16, 16, 3),
-				Block.createCuboidShape(0, 0, 2, 16, 12, 16)
-		).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
-	}
+	private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+		VoxelShape shape = VoxelShapes.empty();
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0, 0.125, 1, 0.75, 1), BooleanBiFunction.OR);
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0.75, 0, 1, 1, 0.1875), BooleanBiFunction.OR);
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0.75, 0.75, 1, 1, 1), BooleanBiFunction.OR);
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0.75, 0.1875, 0.1859375, 1, 0.75), BooleanBiFunction.OR);
+		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8125, 0.75, 0.1875, 1, 1, 0.75), BooleanBiFunction.OR);
 
+		return shape;
+	};
+
+	public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+		for (Direction direction : Direction.Type.HORIZONTAL.stream().toList()) {
+			map.put(direction, VineryUtils.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+		}
+	});
 
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
