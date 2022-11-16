@@ -38,7 +38,7 @@ public class WineRackRenderer extends GeoBlockRenderer<GeckoStorageBlockEntity> 
     public void renderRecursively(GeoBone bone, MatrixStack matrixStack, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         if (bone.getName().equals("ref_points")) {
             matrixStack.push();
-            matrixStack.translate(-0.63f, -0.65f, 0f);
+            matrixStack.translate(-0.46f, -0.455f, 0.035f);
             for (GeoBone b : bone.childBones) {
                 matrixStack.push();
                 RenderUtils.translate(b, matrixStack);
@@ -47,17 +47,17 @@ public class WineRackRenderer extends GeoBlockRenderer<GeckoStorageBlockEntity> 
                 matrixStack.scale(0.9f, 0.9f, 0.9f);
                 if (entity.getCachedState().getBlock() instanceof WineBoxBlock) {
                     matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(90));
-                    matrixStack.translate(-0.6f, -1.1f, 0f);
-                    matrixStack.scale(0.9f, 0.9f, 0.9f);
+                    matrixStack.translate(-0.43f, -0.92f, -0.1f);
+                    matrixStack.scale(0.87f, 0.87f, 0.87f);
                 } else if (entity.getCachedState().getBlock() instanceof DisplayRackBlock) {
                     matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
-                    matrixStack.translate(0.7f, 0.63f, 0f);
+                    matrixStack.translate(0.7f, 0.77f, 0f);
                 }
                 ItemStack itemStack = entity.getStack(Integer.parseInt(String.valueOf(b.getName().charAt(4))) - 1);
                 if (!itemStack.isEmpty()) {
                     if (itemStack.getItem() instanceof  DrinkBlockItem) {
                         if (entity.getCachedState().getBlock() instanceof DisplayRackBlock) {
-                            matrixStack.translate(-0.67f, -0.05f, -0.6f);
+                            matrixStack.translate(-0.7f, -0.4f, -0.6f);
                         }
                         BlockState bs = ((DrinkBlockItem) itemStack.getItem()).getBlock().getDefaultState();
                         MinecraftClient.getInstance().getBlockRenderManager().renderBlockAsEntity(bs, matrixStack, renderTypeBuffer, packedLightIn, packedOverlayIn);

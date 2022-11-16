@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "B B"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:spruce_slab"
+    },
+    "B": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "vinery:table"
+  }
+}

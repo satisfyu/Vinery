@@ -13,6 +13,7 @@
     }
   ],
   "result": {
-    "item": "vinery:grass_slab"
+    "item": "vinery:grass_slab",
+    "count": 6
   }
 }

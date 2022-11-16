@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "minecraft:spruce_planks"
+              "minecraft:spruce_slab"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_spruce_planks",
+      "has_wine_rack_4",
       "has_the_recipe"
     ]
   ]

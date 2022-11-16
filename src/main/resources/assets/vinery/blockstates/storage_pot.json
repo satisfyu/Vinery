@@ -1,0 +1,56 @@
+{
+  "variants": {
+    "facing=down,open=false": {
+      "model": "vinery:block/storage_pot",
+      "x": 0
+    },
+    "facing=down,open=true": {
+      "model": "vinery:block/storage_pot",
+      "x": 0
+    },
+    "facing=east,open=false": {
+      "model": "vinery:block/storage_pot",
+      "x": 0,
+      "y": 0
+    },
+    "facing=east,open=true": {
+      "model": "vinery:block/storage_pot",
+      "x": 0,
+      "y": 0
+    },
+    "facing=north,open=false": {
+      "model": "vinery:block/storage_pot",
+      "x": 0
+    },
+    "facing=north,open=true": {
+      "model": "vinery:block/storage_pot",
+      "x": 0
+    },
+    "facing=south,open=false": {
+      "model": "vinery:block/storage_pot",
+      "x": 0,
+      "y": 0
+    },
+    "facing=south,open=true": {
+      "model": "vinery:block/storage_pot",
+      "x": 0,
+      "y": 0
+    },
+    "facing=up,open=false": {
+      "model": "vinery:block/storage_pot"
+    },
+    "facing=up,open=true": {
+      "model": "vinery:block/storage_pot"
+    },
+    "facing=west,open=false": {
+      "model": "vinery:block/storage_pot",
+      "x": 0,
+      "y": 0
+    },
+    "facing=west,open=true": {
+      "model": "vinery:block/storage_pot",
+      "x": 0,
+      "y": 0
+    }
+  }
+}

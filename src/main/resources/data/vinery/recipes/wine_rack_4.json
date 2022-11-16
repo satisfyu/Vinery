@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "group": "wine_rack",
   "pattern": [
-    "#_#",
-    "_ _",
-    "#_#"
+    "###",
+    "_ _"
   ],
   "key": {
     "#": {
-      "item": "minecraft:spruce_planks"
+      "item": "minecraft:spruce_slab"
     },
     "_": {
-      "item": "minecraft:spruce_slab"
+      "item": "minecraft:iron_nugget"
     }
   },
   "result": {
-    "item": "vinery:wine_rack_4"
+    "item": "vinery:wine_rack_4",
+    "count": 2
   }
 }

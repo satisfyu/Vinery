@@ -13,6 +13,7 @@
     }
   ],
   "result": {
-    "item": "vinery:dirt_slab"
+    "item": "vinery:dirt_slab",
+    "count": 6
   }
 }

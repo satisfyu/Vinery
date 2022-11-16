@@ -6,7 +6,7 @@
 				"identifier": "geometry.wine_box_filled_open",
 				"texture_width": 16,
 				"texture_height": 32,
-				"visible_bounds_width": 2,
+				"visible_bounds_width": 3,
 				"visible_bounds_height": 2.5,
 				"visible_bounds_offset": [0, 0.75, 0]
 			},
@@ -90,7 +90,7 @@
 								"north": {"uv": [0, 2], "uv_size": [14, -1]},
 								"east": {"uv": [0, 2], "uv_size": [1, -2]},
 								"south": {"uv": [0, 12], "uv_size": [14, -1]},
-								"west": {"uv": [14, 2], "uv_size": [1, -2]},
+								"west": {"uv": [12, 1], "uv_size": [1, -1]},
 								"up": {"uv": [14, 4], "uv_size": [-14, 1]},
 								"down": {"uv": [14, 4], "uv_size": [-14, 2]}
 							}
@@ -104,14 +104,14 @@
 								"north": {"uv": [0, 14], "uv_size": [14, -1]},
 								"east": {"uv": [0, 2], "uv_size": [1, -2]},
 								"south": {"uv": [0, 12], "uv_size": [14, -1]},
-								"west": {"uv": [14, 2], "uv_size": [1, -2]},
+								"west": {"uv": [12, 5], "uv_size": [1, -1]},
 								"up": {"uv": [14, 13], "uv_size": [-14, 1]},
 								"down": {"uv": [14, 6], "uv_size": [-14, 1]}
 							}
 						},
 						{
 							"origin": [-6, 7.25, 6.25],
-							"size": [12, 5, 0],
+							"size": [12, 5, 0.1],
 							"pivot": [3, 0, 8],
 							"rotation": [22.5, 0, 0],
 							"uv": {

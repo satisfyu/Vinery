@@ -14,6 +14,7 @@
     }
   },
   "result": {
-    "item": "vinery:flower_box"
+    "item": "vinery:flower_box",
+    "count": 2
   }
 }

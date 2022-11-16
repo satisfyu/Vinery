@@ -24,9 +24,9 @@
 							"size": [16, 1, 8],
 							"uv": {
 								"north": {"uv": [2, 5], "uv_size": [14, 1]},
-								"east": {"uv": [0, 0], "uv_size": [1, 8]},
+								"east": {"uv": [0, 0], "uv_size": [8, 1]},
 								"south": {"uv": [1, 2], "uv_size": [14, 1]},
-								"west": {"uv": [0, 8], "uv_size": [1, 8]},
+								"west": {"uv": [8, 0], "uv_size": [8, 1]},
 								"up": {"uv": [16, 8], "uv_size": [-16, -8]},
 								"down": {"uv": [16, 0], "uv_size": [-16, 8]}
 							}
@@ -90,7 +90,7 @@
 					"parent": "ref_points",
 					"pivot": [-5, 7, 4],
 					"locators": {
-						"_null_ref_1": [-5, 7, 4]
+						"_null_ref_1": [-4, 7, 4]
 					}
 				},
 				{
@@ -98,7 +98,7 @@
 					"parent": "ref_points",
 					"pivot": [6, 7, 4],
 					"locators": {
-						"_null_ref_2": [6, 7, 4]
+						"_null_ref_2": [4, 7, 4]
 					}
 				}
 			]

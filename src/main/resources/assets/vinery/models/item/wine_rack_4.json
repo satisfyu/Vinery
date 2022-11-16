@@ -1,3 +1,6 @@
 {
-  "parent": "vinery:block/wine_rack4_storage"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "vinery:item/shelf"
+  }
 }

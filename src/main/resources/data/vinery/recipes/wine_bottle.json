@@ -11,6 +11,7 @@
     }
   },
   "result": {
-    "item": "vinery:wine_bottle"
+    "item": "vinery:wine_bottle",
+    "count": 4
   }
 }

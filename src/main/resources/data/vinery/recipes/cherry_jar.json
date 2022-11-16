@@ -15,6 +15,7 @@
     }
   },
   "result": {
-    "item": "vinery:cherry_jar"
+    "item": "vinery:cherry_jar",
+    "count": 2
   }
 }
