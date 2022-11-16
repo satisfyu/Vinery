@@ -44,26 +44,26 @@ public class WineRackRenderer extends GeoBlockRenderer<GeckoStorageBlockEntity> 
                 RenderUtils.translate(b, matrixStack);
                 RenderUtils.moveToPivot(b, matrixStack);
                 matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(-90));
-                matrixStack.scale(0.9f, 0.9f, 0.9f);
+                matrixStack.scale(0.9f, 0.9f, 0.9f); // Some mess
                 if (entity.getCachedState().getBlock() instanceof WineBoxBlock) {
                     matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(90));
                     matrixStack.translate(-0.43f, -0.92f, -0.1f);
                     matrixStack.scale(0.87f, 0.87f, 0.87f);
                 } else if (entity.getCachedState().getBlock() instanceof DisplayRackBlock) {
                     matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
-                    matrixStack.translate(0.7f, 0.77f, 0f);
-                }
+                    matrixStack.translate(0.56f, 0.45f, 0f);
+                } // some more mess
                 ItemStack itemStack = entity.getStack(Integer.parseInt(String.valueOf(b.getName().charAt(4))) - 1);
                 if (!itemStack.isEmpty()) {
                     if (itemStack.getItem() instanceof  DrinkBlockItem) {
                         if (entity.getCachedState().getBlock() instanceof DisplayRackBlock) {
-                            matrixStack.translate(-0.7f, -0.4f, -0.6f);
+                            matrixStack.translate(-0.5f, -0.1f, -0.6f);
                         }
                         BlockState bs = ((DrinkBlockItem) itemStack.getItem()).getBlock().getDefaultState();
                         MinecraftClient.getInstance().getBlockRenderManager().renderBlockAsEntity(bs, matrixStack, renderTypeBuffer, packedLightIn, packedOverlayIn);
                     } else {
                         if (entity.getCachedState().getBlock() instanceof DisplayRackBlock && itemStack.getItem() instanceof BlockItem) {
-                            matrixStack.translate(0f, -0.1f, 0f);
+                            matrixStack.translate(0f, -0.14f, 0f);
                         }
                         MinecraftClient.getInstance().getItemRenderer().renderItem(itemStack, ModelTransformation.Mode.GROUND, packedLightIn, packedOverlayIn, matrixStack, renderTypeBuffer, 0);
                     }
