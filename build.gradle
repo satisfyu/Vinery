@@ -45,6 +45,11 @@ dependencies {
 
 	modImplementation('software.bernie.geckolib:geckolib-fabric-1.19:3.1.26')
 	include('software.bernie.geckolib:geckolib-fabric-1.19:3.1.26')
+
+	// REI Runtime for Fabric
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version"
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:$rei_version"
 }
 
 processResources {

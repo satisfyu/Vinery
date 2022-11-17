@@ -21,6 +21,9 @@
     ],
     "client": [
       "daniking.vinery.client.ClientSetup"
+    ],
+    "rei_client": [
+      "daniking.vinery.compat.rei.VineryReiClientPlugin"
     ]
   },
   "mixins": [
