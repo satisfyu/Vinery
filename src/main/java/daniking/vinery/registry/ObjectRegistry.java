@@ -187,7 +187,7 @@ public class ObjectRegistry {
 
     public static final Block BASKET = register("basket", new BasketBlock(FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque(), 1));
     public static final Block COOKING_POT = register("cooking_pot", new CookingPotBlock(FabricBlockSettings.of(Material.STONE).breakInstantly().nonOpaque()));
-    public static final Block STACKABLE_LOG = register("stackable_log", new StackableLogBlock(getLogBlockSettings().nonOpaque()));
+    public static final Block STACKABLE_LOG = register("stackable_log", new StackableLogBlock(getLogBlockSettings().nonOpaque().luminance(state -> state.get(StackableLogBlock.FIRED) ? 13 : 0)));
     public static final Item FAUCET = register("faucet", new FaucetItem(getSettings()));
 
     public static final Item STRAW_HAT = register("straw_hat", new StrawHatItem(getSettings().rarity(Rarity.RARE)));

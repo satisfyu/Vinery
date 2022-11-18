@@ -108,6 +108,9 @@
   "container.storagepot": "Storage Pot",
 
   "rei.vinery.cooking_pot_category": "Cooking Pot",
+  "rei.vinery.stove_category": "Wood Fired Oven",
+  "rei.vinery.wine_category": "Aging Barrel",
+
 
   "entity.minecraft.villager.winemaker": "Winemaker",
   "entity.vinery.mule": "Mule",
@@ -149,5 +152,6 @@
   "item.vinery.doughnut_line3.tooltip": " - Sweetberries",
   "item.vinery.toast_line1.tooltip": " - Wheat",
   "item.vinery.toast_line2.tooltip": " - Wheat",
-  "block.vinery.stem.tooltip": "Used to grow Grapevines"
+  "block.vinery.stem.tooltip": "Used to grow Grapevines",
+  "block.vinery.press.tooltip": "The Winemakers preferred Workstation"
 }

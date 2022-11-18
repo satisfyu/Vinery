@@ -168,7 +168,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		}
 		this.getStack(BOTTLE_INPUT_SLOT).decrement(1);
 	}
-	
+
 	@Override
 	public void tick(World world, BlockPos pos, BlockState state, CookingPotEntity blockEntity) {
 		if (world.isClient()) {
@@ -237,7 +237,8 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		}
 		this.markDirty();
 	}
-	
+
+
 	@Override
 	public boolean canPlayerUse(PlayerEntity player) {
 		if (this.world.getBlockEntity(this.pos) != this) {
@@ -246,7 +247,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 			return player.squaredDistanceTo((double) this.pos.getX() + 0.5, (double) this.pos.getY() + 0.5, (double) this.pos.getZ() + 0.5) <= 64.0;
 		}
 	}
-	
+
 	@Override
 	public void clear() {
 		inventory.clear();
