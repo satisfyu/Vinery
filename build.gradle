@@ -11,10 +11,9 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	maven {
-		name "rei"
-		url "https://maven.shedaniel.me"
-	}
+	maven { url "https://maven.shedaniel.me/" }
+	maven { url "https://maven.architectury.dev/" }
+
 	maven {
 		name "terraform wood api, trinkets"
 		url "https://maven.terraformersmc.com"
@@ -47,6 +46,8 @@ dependencies {
 	include('software.bernie.geckolib:geckolib-fabric-1.19:3.1.26')
 
 	// REI Runtime for Fabric
+
+	modApi "dev.architectury:architectury-fabric:$architectury_version"
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version"
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:$rei_version"
