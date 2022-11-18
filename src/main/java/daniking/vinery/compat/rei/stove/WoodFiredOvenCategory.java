@@ -12,20 +12,17 @@ import me.shedaniel.rei.api.client.gui.widgets.Widget;
 import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.entry.EntryStack;
-import me.shedaniel.rei.api.common.entry.type.VanillaEntryTypes;
-import me.shedaniel.rei.plugin.common.displays.cooking.DefaultCookingDisplay;
-import net.minecraft.item.ItemStack;
+import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.text.Text;
 
 import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 
-public class StoveCategory implements DisplayCategory<StoveDisplay> {
+public class WoodFiredOvenCategory implements DisplayCategory<WoodFiredOvenDisplay> {
 
     @Override
-    public List<Widget> setupDisplay(StoveDisplay display, Rectangle bounds) {
+    public List<Widget> setupDisplay(WoodFiredOvenDisplay display, Rectangle bounds) {
         Point startPoint = new Point(bounds.getCenterX() - 41, bounds.y + 10);
         int cookingTime = WoodFiredOvenBlockEntity.TOTAL_COOKING_TIME;
 
@@ -63,7 +60,7 @@ public class StoveCategory implements DisplayCategory<StoveDisplay> {
         return widgets;
     }
 
-    public void addSlot(List<Widget> widgets, StoveDisplay display, Point startPoint, int x, int y, int index){
+    public void addSlot(List<Widget> widgets, WoodFiredOvenDisplay display, Point startPoint, int x, int y, int index){
         widgets.add(Widgets.createSlot(new Point(startPoint.x + x -17, startPoint.y + 1+ y))
                 .entries(display.getInputEntries().get(index))
                 .markInput());
@@ -74,7 +71,7 @@ public class StoveCategory implements DisplayCategory<StoveDisplay> {
     }
 
     @Override
-    public DisplayRenderer getDisplayRenderer(StoveDisplay display) {
+    public DisplayRenderer getDisplayRenderer(WoodFiredOvenDisplay display) {
         return SimpleDisplayRenderer.from(Collections.singletonList(display.getInputEntries().get(0)), display.getOutputEntries());
     }
 
@@ -84,17 +81,17 @@ public class StoveCategory implements DisplayCategory<StoveDisplay> {
     }
 
     @Override
-    public CategoryIdentifier<? extends StoveDisplay> getCategoryIdentifier() {
-        return StoveDisplay.MY_STOVE_DISPLAY;
+    public CategoryIdentifier<? extends WoodFiredOvenDisplay> getCategoryIdentifier() {
+        return WoodFiredOvenDisplay.WOOD_FIRED_OVEN_DISPLAY;
     }
 
     @Override
     public Renderer getIcon() {
-        return EntryStack.of(VanillaEntryTypes.ITEM, new ItemStack(ObjectRegistry.WOOD_FIRED_OVEN));
+        return EntryStacks.of(ObjectRegistry.WOOD_FIRED_OVEN);
     }
 
     @Override
     public Text getTitle() {
-        return Text.translatable("rei.vinery.stove_category");
+        return Text.translatable("rei.vinery.wood_fired_oven_category");
     }
 }

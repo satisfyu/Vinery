@@ -10,32 +10,30 @@ import me.shedaniel.rei.api.client.gui.widgets.Widget;
 import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.entry.EntryStack;
-import me.shedaniel.rei.api.common.entry.type.VanillaEntryTypes;
-import net.minecraft.item.ItemStack;
+import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.text.Text;
 
 import java.util.List;
 
-public class WineCategory implements DisplayCategory<WineDisplay> {
+public class FermentationBarrelCategory implements DisplayCategory<FermentationBarrelDisplay> {
 
     @Override
-    public CategoryIdentifier<WineDisplay> getCategoryIdentifier() {
-        return WineDisplay.MY_WINE_DISPLAY;
+    public CategoryIdentifier<FermentationBarrelDisplay> getCategoryIdentifier() {
+        return FermentationBarrelDisplay.FERMENTATION_BARREL_DISPLAY;
     }
 
     @Override
     public Text getTitle() {
-        return Text.translatable("rei.vinery.wine_category");
+        return Text.translatable("rei.vinery.fermentation_barrel_category");
     }
 
     @Override
     public Renderer getIcon() {
-        return EntryStack.of(VanillaEntryTypes.ITEM, new ItemStack(ObjectRegistry.FERMENTATION_BARREL));
+        return EntryStacks.of(ObjectRegistry.FERMENTATION_BARREL);
     }
 
     @Override
-    public List<Widget> setupDisplay(WineDisplay display, Rectangle bounds) {
+    public List<Widget> setupDisplay(FermentationBarrelDisplay display, Rectangle bounds) {
         Point startPoint = new Point(bounds.getCenterX() - 55, bounds.getCenterY() - 13);
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));

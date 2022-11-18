@@ -10,9 +10,7 @@ import me.shedaniel.rei.api.client.gui.widgets.Widget;
 import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.entry.EntryStack;
-import me.shedaniel.rei.api.common.entry.type.VanillaEntryTypes;
-import net.minecraft.item.ItemStack;
+import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.text.Text;
 
 import java.util.List;
@@ -21,7 +19,7 @@ public class CookingPotCategory implements DisplayCategory<CookingPotDisplay> {
 
     @Override
     public CategoryIdentifier<CookingPotDisplay> getCategoryIdentifier() {
-        return CookingPotDisplay.MY_DISPLAY;
+        return CookingPotDisplay.COOKING_POT_DISPLAY;
     }
 
     @Override
@@ -31,7 +29,7 @@ public class CookingPotCategory implements DisplayCategory<CookingPotDisplay> {
 
     @Override
     public Renderer getIcon() {
-        return EntryStack.of(VanillaEntryTypes.ITEM, new ItemStack(ObjectRegistry.COOKING_POT));
+        return EntryStacks.of(ObjectRegistry.COOKING_POT);
     }
 
     @Override
@@ -39,17 +37,9 @@ public class CookingPotCategory implements DisplayCategory<CookingPotDisplay> {
         Point startPoint = new Point(bounds.getCenterX() - 55, bounds.getCenterY() - 13);
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
-
         widgets.add(Widgets.createArrow(new Point(startPoint.x + 54, startPoint.y - 1)).animationDurationTicks(CookingPotEntity.MAX_COOKING_TIME));
-
-
-
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 90, startPoint.y)));
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 90, startPoint.y))
-                .entries(display.getOutputEntries().get(0))
-                .disableBackground()
-                .markOutput());
-
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 90, startPoint.y)).entries(display.getOutputEntries().get(0)).disableBackground().markOutput());
         for(int i = 0; i < 6; i++){
             int x = i * 18;
             int y = -4;
@@ -59,16 +49,9 @@ public class CookingPotCategory implements DisplayCategory<CookingPotDisplay> {
             }
             x-=8;
             if(i >= display.getInputEntries().size() - 1) widgets.add(Widgets.createSlotBackground(new Point(startPoint.x + x, startPoint.y + y)));
-            else{
-                widgets.add(Widgets.createSlot(new Point(startPoint.x + x, startPoint.y + y))
-                        .entries(display.getInputEntries().get(i + 1))
-                        .markInput());
-            }
+            else widgets.add(Widgets.createSlot(new Point(startPoint.x + x, startPoint.y + y)).entries(display.getInputEntries().get(i + 1)).markInput());
         }
-
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 56, startPoint.y + 23))
-                .entries(display.getInputEntries().get(0))
-                .markInput());
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 56, startPoint.y + 23)).entries(display.getInputEntries().get(0)).markInput());
         return widgets;
     }
 }
