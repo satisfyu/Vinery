@@ -8,12 +8,11 @@ import daniking.vinery.compat.rei.wine.FermentationBarrelCategory;
 import daniking.vinery.compat.rei.wine.FermentationBarrelDisplay;
 import daniking.vinery.recipe.CookingPotRecipe;
 import daniking.vinery.recipe.FermentationBarrelRecipe;
-import daniking.vinery.recipe.StoveCookingRecipe;
+import daniking.vinery.recipe.WoodFiredOvenRecipe;
 import daniking.vinery.registry.ObjectRegistry;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
-import me.shedaniel.rei.api.client.registry.transfer.TransferHandlerRegistry;
 import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.BuiltinPlugin;
@@ -35,7 +34,7 @@ public class VineryReiClientPlugin implements REIClientPlugin {
     @Override
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerFiller(CookingPotRecipe.class, CookingPotDisplay::new);
-        registry.registerFiller(StoveCookingRecipe.class, WoodFiredOvenDisplay::new);
+        registry.registerFiller(WoodFiredOvenRecipe.class, WoodFiredOvenDisplay::new);
         registry.registerFiller(FermentationBarrelRecipe.class, FermentationBarrelDisplay::new);
     }
 

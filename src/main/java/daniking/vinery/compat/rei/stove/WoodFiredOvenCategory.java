@@ -25,45 +25,26 @@ public class WoodFiredOvenCategory implements DisplayCategory<WoodFiredOvenDispl
     public List<Widget> setupDisplay(WoodFiredOvenDisplay display, Rectangle bounds) {
         Point startPoint = new Point(bounds.getCenterX() - 41, bounds.y + 10);
         int cookingTime = WoodFiredOvenBlockEntity.TOTAL_COOKING_TIME;
-
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
-
-
         DecimalFormat df = new DecimalFormat("###.##");
-        widgets.add(Widgets.createLabel(new Point(bounds.x + bounds.width - 5, bounds.y + 5),
-                Text.translatable("category.rei.cooking.time&xp", df.format(display.getXp()), df.format(cookingTime / 20d))).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
-
+        widgets.add(Widgets.createLabel(new Point(bounds.x + bounds.width - 5, bounds.y + 5), Text.translatable("category.rei.cooking.time&xp", df.format(display.getXp()), df.format(cookingTime / 20d))).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
         int move = 20;
         int moveDown = 10;
-        widgets.add(Widgets.createArrow(new Point(startPoint.x + 24 + move, startPoint.y + 8 + moveDown))
-                .animationDurationTicks(cookingTime));
-
-
+        widgets.add(Widgets.createArrow(new Point(startPoint.x + 24 + move, startPoint.y + 8 + moveDown)).animationDurationTicks(cookingTime));
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61 + move, startPoint.y + 9 + moveDown)));
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 61 + move, startPoint.y + 9 + moveDown))
-                .entries(display.getOutputEntries().get(0))
-                .disableBackground()
-                .markOutput());
-
-
-        widgets.add(Widgets.createBurningFire(new Point(startPoint.x + 1, startPoint.y + 20 + moveDown))
-                .animationDurationMS(10000));
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 61 + move, startPoint.y + 9 + moveDown)).entries(display.getOutputEntries().get(0)).disableBackground().markOutput());
+        widgets.add(Widgets.createBurningFire(new Point(startPoint.x + 1, startPoint.y + 20 + moveDown)).animationDurationMS(10000));
         addSlot(widgets, display, startPoint, 0, moveDown, 0);
-
         if(display.getInputEntries().size() < 2) addBackground(widgets, startPoint, 18, moveDown);
         else addSlot(widgets, display, startPoint, 18, moveDown, 1);
-
         if(display.getInputEntries().size() < 3) addBackground(widgets, startPoint, 36, moveDown);
         else addSlot(widgets, display, startPoint, 36, moveDown, 2);
-
         return widgets;
     }
 
     public void addSlot(List<Widget> widgets, WoodFiredOvenDisplay display, Point startPoint, int x, int y, int index){
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + x -17, startPoint.y + 1+ y))
-                .entries(display.getInputEntries().get(index))
-                .markInput());
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + x -17, startPoint.y + 1+ y)).entries(display.getInputEntries().get(index)).markInput());
     }
 
     public void addBackground(List<Widget> widgets, Point startPoint, int x, int y){
@@ -77,7 +58,7 @@ public class WoodFiredOvenCategory implements DisplayCategory<WoodFiredOvenDispl
 
     @Override
     public int getDisplayHeight() {
-        return 65; //49;
+        return 65;
     }
 
     @Override

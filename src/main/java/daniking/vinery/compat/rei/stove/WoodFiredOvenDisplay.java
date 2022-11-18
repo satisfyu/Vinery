@@ -2,7 +2,7 @@ package daniking.vinery.compat.rei.stove;
 
 
 import daniking.vinery.Vinery;
-import daniking.vinery.recipe.StoveCookingRecipe;
+import daniking.vinery.recipe.WoodFiredOvenRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
@@ -23,14 +23,12 @@ public class WoodFiredOvenDisplay extends BasicDisplay implements SimpleGridMenu
 
     private final float xp;
 
-    public WoodFiredOvenDisplay(StoveCookingRecipe recipe) {
-        this(EntryIngredients.ofIngredients(recipe.getIngredients()), Collections.singletonList(EntryIngredients.of(recipe.getOutput())),
-                recipe, recipe.getExperience());
+    public WoodFiredOvenDisplay(WoodFiredOvenRecipe recipe) {
+        this(EntryIngredients.ofIngredients(recipe.getIngredients()), Collections.singletonList(EntryIngredients.of(recipe.getOutput())), recipe, recipe.getExperience());
     }
 
     public WoodFiredOvenDisplay(List<EntryIngredient> input, List<EntryIngredient> output, NbtCompound tag) {
-        this(input, output, RecipeManagerContext.getInstance().byId(tag, "location"),
-                tag.getFloat("experience"));
+        this(input, output, RecipeManagerContext.getInstance().byId(tag, "location"), tag.getFloat("experience"));
     }
 
     public WoodFiredOvenDisplay(List<EntryIngredient> input, List<EntryIngredient> output, Recipe<?> recipe, float xp) {

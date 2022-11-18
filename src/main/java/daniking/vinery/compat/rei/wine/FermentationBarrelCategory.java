@@ -37,17 +37,9 @@ public class FermentationBarrelCategory implements DisplayCategory<FermentationB
         Point startPoint = new Point(bounds.getCenterX() - 55, bounds.getCenterY() - 13);
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
-
         widgets.add(Widgets.createArrow(new Point(startPoint.x + 54, startPoint.y - 1)).animationDurationTicks(CookingPotEntity.MAX_COOKING_TIME));
-
-
-
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 90, startPoint.y)));
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 90, startPoint.y))
-                .entries(display.getOutputEntries().get(0))
-                .disableBackground()
-                .markOutput());
-
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 90, startPoint.y)).entries(display.getOutputEntries().get(0)).disableBackground().markOutput());
         for(int i = 0; i < 4; i++){
             int x = i * 18;
             int y = -4;
@@ -57,16 +49,10 @@ public class FermentationBarrelCategory implements DisplayCategory<FermentationB
             }
             x-=8;
             if(i >= display.getInputEntries().size() - 1) widgets.add(Widgets.createSlotBackground(new Point(startPoint.x + x, startPoint.y + y)));
-            else{
-                widgets.add(Widgets.createSlot(new Point(startPoint.x + x, startPoint.y + y))
-                        .entries(display.getInputEntries().get(i + 1))
-                        .markInput());
-            }
-        }
+            else widgets.add(Widgets.createSlot(new Point(startPoint.x + x, startPoint.y + y)).entries(display.getInputEntries().get(i + 1)).markInput());
 
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 36, startPoint.y + 18))
-                .entries(display.getInputEntries().get(0))
-                .markInput());
+        }
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 36, startPoint.y + 18)).entries(display.getInputEntries().get(0)).markInput());
         return widgets;
     }
 }

@@ -1,5 +1,5 @@
 {
-  "type": "vinery:stove_cooking",
+  "type": "vinery:wood_fired_oven_cooking",
   "ingredients": [
     {
       "item": "minecraft:wheat"
@@ -8,10 +8,10 @@
       "item": "minecraft:wheat"
     },
     {
-      "item": "minecraft:cocoa_beans"
+      "item": "minecraft:milk_bucket"
     }
   ],
-  "item": "vinery:chocolate_bread",
+  "item": "vinery:milk_bread",
   "count": 3,
   "experience": 0.35
 }

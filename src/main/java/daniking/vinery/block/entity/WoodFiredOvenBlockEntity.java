@@ -2,7 +2,7 @@ package daniking.vinery.block.entity;
 
 import daniking.vinery.block.WoodFiredOvenBlock;
 import daniking.vinery.client.gui.handler.StoveGuiHandler;
-import daniking.vinery.recipe.StoveCookingRecipe;
+import daniking.vinery.recipe.WoodFiredOvenRecipe;
 import daniking.vinery.registry.VineryBlockEntityTypes;
 import daniking.vinery.registry.VineryRecipeTypes;
 import net.minecraft.block.Block;
@@ -120,7 +120,7 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
             --this.burnTime;
         }
 
-        final StoveCookingRecipe recipe = world.getRecipeManager().getFirstMatch(VineryRecipeTypes.STOVE_RECIPE_TYPE, this, world).orElse(null);
+        final WoodFiredOvenRecipe recipe = world.getRecipeManager().getFirstMatch(VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_TYPE, this, world).orElse(null);
         if (!initialBurningState && canCraft(recipe)) {
             this.burnTime = this.burnTimeTotal = this.getTotalBurnTime(this.getStack(FUEL_SLOT));
             if (burnTime > 0) {
@@ -157,7 +157,7 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
 
     }
 
-    protected boolean canCraft(StoveCookingRecipe recipe) {
+    protected boolean canCraft(WoodFiredOvenRecipe recipe) {
         if (recipe == null || recipe.getOutput().isEmpty()) {
             return false;
         } else if (this.getStack(FUEL_SLOT).isEmpty()) {
@@ -178,7 +178,7 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
         }
     }
 
-    protected void craft(StoveCookingRecipe recipe) {
+    protected void craft(WoodFiredOvenRecipe recipe) {
         if (recipe == null || !canCraft(recipe)) {
             return;
         }
