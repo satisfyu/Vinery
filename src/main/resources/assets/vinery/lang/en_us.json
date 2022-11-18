@@ -106,6 +106,9 @@
   "entity.vinery.cherry_boat": "Cherry Boat",
   "container.wine_rack": "Storage",
   "container.storagepot": "Storage Pot",
+
+  "rei.vinery.cooking_pot_category": "Cooking Pot",
+
   "entity.minecraft.villager.winemaker": "Winemaker",
   "entity.vinery.mule": "Mule",
   "entity.vinery.wandering_winemaker": "Wandering Winemaker",

@@ -45,7 +45,7 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
     protected static final int[] INGREDIENT_SLOTS = {0, 1, 2};
     protected static final int OUTPUT_SLOT = StoveGuiHandler.OUTPUT_SLOT;
 
-    protected static final int TOTAL_COOKING_TIME = 240;
+    public static final int TOTAL_COOKING_TIME = 240;
 
     private final PropertyDelegate propertyDelegate = new PropertyDelegate() {
         @Override
