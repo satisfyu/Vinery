@@ -2,7 +2,7 @@ package daniking.vinery.compat.rei.cooking;
 
 
 import daniking.vinery.Vinery;
-import daniking.vinery.compat.rei.wine.FermentationBarrelDisplay;
+import daniking.vinery.compat.rei.VineryReiClientPlugin;
 import daniking.vinery.recipe.CookingPotRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
@@ -20,7 +20,7 @@ public class CookingPotDisplay extends BasicDisplay {
 
 
     public CookingPotDisplay(CookingPotRecipe recipe) {
-        this(EntryIngredients.ofIngredients(FermentationBarrelDisplay.ingredients(recipe, recipe.getContainer())), Collections.singletonList(EntryIngredients.of(recipe.getOutput())), Optional.ofNullable(recipe.getId()));
+        this(EntryIngredients.ofIngredients(VineryReiClientPlugin.ingredients(recipe, recipe.getContainer())), Collections.singletonList(EntryIngredients.of(recipe.getOutput())), Optional.ofNullable(recipe.getId()));
     }
 
     public CookingPotDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<Identifier> location) {

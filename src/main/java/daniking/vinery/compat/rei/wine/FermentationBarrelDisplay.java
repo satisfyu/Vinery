@@ -2,16 +2,14 @@ package daniking.vinery.compat.rei.wine;
 
 
 import daniking.vinery.Vinery;
+import daniking.vinery.compat.rei.VineryReiClientPlugin;
 import daniking.vinery.recipe.FermentationBarrelRecipe;
 import daniking.vinery.registry.ObjectRegistry;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.util.Identifier;
 
 import java.util.Collections;
@@ -24,7 +22,7 @@ public class FermentationBarrelDisplay extends BasicDisplay {
 
 
     public FermentationBarrelDisplay(FermentationBarrelRecipe recipe) {
-        this(EntryIngredients.ofIngredients(ingredients(recipe, new ItemStack(ObjectRegistry.WINE_BOTTLE))), Collections.singletonList(EntryIngredients.of(recipe.getOutput())), Optional.ofNullable(recipe.getId()));
+        this(EntryIngredients.ofIngredients(VineryReiClientPlugin.ingredients(recipe, new ItemStack(ObjectRegistry.WINE_BOTTLE))), Collections.singletonList(EntryIngredients.of(recipe.getOutput())), Optional.ofNullable(recipe.getId()));
     }
 
     public FermentationBarrelDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<Identifier> location) {
@@ -32,11 +30,7 @@ public class FermentationBarrelDisplay extends BasicDisplay {
     }
 
 
-    public static List<Ingredient> ingredients(Recipe<Inventory> recipe, ItemStack stack){
-        List<Ingredient> l = recipe.getIngredients();
-        l.add(0, Ingredient.ofItems(stack.getItem()));
-        return l;
-    }
+
 
 
     @Override

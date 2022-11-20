@@ -16,6 +16,13 @@ import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.BuiltinPlugin;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VineryReiClientPlugin implements REIClientPlugin {
 
@@ -41,6 +48,12 @@ public class VineryReiClientPlugin implements REIClientPlugin {
     @Override
     public void registerDisplaySerializer(DisplaySerializerRegistry registry) {
         registry.register(WoodFiredOvenDisplay.WOOD_FIRED_OVEN_DISPLAY, WoodFiredOvenDisplay.serializer(WoodFiredOvenDisplay::new));
+    }
+
+    public static List<Ingredient> ingredients(Recipe<Inventory> recipe, ItemStack stack){
+        List<Ingredient> l = new ArrayList<>(recipe.getIngredients());
+        l.add(0, Ingredient.ofItems(stack.getItem()));
+        return l;
     }
 
 }
