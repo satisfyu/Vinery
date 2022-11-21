@@ -39,7 +39,7 @@
   "block.vinery.cherry_floorboard": "Cherry Floorboard",
   "block.vinery.pink_cherry_leaves": "Pink Cherry Leaves",
   "block.vinery.stackable_log": "Stackable Log",
-  "block.vinery.coopot": "Cooking Pot",
+  "block.vinery.cooking_pot": "Cooking Pot",
   "block.vinery.cherry_jar": "Cherry Jar",
   "block.vinery.cherry_jam": "Cherry Jam",
   "block.vinery.fermentation_barrel": "Aging Barrel",
@@ -137,7 +137,6 @@
   "item.vinery.grapevine.tooltip": "Crafting Ingredient",
   "item.vinery.cherry.tooltip": "Crafting Ingredient",
   "item.vinery.ingredient.tooltip": "Press §eSHIFT§r to show needed Ingredients",
-  "item.vinery.oven.tooltip": "§oBaked in a wood fired Oven§o",
   "item.vinery.chocolatebread_line1.tooltip": " - Wheat",
   "item.vinery.chocolatebread_line2.tooltip": " - Wheat",
   "item.vinery.chocolatebread_line3.tooltip": " - Cocoa Beans",
@@ -151,6 +150,12 @@
   "item.vinery.toast_line2.tooltip": " - Wheat",
   "block.vinery.stem.tooltip": "Used to grow Grapevines",
   "tooltip.vinery.year": "Year: ",
-  "block.vinery.stem.tooltip": "Used to grow Grapevines",
-  "block.vinery.press.tooltip": "The Winemakers preferred Workstation"
+  "block.vinery.press.tooltip": "A Winemakers preferred Workstation",
+  "block.vinery.apple_cider": "Apple Cider",
+  "block.vinery.apple_juice": "Apple Juice",
+  "item.vinery.applesauce": "Applesauce",
+  "item.vinery.oven.tooltip": "§oBaked in a wood fired Oven§o",
+  "item.vinery.cookingpot.tooltip": "§oCan be cooked in a Cooking Pot§o",
+  "item.vinery.applesauce_line1.tooltip": " - Apple",
+  "item.vinery.applesauce_line2.tooltip": " - Sugar"
 }

@@ -57,6 +57,7 @@ public class BreadBlock extends FacingBlock {
             if (!player.isCreative()) {
                 itemStack.decrement(1);
             }
+
             world.playSound(null, pos, SoundEvents.BLOCK_CAKE_ADD_CANDLE, SoundCategory.BLOCKS, 1.0f, 1.0f);
             world.setBlockState(pos, state.with(JAM, true));
             world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
@@ -73,6 +74,7 @@ public class BreadBlock extends FacingBlock {
         }
         return tryEat(world, pos, state, player);
     }
+
 
     private static ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!player.canConsume(false)) {

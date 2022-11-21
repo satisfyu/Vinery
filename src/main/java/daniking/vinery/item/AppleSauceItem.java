@@ -20,9 +20,9 @@ public class AppleSauceItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if(Screen.hasShiftDown()) {
-            tooltip.add(Text.translatable("item.vinery.toast_line1.tooltip"));
-            tooltip.add(Text.translatable("item.vinery.toast_line2.tooltip"));
-            tooltip.add(Text.translatable("item.vinery.oven.tooltip"));
+            tooltip.add(Text.translatable("item.vinery.applesauce_line1.tooltip"));
+            tooltip.add(Text.translatable("item.vinery.applesauce_line2.tooltip"));
+            tooltip.add(Text.translatable("item.vinery.cookingpot.tooltip"));
         } else {
             tooltip.add(Text.translatable("item.vinery.ingredient.tooltip").formatted(Formatting.GRAY, Formatting.ITALIC));
         }
