@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "bites=0,facing=east,jam=false": {
+      "y": 90,
+      "model": "vinery:block/bread_0"
+    },
+    "bites=0,facing=east,jam=true": {
+      "y": 90,
+      "model": "vinery:block/bread_jam_apple_0"
+    },
+    "bites=0,facing=north,jam=false": {
+      "model": "vinery:block/bread_0"
+    },
+    "bites=0,facing=north,jam=true": {
+      "model": "vinery:block/bread_jam_apple_0"
+    },
+    "bites=0,facing=south,jam=false": {
+      "y": 180,
+      "model": "vinery:block/bread_0"
+    },
+    "bites=0,facing=south,jam=true": {
+      "y": 180,
+      "model": "vinery:block/bread_jam_apple_0"
+    },
+    "bites=0,facing=west,jam=false": {
+      "y": 270,
+      "model": "vinery:block/bread_0"
+    },
+    "bites=0,facing=west,jam=true": {
+      "y": 270,
+      "model": "vinery:block/bread_jam_apple_0"
+    },
+    "bites=1,facing=east,jam=false": {
+      "y": 90,
+      "model": "vinery:block/bread_1"
+    },
+    "bites=1,facing=east,jam=true": {
+      "y": 90,
+      "model": "vinery:block/bread_jam_apple_1"
+    },
+    "bites=1,facing=north,jam=false": {
+      "model": "vinery:block/bread_1"
+    },
+    "bites=1,facing=north,jam=true": {
+      "model": "vinery:block/bread_jam_apple_1"
+    },
+    "bites=1,facing=south,jam=false": {
+      "y": 180,
+      "model": "vinery:block/bread_1"
+    },
+    "bites=1,facing=south,jam=true": {
+      "y": 180,
+      "model": "vinery:block/bread_jam_apple_1"
+    },
+    "bites=1,facing=west,jam=false": {
+      "y": 270,
+      "model": "vinery:block/bread_1"
+    },
+    "bites=1,facing=west,jam=true": {
+      "y": 270,
+      "model": "vinery:block/bread_jam_apple_1"
+    },
+    "bites=2,facing=east,jam=false": {
+      "y": 90,
+      "model": "vinery:block/bread_2"
+    },
+    "bites=2,facing=east,jam=true": {
+      "y": 90,
+      "model": "vinery:block/bread_jam_apple_2"
+    },
+    "bites=2,facing=north,jam=false": {
+      "model": "vinery:block/bread_2"
+    },
+    "bites=2,facing=north,jam=true": {
+      "model": "vinery:block/bread_jam_apple_2"
+    },
+    "bites=2,facing=south,jam=false": {
+      "y": 180,
+      "model": "vinery:block/bread_2"
+    },
+    "bites=2,facing=south,jam=true": {
+      "y": 180,
+      "model": "vinery:block/bread_jam_apple_2"
+    },
+    "bites=2,facing=west,jam=false": {
+      "y": 270,
+      "model": "vinery:block/bread_2"
+    },
+    "bites=2,facing=west,jam=true": {
+      "y": 270,
+      "model": "vinery:block/bread_jam_apple_2"
+    },
+    "bites=3,facing=east,jam=false": {
+      "y": 90,
+      "model": "vinery:block/bread_3"
+    },
+    "bites=3,facing=east,jam=true": {
+      "y": 90,
+      "model": "vinery:block/bread_jam_apple_3"
+    },
+    "bites=3,facing=north,jam=false": {
+      "model": "vinery:block/bread_3"
+    },
+    "bites=3,facing=north,jam=true": {
+      "model": "vinery:block/bread_jam_apple_3"
+    },
+    "bites=3,facing=south,jam=false": {
+      "y": 180,
+      "model": "vinery:block/bread_3"
+    },
+    "bites=3,facing=south,jam=true": {
+      "y": 180,
+      "model": "vinery:block/bread_jam_apple_3"
+    },
+    "bites=3,facing=west,jam=false": {
+      "y": 270,
+      "model": "vinery:block/bread_3"
+    },
+    "bites=3,facing=west,jam=true": {
+      "y": 270,
+      "model": "vinery:block/bread_jam_apple_3"
+    }
+  }
+}
