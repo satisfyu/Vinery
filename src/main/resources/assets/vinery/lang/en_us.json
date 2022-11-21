@@ -146,5 +146,6 @@
   "item.vinery.doughnut_line3.tooltip": " - Sweetberries",
   "item.vinery.toast_line1.tooltip": " - Wheat",
   "item.vinery.toast_line2.tooltip": " - Wheat",
-  "block.vinery.stem.tooltip": "Used to grow Grapevines"
+  "block.vinery.stem.tooltip": "Used to grow Grapevines",
+  "tooltip.vinery.year": "Year: "
 }

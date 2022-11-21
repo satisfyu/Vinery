@@ -2,6 +2,7 @@ package daniking.vinery.item;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
+import daniking.vinery.util.WineYears;
 import net.minecraft.block.Block;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -54,10 +55,10 @@ public class DrinkBlockItem extends BlockItem {
                     }
                 }
 
-                if (statusEffectInstance.getFirst().getAmplifier() > 0) {
+                if (world != null) {
                     mutableText = Text.translatable(
                             "potion.withAmplifier",
-                            mutableText, Text.translatable("potion.potency." + statusEffectInstance.getFirst().getAmplifier()));
+                            mutableText, Text.translatable("potion.potency." + WineYears.getEffectLevel(stack, world)));
                 }
 
                 if (statusEffectInstance.getFirst().getDuration() > 20) {
@@ -102,5 +103,8 @@ public class DrinkBlockItem extends BlockItem {
                 }
             }
         }
+        
+        tooltip.add(Text.empty());
+        tooltip.add(Text.translatable("tooltip.vinery.year").formatted(Formatting.GRAY).append(Text.of(" " + WineYears.getWineYear(stack))));
     }
 }

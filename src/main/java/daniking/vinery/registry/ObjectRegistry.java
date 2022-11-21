@@ -1,5 +1,6 @@
 package daniking.vinery.registry;
 
+import com.mojang.datafixers.util.Pair;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import com.terraformersmc.terraform.wood.block.StrippableLogBlock;
@@ -11,6 +12,7 @@ import daniking.vinery.block.FlowerPotBlock;
 import daniking.vinery.block.*;
 import daniking.vinery.item.*;
 import daniking.vinery.util.GrapevineType;
+import daniking.vinery.util.VineryFoodComponent;
 import daniking.vinery.world.VineryConfiguredFeatures;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -33,9 +35,7 @@ import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
@@ -152,8 +152,8 @@ public class ObjectRegistry {
     public static final Block GRASS_SLAB = register("grass_slab", new SnowyVariantSlabBlock(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)));
 
     public static final Block WINE_BOTTLE = register("wine_bottle", new EmptyWineBottleBlock(AbstractBlock.Settings.copy(Blocks.GLASS).breakInstantly().nonOpaque()));
-    public static final Block RED_GRAPEJUICE_WINE_BOTTLE = registerWine("red_grapejuice_wine_bottle", new RedGrapejuiceWineBottle(getWineSettings()), null);
-    public static final Block WHITE_GRAPEJUICE_WINE_BOTTLE = registerWine("white_grapejuice_wine_bottle", new WhiteGrapejuiceWineBottle(getWineSettings()), null);
+    public static final Block RED_GRAPEJUICE_WINE_BOTTLE = registerWine("red_grapejuice_wine_bottle", new RedGrapejuiceWineBottle(getWineSettings()), StatusEffects.HEALTH_BOOST);
+    public static final Block WHITE_GRAPEJUICE_WINE_BOTTLE = registerWine("white_grapejuice_wine_bottle", new WhiteGrapejuiceWineBottle(getWineSettings()), StatusEffects.HEALTH_BOOST);
 
     public static final Block CHENET_WINE = registerBigWine("chenet_wine", new ChenetBottleBlock(getWineSettings()), StatusEffects.JUMP_BOOST);
     public static final Block KING_DANIS_WINE = registerBigWine("king_danis_wine", new KingDanisBottleBlock(getWineSettings()), StatusEffects.LUCK);
@@ -241,9 +241,9 @@ public class ObjectRegistry {
     }
 
     private static FoodComponent wineFoodComponent(StatusEffect effect) {
-        FoodComponent.Builder component = new FoodComponent.Builder().hunger(1);
-        if(effect != null) component.statusEffect(new StatusEffectInstance(effect, 45 * 20), 1.0f);
-        return component.build();
+        List<Pair<StatusEffectInstance, Float>> statusEffects = new ArrayList<>();
+        statusEffects.add(new Pair<>(new StatusEffectInstance(effect, 45 * 20), 1.0f));
+        return new VineryFoodComponent(statusEffects);
     }
 
     private static <T extends Item> T register(String path, T item) {

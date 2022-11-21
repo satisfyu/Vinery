@@ -1,11 +1,11 @@
 package daniking.vinery.block.entity;
 
-import daniking.vinery.block.EmptyWineBottleBlock;
 import daniking.vinery.client.gui.handler.FermentationBarrelGuiHandler;
 import daniking.vinery.recipe.FermentationBarrelRecipe;
 import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.registry.VineryBlockEntityTypes;
 import daniking.vinery.registry.VineryRecipeTypes;
+import daniking.vinery.util.WineYears;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -138,9 +138,9 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
         final ItemStack recipeOutput = recipe.getOutput();
         final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
-            setStack(OUTPUT_SLOT, recipeOutput.copy());
-        } else if (outputSlotStack.isOf(recipeOutput.getItem())) {
-            outputSlotStack.increment(recipeOutput.getCount());
+            ItemStack output = recipeOutput.copy();
+            WineYears.setWineYear(output, this.world);
+            setStack(OUTPUT_SLOT, output);
         }
         // Decrement bottles
         final ItemStack bottle = this.getStack(BOTTLE_INPUT_SLOT);
