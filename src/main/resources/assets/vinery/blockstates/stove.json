@@ -14,6 +14,21 @@
     "facing=east,lit=true": {
       "model": "vinery:block/stove_on",
       "y": 90
+    },
+    "facing=north,lit=false": {
+      "model": "vinery:block/stove_on"
+    },
+    "facing=south,lit=false": {
+      "model": "vinery:block/stove_on",
+      "y": 180
+    },
+    "facing=west,lit=false": {
+      "model": "vinery:block/stove_on",
+      "y": 270
+    },
+    "facing=east,lit=false": {
+      "model": "vinery:block/stove_on",
+      "y": 90
     }
   }
 }

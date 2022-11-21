@@ -13,14 +13,14 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-public class StoveCookingRecipe implements Recipe<Inventory> {
+public class WoodFiredOvenRecipe implements Recipe<Inventory> {
 
     protected final Identifier id;
     protected final DefaultedList<Ingredient> inputs;
     protected final ItemStack output;
     protected final float experience;
 
-    public StoveCookingRecipe(Identifier id, DefaultedList<Ingredient> inputs, ItemStack output, float experience) {
+    public WoodFiredOvenRecipe(Identifier id, DefaultedList<Ingredient> inputs, ItemStack output, float experience) {
         this.id = id;
         this.inputs = inputs;
         this.output = output;
@@ -70,12 +70,12 @@ public class StoveCookingRecipe implements Recipe<Inventory> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return VineryRecipeTypes.STOVE_COOKING_RECIPE_SERIALIZER;
+        return VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_SERIALIZER;
     }
 
     @Override
     public RecipeType<?> getType() {
-        return VineryRecipeTypes.STOVE_RECIPE_TYPE;
+        return VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_TYPE;
     }
 
     @Override
@@ -83,10 +83,10 @@ public class StoveCookingRecipe implements Recipe<Inventory> {
         return true;
     }
 
-    public static class Serializer implements RecipeSerializer<StoveCookingRecipe> {
+    public static class Serializer implements RecipeSerializer<WoodFiredOvenRecipe> {
 
         @Override
-        public StoveCookingRecipe read(Identifier id, JsonObject json) {
+        public WoodFiredOvenRecipe read(Identifier id, JsonObject json) {
             final var ingredients = VineryUtils.deserializeIngredients(JsonHelper.getArray(json, "ingredients"));
             if (ingredients.isEmpty()) {
                 throw new JsonParseException("No ingredients for StoveCooking Recipe");
@@ -95,7 +95,7 @@ public class StoveCookingRecipe implements Recipe<Inventory> {
             } else {
                 final ItemStack outputStack = ShapedRecipe.outputFromJson(json);
                 float xp = JsonHelper.getFloat(json, "experience", 0.0F);
-                return new StoveCookingRecipe(id, ingredients, outputStack, xp);
+                return new WoodFiredOvenRecipe(id, ingredients, outputStack, xp);
 
             }
 
@@ -103,16 +103,16 @@ public class StoveCookingRecipe implements Recipe<Inventory> {
 
 
         @Override
-        public StoveCookingRecipe read(Identifier id, PacketByteBuf buf) {
+        public WoodFiredOvenRecipe read(Identifier id, PacketByteBuf buf) {
             final var ingredients  = DefaultedList.ofSize(buf.readVarInt(), Ingredient.EMPTY);
             ingredients.replaceAll(ignored -> Ingredient.fromPacket(buf));
             final ItemStack output = buf.readItemStack();
             final float xp = buf.readFloat();
-            return new StoveCookingRecipe(id, ingredients, output, xp);
+            return new WoodFiredOvenRecipe(id, ingredients, output, xp);
         }
 
         @Override
-        public void write(PacketByteBuf packet, StoveCookingRecipe recipe) {
+        public void write(PacketByteBuf packet, WoodFiredOvenRecipe recipe) {
             packet.writeVarInt(recipe.inputs.size());
             recipe.inputs.forEach(entry -> entry.write(packet));
             packet.writeItemStack(recipe.output);

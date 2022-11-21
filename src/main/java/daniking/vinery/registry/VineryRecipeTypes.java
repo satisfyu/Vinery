@@ -3,7 +3,7 @@ package daniking.vinery.registry;
 import daniking.vinery.VineryIdentifier;
 import daniking.vinery.recipe.CookingPotRecipe;
 import daniking.vinery.recipe.FermentationBarrelRecipe;
-import daniking.vinery.recipe.StoveCookingRecipe;
+import daniking.vinery.recipe.WoodFiredOvenRecipe;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
@@ -17,8 +17,8 @@ public class VineryRecipeTypes {
 
     private static final Map<Identifier, RecipeSerializer<?>> RECIPE_SERIALIZERS = new HashMap<>();
     private static final Map<Identifier, RecipeType<?>> RECIPE_TYPES = new HashMap<>();
-    public static final RecipeType<StoveCookingRecipe> STOVE_RECIPE_TYPE = create("stove_cooking");
-    public static final RecipeSerializer<StoveCookingRecipe> STOVE_COOKING_RECIPE_SERIALIZER = create("stove_cooking", new StoveCookingRecipe.Serializer());
+    public static final RecipeType<WoodFiredOvenRecipe> WOOD_FIRED_OVEN_RECIPE_TYPE = create("wood_fired_oven_cooking");
+    public static final RecipeSerializer<WoodFiredOvenRecipe> WOOD_FIRED_OVEN_RECIPE_SERIALIZER = create("wood_fired_oven_cooking", new WoodFiredOvenRecipe.Serializer());
     public static final RecipeType<FermentationBarrelRecipe> FERMENTATION_BARREL_RECIPE_TYPE = create("wine_fermentation");
     public static final RecipeSerializer<FermentationBarrelRecipe> FERMENTATION_BARREL_RECIPE_SERIALIZER = create("wine_fermentation", new FermentationBarrelRecipe.Serializer());
     public static final RecipeType<CookingPotRecipe> COOKING_POT_RECIPE_TYPE = create("pot_cooking");

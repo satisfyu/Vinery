@@ -120,7 +120,7 @@ public class StoveGuiHandler extends ScreenHandler {
     }
 
     private boolean isIngredient(ItemStack stack) {
-        return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.STOVE_RECIPE_TYPE).stream().anyMatch(recipe -> recipe.getInputs().stream().anyMatch(x -> x.test(stack)));
+        return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_TYPE).stream().anyMatch(recipe -> recipe.getInputs().stream().anyMatch(x -> x.test(stack)));
     }
     private static boolean isFuel(ItemStack stack) {
         return AbstractFurnaceBlockEntity.canUseAsFuel(stack);

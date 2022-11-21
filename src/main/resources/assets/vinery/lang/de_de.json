@@ -77,6 +77,11 @@
   "block.vinery.basket": "Korb",
   "block.vinery.storage_pot": "Lagerkorb",
   "block.vinery.cherry_beam": "Kirschholzstütze",
+
+  "rei.vinery.cooking_pot_category": "Kochtopf",
+  "rei.vinery.wood_fired_oven_category": "Holzofen",
+  "rei.vinery.fermentation_barrel_category": "Reifefass",
+
   "item.vinery.red_grape": "Rote Weintraube",
   "item.vinery.red_grape_seeds": "Rote Weintraubensamen",
   "item.vinery.white_grape": "Weisse Weintraube",
@@ -120,7 +125,7 @@
   "block.vinery.canbeplaced.tooltip": "Kann platziert werden",
   "block.vinery.log.tooltip": "Ein verbessertes Lagerfeuer",
   "block.vinery.log.tooltip.shift_1": "Kann entzündet werden um",
-  "block.vinery.log.tooltip.shift_2": "ein §lgrosses Leuchtfeuer zu entfachen",
+  "block.vinery.log.tooltip.shift_2": "ein §lgrosses§l Leuchtfeuer zu entfachen",
   "block.vinery.log.tooltip.tooltip_shift":"Halte §eSHIFT§r Für Mehr Informationen",
   "item.vinery.gloves.tooltip": "Eine selten gefundene Handwerkszutat",
   "item.vinery.grapevine.tooltip": "Handwerkszutat",
@@ -138,6 +143,12 @@
   "item.vinery.doughnut_line3.tooltip": " - Süssbeeren",
   "item.vinery.toast_line1.tooltip": " - Weizen",
   "item.vinery.toast_line2.tooltip": " - Weizen",
-  "block.vinery.stem.tooltip": "Wird verwendet um Weinreben wachsen zu lassen"
+  "block.vinery.stem.tooltip": "Wird verwendet um Weinreben wachsen zu lassen",
+  "block.vinery.winebox.tooltip.shift_1": "§4Lagermöglichkeit für Weinflaschen§4",
+  "block.vinery.winebox.tooltip.shift_2": "Shift-Rechtsklick mit leerer Hand zum öffnen",
+  "block.vinery.winebox.tooltip.shift_3": "Shift-Rechtsklick mit leerer Hand zum schliessen",
+  "block.vinery.winerack.tooltip.shift_1": "Lagermöglichkeit für Weinflaschen",
+  "block.vinery.winerack.tooltip.shift_2": "Shift-Rechtsklick mit leerer Hand um Flaschen zu entnehmen",
+  "block.vinery.press.tooltip": "Der Winzers bevorzugte Arbeitsplatz"
 
 }

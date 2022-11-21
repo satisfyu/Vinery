@@ -24,26 +24,42 @@ import org.jetbrains.annotations.Nullable;
 
 public class VineryVillagers {
     private static final VineryIdentifier WINEMAKER_POI_IDENTIFIER = new VineryIdentifier("winemaker_poi");
-    public static final PointOfInterestType WINEMAKER_POI = PointOfInterestHelper.register(WINEMAKER_POI_IDENTIFIER, 1, 12, ObjectRegistry.BARREL);
+    public static final PointOfInterestType WINEMAKER_POI = PointOfInterestHelper.register(WINEMAKER_POI_IDENTIFIER, 1, 12, ObjectRegistry.WINE_PRESS);
     public static final VillagerProfession WINEMAKER = Registry.register(Registry.VILLAGER_PROFESSION, new Identifier("vinery", "winemaker"), VillagerProfessionBuilder.create().id(new Identifier("vinery", "winemaker")).workstation(RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY, WINEMAKER_POI_IDENTIFIER)).build());
 
     public static void init() {
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 1, factories -> {
-            factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.RED_GRAPE, 2, 12, 10));
-            factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.WHITE_GRAPE, 2, 12, 10));
+            factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.RED_GRAPE, 15, 4, 5));
+            factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.WHITE_GRAPE, 15, 4, 5));
+            factories.add(new SellItemFactory(ObjectRegistry.RED_GRAPE_SEEDS, 2, 1, 5));
+            factories.add(new SellItemFactory(ObjectRegistry.WHITE_GRAPE_SEEDS, 2, 1, 5));
         });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 2, factories -> {
-            factories.add(new SellItemFactory(ObjectRegistry.WINE_BOTTLE, 1, 2, 10));
+            factories.add(new SellItemFactory(ObjectRegistry.WINE_BOTTLE, 1, 2, 7));
         });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 3, factories -> {
             factories.add(new SellItemFactory(ObjectRegistry.COOKING_POT, 3, 1, 10));
             factories.add(new SellItemFactory(ObjectRegistry.FLOWER_BOX, 3, 1, 10));
+            factories.add(new SellItemFactory(ObjectRegistry.WHITE_GRAPE_CRATE, 7, 1, 10));
+            factories.add(new SellItemFactory(ObjectRegistry.RED_GRAPE_CRATE, 7, 1, 10));
+
+        });
+        TradeOfferHelper.registerVillagerOffers(WINEMAKER, 4, factories -> {
+            factories.add(new SellItemFactory(ObjectRegistry.BASKET, 4, 1, 10));
+            factories.add(new SellItemFactory(ObjectRegistry.FLOWER_POT, 5, 1, 10));
+            factories.add(new SellItemFactory(ObjectRegistry.WINDOW, 12, 1, 10));
+            factories.add(new SellItemFactory(ObjectRegistry.CHERRY_BEAM, 6, 1, 10));
+
+
         });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 5, factories -> {
             factories.add(new SellItemFactory(ObjectRegistry.WINE_BOX, 10, 1, 10));
+            factories.add(new SellItemFactory(ObjectRegistry.KING_DANIS_WINE, 4, 1, 10));
+            factories.add(new SellItemFactory(ObjectRegistry.GLOVES, 12, 1, 15));
+
+
         });
 
-//        TradeOfferHelper.registerWanderingTraderOffers();
     }
 
     static class BuyForOneEmeraldFactory implements TradeOffers.Factory {

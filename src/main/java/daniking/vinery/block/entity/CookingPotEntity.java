@@ -4,8 +4,6 @@ import daniking.vinery.Vinery;
 import daniking.vinery.block.CookingPotBlock;
 import daniking.vinery.client.gui.handler.CookingPotGuiHandler;
 import daniking.vinery.recipe.CookingPotRecipe;
-import daniking.vinery.recipe.StoveCookingRecipe;
-import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.registry.VineryBlockEntityTypes;
 import daniking.vinery.registry.VineryRecipeTypes;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -18,11 +16,9 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -34,15 +30,11 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collections;
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<CookingPotEntity>, Inventory, ExtendedScreenHandlerFactory {
 	
 	private DefaultedList<ItemStack> inventory;
 	private static final int MAX_CAPACITY = 8;
-	private static final int MAX_COOKING_TIME = 60; // Time in ticks (30s)
+	public static final int MAX_COOKING_TIME = 600; // Time in ticks (30s)
 	private int cookingTime = MAX_COOKING_TIME;
 	private static final int BOTTLE_INPUT_SLOT = 6;
 	private static final int OUTPUT_SLOT = 7;
@@ -168,7 +160,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		}
 		this.getStack(BOTTLE_INPUT_SLOT).decrement(1);
 	}
-	
+
 	@Override
 	public void tick(World world, BlockPos pos, BlockState state, CookingPotEntity blockEntity) {
 		if (world.isClient()) {
@@ -237,7 +229,8 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		}
 		this.markDirty();
 	}
-	
+
+
 	@Override
 	public boolean canPlayerUse(PlayerEntity player) {
 		if (this.world.getBlockEntity(this.pos) != this) {
@@ -246,7 +239,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 			return player.squaredDistanceTo((double) this.pos.getX() + 0.5, (double) this.pos.getY() + 0.5, (double) this.pos.getZ() + 0.5) <= 64.0;
 		}
 	}
-	
+
 	@Override
 	public void clear() {
 		inventory.clear();
