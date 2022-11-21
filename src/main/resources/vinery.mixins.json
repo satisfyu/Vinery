@@ -8,6 +8,7 @@
     "BlockMixin",
     "BoneMealItemMixin",
     "FoxEntityEatSweetBerriesGoalMixin",
+    "LivingEntityMixin",
     "WanderingTraderManagerMixin"
   ],
   "client": [
