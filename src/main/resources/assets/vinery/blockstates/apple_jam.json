@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "stack=1": {
+      "model": "vinery:block/apple_jam_stack1"
+    },
+    "stack=2": {
+      "model": "vinery:block/apple_jam_stack2"
+    },
+    "stack=3": {
+      "model": "vinery:block/apple_jam_stack3"
+    }
+  }
+}
