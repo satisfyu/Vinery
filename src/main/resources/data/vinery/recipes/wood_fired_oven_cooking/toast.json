@@ -6,6 +6,9 @@
     },
     {
       "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:sugar"
     }
   ],
   "item": "vinery:toast",

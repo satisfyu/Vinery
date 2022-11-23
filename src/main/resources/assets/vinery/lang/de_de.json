@@ -149,6 +149,18 @@
   "block.vinery.winebox.tooltip.shift_3": "Shift-Rechtsklick mit leerer Hand zum schliessen",
   "block.vinery.winerack.tooltip.shift_1": "Lagermöglichkeit für Weinflaschen",
   "block.vinery.winerack.tooltip.shift_2": "Shift-Rechtsklick mit leerer Hand um Flaschen zu entnehmen",
-  "block.vinery.press.tooltip": "Der Winzers bevorzugte Arbeitsplatz"
+  "block.vinery.press.tooltip": "Der Winzers bevorzugte Arbeitsplatz",
+  "tooltip.vinery.year": "Jahrgang: ",
+  "block.vinery.apple_cider": "Apfelwein",
+  "block.vinery.apple_wine": "Apfelmost",
+  "block.vinery.apple_juice": "Apfelsaft",
+  "block.vinery.apple_crate": "Sack voller Äpfel",
+  "block.vinery.apple_jam": "Marmeladenglas voller Apfelmarmelade",
+  "block.vinery.grape_jam": "Marmeladenglas voller Traubenmarmelade",
+  "item.vinery.applesauce": "Apfelmus",
+  "item.vinery.apple_mash": "Maische",
+  "item.vinery.cookingpot.tooltip": "§oWird im Kochtopf zubereitet§o",
+  "item.vinery.applesauce_line1.tooltip": " - Apfel",
+  "item.vinery.applesauce_line2.tooltip": " - Zucker"
 
 }

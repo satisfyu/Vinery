@@ -163,6 +163,9 @@ public class ObjectRegistry {
     public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings()), StatusEffects.HEALTH_BOOST);
     public static final Block CHERRY_WINE = registerWine("cherry_wine", new CherryWineBlock(getWineSettings()), StatusEffects.SPEED);
     public static final Block APPLE_CIDER = registerBigWine("apple_cider", new ChenetBottleBlock (getWineSettings()), StatusEffects.INSTANT_HEALTH);
+    public static final Block SOLARIS_WINE = registerWine("solaris_wine", new WineBottleBlock (getWineSettings()), StatusEffects.NIGHT_VISION);
+    public static final Block APPLE_WINE = registerBigWine("apple_wine", new WineBottleBlock (getWineSettings()), StatusEffects.REGENERATION);
+
 
     public static final Block CHERRY_JAR = register("cherry_jar", new CherryJarBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque()));
     public static final Block CHERRY_JAM = register("cherry_jam", new CherryJamBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque()));
@@ -207,6 +210,7 @@ public class ObjectRegistry {
     public static final Item DONUT = register("donut", new DoughnutItem(getSettings().food(FoodComponents.CARROT)));
     public static final Item MILK_BREAD = register("milk_bread", new MilkBreadItem(getSettings().food(FoodComponents.COOKIE)));
     public static final Block CRUSTY_BREAD = register("crusty_bread", new BreadBlock(AbstractBlock.Settings.copy(Blocks.CAKE).nonOpaque()));
+    public static final Item APPLE_MASH = register("apple_mash", new CherryItem(getSettings().food(FoodComponents.APPLE)));
     public static final Item APPLESAUCE = register("applesauce", new AppleSauceItem(getSettings().food(FoodComponents.COOKED_RABBIT)));
     public static final Item MULE_SPAWN_EGG = register("mule_spawn_egg", new SpawnEggItem(MULE, 0x8b7867, 0x5a4e43, getSettings()));
     public static final Item WANDERING_WINEMAKER_SPAWN_EGG = register("wandering_winemaker_spawn_egg", new SpawnEggItem(WANDERING_WINEMAKER, 0xb78272, 0x3c4a73, getSettings()));
