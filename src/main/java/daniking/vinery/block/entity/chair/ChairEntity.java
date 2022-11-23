@@ -1,6 +1,5 @@
 package daniking.vinery.block.entity.chair;
 
-import daniking.vinery.block.entity.chair.ChairUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

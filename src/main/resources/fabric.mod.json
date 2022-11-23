@@ -11,9 +11,7 @@
   "contact": {
     "sources": ""
   },
-
   "icon": "assets/vinery/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [

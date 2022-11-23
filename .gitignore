@@ -4,6 +4,7 @@
 build/
 out/
 classes/
+remappedSrc/
 
 # eclipse
 
@@ -31,3 +32,4 @@ bin/
 # fabric
 
 run/
+
