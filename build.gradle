@@ -37,7 +37,6 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	modImplementation "maven.modrinth:Wd844r7Q:1.19-01"
@@ -47,11 +46,12 @@ dependencies {
 	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
 
 	modImplementation('software.bernie.geckolib:geckolib-fabric-1.19:3.1.26')
-	include('software.bernie.geckolib:geckolib-fabric-1.19:3.1.26')
+	//include('software.bernie.geckolib:geckolib-fabric-1.19:3.1.26')
 
 	// REI Runtime for Fabric
 
 	modApi "dev.architectury:architectury-fabric:$architectury_version"
+
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version"
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:$rei_version"

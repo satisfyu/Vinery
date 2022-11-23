@@ -2,6 +2,7 @@ package daniking.vinery.compat.rei.wine;
 
 import com.google.common.collect.Lists;
 import daniking.vinery.block.entity.CookingPotEntity;
+import daniking.vinery.block.entity.FermentationBarrelBlockEntity;
 import daniking.vinery.registry.ObjectRegistry;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
@@ -37,7 +38,7 @@ public class FermentationBarrelCategory implements DisplayCategory<FermentationB
         Point startPoint = new Point(bounds.getCenterX() - 55, bounds.getCenterY() - 13);
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
-        widgets.add(Widgets.createArrow(new Point(startPoint.x + 54, startPoint.y - 1)).animationDurationTicks(CookingPotEntity.MAX_COOKING_TIME));
+        widgets.add(Widgets.createArrow(new Point(startPoint.x + 54, startPoint.y - 1)).animationDurationTicks(FermentationBarrelBlockEntity.COOKING_TIME_IN_TICKS));
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 90, startPoint.y)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 90, startPoint.y)).entries(display.getOutputEntries().get(0)).disableBackground().markOutput());
         for(int i = 0; i < 4; i++){
