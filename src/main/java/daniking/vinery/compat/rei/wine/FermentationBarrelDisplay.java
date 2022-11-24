@@ -35,6 +35,6 @@ public class FermentationBarrelDisplay extends BasicDisplay {
 
     @Override
     public CategoryIdentifier<?> getCategoryIdentifier() {
-        return new FermentationBarrelCategory().getCategoryIdentifier();
+        return FERMENTATION_BARREL_DISPLAY;
     }
 }

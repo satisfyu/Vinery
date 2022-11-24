@@ -39,7 +39,7 @@ public class WinePressGui extends HandledScreen<WinePressGuiHandler> {
 
     private void renderProgressArrow(MatrixStack matrices, int x, int y) {
         if(handler.isCrafting()) {
-            drawTexture(matrices, x + 105, y + 33, 176, 0, 8, handler.getScaledProgress());
+            drawTexture(matrices, x + 78, y + 35, 176, 0, handler.getScaledProgress(), 20);
         }
     }
 

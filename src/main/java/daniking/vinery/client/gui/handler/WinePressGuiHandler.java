@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 
 public class WinePressGuiHandler extends ScreenHandler {
@@ -16,19 +17,18 @@ public class WinePressGuiHandler extends ScreenHandler {
     private final PropertyDelegate propertyDelegate;
 
     public WinePressGuiHandler(int syncId, PlayerInventory inventory) {
-        this(syncId, inventory, new SimpleInventory(3), new ArrayPropertyDelegate(2));
+        this(syncId, inventory, new SimpleInventory(2), new ArrayPropertyDelegate(2));
     }
 
     public WinePressGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
         super(VineryScreenHandlerTypes.WINE_PRESS_SCREEN_HANDLER, syncId);
-        checkSize(inventory, 3);
+        checkSize(inventory, 2);
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = delegate;
 
-        this.addSlot(new Slot(inventory, 0, 12, 15));
-        this.addSlot(new Slot(inventory, 1, 86, 15));
-        this.addSlot(new Slot(inventory, 2, 86, 60));
+        this.addSlot(new Slot(inventory, 0, 48, 34));
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 1, 116, 35));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);

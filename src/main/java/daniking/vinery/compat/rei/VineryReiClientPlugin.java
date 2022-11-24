@@ -2,6 +2,8 @@ package daniking.vinery.compat.rei;
 
 import daniking.vinery.compat.rei.cooking.CookingPotCategory;
 import daniking.vinery.compat.rei.cooking.CookingPotDisplay;
+import daniking.vinery.compat.rei.press.WinePressCategory;
+import daniking.vinery.compat.rei.press.WinePressDisplay;
 import daniking.vinery.compat.rei.stove.WoodFiredOvenCategory;
 import daniking.vinery.compat.rei.stove.WoodFiredOvenDisplay;
 import daniking.vinery.compat.rei.wine.FermentationBarrelCategory;
@@ -31,10 +33,13 @@ public class VineryReiClientPlugin implements REIClientPlugin {
         registry.add(new CookingPotCategory());
         registry.add(new WoodFiredOvenCategory());
         registry.add(new FermentationBarrelCategory());
+        registry.add(new WinePressCategory());
 
         registry.addWorkstations(CookingPotDisplay.COOKING_POT_DISPLAY, EntryStacks.of(ObjectRegistry.COOKING_POT));
         registry.addWorkstations(WoodFiredOvenDisplay.WOOD_FIRED_OVEN_DISPLAY, EntryStacks.of(ObjectRegistry.WOOD_FIRED_OVEN));
         registry.addWorkstations(FermentationBarrelDisplay.FERMENTATION_BARREL_DISPLAY, EntryStacks.of(ObjectRegistry.FERMENTATION_BARREL));
+        registry.addWorkstations(WinePressDisplay.WINE_PRESS_DISPLAY, EntryStacks.of(ObjectRegistry.WINE_PRESS));
+
         registry.addWorkstations(BuiltinPlugin.FUEL, EntryStacks.of(ObjectRegistry.WOOD_FIRED_OVEN));
     }
 
@@ -43,6 +48,7 @@ public class VineryReiClientPlugin implements REIClientPlugin {
         registry.registerFiller(CookingPotRecipe.class, CookingPotDisplay::new);
         registry.registerFiller(WoodFiredOvenRecipe.class, WoodFiredOvenDisplay::new);
         registry.registerFiller(FermentationBarrelRecipe.class, FermentationBarrelDisplay::new);
+        registry.add(new WinePressDisplay());
     }
 
     @Override

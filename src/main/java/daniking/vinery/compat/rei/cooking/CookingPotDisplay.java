@@ -30,6 +30,6 @@ public class CookingPotDisplay extends BasicDisplay {
 
     @Override
     public CategoryIdentifier<?> getCategoryIdentifier() {
-        return new CookingPotCategory().getCategoryIdentifier();
+        return COOKING_POT_DISPLAY;
     }
 }
