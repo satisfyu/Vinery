@@ -2,6 +2,7 @@ package daniking.vinery.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import daniking.vinery.Vinery;
+import daniking.vinery.VineryIdentifier;
 import daniking.vinery.client.gui.handler.WinePressGuiHandler;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
@@ -12,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 public class WinePressGui extends HandledScreen<WinePressGuiHandler> {
     private static final Identifier TEXTURE =
-            new Identifier(Vinery.MODID, "textures/gui/wine_press.png");
+            new VineryIdentifier("textures/gui/wine_press.png");
 
     public WinePressGui(WinePressGuiHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);

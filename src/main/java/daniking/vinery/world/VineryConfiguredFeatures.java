@@ -60,6 +60,8 @@ public class VineryConfiguredFeatures {
         BiomeModification world = BiomeModifications.create(new VineryIdentifier("world_features"));
         Predicate<BiomeSelectionContext> bushBiomes = BiomeSelectors.includeByKey(BiomeKeys.FOREST, BiomeKeys.PLAINS, BiomeKeys.TAIGA, BiomeKeys.RIVER, BiomeKeys.SWAMP, BiomeKeys.JUNGLE);
         Predicate<BiomeSelectionContext> grassFlowerBiomes = BiomeSelectors.includeByKey(BiomeKeys.PLAINS, BiomeKeys.TAIGA, BiomeKeys.RIVER, BiomeKeys.SWAMP);
+
+
         world.add(ModificationPhase.ADDITIONS, bushBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, RED_GRAPE_PATCH_CHANCE.value()));
         world.add(ModificationPhase.ADDITIONS, bushBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, WHITE_GRAPE_PATCH_CHANCE.value()));
 

@@ -33,17 +33,17 @@ public class WinePressBlockEntity extends BlockEntity implements NamedScreenHand
         super(VineryBlockEntityTypes.WINE_PRESS_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
             public int get(int index) {
-                switch (index) {
-                    case 0: return WinePressBlockEntity.this.progress;
-                    case 1: return WinePressBlockEntity.this.maxProgress;
-                    default: return 0;
-                }
+                return switch (index) {
+                    case 0 -> WinePressBlockEntity.this.progress;
+                    case 1 -> WinePressBlockEntity.this.maxProgress;
+                    default -> 0;
+                };
             }
 
             public void set(int index, int value) {
-                switch(index) {
-                    case 0: WinePressBlockEntity.this.progress = value; break;
-                    case 1: WinePressBlockEntity.this.maxProgress = value; break;
+                switch (index) {
+                    case 0 -> WinePressBlockEntity.this.progress = value;
+                    case 1 -> WinePressBlockEntity.this.maxProgress = value;
                 }
             }
 
@@ -79,8 +79,9 @@ public class WinePressBlockEntity extends BlockEntity implements NamedScreenHand
     @Override
     public void readNbt(NbtCompound nbt) {
         Inventories.readNbt(nbt, inventory);
-        super.readNbt(nbt);
         progress = nbt.getInt("wine_press.progress");
+        super.readNbt(nbt);
+
     }
 
     private void resetProgress() {

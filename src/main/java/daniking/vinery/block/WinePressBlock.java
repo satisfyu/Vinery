@@ -61,16 +61,13 @@ public class WinePressBlock extends BlockWithEntity implements BlockEntityProvid
 	}
 
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos,
-							  PlayerEntity player, Hand hand, BlockHitResult hit) {
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (!world.isClient) {
 			NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
-
 			if (screenHandlerFactory != null) {
 				player.openHandledScreen(screenHandlerFactory);
 			}
 		}
-
 		return ActionResult.SUCCESS;
 	}
 
