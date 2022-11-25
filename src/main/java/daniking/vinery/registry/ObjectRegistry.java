@@ -7,14 +7,12 @@ import com.terraformersmc.terraform.wood.block.StrippableLogBlock;
 import daniking.vinery.GrapeBushSeedItem;
 import daniking.vinery.Vinery;
 import daniking.vinery.VineryIdentifier;
-import daniking.vinery.block.FacingBlock;
 import daniking.vinery.block.FlowerPotBlock;
 import daniking.vinery.block.*;
 import daniking.vinery.item.*;
 import daniking.vinery.util.GrapevineType;
 import daniking.vinery.util.VineryFoodComponent;
 import daniking.vinery.world.VineryConfiguredFeatures;
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -27,9 +25,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.ModStatus;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
@@ -166,7 +162,7 @@ public class ObjectRegistry {
     public static final Block CHERRY_WINE = registerWine("cherry_wine", new CherryWineBlock(getWineSettings()), StatusEffects.SPEED);
     public static final Block APPLE_CIDER = registerBigWine("apple_cider", new ChenetBottleBlock (getWineSettings()), StatusEffects.INSTANT_HEALTH);
     public static final Block SOLARIS_WINE = registerWine("solaris_wine", new WineBottleBlock (getWineSettings()), StatusEffects.NIGHT_VISION);
-    public static final Block JELLIE_WINE = registerBigWine("jellie_wine", new WineBottleBlock (getWineSettings()), VineryEffects.JELLIE);
+    public static final Block JELLIE_WINE = registerBigWine("jellie_wine", new WineBottleBlock(getWineSettings()), VineryEffects.JELLIE);
     public static final Block APPLE_WINE = registerBigWine("apple_wine", new WineBottleBlock (getWineSettings()), StatusEffects.REGENERATION);
 
 

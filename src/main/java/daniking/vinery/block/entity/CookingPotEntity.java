@@ -3,9 +3,12 @@ package daniking.vinery.block.entity;
 import daniking.vinery.Vinery;
 import daniking.vinery.block.CookingPotBlock;
 import daniking.vinery.client.gui.handler.CookingPotGuiHandler;
+import daniking.vinery.compat.farmersdelight.FarmersCookingPot;
 import daniking.vinery.recipe.CookingPotRecipe;
 import daniking.vinery.registry.VineryBlockEntityTypes;
 import daniking.vinery.registry.VineryRecipeTypes;
+import daniking.vinery.util.VineryUtils;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -17,16 +20,21 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<CookingPotEntity>, Inventory, NamedScreenHandlerFactory {
 	
@@ -34,8 +42,8 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 	private static final int MAX_CAPACITY = 8;
 	public static final int MAX_COOKING_TIME = 600; // Time in ticks (30s)
 	private int cookingTime;
-	private static final int BOTTLE_INPUT_SLOT = 6;
-	private static final int OUTPUT_SLOT = 7;
+	public static final int BOTTLE_INPUT_SLOT = 6;
+	public static final int OUTPUT_SLOT = 7;
 	private static final int INGREDIENTS_AREA = 2 * 3;
 	
 	private boolean isBeingBurned;
@@ -97,28 +105,37 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 			return belowState.get(Properties.LIT);
 	}
 	
-	private boolean canCraft(CookingPotRecipe recipe) {
+	private boolean canCraft(Recipe<?> recipe) {
 		if (recipe == null || recipe.getOutput().isEmpty()) {
 			return false;
-		} else if (!this.getStack(BOTTLE_INPUT_SLOT).isOf(recipe.getContainer().getItem())) {
-			return false;
-		} else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
-			return true;
-		} else {
-			final ItemStack recipeOutput = recipe.getOutput();
-			final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
-			final int outputSlotCount = outputSlotStack.getCount();
-			if (!outputSlotStack.isItemEqualIgnoreDamage(recipeOutput)) {
+		}
+		if(recipe instanceof CookingPotRecipe c){
+			if (!this.getStack(BOTTLE_INPUT_SLOT).isOf(c.getContainer().getItem())) {
 				return false;
-			} else if (outputSlotCount < this.getMaxCountPerStack() && outputSlotCount < outputSlotStack.getMaxCount()) {
+			} else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
 				return true;
 			} else {
-				return outputSlotCount < recipeOutput.getMaxCount();
+				final ItemStack recipeOutput = c.getOutput();
+				final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
+				final int outputSlotCount = outputSlotStack.getCount();
+				if (!outputSlotStack.isItemEqualIgnoreDamage(recipeOutput)) {
+					return false;
+				} else if (outputSlotCount < this.getMaxCountPerStack() && outputSlotCount < outputSlotStack.getMaxCount()) {
+					return true;
+				} else {
+					return outputSlotCount < recipeOutput.getMaxCount();
+				}
 			}
 		}
+		else {
+			if(VineryUtils.isFDLoaded()){
+				return FarmersCookingPot.canCraft(recipe, this);
+			}
+		}
+		return false;
 	}
 	
-	private void craft(CookingPotRecipe recipe) {
+	private void craft(Recipe<?> recipe) {
 		if (!canCraft(recipe)) {
 			return;
 		}
@@ -164,7 +181,11 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 			if(state.get(CookingPotBlock.LIT)) world.setBlockState(pos, state.with(CookingPotBlock.LIT, false), Block.NOTIFY_ALL);
 			return;
 		}
-		final var recipe = world.getRecipeManager().getFirstMatch(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE, this, world).orElse(null);
+		Recipe<?> recipe = world.getRecipeManager().getFirstMatch(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE, this, world).orElse(null);
+		if(recipe == null && VineryUtils.isFDLoaded()){
+			recipe = FarmersCookingPot.getRecipe(world, this);
+		}
+
 		boolean canCraft = canCraft(recipe);
 		if (canCraft) {
 			this.cookingTime++;
@@ -184,6 +205,8 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 			world.setBlockState(pos, state.with(CookingPotBlock.LIT, isBeingBurned), Block.NOTIFY_ALL);
 		}
 	}
+
+
 	
 	@Override
 	public int size() {

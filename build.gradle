@@ -23,7 +23,7 @@ repositories {
 		url "https://maven.terraformersmc.com"
 	}
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
-
+	maven { url 'https://www.cursemaven.com' }
 	maven {
 		name = "Modrinth"
 		url = "https://api.modrinth.com/maven"
@@ -46,10 +46,10 @@ dependencies {
 	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
 
 	modImplementation('software.bernie.geckolib:geckolib-fabric-1.19:3.1.26')
-	//include('software.bernie.geckolib:geckolib-fabric-1.19:3.1.26')
+	modImplementation "curse.maven:farmersdelightfabric-482834:${project.delight_version}"
+
 
 	// REI Runtime for Fabric
-
 	modApi "dev.architectury:architectury-fabric:$architectury_version"
 
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"

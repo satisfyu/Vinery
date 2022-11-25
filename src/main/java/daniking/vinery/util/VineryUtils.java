@@ -1,6 +1,7 @@
 package daniking.vinery.util;
 
 import com.google.gson.JsonArray;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -64,5 +65,9 @@ public class VineryUtils {
             buffer[1] = VoxelShapes.empty();
         }
         return buffer[0];
+    }
+
+    public static boolean isFDLoaded(){
+        return FabricLoader.getInstance().isModLoaded("farmersdelight");
     }
 }
