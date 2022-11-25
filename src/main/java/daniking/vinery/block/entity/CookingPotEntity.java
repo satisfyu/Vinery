@@ -6,7 +6,6 @@ import daniking.vinery.client.gui.handler.CookingPotGuiHandler;
 import daniking.vinery.recipe.CookingPotRecipe;
 import daniking.vinery.registry.VineryBlockEntityTypes;
 import daniking.vinery.registry.VineryRecipeTypes;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -17,11 +16,10 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
@@ -30,42 +28,40 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<CookingPotEntity>, Inventory, ExtendedScreenHandlerFactory {
+public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<CookingPotEntity>, Inventory, NamedScreenHandlerFactory {
 	
-	private DefaultedList<ItemStack> inventory;
+	private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(MAX_CAPACITY, ItemStack.EMPTY);
 	private static final int MAX_CAPACITY = 8;
 	public static final int MAX_COOKING_TIME = 600; // Time in ticks (30s)
-	private int cookingTime = MAX_COOKING_TIME;
+	private int cookingTime;
 	private static final int BOTTLE_INPUT_SLOT = 6;
 	private static final int OUTPUT_SLOT = 7;
 	private static final int INGREDIENTS_AREA = 2 * 3;
 	
-	private boolean isBeingBurned = false;
-	private int totalCookingTime;
-	
+	private boolean isBeingBurned;
+
 	private final PropertyDelegate delegate;
 	
 	public CookingPotEntity(BlockPos pos, BlockState state) {
 		super(VineryBlockEntityTypes.COOKING_POT_BLOCK_ENTITY, pos, state);
-		this.inventory = DefaultedList.ofSize(MAX_CAPACITY, ItemStack.EMPTY);
 		this.delegate = new PropertyDelegate() {
 			@Override
 			public int get(int index) {
 				return switch (index) {
 					case 0 -> CookingPotEntity.this.cookingTime;
-					case 1 -> CookingPotEntity.this.totalCookingTime;
+					case 1 -> CookingPotEntity.this.isBeingBurned ? 1 : 0;
 					default -> 0;
 				};
 			}
-			
+
 			@Override
 			public void set(int index, int value) {
 				switch (index) {
 					case 0 -> CookingPotEntity.this.cookingTime = value;
-					case 1 -> CookingPotEntity.this.totalCookingTime = value;
+					case 1 -> CookingPotEntity.this.isBeingBurned = value != 0;
 				}
 			}
-			
+
 			@Override
 			public int size() {
 				return 2;
@@ -76,18 +72,15 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
-		this.inventory = DefaultedList.ofSize(MAX_CAPACITY, ItemStack.EMPTY);
 		Inventories.readNbt(nbt, this.inventory);
 		nbt.putInt("CookingTime", this.cookingTime);
-		nbt.putBoolean("isBeingBurned", this.isBeingBurned);
 	}
 	
 	@Override
 	protected void writeNbt(NbtCompound nbt) {
-		super.writeNbt(nbt);
-		this.cookingTime = nbt.getInt("CookingTime");
-		this.isBeingBurned = nbt.getBoolean("isBeingBurned");
 		Inventories.writeNbt(nbt, this.inventory);
+		this.cookingTime = nbt.getInt("CookingTime");
+		super.writeNbt(nbt);
 	}
 	
 	public boolean isBeingBurned() {
@@ -167,30 +160,29 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 			return;
 		}
 		this.isBeingBurned = isBeingBurned();
-		if (!this.isBeingBurned)
+		if (!this.isBeingBurned){
+			if(state.get(CookingPotBlock.LIT)) world.setBlockState(pos, state.with(CookingPotBlock.LIT, false), Block.NOTIFY_ALL);
 			return;
-		boolean dirty = false;
+		}
 		final var recipe = world.getRecipeManager().getFirstMatch(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE, this, world).orElse(null);
 		boolean canCraft = canCraft(recipe);
 		if (canCraft) {
-			++this.cookingTime;
-			if (this.cookingTime == this.totalCookingTime) {
+			this.cookingTime++;
+			if (this.cookingTime >= MAX_COOKING_TIME) {
 				this.cookingTime = 0;
 				craft(recipe);
-				dirty = true;
 			}
 		} else if (!canCraft(recipe)) {
 			this.cookingTime = 0;
 		}
 		if (canCraft) {
-			world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.HAS_CHERRIES_INSIDE, true), Block.NOTIFY_ALL);
-			dirty = true;
-		} else if (state.get(CookingPotBlock.HAS_CHERRIES_INSIDE)) {
-			world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.HAS_CHERRIES_INSIDE, false), Block.NOTIFY_ALL);
-			dirty = true;
+			world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.COOKING, true).with(CookingPotBlock.LIT, true), Block.NOTIFY_ALL);
+		} else if (state.get(CookingPotBlock.COOKING)) {
+			world.setBlockState(pos, this.getCachedState().getBlock().getDefaultState().with(CookingPotBlock.COOKING, false).with(CookingPotBlock.LIT, true), Block.NOTIFY_ALL);
 		}
-		if (dirty)
-			markDirty();
+		else if(state.get(CookingPotBlock.LIT) != isBeingBurned){
+			world.setBlockState(pos, state.with(CookingPotBlock.LIT, isBeingBurned), Block.NOTIFY_ALL);
+		}
 	}
 	
 	@Override
@@ -224,9 +216,6 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		if (stack.getCount() > this.getMaxCountPerStack()) {
 			stack.setCount(this.getMaxCountPerStack());
 		}
-		if (totalCookingTime == 0) {
-			this.totalCookingTime = MAX_COOKING_TIME;
-		}
 		this.markDirty();
 	}
 
@@ -254,11 +243,6 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 	@Override
 	public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
 		return new CookingPotGuiHandler(syncId, inv, this, this.delegate);
-	}
-	
-	@Override
-	public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-		buf.writeBoolean(this.isBeingBurned);
 	}
 }
 

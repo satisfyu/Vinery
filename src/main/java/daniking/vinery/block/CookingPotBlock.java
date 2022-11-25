@@ -1,13 +1,10 @@
 package daniking.vinery.block;
 
 import daniking.vinery.block.entity.CookingPotEntity;
-import daniking.vinery.registry.ObjectRegistry;
+import daniking.vinery.registry.VineryBlockEntityTypes;
 import daniking.vinery.registry.VinerySoundEvents;
 import daniking.vinery.util.VineryUtils;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -23,7 +20,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.state.property.Property;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -41,9 +37,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
-import java.util.stream.Stream;
 
-public class CookingPotBlock extends Block implements BlockEntityProvider {
+public class CookingPotBlock extends BlockWithEntity {
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = VoxelShapes.empty();
         shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.25, 0, 0.25, 0.75, 0.0625, 0.75), BooleanBiFunction.OR);
@@ -73,12 +68,12 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
     });
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public static final BooleanProperty HAS_CHERRIES_INSIDE = BooleanProperty.of("has_cherries");
-    private static final Property<Boolean> COOKING = BooleanProperty.of("has_cherries");
+    public static final BooleanProperty LIT = BooleanProperty.of("lit");
+    public static final BooleanProperty COOKING = BooleanProperty.of("cooking");
 
     public CookingPotBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(HAS_CHERRIES_INSIDE, false));
+        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(COOKING, false).with(LIT, false));
     }
 
 
@@ -143,18 +138,18 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
     
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING, HAS_CHERRIES_INSIDE);
+        builder.add(FACING, COOKING, LIT);
     }
 
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return (world1, pos, state1, blockEntity) -> {
-            if (blockEntity instanceof BlockEntityTicker<?>) {
-                ((BlockEntityTicker) blockEntity).tick(world1, pos, state1, blockEntity);
-            }
-        };
+        return checkType(type, VineryBlockEntityTypes.COOKING_POT_BLOCK_ENTITY, (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
     }
 
     @Nullable

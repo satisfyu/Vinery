@@ -32,6 +32,7 @@ public class Vinery implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        VineryEffects.init();
         ObjectRegistry.init();
         VineryBlockEntityTypes.init();
         AdditionalHouses.registerNewVillageStructures();
@@ -48,7 +49,6 @@ public class Vinery implements ModInitializer {
         VinerySoundEvents.init();
         VineryVillagers.init();
         VineryEntites.init();
-
     }
 }
 

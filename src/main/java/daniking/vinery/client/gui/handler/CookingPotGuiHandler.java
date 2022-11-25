@@ -1,5 +1,6 @@
 package daniking.vinery.client.gui.handler;
 
+import daniking.vinery.block.entity.CookingPotEntity;
 import daniking.vinery.recipe.CookingPotRecipe;
 import daniking.vinery.registry.VineryRecipeTypes;
 import daniking.vinery.registry.VineryScreenHandlerTypes;
@@ -22,10 +23,8 @@ public class CookingPotGuiHandler extends ScreenHandler {
 
     private final PropertyDelegate propertyDelegate;
     private final World world;
-    private boolean isBeingBurned;
-    public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf packet) {
+    public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(8), new ArrayPropertyDelegate(2));
-        this.isBeingBurned = packet.readBoolean();
     }
 
     public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
@@ -70,7 +69,7 @@ public class CookingPotGuiHandler extends ScreenHandler {
     }
 
     public boolean isBeingBurned() {
-        return isBeingBurned;
+        return propertyDelegate.get(1) != 0;
     }
 
 
@@ -122,8 +121,8 @@ public class CookingPotGuiHandler extends ScreenHandler {
 
     public int getScaledProgress() {
         final int progress = this.propertyDelegate.get(0);
-        final int totalProgress = this.propertyDelegate.get(1);
-        if (totalProgress == 0 || progress == 0) {
+        final int totalProgress = CookingPotEntity.MAX_COOKING_TIME;
+        if (progress == 0) {
             return 0;
         }
         return progress * 22 / totalProgress;

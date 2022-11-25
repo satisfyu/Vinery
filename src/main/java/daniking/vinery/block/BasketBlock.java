@@ -43,7 +43,7 @@ public class BasketBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        Vinery.LOGGER.info("Used Basket Block!");
+        //Vinery.LOGGER.info("Used Basket Block!");
 
         if (world.isClient)
             return ActionResult.SUCCESS;

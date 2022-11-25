@@ -51,7 +51,6 @@ public class WindowBlock extends PaneBlock {
 
 
     private void updateWindows(World world, BlockPos pos){
-       Vinery.LOGGER.error("current" + pos.toShortString());
         int i = getWindowHeight(world, pos);
 
         if(i == 3){
@@ -73,9 +72,6 @@ public class WindowBlock extends PaneBlock {
             pos = pos.up();
         }
         while(world.getBlockState(pos).isOf(ObjectRegistry.WINDOW));
-
-        Vinery.LOGGER.error(pos.down().toShortString());
-
         return pos.down();
     }
 
@@ -88,7 +84,6 @@ public class WindowBlock extends PaneBlock {
             highestPos = highestPos.down();
         }
         while(world.getBlockState(highestPos).isOf(ObjectRegistry.WINDOW));
-        Vinery.LOGGER.error(String.valueOf(i));
         return i;
     }
 
