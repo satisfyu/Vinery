@@ -134,6 +134,24 @@ public class CookingPotBlock extends BlockWithEntity {
             world.addParticle(ParticleTypes.BUBBLE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
             world.addParticle(ParticleTypes.BUBBLE_POP, d + i, e + j, f + k, 0.0, 0.0, 0.0);
         }
+        if (state.get(LIT)) {
+            double d = (double)pos.getX() + 0.5;
+            double e = pos.getY() + 0.3;
+            double f = (double)pos.getZ() + 1.0;
+            if (random.nextDouble() < 0.3) {
+                world.playSound(d, e, f, VinerySoundEvents.BLOCK_COOKING_POT_JUICE_BOILING, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+            }
+            Direction direction = state.get(FACING);
+            Direction.Axis axis = direction.getAxis();
+            double h = random.nextDouble() * 0.6 - 0.3;
+            double i = axis == Direction.Axis.X ? (double)direction.getOffsetX() * 0.52 : h;
+            double j = random.nextDouble() * 9.0 / 16.0;
+            double k = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * 0.7 : h;
+            world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+            world.addParticle(ParticleTypes.BUBBLE_COLUMN_UP, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+            world.addParticle(ParticleTypes.BUBBLE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+            world.addParticle(ParticleTypes.BUBBLE_POP, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+        }
     }
     
     @Override
