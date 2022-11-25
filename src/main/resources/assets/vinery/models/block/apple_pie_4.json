@@ -1,27 +1,11 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"4": "vinery:block/apple_pie_alt/apple_pie_side",
 		"5": "vinery:block/apple_pie_plate",
 		"particle": "vinery:block/apple_pie_alt/apple_pie_top",
-		"top": "vinery:block/apple_pie_alt/apple_pie_top",
-		"side": "vinery:block/apple_pie_alt/apple_pie_side_yummie",
 		"bottom": "vinery:block/apple_pie_alt/apple_pie_bottom"
 	},
 	"elements": [
-		{
-			"from": [8, 1, 8],
-			"to": [14, 5, 14],
-			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 0]},
-			"faces": {
-				"north": {"uv": [2, 12, 8, 16], "texture": "#4"},
-				"east": {"uv": [2, 12, 8, 16], "texture": "#side"},
-				"south": {"uv": [8, 12, 14, 16], "texture": "#side"},
-				"west": {"uv": [8, 12, 14, 16], "texture": "#4"},
-				"up": {"uv": [8, 14, 2, 8], "rotation": 90, "texture": "#top"},
-				"down": {"uv": [2, 8, 14, 14], "rotation": 270, "texture": "#bottom", "cullface": "down"}
-			}
-		},
 		{
 			"from": [1, 0, 1],
 			"to": [15, 1, 15],
@@ -85,6 +69,32 @@
 				"west": {"uv": [9.5, 12.5, 9.85, 12.75], "texture": "#bottom"},
 				"up": {"uv": [9.5, 12.5, 9.85, 12.75], "rotation": 90, "texture": "#bottom"},
 				"down": {"uv": [9.5, 12.5, 9.85, 12.75], "rotation": 270, "texture": "#bottom"}
+			}
+		},
+		{
+			"from": [9, 1, 13],
+			"to": [10, 2, 14],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [13, 1, 13]},
+			"faces": {
+				"north": {"uv": [9, 6, 10, 7], "texture": "#bottom"},
+				"east": {"uv": [9, 6, 10, 7], "texture": "#bottom"},
+				"south": {"uv": [9, 6, 10, 7], "texture": "#bottom"},
+				"west": {"uv": [9, 6, 10, 7], "texture": "#bottom"},
+				"up": {"uv": [9, 6, 10, 7], "rotation": 180, "texture": "#bottom"},
+				"down": {"uv": [9, 6, 10, 7], "rotation": 180, "texture": "#bottom"}
+			}
+		},
+		{
+			"from": [2, 1, 11],
+			"to": [3, 2, 12],
+			"rotation": {"angle": -45, "axis": "y", "origin": [13, 1, 13]},
+			"faces": {
+				"north": {"uv": [9.5, 12.5, 9.85, 12.75], "texture": "#bottom"},
+				"east": {"uv": [9.5, 12.5, 9.85, 12.75], "texture": "#bottom"},
+				"south": {"uv": [9.5, 12.5, 9.85, 12.75], "texture": "#bottom"},
+				"west": {"uv": [9.5, 12.5, 9.85, 12.75], "texture": "#bottom"},
+				"up": {"uv": [9.5, 12.5, 9.85, 12.75], "rotation": 180, "texture": "#bottom"},
+				"down": {"uv": [9.5, 12.5, 9.85, 12.75], "rotation": 180, "texture": "#bottom"}
 			}
 		}
 	]

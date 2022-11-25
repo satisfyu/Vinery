@@ -9,7 +9,7 @@
     }
   ],
   "container": {
-    "item": ""
+    "item": "minecraft:bowl"
   },
   "result": {
     "item": "vinery:applesauce"

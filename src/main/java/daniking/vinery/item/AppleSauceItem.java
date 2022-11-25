@@ -22,6 +22,8 @@ public class AppleSauceItem extends Item {
         if(Screen.hasShiftDown()) {
             tooltip.add(Text.translatable("item.vinery.applesauce_line1.tooltip"));
             tooltip.add(Text.translatable("item.vinery.applesauce_line2.tooltip"));
+            tooltip.add(Text.translatable("item.vinery.applesauce_line3.tooltip"));
+
             tooltip.add(Text.translatable("item.vinery.cookingpot.tooltip"));
         } else {
             tooltip.add(Text.translatable("item.vinery.ingredient.tooltip").formatted(Formatting.GRAY, Formatting.ITALIC));

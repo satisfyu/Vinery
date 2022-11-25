@@ -10,32 +10,34 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 
+
 public class PieBlock extends Block {
 
     private static final VoxelShape SHAPE = Block.createCuboidShape(4, 0, 4, 12, 4, 12);
 
-    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+    private static final VoxelShape SHAPE_BIG = Block.createCuboidShape(2, 0, 2, 14, 4, 14);
 
-    public static final IntProperty CUTS = IntProperty.of("cuts", 0, 3);
+    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+    public static final IntProperty CUTS = IntProperty.of("cuts", 0, 4);
     private final Item slice;
 
+    private final boolean big;
 
     public PieBlock(Settings settings, Item slice, boolean big) {
         super(settings);
         this.slice = slice;
+        this.big = big;
     }
 
     @Override
@@ -48,6 +50,10 @@ public class PieBlock extends Block {
         return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
     }
 
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return big ? SHAPE_BIG : SHAPE;
+    }
 
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {

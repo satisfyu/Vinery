@@ -47,7 +47,7 @@ public class ClientSetup implements ClientModInitializer {
                                                 ObjectRegistry.MELLOHI_WINE, ObjectRegistry.CLARK_WINE, ObjectRegistry.BOLVAR_WINE, ObjectRegistry.CHERRY_WINE,
                                                 ObjectRegistry.KING_DANIS_WINE, ObjectRegistry.CHERRY_JAR, ObjectRegistry.CHENET_WINE, ObjectRegistry.MELLOHI_WINE,
                                                 ObjectRegistry.NOIR_WINE, ObjectRegistry.WINE_BOTTLE, ObjectRegistry.TABLE, ObjectRegistry.APPLE_CIDER,
-                                                ObjectRegistry.APPLE_JAM, ObjectRegistry.APPLE_JUICE, ObjectRegistry.APPLE_WINE, ObjectRegistry.SOLARIS_WINE
+                                                ObjectRegistry.APPLE_JAM, ObjectRegistry.APPLE_JUICE, ObjectRegistry.APPLE_WINE, ObjectRegistry.SOLARIS_WINE, ObjectRegistry.JELLIE_WINE
 
 
         );

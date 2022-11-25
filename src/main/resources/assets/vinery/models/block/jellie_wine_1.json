@@ -2,7 +2,8 @@
 	"credit": "Made by Elo106",
 	"texture_size": [64, 64],
 	"textures": {
-		"4": "vinery:block/wine/jellie_wine"
+		"4": "vinery:block/wine/jellie_wine",
+		"particle": "vinery:block/wine/jellie_wine"
 	},
 	"elements": [
 		{

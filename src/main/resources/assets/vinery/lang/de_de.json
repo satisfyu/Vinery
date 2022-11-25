@@ -43,6 +43,7 @@
   "block.vinery.white_grapejuice_wine_bottle": "Weisser Traubensaft",
   "block.vinery.chenet_wine": "Chenet Wein",
   "block.vinery.king_danis_wine": "Miss Lilitus Wein",
+  "block.vinery.jellie_wine": "Jellie Wein",
   "block.vinery.noir_wine": "Noir Wein",
   "block.vinery.clark_wine": "Clark Wein",
   "block.vinery.mellohi_wine": "Mellohi Wein",
@@ -60,7 +61,7 @@
   "block.vinery.wine_rack_5": "Schublade",
   "block.vinery.flower_box": "Blumenkiste",
   "block.vinery.flower_pot": "Grosser Blumentopf",
-  "block.vinery.wine_press": "Weinpresse",
+  "block.vinery.wine_press": "Apfelpresse",
   "block.vinery.loam": "Lehm",
   "block.vinery.loam_stairs": "Lehmtreppe",
   "block.vinery.loam_slab": "Lehmstufe",
@@ -149,7 +150,7 @@
   "block.vinery.winebox.tooltip.shift_3": "Shift-Rechtsklick mit leerer Hand zum schliessen",
   "block.vinery.winerack.tooltip.shift_1": "Lagermöglichkeit für Weinflaschen",
   "block.vinery.winerack.tooltip.shift_2": "Shift-Rechtsklick mit leerer Hand um Flaschen zu entnehmen",
-  "block.vinery.press.tooltip": "Der Winzers bevorzugte Arbeitsplatz",
+  "block.vinery.press.tooltip": "Wird verwendet um Äpfel zu pressen",
   "tooltip.vinery.year": "Jahrgang: ",
   "block.vinery.apple_cider": "Apfelwein",
   "block.vinery.apple_wine": "Apfelmost",
@@ -161,6 +162,12 @@
   "item.vinery.apple_mash": "Maische",
   "item.vinery.cookingpot.tooltip": "§oWird im Kochtopf zubereitet§o",
   "item.vinery.applesauce_line1.tooltip": " - Apfel",
-  "item.vinery.applesauce_line2.tooltip": " - Zucker"
-
+  "item.vinery.applesauce_line2.tooltip": " - Zucker",
+  "item.vinery.applesauce_line3.tooltip": "Benötigt eine Schüssel",
+  "block.vinery.apple_pie": "Apfelkuchen",
+  "item.vinery.apple_pie_slice": "Ein Stück Apfelkuchen",
+  "item.vinery.cherry_chest_boat": "Kirschholztruhenboot",
+  "effect.vinery.jellie": "Wer braucht schon goldene Äpfel ..?",
+  "effect.vinery.empty": "Nichts passiert...",
+  "block.vinery.solaris_wine": "Solaris Wein"
 }
