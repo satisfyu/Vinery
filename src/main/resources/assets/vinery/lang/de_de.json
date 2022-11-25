@@ -103,7 +103,7 @@
   "item.vinery.wandering_winemaker_spawn_egg": "Wandernder-Winzer-Spawn-Ei",
   "entity.vinery.cherry_boat": "Kirschholzboot",
   "container.wine_rack": "Aufbewahrung",
-  "entity.minecraft.villager.winemaker": "Winzer",
+  "entity.minecraft.villager.vinery.winemaker": "Winzer",
   "entity.vinery.mule": "Lastesel",
   "entity.vinery.wandering_winemaker": "Wandernder Winzer",
   "vinery.tooltip.winemaker_armor": "Leidenschaft des Winzer:",

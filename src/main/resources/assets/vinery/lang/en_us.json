@@ -109,7 +109,7 @@
   "rei.vinery.cooking_pot_category": "Cooking Pot",
   "rei.vinery.wood_fired_oven_category": "Wood Fired Oven",
   "rei.vinery.fermentation_barrel_category": "Aging Barrel",
-  "entity.minecraft.villager.winemaker": "Winemaker",
+  "entity.minecraft.villager.vinery.winemaker": "Winemaker",
   "entity.vinery.mule": "Mule",
   "entity.vinery.wandering_winemaker": "Wandering Winemaker",
   "vinery.tooltip.winemaker_armor": "Winemaker's Desire:",

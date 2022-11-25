@@ -18,7 +18,6 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
@@ -28,19 +27,15 @@ public class PieBlock extends Block {
 
     private static final VoxelShape SHAPE = Block.createCuboidShape(4, 0, 4, 12, 4, 12);
 
-    private static final VoxelShape SHAPE_BIG = Block.createCuboidShape(2, 0, 2, 14, 4, 14);
-
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
     public static final IntProperty CUTS = IntProperty.of("cuts", 0, 3);
     private final Item slice;
 
-    private final boolean big;
 
     public PieBlock(Settings settings, Item slice, boolean big) {
         super(settings);
         this.slice = slice;
-        this.big = big;
     }
 
     @Override
@@ -53,10 +48,6 @@ public class PieBlock extends Block {
         return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
     }
 
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return big ? SHAPE_BIG : SHAPE;
-    }
 
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
