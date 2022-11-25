@@ -1,0 +1,14 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    {
+      "item": "vinery:apple_mash"
+    },
+    {
+      "item": "vinery:apple_mash"
+    }
+  ],
+  "result": {
+    "item": "vinery:apple_cider"
+  }
+}
