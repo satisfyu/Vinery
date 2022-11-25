@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "B  ",
-    "SSS",
-    "B B"
+    " B ",
+    "S S",
+    " S "
   ],
   "key": {
     "S": {
-      "tag": "minecraft:wooden_slabs"
+      "item": "minecraft:wheat"
     },
     "B": {
-      "item": "minecraft:stick"
+      "item": "minecraft:water_bucket"
     }
   },
   "result": {
-    "item": "vinery:chair"
+    "item": "vinery:dough"
   }
 }

@@ -2,10 +2,10 @@
   "type": "vinery:wood_fired_oven_cooking",
   "ingredients": [
     {
-      "item": "minecraft:wheat"
+      "item": "minecraft:sugar"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "minecraft:dough"
     },
     {
       "item": "minecraft:cocoa_beans"

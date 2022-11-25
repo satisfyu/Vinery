@@ -203,7 +203,7 @@ public class ObjectRegistry {
     public static final Item VINEMAKER_LEGGINGS = register("vinemaker_leggings", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings().rarity(Rarity.RARE)));
     public static final Item VINEMAKER_BOOTS = register("vinemaker_boots", new WinemakerArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings().rarity(Rarity.RARE)));
     public static final Item GLOVES = register("gloves", new GlovesItem(getSettings().rarity(Rarity.RARE)));
-
+    public static final Item DOUGH = register("dough", new CherryItem(getSettings()));
     public static final Item CHOCOLATE_BREAD = register("chocolate_bread", new ChocolateBreadItem(getSettings().food(FoodComponents.BREAD)));
     public static final Item TOAST = register("toast", new ToastItem(getSettings().food(FoodComponents.BEETROOT_SOUP)));
     public static final Item DONUT = register("donut", new DoughnutItem(getSettings().food(FoodComponents.CARROT)));

@@ -8,10 +8,10 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:spruce_planks"
+      "tag": "minecraft:planks"
     },
     "_": {
-      "item": "minecraft:spruce_slab"
+      "tag": "minecraft:wooden_slabs"
     },
     "O": {
       "item": "minecraft:oak_trapdoor"

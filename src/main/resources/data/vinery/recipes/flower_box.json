@@ -10,7 +10,7 @@
       "item": "minecraft:podzol"
     },
     "S": {
-      "item": "minecraft:spruce_planks"
+      "tag": "minecraft:wooden_slabs"
     }
   },
   "result": {

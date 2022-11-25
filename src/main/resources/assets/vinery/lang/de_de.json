@@ -168,6 +168,7 @@
   "item.vinery.apple_pie_slice": "Ein Stück Apfelkuchen",
   "item.vinery.cherry_chest_boat": "Kirschholztruhenboot",
   "effect.vinery.jellie": "Wer braucht schon goldene Äpfel ..?",
-  "effect.vinery.empty": "Nichts passiert...",
-  "block.vinery.solaris_wine": "Solaris Wein"
+  "effect.vinery.empty": "Ohne Wirkung",
+  "block.vinery.solaris_wine": "Solaris Wein",
+  "item.vinery.dough": "Teig"
 }

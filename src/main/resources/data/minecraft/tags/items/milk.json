@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    {"id":"minecraft:milk","required":false},
+    {"id":"create:milk","required":false}
+  ]
+}

@@ -10,7 +10,7 @@
       "item": "minecraft:stick"
     },
     "#": {
-      "item": "minecraft:oak_log"
+      "tag": "minecraft:logs"
     }
   },
   "result": {

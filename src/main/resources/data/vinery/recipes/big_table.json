@@ -10,7 +10,7 @@
       "item": "minecraft:iron_ingot"
     },
     "S": {
-      "item": "minecraft:spruce_planks"
+      "tag": "minecraft:planks"
     }
   },
   "result": {

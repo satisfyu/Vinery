@@ -169,5 +169,7 @@
   "block.vinery.solaris_wine": "Solaris Wine",
   "item.vinery.cherry_chest_boat": "Cherrychestboat",
   "effect.vinery.jellie": "Who needs Golden Apples ..?",
-  "effect.vinery.empty": "Aaand nothing happened..."
+  "effect.vinery.empty": "No effects",
+  "item.vinery.dough": "Dough"
+
 }
