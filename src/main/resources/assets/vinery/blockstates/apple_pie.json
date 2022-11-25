@@ -61,21 +61,6 @@
     "facing=west,cuts=3": {
       "model": "vinery:block/apple_pie_3",
       "y": 270
-    },
-    "facing=east,cuts=4": {
-      "model": "vinery:block/apple_pie_4",
-      "y": 90
-    },
-    "facing=north,cuts=4": {
-      "model": "vinery:block/apple_pie_4"
-    },
-    "facing=south,cuts=4": {
-      "model": "vinery:block/apple_pie_4",
-      "y": 180
-    },
-    "facing=west,cuts=4": {
-      "model": "vinery:block/apple_pie_4",
-      "y": 270
     }
   }
 }

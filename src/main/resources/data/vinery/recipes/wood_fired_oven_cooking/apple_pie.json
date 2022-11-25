@@ -8,7 +8,7 @@
       "tag": "minecraft:dough"
     },
     {
-      "item": "minecraft:milk_bucket"
+      "tag": "minecraft:milk"
     }
   ],
   "item": "vinery:apple_pie",

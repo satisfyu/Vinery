@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
-    {"id":"minecraft:milk","required":false},
+    {"id":"minecraft:milk_bucket","required":false},
+    {"id":"farmersdelight:milk_bottle","required":false},
     {"id":"create:milk","required":false}
   ]
 }
