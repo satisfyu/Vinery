@@ -116,7 +116,7 @@ public class WineRackBlock extends BlockWithEntity {
 
 	@Override
 	public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-		tooltip.add(Text.translatable("block.vinery.fermentationbarrelblock.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+		tooltip.add(Text.translatable("block.vinery.winebox.tooltip.shift_1").formatted(Formatting.ITALIC, Formatting.GRAY));
 			if (Screen.hasShiftDown()) {
 		tooltip.add(Text.translatable("block.vinery.winerack.tooltip.shift_1"));
 		tooltip.add(Text.translatable("block.vinery.winerack.tooltip.shift_2"));

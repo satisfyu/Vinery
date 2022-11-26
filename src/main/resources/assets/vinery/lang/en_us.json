@@ -167,10 +167,19 @@
   "block.vinery.apple_pie": "Apple Pie",
   "item.vinery.apple_pie_slice": "A slice of Apple Pie",
   "block.vinery.solaris_wine": "Solaris Wine",
-  "item.vinery.cherry_chest_boat": "Cherrychestboat",
+  "item.vinery.cherry_chest_boat": "Cherry Boat with Chest",
   "effect.vinery.jellie": "Who needs Golden Apples ..?",
   "effect.vinery.empty": "No effects",
   "item.vinery.dough": "Dough",
-  "item.vinery.bread_slice": "Slice of Bread"
-
+  "item.vinery.bread_slice": "Slice of Bread",
+  "block.vinery.winebox.tooltip.shift_1": "Storage for Wine Bottles",
+  "block.vinery.winebox.tooltip.shift_2": "Shift-right-click with empty hand to open",
+  "block.vinery.winebox.tooltip.shift_3": "Shift-right-click with empty hand to close",
+  "block.vinery.winerack.tooltip.shift_1": "Right-Click with a - small shaped - Wine Bottle in Hand to fill",
+  "block.vinery.winerack.tooltip.shift_2": "Shift-right-click with empty hand to take out Wine Bottles again",
+  "item.vinery.cupcake.tooltip": "Pastry? I thought it's about Wine...",
+  "block.vinery.pie.tooltip1.shift_1": " - Dough",
+  "block.vinery.pie.tooltip2.shift_2": " - Apple Mash",
+  "block.vinery.pie.tooltip3.shift_3": " - Milk",
+  "item.vinery.apple_cupcake": "Apple Cupcake"
 }

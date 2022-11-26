@@ -145,10 +145,10 @@
   "item.vinery.toast_line1.tooltip": " - Weizen",
   "item.vinery.toast_line2.tooltip": " - Weizen",
   "block.vinery.stem.tooltip": "Wird verwendet um Weinreben wachsen zu lassen",
-  "block.vinery.winebox.tooltip.shift_1": "§4Lagermöglichkeit für Weinflaschen§4",
+  "block.vinery.winebox.tooltip.shift_1": "Lagermöglichkeit für Weinflaschen",
   "block.vinery.winebox.tooltip.shift_2": "Shift-Rechtsklick mit leerer Hand zum öffnen",
   "block.vinery.winebox.tooltip.shift_3": "Shift-Rechtsklick mit leerer Hand zum schliessen",
-  "block.vinery.winerack.tooltip.shift_1": "Lagermöglichkeit für Weinflaschen",
+  "block.vinery.winerack.tooltip.shift_1": "Rechtsklick mit einer kleinen Weinflasche in der Hand zum füllen",
   "block.vinery.winerack.tooltip.shift_2": "Shift-Rechtsklick mit leerer Hand um Flaschen zu entnehmen",
   "block.vinery.press.tooltip": "Wird verwendet um Äpfel zu pressen",
   "tooltip.vinery.year": "Jahrgang: ",
@@ -171,6 +171,11 @@
   "effect.vinery.empty": "Ohne Wirkung",
   "block.vinery.solaris_wine": "Solaris Wein",
   "item.vinery.dough": "Teig",
-  "item.vinery.bread_slice": "Brotscheibe"
+  "item.vinery.bread_slice": "Brotscheibe",
+  "item.vinery.cupcake.tooltip": "Warum gibt es hier so viel Gebäck?",
+  "block.vinery.pie.tooltip1.shift_1": " - Teig",
+  "block.vinery.pie.tooltip2.shift_2": " - Maische",
+  "block.vinery.pie.tooltip3.shift_3": " - Milch",
+  "item.vinery.apple_cupcake": "Apfeltörtchen"
 
 }

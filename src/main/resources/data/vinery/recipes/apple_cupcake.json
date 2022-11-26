@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "ESM"
+  ],
+  "key": {
+    "#": {
+      "item": "vinery:apple_mash"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "M": {
+      "tag": "minecraft:milk"
+    }
+  },
+  "result": {
+    "item": "vinery:apple_cupcake",
+    "count": 4
+  }
+}
