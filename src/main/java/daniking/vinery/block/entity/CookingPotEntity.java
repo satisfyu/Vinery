@@ -1,6 +1,5 @@
 package daniking.vinery.block.entity;
 
-import daniking.vinery.Vinery;
 import daniking.vinery.block.CookingPotBlock;
 import daniking.vinery.client.gui.handler.CookingPotGuiHandler;
 import daniking.vinery.compat.farmersdelight.FarmersCookingPot;
@@ -9,7 +8,6 @@ import daniking.vinery.registry.VineryBlockEntityTypes;
 import daniking.vinery.registry.VineryRecipeTypes;
 import daniking.vinery.util.VineryTags;
 import daniking.vinery.util.VineryUtils;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -22,20 +20,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
 
 public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<CookingPotEntity>, Inventory, NamedScreenHandlerFactory {
 	

@@ -1,6 +1,7 @@
 package daniking.vinery.client.gui.handler;
 
 import daniking.vinery.block.entity.CookingPotEntity;
+import daniking.vinery.compat.farmersdelight.FarmersCookingPot;
 import daniking.vinery.recipe.CookingPotRecipe;
 import daniking.vinery.registry.VineryRecipeTypes;
 import daniking.vinery.registry.VineryScreenHandlerTypes;
@@ -109,6 +110,11 @@ public class CookingPotGuiHandler extends ScreenHandler {
     }
 
     private boolean isItemIngredient(ItemStack stack) {
+        if(VineryUtils.isFDLoaded()){
+            if(FarmersCookingPot.isItemIngredient(stack, this.world)){
+                return true;
+            }
+        }
         return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
     }
 
@@ -116,6 +122,11 @@ public class CookingPotGuiHandler extends ScreenHandler {
         return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE).stream();
     }
     private boolean isItemContainer(ItemStack stack) {
+        if(VineryUtils.isFDLoaded()){
+            if(FarmersCookingPot.isItemContainer(stack, this.world)){
+                return true;
+            }
+        }
         return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getContainer().isOf(stack.getItem()));
     }
 

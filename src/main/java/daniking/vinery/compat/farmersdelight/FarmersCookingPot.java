@@ -1,7 +1,6 @@
 package daniking.vinery.compat.farmersdelight;
 
 import com.nhoryzon.mc.farmersdelight.recipe.CookingPotRecipe;
-import com.nhoryzon.mc.farmersdelight.registry.BlocksRegistry;
 import daniking.vinery.block.entity.CookingPotEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -10,6 +9,8 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+
+import java.util.stream.Stream;
 
 public class FarmersCookingPot {
     public static Recipe<?> getRecipe(World world, Inventory inventory){
@@ -48,5 +49,17 @@ public class FarmersCookingPot {
 
     public static Class<CookingPotRecipe> getRecipeClass(){
         return CookingPotRecipe.class;
+    }
+
+    public static boolean isItemIngredient(ItemStack stack, World world) {
+        return recipeStream(world).anyMatch(cookingPotRecipe -> cookingPotRecipe.getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
+    }
+
+    public static boolean isItemContainer(ItemStack stack, World world) {
+        return recipeStream(world).anyMatch(cookingPotRecipe -> cookingPotRecipe.getContainer().isOf(stack.getItem()));
+    }
+
+    private static Stream<CookingPotRecipe> recipeStream(World world) {
+        return world.getRecipeManager().listAllOfType((RecipeType<CookingPotRecipe>) Registry.RECIPE_TYPE.get(new Identifier("farmersdelight", "cooking"))).stream();
     }
 }
