@@ -7,6 +7,7 @@ import daniking.vinery.compat.farmersdelight.FarmersCookingPot;
 import daniking.vinery.recipe.CookingPotRecipe;
 import daniking.vinery.registry.VineryBlockEntityTypes;
 import daniking.vinery.registry.VineryRecipeTypes;
+import daniking.vinery.util.VineryTags;
 import daniking.vinery.util.VineryUtils;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
@@ -95,7 +96,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		if (getWorld() == null)
 			throw new NullPointerException("Null world invoked");
 		final BlockState belowState = this.getWorld().getBlockState(getPos().down());
-		final var optionalList = Registry.BLOCK.getEntryList(Vinery.ALLOWS_COOKING_ON_POT);
+		final var optionalList = Registry.BLOCK.getEntryList(VineryTags.ALLOWS_COOKING_ON_POT);
 		final var entryList = optionalList.orElse(null);
 		if (entryList == null) {
 			return false;

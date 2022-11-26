@@ -23,7 +23,12 @@ repositories {
 		url "https://maven.terraformersmc.com"
 	}
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
-	maven { url 'https://www.cursemaven.com' }
+	maven {
+		url "https://cursemaven.com"
+		content {
+			includeGroup "curse.maven"
+		}
+	}
 	maven {
 		name = "Modrinth"
 		url = "https://api.modrinth.com/maven"
