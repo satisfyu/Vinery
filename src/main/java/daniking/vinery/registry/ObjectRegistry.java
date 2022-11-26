@@ -200,8 +200,9 @@ public class ObjectRegistry {
     public static final Item MILK_BREAD = register("milk_bread", new MilkBreadItem(getSettings().food(FoodComponents.COOKIE)));
     public static final Block CRUSTY_BREAD = register("crusty_bread", new BreadBlock(AbstractBlock.Settings.copy(Blocks.CAKE).nonOpaque()));
     public static final Item BREAD_SLICE = register("bread_slice", new Item(getSettings().food(FoodComponents.BAKED_POTATO)));
-    public static final Block APPLE_PIE = register("apple_pie", new PieBlock((FabricBlockSettings.copyOf(Blocks.CAKE)), ObjectRegistry.APPLE_PIE_SLICE, false));
     public static final Item APPLE_PIE_SLICE = register("apple_pie_slice", new Item(getSettings().food(FoodComponents.COOKED_BEEF)));
+
+    public static final Block APPLE_PIE = register("apple_pie", new PieBlock((FabricBlockSettings.copyOf(Blocks.STONE)), ObjectRegistry.APPLE_PIE_SLICE));
     public static final Item APPLE_MASH = register("apple_mash", new CherryItem(getSettings().food(FoodComponents.APPLE)));
     public static final Item APPLESAUCE = register("applesauce", new AppleSauceItem(getSettings().food(FoodComponents.COOKED_RABBIT)));
     public static final Item MULE_SPAWN_EGG = register("mule_spawn_egg", new SpawnEggItem(MULE, 0x8b7867, 0x5a4e43, getSettings()));
