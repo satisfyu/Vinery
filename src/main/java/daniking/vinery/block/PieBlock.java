@@ -9,6 +9,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
@@ -26,47 +27,29 @@ import net.minecraft.world.event.GameEvent;
 
 import java.util.List;
 
-public class PieBlock extends Block {
+public class PieBlock extends FacingBlock {
 
     private static final VoxelShape SHAPE = Block.createCuboidShape(6, 0, 6, 12, 4, 12);
-
-    private static final VoxelShape SHAPE_BIG = Block.createCuboidShape(4, 0, 4, 14, 4, 14);
-
-    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final IntProperty CUTS = IntProperty.of("cuts", 0, 3);
     private final Item slice;
 
-    private final boolean big;
-
-    public PieBlock(Settings settings, Item slice, boolean big) {
+    public PieBlock(Settings settings, Item slice) {
         super(settings);
         this.slice = slice;
-        this.big = big;
+        this.setDefaultState(this.getDefaultState().with(CUTS, 0));
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(CUTS, FACING);
+        super.appendProperties(builder);
+        builder.add(CUTS);
+
     }
 
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
-    }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return big ? SHAPE_BIG : SHAPE;
-    }
-
-    @Override
-    public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return state.with(FACING, rotation.rotate(state.get(FACING)));
-    }
-
-    @Override
-    public BlockState mirror(BlockState state, BlockMirror mirror) {
-        return state.rotate(mirror.getRotation(state.get(FACING)));
+        return SHAPE;
     }
 
     @Override
@@ -86,6 +69,7 @@ public class PieBlock extends Block {
     private ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
         world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1, 1);
         PieBlock.dropStack((World) world, pos, Direction.UP, new ItemStack(slice));
+        player.incrementStat(Stats.EAT_CAKE_SLICE);
         int i = state.get(CUTS);
         world.emitGameEvent(player, GameEvent.EAT, pos);
         if (i < 3) {

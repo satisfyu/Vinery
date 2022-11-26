@@ -1,6 +1,7 @@
 package daniking.vinery.block;
 
 import daniking.vinery.registry.ObjectRegistry;
+import daniking.vinery.util.VineryTags;
 import net.minecraft.block.*;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
@@ -41,7 +42,7 @@ public class BreadBlock extends FacingBlock {
 
     public BreadBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(BITES, 0).with(FACING, Direction.NORTH).with(JAM, false));
+        this.setDefaultState(this.getDefaultState().with(BITES, 0).with(FACING, Direction.NORTH).with(JAM, false));
     }
 
     @Override
@@ -52,42 +53,35 @@ public class BreadBlock extends FacingBlock {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getStackInHand(hand);
-        Item item = itemStack.getItem();
-        if (itemStack.isOf(ObjectRegistry.CHERRY_JAM.asItem()) && !state.get(JAM)) {
-            if (!player.isCreative()) {
-                itemStack.decrement(1);
-            }
 
-            world.playSound(null, pos, SoundEvents.BLOCK_CAKE_ADD_CANDLE, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            world.setBlockState(pos, state.with(JAM, true));
-            world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-            player.incrementStat(Stats.USED.getOrCreateStat(item));
-            return ActionResult.SUCCESS;
-        }
         if (world.isClient) {
-            if (tryEat(world, pos, state, player).isAccepted()) {
+            if (tryEat(world, pos, state, player, itemStack, hand).isAccepted()) {
                 return ActionResult.SUCCESS;
             }
             if (itemStack.isEmpty()) {
                 return ActionResult.CONSUME;
             }
         }
-        return tryEat(world, pos, state, player);
+        return tryEat(world, pos, state, player, itemStack, hand);
     }
 
 
-    private static ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!player.canConsume(false)) {
+    private static ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player, ItemStack stack, Hand hand) {
+        if (!player.canConsume(false) && !(stack.isIn(VineryTags.JAMS))) {
             return ActionResult.PASS;
         }
-        player.incrementStat(Stats.EAT_CAKE_SLICE);
-
-        if(state.get(JAM)) player.getHungerManager().add(4, 12.8f);
-        else player.getHungerManager().add(6, 9.6f);
+        if(stack.isIn(VineryTags.JAMS)){
+            BreadBlock.dropStack((World) world, pos, Direction.UP, new ItemStack(ObjectRegistry.BREAD_SLICE));
+            stack.decrement(1);
+            player.giveItemStack(new ItemStack(ObjectRegistry.CHERRY_JAR));
+        }
+        else{
+            player.getHungerManager().add(6, 0.6f);
+            player.incrementStat(Stats.EAT_CAKE_SLICE);
+        }
         int i = state.get(BITES);
         world.emitGameEvent(player, GameEvent.EAT, pos);
-        world.playSound(null, pos, SoundEvents.BLOCK_CAKE_ADD_CANDLE, SoundCategory.BLOCKS, 1.0f, 1.0f);
-
+        world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1.0f, 1.0f);
         if (i < 3) {
             world.setBlockState(pos, state.with(BITES, i + 1), Block.NOTIFY_ALL);
         } else {

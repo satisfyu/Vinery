@@ -25,10 +25,7 @@ public class Vinery implements ModInitializer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
     public static final ItemGroup CREATIVE_TAB = FabricItemGroupBuilder.build(new VineryIdentifier("creative_tab"), () -> new ItemStack(ObjectRegistry.RED_GRAPE));
-    public static final TagKey<Block> ALLOWS_COOKING_ON_POT = TagKey.of(Registry.BLOCK_KEY, new VineryIdentifier("allows_cooking_on_pot"));
-    public static final TagKey<Block> CAN_NOT_CONNECT = TagKey.of(Registry.BLOCK_KEY, new VineryIdentifier("can_not_connect"));
-    public static final TagKey<Item> CHERRY_LOGS = TagKey.of(Registry.ITEM_KEY, new VineryIdentifier("cherry_logs"));
-    public static final TagKey<Block> WINE_RACK = TagKey.of(Registry.BLOCK_KEY, new VineryIdentifier("wine_racks"));
+
 
     @Override
     public void onInitialize() {
