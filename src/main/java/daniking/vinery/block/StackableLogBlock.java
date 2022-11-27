@@ -15,7 +15,6 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShovelItem;
-import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -100,8 +99,8 @@ public class StackableLogBlock extends SlabBlock implements Waterloggable {
                 double z = (double) pos.getZ() + random.nextDouble();
                 world.addParticle(ParticleTypes.LAVA, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, (double)(random.nextFloat() / 2.0F), 5.0E-5, (double)(random.nextFloat() / 2.0F));
                 world.addParticle(ParticleTypes.SMOKE, (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 0.4, (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, 0.005, 0.0);
-                world.addParticle(ParticleTypes.SMOKE, x, y, z, -0.03 + random.nextDouble() * 0.06, +random.nextDouble() * 0.1, -0.03 + random.nextDouble() * 0.06);
-                world.addParticle(ParticleTypes.LARGE_SMOKE, x, y, z, -0.03 + random.nextDouble() * 0.06, +random.nextDouble() * 0.1, -0.03 + random.nextDouble() * 0.06);
+                world.addParticle(ParticleTypes.SMOKE, x, y, z, -0.03 + random.nextDouble() * 0.06, random.nextDouble() * 0.1, -0.03 + random.nextDouble() * 0.06);
+                world.addParticle(ParticleTypes.LARGE_SMOKE, x, y, z, -0.03 + random.nextDouble() * 0.06, random.nextDouble() * 0.1, -0.03 + random.nextDouble() * 0.06);
             }
         }
     }

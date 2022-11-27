@@ -5,7 +5,6 @@ import daniking.vinery.client.gui.handler.CookingPotGuiHandler;
 import daniking.vinery.client.gui.handler.FermentationBarrelGuiHandler;
 import daniking.vinery.client.gui.handler.StoveGuiHandler;
 import daniking.vinery.client.gui.handler.WinePressGuiHandler;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.registry.Registry;
 

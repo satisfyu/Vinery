@@ -1,7 +1,6 @@
 package daniking.vinery.block;
 
 import daniking.vinery.util.VineryUtils;
-import net.fabricmc.fabric.api.util.BooleanFunction;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.BedPart;
 import net.minecraft.client.item.TooltipContext;
@@ -14,8 +13,6 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Util;
 import net.minecraft.util.function.BooleanBiFunction;

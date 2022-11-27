@@ -1,7 +1,6 @@
 package daniking.vinery.block;
 
 import daniking.vinery.block.entity.GeckoStorageBlockEntity;
-import daniking.vinery.item.DrinkBlockItem;
 import daniking.vinery.util.VineryUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;

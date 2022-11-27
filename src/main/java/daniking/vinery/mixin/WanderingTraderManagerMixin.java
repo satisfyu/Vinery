@@ -13,7 +13,6 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.level.ServerWorldProperties;
 import net.minecraft.world.poi.PointOfInterestStorage;
-import net.minecraft.world.poi.PointOfInterestType;
 import net.minecraft.world.poi.PointOfInterestTypes;
 import net.minecraft.world.spawner.Spawner;
 import org.jetbrains.annotations.Nullable;

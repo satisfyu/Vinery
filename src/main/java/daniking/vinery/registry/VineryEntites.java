@@ -10,7 +10,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.passive.LlamaEntity;
-import net.minecraft.entity.passive.MuleEntity;
 import net.minecraft.util.registry.Registry;
 
 public class VineryEntites {
