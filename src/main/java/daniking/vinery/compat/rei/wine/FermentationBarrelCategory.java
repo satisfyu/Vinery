@@ -1,7 +1,6 @@
 package daniking.vinery.compat.rei.wine;
 
 import com.google.common.collect.Lists;
-import daniking.vinery.block.entity.CookingPotEntity;
 import daniking.vinery.block.entity.FermentationBarrelBlockEntity;
 import daniking.vinery.registry.ObjectRegistry;
 import me.shedaniel.math.Point;

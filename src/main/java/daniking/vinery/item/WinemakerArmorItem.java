@@ -2,7 +2,6 @@ package daniking.vinery.item;
 
 import daniking.vinery.client.ClientSetup;
 import daniking.vinery.registry.ObjectRegistry;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.entity.EquipmentSlot;

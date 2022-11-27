@@ -5,8 +5,6 @@ import daniking.vinery.registry.VinerySoundEvents;
 import daniking.vinery.util.VineryUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.TransparentBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
@@ -25,14 +23,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 public class KitchenSinkBlock extends Block {
 	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;

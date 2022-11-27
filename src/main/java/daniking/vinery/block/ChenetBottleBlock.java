@@ -1,6 +1,5 @@
 package daniking.vinery.block;
 
-import daniking.vinery.Vinery;
 import daniking.vinery.util.VineryUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
