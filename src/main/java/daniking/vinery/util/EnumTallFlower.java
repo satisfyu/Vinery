@@ -8,7 +8,8 @@ public enum EnumTallFlower implements StringIdentifiable {
 	NONE("none", Blocks.AIR),
 	LILAC("lilac", Blocks.LILAC),
 	PEONY("peony", Blocks.PEONY),
-	ROSE_BUSH("rose_bush", Blocks.ROSE_BUSH);
+	ROSE_BUSH("rose_bush", Blocks.ROSE_BUSH),
+	SUNFLOWER("sunflower", Blocks.SUNFLOWER);
 	
 	private final String name;
 	private final Block flower;
