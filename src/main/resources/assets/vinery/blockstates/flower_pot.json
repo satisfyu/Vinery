@@ -11,6 +11,9 @@
     },
     "content=rose_bush": {
       "model": "vinery:block/flower_pot_rose_bush"
+    },
+    "content=sunflower": {
+      "model": "vinery:block/flower_pot_sunflower"
     }
   }
 }
