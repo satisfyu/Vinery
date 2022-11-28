@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "id": "vinery",
-  "version": "1.0",
+  "version": "1.1",
 
   "name": "Vinery",
   "description": "Vinery contains nearly everything needed for not only creating wine but also for building up your own vinery.",
   "authors": [
-    "DanikingRD, satisfy_u, waterpicker, 4732, Cristelknight"
+    "satisfy_u, Cristelknight"
   ],
   "contact": {
     "sources": ""
