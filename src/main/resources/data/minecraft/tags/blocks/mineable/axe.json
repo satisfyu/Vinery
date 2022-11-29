@@ -4,6 +4,7 @@
     "vinery:red_grape_bush",
     "vinery:white_grape_bush",
     "vinery:grapevine_stem",
+    "vinery:grapevine_pot",
     "vinery:cherry_beam",
     "vinery:stackable_log",
     "vinery:fermentation_barrel",
@@ -12,6 +13,12 @@
     "vinery:white_grape_crate",
     "vinery:flower_box",
     "vinery:wine_press",
+    "vinery:barrel",
+    "vinery:storage_pot",
+    "vinery:cherry_sign",
+    "vinery:table",
+    "vinery:chair",
+    "vinery:cherry_fence_gate",
     "vinery:wine_box",
     "#vinery:wine_racks"
   ]
