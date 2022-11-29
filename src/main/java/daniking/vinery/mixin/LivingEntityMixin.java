@@ -32,7 +32,7 @@ public abstract class LivingEntityMixin extends Entity {
 				List<Pair<StatusEffectInstance, Float>> list = item.getFoodComponent().getStatusEffects();
 				for (Pair<StatusEffectInstance, Float> pair : list) {
 					if (world.isClient || pair.getFirst() == null || !(world.random.nextFloat() < pair.getSecond().floatValue())) continue;
-					StatusEffectInstance statusEffectInstance = pair.getFirst();
+					StatusEffectInstance statusEffectInstance = new StatusEffectInstance(pair.getFirst());
 					statusEffectInstance.amplifier = WineYears.getEffectLevel(stack, world);
 					targetEntity.addStatusEffect(statusEffectInstance);
 				}
