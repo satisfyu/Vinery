@@ -2,7 +2,6 @@ package daniking.vinery;
 
 import daniking.vinery.registry.*;
 import daniking.vinery.world.VineryConfiguredFeatures;
-import daniking.vinery.world.village.AdditionalHouses;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
@@ -32,7 +31,6 @@ public class Vinery implements ModInitializer {
         VineryEffects.init();
         ObjectRegistry.init();
         VineryBlockEntityTypes.init();
-        AdditionalHouses.registerNewVillageStructures();
         VineryScreenHandlerTypes.init();
         VineryRecipeTypes.init();
         LootTableEvents.MODIFY.register((resourceManager, manager, id, supplier, setter) -> {

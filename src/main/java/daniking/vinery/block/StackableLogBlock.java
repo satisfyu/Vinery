@@ -90,20 +90,29 @@ public class StackableLogBlock extends SlabBlock implements Waterloggable {
     }
 
 
-        public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if ((state.get(FIRED))) {
-            if (random.nextInt(10) == 0) {
-                world.playSound((double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5F + random.nextFloat(), random.nextFloat() * 0.7F + 0.6F, false);
-                double x = (double) pos.getX() + random.nextDouble();
-                double y = (double) pos.getY() + random.nextDouble() * 0.5D + 1.5D;
-                double z = (double) pos.getZ() + random.nextDouble();
-                world.addParticle(ParticleTypes.LAVA, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, (double)(random.nextFloat() / 2.0F), 5.0E-5, (double)(random.nextFloat() / 2.0F));
-                world.addParticle(ParticleTypes.SMOKE, (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 0.4, (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, 0.005, 0.0);
-                world.addParticle(ParticleTypes.SMOKE, x, y, z, -0.03 + random.nextDouble() * 0.06, random.nextDouble() * 0.1, -0.03 + random.nextDouble() * 0.06);
-                world.addParticle(ParticleTypes.LARGE_SMOKE, x, y, z, -0.03 + random.nextDouble() * 0.06, random.nextDouble() * 0.1, -0.03 + random.nextDouble() * 0.06);
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if ((state.get(FIRED))) displayTickLikeCampfire(state, world, pos, random, world.getBlockState(pos.down()).isOf(Blocks.HAY_BLOCK));
+    }
+
+    public static void displayTickLikeCampfire(BlockState state, World world, BlockPos pos, Random random, boolean isSignal){
+        if (random.nextFloat() < 0.80f) {
+            for (int i = 0; i < random.nextInt(5) + 3; ++i) {
+                CampfireBlock.spawnSmokeParticle(world, pos, isSignal, true);
+
+            }
+
+        }
+        if (random.nextInt(10) == 0) {
+            world.playSound((double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5f + random.nextFloat(), random.nextFloat() * 0.7f + 0.6f, false);
+        }
+        if (random.nextInt(5) == 0) {
+            for (int i = 0; i < random.nextInt(4) + 3; ++i) {
+                world.addParticle(ParticleTypes.LAVA, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, random.nextFloat() / 2.0f, 5.0E-5, random.nextFloat() / 2.0f);
             }
         }
     }
+
 
 
 
