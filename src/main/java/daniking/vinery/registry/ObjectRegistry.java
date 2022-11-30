@@ -134,6 +134,7 @@ public class ObjectRegistry {
     public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings()), StatusEffects.HEALTH_BOOST);
     public static final Block CHERRY_WINE = registerWine("cherry_wine", new CherryWineBlock(getWineSettings()), StatusEffects.SPEED);
     public static final Block APPLE_CIDER = registerBigWine("apple_cider", new ChenetBottleBlock (getWineSettings()), StatusEffects.INSTANT_HEALTH);
+    public static final Block KELP_CIDER = registerWine("kelp_cider", new WineBottleBlock (getWineSettings()), StatusEffects.WATER_BREATHING);
     public static final Block SOLARIS_WINE = registerWine("solaris_wine", new WineBottleBlock (getWineSettings()), StatusEffects.NIGHT_VISION);
     public static final Block JELLIE_WINE = registerBigWine("jellie_wine", new WineBottleBlock(getWineSettings()), VineryEffects.JELLIE);
     public static final Block AEGIS_WINE = registerBigWine("aegis_wine", new WineBottleBlock(getWineSettings()), StatusEffects.NAUSEA);
@@ -141,6 +142,8 @@ public class ObjectRegistry {
     public static final Block CHERRY_JAR = register("cherry_jar", new CherryJarBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque()));
     public static final Block CHERRY_JAM = register("cherry_jam", new CherryJamBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque()));
     public static final Block APPLE_JAM = register("apple_jam", new CherryJamBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque()));
+    public static final Block SWEETBERRY_JAM = register("sweetberry_jam", new CherryJamBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque()));
+    public static final Block GRAPE_JAM = register("grape_jam", new CherryJamBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque()));
     public static final Block GRAPEVINE_STEM = register("grapevine_stem", new GrapevineStemBlock(getGrapevineSettings()));
     public static final Block WINE_BOX = register("wine_box", new WineBoxBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).nonOpaque()));
     public static final Block BIG_TABLE = register("big_table", new BigTableBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 2.0F)));
@@ -178,7 +181,6 @@ public class ObjectRegistry {
     public static final Item BREAD_SLICE = register("bread_slice", new Item(getSettings().food(FoodComponents.BAKED_POTATO)));
     public static final Item APPLE_CUPCAKE = register("apple_cupcake", new CupcakeItem(getSettings().food(FoodComponents.COOKED_BEEF)));
     public static final Item APPLE_PIE_SLICE = register("apple_pie_slice", new Item(getSettings().food(FoodComponents.COOKED_BEEF)));
-
     public static final Block APPLE_PIE = register("apple_pie", new PieBlock((FabricBlockSettings.copyOf(Blocks.CAKE)), ObjectRegistry.APPLE_PIE_SLICE));
     public static final Item APPLE_MASH = register("apple_mash", new CherryItem(getSettings().food(FoodComponents.APPLE)));
     public static final Item APPLESAUCE = register("applesauce", new AppleSauceItem(getSettings().food(FoodComponents.COOKED_RABBIT)));

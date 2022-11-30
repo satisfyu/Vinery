@@ -1,0 +1,17 @@
+{
+  "type": "vinery:pot_cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "container": {
+    "item": "vinery:cherry_jar"
+  },
+  "result": {
+    "item": "vinery:sweetberry_jam"
+  }
+}

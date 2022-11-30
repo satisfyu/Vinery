@@ -181,5 +181,9 @@
   "block.vinery.pie.tooltip1.shift_1": " - Dough",
   "block.vinery.pie.tooltip2.shift_2": " - Apple Mash",
   "block.vinery.pie.tooltip3.shift_3": " - Milk",
-  "item.vinery.apple_cupcake": "Apple Cupcake"
-}
+  "item.vinery.apple_cupcake": "Apple Cupcake",
+  "block.vinery.sweetberry_jam": "Sweetberry Jam",
+  "block.vinery.grape_jam": "Grape Jam",
+  "block.vinery.aegis_wine": "Aegis Wine",
+  "block.vinery.big_bowl": "Bowl",
+  "block.vinery.kelp_cider": "Kelp Cider"}

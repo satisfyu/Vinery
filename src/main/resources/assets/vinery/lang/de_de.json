@@ -176,6 +176,10 @@
   "block.vinery.pie.tooltip1.shift_1": " - Teig",
   "block.vinery.pie.tooltip2.shift_2": " - Maische",
   "block.vinery.pie.tooltip3.shift_3": " - Milch",
-  "item.vinery.apple_cupcake": "Apfeltörtchen"
+  "item.vinery.apple_cupcake": "Apfeltörtchen",
+  "block.vinery.sweetberry_jam": "Marmeladenglas voller Süssbeerenmarmelade",
+  "block.vinery.aegis_wine": "Aegis Wein",
+  "block.vinery.kelp_cider": "Seetangmost",
+  "block.vinery.big_bowl": "Schüssel"
 
 }
