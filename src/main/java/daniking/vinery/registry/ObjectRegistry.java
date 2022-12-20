@@ -264,7 +264,7 @@ public class ObjectRegistry {
     }
 
     private static Item.Settings getSettings(Consumer<Item.Settings> consumer) {
-        Item.Settings settings = new Item.Settings().group(Vinery.CREATIVE_TAB);
+        Item.Settings settings = new Item.Settings();
         consumer.accept(settings);
         return settings;
     }
@@ -300,6 +300,17 @@ public class ObjectRegistry {
 
     private static AbstractBlock.Settings getWineSettings() {
         return AbstractBlock.Settings.copy(Blocks.GLASS).nonOpaque().breakInstantly();
+    }
+
+    public static List<ItemConvertible> getItemConvertibles() {
+        List<ItemConvertible> list = new ArrayList<>();
+        for (Block entry : BLOCKS.values()) {
+            if(entry.asItem() != null){
+                list.add(entry);
+            }
+        }
+        list.addAll(ITEMS.values());
+        return list;
     }
 
     public static Map<Identifier, Block> getBlocks() {
