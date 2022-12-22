@@ -1,7 +1,7 @@
 package daniking.vinery.client.render.block;
 
 import daniking.vinery.Vinery;
-import daniking.vinery.block.DisplayRackBlock;
+import daniking.vinery.block.ShelfBlock;
 import daniking.vinery.block.WineBoxBlock;
 import daniking.vinery.block.entity.GeckoStorageBlockEntity;
 import net.minecraft.util.Identifier;
@@ -23,7 +23,7 @@ public class WineRackGeckoModel extends AnimatedGeoModel<GeckoStorageBlockEntity
     public Identifier getTextureResource(GeckoStorageBlockEntity e) {
         if (e.getCachedState().getBlock() instanceof WineBoxBlock) {
             return new Identifier(Vinery.MODID, "textures/block/wine_box.png");
-        } else if (e.getCachedState().getBlock() instanceof DisplayRackBlock) {
+        } else if (e.getCachedState().getBlock() instanceof ShelfBlock) {
             return new Identifier(Vinery.MODID, "textures/block/shelf.png");
         }
         return new Identifier(Vinery.MODID, "textures/block/wine_rack_ref.png");

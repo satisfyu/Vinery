@@ -9,6 +9,7 @@ import daniking.vinery.client.gui.CookingPotGui;
 import daniking.vinery.client.gui.FermentationBarrelGui;
 import daniking.vinery.client.gui.StoveGui;
 import daniking.vinery.client.gui.WinePressGui;
+import daniking.vinery.client.render.block.ShelfBlockEntityRenderer;
 import daniking.vinery.client.render.block.WineRackRenderer;
 import daniking.vinery.client.render.entity.SimpleGeoRenderer;
 import daniking.vinery.client.render.entity.WanderingWinemakerRenderer;
@@ -17,6 +18,7 @@ import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.registry.VineryBlockEntityTypes;
 import daniking.vinery.registry.VineryEntites;
 import daniking.vinery.registry.VineryScreenHandlerTypes;
+import daniking.vinery.util.networking.VineryMessages;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
@@ -40,6 +42,7 @@ public class ClientSetup implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        VineryMessages.registerS2CPackets();
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ObjectRegistry.CHERRY_SIGN.getTexture()));
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ObjectRegistry.RED_GRAPE_BUSH, ObjectRegistry.WHITE_GRAPE_BUSH,
                                                 ObjectRegistry.CHERRY_DOOR, ObjectRegistry.COOKING_POT,
@@ -86,7 +89,8 @@ public class ClientSetup implements ClientModInitializer {
         EntityRendererRegistry.register(VineryEntites.MULE, mgr -> new SimpleGeoRenderer<>(mgr, Vinery.MODID, "wandering_mule"));
         EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
         EntityRendererRegistry.register(VineryBlockEntityTypes.CHAIR, ChairRenderer::new);
-        
+
+        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.SHELF_ENTITY, ShelfBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.WINE_RACK_GECKO_ENTITY,
                 (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new WineRackRenderer());
     }

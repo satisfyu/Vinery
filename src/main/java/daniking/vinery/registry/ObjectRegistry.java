@@ -5,7 +5,6 @@ import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import com.terraformersmc.terraform.wood.block.StrippableLogBlock;
 import daniking.vinery.GrapeBushSeedItem;
-import daniking.vinery.Vinery;
 import daniking.vinery.VineryIdentifier;
 import daniking.vinery.block.FlowerPotBlock;
 import daniking.vinery.block.*;
@@ -147,7 +146,7 @@ public class ObjectRegistry {
     public static final Block GRAPEVINE_STEM = register("grapevine_stem", new GrapevineStemBlock(getGrapevineSettings()));
     public static final Block WINE_BOX = register("wine_box", new WineBoxBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).nonOpaque()));
     public static final Block BIG_TABLE = register("big_table", new BigTableBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 2.0F)));
-    public static final Block WINE_RACK_4 = register("wine_rack_4", new DisplayRackBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block SHELF = register("shelf", new ShelfBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block FLOWER_BOX = register("flower_box", new FlowerBoxBlock(Blocks.AIR,FabricBlockSettings.copy(Blocks.FLOWER_POT)));
     public static final Block FLOWER_BOX_ALLIUM = register("flower_box_allium", new FlowerBoxBlock(Blocks.ALLIUM,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);
     public static final Block FLOWER_BOX_AZURE_BLUET = register("flower_box_azure_bluet", new FlowerBoxBlock(Blocks.AZURE_BLUET,FabricBlockSettings.copy(Blocks.FLOWER_POT)), false);

@@ -1,11 +1,16 @@
 package daniking.vinery.block;
 
 import daniking.vinery.block.entity.GeckoStorageBlockEntity;
+import daniking.vinery.block.entity.ShelfBlockEntity;
 import daniking.vinery.util.VineryUtils;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -21,13 +26,14 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class DisplayRackBlock extends WineRackBlock {
+public class ShelfBlock extends FacingBlock implements BlockEntityProvider {
 
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = VoxelShapes.empty();
@@ -46,29 +52,26 @@ public class DisplayRackBlock extends WineRackBlock {
         }
     });
 
-    public DisplayRackBlock(Settings settings) {
-        super(settings, 2, 4);
+    public ShelfBlock(Settings settings) {
+        super(settings);
     }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient)
-            return ActionResult.SUCCESS;
+        if (world.isClient) return ActionResult.SUCCESS;
         final ItemStack stack = player.getStackInHand(hand);
-        GeckoStorageBlockEntity blockEntity = (GeckoStorageBlockEntity) world.getBlockEntity(pos);
+        ShelfBlockEntity blockEntity = (ShelfBlockEntity) world.getBlockEntity(pos);
         if (blockEntity != null) {
-            if (!stack.isEmpty()) {
-                if (blockEntity.getNonEmptySlotCount() < maxStorage) {
+            if (!stack.isEmpty() && !(stack.getItem() instanceof BlockItem)) {
+                if (blockEntity.getNonEmptySlotCount() < 5) {
                     blockEntity.addItemStack(new ItemStack((stack.getItem())));
                     stack.decrement(1);
                     player.setStackInHand(hand, stack);
-                    ((ServerPlayerEntity) player).networkHandler.sendPacket(blockEntity.toUpdatePacket());
                     return ActionResult.SUCCESS;
                 }
             } else if (player.isSneaking() && blockEntity.getNonEmptySlotCount() > 0) {
                 player.setStackInHand(hand, blockEntity.getFirstNonEmptyStack().copy());
                 blockEntity.removeFirstNonEmptyStack();
-                ((ServerPlayerEntity) player).networkHandler.sendPacket(blockEntity.toUpdatePacket());
                 return ActionResult.SUCCESS;
             }
         }
@@ -76,8 +79,19 @@ public class DisplayRackBlock extends WineRackBlock {
     }
 
     @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE.get(state.get(FACING));
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new ShelfBlockEntity(pos, state);
     }
 
     @Override
