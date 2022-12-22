@@ -63,7 +63,7 @@ public class ShelfBlock extends FacingBlock implements BlockEntityProvider {
         ShelfBlockEntity blockEntity = (ShelfBlockEntity) world.getBlockEntity(pos);
         if (blockEntity != null) {
             if (!stack.isEmpty() && !(stack.getItem() instanceof BlockItem)) {
-                if (blockEntity.getNonEmptySlotCount() < 5) {
+                if (blockEntity.getNonEmptySlotCount() < ShelfBlockEntity.SHELF_SIZE) {
                     blockEntity.addItemStack(new ItemStack((stack.getItem())));
                     stack.decrement(1);
                     player.setStackInHand(hand, stack);

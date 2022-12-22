@@ -34,7 +34,7 @@ public class ShelfBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockE
         DefaultedList<ItemStack> itemStacks = entity.getInventory();
 
         matrices.push();
-        applyBlockAngle(matrices, entity.getCachedState());
+        applyBlockAngle(matrices, entity.getCachedState(), 180);
         matrices.translate(-0.4, 0.5, 0.3);
         matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90f));
         matrices.scale(0.5f, 0.5f, 0.5f);
@@ -44,7 +44,7 @@ public class ShelfBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockE
             if (!stack.isEmpty()) {
                 matrices.push();
                 matrices.translate(0f, 0f, 0.2f * i);
-                matrices.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(20));
+                //matrices.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(22.5f));
                 itemRenderer.renderItem(stack, ModelTransformation.Mode.GUI, getLightLevel(entity.getWorld(), entity.getPos()),
                         OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 1);
                 matrices.pop();
@@ -52,50 +52,7 @@ public class ShelfBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockE
         }
         matrices.pop();
     }
-/*
-    @Override
-    public void render(ShelfBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-        ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-        DefaultedList<ItemStack> itemStacks = entity.getInventory();
-        matrices.push();
-        matrices.scale(0.4f, 0.4f, 0.4f);
-        //matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(-90));
-        //matrices.translate(0.5f + (float) (i / 5), 0.645f, 0.5f);
-        switch (entity.getCachedState().get(ShelfBlock.FACING)) {
-            case NORTH -> matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
-            case EAST -> matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90)); //270
-            case SOUTH -> matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(0));
-            case WEST -> matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(270)); //90
-        }
-        for(int i = 0; i < itemStacks.size(); i++){
-            matrices.push();
-            ItemStack stack = itemStacks.get(i);
-            matrices.translate(i, 0, 0);
 
-            int s = 0;
-            switch (entity.getCachedState().get(ShelfBlock.FACING)) {
-                case NORTH -> s = 180;
-                case EAST -> s = 270;
-                case SOUTH -> s = 0;
-                case WEST -> s = 90;
-            }
-            Matrix4f matrix4f = Matrix4f.translate(1, 1, 1);
-            matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(s));
-            matrices.multiplyPositionMatrix(matrix4f);
-
-
-            itemRenderer.renderItem(stack, ModelTransformation.Mode.GUI, getLightLevel(entity.getWorld(), entity.getPos()),
-                    OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 1);
-            matrices.pop();
-        }
-        matrices.pop();
-    }
- */
-
-
-    public static void applyBlockAngle(MatrixStack matrices, BlockState state) {
-        applyBlockAngle(matrices, state, 167.5f);
-    }
 
     public static void applyBlockAngle(MatrixStack matrices, BlockState state, float angleOffset) {
         float angle = state.get(ShelfBlock.FACING).asRotation();

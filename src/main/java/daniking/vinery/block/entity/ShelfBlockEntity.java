@@ -20,7 +20,9 @@ import net.minecraft.util.math.BlockPos;
 
 public class ShelfBlockEntity extends BlockEntity {
 
-    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
+    public static int SHELF_SIZE = 9;
+
+    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(SHELF_SIZE, ItemStack.EMPTY);
 
     public ShelfBlockEntity(BlockPos pos, BlockState state) {
         super(VineryBlockEntityTypes.SHELF_ENTITY, pos, state);
@@ -98,7 +100,6 @@ public class ShelfBlockEntity extends BlockEntity {
 
     @Override
     public BlockEntityUpdateS2CPacket toUpdatePacket() {
-        Vinery.LOGGER.error("sendingPacket!");
         return BlockEntityUpdateS2CPacket.create(this);
     }
 
