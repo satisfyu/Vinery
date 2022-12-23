@@ -1,6 +1,7 @@
 package daniking.vinery.block;
 
 import daniking.vinery.block.entity.ShelfBlockEntity;
+import daniking.vinery.util.VineryTags;
 import daniking.vinery.util.VineryUtils;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockRenderType;
@@ -71,7 +72,7 @@ public class ShelfBlock extends FacingBlock implements BlockEntityProvider {
                     return ActionResult.success(world.isClient);
                 } else {
                     ItemStack stack = player.getStackInHand(hand);
-                    if (!stack.isEmpty() && !(stack.getItem() instanceof BlockItem)) {
+                    if (!stack.isEmpty() && (!(stack.getItem() instanceof BlockItem) || stack.isIn(VineryTags.IGNORE_BLOCK_ITEM))) {
                         add(world, pos, player, shelfBlockEntity, stack, i);
                         return ActionResult.success(world.isClient);
                     } else {
