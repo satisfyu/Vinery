@@ -35,7 +35,7 @@ public class ShelfBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockE
 
         matrices.push();
         applyBlockAngle(matrices, entity.getCachedState(), 180);
-        matrices.translate(-0.4, 0.5, 0.3);
+        matrices.translate(-0.4, 0.5, 0.25);
         matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90f));
         matrices.scale(0.5f, 0.5f, 0.5f);
 
@@ -44,7 +44,7 @@ public class ShelfBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockE
             if (!stack.isEmpty()) {
                 matrices.push();
                 matrices.translate(0f, 0f, 0.2f * i);
-                //matrices.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(22.5f));
+                matrices.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(22.5f));
                 itemRenderer.renderItem(stack, ModelTransformation.Mode.GUI, getLightLevel(entity.getWorld(), entity.getPos()),
                         OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, 1);
                 matrices.pop();

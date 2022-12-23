@@ -1,6 +1,5 @@
 package daniking.vinery.block.entity;
 
-import daniking.vinery.Vinery;
 import daniking.vinery.registry.VineryBlockEntityTypes;
 import daniking.vinery.util.networking.VineryMessages;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -37,6 +36,17 @@ public class ShelfBlockEntity extends BlockEntity {
                 return;
             }
         }
+    }
+
+    public ItemStack removeStack(int slot){
+        ItemStack stack = inventory.set(slot, ItemStack.EMPTY);
+        markDirty();
+        return stack;
+    }
+
+    public void setStack(int slot, ItemStack stack){
+        inventory.set(slot, stack);
+        markDirty();
     }
 
     public int getNonEmptySlotCount() {
