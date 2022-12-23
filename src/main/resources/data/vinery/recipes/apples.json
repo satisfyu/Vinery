@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#"
+    ],
+    "key": {
+        "#": {
+ 		   "item": "vinery:apple_crate"
+        }
+    },
+    "result": {
+       "item": "minecraft:apple"
+        "count": 1
+    }
+}
