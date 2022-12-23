@@ -1,6 +1,5 @@
 package daniking.vinery.block;
 
-import daniking.vinery.block.entity.CookingPotEntity;
 import daniking.vinery.block.entity.ShelfBlockEntity;
 import daniking.vinery.util.VineryUtils;
 import net.minecraft.block.BlockEntityProvider;
@@ -16,14 +15,12 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -62,20 +59,20 @@ public class ShelfBlock extends FacingBlock implements BlockEntityProvider {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        BlockEntity var8 = world.getBlockEntity(pos);
-        if (var8 instanceof ShelfBlockEntity shelfBlockEntity) {
-            Optional<Vec2f> optional = VineryUtils.getRelativeHitCoordinatesForBlockFace(hit, state.get(ShelfBlock.FACING));
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof ShelfBlockEntity shelfBlockEntity) {
+            Optional<Float> optional = VineryUtils.getRelativeHitCoordinatesForBlockFace(hit, state.get(ShelfBlock.FACING));
             if (optional.isEmpty()) {
                 return ActionResult.PASS;
             } else {
-                int i = getSection(optional.get().x);
+                int i = getSection(optional.get());
                 if (!shelfBlockEntity.getInventory().get(i).isEmpty()) {
-                    removeBook(world, pos, player, shelfBlockEntity, i);
+                    remove(world, pos, player, shelfBlockEntity, i);
                     return ActionResult.success(world.isClient);
                 } else {
                     ItemStack stack = player.getStackInHand(hand);
                     if (!stack.isEmpty() && !(stack.getItem() instanceof BlockItem)) {
-                        addBook(world, pos, player, shelfBlockEntity, stack, i);
+                        add(world, pos, player, shelfBlockEntity, stack, i);
                         return ActionResult.success(world.isClient);
                     } else {
                         return ActionResult.CONSUME;
@@ -87,7 +84,7 @@ public class ShelfBlock extends FacingBlock implements BlockEntityProvider {
         }
     }
 
-    private static void addBook(World level, BlockPos blockPos, PlayerEntity player, ShelfBlockEntity shelfBlockEntity, ItemStack itemStack, int i) {
+    private static void add(World level, BlockPos blockPos, PlayerEntity player, ShelfBlockEntity shelfBlockEntity, ItemStack itemStack, int i) {
         if (!level.isClient) {
             SoundEvent soundEvent = SoundEvents.BLOCK_ANVIL_PLACE;
             shelfBlockEntity.setStack(i, itemStack.split(1));
@@ -99,7 +96,7 @@ public class ShelfBlock extends FacingBlock implements BlockEntityProvider {
         }
     }
 
-    private static void removeBook(World level, BlockPos blockPos, PlayerEntity player, ShelfBlockEntity shelfBlockEntity, int i) {
+    private static void remove(World level, BlockPos blockPos, PlayerEntity player, ShelfBlockEntity shelfBlockEntity, int i) {
         if (!level.isClient) {
             ItemStack itemStack = shelfBlockEntity.removeStack(i);
             SoundEvent soundEvent = SoundEvents.BLOCK_ANVIL_BREAK;
@@ -148,29 +145,30 @@ public class ShelfBlock extends FacingBlock implements BlockEntityProvider {
 
     private static int getSection(float f) {
         int nSection;
+        float oneS = (float) 1 / 9;
 
-        if (f < 0.11F) {
+        if (f < oneS) {
             nSection = 0;
         }
-        else if(f < 0.22f){
+        else if(f < oneS*2){
             nSection = 1;
         }
-        else if(f < 0.33f){
+        else if(f < oneS*3){
             nSection = 2;
         }
-        else if(f < 0.44f){
+        else if(f < oneS*4){
             nSection = 3;
         }
-        else if(f < 0.55f){
+        else if(f < oneS*5){
             nSection = 4;
         }
-        else if(f < 0.66f){
+        else if(f < oneS*6){
             nSection = 5;
         }
-        else if(f < 0.77f){
+        else if(f < oneS*7){
             nSection = 6;
         }
-        else if(f < 0.88f){
+        else if(f < oneS*8){
             nSection = 7;
         }
         else nSection = 8;
