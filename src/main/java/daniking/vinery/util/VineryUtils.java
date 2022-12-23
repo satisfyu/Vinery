@@ -69,22 +69,21 @@ public class VineryUtils {
         return buffer[0];
     }
 
-    public static Optional<Vec2f> getRelativeHitCoordinatesForBlockFace(BlockHitResult blockHitResult, Direction direction) {
+    public static Optional<Float> getRelativeHitCoordinatesForBlockFace(BlockHitResult blockHitResult, Direction direction) {
         Direction direction2 = blockHitResult.getSide();
         if (direction != direction2 && direction2 != Direction.UP) {
             return Optional.empty();
         } else {
             BlockPos blockPos = blockHitResult.getBlockPos().offset(direction2);
             Vec3d vec3 = blockHitResult.getPos().subtract(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-            double d = vec3.getX();
-            float e = (float) vec3.getY();
-            double f = vec3.getZ();
+            float d = (float) vec3.getX();
+            float f = (float) vec3.getZ();
             if(direction2 == Direction.UP) direction2 = direction;
             return switch (direction2) {
-                case NORTH -> Optional.of(new Vec2f((float) (1.0 - d), e));
-                case SOUTH -> Optional.of(new Vec2f((float) d, e));
-                case WEST -> Optional.of(new Vec2f((float) f, e));
-                case EAST -> Optional.of(new Vec2f((float) (1.0 - f), e));
+                case NORTH -> Optional.of((float) (1.0 - d));
+                case SOUTH -> Optional.of(d);
+                case WEST -> Optional.of(f);
+                case EAST -> Optional.of((float) (1.0 - f));
                 case DOWN, UP -> Optional.empty();
             };
         }
