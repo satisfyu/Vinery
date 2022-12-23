@@ -87,7 +87,7 @@ public class ShelfBlock extends FacingBlock implements BlockEntityProvider {
 
     private static void add(World level, BlockPos blockPos, PlayerEntity player, ShelfBlockEntity shelfBlockEntity, ItemStack itemStack, int i) {
         if (!level.isClient) {
-            SoundEvent soundEvent = SoundEvents.BLOCK_ANVIL_PLACE;
+            SoundEvent soundEvent = SoundEvents.BLOCK_WOOD_PLACE;
             shelfBlockEntity.setStack(i, itemStack.split(1));
             level.playSound(null, blockPos, soundEvent, SoundCategory.BLOCKS, 1.0F, 1.0F);
             if (player.isCreative()) {
@@ -100,7 +100,7 @@ public class ShelfBlock extends FacingBlock implements BlockEntityProvider {
     private static void remove(World level, BlockPos blockPos, PlayerEntity player, ShelfBlockEntity shelfBlockEntity, int i) {
         if (!level.isClient) {
             ItemStack itemStack = shelfBlockEntity.removeStack(i);
-            SoundEvent soundEvent = SoundEvents.BLOCK_ANVIL_BREAK;
+            SoundEvent soundEvent = SoundEvents.BLOCK_WOOD_PLACE;
             level.playSound(null, blockPos, soundEvent, SoundCategory.BLOCKS, 1.0F, 1.0F);
             if (!player.getInventory().insertStack(itemStack)) {
                 player.dropItem(itemStack, false);
