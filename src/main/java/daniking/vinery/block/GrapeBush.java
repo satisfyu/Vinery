@@ -4,6 +4,10 @@ import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.util.GrapevineType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SweetBerryBushBlock;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -13,6 +17,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
@@ -51,4 +56,9 @@ public class GrapeBush extends SweetBerryBushBlock {
     public GrapevineType getType() {
         return type;
     }
-}
+
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+
+           }
+      }
+
