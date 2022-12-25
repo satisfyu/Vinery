@@ -17,6 +17,8 @@ loom {
 repositories {
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.architectury.dev/" }
+	maven { url 'https://maven.blamejared.com' }
+
 	maven {
 		name = "Modding Playground"
 		url  = "https://raw.githubusercontent.com/moddingplayground/maven/main/"
@@ -46,11 +48,12 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
 	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
 	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
 
 	modImplementation('software.bernie.geckolib:geckolib-fabric-1.19:3.1.26')
+	modImplementation "vazkii.patchouli:Patchouli:1.19.2-77"
+
 	modImplementation "curse.maven:farmersdelightfabric-482834:${project.delight_version}"
 	include('software.bernie.geckolib:geckolib-fabric-1.19:3.1.26')
 
