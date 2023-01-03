@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "vinery:block/nine_bottle_storage",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "vinery:block/nine_bottle_storage"
+    },
+    "facing=south": {
+      "model": "vinery:block/nine_bottle_storage",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "vinery:block/nine_bottle_storage",
+      "y": 270
+    }
+  }
+}

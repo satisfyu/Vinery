@@ -5,12 +5,12 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -69,7 +69,7 @@ public class VineryUtils {
         return buffer[0];
     }
 
-    public static Optional<Float> getRelativeHitCoordinatesForBlockFace(BlockHitResult blockHitResult, Direction direction) {
+    public static Optional<Pair<Float, Float>> getRelativeHitCoordinatesForBlockFace(BlockHitResult blockHitResult, Direction direction) {
         Direction direction2 = blockHitResult.getSide();
         if (direction != direction2 && direction2 != Direction.UP) {
             return Optional.empty();
@@ -78,12 +78,15 @@ public class VineryUtils {
             Vec3d vec3 = blockHitResult.getPos().subtract(blockPos.getX(), blockPos.getY(), blockPos.getZ());
             float d = (float) vec3.getX();
             float f = (float) vec3.getZ();
+
+            float y = (float) vec3.getY();
+
             if(direction2 == Direction.UP) direction2 = direction;
             return switch (direction2) {
-                case NORTH -> Optional.of((float) (1.0 - d));
-                case SOUTH -> Optional.of(d);
-                case WEST -> Optional.of(f);
-                case EAST -> Optional.of((float) (1.0 - f));
+                case NORTH -> Optional.of(new Pair<>((float) (1.0 - d), y));
+                case SOUTH -> Optional.of(new Pair<>(d, y));
+                case WEST -> Optional.of(new Pair<>(f, y));
+                case EAST -> Optional.of(new Pair<>((float) (1.0 - f), y));
                 case DOWN, UP -> Optional.empty();
             };
         }

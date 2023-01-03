@@ -9,7 +9,7 @@ import daniking.vinery.client.gui.CookingPotGui;
 import daniking.vinery.client.gui.FermentationBarrelGui;
 import daniking.vinery.client.gui.StoveGui;
 import daniking.vinery.client.gui.WinePressGui;
-import daniking.vinery.client.render.block.ShelfBlockEntityRenderer;
+import daniking.vinery.client.render.block.StorageBlockEntityRenderer;
 import daniking.vinery.client.render.block.WineRackRenderer;
 import daniking.vinery.client.render.entity.SimpleGeoRenderer;
 import daniking.vinery.client.render.entity.WanderingWinemakerRenderer;
@@ -90,7 +90,8 @@ public class ClientSetup implements ClientModInitializer {
         EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
         EntityRendererRegistry.register(VineryBlockEntityTypes.CHAIR, ChairRenderer::new);
 
-        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.SHELF_ENTITY, ShelfBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.STORAGE_ENTITY, StorageBlockEntityRenderer::new);
+
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.WINE_RACK_GECKO_ENTITY,
                 (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new WineRackRenderer());
     }
