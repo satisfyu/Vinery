@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
@@ -18,17 +17,17 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 
-public class ShelfBlockEntity extends BlockEntity {
+public class StorageBlockEntity extends BlockEntity {
 
     private int size;
 
     private DefaultedList<ItemStack> inventory;
 
-    public ShelfBlockEntity(BlockPos pos, BlockState state) {
+    public StorageBlockEntity(BlockPos pos, BlockState state) {
         super(VineryBlockEntityTypes.STORAGE_ENTITY, pos, state);
     }
 
-    public ShelfBlockEntity(BlockPos pos, BlockState state, int size) {
+    public StorageBlockEntity(BlockPos pos, BlockState state, int size) {
         super(VineryBlockEntityTypes.STORAGE_ENTITY, pos, state);
         this.size = size;
         this.inventory = DefaultedList.ofSize(this.size, ItemStack.EMPTY);

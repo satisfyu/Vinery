@@ -1,6 +1,6 @@
 package daniking.vinery.util.networking.packet;
 
-import daniking.vinery.block.entity.ShelfBlockEntity;
+import daniking.vinery.block.entity.StorageBlockEntity;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -19,7 +19,7 @@ public class ItemStackSyncS2CPacket {
         }
         BlockPos position = buf.readBlockPos();
 
-        if(client.world.getBlockEntity(position) instanceof ShelfBlockEntity blockEntity) {
+        if(client.world.getBlockEntity(position) instanceof StorageBlockEntity blockEntity) {
             blockEntity.setInventory(list);
         }
     }

@@ -1,16 +1,13 @@
 package daniking.vinery.block;
 
-import daniking.vinery.block.entity.ShelfBlockEntity;
-import daniking.vinery.util.VineryTags;
+import daniking.vinery.block.entity.StorageBlockEntity;
 import daniking.vinery.util.VineryUtils;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -18,22 +15,15 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
-import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 public abstract class StorageBlock extends FacingBlock implements BlockEntityProvider {
 
@@ -44,12 +34,13 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof ShelfBlockEntity shelfBlockEntity) {
+        if (blockEntity instanceof StorageBlockEntity shelfBlockEntity) {
             Optional<Pair<Float, Float>> optional = VineryUtils.getRelativeHitCoordinatesForBlockFace(hit, state.get(StorageBlock.FACING));
             if (optional.isEmpty()) {
                 return ActionResult.PASS;
             } else {
                 int i = getSection(optional.get());
+                if(i == 1000000) return ActionResult.PASS;
                 if (!shelfBlockEntity.getInventory().get(i).isEmpty()) {
                     remove(world, pos, player, shelfBlockEntity, i);
                     return ActionResult.success(world.isClient);
@@ -70,7 +61,7 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
 
     public abstract boolean canInsertStack(ItemStack stack);
 
-    private static void add(World level, BlockPos blockPos, PlayerEntity player, ShelfBlockEntity shelfBlockEntity, ItemStack itemStack, int i) {
+    private static void add(World level, BlockPos blockPos, PlayerEntity player, StorageBlockEntity shelfBlockEntity, ItemStack itemStack, int i) {
         if (!level.isClient) {
             SoundEvent soundEvent = SoundEvents.BLOCK_WOOD_PLACE;
             shelfBlockEntity.setStack(i, itemStack.split(1));
@@ -82,7 +73,7 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
         }
     }
 
-    private static void remove(World level, BlockPos blockPos, PlayerEntity player, ShelfBlockEntity shelfBlockEntity, int i) {
+    private static void remove(World level, BlockPos blockPos, PlayerEntity player, StorageBlockEntity shelfBlockEntity, int i) {
         if (!level.isClient) {
             ItemStack itemStack = shelfBlockEntity.removeStack(i);
             SoundEvent soundEvent = SoundEvents.BLOCK_WOOD_PLACE;
@@ -98,7 +89,7 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof ShelfBlockEntity shelf) {
+            if (blockEntity instanceof StorageBlockEntity shelf) {
                 if (world instanceof ServerWorld) {
                     ItemScatterer.spawn(world, pos, shelf.getInventory());
                 }
@@ -120,7 +111,7 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new ShelfBlockEntity(pos, state, size());
+        return new StorageBlockEntity(pos, state, size());
     }
 
     @Override

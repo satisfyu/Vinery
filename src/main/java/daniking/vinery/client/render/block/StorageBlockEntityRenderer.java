@@ -1,7 +1,7 @@
 package daniking.vinery.client.render.block;
 
 import daniking.vinery.block.StorageBlock;
-import daniking.vinery.block.entity.ShelfBlockEntity;
+import daniking.vinery.block.entity.StorageBlockEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.LightmapTextureManager;
@@ -21,14 +21,14 @@ import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 
-public class StorageBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockEntity> {
+public class StorageBlockEntityRenderer implements BlockEntityRenderer<StorageBlockEntity> {
 
     public StorageBlockEntityRenderer(BlockEntityRendererFactory.Context context){
 
     }
 
     @Override
-    public void render(ShelfBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+    public void render(StorageBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         if (!entity.hasWorld()) {
             return;
         }
@@ -37,12 +37,16 @@ public class StorageBlockEntityRenderer implements BlockEntityRenderer<ShelfBloc
             DefaultedList<ItemStack> itemStacks = entity.getInventory();
             matrices.push();
             applyBlockAngle(matrices, state, 180);
+            StorageBlock.StorageType type = sB.type();
 
-            if(sB.type().equals(StorageBlock.StorageType.SHELF)){
+            if(type.equals(StorageBlock.StorageType.SHELF)){
                 renderShelf(entity, matrices, vertexConsumers, itemStacks);
             }
-            else if(sB.type().equals(StorageBlock.StorageType.NINE_BOTTLE)){
+            else if(type.equals(StorageBlock.StorageType.NINE_BOTTLE)){
                 renderNineBottles(entity, matrices, vertexConsumers, itemStacks);
+            }
+            else if(type.equals(StorageBlock.StorageType.FOUR_BOTTLE)){
+                renderFourBottles(entity, matrices, vertexConsumers, itemStacks);
             }
 
             matrices.pop();
@@ -63,19 +67,49 @@ public class StorageBlockEntityRenderer implements BlockEntityRenderer<ShelfBloc
         return LightmapTextureManager.pack(bLight, sLight);
     }
 
-    private static void renderNineBottles(ShelfBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers, DefaultedList<ItemStack> itemStacks){
+
+    private static void renderFourBottles(StorageBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers, DefaultedList<ItemStack> itemStacks){
         BlockRenderManager manager = MinecraftClient.getInstance().getBlockRenderManager();
-
         matrices.translate(-0.13, 0.335, 0.125);
-        //matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90f));
         matrices.scale(0.9f, 0.9f, 0.9f);
+        for (int i = 0; i < itemStacks.size(); i++) {
+            ItemStack stack = itemStacks.get(i);
+            if (!stack.isEmpty() && stack.getItem() instanceof BlockItem blockItem) {
+                matrices.push();
 
+                if(i == 0){
+                    matrices.translate(-0.35f, 0, 0f);
+                }
+                else if(i == 1){
+                    matrices.translate(0, -0.33f, 0f);
+                }
+                else if(i == 2){
+                    matrices.translate(-0.7f, -0.33f, 0f);
+                }
+                else if(i == 3){
+                    matrices.translate(-0.35f, -0.66f, 0f);
+                }
+                else {
+                    matrices.pop();
+                    continue;
+                }
+
+                matrices.multiply(Vec3f.NEGATIVE_X.getDegreesQuaternion(90f));
+                manager.renderBlockAsEntity(blockItem.getBlock().getDefaultState(), matrices, vertexConsumers, getLightLevel(entity.getWorld(), entity.getPos()), OverlayTexture.DEFAULT_UV);
+                matrices.pop();
+            }
+        }
+    }
+
+    private static void renderNineBottles(StorageBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers, DefaultedList<ItemStack> itemStacks){
+        BlockRenderManager manager = MinecraftClient.getInstance().getBlockRenderManager();
+        matrices.translate(-0.13, 0.335, 0.125);
+        matrices.scale(0.9f, 0.9f, 0.9f);
         for (int i = 0; i < itemStacks.size(); i++) {
             ItemStack stack = itemStacks.get(i);
             if (!stack.isEmpty() && stack.getItem() instanceof BlockItem blockItem) {
                 matrices.push();
                 int line = i >= 6 ? 3 : i >= 3 ? 2 : 1;
-
                 float x;
                 float y;
                 if(line == 1){
@@ -90,18 +124,15 @@ public class StorageBlockEntityRenderer implements BlockEntityRenderer<ShelfBloc
                     x = -0.35f * (i - 6);
                     y = -0.66f;
                 }
-
                 matrices.translate(x, y, 0f);
-
                 matrices.multiply(Vec3f.NEGATIVE_X.getDegreesQuaternion(90f));
-
                 manager.renderBlockAsEntity(blockItem.getBlock().getDefaultState(), matrices, vertexConsumers, getLightLevel(entity.getWorld(), entity.getPos()), OverlayTexture.DEFAULT_UV);
                 matrices.pop();
             }
         }
     }
 
-    private static void renderShelf(ShelfBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers, DefaultedList<ItemStack> itemStacks){
+    private static void renderShelf(StorageBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers, DefaultedList<ItemStack> itemStacks){
         ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
 
         matrices.translate(-0.4, 0.5, 0.25);
