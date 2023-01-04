@@ -12,6 +12,9 @@
     "WanderingTraderManagerMixin"
   ],
   "client": [
+    "ArmorFeatureRendererMixin",
+    "ArmorStandRendererMixin",
+    "PlayerEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

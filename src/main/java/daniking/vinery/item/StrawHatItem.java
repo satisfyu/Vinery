@@ -1,7 +1,14 @@
 package daniking.vinery.item;
 
+import daniking.vinery.VineryIdentifier;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ArmorMaterials;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.controller.AnimationController;
@@ -9,24 +16,20 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class StrawHatItem extends WinemakerArmorItem implements IAnimatable {
-    public AnimationFactory factory = new AnimationFactory(this);
+public class StrawHatItem extends CustomModelArmorItem{
+
 
     public StrawHatItem(Settings settings) {
         super(ArmorMaterials.LEATHER, EquipmentSlot.HEAD, settings);
     }
 
-    private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        return PlayState.CONTINUE;
+    @Override
+    public Identifier getTexture() {
+        return new VineryIdentifier("textures/item/straw_hat.png");
     }
 
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller", 20, this::predicate));
-    }
-
-    @Override
-    public AnimationFactory getFactory() {
-        return this.factory;
+    public Float getOffset() {
+        return -1.35f;
     }
 }
