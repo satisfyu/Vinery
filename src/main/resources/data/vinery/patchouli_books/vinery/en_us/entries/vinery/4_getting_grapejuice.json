@@ -1,0 +1,38 @@
+{
+  "name": "4. Your first Grapejuice",
+  "icon": "vinery:wine_bottle",
+  "category": "vinery:a_getting_started",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Alright, good job on those Grapes!$(br2)Now let's get some Grapejuice done and craft our first Wine.$(br2)To do so we need to craft some additional Items first.",
+      "title": "Crafting Grapejuice"
+    },
+    {
+      "type": "patchouli:empty",
+      "draw_filler": "false"
+
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Crafting Recipe",
+      "recipe": "vinery:grapevine_pot",
+      "text": "You can use any sort of Wood to craft it."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "vinery:grapevine_pot",
+      "text": "Throw your freshly harvested Grapes in and jump on them to produce Grapejuice."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "vinery:wine_bottle",
+      "title": "Crafting Recipe"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "vinery:wine_bottle",
+      "text": "After producing your first Grapejuice you will need a container to take it out and store it.$(br2)So let's get some Wine Bottles and fill them up.$(br2)You can find more about Wine and Wine Recipes in the Consumables Category."
+    }
+  ]
+}

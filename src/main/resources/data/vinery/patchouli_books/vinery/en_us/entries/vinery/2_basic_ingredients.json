@@ -1,0 +1,27 @@
+{
+  "name": "2. Basic Ingredients",
+  "icon": "vinery:red_grape",
+  "category": "vinery:a_getting_started",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "vinery:cherry",
+      "text": "Cherries can be found on Cherry Trees.$(br2)Keep an eye out for red spotted Leaves. You'll need a shear to harvest them properly."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "vinery:white_grape_seeds",
+      "text": "White Grapes can either being harvested from White Grape Bushes or White Grapevines.$(br2)You dont need any tools for harvesting Grapes."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "vinery:red_grape_seeds",
+      "text": "Red Grapes can either being harvested from Red Grape Bushes or White Grapevines.$(br2)You dont need any tools for harvesting Grapes."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:apple",
+      "text": "Also Apples can be used to craft Wine and Cider.$(br2)Apples can rarely be found by breaking Oak Leaves."
+    }
+  ]
+}

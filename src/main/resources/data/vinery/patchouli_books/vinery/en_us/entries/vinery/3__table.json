@@ -1,0 +1,15 @@
+{
+  "name": "3. Crafting Table",
+  "icon": "minecraft:crafting_table",
+  "category": "vinery:b_food",
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "vinery:apple_cupcake"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "vinery:dough"
+    }
+  ]
+}

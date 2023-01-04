@@ -1,0 +1,10 @@
+{
+  "components": [
+    {
+      "type": "patchouli:image",
+      "text": "Hello this is a test of the templatdddde system!",
+      "x": 20,
+      "y": 30
+    }
+  ]
+}
