@@ -92,10 +92,10 @@
   "item.vinery.cherry_sign": "Cherry Sign",
   "item.vinery.cherry_boat": "Cherry Boat",
   "item.vinery.cherry": "Cherry",
-  "item.vinery.vinemaker_apron": "Vinemaker Apron",
-  "item.vinery.vinemaker_gloves": "Vinemaker Gloves",
-  "item.vinery.vinemaker_leggings": "Vinemaker Leggings",
-  "item.vinery.vinemaker_boots": "Vinemaker Boots",
+  "item.vinery.vinemaker_apron": "Winemaker Apron",
+  "item.vinery.vinemaker_gloves": "Winemaker Gloves",
+  "item.vinery.vinemaker_leggings": "Winemaker Leggings",
+  "item.vinery.vinemaker_boots": "Winemaker Boots",
   "item.vinery.faucet": "Faucet",
   "item.vinery.straw_hat": "Straw Hat",
   "item.vinery.chocolate_bread": "Chocolate Bread",
@@ -186,4 +186,6 @@
   "block.vinery.grape_jam": "Grape Jam",
   "block.vinery.aegis_wine": "Aegis Wine",
   "block.vinery.big_bowl": "Bowl",
-  "block.vinery.kelp_cider": "Kelp Cider"}
+  "block.vinery.kelp_cider": "Kelp Cider"
+
+}

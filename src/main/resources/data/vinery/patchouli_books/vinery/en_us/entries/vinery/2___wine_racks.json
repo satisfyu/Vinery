@@ -5,12 +5,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Wine Racks do work as Storage for Wine Bottles.$(br)Stored Wine will also age when placed inside a Wine Rack.$(br)Please note that not every Wine will fit into these Wine Racks due of their size"
+      "text": "Wine Racks do work as Storage for Wine Bottles.$(br2)Stored Wine will also age when placed inside a Wine Rack.$(br2)Please note that not every Wine will fit into these Wine Racks due of their size"
     },
     {
       "type": "patchouli:spotlight",
       "item": "vinery:wine_rack_2",
-      "text": "Wine Bottles can be placed at any free slot.$(br)Right-Click when holding a Wine Bottle to place it.$(br)Shift-Right-Click when having an empty Hand to take it out again."
+      "title": "How to use it",
+      "text": "Wine Bottles can be placed at any free slot.$(br2)Right-Click when holding a Wine Bottle to place it.$(br)Shift-Right-Click when having an empty Hand to take it out again."
     }
   ]
 }

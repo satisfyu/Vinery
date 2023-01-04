@@ -1,0 +1,17 @@
+{
+  "name": "3. Armor",
+  "icon": "vinery:winemaker_apron",
+  "category": "vinery:c_miscellaneous",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "If you want to produce your Grapes more efficiently i recommend to use the Winemaker Set.$(br2)Wearing the full set will give you the ability not to lose any Bone Meal when using it.$(br2)Keep in mind doe, that by using the set bonus the durability will decrease rapidly."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "vinery:gloves",
+      "title": "Gloves",
+      "text": "Gloves are a needed Ingredient for crafting the Winemaker Set.$(br2)Winemakers will sell them occassionally.$(br2)If you're lucky, you'll find some left behind Gloves in Villages or maybe a Pillager will be friendly enough to borrow you a Pair?"
+    }
+  ]
+}
