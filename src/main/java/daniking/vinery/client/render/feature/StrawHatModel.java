@@ -1,23 +1,40 @@
 package daniking.vinery.client.render.feature;
 
 import daniking.vinery.VineryIdentifier;
-import daniking.vinery.item.StrawHatItem;
-import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import net.minecraft.client.model.*;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.Entity;
 
-public class StrawHatModel extends AnimatedGeoModel<StrawHatItem> {
+public class StrawHatModel<T extends Entity> extends EntityModel<T> {
+	public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(new VineryIdentifier("straw_hat"), "main");
+	private final ModelPart root;
+
+	public StrawHatModel(ModelPart root) {
+		this.root = root.getChild("head");
+	}
+
+	public static TexturedModelData getTexturedModelData() {
+		ModelData meshdefinition = new ModelData();
+		ModelPartData partdefinition = meshdefinition.getRoot();
+
+		//partdefinition.addChild("head", ModelPartBuilder.create().uv(-16, 14).cuboid(-16.0F, 0.0F, 0.0F, 16.0F, 0.0F, 16.0F, new Dilation(0.0F)).uv(2, 2).mirrored().cuboid(-12.0F, -4.01F, 4.0F, 8.0F, 4.0F, 8.0F, new Dilation(0.0F)).mirrored(false), ModelTransform.pivot(8.0F, 24.0F, -8.0F));
+
+		partdefinition.addChild("head", ModelPartBuilder.create().uv(-16, 14).cuboid(-8.0F, -7.0F, -8.0F, 16.0F, 0.0F, 16.0F).uv(2, 1).cuboid(-4.5F, -11.001F, -4.5F, 9.0F, 4.0F, 9.0F), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
+
+		return TexturedModelData.of(meshdefinition, 64, 64);
+	}
+
+
 	@Override
-	public Identifier getModelResource(StrawHatItem object) {
-		return new VineryIdentifier("geo/straw_hat.geo.json");
+	public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+
 	}
 
 	@Override
-	public Identifier getTextureResource(StrawHatItem object) {
-		return new VineryIdentifier("textures/item/straw_hat.png");
-	}
-
-	@Override
-	public Identifier getAnimationResource(StrawHatItem animatable) {
-		return new VineryIdentifier("animations/straw_hat.animation.json");
+	public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
+		root.render(matrices, vertices, light, overlay, red, green, blue, alpha);
 	}
 }

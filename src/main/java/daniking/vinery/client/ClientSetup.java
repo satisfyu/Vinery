@@ -13,13 +13,14 @@ import daniking.vinery.client.render.block.StorageBlockEntityRenderer;
 import daniking.vinery.client.render.block.WineRackRenderer;
 import daniking.vinery.client.render.entity.SimpleGeoRenderer;
 import daniking.vinery.client.render.entity.WanderingWinemakerRenderer;
-import daniking.vinery.client.render.feature.StrawHatRenderer;
+import daniking.vinery.client.render.feature.StrawHatModel;
 import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.registry.VineryBlockEntityTypes;
 import daniking.vinery.registry.VineryEntites;
 import daniking.vinery.registry.VineryScreenHandlerTypes;
 import daniking.vinery.util.networking.VineryMessages;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.fabricmc.api.EnvType;
@@ -35,7 +36,6 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.entity.player.PlayerEntity;
-import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
 @Environment(EnvType.CLIENT)
 public class ClientSetup implements ClientModInitializer {
@@ -84,11 +84,14 @@ public class ClientSetup implements ClientModInitializer {
         HandledScreens.register(VineryScreenHandlerTypes.WINE_PRESS_SCREEN_HANDLER, WinePressGui::new);
         TerraformBoatClientHelper.registerModelLayers(new VineryIdentifier("cherry"));
 
-        GeoArmorRenderer.registerArmorRenderer(new StrawHatRenderer(), ObjectRegistry.STRAW_HAT);
+
+        //GeoArmorRenderer.registerArmorRenderer(new StrawHatRenderer(), ObjectRegistry.STRAW_HAT);
         
         EntityRendererRegistry.register(VineryEntites.MULE, mgr -> new SimpleGeoRenderer<>(mgr, Vinery.MODID, "wandering_mule"));
         EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
         EntityRendererRegistry.register(VineryBlockEntityTypes.CHAIR, ChairRenderer::new);
+
+        EntityModelLayerRegistry.registerModelLayer(StrawHatModel.LAYER_LOCATION, StrawHatModel::getTexturedModelData);
 
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.STORAGE_ENTITY, StorageBlockEntityRenderer::new);
 
