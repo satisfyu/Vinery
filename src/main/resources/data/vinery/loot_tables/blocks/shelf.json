@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:wine_rack_4"
+          "name": "vinery:shelf"
         }
       ],
       "conditions": [

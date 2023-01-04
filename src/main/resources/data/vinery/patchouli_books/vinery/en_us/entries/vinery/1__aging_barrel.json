@@ -5,14 +5,14 @@
   "pages": [
     {
       "type": "patchouli:crafting",
-      "recipe": "vinery:wine_fermentation/aegis_wine",
-      "recipe2": "vinery:wine_fermentation/apple_cider"
+      "recipe": "vinery:recipes.wine_fermentation/aegis_wine",
+      "recipe2": "vinery:recipes.wine_fermentation/apple_cider"
 
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "vinery:wine_fermentation/apple_juice",
-      "recipe2": "vinery:wine_fermentation/apple_wine"
+      "recipe": "vinery:recipes.wine_fermentation/apple_juice",
+      "recipe2": "vinery:recipes.wine_fermentation/apple_wine"
       },
     {
       "type": "patchouli:crafting",
@@ -21,23 +21,23 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "vinery:wine_fermentation/cherry_wine",
-      "recipe2": "vinery:wine_fermentation/clark_wine"
+      "recipe": "vinery:recipes.wine_fermentation/cherry_wine",
+      "recipe2": "vinery:recipes.wine_fermentation/clark_wine"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "vinery:wine_fermentation/jellie_wine",
-      "recipe2": "vinery:wine_fermentation/kelp_cider"
+      "recipe": "vinery:recipes.wine_fermentation/jellie_wine",
+      "recipe2": "vinery:recipes.wine_fermentation/kelp_cider"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "vinery:wine_fermentation/king_danis",
-      "recipe2": "vinery:wine_fermentation/mellohi_wine"
+      "recipe": "vinery:recipes.wine_fermentation/king_danis",
+      "recipe2": "vinery:recipes.wine_fermentation/mellohi_wine"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "vinery:wine_fermentation/noir_cider",
-      "recipe2": "vinery:wine_fermentation/solaris_wine"
+      "recipe": "vinery:recipes.wine_fermentation/noir_cider",
+      "recipe2": "vinery:recipes.wine_fermentation/solaris_wine"
     }
   ]
 }
