@@ -113,12 +113,6 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new StorageBlockEntity(pos, state, size());
     }
-
-    @Override
-    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.vinery.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
-    }
-
     public abstract int getSection(Pair<Float, Float> ff);
 
     public enum StorageType{
