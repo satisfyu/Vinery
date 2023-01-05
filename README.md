@@ -1,8 +1,8 @@
-<a 
+
     <p align="center">
-        <img src="https://imgur.com/YmdSOEn.png" alt="Logo" width="400"/> 
+        <img src="https://imgur.com/YmdSOEn.png" alt="Logo" width="1000"/> 
     </p>
-</a>
+
 
 
 
