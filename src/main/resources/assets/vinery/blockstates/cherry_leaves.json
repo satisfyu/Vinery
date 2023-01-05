@@ -1,39 +1,207 @@
 {
     "variants": {
-        "distance=1": [
-			{ "model": "vinery:block/cherry_leaves" },
-			{ "model": "vinery:block/cherry_leaves1" },
-			{ "model": "vinery:block/cherry_leaves2" }
-				],
-        "distance=2": [
-			{ "model": "vinery:block/cherry_leaves" },
-			{ "model": "vinery:block/cherry_leaves1" },
-			{ "model": "vinery:block/cherry_leaves2" }
-				],
-        "distance=3": [
-			{ "model": "vinery:block/cherry_leaves" },
-			{ "model": "vinery:block/cherry_leaves1" },
-			{ "model": "vinery:block/cherry_leaves2" }
-				],
-        "distance=4": [
-			{ "model": "vinery:block/cherry_leaves" },
-			{ "model": "vinery:block/cherry_leaves1" },
-			{ "model": "vinery:block/cherry_leaves2" }
-				],
-        "distance=5": [
-			{ "model": "vinery:block/cherry_leaves" },
-			{ "model": "vinery:block/cherry_leaves1" },
-			{ "model": "vinery:block/cherry_leaves2" }
-				],
-        "distance=6": [
-			{ "model": "vinery:block/cherry_leaves" },
-			{ "model": "vinery:block/cherry_leaves1" },
-			{ "model": "vinery:block/cherry_leaves2" }
-				],
-        "distance=7": [
-			{ "model": "vinery:block/cherry_leaves" },
-			{ "model": "vinery:block/cherry_leaves1" },
-			{ "model": "vinery:block/cherry_leaves2" }
-				]
-    }
+		"can_have_cherries=false,has_cherries=false,distance=7,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=6,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=5,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=4,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=3,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=2,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=1,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=0,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+
+		"can_have_cherries=false,has_cherries=false,distance=7,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=6,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=5,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=4,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=3,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=2,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=1,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=false,distance=0,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+
+
+		"can_have_cherries=false,has_cherries=true,distance=7,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=6,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=5,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=4,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=3,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=2,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=1,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=0,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+
+		"can_have_cherries=false,has_cherries=true,distance=7,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=6,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=5,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=4,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=3,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=2,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=1,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true,distance=0,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+
+
+
+		"can_have_cherries=true,has_cherries=false,distance=7,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=6,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=5,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=4,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=3,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=2,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=1,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=0,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+
+		"can_have_cherries=true,has_cherries=false,distance=7,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=6,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=5,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=4,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=3,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=2,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=1,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=false,distance=0,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+
+
+		"can_have_cherries=true,has_cherries=true,distance=7,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=6,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=5,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=4,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=3,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=2,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=1,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=0,persistence=false,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+
+		"can_have_cherries=true,has_cherries=true,distance=7,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=6,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=5,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=4,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=3,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=2,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=1,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		},
+		"can_have_cherries=true,has_cherries=true,distance=0,persistence=true,waterlogged=false": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		}
+	}
 }

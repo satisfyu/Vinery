@@ -14,10 +14,7 @@ import daniking.vinery.client.render.block.WineRackRenderer;
 import daniking.vinery.client.render.entity.SimpleGeoRenderer;
 import daniking.vinery.client.render.entity.WanderingWinemakerRenderer;
 import daniking.vinery.client.render.feature.StrawHatModel;
-import daniking.vinery.registry.ObjectRegistry;
-import daniking.vinery.registry.VineryBlockEntityTypes;
-import daniking.vinery.registry.VineryEntites;
-import daniking.vinery.registry.VineryScreenHandlerTypes;
+import daniking.vinery.registry.*;
 import daniking.vinery.util.networking.VineryMessages;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
@@ -91,7 +88,7 @@ public class ClientSetup implements ClientModInitializer {
         EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
         EntityRendererRegistry.register(VineryBlockEntityTypes.CHAIR, ChairRenderer::new);
 
-        EntityModelLayerRegistry.registerModelLayer(StrawHatModel.LAYER_LOCATION, StrawHatModel::getTexturedModelData);
+        CustomArmorRegistry.registerModels();
 
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.STORAGE_ENTITY, StorageBlockEntityRenderer::new);
 

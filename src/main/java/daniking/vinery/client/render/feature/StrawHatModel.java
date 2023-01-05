@@ -5,6 +5,7 @@ import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.model.EntityModelPartNames;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 
@@ -13,16 +14,19 @@ public class StrawHatModel<T extends Entity> extends EntityModel<T> {
 	private final ModelPart root;
 
 	public StrawHatModel(ModelPart root) {
-		this.root = root.getChild("head");
+		this.root = root.getChild(EntityModelPartNames.HAT);
 	}
 
 	public static TexturedModelData getTexturedModelData() {
 		ModelData meshdefinition = new ModelData();
-		ModelPartData partdefinition = meshdefinition.getRoot();
+		ModelPartData modelPartData = meshdefinition.getRoot();
 
+		ModelPartData top_part = modelPartData.addChild(EntityModelPartNames.HAT, ModelPartBuilder.create().uv(0, 1).cuboid(-4.0F, -4.0F, -4.0F, 8.0F, 4.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
+
+		ModelPartData lower_part = top_part.addChild(EntityModelPartNames.HAT_RIM, ModelPartBuilder.create().uv(-16, 13).cuboid(-8.0F, 0.0F, -8.0F, 16.0F, 0.0F, 16.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 		//partdefinition.addChild("head", ModelPartBuilder.create().uv(-16, 14).cuboid(-16.0F, 0.0F, 0.0F, 16.0F, 0.0F, 16.0F, new Dilation(0.0F)).uv(2, 2).mirrored().cuboid(-12.0F, -4.01F, 4.0F, 8.0F, 4.0F, 8.0F, new Dilation(0.0F)).mirrored(false), ModelTransform.pivot(8.0F, 24.0F, -8.0F));
 
-		partdefinition.addChild("head", ModelPartBuilder.create().uv(-16, 14).cuboid(-8.0F, -7.0F, -8.0F, 16.0F, 0.0F, 16.0F).uv(2, 1).cuboid(-4.5F, -11.001F, -4.5F, 9.0F, 4.0F, 9.0F), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
+		//modelPartData.addChild("head", ModelPartBuilder.create().uv(-16, 14).cuboid(-8.0F, -7.0F, -8.0F, 16.0F, 0.0F, 16.0F).uv(2, 1).cuboid(-4.5F, -11.001F, -4.5F, 9.0F, 4.0F, 9.0F), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
 
 		return TexturedModelData.of(meshdefinition, 64, 64);
 	}

@@ -30,6 +30,6 @@ public class StrawHatItem extends CustomModelArmorItem{
 
     @Override
     public Float getOffset() {
-        return -1.35f;
+        return -1.8f;
     }
 }

@@ -3,11 +3,13 @@ package daniking.vinery.client.render.feature;
 
 import com.google.common.collect.Maps;
 import daniking.vinery.item.CustomModelArmorItem;
+import daniking.vinery.registry.CustomArmorRegistry;
 import daniking.vinery.registry.ObjectRegistry;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.EntityModel;
@@ -43,8 +45,8 @@ public class CustomArmorFeatureRenderer<T extends LivingEntity, M extends Entity
 	public EntityModel<T> getHatModel(T entity, EquipmentSlot slot) {
 		Item hatItem = getHatItem(entity, slot);
 		if(hatItem != null) {
-			if(MODELS.isEmpty()) { //register your models here!!!
-				MODELS.put(ObjectRegistry.STRAW_HAT, new StrawHatModel<>(modelLoader.getModelPart(StrawHatModel.LAYER_LOCATION)));
+			if(MODELS.isEmpty()) {
+				CustomArmorRegistry.registerArmor(MODELS, modelLoader);
 			}
 			return MODELS.get(hatItem);
 		}
