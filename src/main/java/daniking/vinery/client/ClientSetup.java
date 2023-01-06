@@ -10,29 +10,35 @@ import daniking.vinery.client.gui.FermentationBarrelGui;
 import daniking.vinery.client.gui.StoveGui;
 import daniking.vinery.client.gui.WinePressGui;
 import daniking.vinery.client.render.block.StorageBlockEntityRenderer;
+import daniking.vinery.client.render.entity.MuleModel;
+import daniking.vinery.client.render.entity.MuleRenderer;
 import daniking.vinery.client.render.entity.SimpleGeoRenderer;
 import daniking.vinery.client.render.entity.WanderingWinemakerRenderer;
+import daniking.vinery.client.render.feature.StrawHatModel;
 import daniking.vinery.registry.*;
 import daniking.vinery.util.networking.VineryMessages;
 import net.fabricmc.api.ClientModInitializer;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.fabricmc.api.EnvType;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.color.world.GrassColors;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
+import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.entity.player.PlayerEntity;
 
 @Environment(EnvType.CLIENT)
 public class ClientSetup implements ClientModInitializer {
+
+    public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(new VineryIdentifier("trader_mule"), "main");
 
     @Override
     public void onInitializeClient() {
@@ -79,7 +85,9 @@ public class ClientSetup implements ClientModInitializer {
         TerraformBoatClientHelper.registerModelLayers(new VineryIdentifier("cherry"));
 
 
-        EntityRendererRegistry.register(VineryEntites.MULE, mgr -> new SimpleGeoRenderer<>(mgr, Vinery.MODID, "wandering_mule"));
+        EntityRendererRegistry.register(VineryEntites.MULE, MuleRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(LAYER_LOCATION, MuleModel::getTexturedModelData);
+
         EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
         EntityRendererRegistry.register(VineryBlockEntityTypes.CHAIR, ChairRenderer::new);
 
