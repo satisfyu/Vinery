@@ -10,14 +10,11 @@ import daniking.vinery.client.gui.FermentationBarrelGui;
 import daniking.vinery.client.gui.StoveGui;
 import daniking.vinery.client.gui.WinePressGui;
 import daniking.vinery.client.render.block.StorageBlockEntityRenderer;
-import daniking.vinery.client.render.block.WineRackRenderer;
 import daniking.vinery.client.render.entity.SimpleGeoRenderer;
 import daniking.vinery.client.render.entity.WanderingWinemakerRenderer;
-import daniking.vinery.client.render.feature.StrawHatModel;
 import daniking.vinery.registry.*;
 import daniking.vinery.util.networking.VineryMessages;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.fabricmc.api.EnvType;
@@ -82,8 +79,6 @@ public class ClientSetup implements ClientModInitializer {
         TerraformBoatClientHelper.registerModelLayers(new VineryIdentifier("cherry"));
 
 
-        //GeoArmorRenderer.registerArmorRenderer(new StrawHatRenderer(), ObjectRegistry.STRAW_HAT);
-        
         EntityRendererRegistry.register(VineryEntites.MULE, mgr -> new SimpleGeoRenderer<>(mgr, Vinery.MODID, "wandering_mule"));
         EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
         EntityRendererRegistry.register(VineryBlockEntityTypes.CHAIR, ChairRenderer::new);
@@ -91,9 +86,6 @@ public class ClientSetup implements ClientModInitializer {
         CustomArmorRegistry.registerModels();
 
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.STORAGE_ENTITY, StorageBlockEntityRenderer::new);
-
-        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.WINE_RACK_GECKO_ENTITY,
-                (BlockEntityRendererFactory.Context rendererDispatcherIn) -> new WineRackRenderer());
     }
     
     public static PlayerEntity getClientPlayer() {

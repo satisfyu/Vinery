@@ -1,5 +1,6 @@
 package daniking.vinery.client.render.block;
 
+import daniking.vinery.Vinery;
 import daniking.vinery.block.StorageBlock;
 import daniking.vinery.block.entity.StorageBlockEntity;
 import net.minecraft.block.BlockState;
@@ -48,6 +49,9 @@ public class StorageBlockEntityRenderer implements BlockEntityRenderer<StorageBl
             else if(type.equals(StorageBlock.StorageType.FOUR_BOTTLE)){
                 renderFourBottles(entity, matrices, vertexConsumers, itemStacks);
             }
+            else if(type.equals(StorageBlock.StorageType.WINE_BOX)){
+                renderBottleInBox(entity, matrices, vertexConsumers, itemStacks);
+            }
 
             matrices.pop();
         }
@@ -67,6 +71,21 @@ public class StorageBlockEntityRenderer implements BlockEntityRenderer<StorageBl
         return LightmapTextureManager.pack(bLight, sLight);
     }
 
+
+    private static void renderBottleInBox(StorageBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers, DefaultedList<ItemStack> itemStacks){
+        BlockRenderManager manager = MinecraftClient.getInstance().getBlockRenderManager();
+        matrices.translate(0.35, 0.6, -0.35);
+        matrices.scale(0.7f, 0.7f, 0.7f);
+        ItemStack stack = itemStacks.get(0);
+        if (!stack.isEmpty() && stack.getItem() instanceof BlockItem blockItem) {
+            matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(90f));
+
+            matrices.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(90f));
+
+            manager.renderBlockAsEntity(blockItem.getBlock().getDefaultState(), matrices, vertexConsumers, getLightLevel(entity.getWorld(), entity.getPos()), OverlayTexture.DEFAULT_UV);
+        }
+
+    }
 
     private static void renderFourBottles(StorageBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers, DefaultedList<ItemStack> itemStacks){
         BlockRenderManager manager = MinecraftClient.getInstance().getBlockRenderManager();

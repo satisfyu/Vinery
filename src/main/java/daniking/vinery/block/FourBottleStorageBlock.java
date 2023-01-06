@@ -3,6 +3,7 @@ package daniking.vinery.block;
 import daniking.vinery.item.DrinkBlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Pair;
+import net.minecraft.util.math.Direction;
 
 public class FourBottleStorageBlock extends StorageBlock {
 
@@ -23,6 +24,11 @@ public class FourBottleStorageBlock extends StorageBlock {
     @Override
     public StorageType type() {
         return StorageType.FOUR_BOTTLE;
+    }
+
+    @Override
+    public Direction[] unAllowedDirections() {
+        return new Direction[]{Direction.DOWN, Direction.UP};
     }
 
     @Override
@@ -47,6 +53,6 @@ public class FourBottleStorageBlock extends StorageBlock {
             }
         }
 
-        return 1000000;
+        return Integer.MIN_VALUE;
     }
 }
