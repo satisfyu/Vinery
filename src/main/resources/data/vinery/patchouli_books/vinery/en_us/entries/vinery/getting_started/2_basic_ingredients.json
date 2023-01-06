@@ -10,12 +10,12 @@
     },
     {
       "type": "patchouli:spotlight",
-      "item": "vinery:white_grape_seeds",
+      "item": "vinery:white_grape",
       "text": "White Grapes can either being harvested from White Grape Bushes or White Grapevines.$(br2)You dont need any tools for harvesting Grapes."
     },
     {
       "type": "patchouli:spotlight",
-      "item": "vinery:red_grape_seeds",
+      "item": "vinery:red_grape",
       "text": "Red Grapes can either being harvested from Red Grape Bushes or White Grapevines.$(br2)You dont need any tools for harvesting Grapes."
     },
     {
