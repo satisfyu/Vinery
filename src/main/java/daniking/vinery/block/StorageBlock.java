@@ -17,6 +17,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
@@ -35,12 +36,12 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof StorageBlockEntity shelfBlockEntity) {
-            Optional<Pair<Float, Float>> optional = VineryUtils.getRelativeHitCoordinatesForBlockFace(hit, state.get(StorageBlock.FACING));
+            Optional<Pair<Float, Float>> optional = VineryUtils.getRelativeHitCoordinatesForBlockFace(hit, state.get(StorageBlock.FACING), unAllowedDirections());
             if (optional.isEmpty()) {
                 return ActionResult.PASS;
             } else {
                 int i = getSection(optional.get());
-                if(i == 1000000) return ActionResult.PASS;
+                if(i == Integer.MIN_VALUE) return ActionResult.PASS;
                 if (!shelfBlockEntity.getInventory().get(i).isEmpty()) {
                     remove(world, pos, player, shelfBlockEntity, i);
                     return ActionResult.success(world.isClient);
@@ -59,7 +60,7 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
         }
     }
 
-    public abstract boolean canInsertStack(ItemStack stack);
+
 
     private static void add(World level, BlockPos blockPos, PlayerEntity player, StorageBlockEntity shelfBlockEntity, ItemStack itemStack, int i) {
         if (!level.isClient) {
@@ -108,6 +109,10 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
 
     public abstract StorageType type();
 
+    public abstract Direction[] unAllowedDirections();
+
+    public abstract boolean canInsertStack(ItemStack stack);
+
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
@@ -118,7 +123,8 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
     public enum StorageType{
         FOUR_BOTTLE,
         NINE_BOTTLE,
-        SHELF
+        SHELF,
+        WINE_BOX
     }
 
 }

@@ -44,6 +44,11 @@ public class ShelfBlock extends StorageBlock{
     }
 
     @Override
+    public Direction[] unAllowedDirections() {
+        return new Direction[]{Direction.DOWN};
+    }
+
+    @Override
     public boolean canInsertStack(ItemStack stack) {
         return !(stack.getItem() instanceof BlockItem) || stack.isIn(VineryTags.IGNORE_BLOCK_ITEM);
     }

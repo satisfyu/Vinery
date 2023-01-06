@@ -16,6 +16,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,9 +70,10 @@ public class VineryUtils {
         return buffer[0];
     }
 
-    public static Optional<Pair<Float, Float>> getRelativeHitCoordinatesForBlockFace(BlockHitResult blockHitResult, Direction direction) {
+    public static Optional<Pair<Float, Float>> getRelativeHitCoordinatesForBlockFace(BlockHitResult blockHitResult, Direction direction, Direction[] unAllowedDirections) {
         Direction direction2 = blockHitResult.getSide();
-        if (direction != direction2 && direction2 != Direction.UP) {
+        if(Arrays.stream(unAllowedDirections).toList().contains(direction2)) return Optional.empty();
+        if (direction != direction2 && direction2 != Direction.UP  && direction2 != Direction.DOWN) {
             return Optional.empty();
         } else {
             BlockPos blockPos = blockHitResult.getBlockPos().offset(direction2);
@@ -81,7 +83,7 @@ public class VineryUtils {
 
             float y = (float) vec3.getY();
 
-            if(direction2 == Direction.UP) direction2 = direction;
+            if(direction2 == Direction.UP || direction2 == Direction.DOWN) direction2 = direction;
             return switch (direction2) {
                 case NORTH -> Optional.of(new Pair<>((float) (1.0 - d), y));
                 case SOUTH -> Optional.of(new Pair<>(d, y));

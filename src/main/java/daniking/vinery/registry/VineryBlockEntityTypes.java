@@ -29,10 +29,8 @@ public class VineryBlockEntityTypes {
     public static final BlockEntityType<WineRackBlockEntity> WINE_RACK_ENTITY = create("wine_rack", FabricBlockEntityTypeBuilder.create(WineRackBlockEntity::new, ObjectRegistry.WINE_RACK_3, ObjectRegistry.WINE_RACK_5).build());
 
     public static final BlockEntityType<WineRackStorageBlockEntity> WINE_RACK_STORAGE_ENTITY = create("wine_rack_storage", FabricBlockEntityTypeBuilder.create(WineRackStorageBlockEntity::new, ObjectRegistry.WINE_RACK_3, ObjectRegistry.WINE_RACK_5).build());
-    public static final BlockEntityType<GeckoStorageBlockEntity> WINE_RACK_GECKO_ENTITY = create("wine_rack_gecko", FabricBlockEntityTypeBuilder.create(
-            GeckoStorageBlockEntity::new, ObjectRegistry.WINE_BOX).build());
     public static final BlockEntityType<StorageBlockEntity> STORAGE_ENTITY = create("storage", FabricBlockEntityTypeBuilder.create(
-            StorageBlockEntity::new, ObjectRegistry.SHELF, ObjectRegistry.WINE_RACK_1, ObjectRegistry.WINE_RACK_2).build());
+            StorageBlockEntity::new, ObjectRegistry.SHELF, ObjectRegistry.WINE_RACK_1, ObjectRegistry.WINE_RACK_2, ObjectRegistry.WINE_BOX).build());
 
     public static final EntityType<ChairEntity> CHAIR = Registry.register(
             Registry.ENTITY_TYPE,
