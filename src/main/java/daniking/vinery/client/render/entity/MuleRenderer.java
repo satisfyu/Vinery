@@ -2,6 +2,7 @@ package daniking.vinery.client.render.entity;
 
 import daniking.vinery.VineryIdentifier;
 import daniking.vinery.client.ClientSetup;
+import daniking.vinery.client.model.MuleModel;
 import daniking.vinery.entity.TraderMuleEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

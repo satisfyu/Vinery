@@ -12,16 +12,8 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class TraderMuleEntity extends TraderLlamaEntity implements IAnimatable {
-	private final AnimationFactory animationFactory = new AnimationFactory(this);
+public class TraderMuleEntity extends TraderLlamaEntity {
 	
 	public TraderMuleEntity(EntityType<? extends TraderMuleEntity> entityType, World world) {
 		super(entityType, world);
@@ -39,29 +31,7 @@ public class TraderMuleEntity extends TraderLlamaEntity implements IAnimatable {
 		this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 6.0f));
 		this.goalSelector.add(9, new LookAroundGoal(this));
 	}
-	
-	private PlayState animControllerMain(AnimationEvent<?> e) {
-		if (this.getTemper() > 0) {
-			e.getController().setAnimation(new AnimationBuilder().addAnimation("fight / roar", false));
-		} else if (this.isEatingGrass()) {
-			e.getController().setAnimation(new AnimationBuilder().addAnimation("eat", false).addAnimation("eat2", true));
-		} else if (e.isMoving()) {
-			e.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
-		} else {
-			e.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
-		}
-		return PlayState.CONTINUE;
-	}
-	
-	@Override
-	public void registerControllers(AnimationData animationData) {
-		animationData.addAnimationController(new AnimationController<>(this, "controller", 3F, this::animControllerMain));
-	}
-	
-	@Override
-	public AnimationFactory getFactory() {
-		return animationFactory;
-	}
+
 	
 	@Override
 	protected LlamaEntity createChild() {

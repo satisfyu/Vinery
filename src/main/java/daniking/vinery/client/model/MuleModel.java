@@ -1,4 +1,4 @@
-package daniking.vinery.client.render.entity;
+package daniking.vinery.client.model;
 
 import daniking.vinery.entity.TraderMuleEntity;
 import net.minecraft.client.model.*;

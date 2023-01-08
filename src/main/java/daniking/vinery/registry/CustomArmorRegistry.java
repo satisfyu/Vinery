@@ -1,6 +1,6 @@
 package daniking.vinery.registry;
 
-import daniking.vinery.client.render.feature.StrawHatModel;
+import daniking.vinery.client.model.feature.StrawHatModel;
 import daniking.vinery.item.CustomModelArmorItem;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.minecraft.client.render.entity.model.EntityModel;

@@ -50,15 +50,12 @@ dependencies {
 	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
 	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"
 
-	modImplementation('software.bernie.geckolib:geckolib-fabric-1.19:3.1.26')
-
 	modImplementation "curse.maven:farmersdelightfabric-482834:${project.delight_version}"
-	include('software.bernie.geckolib:geckolib-fabric-1.19:3.1.26')
 
 	include(modImplementation ("net.moddingplayground.frame:frame-tabbed-item-groups-v0:0.2.4+0aca9b56a9"))
+
 	// REI Runtime for Fabric
 	modApi "dev.architectury:architectury-fabric:$architectury_version"
-
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version"
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:$rei_version"

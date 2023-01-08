@@ -1,4 +1,4 @@
-package daniking.vinery.client.render.feature;
+package daniking.vinery.client.model.feature;
 
 import daniking.vinery.VineryIdentifier;
 import net.minecraft.client.model.*;
