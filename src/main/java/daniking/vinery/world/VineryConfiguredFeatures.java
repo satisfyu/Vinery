@@ -2,11 +2,9 @@ package daniking.vinery.world;
 
 import com.google.common.collect.ImmutableList;
 import daniking.vinery.block.CherryLeaves;
-import daniking.vinery.block.VariantLeavesBlock;
 import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.VineryIdentifier;
 import daniking.vinery.block.GrapeBush;
-import daniking.vinery.world.feature.VineryVinesFeature;
 import net.fabricmc.fabric.api.biome.v1.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,7 +24,6 @@ import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliage.RandomSpreadFoliagePlacer;
 import net.minecraft.world.gen.placementmodifier.*;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
-import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
 import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer;
@@ -39,7 +36,6 @@ import static daniking.vinery.block.CherryLeaves.VARIANT;
 
 public class VineryConfiguredFeatures {
 
-    public static final Feature<SimpleBlockFeatureConfig> VINES_FEATURE = new VineryVinesFeature(SimpleBlockFeatureConfig.CODEC);
 
     public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> RED_GRAPE_BUSH_PATCH = ConfiguredFeatures.register(VineryIdentifier.asString("red_grape_bush"), Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(ObjectRegistry.RED_GRAPE_BUSH.getDefaultState().with(GrapeBush.AGE, 3))), List.of(Blocks.GRASS_BLOCK), 36));
     public static final RegistryEntry<PlacedFeature> RED_GRAPE_PATCH_CHANCE = PlacedFeatures.register(VineryIdentifier.asString("red_grape_bush_chance"), RED_GRAPE_BUSH_PATCH, RarityFilterPlacementModifier.of(92), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
@@ -64,7 +60,6 @@ public class VineryConfiguredFeatures {
     }
     
     public static void init() {
-        Registry.register(Registry.FEATURE, new VineryIdentifier("vines_feature"), VINES_FEATURE);
         BiomeModification world = BiomeModifications.create(new VineryIdentifier("world_features"));
         Predicate<BiomeSelectionContext> bushBiomes = BiomeSelectors.includeByKey(BiomeKeys.FOREST, BiomeKeys.PLAINS, BiomeKeys.TAIGA, BiomeKeys.RIVER, BiomeKeys.SWAMP, BiomeKeys.JUNGLE);
         Predicate<BiomeSelectionContext> grassFlowerBiomes = BiomeSelectors.includeByKey(BiomeKeys.PLAINS, BiomeKeys.TAIGA, BiomeKeys.RIVER, BiomeKeys.SWAMP);
