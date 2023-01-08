@@ -51,7 +51,7 @@ public class DrinkBlockItem extends BlockItem {
                                 statusEffect.adjustModifierAmount(statusEffectInstance.getFirst().getAmplifier(), entityAttributeModifier),
                                 entityAttributeModifier.getOperation()
                         );
-                        list3.add(new Pair(entry.getKey(), entityAttributeModifier2));
+                        list3.add(new Pair<>(entry.getKey(), entityAttributeModifier2));
                     }
                 }
 

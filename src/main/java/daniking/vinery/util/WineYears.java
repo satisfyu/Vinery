@@ -18,7 +18,15 @@ public class WineYears {
 	}
 	
 	public static int getWineAge(ItemStack wine, World world) {
-		return getYear(world) - getWineYear(wine);
+		int wineYear = getWineYear(wine);
+
+		// creative/command wine fix (isn't the best solution)
+		if(wineYear == 0){
+			setWineYear(wine, world);
+			wineYear = getWineYear(wine);
+		}
+
+		return getYear(world) - wineYear;
 	}
 	
 	public static void setWineYear(ItemStack wine, World world) {
