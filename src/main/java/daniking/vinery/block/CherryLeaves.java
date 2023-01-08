@@ -4,6 +4,8 @@ import daniking.vinery.registry.ObjectRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -21,6 +23,8 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.function.Consumer;
+
 public class CherryLeaves extends LeavesBlock {
 
     public static final BooleanProperty VARIANT = BooleanProperty.of("can_have_cherries");
@@ -36,6 +40,7 @@ public class CherryLeaves extends LeavesBlock {
         ItemStack stack = player.getStackInHand(hand);
         if(state.get(VARIANT) && state.get(HAS_CHERRIES) && stack.getItem() instanceof ShearsItem) {
             if(!world.isClient()) {
+                stack.damage(1, player, playerEntity ->  playerEntity.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
                 CherryLeaves.dropStack(world, pos, hit.getSide(), new ItemStack(ObjectRegistry.CHERRY, world.getRandom().nextBetween(1, 3)));
                 world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1F, 1F);
                 world.setBlockState(pos, state.with(HAS_CHERRIES, false));
