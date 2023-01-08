@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:crafting",
-      "recipe": "vinery:recipes.wine_fermentation/aegis_wine",
+      "recipe": "vinery:wine_fermentation/aegis_wine",
       "recipe2": "vinery:recipes.wine_fermentation/apple_cider"
 
     },

@@ -54,7 +54,9 @@ public class CherryLeaves extends LeavesBlock {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return super.getPlacementState(ctx).with(VARIANT, ctx.getPlayer() != null && ctx.getPlayer().getAbilities().creativeMode);
+        PlayerEntity p = ctx.getPlayer();
+        boolean b = p != null && p.isSneaking();
+        return super.getPlacementState(ctx).with(VARIANT, ctx.getPlayer().getAbilities().creativeMode && b);
     }
 
 
