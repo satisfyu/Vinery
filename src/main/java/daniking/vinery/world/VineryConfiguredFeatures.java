@@ -1,6 +1,7 @@
 package daniking.vinery.world;
 
 import com.google.common.collect.ImmutableList;
+import daniking.vinery.block.CherryLeaves;
 import daniking.vinery.block.VariantLeavesBlock;
 import daniking.vinery.registry.ObjectRegistry;
 import daniking.vinery.VineryIdentifier;
@@ -59,7 +60,7 @@ public class VineryConfiguredFeatures {
     }
     
     public static WeightedBlockStateProvider cherryLeaveProvider(){
-        return new WeightedBlockStateProvider(DataPool.<BlockState>builder().add(ObjectRegistry.CHERRY_LEAVES.getDefaultState(), 3).add(ObjectRegistry.CHERRY_LEAVES.getDefaultState().with(VARIANT, true), 1));
+        return new WeightedBlockStateProvider(DataPool.<BlockState>builder().add(ObjectRegistry.CHERRY_LEAVES.getDefaultState(), 10).add(ObjectRegistry.CHERRY_LEAVES.getDefaultState().with(VARIANT, true), 4).add(ObjectRegistry.CHERRY_LEAVES.getDefaultState().with(VARIANT, true).with(CherryLeaves.HAS_CHERRIES, true), 2));
     }
     
     public static void init() {
