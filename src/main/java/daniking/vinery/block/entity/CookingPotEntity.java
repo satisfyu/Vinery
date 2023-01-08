@@ -75,15 +75,15 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
-		Inventories.readNbt(nbt, this.inventory);
-		nbt.putInt("CookingTime", this.cookingTime);
+			Inventories.readNbt(nbt, this.inventory);
+			this.cookingTime = nbt.getInt("CookingTime");
 	}
 	
 	@Override
 	protected void writeNbt(NbtCompound nbt) {
-		Inventories.writeNbt(nbt, this.inventory);
-		this.cookingTime = nbt.getInt("CookingTime");
 		super.writeNbt(nbt);
+		Inventories.writeNbt(nbt, this.inventory);
+		nbt.putInt("CookingTime", this.cookingTime);
 	}
 	
 	public boolean isBeingBurned() {
