@@ -2,7 +2,8 @@
 	"credit": "Made by Satisfy",
 	"texture_size": [16, 32],
 	"textures": {
-		"1": "vinery:block/wine_box"
+		"1": "vinery:block/wine_box",
+		"particle": "vinery:block/wine_box"
 	},
 	"elements": [
 		{
