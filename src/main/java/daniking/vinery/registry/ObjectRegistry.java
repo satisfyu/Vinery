@@ -5,6 +5,7 @@ import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import com.terraformersmc.terraform.wood.block.StrippableLogBlock;
 import daniking.vinery.GrapeBushSeedItem;
+import daniking.vinery.Vinery;
 import daniking.vinery.VineryIdentifier;
 import daniking.vinery.block.FlowerPotBlock;
 import daniking.vinery.block.*;
@@ -39,6 +40,7 @@ import java.util.function.Consumer;
 
 import static daniking.vinery.registry.VineryEntites.MULE;
 import static daniking.vinery.registry.VineryEntites.WANDERING_WINEMAKER;
+import static net.minecraft.block.ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE;
 
 public class ObjectRegistry {
 
@@ -261,18 +263,16 @@ public class ObjectRegistry {
         fuelRegistry.add(FERMENTATION_BARREL, 300);
     }
 
+
+
     private static Item.Settings getSettings(Consumer<Item.Settings> consumer) {
-        Item.Settings settings = new Item.Settings();
+        Item.Settings settings = new Item.Settings().group(Vinery.CREATIVE_TAB);
         consumer.accept(settings);
         return settings;
     }
 
     private static Item.Settings getSettings() {
         return getSettings(settings -> {});
-    }
-
-    private static Block.Settings getVineSettings() {
-        return FabricBlockSettings.copyOf(Blocks.VINE);
     }
 
     private static Block.Settings getBushSettings() {

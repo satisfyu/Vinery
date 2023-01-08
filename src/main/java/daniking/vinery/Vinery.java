@@ -3,6 +3,7 @@ package daniking.vinery;
 import daniking.vinery.registry.*;
 import daniking.vinery.world.VineryConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
@@ -11,7 +12,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.LootTableEntry;
 import net.minecraft.tag.TagKey;
@@ -31,9 +31,9 @@ public class Vinery implements ModInitializer {
     public static final String MODID = "vinery";
 
     public static final Logger LOGGER = LogManager.getLogger(MODID);
-    //public static final ItemGroup CREATIVE_TAB = FabricItemGroupBuilder.build(new VineryIdentifier("creative_tab"), () -> new ItemStack(ObjectRegistry.RED_GRAPE));
+    public static final ItemGroup CREATIVE_TAB = FabricItemGroupBuilder.build(new VineryIdentifier("creative_tab"), () -> new ItemStack(ObjectRegistry.RED_GRAPE));
     public static final TagKey<Block> ALLOWS_COOKING_ON_POT = TagKey.of(Registry.BLOCK_KEY, new VineryIdentifier("allows_cooking_on_pot"));
-
+/*
     public static final ItemGroup ITEM_GROUP_TABBED_ICON_TEXTURES =
             TabbedItemGroup.builder()
                     .defaultPredicate(ALWAYS)
@@ -44,7 +44,7 @@ public class Vinery implements ModInitializer {
 
 
                     .build(new VineryIdentifier("vinery_tab"), g -> GUIIcon.of(() -> new ItemStack(ObjectRegistry.RED_GRAPE)));
-
+*/
     @Override
     public void onInitialize() {
         VineryEffects.init();
