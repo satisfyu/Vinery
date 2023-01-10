@@ -1,11 +1,13 @@
 package daniking.vinery.block;
 
+import daniking.vinery.registry.StorageTypes;
 import daniking.vinery.util.VineryTags;
 import daniking.vinery.util.VineryUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.Util;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -64,15 +66,14 @@ public class ShelfBlock extends StorageBlock{
     }
 
     @Override
-    public StorageType type() {
-        return StorageType.SHELF;
+    public Identifier type() {
+        return StorageTypes.SHELF;
     }
 
     @Override
-    public int getSection(Pair<Float, Float> ff) {
+    public int getSection(Float f, Float y) {
         int nSection;
         float oneS = (float) 1 / 9;
-        float f = ff.getLeft();
 
         if (f < oneS) {
             nSection = 0;

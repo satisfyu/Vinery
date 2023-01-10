@@ -21,7 +21,6 @@ public class JellieEffect extends StatusEffect {
         }
     }
 
-    // This method is called when it applies the status effect. We implement custom functionality here.
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity.getHealth() < entity.getMaxHealth()) {

@@ -22,6 +22,9 @@
     ],
     "rei_client": [
       "daniking.vinery.compat.rei.VineryReiClientPlugin"
+    ],
+    "vinery": [
+      "daniking.vinery.registry.StorageTypes"
     ]
   },
   "mixins": [

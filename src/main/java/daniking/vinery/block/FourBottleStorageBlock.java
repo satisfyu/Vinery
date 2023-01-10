@@ -1,7 +1,9 @@
 package daniking.vinery.block;
 
 import daniking.vinery.item.DrinkBlockItem;
+import daniking.vinery.registry.StorageTypes;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.Direction;
 
@@ -22,8 +24,8 @@ public class FourBottleStorageBlock extends StorageBlock {
     }
 
     @Override
-    public StorageType type() {
-        return StorageType.FOUR_BOTTLE;
+    public Identifier type() {
+        return StorageTypes.FOUR_BOTTLE;
     }
 
     @Override
@@ -32,9 +34,7 @@ public class FourBottleStorageBlock extends StorageBlock {
     }
 
     @Override
-    public int getSection(Pair<Float, Float> ff) {
-        float x = ff.getLeft();
-        float y = ff.getRight();
+    public int getSection(Float x, Float y) {
 
         if (x > 0.375 && x < 0.625) {
             if(y >= 0.55){
