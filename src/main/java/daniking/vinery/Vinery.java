@@ -10,21 +10,18 @@ import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.ComposterBlock;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.LootTableEntry;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.moddingplayground.frame.api.tabbeditemgroups.v0.Tab;
-import net.moddingplayground.frame.api.tabbeditemgroups.v0.TabbedItemGroup;
-import net.moddingplayground.frame.api.util.GUIIcon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import static net.moddingplayground.frame.api.tabbeditemgroups.v0.Tab.Predicate.ALWAYS;
-import static net.moddingplayground.frame.api.tabbeditemgroups.v0.Tab.Predicate.items;
 
 public class Vinery implements ModInitializer {
 
@@ -63,11 +60,13 @@ public class Vinery implements ModInitializer {
         VinerySoundEvents.init();
         VineryVillagers.init();
         VineryEntites.init();
-
+        VineryCompostableItems.init();
 
         FabricLoader.getInstance().getModContainer(MODID).ifPresent(container -> {
             ResourceManagerHelper.registerBuiltinResourcePack(new VineryIdentifier("bushy_leaves"), container, ResourcePackActivationType.DEFAULT_ENABLED);
         });
     }
+
+
 }
 
