@@ -126,7 +126,7 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
     private static HashMap<Identifier, StorageTypeRenderer> STORAGE_TYPES = new HashMap<>();
 
 
-    public static Identifier registerStorageType(Identifier name, StorageTypeRenderer renderer, Block... blocks){
+    public static Identifier registerStorageType(Identifier name, StorageTypeRenderer renderer){
          STORAGE_TYPES.put(name, renderer);
          return name;
     }
