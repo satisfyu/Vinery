@@ -4,8 +4,11 @@ import daniking.vinery.Vinery;
 import daniking.vinery.VineryIdentifier;
 import daniking.vinery.block.entity.*;
 import daniking.vinery.block.entity.chair.ChairEntity;
+import daniking.vinery.util.StorageTypeApi;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -13,8 +16,7 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class VineryBlockEntityTypes {
 
@@ -29,8 +31,28 @@ public class VineryBlockEntityTypes {
     public static final BlockEntityType<WineRackBlockEntity> WINE_RACK_ENTITY = create("wine_rack", FabricBlockEntityTypeBuilder.create(WineRackBlockEntity::new, ObjectRegistry.WINE_RACK_3, ObjectRegistry.WINE_RACK_5).build());
 
     public static final BlockEntityType<WineRackStorageBlockEntity> WINE_RACK_STORAGE_ENTITY = create("wine_rack_storage", FabricBlockEntityTypeBuilder.create(WineRackStorageBlockEntity::new, ObjectRegistry.WINE_RACK_3, ObjectRegistry.WINE_RACK_5).build());
+
+
+
+    public static Block[] b(){
+        Set<Block> set = new HashSet<>();
+        FabricLoader.getInstance().getEntrypointContainers("vinery", StorageTypeApi.class).forEach(entrypoint -> {
+            String modId = entrypoint.getProvider().getMetadata().getId();
+            try {
+                StorageTypeApi api = entrypoint.getEntrypoint();
+
+                api.registerBlocks(set);
+            } catch (Throwable e) {
+                Vinery.LOGGER.error("Mod {} provides a broken implementation of CristelLibRegistry", modId, e);
+            }
+        });
+        return set.toArray(new Block[0]);
+    }
+
     public static final BlockEntityType<StorageBlockEntity> STORAGE_ENTITY = create("storage", FabricBlockEntityTypeBuilder.create(
-            StorageBlockEntity::new, ObjectRegistry.SHELF, ObjectRegistry.WINE_RACK_1, ObjectRegistry.WINE_RACK_2, ObjectRegistry.WINE_BOX).build());
+            StorageBlockEntity::new, b()).build());
+
+
 
     public static final EntityType<ChairEntity> CHAIR = Registry.register(
             Registry.ENTITY_TYPE,
