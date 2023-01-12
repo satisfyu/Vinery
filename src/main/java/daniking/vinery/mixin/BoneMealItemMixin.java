@@ -1,6 +1,7 @@
 package daniking.vinery.mixin;
 
-import daniking.vinery.item.WinemakerArmorItem;
+import daniking.vinery.item.WineMakerArmorItem;
+import daniking.vinery.item.WinemakerDefaultArmorItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BoneMealItem;
@@ -23,10 +24,10 @@ public abstract class BoneMealItemMixin {
 			ItemStack chestplate = player.getEquippedStack(EquipmentSlot.CHEST);
 			ItemStack leggings = player.getEquippedStack(EquipmentSlot.LEGS);
 			ItemStack boots = player.getEquippedStack(EquipmentSlot.FEET);
-			if (helmet != null && helmet.getItem() instanceof WinemakerArmorItem &&
-					chestplate != null && chestplate.getItem() instanceof WinemakerArmorItem &&
-					leggings != null && leggings.getItem() instanceof WinemakerArmorItem &&
-					boots != null && boots.getItem() instanceof WinemakerArmorItem) {
+			if (helmet != null && helmet.getItem() instanceof WineMakerArmorItem &&
+					chestplate != null && chestplate.getItem() instanceof WineMakerArmorItem &&
+					leggings != null && leggings.getItem() instanceof WineMakerArmorItem &&
+					boots != null && boots.getItem() instanceof WineMakerArmorItem) {
 				context.getStack().increment(1);
 			}
 		}

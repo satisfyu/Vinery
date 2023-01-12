@@ -1,7 +1,9 @@
 package daniking.vinery.block;
 
 import daniking.vinery.block.entity.StorageBlockEntity;
+import daniking.vinery.client.render.block.StorageTypeRenderer;
 import daniking.vinery.util.VineryUtils;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -23,8 +25,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public abstract class StorageBlock extends FacingBlock implements BlockEntityProvider {
 
@@ -40,7 +41,8 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
             if (optional.isEmpty()) {
                 return ActionResult.PASS;
             } else {
-                int i = getSection(optional.get());
+                Pair<Float, Float> ff = optional.get();
+                int i = getSection(ff.getLeft(), ff.getRight());
                 if(i == Integer.MIN_VALUE) return ActionResult.PASS;
                 if (!shelfBlockEntity.getInventory().get(i).isEmpty()) {
                     remove(world, pos, player, shelfBlockEntity, i);
@@ -107,7 +109,7 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
 
     public abstract int size();
 
-    public abstract StorageType type();
+    public abstract Identifier type();
 
     public abstract Direction[] unAllowedDirections();
 
@@ -118,13 +120,18 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new StorageBlockEntity(pos, state, size());
     }
-    public abstract int getSection(Pair<Float, Float> ff);
+    public abstract int getSection(Float x, Float y);
 
-    public enum StorageType{
-        FOUR_BOTTLE,
-        NINE_BOTTLE,
-        SHELF,
-        WINE_BOX
+
+    private static HashMap<Identifier, StorageTypeRenderer> STORAGE_TYPES = new HashMap<>();
+
+
+    public static Identifier registerStorageType(Identifier name, StorageTypeRenderer renderer){
+         STORAGE_TYPES.put(name, renderer);
+         return name;
     }
 
+    public static StorageTypeRenderer getRendererForId(Identifier name){
+        return STORAGE_TYPES.get(name);
+    }
 }

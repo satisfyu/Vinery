@@ -2,6 +2,7 @@ package daniking.vinery.block;
 
 import daniking.vinery.Vinery;
 import daniking.vinery.item.DrinkBlockItem;
+import daniking.vinery.registry.StorageTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -14,10 +15,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Pair;
+import net.minecraft.util.*;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -86,12 +84,12 @@ public class WineBox extends StorageBlock {
     }
 
     @Override
-    public StorageType type() {
-        return StorageType.WINE_BOX;
+    public Identifier type() {
+        return StorageTypes.WINE_BOX;
     }
 
     @Override
-    public int getSection(Pair<Float, Float> ff) {
+    public int getSection(Float x, Float y) {
         return 0;
     }
 

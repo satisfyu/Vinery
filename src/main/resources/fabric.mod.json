@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "vinery",
-  "version": "1.1.3",
+  "version": "1.1.4",
 
   "name": "Vinery",
   "description": "Vinery contains nearly everything needed for not only creating wine but also for building up your own vinery.",
@@ -22,6 +22,9 @@
     ],
     "rei_client": [
       "daniking.vinery.compat.rei.VineryReiClientPlugin"
+    ],
+    "vinery": [
+      "daniking.vinery.registry.StorageTypes"
     ]
   },
   "mixins": [
