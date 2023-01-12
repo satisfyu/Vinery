@@ -1,6 +1,5 @@
 package daniking.vinery;
 
-import daniking.vinery.registry.*;
 import daniking.vinery.world.VineryConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;

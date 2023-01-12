@@ -12,7 +12,6 @@ import daniking.vinery.client.render.block.StorageBlockEntityRenderer;
 import daniking.vinery.client.model.MuleModel;
 import daniking.vinery.client.render.entity.MuleRenderer;
 import daniking.vinery.client.render.entity.WanderingWinemakerRenderer;
-import daniking.vinery.registry.*;
 import daniking.vinery.util.networking.VineryMessages;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;

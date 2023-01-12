@@ -3,7 +3,6 @@ package daniking.vinery.registry;
 import daniking.vinery.Vinery;
 import daniking.vinery.VineryIdentifier;
 import daniking.vinery.block.StorageBlock;
-import daniking.vinery.client.render.block.*;
 import daniking.vinery.util.StorageTypeApi;
 import java.util.Set;
 import net.minecraft.resources.ResourceLocation;
