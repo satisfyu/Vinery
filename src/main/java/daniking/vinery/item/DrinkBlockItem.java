@@ -105,6 +105,6 @@ public class DrinkBlockItem extends BlockItem {
         }
         
         tooltip.add(Text.empty());
-        tooltip.add(Text.translatable("tooltip.vinery.year").formatted(Formatting.GRAY).append(Text.of(" " + WineYears.getWineYear(stack))));
+        tooltip.add(Text.translatable("tooltip.vinery.year").formatted(Formatting.GRAY).append(Text.of(" " + WineYears.getWineYear(stack, world))));
     }
 }
