@@ -1,6 +1,6 @@
 package satisfyu.vinery.block;
 
-import satisfyu.vinery.GrapeBushSeedItem;
+import satisfyu.vinery.item.GrapeBushSeedItem;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.GrapevineType;
 import net.minecraft.block.*;

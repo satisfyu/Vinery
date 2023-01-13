@@ -1,4 +1,4 @@
-package satisfyu.vinery;
+package satisfyu.vinery.item;
 
 import satisfyu.vinery.util.GrapevineType;
 import net.minecraft.block.Block;
