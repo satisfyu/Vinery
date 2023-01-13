@@ -2,12 +2,16 @@ package satisfyu.vinery.item;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.registry.ObjectRegistry;
 
 import java.util.List;
 
@@ -30,6 +34,11 @@ public class AppleSauceItem extends Item {
         }
 
         super.appendTooltip(stack, world, tooltip, context);
+    }
+
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        ItemStack itemStack = super.finishUsing(stack, world, user);
+        return user instanceof PlayerEntity && ((PlayerEntity)user).getAbilities().creativeMode ? itemStack : new ItemStack(Items.BOWL);
     }
 
 }

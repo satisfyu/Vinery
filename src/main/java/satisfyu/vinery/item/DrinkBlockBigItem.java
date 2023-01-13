@@ -2,6 +2,9 @@ package satisfyu.vinery.item;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.WineYears;
 import net.minecraft.block.Block;
 import net.minecraft.client.item.TooltipContext;
@@ -106,5 +109,10 @@ public class DrinkBlockBigItem extends BlockItem {
     
         tooltip.add(Text.empty());
         tooltip.add(Text.translatable("tooltip.vinery.year").formatted(Formatting.GRAY).append(Text.of(" " + WineYears.getWineYear(stack, world))));
+    }
+
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        ItemStack itemStack = super.finishUsing(stack, world, user);
+        return user instanceof PlayerEntity && ((PlayerEntity)user).getAbilities().creativeMode ? itemStack : new ItemStack(ObjectRegistry.WINE_BOTTLE);
     }
 }
