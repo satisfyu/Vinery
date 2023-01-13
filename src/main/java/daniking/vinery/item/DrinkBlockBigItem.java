@@ -51,7 +51,7 @@ public class DrinkBlockBigItem extends BlockItem {
                                 statusEffect.adjustModifierAmount(statusEffectInstance.getFirst().getAmplifier(), entityAttributeModifier),
                                 entityAttributeModifier.getOperation()
                         );
-                        list3.add(new Pair(entry.getKey(), entityAttributeModifier2));
+                        list3.add(new Pair<>(entry.getKey(), entityAttributeModifier2));
                     }
                 }
 
@@ -105,6 +105,6 @@ public class DrinkBlockBigItem extends BlockItem {
         }
     
         tooltip.add(Text.empty());
-        tooltip.add(Text.translatable("tooltip.vinery.year").formatted(Formatting.GRAY).append(Text.of(" " + WineYears.getWineYear(stack))));
+        tooltip.add(Text.translatable("tooltip.vinery.year").formatted(Formatting.GRAY).append(Text.of(" " + WineYears.getWineYear(stack, world))));
     }
 }

@@ -64,7 +64,7 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
 
 
 
-    private static void add(World level, BlockPos blockPos, PlayerEntity player, StorageBlockEntity shelfBlockEntity, ItemStack itemStack, int i) {
+    public void add(World level, BlockPos blockPos, PlayerEntity player, StorageBlockEntity shelfBlockEntity, ItemStack itemStack, int i) {
         if (!level.isClient) {
             SoundEvent soundEvent = SoundEvents.BLOCK_WOOD_PLACE;
             shelfBlockEntity.setStack(i, itemStack.split(1));
@@ -76,7 +76,7 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
         }
     }
 
-    private static void remove(World level, BlockPos blockPos, PlayerEntity player, StorageBlockEntity shelfBlockEntity, int i) {
+    public void remove(World level, BlockPos blockPos, PlayerEntity player, StorageBlockEntity shelfBlockEntity, int i) {
         if (!level.isClient) {
             ItemStack itemStack = shelfBlockEntity.removeStack(i);
             SoundEvent soundEvent = SoundEvents.BLOCK_WOOD_PLACE;

@@ -4,7 +4,6 @@ import daniking.vinery.item.DrinkBlockItem;
 import daniking.vinery.registry.StorageTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
 import net.minecraft.util.math.Direction;
 
 public class FourBottleStorageBlock extends StorageBlock {
@@ -23,6 +22,7 @@ public class FourBottleStorageBlock extends StorageBlock {
         return 4;
     }
 
+
     @Override
     public Identifier type() {
         return StorageTypes.FOUR_BOTTLE;
@@ -32,6 +32,7 @@ public class FourBottleStorageBlock extends StorageBlock {
     public Direction[] unAllowedDirections() {
         return new Direction[]{Direction.DOWN, Direction.UP};
     }
+
 
     @Override
     public int getSection(Float x, Float y) {

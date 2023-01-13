@@ -1,6 +1,7 @@
 package daniking.vinery.util;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
 
 public class WineYears {
@@ -18,22 +19,17 @@ public class WineYears {
 	}
 	
 	public static int getWineAge(ItemStack wine, World world) {
-		int wineYear = getWineYear(wine);
-
-		// creative/command wine fix (isn't the best solution)
-		if(wineYear == 0){
-			setWineYear(wine, world);
-			wineYear = getWineYear(wine);
-		}
-
-		return getYear(world) - wineYear;
+		return getYear(world) - getWineYear(wine, world);
 	}
 	
 	public static void setWineYear(ItemStack wine, World world) {
 		wine.getOrCreateNbt().putInt("Year", getYear(world));
 	}
 	
-	public static int getWineYear(ItemStack wine) {
-		return wine.getOrCreateNbt().getInt("Year");
+	public static int getWineYear(ItemStack wine, World world) {
+		NbtCompound compound = wine.getOrCreateNbt();
+		if(compound.contains("Year")) return compound.getInt("Year");
+		setWineYear(wine, world);
+		return getWineYear(wine, world);
 	}
 }

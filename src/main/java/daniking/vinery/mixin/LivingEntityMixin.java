@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -31,9 +32,12 @@ public abstract class LivingEntityMixin extends Entity {
 			if (item.isFood()) {
 				List<Pair<StatusEffectInstance, Float>> list = item.getFoodComponent().getStatusEffects();
 				for (Pair<StatusEffectInstance, Float> pair : list) {
-					if (world.isClient || pair.getFirst() == null || !(world.random.nextFloat() < pair.getSecond().floatValue())) continue;
+					if (world.isClient || pair.getFirst() == null || !(world.random.nextFloat() < pair.getSecond())) continue;
 					StatusEffectInstance statusEffectInstance = new StatusEffectInstance(pair.getFirst());
 					statusEffectInstance.amplifier = WineYears.getEffectLevel(stack, world);
+					if(statusEffectInstance.getEffectType().equals(StatusEffects.INSTANT_HEALTH) || statusEffectInstance.getEffectType().equals(StatusEffects.INSTANT_DAMAGE)){
+						statusEffectInstance.duration = 1;
+					}
 					targetEntity.addStatusEffect(statusEffectInstance);
 				}
 			}
