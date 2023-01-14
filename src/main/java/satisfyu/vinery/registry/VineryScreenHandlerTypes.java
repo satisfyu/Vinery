@@ -1,5 +1,6 @@
 package satisfyu.vinery.registry;
 
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.gui.handler.CookingPotGuiHandler;
 import satisfyu.vinery.client.gui.handler.FermentationBarrelGuiHandler;
@@ -12,7 +13,7 @@ public class VineryScreenHandlerTypes {
 
     public static final ScreenHandlerType<StoveGuiHandler> STOVE_GUI_HANDLER = new ScreenHandlerType<>(StoveGuiHandler::new);
     public static final ScreenHandlerType<FermentationBarrelGuiHandler> FERMENTATION_BARREL_GUI_HANDLER = new ScreenHandlerType<>(FermentationBarrelGuiHandler::new);
-    public static final ScreenHandlerType<CookingPotGuiHandler> COOKING_POT_SCREEN_HANDLER = new ScreenHandlerType<>(CookingPotGuiHandler::new);
+    public static final ScreenHandlerType<CookingPotGuiHandler> COOKING_POT_SCREEN_HANDLER = new ExtendedScreenHandlerType<>(CookingPotGuiHandler::new);
     public static final ScreenHandlerType<WinePressGuiHandler> WINE_PRESS_SCREEN_HANDLER = new ScreenHandlerType<>(WinePressGuiHandler::new);
 
 

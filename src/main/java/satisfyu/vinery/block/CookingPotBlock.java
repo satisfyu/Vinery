@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.text.TranslatableText;
 import satisfyu.vinery.block.entity.CookingPotEntity;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VinerySoundEvents;
@@ -26,7 +27,6 @@ import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -36,6 +36,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.function.Supplier;
 
 public class CookingPotBlock extends BlockWithEntity {
@@ -178,6 +179,6 @@ public class CookingPotBlock extends BlockWithEntity {
 
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.vinery.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+        tooltip.add(new TranslatableText("block.vinery.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }

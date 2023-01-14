@@ -1,8 +1,8 @@
 package satisfyu.vinery.block.entity;
 
+import net.minecraft.text.TranslatableText;
 import satisfyu.vinery.block.CookingPotBlock;
 import satisfyu.vinery.client.gui.handler.CookingPotGuiHandler;
-import satisfyu.vinery.compat.farmersdelight.FarmersCookingPot;
 import satisfyu.vinery.recipe.CookingPotRecipe;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryRecipeTypes;
@@ -122,11 +122,6 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 				}
 			}
 		}
-		else {
-			if(VineryUtils.isFDLoaded()){
-				return FarmersCookingPot.canCraft(recipe, this);
-			}
-		}
 		return false;
 	}
 	
@@ -178,7 +173,6 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		}
 		Recipe<?> recipe = world.getRecipeManager().getFirstMatch(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE, this, world).orElse(null);
 		if(recipe == null && VineryUtils.isFDLoaded()){
-			recipe = FarmersCookingPot.getRecipe(world, this);
 		}
 
 		boolean canCraft = canCraft(recipe);
@@ -254,7 +248,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 	
 	@Override
 	public Text getDisplayName() {
-		return Text.translatable(this.getCachedState().getBlock().getTranslationKey());
+		return new TranslatableText(this.getCachedState().getBlock().getTranslationKey());
 	}
 	
 	@Nullable

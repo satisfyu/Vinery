@@ -12,6 +12,7 @@ import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -94,15 +95,15 @@ public class PieBlock extends FacingBlock {
 
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.vinery.breadblock.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+        tooltip.add(new TranslatableText("block.vinery.breadblock.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
 
         if (Screen.hasShiftDown()) {
-            tooltip.add(Text.translatable("block.vinery.pie.tooltip1.shift_1"));
-            tooltip.add(Text.translatable("block.vinery.pie.tooltip2.shift_2"));
-            tooltip.add(Text.translatable("block.vinery.pie.tooltip3.shift_3"));
+            tooltip.add(new TranslatableText("block.vinery.pie.tooltip1.shift_1"));
+            tooltip.add(new TranslatableText("block.vinery.pie.tooltip2.shift_2"));
+            tooltip.add(new TranslatableText("block.vinery.pie.tooltip3.shift_3"));
 
         } else {
-            tooltip.add(Text.translatable(  "item.vinery.ingredient.tooltip"));
+            tooltip.add(new TranslatableText(  "item.vinery.ingredient.tooltip"));
         }
     }
 }

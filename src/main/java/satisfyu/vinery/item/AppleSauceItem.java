@@ -8,10 +8,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.registry.ObjectRegistry;
 
 import java.util.List;
 
@@ -24,13 +24,13 @@ public class AppleSauceItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if(Screen.hasShiftDown()) {
-            tooltip.add(Text.translatable("item.vinery.applesauce_line1.tooltip"));
-            tooltip.add(Text.translatable("item.vinery.applesauce_line2.tooltip"));
-            tooltip.add(Text.translatable("item.vinery.applesauce_line3.tooltip"));
+            tooltip.add(new TranslatableText("item.vinery.applesauce_line1.tooltip"));
+            tooltip.add(new TranslatableText("item.vinery.applesauce_line2.tooltip"));
+            tooltip.add(new TranslatableText("item.vinery.applesauce_line3.tooltip"));
 
-            tooltip.add(Text.translatable("item.vinery.cookingpot.tooltip"));
+            tooltip.add(new TranslatableText("item.vinery.cookingpot.tooltip"));
         } else {
-            tooltip.add(Text.translatable("item.vinery.ingredient.tooltip").formatted(Formatting.GRAY, Formatting.ITALIC));
+            tooltip.add(new TranslatableText("item.vinery.ingredient.tooltip").formatted(Formatting.GRAY, Formatting.ITALIC));
         }
 
         super.appendTooltip(stack, world, tooltip, context);

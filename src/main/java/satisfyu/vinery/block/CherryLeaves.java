@@ -18,9 +18,10 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Random;
 
 public class CherryLeaves extends LeavesBlock {
 
@@ -38,7 +39,7 @@ public class CherryLeaves extends LeavesBlock {
         if(state.get(VARIANT) && state.get(HAS_CHERRIES) && stack.getItem() instanceof ShearsItem) {
             if(!world.isClient()) {
                 stack.damage(1, player, playerEntity ->  playerEntity.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
-                CherryLeaves.dropStack(world, pos, hit.getSide(), new ItemStack(ObjectRegistry.CHERRY, world.getRandom().nextBetween(1, 3)));
+                CherryLeaves.dropStack(world, pos, hit.getSide(), new ItemStack(ObjectRegistry.CHERRY, world.getRandom().nextInt(1, 3)));
                 world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1F, 1F);
                 world.setBlockState(pos, state.with(HAS_CHERRIES, false));
             }

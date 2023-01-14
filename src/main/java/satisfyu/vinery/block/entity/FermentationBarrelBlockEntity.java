@@ -1,11 +1,11 @@
 package satisfyu.vinery.block.entity;
 
+import net.minecraft.text.TranslatableText;
 import satisfyu.vinery.client.gui.handler.FermentationBarrelGuiHandler;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryRecipeTypes;
-import satisfyu.vinery.util.WineYears;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -25,6 +25,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.util.WineYears;
 
 public class FermentationBarrelBlockEntity extends BlockEntity implements Inventory, BlockEntityTicker<FermentationBarrelBlockEntity>, NamedScreenHandlerFactory {
 
@@ -226,7 +227,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
 
     @Override
     public Text getDisplayName() {
-        return Text.translatable(this.getCachedState().getBlock().getTranslationKey());
+        return new TranslatableText(this.getCachedState().getBlock().getTranslationKey());
     }
 
     @Nullable

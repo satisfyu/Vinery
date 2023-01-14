@@ -1,5 +1,6 @@
 package satisfyu.vinery.block.entity;
 
+import net.minecraft.text.TranslatableText;
 import satisfyu.vinery.client.gui.handler.WinePressGuiHandler;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
@@ -60,7 +61,7 @@ public class WinePressBlockEntity extends BlockEntity implements NamedScreenHand
 
     @Override
     public Text getDisplayName() {
-        return Text.translatable(this.getCachedState().getBlock().getTranslationKey());
+        return new TranslatableText(this.getCachedState().getBlock().getTranslationKey());
     }
 
     @Nullable

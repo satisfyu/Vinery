@@ -1,8 +1,5 @@
 package satisfyu.vinery.mixin;
 
-import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.block.GrapeBush;
-import satisfyu.vinery.util.GrapevineType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
@@ -20,8 +17,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import satisfyu.vinery.block.GrapeBush;
+import satisfyu.vinery.registry.ObjectRegistry;
+import satisfyu.vinery.util.GrapevineType;
 
-@Mixin(FoxEntity.EatBerriesGoal.class)
+@Mixin(FoxEntity.EatSweetBerriesGoal.class)
 public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToTargetPosGoal {
     @Final
     @Shadow
@@ -39,7 +39,7 @@ public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToTargetPosG
         }
     }
 
-    @Inject(method = "eatBerries", at = @At("TAIL"))
+    @Inject(method = "eatSweetBerry", at = @At("TAIL"))
     private void eatGrapes(CallbackInfo ci) {
         final BlockState state = field_17975.world.getBlockState(this.targetPos);
         if (state.getBlock() instanceof GrapeBush bush) {

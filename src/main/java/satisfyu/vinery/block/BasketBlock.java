@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.text.TranslatableText;
 import satisfyu.vinery.registry.ObjectRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -128,6 +129,6 @@ public class BasketBlock extends Block {
 
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.vinery.basket.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+        tooltip.add(new TranslatableText("block.vinery.basket.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }

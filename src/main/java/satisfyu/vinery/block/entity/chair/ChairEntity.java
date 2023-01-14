@@ -20,7 +20,7 @@ public class ChairEntity extends Entity {
     protected void initDataTracker() {
 
     }
-
+/*
     @Override
     public Vec3d updatePassengerForDismount(LivingEntity passenger) {
         if(passenger instanceof PlayerEntity p) {
@@ -39,7 +39,7 @@ public class ChairEntity extends Entity {
         super.remove(reason);
         ChairUtil.removeChairEntity(world, getBlockPos());
     }
-
+*/
     @Override
     protected void readCustomDataFromNbt(NbtCompound nbt) {
 

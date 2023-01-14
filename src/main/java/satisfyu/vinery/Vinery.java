@@ -27,18 +27,7 @@ public class Vinery implements ModInitializer {
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static final ItemGroup CREATIVE_TAB = FabricItemGroupBuilder.build(new VineryIdentifier("creative_tab"), () -> new ItemStack(ObjectRegistry.RED_GRAPE));
     public static final TagKey<Block> ALLOWS_COOKING_ON_POT = TagKey.of(Registry.BLOCK_KEY, new VineryIdentifier("allows_cooking_on_pot"));
-/*
-    public static final ItemGroup ITEM_GROUP_TABBED_ICON_TEXTURES =
-            TabbedItemGroup.builder()
-                    .defaultPredicate(ALWAYS)
-                    .tab(Tab.builder().predicate((group, item) -> ObjectRegistry.getItemConvertibles().contains(item)).build("main", GUIIcon.of(() -> new ItemStack(ObjectRegistry.RED_GRAPE))))
 
-                    .tab(Tab.builder().predicate(items(Items.STONE, Items.AXOLOTL_BUCKET)).build("one", GUIIcon.of(() -> new ItemStack(Items.GLOWSTONE))))
-                    .tab(Tab.builder().predicate(items(Items.SPONGE)).build("two", GUIIcon.of(() -> new ItemStack(Items.STICK))))
-
-
-                    .build(new VineryIdentifier("vinery_tab"), g -> GUIIcon.of(() -> new ItemStack(ObjectRegistry.RED_GRAPE)));
-*/
     @Override
     public void onInitialize() {
         VineryEffects.init();

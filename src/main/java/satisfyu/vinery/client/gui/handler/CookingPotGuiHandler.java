@@ -1,21 +1,21 @@
 package satisfyu.vinery.client.gui.handler;
 
-import satisfyu.vinery.block.entity.CookingPotEntity;
-import satisfyu.vinery.compat.farmersdelight.FarmersCookingPot;
-import satisfyu.vinery.recipe.CookingPotRecipe;
-import satisfyu.vinery.registry.VineryRecipeTypes;
-import satisfyu.vinery.registry.VineryScreenHandlerTypes;
-import satisfyu.vinery.util.VineryUtils;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.world.World;
+import satisfyu.vinery.recipe.CookingPotRecipe;
+import satisfyu.vinery.registry.VineryRecipeTypes;
+import satisfyu.vinery.registry.VineryScreenHandlerTypes;
+import satisfyu.vinery.util.VineryUtils;
 
 import java.util.stream.Stream;
 
@@ -23,8 +23,10 @@ public class CookingPotGuiHandler extends ScreenHandler {
 
     private final PropertyDelegate propertyDelegate;
     private final World world;
-    public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory) {
+    private boolean isBeingBurned;
+    public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf packet) {
         this(syncId, playerInventory, new SimpleInventory(8), new ArrayPropertyDelegate(2));
+        this.isBeingBurned = packet.readBoolean();
     }
 
     public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
@@ -69,7 +71,7 @@ public class CookingPotGuiHandler extends ScreenHandler {
     }
 
     public boolean isBeingBurned() {
-        return propertyDelegate.get(1) != 0;
+        return isBeingBurned;
     }
 
 
@@ -109,11 +111,6 @@ public class CookingPotGuiHandler extends ScreenHandler {
     }
 
     private boolean isItemIngredient(ItemStack stack) {
-        if(VineryUtils.isFDLoaded()){
-            if(FarmersCookingPot.isItemIngredient(stack, this.world)){
-                return true;
-            }
-        }
         return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
     }
 
@@ -121,18 +118,13 @@ public class CookingPotGuiHandler extends ScreenHandler {
         return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE).stream();
     }
     private boolean isItemContainer(ItemStack stack) {
-        if(VineryUtils.isFDLoaded()){
-            if(FarmersCookingPot.isItemContainer(stack, this.world)){
-                return true;
-            }
-        }
         return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getContainer().isOf(stack.getItem()));
     }
 
     public int getScaledProgress() {
         final int progress = this.propertyDelegate.get(0);
-        final int totalProgress = CookingPotEntity.MAX_COOKING_TIME;
-        if (progress == 0) {
+        final int totalProgress = this.propertyDelegate.get(1);
+        if (totalProgress == 0 || progress == 0) {
             return 0;
         }
         return progress * 22 / totalProgress;

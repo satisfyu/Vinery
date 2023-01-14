@@ -1,5 +1,6 @@
 package satisfyu.vinery.block.entity;
 
+import net.minecraft.text.TranslatableText;
 import satisfyu.vinery.block.WineRackStorageBlock;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import net.minecraft.block.BlockState;
@@ -91,7 +92,7 @@ public class WineRackStorageBlockEntity extends LootableContainerBlockEntity {
 
     @Override
     protected Text getContainerName() {
-        return Text.translatable("container.wine_rack");
+        return new TranslatableText("container.wine_rack");
     }
 
     @Override

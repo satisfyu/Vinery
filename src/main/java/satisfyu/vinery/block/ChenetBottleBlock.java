@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.text.TranslatableText;
 import satisfyu.vinery.util.VineryUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -72,12 +73,12 @@ public class ChenetBottleBlock extends ChenetBlock {
         if (Screen.hasShiftDown())
         {
             // Add tooltip JSON key here
-            tooltip.add(Text.translatable(""));
+            tooltip.add(new TranslatableText(""));
         }
         else
         {
             // Add tooltip JSON key here
-            tooltip.add(Text.translatable(""));
+            tooltip.add(new TranslatableText(""));
         }
 
         super.appendTooltip(stack, world, tooltip, options);

@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.text.TranslatableText;
 import satisfyu.vinery.block.entity.WinePressBlockEntity;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import net.minecraft.block.Block;
@@ -161,6 +162,6 @@ public class WinePressBlock extends BlockWithEntity {
 
 	@Override
 	public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-		tooltip.add(Text.translatable("block.vinery.press.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+		tooltip.add(new TranslatableText("block.vinery.press.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
 	}
 }

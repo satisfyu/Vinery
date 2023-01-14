@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.text.TranslatableText;
 import satisfyu.vinery.util.VineryUtils;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.BedPart;
@@ -131,6 +132,6 @@ public class BigTableBlock extends HorizontalFacingBlock {
 
 	@Override
 	public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-		tooltip.add(Text.translatable("block.vinery.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+		tooltip.add(new TranslatableText("block.vinery.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
 	}
 }

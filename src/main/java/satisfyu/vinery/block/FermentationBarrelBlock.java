@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.text.TranslatableText;
 import satisfyu.vinery.block.entity.FermentationBarrelBlockEntity;
 import satisfyu.vinery.util.VineryUtils;
 import net.minecraft.block.*;
@@ -117,7 +118,7 @@ public class FermentationBarrelBlock extends HorizontalFacingBlock implements Bl
 
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.vinery.fermentationbarrelblock.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+        tooltip.add(new TranslatableText("block.vinery.fermentationbarrelblock.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 
 }

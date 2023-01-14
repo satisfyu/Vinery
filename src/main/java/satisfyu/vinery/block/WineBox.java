@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.text.TranslatableText;
 import satisfyu.vinery.item.DrinkBlockItem;
 import satisfyu.vinery.registry.StorageTypes;
 import net.minecraft.block.Block;
@@ -122,15 +123,15 @@ public class WineBox extends StorageBlock {
 
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("block.vinery.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+        tooltip.add(new TranslatableText("block.vinery.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
 
         if (Screen.hasShiftDown()) {
-            tooltip.add(Text.translatable("block.vinery.winebox.tooltip.shift_1"));
-            tooltip.add(Text.translatable("block.vinery.winebox.tooltip.shift_2"));
-            tooltip.add(Text.translatable("block.vinery.winebox.tooltip.shift_3"));
+            tooltip.add(new TranslatableText("block.vinery.winebox.tooltip.shift_1"));
+            tooltip.add(new TranslatableText("block.vinery.winebox.tooltip.shift_2"));
+            tooltip.add(new TranslatableText("block.vinery.winebox.tooltip.shift_3"));
 
         } else {
-            tooltip.add(Text.translatable("block.vinery.breadblock.tooltip.tooltip_shift"));
+            tooltip.add(new TranslatableText("block.vinery.breadblock.tooltip.tooltip_shift"));
         }
     }
 }

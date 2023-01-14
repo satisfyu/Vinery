@@ -2,7 +2,6 @@ package satisfyu.vinery.mixin;
 
 import com.mojang.datafixers.util.Pair;
 import satisfyu.vinery.util.VineryFoodComponent;
-import satisfyu.vinery.util.WineYears;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -34,7 +33,6 @@ public abstract class LivingEntityMixin extends Entity {
 				for (Pair<StatusEffectInstance, Float> pair : list) {
 					if (world.isClient || pair.getFirst() == null || !(world.random.nextFloat() < pair.getSecond())) continue;
 					StatusEffectInstance statusEffectInstance = new StatusEffectInstance(pair.getFirst());
-					statusEffectInstance.amplifier = WineYears.getEffectLevel(stack, world);
 					if(statusEffectInstance.getEffectType().equals(StatusEffects.INSTANT_HEALTH) || statusEffectInstance.getEffectType().equals(StatusEffects.INSTANT_DAMAGE)){
 						statusEffectInstance.duration = 1;
 					}

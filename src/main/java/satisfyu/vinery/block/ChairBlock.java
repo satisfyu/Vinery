@@ -1,6 +1,5 @@
 package satisfyu.vinery.block;
 
-import satisfyu.vinery.block.entity.chair.ChairUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
@@ -62,7 +61,7 @@ public class ChairBlock extends Block {
         return VoxelShapes.union(s, SHAPE[3]);
 
     }
-
+/*
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         return ChairUtil.onUse(world, player, hand, hit, 0.1);
@@ -73,7 +72,7 @@ public class ChairBlock extends Block {
         super.onStateReplaced(state, world, pos, newState, moved);
         ChairUtil.onStateReplaced(world, pos);
     }
-
+*/
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);

@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -32,7 +33,7 @@ public class StoragePotBlock extends BarrelBlock {
 
 
     protected Text getContainerName() {
-        return Text.translatable("container.storagepot");
+        return new TranslatableText("container.storagepot");
     }
 
     private final SoundEvent openSound;
@@ -53,7 +54,7 @@ public class StoragePotBlock extends BarrelBlock {
         public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
 
         if (Screen.hasShiftDown()) {
-            tooltip.add(Text.translatable("block.vinery.storage.tooltip.shift").formatted(Formatting.LIGHT_PURPLE, Formatting.ITALIC));}
+            tooltip.add(new TranslatableText("block.vinery.storage.tooltip.shift").formatted(Formatting.LIGHT_PURPLE, Formatting.ITALIC));}
 
         }
     }

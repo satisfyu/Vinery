@@ -1,5 +1,6 @@
 package satisfyu.vinery.block.entity;
 
+import net.minecraft.text.TranslatableText;
 import satisfyu.vinery.block.WoodFiredOvenBlock;
 import satisfyu.vinery.client.gui.handler.StoveGuiHandler;
 import satisfyu.vinery.recipe.WoodFiredOvenRecipe;
@@ -294,7 +295,7 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
 
     @Override
     public Text getDisplayName() {
-        return Text.translatable(this.getCachedState().getBlock().getTranslationKey());
+        return new TranslatableText(this.getCachedState().getBlock().getTranslationKey());
     }
 
     @Nullable

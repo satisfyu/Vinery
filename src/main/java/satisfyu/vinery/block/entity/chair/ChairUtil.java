@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/*
 public class ChairUtil {
     private static final Map<Identifier, Map<BlockPos, Pair<ChairEntity,BlockPos>>> CHAIRS = new HashMap<>();
 
@@ -102,6 +102,7 @@ public class ChairUtil {
 
     private static Identifier getDimensionTypeId(World world)
     {
-        return world.getDimensionKey().getValue();
+        return world.getDimension().getValue();
     }
 }
+*/
