@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "id": "vinery",
-  "version": "1.1.4",
+  "version": "1.1.5",
 
   "name": "Vinery",
   "description": "Vinery contains nearly everything needed for not only creating wine but also for building up your own vinery.",
   "authors": [
-    "satisfy_u, Cristelknight"
+    "satisfy_u, Cristelknight, 4732"
   ],
   "contact": {
     "sources": ""
@@ -15,16 +15,16 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "daniking.vinery.Vinery"
+      "satisfyu.vinery.Vinery"
     ],
     "client": [
-      "daniking.vinery.client.ClientSetup"
+      "satisfyu.vinery.client.ClientSetup"
     ],
     "rei_client": [
-      "daniking.vinery.compat.rei.VineryReiClientPlugin"
+      "satisfyu.vinery.compat.rei.VineryReiClientPlugin"
     ],
     "vinery": [
-      "daniking.vinery.registry.StorageTypes"
+      "satisfyu.vinery.registry.StorageTypes"
     ]
   },
   "mixins": [

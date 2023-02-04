@@ -7,8 +7,6 @@ import com.terraformersmc.terraform.wood.block.StrippableLogBlock;
 import daniking.vinery.GrapeBushSeedItem;
 import daniking.vinery.Vinery;
 import daniking.vinery.VineryIdentifier;
-import daniking.vinery.block.*;
-import daniking.vinery.item.*;
 import daniking.vinery.util.GrapevineType;
 import daniking.vinery.util.VineryFoodComponent;
 import daniking.vinery.world.VineryConfiguredFeatures;

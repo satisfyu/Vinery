@@ -2,7 +2,6 @@ package daniking.vinery.registry;
 
 import daniking.vinery.Vinery;
 import daniking.vinery.VineryIdentifier;
-import daniking.vinery.block.entity.*;
 import daniking.vinery.block.entity.chair.ChairEntity;
 import daniking.vinery.util.StorageTypeApi;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;

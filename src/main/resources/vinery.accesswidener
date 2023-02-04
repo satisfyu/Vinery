@@ -5,3 +5,4 @@ accessible    class    net/minecraft/data/client/BlockStateModelGenerator$BlockT
 accessible    class    net/minecraft/item/FoodComponent
 accessible	  method   net/minecraft/item/FoodComponent	<init>	(IFZZZLjava/util/List;)V
 accessible    field    net/minecraft/entity/effect/StatusEffectInstance    amplifier    I
+accessible    field    net/minecraft/entity/effect/StatusEffectInstance    duration    I
