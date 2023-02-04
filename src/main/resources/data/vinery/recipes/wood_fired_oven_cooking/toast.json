@@ -2,9 +2,6 @@
   "type": "vinery:wood_fired_oven_cooking",
   "ingredients": [
     {
-      "tag": "minecraft:milk"
-    },
-    {
       "tag": "minecraft:dough"
     },
     {
