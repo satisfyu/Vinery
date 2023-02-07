@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    {"id":"vinery:red_grape","required":false},
+    {"id":"croptopia:grape","required":false}
+  ]
+}

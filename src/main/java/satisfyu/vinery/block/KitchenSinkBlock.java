@@ -1,5 +1,7 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.block.ShapeContext;
+import net.minecraft.world.BlockView;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VinerySoundEvents;
 import satisfyu.vinery.util.VineryUtils;
@@ -88,7 +90,6 @@ public class KitchenSinkBlock extends Block {
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0.75, 0.75, 1, 1, 1), BooleanBiFunction.OR);
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0.75, 0.1875, 0.1859375, 1, 0.75), BooleanBiFunction.OR);
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.8125, 0.75, 0.1875, 1, 1, 0.75), BooleanBiFunction.OR);
-
 		return shape;
 	};
 
@@ -97,6 +98,13 @@ public class KitchenSinkBlock extends Block {
 			map.put(direction, VineryUtils.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
 		}
 	});
+
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return SHAPE.get(state.get(FACING));
+	}
+
+
 
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

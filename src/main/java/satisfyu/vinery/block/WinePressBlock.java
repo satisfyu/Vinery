@@ -1,11 +1,11 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.block.*;
+import net.minecraft.util.function.BooleanBiFunction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import satisfyu.vinery.block.entity.WinePressBlockEntity;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -73,7 +73,7 @@ public class WinePressBlock extends BlockWithEntity {
 		return checkType(type, VineryBlockEntityTypes.WINE_PRESS_BLOCK_ENTITY, WinePressBlockEntity::tick);
 	}
 
-/*
+
 	protected static final VoxelShape SHAPE_WE = makeShapeWE();
 	protected static final VoxelShape SHAPE_NS = makeShapeNS();
 
@@ -82,15 +82,6 @@ public class WinePressBlock extends BlockWithEntity {
 		return state.get(FACING) == Direction.SOUTH || state.get(FACING) == Direction.NORTH ? SHAPE_WE : SHAPE_NS;
 	}
 
-	@Override
-	public BlockState rotate(BlockState state, BlockRotation rotation) {
-		return state.with(FACING, rotation.rotate(state.get(FACING)));
-	}
-
-	@Override
-	public BlockState mirror(BlockState state, BlockMirror mirror) {
-		return state.rotate(mirror.getRotation(state.get(FACING)));
-	}
 
 	public static VoxelShape makeShapeWE() {
 		VoxelShape shape = VoxelShapes.empty();
@@ -133,7 +124,7 @@ public class WinePressBlock extends BlockWithEntity {
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.40625, 1.375, 0.125, 0.59375, 1.5, 0.875), BooleanBiFunction.OR);
 
 		return shape;
-	}*/
+	}
 
 	@Override
 	public BlockRenderType getRenderType(BlockState state) {
