@@ -2,6 +2,8 @@ package satisfyu.vinery.client.render.feature;
 
 
 import com.google.common.collect.Maps;
+import net.fabricmc.loader.api.FabricLoader;
+import satisfyu.vinery.Vinery;
 import satisfyu.vinery.item.CustomModelArmorItem;
 import satisfyu.vinery.registry.CustomArmorRegistry;
 import net.minecraft.client.render.OverlayTexture;
@@ -20,6 +22,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import satisfyu.vinery.util.VineryApi;
 
 import java.util.Map;
 
@@ -44,7 +47,17 @@ public class CustomArmorFeatureRenderer<T extends LivingEntity, M extends Entity
 		Item hatItem = getHatItem(entity, slot);
 		if(hatItem != null) {
 			if(MODELS.isEmpty()) {
-				CustomArmorRegistry.registerArmor(MODELS, modelLoader);
+
+				FabricLoader.getInstance().getEntrypointContainers("vinery", VineryApi.class).forEach(entrypoint -> {
+					String modId = entrypoint.getProvider().getMetadata().getId();
+					try {
+						VineryApi api = entrypoint.getEntrypoint();
+						api.registerArmor(MODELS, modelLoader);
+					} catch (Throwable e) {
+						Vinery.LOGGER.error("Mod {} provides a broken implementation of CristelLibRegistry", modId, e);
+					}
+				});
+
 			}
 			return MODELS.get(hatItem);
 		}

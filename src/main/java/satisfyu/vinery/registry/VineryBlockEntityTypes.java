@@ -4,7 +4,7 @@ import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.entity.*;
 import satisfyu.vinery.block.entity.chair.ChairEntity;
-import satisfyu.vinery.util.StorageTypeApi;
+import satisfyu.vinery.util.VineryApi;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.loader.api.FabricLoader;
@@ -36,10 +36,10 @@ public class VineryBlockEntityTypes {
 
     public static Block[] b(){
         Set<Block> set = new HashSet<>();
-        FabricLoader.getInstance().getEntrypointContainers("vinery", StorageTypeApi.class).forEach(entrypoint -> {
+        FabricLoader.getInstance().getEntrypointContainers("vinery", VineryApi.class).forEach(entrypoint -> {
             String modId = entrypoint.getProvider().getMetadata().getId();
             try {
-                StorageTypeApi api = entrypoint.getEntrypoint();
+                VineryApi api = entrypoint.getEntrypoint();
 
                 api.registerBlocks(set);
             } catch (Throwable e) {

@@ -15,9 +15,7 @@ public class CustomArmorRegistry {
     /**
      * Das Item muss {@link CustomModelArmorItem} erweitern
     **/
-    public static <T extends LivingEntity> void registerArmor(Map<Item, EntityModel<T>> models, EntityModelLoader modelLoader){
-        models.put(ObjectRegistry.STRAW_HAT, new StrawHatModel<>(modelLoader.getModelPart(StrawHatModel.LAYER_LOCATION)));
-    }
+
 
     public static void registerModels(){
         EntityModelLayerRegistry.registerModelLayer(StrawHatModel.LAYER_LOCATION, StrawHatModel::getTexturedModelData);
