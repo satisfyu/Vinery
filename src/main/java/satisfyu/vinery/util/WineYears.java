@@ -11,7 +11,7 @@ public class WineYears {
 	public static final int MAX_LEVEL = 5;
 	
 	public static int getYear(World world) {
-		return YEARS_START + (int) (world.getTimeOfDay() / 24000 / DAYS_PER_YEAR);
+		return world != null ? YEARS_START + (int) (world.getTimeOfDay() / 24000 / DAYS_PER_YEAR) : YEARS_START;
 	}
 	
 	public static int getEffectLevel(ItemStack wine, World world) {
