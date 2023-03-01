@@ -41,4 +41,11 @@ public class StoveGui extends HandledScreen<StoveGuiHandler> {
         k = (this.handler).getCookProgress();
         this.drawTexture(matrices, posX + 79, posY + 34, 176, 14, k + 1, 16);
     }
+
+    @Override
+    protected void init() {
+        super.init();
+        // Center the title
+        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
+    }
 }
