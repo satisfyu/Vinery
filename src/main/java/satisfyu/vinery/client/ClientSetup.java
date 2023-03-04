@@ -8,6 +8,7 @@ import satisfyu.vinery.client.gui.CookingPotGui;
 import satisfyu.vinery.client.gui.FermentationBarrelGui;
 import satisfyu.vinery.client.gui.StoveGui;
 import satisfyu.vinery.client.gui.WinePressGui;
+import satisfyu.vinery.client.render.block.FlowerBoxBlockRenderer;
 import satisfyu.vinery.client.render.block.StorageBlockEntityRenderer;
 import satisfyu.vinery.client.model.MuleModel;
 import satisfyu.vinery.client.render.entity.MuleRenderer;
@@ -54,13 +55,7 @@ public class ClientSetup implements ClientModInitializer {
         );
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ObjectRegistry.GRAPEVINE_STEM, ObjectRegistry.WINE_BOTTLE,
                                                ObjectRegistry.RED_GRAPEJUICE_WINE_BOTTLE, ObjectRegistry.WHITE_GRAPEJUICE_WINE_BOTTLE,
-                                               ObjectRegistry.WINE_BOX, ObjectRegistry.FLOWER_BOX_ALLIUM, ObjectRegistry.FLOWER_BOX_AZURE_BLUET,
-                                               ObjectRegistry.FLOWER_BOX, ObjectRegistry.FLOWER_BOX_BLUE_ORCHID, ObjectRegistry.FLOWER_BOX_BLUE_DANDELION,
-                                               ObjectRegistry.FLOWER_BOX_BLUE_CORNFLOWER, ObjectRegistry.FLOWER_BOX_BLUE_LILY_OF_THE_VALLEY,
-                                               ObjectRegistry.FLOWER_BOX_BLUE_ORANGE_TULIP, ObjectRegistry.FLOWER_BOX_BLUE_OXEYE_DAISY,
-                                               ObjectRegistry.FLOWER_BOX_BLUE_PINK_TULIP, ObjectRegistry.FLOWER_BOX_BLUE_POPPY,
-                                               ObjectRegistry.FLOWER_BOX_BLUE_RED_TULIP, ObjectRegistry.FLOWER_BOX_BLUE_WHITE_TULIP,
-                                               ObjectRegistry.FLOWER_BOX_BLUE_WHITER_ROSE, ObjectRegistry.FLOWER_POT,
+                                               ObjectRegistry.WINE_BOX, ObjectRegistry.FLOWER_POT,
                                                ObjectRegistry.CHAIR,
                                                ObjectRegistry.WINE_PRESS, ObjectRegistry.GRASS_SLAB, ObjectRegistry.CHERRY_JAR,
                                                ObjectRegistry.CHERRY_SAPLING, ObjectRegistry.OLD_CHERRY_SAPLING, ObjectRegistry.KITCHEN_SINK, ObjectRegistry.STACKABLE_LOG
@@ -91,6 +86,7 @@ public class ClientSetup implements ClientModInitializer {
         CustomArmorRegistry.registerModels();
 
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.STORAGE_ENTITY, StorageBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_BOX_ENTITY, FlowerBoxBlockRenderer::new);
     }
     
     public static PlayerEntity getClientPlayer() {
