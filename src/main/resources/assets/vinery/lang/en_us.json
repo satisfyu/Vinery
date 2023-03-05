@@ -187,5 +187,11 @@
   "block.vinery.aegis_wine": "Aegis Wine",
   "block.vinery.big_bowl": "Bowl",
   "block.vinery.kelp_cider": "Kelp Cider",
-  "vinery.wood_fired_oven_category": "\u00a7f\ueff1\u00a7r              Wood_Fired_Oven    \u00a7f\ueff2           "
+  "vinery.wood_fired_oven_category": "\u00a7f\ueff1\u00a7r              Wood_Fired_Oven    \u00a7f\ueff2           ",
+  "subtitles.vinery.juice_boiling": "Pot Boiling",
+  "subtitles.vinery.squeeze": "Grapes Squeezing",
+  "subtitles.vinery.open": "Opening Sound",
+  "subtitles.vinery.close": "Closing Sound"
+
+
 }
