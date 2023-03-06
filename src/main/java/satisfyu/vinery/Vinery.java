@@ -1,5 +1,10 @@
 package satisfyu.vinery;
 
+import satisfyu.vinery.villager.ModVillagers;
+import satisfyu.vinery.villager.activity.ModActivity;
+import satisfyu.vinery.villager.memory.ModMemoryModuleType;
+import satisfyu.vinery.villager.poi.ModPointOfInterestTypes;
+import satisfyu.vinery.villager.task.ModTaskListProvider;
 import satisfyu.vinery.world.VineryConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -58,6 +63,12 @@ public class Vinery implements ModInitializer {
         VineryVillagers.init();
         VineryEntites.init();
         VineryCompostableItems.init();
+
+        ModVillagers.registerVillagers(); //TODO rename and make init
+        ModActivity.init();
+        ModMemoryModuleType.init();
+        ModPointOfInterestTypes.init();
+        ModTaskListProvider.init();
 
         FabricLoader.getInstance().getModContainer(MODID).ifPresent(container -> {
             ResourceManagerHelper.registerBuiltinResourcePack(new VineryIdentifier("bushy_leaves"), container, ResourcePackActivationType.DEFAULT_ENABLED);
