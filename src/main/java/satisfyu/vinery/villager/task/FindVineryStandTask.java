@@ -28,9 +28,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class FindVineryStandTask extends Task<PathAwareEntity> {
-    private static final int MAX_POSITIONS_PER_RUN = 5;
-    private static final int POSITION_EXPIRE_INTERVAL = 20;
-    public static final int POI_SORTING_RADIUS = 48;
     private final Predicate<RegistryEntry<PointOfInterestType>> poiTypePredicate;
     private final MemoryModuleType<GlobalPos> targetMemoryModuleType;
     private final boolean onlyRunIfChild;
@@ -40,7 +37,6 @@ public class FindVineryStandTask extends Task<PathAwareEntity> {
 
     public FindVineryStandTask(Predicate<RegistryEntry<PointOfInterestType>> poiTypePredicate, MemoryModuleType<GlobalPos> moduleType, MemoryModuleType<GlobalPos> targetMemoryModuleType, boolean onlyRunIfChild, Optional<Byte> entityStatus) {
         super(create(moduleType, targetMemoryModuleType));
-        System.out.println("FindVineryStandTask");
         this.foundPositionsToExpiry = new Long2ObjectOpenHashMap();
         this.poiTypePredicate = poiTypePredicate;
         this.targetMemoryModuleType = targetMemoryModuleType;
@@ -63,7 +59,6 @@ public class FindVineryStandTask extends Task<PathAwareEntity> {
     }
 
     protected boolean shouldRun(ServerWorld serverWorld, PathAwareEntity pathAwareEntity) {
-        System.out.println("FindVineryStandTask shouldRun");
         if (this.onlyRunIfChild && pathAwareEntity.isBaby()) {
             return false;
         } else if (this.positionExpireTimeLimit == 0L) {
@@ -75,7 +70,6 @@ public class FindVineryStandTask extends Task<PathAwareEntity> {
     }
 
     protected void run(ServerWorld serverWorld, PathAwareEntity pathAwareEntity, long l) {
-        System.out.println("FindVineryStandTask run");
         this.positionExpireTimeLimit = l + 20L + (long)serverWorld.getRandom().nextInt(20);
         PointOfInterestStorage pointOfInterestStorage = serverWorld.getPointOfInterestStorage();
         this.foundPositionsToExpiry.long2ObjectEntrySet().removeIf((entry) -> !(entry.getValue()).isAttempting(l));
@@ -134,9 +128,6 @@ public class FindVineryStandTask extends Task<PathAwareEntity> {
     }
 
     static class RetryMarker {
-        private static final int MIN_DELAY = 40;
-        private static final int MAX_EXTRA_DELAY = 80;
-        private static final int ATTEMPT_DURATION = 400;
         private final Random random;
         private long previousAttemptAt;
         private long nextScheduledAttemptAt;

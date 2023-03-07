@@ -14,7 +14,7 @@ import java.util.Optional;
 public class ModMemoryModuleType<U> extends MemoryModuleType<U>{
     public static final MemoryModuleType<GlobalPos> SHOP = register("shop", GlobalPos.CODEC);
 
-    public static final MemoryModuleType<Long> LAST_SHOPED = register("last_shoped");
+    public static final MemoryModuleType<Long> LAST_SHOPED = register("last_shoped", Codec.LONG);
 
     public ModMemoryModuleType(Optional<Codec<U>> uCodec) {
         super(uCodec);

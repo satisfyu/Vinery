@@ -11,7 +11,6 @@ import satisfyu.vinery.Vinery;
 import satisfyu.vinery.registry.ObjectRegistry;
 
 public class ModPointOfInterestTypes{
-
     public static final PointOfInterestType SHOP = registerPOI("shop", ObjectRegistry.BASKET);
     public static final RegistryKey<PointOfInterestType> SHOP_KEY = RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY, new Identifier(Vinery.MODID, "shop"));
 
