@@ -1,16 +1,67 @@
 {
   "variants": {
-    "type=bottom": {
+    "type=bottom,facing=east": {
+      "model": "vinery:block/stackable_log",
+      "y": 90
+    },
+    "type=double,fired=true,facing=east": {
+      "model": "vinery:block/stackable_log_double_fired",
+      "y": 90
+    },
+    "type=double,fired=false,facing=east": {
+      "model": "vinery:block/stackable_log_double",
+      "y": 90
+    },
+    "type=top,facing=east": {
+      "model": "vinery:block/stackable_log_top",
+      "y": 90
+    },
+    "type=bottom,facing=north": {
       "model": "vinery:block/stackable_log"
     },
-    "type=double,fired=true": {
+    "type=double,fired=true,facing=north": {
       "model": "vinery:block/stackable_log_double_fired"
     },
-    "type=double,fired=false": {
+    "type=double,fired=false,facing=north": {
       "model": "vinery:block/stackable_log_double"
     },
-    "type=top": {
+    "type=top,facing=north": {
       "model": "vinery:block/stackable_log_top"
+    },
+    "type=bottom,facing=south": {
+      "model": "vinery:block/stackable_log",
+      "y": 180
+    },
+    "type=double,fired=true,facing=south": {
+      "model": "vinery:block/stackable_log_double_fired",
+      "y": 180
+    },
+    "type=double,fired=false,facing=south": {
+      "model": "vinery:block/stackable_log_double",
+      "y": 180
+    },
+    "type=top,facing=south": {
+      "model": "vinery:block/stackable_log_top",
+      "y": 180
+    },
+    "type=bottom,facing=west": {
+      "model": "vinery:block/stackable_log",
+      "y": 270
+    },
+    "type=double,fired=true,facing=west": {
+      "model": "vinery:block/stackable_log_double_fired",
+      "y": 270
+    },
+    "type=double,fired=false,facing=west": {
+      "model": "vinery:block/stackable_log_double",
+      "y": 270
+    },
+    "type=top,facing=west": {
+      "model": "vinery:block/stackable_log_top",
+      "y": 270
     }
   }
 }
+
+
+

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    {"id":"vinery:toast","required":false},
+    {"id":"vinery:milk_bread","required":false},
+    {"id":"vinery:crusty_bread","required":false},
+    {"id":"minecraft:bread","required":false},
+    {"id":"meadow:oat_bread","required":false}
+  ]
+}

@@ -28,4 +28,11 @@ public class StoveGui extends RecipeHandledGUI<StoveGuiHandler> {
         BACKGROUND = new VineryIdentifier("textures/gui/stove_gui.png");
         SIDE_TIP = new VineryIdentifier("textures/gui/cooking_cauldron_recipe_book.png");
     }
+
+    @Override
+    protected void init() {
+        super.init();
+        // Center the title
+        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
+    }
 }

@@ -1,28 +1,44 @@
 {
   "variants": {
 
-    "facing=east,type=single": {
+    "facing=north,type=none": {
+      "model": "vinery:block/table"
+    },
+    "facing=east,type=none": {
       "model": "vinery:block/table",
       "y": 90
     },
-    "facing=north,type=single": {
-      "model": "vinery:block/table"
-    },
-    "facing=south,type=single": {
+    "facing=south,type=none": {
       "model": "vinery:block/table",
       "y": 180
     },
-    "facing=west,type=single": {
+    "facing=west,type=none": {
       "model": "vinery:block/table",
       "y": 270
     },
 
+    "facing=north,type=middle": {
+      "model": "vinery:block/table_middle"
+    },
+    "facing=east,type=middle": {
+      "model": "vinery:block/table_middle",
+      "y": 90
+    },
+    "facing=south,type=middle": {
+      "model": "vinery:block/table_middle",
+      "y": 180
+    },
+    "facing=west,type=middle": {
+      "model": "vinery:block/table_middle",
+      "y": 270
+    },
+
+    "facing=north,type=left": {
+      "model": "vinery:block/table_connected_support"
+    },
     "facing=east,type=left": {
       "model": "vinery:block/table_connected_support",
       "y": 90
-    },
-    "facing=north,type=left": {
-      "model": "vinery:block/table_connected_support"
     },
     "facing=south,type=left": {
       "model": "vinery:block/table_connected_support",
@@ -33,13 +49,13 @@
       "y": 270
     },
 
-    "facing=east,type=right": {
-      "model": "vinery:block/table_connected_support",
-      "y": 270
-    },
     "facing=north,type=right": {
       "model": "vinery:block/table_connected_support",
       "y": 180
+    },
+    "facing=east,type=right": {
+      "model": "vinery:block/table_connected_support",
+      "y": 270
     },
     "facing=south,type=right": {
       "model": "vinery:block/table_connected_support"
