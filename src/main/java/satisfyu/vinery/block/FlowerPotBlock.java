@@ -1,5 +1,12 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.util.ItemScatterer;
+import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.block.entity.FlowerPotBlockEntity;
+import satisfyu.vinery.registry.ObjectRegistry;
+import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.util.EnumTallFlower;
 import net.minecraft.block.*;
 import net.minecraft.client.item.TooltipContext;
@@ -25,104 +32,101 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.event.GameEvent;
+import satisfyu.vinery.util.VineryTags;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
-public class FlowerPotBlock extends Block {
-	protected static final VoxelShape SHAPE = makeShape();
-	
-	public static final EnumProperty<EnumTallFlower> CONTENT = EnumProperty.of("content", EnumTallFlower.class);
-	
-	public FlowerPotBlock(Settings settings) {
-		super(settings);
-		this.setDefaultState(this.getDefaultState().with(CONTENT, EnumTallFlower.NONE));
-	}
-	
-	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(CONTENT);
-	}
-	
-	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return SHAPE;
-	}
-	
-	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		ItemStack itemStack = player.getStackInHand(hand);
-		Item item = itemStack.getItem();
-		if (item instanceof BlockItem blockItem) {
-			Block block = blockItem.getBlock();
-			if (block instanceof TallPlantBlock) {
-				EnumTallFlower flower = EnumTallFlower.NONE;
-				for (EnumTallFlower f : EnumTallFlower.values()) {
-					if (f.getFlower() == block) {
-						flower = f;
-						break;
-					}
-				}
-				if (flower == EnumTallFlower.NONE) {
-					return ActionResult.FAIL;
-				}
-				world.setBlockState(pos, state.with(CONTENT, flower));
-				if (!player.getAbilities().creativeMode) {
-					itemStack.decrement(1);
-				}
-				world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-				return ActionResult.success(world.isClient);
-			}
-		} else if (player.isSneaking() && !isEmpty(state)) {
-			player.giveItemStack(new ItemStack(state.get(CONTENT).getFlower()));
-			world.setBlockState(pos, state.with(CONTENT, EnumTallFlower.NONE));
-			world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-			return ActionResult.success(world.isClient);
-		}
-		return ActionResult.PASS;
-	}
-	
-	@Override
-	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return this.isEmpty(state) ? super.getPickStack(world, pos, state) : new ItemStack(state.get(CONTENT).getFlower());
-	}
-	
-	private boolean isEmpty(BlockState state) {
-		return state.get(CONTENT) == EnumTallFlower.NONE;
-	}
-	
-	@Override
-	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		return direction == Direction.DOWN && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
-	}
-	
-	@Override
-	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
-		return false;
-	}
+public class FlowerPotBlock extends Block implements BlockEntityProvider{
+	private static final VoxelShape SHAPE;
 
-	@Override
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-		List<ItemStack> list = new ArrayList<>();
-		list.add(new ItemStack(this));
-		Optional.of(state.get(CONTENT)).filter(a -> a != EnumTallFlower.NONE).map(EnumTallFlower::getFlower).map(ItemStack::new).ifPresent(list::add);
-		return list;
-	}
-
-	public static VoxelShape makeShape() {
+	private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
 		VoxelShape shape = VoxelShapes.empty();
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.78125, 0.421875, 0.21875, 0.875, 0.609375, 0.78125), BooleanBiFunction.OR);
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.21875, 0, 0.21875, 0.78125, 0.46875, 0.78125), BooleanBiFunction.OR);
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.421875, 0.125, 0.875, 0.609375, 0.21875), BooleanBiFunction.OR);
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.421875, 0.78125, 0.875, 0.609375, 0.875), BooleanBiFunction.OR);
 		shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0.125, 0.421875, 0.21875, 0.21875, 0.609375, 0.78125), BooleanBiFunction.OR);
-		
 		return shape;
+	};
+	
+	public FlowerPotBlock(Settings settings) {
+		super(settings);
+	}
+	
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return SHAPE;
+	}
+
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		if (world.isClient || hand == Hand.OFF_HAND) return ActionResult.SUCCESS;
+		FlowerPotBlockEntity be = (FlowerPotBlockEntity)world.getBlockEntity(pos);
+		if (be == null || player.isSneaking()) return ActionResult.PASS;
+
+		ItemStack handStack = player.getStackInHand(hand);
+		Item flower = be.getFlower();
+
+		if (handStack.isEmpty()) {
+			if (flower != null) {
+				player.giveItemStack(flower.getDefaultStack());
+				be.setFlower(null);
+				return ActionResult.SUCCESS;
+			}
+		} else if (fitInPot(handStack) && flower == null) {
+			be.setFlower(handStack.getItem());
+			if (!player.isCreative()) {
+				handStack.decrement(1);
+			}
+			return ActionResult.SUCCESS;
+		}
+		return super.onUse(state, world, pos, player, hand, hit);
+	}
+
+	public boolean fitInPot(ItemStack item) {
+		return item.isIn(VineryTags.BIG_FLOWER);
+	}
+
+	@Override
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+		if (state.getBlock() != newState.getBlock()) {
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof FlowerPotBlockEntity be) {
+				Item flower = be.getFlower();
+				if (flower != null) {
+					ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), flower.getDefaultStack());
+				}
+				world.updateComparators(pos,this);
+			}
+			super.onStateReplaced(state, world, pos, newState, moved);
+		}
+	}
+
+	@Override
+	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+		return false;
+	}
+
+	@Override
+	public PistonBehavior getPistonBehavior(BlockState state) {
+		return PistonBehavior.IGNORE;
+	}
+
+	@Nullable
+	@Override
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new FlowerPotBlockEntity(pos, state);
 	}
 
 	@Override
 	public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
 		tooltip.add(Text.translatable("block.vinery.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+	}
+
+	static {
+		SHAPE = voxelShapeSupplier.get();
 	}
 }

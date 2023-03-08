@@ -1,13 +1,10 @@
 package satisfyu.vinery.villager.task;
 
 import com.google.common.collect.ImmutableMap;
-import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.NoPenaltyTargeting;
-import net.minecraft.entity.ai.brain.Brain;
-import net.minecraft.entity.ai.brain.MemoryModuleState;
-import net.minecraft.entity.ai.brain.MemoryModuleType;
-import net.minecraft.entity.ai.brain.WalkTarget;
+import net.minecraft.entity.ai.brain.*;
 import net.minecraft.entity.ai.brain.task.Task;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.item.Items;
@@ -16,6 +13,7 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.GlobalPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.poi.PointOfInterestStorage;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.villager.memory.ModMemoryModuleType;
@@ -24,8 +22,10 @@ import java.util.Optional;
 
 public class ShopAtVineryStandTask<E extends VillagerEntity> extends Task<E> {
 
-    private final long timeToShop = 24000L;
-    private final long distanceToShop = 25;
+    private final int minTimeToShop = 6000;
+    private final int maxTimeToShop = 24000;
+    private int shopCooldown;
+    private final int distanceToShop = 25;
     private final MemoryModuleType<GlobalPos> destination;
     private final float speed;
     private final int completionRange;
@@ -43,30 +43,47 @@ public class ShopAtVineryStandTask<E extends VillagerEntity> extends Task<E> {
     }
 
     @Override
-    protected boolean shouldRun(ServerWorld world, E entity) {
-        System.out.println("tryShop");
-        Brain<?> brain = entity.getBrain();
+    protected boolean shouldRun(ServerWorld world, VillagerEntity villager) {
+        System.out.println("shouldRun");
+        if (wasHurt(villager) || isHostileNearby(villager)) {
+            return false;
+        }
+        Brain<?> brain = villager.getBrain();
+        Optional<Long> optional = brain.getOptionalMemory(ModMemoryModuleType.LAST_SHOPED);
+        if (optional.isPresent()) {
+            long l = world.getTime() - optional.get();
+            if (l > 0L && l < shopCooldown) {
+                return false;
+            }
+        } else {
+            // wenn neu geplaced sofort alle? wenn ja weg lassen
+
+            //shopCooldown = Random.create().nextBetween(100, maxTimeToShop);
+            //brain.remember(ModMemoryModuleType.LAST_SHOPED, world.getTime());
+        }
+
         GlobalPos globalPos = brain.getOptionalMemory(ModMemoryModuleType.SHOP).get();
         if (world.getRegistryKey() != globalPos.getDimension()) {
             return false;
         }
 
-        Optional<Long> optional = brain.getOptionalMemory(ModMemoryModuleType.LAST_SHOPED);
-        if (optional.isPresent()) {
-            long l = world.getTime() - optional.get();
-            if (l > 0L && l < timeToShop) {
-                return false;
-            }
-        }
         BlockState blockState = world.getBlockState(globalPos.getPos());
-        return globalPos.getPos().isWithinDistance(entity.getPos(), distanceToShop) && blockState.getBlock() == ObjectRegistry.BASKET;
+        return globalPos.getPos().isWithinDistance(villager.getPos(), distanceToShop) && blockState.getBlock() == ObjectRegistry.BASKET;
+    }
+
+    @Override
+    protected boolean shouldKeepRunning(ServerWorld world, E entity, long time) {
+        System.out.println("shouldKeepRunning");
+        return super.shouldKeepRunning(world, entity, time);
     }
 
     @Override
     protected void run(ServerWorld serverWorld, E villagerEntity, long l) {
-        System.out.println("shop");
         Brain<?> brain = villagerEntity.getBrain();
-        brain.getOptionalMemory(this.destination).ifPresent((pos) -> {
+
+        Optional<GlobalPos> optional = brain.getOptionalMemory(this.destination);
+        if (optional.isPresent()) {
+            GlobalPos pos = optional.get();
             if (!this.dimensionMismatches(serverWorld, pos) && !this.shouldGiveUp(serverWorld, villagerEntity)) {
                 if (this.exceedsMaxRange(villagerEntity, pos)) {
                     Vec3d vec3d = null;
@@ -85,11 +102,7 @@ public class ShopAtVineryStandTask<E extends VillagerEntity> extends Task<E> {
                     if (!this.reachedDestination(serverWorld, villagerEntity, pos)) {
                         brain.remember(MemoryModuleType.WALK_TARGET, new WalkTarget(pos.getPos(), this.speed, this.completionRange));
                     } else {
-                        PointOfInterestStorage pointOfInterestStorage = serverWorld.getPointOfInterestStorage();
-                        pointOfInterestStorage.releaseTicket(pos.getPos());
-
-                        brain.forget(ModMemoryModuleType.SHOP);
-                        brain.remember(ModMemoryModuleType.LAST_SHOPED, serverWorld.getTime());
+                        forgetVineryStand(serverWorld, villagerEntity, brain);
 
                         BlockPos blockPos = pos.getPos();
                         ItemScatterer.spawn(serverWorld, blockPos.getX(), blockPos.getY(), blockPos.getZ(), Items.DIAMOND.getDefaultStack());
@@ -98,7 +111,7 @@ public class ShopAtVineryStandTask<E extends VillagerEntity> extends Task<E> {
             } else {
                 this.giveUp(villagerEntity, l);
             }
-        });
+        }
     }
 
     private void giveUp(VillagerEntity villager, long time) {
@@ -117,6 +130,14 @@ public class ShopAtVineryStandTask<E extends VillagerEntity> extends Task<E> {
         }
     }
 
+    private void forgetVineryStand(ServerWorld world, VillagerEntity villager, Brain<?> brain) {
+        villager.releaseTicketFor(ModMemoryModuleType.SHOP);
+
+        brain.forget(this.destination);
+        brain.remember(ModMemoryModuleType.LAST_SHOPED, world.getTime());
+        shopCooldown = Random.create().nextBetween(minTimeToShop, maxTimeToShop);
+    }
+
     private boolean exceedsMaxRange(VillagerEntity villager, GlobalPos pos) {
         return pos.getPos().getManhattanDistance(villager.getBlockPos()) > this.maxRange;
     }
@@ -127,5 +148,13 @@ public class ShopAtVineryStandTask<E extends VillagerEntity> extends Task<E> {
 
     private boolean reachedDestination(ServerWorld world, VillagerEntity villager, GlobalPos pos) {
         return pos.getDimension() == world.getRegistryKey() && pos.getPos().getManhattanDistance(villager.getBlockPos()) <= this.completionRange;
+    }
+
+    public static boolean isHostileNearby(LivingEntity entity) {
+        return entity.getBrain().hasMemoryModule(MemoryModuleType.NEAREST_HOSTILE);
+    }
+
+    public static boolean wasHurt(LivingEntity entity) {
+        return entity.getBrain().hasMemoryModule(MemoryModuleType.HURT_BY);
     }
 }

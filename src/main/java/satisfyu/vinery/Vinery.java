@@ -1,7 +1,5 @@
 package satisfyu.vinery;
 
-import satisfyu.vinery.villager.ModVillagers;
-import satisfyu.vinery.villager.activity.ModActivity;
 import satisfyu.vinery.villager.memory.ModMemoryModuleType;
 import satisfyu.vinery.villager.poi.ModPointOfInterestTypes;
 import satisfyu.vinery.villager.task.ModTaskListProvider;
@@ -64,9 +62,7 @@ public class Vinery implements ModInitializer {
         VineryEntites.init();
         VineryCompostableItems.init();
 
-        ModVillagers.registerVillagers(); //TODO rename and make init
-        ModActivity.init();
-        ModMemoryModuleType.init();
+        ModMemoryModuleType.init();//TODO rename and make init
         ModPointOfInterestTypes.init();
         ModTaskListProvider.init();
 

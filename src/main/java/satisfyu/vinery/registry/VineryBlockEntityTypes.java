@@ -32,6 +32,8 @@ public class VineryBlockEntityTypes {
 
     public static final BlockEntityType<WineRackStorageBlockEntity> WINE_RACK_STORAGE_ENTITY = create("wine_rack_storage", FabricBlockEntityTypeBuilder.create(WineRackStorageBlockEntity::new, ObjectRegistry.WINE_RACK_3, ObjectRegistry.WINE_RACK_5).build());
 
+    public static final BlockEntityType<FlowerPotBlockEntity> FLOWER_POT_BLOCK_ENTITY = create("cooking_pot", FabricBlockEntityTypeBuilder.create(FlowerPotBlockEntity::new, ObjectRegistry.FLOWER_POT).build());
+
 
 
     public static Block[] b(){
