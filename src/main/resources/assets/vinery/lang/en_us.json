@@ -186,6 +186,7 @@
   "block.vinery.grape_jam": "Grape Jam",
   "block.vinery.aegis_wine": "Aegis Wine",
   "block.vinery.big_bowl": "Bowl",
-  "block.vinery.kelp_cider": "Kelp Cider"
+  "block.vinery.kelp_cider": "Kelp Cider",
 
+  "tooltip.vinery.recipe_book": "Recipe Book"
 }

@@ -1,10 +1,12 @@
 package satisfyu.vinery.client.gui.handler;
 
 import satisfyu.vinery.block.entity.CookingPotEntity;
+import satisfyu.vinery.block.entity.FermentationBarrelBlockEntity;
 import satisfyu.vinery.compat.farmersdelight.FarmersCookingPot;
 import satisfyu.vinery.recipe.CookingPotRecipe;
 import satisfyu.vinery.registry.VineryRecipeTypes;
 import satisfyu.vinery.registry.VineryScreenHandlerTypes;
+import satisfyu.vinery.screen.sideTip.RecipeGUIHandler;
 import satisfyu.vinery.util.VineryUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -19,21 +21,16 @@ import net.minecraft.world.World;
 
 import java.util.stream.Stream;
 
-public class CookingPotGuiHandler extends ScreenHandler {
+public class CookingPotGuiHandler extends RecipeGUIHandler {
 
-    private final PropertyDelegate propertyDelegate;
-    private final World world;
     public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(8), new ArrayPropertyDelegate(2));
     }
 
     public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
-        super(VineryScreenHandlerTypes.COOKING_POT_SCREEN_HANDLER, syncId);
+        super(VineryScreenHandlerTypes.COOKING_POT_SCREEN_HANDLER, syncId, playerInventory, inventory, 6, propertyDelegate);
         buildBlockEntityContainer(inventory);
         buildPlayerContainer(playerInventory);
-        this.world = playerInventory.player.getWorld();
-        this.propertyDelegate = propertyDelegate;
-        addProperties(this.propertyDelegate);
     }
 
     private void buildBlockEntityContainer(Inventory inventory) {
@@ -63,51 +60,7 @@ public class CookingPotGuiHandler extends ScreenHandler {
         }
     }
 
-    @Override
-    public boolean canUse(PlayerEntity player) {
-        return true;
-    }
-
-    public boolean isBeingBurned() {
-        return propertyDelegate.get(1) != 0;
-    }
-
-
-    @Override
-    public ItemStack transferSlot(PlayerEntity player, int index) {
-        ItemStack stack;
-        final Slot slot = this.getSlot(index);
-        if (slot != null && slot.hasStack()) {
-            final ItemStack stackInSlot = slot.getStack();
-            stack = stackInSlot.copy();
-            if (VineryUtils.isIndexInRange(index, 0, 7)) {
-                if (!this.insertItem(stackInSlot, 8, 43, true)) {
-                    return ItemStack.EMPTY;
-                }
-                slot.onQuickTransfer(stackInSlot, stack);
-
-            } else if (isItemIngredient(stackInSlot)) {
-                if (!this.insertItem(stackInSlot, 0, 5, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (isItemContainer(stack)) {
-                if (!this.insertItem(stackInSlot, 6, 7, false)) {
-                    return ItemStack.EMPTY;
-                }
-            }
-            if (stackInSlot.isEmpty()) {
-                slot.setStack(ItemStack.EMPTY);
-            } else {
-                slot.markDirty();
-            }
-            if (stackInSlot.getCount() == stack.getCount()) {
-                return ItemStack.EMPTY;
-            }
-            slot.onTakeItem(player, stackInSlot);
-        }
-        return ItemStack.EMPTY;
-    }
-
+    //Maybe Use later
     private boolean isItemIngredient(ItemStack stack) {
         if(VineryUtils.isFDLoaded()){
             if(FarmersCookingPot.isItemIngredient(stack, this.world)){
@@ -116,27 +69,16 @@ public class CookingPotGuiHandler extends ScreenHandler {
         }
         return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
     }
-
     private Stream<CookingPotRecipe> recipeStream() {
         return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE).stream();
     }
-    private boolean isItemContainer(ItemStack stack) {
-        if(VineryUtils.isFDLoaded()){
-            if(FarmersCookingPot.isItemContainer(stack, this.world)){
-                return true;
-            }
-        }
-        return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getContainer().isOf(stack.getItem()));
-    }
 
-    public int getScaledProgress() {
+    public int getScaledProgress(int arrowWidth) {
         final int progress = this.propertyDelegate.get(0);
         final int totalProgress = CookingPotEntity.MAX_COOKING_TIME;
         if (progress == 0) {
             return 0;
         }
-        return progress * 22 / totalProgress;
+        return progress * arrowWidth/ totalProgress + 1;
     }
-
-
 }
