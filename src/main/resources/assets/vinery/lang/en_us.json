@@ -39,11 +39,11 @@
   "block.vinery.cherry_floorboard": "Cherry Floorboard",
   "block.vinery.pink_cherry_leaves": "Pink Cherry Leaves",
   "block.vinery.stackable_log": "Stackable Log",
-  "block.vinery.cooking_pot": "Cooking Pot",
+  "block.vinery.cooking_pot": "",
   "block.vinery.cherry_jar": "Cherry Jar",
   "block.vinery.jellie_wine": "Jellie Wine",
   "block.vinery.cherry_jam": "Cherry Jam",
-  "block.vinery.fermentation_barrel": "Aging Barrel",
+  "block.vinery.fermentation_barrel": "",
   "block.vinery.wine_bottle": "Wine Bottle",
   "block.vinery.red_grapejuice_wine_bottle": "Red Grapejuice",
   "block.vinery.white_grapejuice_wine_bottle": "White Grapejuice",
@@ -108,7 +108,7 @@
   "container.wine_rack": "Storage",
   "container.storagepot": "Storage Pot",
   "rei.vinery.cooking_pot_category": "Cooking Pot",
-  "rei.vinery.wood_fired_oven_category": "Wood Fired Oven",
+  "rei.vinery.wood_fired_oven_category": "",
   "rei.vinery.fermentation_barrel_category": "Aging Barrel",
   "entity.minecraft.villager.vinery.winemaker": "Winemaker",
   "entity.vinery.mule": "Mule",
@@ -191,7 +191,9 @@
   "subtitles.vinery.juice_boiling": "Pot Boiling",
   "subtitles.vinery.squeeze": "Grapes Squeezing",
   "subtitles.vinery.open": "Opening Sound",
-  "subtitles.vinery.close": "Closing Sound"
+  "subtitles.vinery.close": "Closing Sound",
+
+  "tooltip.vinery.recipe_book": "Recipe Book"
 
 
 }

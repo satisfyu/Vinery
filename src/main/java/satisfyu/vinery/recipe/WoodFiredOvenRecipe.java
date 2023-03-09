@@ -63,11 +63,6 @@ public class WoodFiredOvenRecipe implements Recipe<Inventory> {
         return experience;
     }
 
-    public DefaultedList<Ingredient> getInputs() {
-        return inputs;
-    }
-
-
     @Override
     public RecipeSerializer<?> getSerializer() {
         return VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_SERIALIZER;

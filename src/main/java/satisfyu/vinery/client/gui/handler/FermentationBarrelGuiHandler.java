@@ -5,6 +5,7 @@ import satisfyu.vinery.block.entity.FermentationBarrelBlockEntity;
 import satisfyu.vinery.client.gui.handler.slot.ExtendedSlot;
 import satisfyu.vinery.client.gui.handler.slot.StoveOutputSlot;
 import satisfyu.vinery.registry.ObjectRegistry;
+import satisfyu.vinery.registry.VineryRecipeTypes;
 import satisfyu.vinery.registry.VineryScreenHandlerTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -31,16 +32,14 @@ public class FermentationBarrelGuiHandler extends RecipeGUIHandler {
 
     private void buildBlockEntityContainer(PlayerInventory playerInventory, Inventory inventory) {
         // Wine input
-        this.addSlot(new ExtendedSlot(inventory, 0, 63, 50, stack -> {
-            return stack.isOf(Item.fromBlock(ObjectRegistry.WINE_BOTTLE));
-        }));
+        this.addSlot(new ExtendedSlot(inventory, 0, 79, 51, stack -> stack.isOf(Item.fromBlock(ObjectRegistry.WINE_BOTTLE))));
         // Inputs
-        this.addSlot(new Slot(inventory, 2, 18, 26));
-        this.addSlot(new Slot(inventory, 3, 36, 26));
-        this.addSlot(new Slot(inventory, 4, 18, 44));
-        this.addSlot(new Slot(inventory, 5, 36, 44));
+        this.addSlot(new ExtendedSlot(inventory, 2, 33, 26, this::isIngredient));
+        this.addSlot(new ExtendedSlot(inventory, 3, 51, 26, this::isIngredient));
+        this.addSlot(new ExtendedSlot(inventory, 4, 33, 44, this::isIngredient));
+        this.addSlot(new ExtendedSlot(inventory, 5, 51, 44, this::isIngredient));
         // Output
-        this.addSlot(new StoveOutputSlot(playerInventory.player, inventory, 1, 125,  35));
+        this.addSlot(new StoveOutputSlot(playerInventory.player, inventory, 1, 128,  35));
     }
 
     private void buildPlayerContainer(PlayerInventory playerInventory) {
@@ -53,6 +52,10 @@ public class FermentationBarrelGuiHandler extends RecipeGUIHandler {
         for (i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
+    }
+
+    private boolean isIngredient(ItemStack stack) {
+        return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE).stream().anyMatch(recipe -> recipe.getIngredients().stream().anyMatch(x -> x.test(stack)));
     }
 
     public int getScaledProgress(int arrowWidth) {

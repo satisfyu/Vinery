@@ -85,7 +85,7 @@ public class ClientSetup implements ClientModInitializer {
         EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
         EntityRendererRegistry.register(VineryBlockEntityTypes.CHAIR, ChairRenderer::new);
 
-        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_POT_BLOCK_ENTITY, FlowerPotBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_POT_ENTITY, FlowerPotBlockEntityRenderer::new);
 
         CustomArmorRegistry.registerModels();
 

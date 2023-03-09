@@ -1,21 +1,18 @@
 package satisfyu.vinery.client.gui.handler;
 
-import net.minecraft.screen.slot.FurnaceOutputSlot;
+import satisfyu.vinery.block.entity.WoodFiredOvenBlockEntity;
 import satisfyu.vinery.client.gui.handler.slot.ExtendedSlot;
 import satisfyu.vinery.client.gui.handler.slot.StoveOutputSlot;
 import satisfyu.vinery.registry.VineryRecipeTypes;
 import satisfyu.vinery.registry.VineryScreenHandlerTypes;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.world.World;
 import satisfyu.vinery.screen.sideTip.RecipeGUIHandler;
 
 public class StoveGuiHandler extends RecipeGUIHandler {
@@ -32,12 +29,12 @@ public class StoveGuiHandler extends RecipeGUIHandler {
     }
 
     private void buildBlockEntityContainer(PlayerInventory playerInventory, Inventory inventory) {
-        this.addSlot(new ExtendedSlot(inventory, 0, 38, 17, this::isIngredient));
-        this.addSlot(new ExtendedSlot(inventory, 1, 56, 17, this::isIngredient));
-        this.addSlot(new ExtendedSlot(inventory, 2, 74, 17, this::isIngredient));
-        this.addSlot(new ExtendedSlot(inventory, 3, 56, 53, StoveGuiHandler::isFuel));
+        this.addSlot(new ExtendedSlot(inventory, 0, 29, 18, this::isIngredient));
+        this.addSlot(new ExtendedSlot(inventory, 1, 47, 18, this::isIngredient));
+        this.addSlot(new ExtendedSlot(inventory, 2, 65, 18, this::isIngredient));
+        this.addSlot(new ExtendedSlot(inventory, 3, 42, 48, StoveGuiHandler::isFuel));
 
-        this.addSlot(new StoveOutputSlot(playerInventory.player, inventory, 4, 116,  35));
+        this.addSlot(new StoveOutputSlot(playerInventory.player, inventory, 4, 126,  42));
     }
 
     private void buildPlayerContainer(PlayerInventory playerInventory) {
@@ -66,17 +63,22 @@ public class StoveGuiHandler extends RecipeGUIHandler {
     }
 
     private boolean isIngredient(ItemStack stack) {
-        return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_TYPE).stream().anyMatch(recipe -> recipe.getInputs().stream().anyMatch(x -> x.test(stack)));
+        return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_TYPE).stream().anyMatch(recipe -> recipe.getIngredients().stream().anyMatch(x -> x.test(stack)));
     }
     private static boolean isFuel(ItemStack stack) {
         return AbstractFurnaceBlockEntity.canUseAsFuel(stack);
     }
 
-    public int getFuelProgress() {
-        int i = this.propertyDelegate.get(1);
-        if (i == 0) {
-            i = 200;
+    public int getScaledProgress(int arrowWidth) {
+        final int progress = this.propertyDelegate.get(0);
+        final int totalProgress = WoodFiredOvenBlockEntity.TOTAL_COOKING_TIME;
+        if (progress == 0) {
+            return 0;
         }
-        return this.propertyDelegate.get(0) * 13 / i;
+        return progress * arrowWidth/ totalProgress + 1;
+    }
+
+    public boolean isBeingBurned() {
+        return propertyDelegate.get(1) != 0;
     }
 }

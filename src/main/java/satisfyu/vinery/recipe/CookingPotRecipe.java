@@ -52,10 +52,6 @@ public class CookingPotRecipe implements Recipe<Inventory> {
         return id;
     }
 
-    public ItemStack getContainer() {
-        return container;
-    }
-
     @Override
     public RecipeSerializer<?> getSerializer() {
         return VineryRecipeTypes.COOKING_POT_RECIPE_SERIALIZER;
@@ -69,6 +65,10 @@ public class CookingPotRecipe implements Recipe<Inventory> {
     @Override
     public DefaultedList<Ingredient> getIngredients() {
         return this.inputs;
+    }
+
+    public ItemStack getContainer() {
+        return container;
     }
 
     @Override

@@ -1,9 +1,13 @@
 package satisfyu.vinery.client.gui.handler;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import satisfyu.vinery.block.entity.CookingPotEntity;
 import satisfyu.vinery.block.entity.FermentationBarrelBlockEntity;
+import satisfyu.vinery.client.gui.handler.slot.ExtendedSlot;
 import satisfyu.vinery.compat.farmersdelight.FarmersCookingPot;
 import satisfyu.vinery.recipe.CookingPotRecipe;
+import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VineryRecipeTypes;
 import satisfyu.vinery.registry.VineryScreenHandlerTypes;
 import satisfyu.vinery.screen.sideTip.RecipeGUIHandler;
@@ -28,18 +32,20 @@ public class CookingPotGuiHandler extends RecipeGUIHandler {
     }
 
     public CookingPotGuiHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
-        super(VineryScreenHandlerTypes.COOKING_POT_SCREEN_HANDLER, syncId, playerInventory, inventory, 6, propertyDelegate);
+        super(VineryScreenHandlerTypes.COOKING_POT_SCREEN_HANDLER, syncId, playerInventory, inventory, 7, propertyDelegate);
         buildBlockEntityContainer(inventory);
         buildPlayerContainer(playerInventory);
     }
 
     private void buildBlockEntityContainer(Inventory inventory) {
+        this.addSlot(new ExtendedSlot(inventory, 6,95, 55, stack -> stack.isOf(Item.fromBlock(ObjectRegistry.CHERRY_JAR)) || stack.isOf(Items.BOWL)));
+
         for (int row = 0; row < 2; row++) {
             for (int slot = 0; slot < 3; slot++) {
                 this.addSlot(new Slot(inventory, slot + row + (row * 2), 30 + (slot * 18), 17 + (row * 18)));
             }
         }
-        this.addSlot(new Slot(inventory, 6,92, 55));
+
         this.addSlot(new Slot(inventory, 7, 124, 28) {
             @Override
             public boolean canInsert(ItemStack stack) {
@@ -60,17 +66,8 @@ public class CookingPotGuiHandler extends RecipeGUIHandler {
         }
     }
 
-    //Maybe Use later
-    private boolean isItemIngredient(ItemStack stack) {
-        if(VineryUtils.isFDLoaded()){
-            if(FarmersCookingPot.isItemIngredient(stack, this.world)){
-                return true;
-            }
-        }
-        return recipeStream().anyMatch(cookingPotRecipe -> cookingPotRecipe.getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
-    }
-    private Stream<CookingPotRecipe> recipeStream() {
-        return this.world.getRecipeManager().listAllOfType(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE).stream();
+    public boolean isBeingBurned() {
+        return propertyDelegate.get(1) != 0;
     }
 
     public int getScaledProgress(int arrowWidth) {

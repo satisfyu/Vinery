@@ -19,7 +19,7 @@ public class FlowerPotBlockEntity extends BlockEntity {
     public static final String FLOWER_KEY ="flower";
 
     public FlowerPotBlockEntity(BlockPos pos, BlockState state) {
-        super(VineryBlockEntityTypes.FLOWER_POT_BLOCK_ENTITY, pos, state);
+        super(VineryBlockEntityTypes.FLOWER_POT_ENTITY, pos, state);
     }
 
     public Item getFlower() {
