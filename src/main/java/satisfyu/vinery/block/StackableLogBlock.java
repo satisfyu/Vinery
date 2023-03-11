@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.state.property.DirectionProperty;
 import satisfyu.vinery.registry.DamageSourceRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.SlabType;
@@ -40,10 +41,11 @@ import java.util.List;
 public class StackableLogBlock extends SlabBlock implements Waterloggable {
     public static final EnumProperty<SlabType> TYPE = Properties.SLAB_TYPE;
     public static final BooleanProperty FIRED = BooleanProperty.of("fired");
+    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
     public StackableLogBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(FIRED, false).with(WATERLOGGED, false));
+        this.setDefaultState(this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(FIRED, false).with(WATERLOGGED, false).with(FACING, Direction.NORTH));
     }
 
 
@@ -76,19 +78,18 @@ public class StackableLogBlock extends SlabBlock implements Waterloggable {
         BlockPos blockPos = ctx.getBlockPos();
         BlockState blockState = ctx.getWorld().getBlockState(blockPos);
         if (blockState.isOf(this)) {
-            return blockState.with(TYPE, SlabType.DOUBLE).with(FIRED, false).with(WATERLOGGED, false);
+            return blockState.with(TYPE, SlabType.DOUBLE).with(FIRED, false).with(WATERLOGGED, false).with(FACING, ctx.getPlayerFacing().getOpposite());
         } else {
             FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-            BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+            BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(FACING, ctx.getPlayerFacing().getOpposite()).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
             Direction direction = ctx.getSide();
             return direction != Direction.DOWN && (direction == Direction.UP || !(ctx.getHitPos().getY() - (double)blockPos.getY() > 0.5)) ? blockState2 : blockState2.with(TYPE, SlabType.TOP);
         }
     }
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(TYPE, FIRED, Properties.WATERLOGGED);
+        builder.add(TYPE, FIRED, FACING, Properties.WATERLOGGED);
     }
-
 
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {

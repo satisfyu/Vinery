@@ -1,6 +1,0 @@
-{
-  "parent": "vinery:block/flower_box_top_main",
-  "textures": {
-    "10": "minecraft:block/allium"
-  }
-}

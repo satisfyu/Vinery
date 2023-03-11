@@ -1,8 +1,0 @@
-{
-	"credit": "Made by Satisfy",
-	"parent": "vinery:block/flower_pot_main",
-	"textures": {
-		"4": "vinery:block/flowers/planted_peony_top",
-		"5": "vinery:block/flowers/planted_peony_bottom"
-	}
-}

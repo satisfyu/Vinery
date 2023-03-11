@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "vinery:block/grapevine_stem"
+    },
+    "age=1,type=red": {
+      "model": "vinery:block/grapevine_stage1"
+    },
+    "age=1,type=white": {
+      "model": "vinery:block/grapevine_stage1"
+    },
+    "age=2,type=red": {
+      "model": "vinery:block/grapevine_stage2"
+    },
+    "age=2,type=white": {
+      "model": "vinery:block/grapevine_stage2"
+    },
+    "age=3,type=red": {
+      "model": "vinery:block/grapevine_red_stage3"
+    },
+    "age=3,type=white": {
+      "model": "vinery:block/grapevine_white_stage3"
+    },
+    "age=4,type=red": {
+      "model": "vinery:block/grapevine_red_stage4"
+    },
+    "age=4,type=white": {
+      "model": "vinery:block/grapevine_white_stage4"
+    }
+  }
+}
