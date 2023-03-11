@@ -1,9 +1,0 @@
-{
-    "name": "Welcome to Vinery",
-    "landing_text": "Hey $(playername) and welcome to Vinery!$(br2)This Book will help you to learn some basics about how to grow your first Grapes. Additionally you can also find most recipes here.",
-    "version": 1,
-    "model": "vinery:book",
-    "show_progress": "false",
-    "creative_tab": "vinery.vinery_tab_main",
-    "use_blocky_font": true
-}
