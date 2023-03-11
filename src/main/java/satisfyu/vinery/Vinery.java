@@ -4,6 +4,8 @@ import satisfyu.vinery.villager.memory.ModMemoryModuleType;
 import satisfyu.vinery.villager.poi.ModPointOfInterestTypes;
 import satisfyu.vinery.villager.task.ModTaskListProvider;
 import satisfyu.vinery.world.VineryConfiguredFeatures;
+import net.moddingplayground.frame.api.tabbeditemgroups.v0.TabbedItemGroup;
+import net.moddingplayground.frame.api.util.GUIIcon;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
@@ -28,7 +30,7 @@ public class Vinery implements ModInitializer {
     public static final String MODID = "vinery";
 
     public static final Logger LOGGER = LogManager.getLogger(MODID);
-    public static final ItemGroup CREATIVE_TAB = FabricItemGroupBuilder.build(new VineryIdentifier("creative_tab"), () -> new ItemStack(ObjectRegistry.RED_GRAPE));
+    public static final ItemGroup CREATIVE_TAB = TabbedItemGroup.builder().build(new VineryIdentifier("vinery_tab"), g -> GUIIcon.of(() -> new ItemStack(ObjectRegistry.RED_GRAPE)));
     public static final TagKey<Block> ALLOWS_COOKING_ON_POT = TagKey.of(Registry.BLOCK_KEY, new VineryIdentifier("allows_cooking_on_pot"));
 /*
     public static final ItemGroup ITEM_GROUP_TABBED_ICON_TEXTURES =
@@ -67,7 +69,7 @@ public class Vinery implements ModInitializer {
         ModTaskListProvider.init();
 
         FabricLoader.getInstance().getModContainer(MODID).ifPresent(container -> {
-            ResourceManagerHelper.registerBuiltinResourcePack(new VineryIdentifier("bushy_leaves"), container, ResourcePackActivationType.DEFAULT_ENABLED);
+            ResourceManagerHelper.registerBuiltinResourcePack(new VineryIdentifier("bushy_leaves"), container, ResourcePackActivationType.NORMAL);
         });
     }
 

@@ -1,3 +1,6 @@
 {
-  "parent": "vinery:block/storage_pot"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "vinery:item/storage_pot"
+  }
 }

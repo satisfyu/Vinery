@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "vinery:chenet_wine",
+    "vinery:king_danis_wine",
+    "vinery:noir_wine",
+    "vinery:clark_wine",
+    "vinery:mellohi_wine",
+    "vinery:bolvar_wine",
+    "vinery:cherry_wine",
+    "vinery:apple_cider",
+    "vinery:kelp_cider",
+    "vinery:solaris_wine",
+    "vinery:jellie_wine",
+    "vinery:aegis_wine",
+    "vinery:apple_wine"
+  ]
+}
