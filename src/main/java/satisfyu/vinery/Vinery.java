@@ -60,7 +60,7 @@ public class Vinery implements ModInitializer {
         VineryCompostableItems.init();
 
         FabricLoader.getInstance().getModContainer(MODID).ifPresent(container -> {
-            ResourceManagerHelper.registerBuiltinResourcePack(new VineryIdentifier("bushy_leaves"), container, ResourcePackActivationType.DEFAULT_ENABLED);
+            ResourceManagerHelper.registerBuiltinResourcePack(new VineryIdentifier("bushy_leaves"), container, ResourcePackActivationType.NORMAL);
         });
     }
 
