@@ -9,8 +9,7 @@
     "BoneMealItemMixin",
     "FoxEntityEatSweetBerriesGoalMixin",
     "LivingEntityMixin",
-    "WanderingTraderManagerMixin",
-    "VillagerEntityMixin"
+    "WanderingTraderManagerMixin"
   ],
   "client": [
     "ArmorFeatureRendererMixin",

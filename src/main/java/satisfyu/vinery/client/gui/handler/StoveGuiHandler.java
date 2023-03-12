@@ -70,8 +70,8 @@ public class StoveGuiHandler extends RecipeGUIHandler {
     }
 
     public int getScaledProgress(int arrowWidth) {
-        final int progress = this.propertyDelegate.get(0);
-        final int totalProgress = WoodFiredOvenBlockEntity.TOTAL_COOKING_TIME;
+        final int progress = this.propertyDelegate.get(2);
+        final int totalProgress = this.propertyDelegate.get(3);
         if (progress == 0) {
             return 0;
         }

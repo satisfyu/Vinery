@@ -16,7 +16,9 @@ import static satisfyu.vinery.util.ClientUtil.renderBlock;
 
 public class FlowerPotBlockEntityRenderer implements BlockEntityRenderer<FlowerPotBlockEntity> {
 
-    public FlowerPotBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {}
+    public FlowerPotBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+
+    }
 
     @Override
     public void render(FlowerPotBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {

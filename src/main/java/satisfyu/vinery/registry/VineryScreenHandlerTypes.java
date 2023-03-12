@@ -1,10 +1,7 @@
 package satisfyu.vinery.registry;
 
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.client.gui.handler.CookingPotGuiHandler;
-import satisfyu.vinery.client.gui.handler.FermentationBarrelGuiHandler;
-import satisfyu.vinery.client.gui.handler.StoveGuiHandler;
-import satisfyu.vinery.client.gui.handler.WinePressGuiHandler;
+import satisfyu.vinery.client.gui.handler.*;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.registry.Registry;
 

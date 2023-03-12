@@ -2,11 +2,11 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"4": "vinery:block/apple_pie_plate",
-		"inner": "vinery:block/apple_pie_alt/apple_pie_side",
-		"side": "vinery:block/apple_pie_alt/apple_pie_side_yummie",
-		"particle": "vinery:block/apple_pie_alt/apple_pie_top",
-		"top": "vinery:block/apple_pie_alt/apple_pie_top",
-		"bottom": "vinery:block/apple_pie_alt/apple_pie_bottom"
+		"inner": "vinery:block/apple_pie_inner",
+		"side": "vinery:block/apple_pie_side",
+		"particle": "vinery:block/apple_pie_top",
+		"top": "vinery:block/apple_pie_top",
+		"bottom": "vinery:block/apple_pie_bottom"
 	},
 	"elements": [
 		{

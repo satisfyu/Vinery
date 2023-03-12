@@ -3,27 +3,17 @@ package satisfyu.vinery.client.gui.handler;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import satisfyu.vinery.block.entity.CookingPotEntity;
-import satisfyu.vinery.block.entity.FermentationBarrelBlockEntity;
 import satisfyu.vinery.client.gui.handler.slot.ExtendedSlot;
-import satisfyu.vinery.compat.farmersdelight.FarmersCookingPot;
-import satisfyu.vinery.recipe.CookingPotRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.registry.VineryRecipeTypes;
 import satisfyu.vinery.registry.VineryScreenHandlerTypes;
 import satisfyu.vinery.screen.sideTip.RecipeGUIHandler;
-import satisfyu.vinery.util.VineryUtils;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.world.World;
-
-import java.util.stream.Stream;
 
 public class CookingPotGuiHandler extends RecipeGUIHandler {
 

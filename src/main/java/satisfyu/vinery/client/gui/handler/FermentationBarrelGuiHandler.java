@@ -60,7 +60,7 @@ public class FermentationBarrelGuiHandler extends RecipeGUIHandler {
 
     public int getScaledProgress(int arrowWidth) {
         final int progress = this.propertyDelegate.get(0);
-        final int totalProgress = FermentationBarrelBlockEntity.COOKING_TIME_IN_TICKS;
+        final int totalProgress = this.propertyDelegate.get(1);
         if (progress == 0) {
             return 0;
         }

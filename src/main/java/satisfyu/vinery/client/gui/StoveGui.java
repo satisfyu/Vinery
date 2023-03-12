@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import satisfyu.vinery.screen.sideTip.RecipeHandledGUI;
+import satisfyu.vinery.screen.sideTip.SideToolTip;
 
 public class StoveGui extends RecipeHandledGUI<StoveGuiHandler> {
     private static final Identifier BACKGROUND;
@@ -40,6 +41,51 @@ public class StoveGui extends RecipeHandledGUI<StoveGuiHandler> {
         super.init();
         // Center the title
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
+    }
+
+    @Override
+    public void addToolTips() {
+        super.addToolTips();
+        final int normalWidthAndHeight = 18;
+        final int firstRow = 18;
+        final int secondRow = 42;
+        final int containerRow = 66;
+        final int resultRow = 102;
+
+        final int firstLine = 19;
+        addToolTip(new SideToolTip(firstRow, firstLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.vinery.apple_mash")));
+        addToolTip(new SideToolTip(secondRow, firstLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.vinery.dough")));
+        addToolTip(new SideToolTip(containerRow, firstLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.minecraft.milk_bucket")));
+        addToolTip(new SideToolTip(resultRow, firstLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("block.vinery.apple_pie")));
+
+        final int secondLine = 43;
+        addToolTip(new SideToolTip(firstRow, secondLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.minecraft.sugar")));
+        addToolTip(new SideToolTip(secondRow, secondLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.vinery.dough")));
+        addToolTip(new SideToolTip(containerRow, secondLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.minecraft.cocoa_beans")));
+        addToolTip(new SideToolTip(resultRow, secondLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.vinery.chocolate_bread")));
+
+        final int thirdLine = 67;
+        addToolTip(new SideToolTip(firstRow, thirdLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.vinery.dough")));
+        addToolTip(new SideToolTip(secondRow, thirdLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.vinery.dough")));
+        addToolTip(new SideToolTip(containerRow, thirdLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.minecraft.water_bucket")));
+        addToolTip(new SideToolTip(resultRow, thirdLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("block.vinery.crusty_bread")));
+
+        final int fourthLine = 91;
+        addToolTip(new SideToolTip(firstRow, fourthLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.minecraft.sweet_berries")));
+        addToolTip(new SideToolTip(secondRow, fourthLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.vinery.dough")));
+        addToolTip(new SideToolTip(containerRow, fourthLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.minecraft.sugar")));
+        addToolTip(new SideToolTip(resultRow, fourthLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.vinery.donut")));
+
+        final int fifthLine = 115;
+        addToolTip(new SideToolTip(firstRow, fifthLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.minecraft.milk_bucket")));
+        addToolTip(new SideToolTip(secondRow, fifthLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.minecraft.sugar")));
+        addToolTip(new SideToolTip(containerRow, fifthLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.vinery.dough")));
+        addToolTip(new SideToolTip(resultRow, fifthLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.vinery.milk_bread")));
+
+        final int sixthLine = 139;
+        addToolTip(new SideToolTip(secondRow, sixthLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.minecraft.sugar")));
+        addToolTip(new SideToolTip(containerRow, sixthLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.vinery.dough")));
+        addToolTip(new SideToolTip(resultRow, sixthLine, normalWidthAndHeight, normalWidthAndHeight, Text.translatable("item.vinery.toast")));
     }
 
     static {

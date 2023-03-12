@@ -5,10 +5,7 @@ import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.entity.chair.ChairRenderer;
-import satisfyu.vinery.client.gui.CookingPotGui;
-import satisfyu.vinery.client.gui.FermentationBarrelGui;
-import satisfyu.vinery.client.gui.StoveGui;
-import satisfyu.vinery.client.gui.WinePressGui;
+import satisfyu.vinery.client.gui.*;
 import satisfyu.vinery.client.render.block.FlowerBoxBlockRenderer;
 import satisfyu.vinery.client.render.block.StorageBlockEntityRenderer;
 import satisfyu.vinery.client.model.MuleModel;
@@ -76,6 +73,7 @@ public class ClientSetup implements ClientModInitializer {
         HandledScreens.register(VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER, FermentationBarrelGui::new);
         HandledScreens.register(VineryScreenHandlerTypes.COOKING_POT_SCREEN_HANDLER, CookingPotGui::new);
         HandledScreens.register(VineryScreenHandlerTypes.WINE_PRESS_SCREEN_HANDLER, WinePressGui::new);
+
         TerraformBoatClientHelper.registerModelLayers(new VineryIdentifier("cherry"));
 
 

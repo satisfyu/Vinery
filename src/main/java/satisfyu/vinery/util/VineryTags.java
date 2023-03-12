@@ -16,7 +16,5 @@ public class VineryTags {
     public static final TagKey<Item> CHERRY_LOGS = TagKey.of(Registry.ITEM_KEY, new VineryIdentifier("cherry_logs"));
     public static final TagKey<Item> JAMS = TagKey.of(Registry.ITEM_KEY, new VineryIdentifier("jams"));
     public static final TagKey<Item> SMALL_FLOWER = TagKey.of(Registry.ITEM_KEY, new VineryIdentifier( "small_flower"));
-    public static final TagKey<Block> WINE_RACK = TagKey.of(Registry.BLOCK_KEY, new VineryIdentifier("wine_racks"));
     public static final TagKey<Item> BIG_FLOWER = TagKey.of(Registry.ITEM_KEY, new VineryIdentifier("big_flower"));
-    public static final TagKey<Item> WINE = TagKey.of(Registry.ITEM_KEY, new VineryIdentifier("wine"));
 }
