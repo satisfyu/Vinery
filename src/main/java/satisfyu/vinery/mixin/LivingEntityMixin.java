@@ -1,6 +1,17 @@
 package satisfyu.vinery.mixin;
 
+import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import satisfyu.vinery.registry.VineryEffects;
 import satisfyu.vinery.util.VineryFoodComponent;
 import satisfyu.vinery.util.WineYears;
 import net.minecraft.entity.Entity;
@@ -12,16 +23,24 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
+import java.util.Map;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
+
+	@Final
+	@Shadow
+	private final Map<StatusEffect, StatusEffectInstance> activeStatusEffects = Maps.newHashMap();
+
 	protected LivingEntityMixin(EntityType<?> type, World world) {
 		super(type, world);
+	}
+
+	public boolean hasStatusEffect(StatusEffect effect) {
+		return activeStatusEffects.containsKey(effect);
 	}
 	
 	@Inject(method = "applyFoodEffects", at = @At("HEAD"), cancellable = true)
@@ -43,5 +62,54 @@ public abstract class LivingEntityMixin extends Entity {
 			}
 		}
 	}
-	
+
+	@Inject(method = "canWalkOnFluid", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
+	private void canWalkOnWater(FluidState state, CallbackInfoReturnable<Boolean> cir) {
+		if (state.getFluid() == Fluids.WATER) {
+			cir.setReturnValue(this.hasStatusEffect(VineryEffects.IMPROVED_SPEED));
+		}
+	}
+
+	@Inject(method = "onAttacking", at = @At(value = "HEAD"))
+	private void setTargetOnFire(Entity target, CallbackInfo ci) {
+		if (target instanceof LivingEntity targetEntity && hasStatusEffect(VineryEffects.IMPROVED_FIRE_RESISTANCE)) {
+			targetEntity.setOnFireFor(5);
+		}
+	}
+
+
+	@Inject(method = "damage", at = @At(value = "HEAD"), cancellable = true)
+	private void hasImprovedFireResistance(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+		if (source.isFire() && hasStatusEffect(VineryEffects.IMPROVED_FIRE_RESISTANCE)) {
+			cir.setReturnValue(false);
+		}
+	}
+
+	@Redirect(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z", ordinal = 1))
+	public boolean improvedWaterBreathingSpeed(LivingEntity livingEntity, StatusEffect effect) {
+		return livingEntity.hasStatusEffect(StatusEffects.DOLPHINS_GRACE) || livingEntity.hasStatusEffect(VineryEffects.IMPROVED_WATER_BREATHING);
+	}
+
+	/*
+	@ModifyConstant(method = "travel", constant = @Constant(floatValue = 0.96F))
+	public float improvedWaterBreathingSpeed(float constant) {
+		if (this.hasStatusEffect(VineryEffects.IMPROVED_WATER_BREATHING)) {
+			int amplifier = this.getStatusEffect(VineryEffects.IMPROVED_WATER_BREATHING).getAmplifier();
+			return 0.9F + (amplifier + 1f) / 10;
+		}
+		return 0.95F;
+	}
+
+	public StatusEffectInstance getStatusEffect(StatusEffect effect) {
+		return activeStatusEffects.get(effect);
+	}
+	 */
+
+	@Redirect(method = "updatePotionVisibility", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z"))
+	public boolean improvedNightVision(LivingEntity livingEntity, StatusEffect effect) {
+		return livingEntity.hasStatusEffect(StatusEffects.INVISIBILITY) || livingEntity.hasStatusEffect(VineryEffects.IMPROVED_NIGHT_VISION);
+	}
+
+
+
 }

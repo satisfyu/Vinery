@@ -2,7 +2,6 @@ package satisfyu.vinery.client;
 
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.entity.chair.ChairRenderer;
 import satisfyu.vinery.client.gui.*;
@@ -89,6 +88,8 @@ public class ClientSetup implements ClientModInitializer {
 
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.STORAGE_ENTITY, StorageBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_BOX_ENTITY, FlowerBoxBlockRenderer::new);
+
+
     }
     
     public static PlayerEntity getClientPlayer() {
