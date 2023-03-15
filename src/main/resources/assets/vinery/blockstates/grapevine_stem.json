@@ -26,6 +26,30 @@
     },
     "age=4,type=white": {
       "model": "vinery:block/grapevine_white_stage4"
+    },
+    "age=1,type=taiga_red": {
+      "model": "vinery:block/taiga_grapevine_stage1"
+    },
+    "age=1,type=taiga_white": {
+      "model": "vinery:block/taiga_grapevine_stage1"
+    },
+    "age=2,type=taiga_red": {
+      "model": "vinery:block/taiga_grapevine_stage2"
+    },
+    "age=2,type=taiga_white": {
+      "model": "vinery:block/taiga_grapevine_stage2"
+    },
+    "age=3,type=taiga_red": {
+      "model": "vinery:block/taiga_grapevine_red_stage3"
+    },
+    "age=3,type=taiga_white": {
+      "model": "vinery:block/taiga_grapevine_white_stage3"
+    },
+    "age=4,type=taiga_red": {
+      "model": "vinery:block/taiga_grapevine_red_stage4"
+    },
+    "age=4,type=taiga_white": {
+      "model": "vinery:block/taiga_grapevine_white_stage4"
     }
   }
 }

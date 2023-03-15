@@ -47,6 +47,12 @@ public class GrapeBush extends SweetBerryBushBlock {
         return switch (this.type) {
             case RED -> new ItemStack(ObjectRegistry.RED_GRAPE);
             case WHITE -> new ItemStack(ObjectRegistry.WHITE_GRAPE);
+            case JUNGLE_RED -> new ItemStack(ObjectRegistry.JUNGLE_RED_GRAPE);
+            case JUNGLE_WHITE -> new ItemStack(ObjectRegistry.JUNGLE_WHITE_GRAPE);
+            case TAIGA_RED -> new ItemStack(ObjectRegistry.TAIGA_RED_GRAPE);
+            case TAIGA_WHITE -> new ItemStack(ObjectRegistry.TAIGA_WHITE_GRAPE  );
+            case SAVANNA_RED -> new ItemStack(ObjectRegistry.SAVANNA_RED_GRAPE);
+            case SAVANNA_WHITE -> new ItemStack(ObjectRegistry.SAVANNA_WHITE_GRAPE);
         };
     }
     public GrapevineType getType() {
