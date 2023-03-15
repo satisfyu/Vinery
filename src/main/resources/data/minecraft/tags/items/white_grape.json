@@ -1,7 +1,9 @@
 {
   "replace": false,
   "values": [
-    {"id":"vinery:red_grape","required":false},
-    {"id":"croptopia:grape","required":false}
+    {"id":"vinery:white_grape","required":false},
+    {"id":"vinery:savanna_white_grape","required":false},
+    {"id":"vinery:taiga_white_grape","required":false},
+    {"id":"vinery:jungle_white_grape","required":false}
   ]
 }
