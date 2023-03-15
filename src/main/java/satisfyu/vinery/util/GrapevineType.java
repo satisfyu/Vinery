@@ -4,7 +4,13 @@ import net.minecraft.util.StringIdentifiable;
 
 public enum GrapevineType implements StringIdentifiable  {
     RED,
-    WHITE;
+    WHITE,
+    JUNGLE_RED,
+    JUNGLE_WHITE,
+    TAIGA_RED,
+    TAIGA_WHITE,
+    SAVANNA_RED,
+    SAVANNA_WHITE;
 
     public String toString() {
         return this.asString();
