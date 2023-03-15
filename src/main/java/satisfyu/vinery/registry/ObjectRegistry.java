@@ -102,6 +102,7 @@ public class ObjectRegistry {
     public static final Block WOOD_FIRED_OVEN = register("wood_fired_oven", new WoodFiredOvenBlock(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(state -> state.get(WoodFiredOvenBlock.LIT) ? 13 : 0)));
     public static final Block STOVE = register("stove", new StoveBlock(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(12)));
     public static final Block KITCHEN_SINK = register("kitchen_sink", new KitchenSinkBlock(FabricBlockSettings.copy(Blocks.STONE).nonOpaque()));
+   // public static final Block WINE_STATION = register("wine_station", new WineStationBlock(FabricBlockSettings.of(Material.WOOD).nonOpaque()));
     public static final Block WINE_RACK_1 = register("wine_rack_1", new NineBottleStorageBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block WINE_RACK_2 = register("wine_rack_2", new FourBottleStorageBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block WINE_RACK_3 = register("wine_rack_3", new WineRackStorageBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD), VinerySoundEvents.WINE_RACK_3_OPEN, VinerySoundEvents.WINE_RACK_3_CLOSE));
@@ -179,7 +180,6 @@ public class ObjectRegistry {
     public static final Block BASKET = register("basket", new BasketBlock(FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque(), 1));
     public static final Block COOKING_POT = register("cooking_pot", new CookingPotBlock(FabricBlockSettings.of(Material.METAL).nonOpaque()));
     public static final Block STACKABLE_LOG = register("stackable_log", new StackableLogBlock(getLogBlockSettings().nonOpaque().luminance(state -> state.get(StackableLogBlock.FIRED) ? 13 : 0)));
-    //public static final Block WINE_STATION = register("wine_station", new WineStationBlock(FabricBlockSettings.of(Material.WOOD).nonOpaque()));
     public static final Item FAUCET = register("faucet", new FaucetItem(getSettings()));
     public static final Item STRAW_HAT = register("straw_hat", new StrawHatItem(getSettings().rarity(Rarity.COMMON)));
     public static final Item VINEMAKER_APRON = register("vinemaker_apron", new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings().rarity(Rarity.EPIC)));
