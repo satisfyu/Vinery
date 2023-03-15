@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=east,stack=1": {
+      "y": 180,
+      "model": "vinery:block/stal_wine_stack1"
+    },
+    "facing=east,stack=2": {
+      "y": 180,
+      "model": "vinery:block/stal_wine_stack2"
+    },
+    "facing=east,stack=3": {
+      "y": 180,
+      "model": "vinery:block/stal_wine_stack3"
+    },
+    "facing=north,stack=1": {
+      "y": 90,
+      "model": "vinery:block/stal_wine_stack1"
+    },
+    "facing=north,stack=2": {
+      "y": 90,
+      "model": "vinery:block/stal_wine_stack2"
+    },
+    "facing=north,stack=3": {
+      "y": 90,
+      "model": "vinery:block/stal_wine_stack3"
+    },
+    "facing=south,stack=1": {
+      "y": 270,
+      "model": "vinery:block/stal_wine_stack1"
+    },
+    "facing=south,stack=2": {
+      "y": 270,
+      "model": "vinery:block/stal_wine_stack2"
+    },
+    "facing=south,stack=3": {
+      "y": 270,
+      "model": "vinery:block/stal_wine_stack3"
+    },
+    "facing=west,stack=1": {
+      "model": "vinery:block/stal_wine_stack1"
+    },
+    "facing=west,stack=2": {
+      "model": "vinery:block/stal_wine_stack2"
+    },
+    "facing=west,stack=3": {
+      "model": "vinery:block/stal_wine_stack3"
+    }
+  }
+}

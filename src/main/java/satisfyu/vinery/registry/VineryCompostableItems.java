@@ -18,6 +18,19 @@ public class VineryCompostableItems {
         registerCompostableItem(ObjectRegistry.CHERRY_SAPLING, 0.4F);
         registerCompostableItem(ObjectRegistry.APPLE_MASH, 0.4F);
         registerCompostableItem(ObjectRegistry.STRAW_HAT, 0.4F);
+        registerCompostableItem(ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS, 0.4F);
+        registerCompostableItem(ObjectRegistry.JUNGLE_RED_GRAPE, 0.4F);
+        registerCompostableItem(ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS, 0.4F);
+        registerCompostableItem(ObjectRegistry.JUNGLE_WHITE_GRAPE, 0.4F);
+        registerCompostableItem(ObjectRegistry.TAIGA_RED_GRAPE_SEEDS, 0.4F);
+        registerCompostableItem(ObjectRegistry.TAIGA_RED_GRAPE, 0.4F);
+        registerCompostableItem(ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS, 0.4F);
+        registerCompostableItem(ObjectRegistry.TAIGA_WHITE_GRAPE, 0.4F);
+        registerCompostableItem(ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS, 0.4F);
+        registerCompostableItem(ObjectRegistry.SAVANNA_RED_GRAPE, 0.4F);
+        registerCompostableItem(ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS, 0.4F);
+        registerCompostableItem(ObjectRegistry.SAVANNA_WHITE_GRAPE, 0.4F);
+
 
     }
 
