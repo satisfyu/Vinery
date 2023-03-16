@@ -14,14 +14,14 @@ import satisfyu.vinery.registry.VineryEffects;
 public abstract class StatusEffectUtilMixin {
     @Inject(method = "hasHaste", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private static void hasImprovedLuck(LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(entity.hasStatusEffect(StatusEffects.HASTE) || entity.hasStatusEffect(StatusEffects.CONDUIT_POWER) || entity.hasStatusEffect(VineryEffects.IMPROVED_LUCK));
+        cir.setReturnValue(entity.hasStatusEffect(StatusEffects.HASTE) || entity.hasStatusEffect(StatusEffects.CONDUIT_POWER) || entity.hasStatusEffect(VineryEffects.IMPROVED_HASTE));
     }
 
     @Inject(method = "getHasteAmplifier", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private static void getImprovedLuckAmplifier(LivingEntity entity, CallbackInfoReturnable<Integer> cir, int i, int j) {
         int k = 0;
-        if (entity.hasStatusEffect(VineryEffects.IMPROVED_LUCK)) {
-            k = entity.getStatusEffect(VineryEffects.IMPROVED_LUCK).getAmplifier();
+        if (entity.hasStatusEffect(VineryEffects.IMPROVED_HASTE)) {
+            k = entity.getStatusEffect(VineryEffects.IMPROVED_HASTE).getAmplifier();
         }
         cir.setReturnValue(Math.max(Math.max(i, j), k));
     }

@@ -159,23 +159,31 @@ public class ObjectRegistry {
     public static final Block JUNGLE_RED_GRAPEJUICE_BOTTLE = registerWine("jungle_red_grapejuice_bottle", new RedGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
     public static final Block JUNGLE_WHITE_GRAPEJUICE_BOTTLE = registerWine("jungle_white_grapejuice_bottle", new WhiteGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
     public static final Block APPLE_JUICE = registerWine("apple_juice", new WhiteGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
-    public static final Block CHENET_WINE = registerBigWine("chenet_wine", new ChenetBottleBlock(getWineSettings()), StatusEffects.JUMP_BOOST);
-    public static final Block KING_DANIS_WINE = registerBigWine("king_danis_wine", new KingDanisBottleBlock(getWineSettings()), StatusEffects.LUCK);
-    public static final Block NOIR_WINE = registerWine("noir_wine", new WineBottleBlock(getWineSettings()), StatusEffects.WATER_BREATHING);
-    public static final Block CLARK_WINE = registerWine("clark_wine", new WineBottleBlock(getWineSettings()), StatusEffects.FIRE_RESISTANCE);
-    public static final Block MELLOHI_WINE = registerBigWine("mellohi_wine", new MellohiWineBlock(getWineSettings()), StatusEffects.STRENGTH);
-    public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings()), StatusEffects.HEALTH_BOOST);
-    public static final Block STAL_WINE = registerWine("stal_wine", new WineBottleBlock(getWineSettings()), StatusEffects.HEALTH_BOOST);
-    public static final Block STRAD_WINE = registerBigWine("strad_wine", new ChenetBottleBlock(getWineSettings()), StatusEffects.JUMP_BOOST);
-    public static final Block CHERRY_WINE = registerWine("cherry_wine", new CherryWineBlock(getWineSettings()), StatusEffects.SPEED);
-    public static final Block MAGNETIC_WINE = registerBigWine("magnetic_wine", new MagneticWineBlock(getWineSettings()), VineryEffects.JELLIE);
-    public static final Block CHORUS_WINE = registerBigWine("chorus_wine", new ChorusWineBlock(getWineSettings()), StatusEffects.STRENGTH);
-    public static final Block APPLE_CIDER = registerBigWine("apple_cider", new ChenetBottleBlock (getWineSettings()), StatusEffects.INSTANT_HEALTH);
-    public static final Block KELP_CIDER = registerWine("kelp_cider", new WineBottleBlock (getWineSettings()), StatusEffects.WATER_BREATHING);
-    public static final Block SOLARIS_WINE = registerWine("solaris_wine", new WineBottleBlock (getWineSettings()), StatusEffects.NIGHT_VISION);
+    //normal - light effects, small util
+    public static final Block CHORUS_WINE = registerBigWine("chorus_wine", new ChorusWineBlock(getWineSettings()), VineryEffects.TELEPORT);
+    public static final Block CHERRY_WINE = registerWine("cherry_wine", new CherryWineBlock(getWineSettings()), StatusEffects.REGENERATION);
+    public static final Block MAGNETIC_WINE = registerBigWine("magnetic_wine", new MagneticWineBlock(getWineSettings()), VineryEffects.MAGNET);
+    public static final Block NOIR_WINE = registerWine("noir_wine", new WineBottleBlock(getWineSettings()), StatusEffects.INSTANT_HEALTH);
+    //jungle - absorbtion and heal
+    public static final Block KING_DANIS_WINE = registerBigWine("king_danis_wine", new KingDanisBottleBlock(getWineSettings()), VineryEffects.IMPROVED_INSTANT_HEALTH);
+    public static final Block MELLOHI_WINE = registerBigWine("mellohi_wine", new MellohiWineBlock(getWineSettings()), VineryEffects.IMPROVED_FIRE_RESISTANCE);
+    public static final Block STAL_WINE = registerWine("stal_wine", new WineBottleBlock(getWineSettings()), VineryEffects.IMPROVED_REGENERATION);
+    public static final Block STRAD_WINE = registerBigWine("strad_wine", new ChenetBottleBlock(getWineSettings()), VineryEffects.IMPROVED_ABSORBTION);
+    //taiga wine - util, strength
+    public static final Block SOLARIS_WINE = registerWine("solaris_wine", new WineBottleBlock (getWineSettings()), VineryEffects.IMPROVED_STRENGTH);
+    public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings()), VineryEffects.IMPROVED_HASTE);
+    //savanna wine - util, speed / water breathing
+    public static final Block AEGIS_WINE = registerBigWine("aegis_wine", new WineBottleBlock(getWineSettings()), StatusEffects.NIGHT_VISION);
+    public static final Block CLARK_WINE = registerWine("clark_wine", new WineBottleBlock(getWineSettings()), VineryEffects.IMPROVED_JUMP_BOOST);
+    public static final Block CHENET_WINE = registerBigWine("chenet_wine", new ChenetBottleBlock(getWineSettings()), VineryEffects.IMPROVED_SPEED);
+    public static final Block KELP_CIDER = registerWine("kelp_cider", new WineBottleBlock (getWineSettings()), VineryEffects.IMPROVED_WATER_BREATHING);
+    //apple wine - heal
+    public static final Block APPLE_WINE = registerBigWine("apple_wine", new WineBottleBlock (getWineSettings()), VineryEffects.IMPROVED_INSTANT_HEALTH);
+    public static final Block APPLE_CIDER = registerBigWine("apple_cider", new ChenetBottleBlock (getWineSettings()), VineryEffects.IMPROVED_REGENERATION);
+    //rare wine
     public static final Block JELLIE_WINE = registerBigWine("jellie_wine", new WineBottleBlock(getWineSettings()), VineryEffects.JELLIE);
-    public static final Block AEGIS_WINE = registerBigWine("aegis_wine", new WineBottleBlock(getWineSettings()), StatusEffects.NAUSEA);
-    public static final Block APPLE_WINE = registerBigWine("apple_wine", new WineBottleBlock (getWineSettings()), StatusEffects.REGENERATION);
+
+
     public static final Block CHERRY_JAR = register("cherry_jar", new CherryJarBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
     public static final Block CHERRY_JAM = register("cherry_jam", new CherryJamBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
     public static final Block APPLE_JAM = register("apple_jam", new CherryJamBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
