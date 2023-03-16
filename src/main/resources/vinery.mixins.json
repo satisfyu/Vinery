@@ -7,8 +7,10 @@
     "AbstractCauldronBlockAccessor",
     "BlockMixin",
     "BoneMealItemMixin",
+    "ClientPlayerEntityMixin",
     "FoxEntityEatSweetBerriesGoalMixin",
     "LivingEntityMixin",
+    "StatusEffectUtilMixin",
     "WanderingTraderManagerMixin"
   ],
   "client": [
