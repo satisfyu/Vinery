@@ -54,7 +54,7 @@ public abstract class ClientPlayerEntityMixin extends AbstractClientPlayerEntity
 
     @Redirect(method = "autoJump", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;getStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Lnet/minecraft/entity/effect/StatusEffectInstance;"))
     public StatusEffectInstance improvedJumpBoostAmplifier(ClientPlayerEntity livingEntity, StatusEffect statusEffect) {
-        return livingEntity.hasStatusEffect(StatusEffects.JUMP_BOOST) ? livingEntity.getStatusEffect(StatusEffects.JUMP_BOOST) : livingEntity.getStatusEffect(VineryEffects.IMPROVED_JUMP_BOOST);
+        return livingEntity.hasStatusEffect(VineryEffects.IMPROVED_JUMP_BOOST) ?  livingEntity.getStatusEffect(VineryEffects.IMPROVED_JUMP_BOOST) : livingEntity.getStatusEffect(StatusEffects.JUMP_BOOST);
     }
 
     private boolean wearingUsableElytra(ClientPlayerEntity player) {

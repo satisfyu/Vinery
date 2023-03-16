@@ -1,7 +1,7 @@
 package satisfyu.vinery.mixin;
 
 import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.block.GrapeBush;
+import satisfyu.vinery.block.grape.GrapeBush;
 import satisfyu.vinery.util.GrapevineType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

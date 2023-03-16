@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import satisfyu.vinery.registry.VineryEffects;
 
 @Mixin(StatusEffectUtil.class)
-public class StatusEffectUtilMixin {
+public abstract class StatusEffectUtilMixin {
     @Inject(method = "hasHaste", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private static void hasImprovedLuck(LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
         cir.setReturnValue(entity.hasStatusEffect(StatusEffects.HASTE) || entity.hasStatusEffect(StatusEffects.CONDUIT_POWER) || entity.hasStatusEffect(VineryEffects.IMPROVED_LUCK));

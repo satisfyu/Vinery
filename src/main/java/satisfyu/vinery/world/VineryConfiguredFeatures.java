@@ -1,12 +1,10 @@
 package satisfyu.vinery.world;
 
 import com.google.common.collect.ImmutableList;
-import net.minecraft.tag.BiomeTags;
-import net.minecraft.world.biome.Biome;
 import satisfyu.vinery.block.CherryLeaves;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.block.GrapeBush;
+import satisfyu.vinery.block.grape.GrapeBush;
 import net.fabricmc.fabric.api.biome.v1.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

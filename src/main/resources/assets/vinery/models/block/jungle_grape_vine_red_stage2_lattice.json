@@ -2,10 +2,10 @@
 	"credit": "Made by Satisfy",
 	"ambientocclusion": false,
 	"textures": {
-		"1": "vinery:block/jungle_grape_bush_red_stage2",
-		"2": "vinery:block/jungle_grape_bush_bushy_red_stage2",
+		"1": "vinery:block/jungle_grape_bush_red_stage1",
+		"2": "vinery:block/jungle_grape_bush_bushy_red_stage1",
 		"3": "vinery:block/lattice",
-		"particle": "vinery:block/jungle_grape_bush_red_stage2"
+		"particle": "vinery:block/jungle_grape_bush_red_stage1"
 	},
 	"elements": [
 		{
