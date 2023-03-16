@@ -1,10 +1,15 @@
 package satisfyu.vinery.block.grape;
 
 import net.minecraft.block.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.WorldView;
@@ -109,7 +114,7 @@ public class GrapeBush extends PlantBlock implements Fertilizable {
     @Override
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
         return switch (this.type) {
-            case RED -> new ItemStack(ObjectRegistry.RED_GRAPE_SEEDS);
+            case NONE, RED -> new ItemStack(ObjectRegistry.RED_GRAPE_SEEDS);
             case WHITE -> new ItemStack(ObjectRegistry.WHITE_GRAPE_SEEDS);
             case JUNGLE_RED -> new ItemStack(ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS);
             case JUNGLE_WHITE -> new ItemStack(ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS);
@@ -136,8 +141,6 @@ public class GrapeBush extends PlantBlock implements Fertilizable {
     //TODO on state replace drops in json
 
     //TODO effekte zu wine
-
-    // TODO Vine mit Schere wächselt farbe
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

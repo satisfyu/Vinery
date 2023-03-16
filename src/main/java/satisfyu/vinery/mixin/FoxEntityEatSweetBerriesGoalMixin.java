@@ -66,7 +66,7 @@ public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToTargetPosG
 
     private static ItemStack getGrapeFor(GrapevineType type) {
         return switch (type) {
-            case RED -> new ItemStack(ObjectRegistry.RED_GRAPE_BUSH);
+            case NONE, RED -> new ItemStack(ObjectRegistry.RED_GRAPE_BUSH);
             case WHITE -> new ItemStack(ObjectRegistry.WHITE_GRAPE);
             case JUNGLE_RED -> new ItemStack(ObjectRegistry.JUNGLE_RED_GRAPE);
             case JUNGLE_WHITE -> new ItemStack(ObjectRegistry.JUNGLE_WHITE_GRAPE);

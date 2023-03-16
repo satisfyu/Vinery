@@ -6,7 +6,6 @@ public enum StemType implements StringIdentifiable {
     PALE,
     LATTICE;
 
-
     public String toString() {
         return this.asString();
     }

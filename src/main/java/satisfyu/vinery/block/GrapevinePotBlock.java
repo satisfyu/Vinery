@@ -140,7 +140,7 @@ public class GrapevinePotBlock extends Block {
         } else if (stack.isOf(ObjectRegistry.WINE_BOTTLE.asItem())) {
             if (canTakeWine(state, stack)) {
                 final ItemStack output = switch (state.get(GRAPEVINE_TYPE)) {
-                    case RED -> new ItemStack(ObjectRegistry.RED_GRAPEJUICE_WINE_BOTTLE);
+                    case NONE, RED -> new ItemStack(ObjectRegistry.RED_GRAPEJUICE_WINE_BOTTLE);
                     case WHITE -> new ItemStack(ObjectRegistry.WHITE_GRAPEJUICE_WINE_BOTTLE);
                     case SAVANNA_RED -> new ItemStack(ObjectRegistry.SAVANNA_RED_GRAPEJUICE_BOTTLE);
                     case SAVANNA_WHITE -> new ItemStack(ObjectRegistry.SAVANNA_WHITE_GRAPEJUICE_BOTTLE);

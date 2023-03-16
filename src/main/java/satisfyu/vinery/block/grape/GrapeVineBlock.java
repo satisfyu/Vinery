@@ -50,7 +50,7 @@ public class GrapeVineBlock extends VineBlock implements Fertilizable {
         boolean bl = i == 3;
         if (!bl && player.getStackInHand(hand).isOf(Items.BONE_MEAL)) {
             return ActionResult.PASS;
-        } else if (i > 0) {
+        } else if (i > 1) {
             int x = world.random.nextInt(2);
             dropStack(world, pos, new ItemStack(this.type == GrapevineType.JUNGLE_RED ? ObjectRegistry.JUNGLE_RED_GRAPE : ObjectRegistry.JUNGLE_WHITE_GRAPE, x + (bl ? 1 : 0)));
             world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
