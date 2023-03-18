@@ -22,7 +22,7 @@ public abstract class PlayerEntityMixin extends LivingEntity{
 
     @Inject(method = "getBlockBreakingSpeed", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private void hasImprovedLuck(BlockState block, CallbackInfoReturnable<Float> cir, float f) {
-        if (this.hasStatusEffect(VineryEffects.IMPROVED_LUCK)) {
+        if (this.hasStatusEffect(VineryEffects.IMPROVED_HASTE)) {
             f *= 1.0F + (float)(getImprovedLuckAmplifier() + 1) * 0.2F;
         }
         cir.setReturnValue(f);
@@ -31,8 +31,8 @@ public abstract class PlayerEntityMixin extends LivingEntity{
     private int getImprovedLuckAmplifier() {
         int i = 0;
         int j = 0;
-        if (this.hasStatusEffect(VineryEffects.IMPROVED_LUCK)) {
-            i = this.getStatusEffect(VineryEffects.IMPROVED_LUCK).getAmplifier();
+        if (this.hasStatusEffect(VineryEffects.IMPROVED_HASTE)) {
+            i = this.getStatusEffect(VineryEffects.IMPROVED_HASTE).getAmplifier();
         }
 
         if (this.hasStatusEffect(StatusEffects.CONDUIT_POWER)) {

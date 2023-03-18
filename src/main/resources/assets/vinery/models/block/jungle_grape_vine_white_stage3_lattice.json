@@ -2,10 +2,17 @@
 	"credit": "Made by Satisfy",
 	"ambientocclusion": false,
 	"textures": {
+<<<<<<<< HEAD:src/main/resources/assets/vinery/models/block/jungle_grape_vine_white_stage3_lattice.json
 		"1": "vinery:block/jungle_grape_bush_white_stage2",
 		"2": "vinery:block/jungle_grape_bush_bushy_white_stage2",
 		"3": "vinery:block/lattice",
 		"particle": "vinery:block/jungle_grape_bush_white_stage2"
+========
+		"1": "vinery:block/jungle_grape_bush_red_stage2",
+		"2": "vinery:block/jungle_grape_bush_bushy_red_stage2",
+		"3": "vinery:block/lattice",
+		"particle": "vinery:block/jungle_grape_bush_red_stage2"
+>>>>>>>> 437048dab24da36694529f36a331f261151ec785:src/main/resources/assets/vinery/models/block/jungle_grape_vine_red_stage3_lattice.json
 	},
 	"elements": [
 		{

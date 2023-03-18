@@ -4,9 +4,11 @@ import com.mojang.datafixers.util.Pair;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import com.terraformersmc.terraform.wood.block.StrippableLogBlock;
-import satisfyu.vinery.block.grape.*;
-import satisfyu.vinery.block.stem.LatticeStemBlock;
-import satisfyu.vinery.block.stem.PaleStemBlock;
+import satisfyu.vinery.block.StemBlock;
+import satisfyu.vinery.block.grape.GrapeBush;
+import satisfyu.vinery.block.grape.GrapeVineBlock;
+import satisfyu.vinery.block.grape.SavannaGrapeBush;
+import satisfyu.vinery.block.grape.TaigaGrapeBush;
 import satisfyu.vinery.item.GrapeBushSeedItem;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
@@ -35,6 +37,19 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.Vinery;
+import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.block.FlowerPotBlock;
+import satisfyu.vinery.block.StemBlock;
+import satisfyu.vinery.block.*;
+import satisfyu.vinery.block.grape.GrapeBush;
+import satisfyu.vinery.block.grape.GrapeVineBlock;
+import satisfyu.vinery.block.grape.SavannaGrapeBush;
+import satisfyu.vinery.block.grape.TaigaGrapeBush;
+import satisfyu.vinery.item.*;
+import satisfyu.vinery.util.GrapevineType;
+import satisfyu.vinery.util.VineryFoodComponent;
+import satisfyu.vinery.world.VineryConfiguredFeatures;
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -111,7 +126,7 @@ public class ObjectRegistry {
     public static final Block WOOD_FIRED_OVEN = register("wood_fired_oven", new WoodFiredOvenBlock(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(state -> state.get(WoodFiredOvenBlock.LIT) ? 13 : 0)));
     public static final Block STOVE = register("stove", new StoveBlock(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance(12)));
     public static final Block KITCHEN_SINK = register("kitchen_sink", new KitchenSinkBlock(FabricBlockSettings.copy(Blocks.STONE).nonOpaque()));
-   // public static final Block WINE_STATION = register("wine_station", new WineStationBlock(FabricBlockSettings.of(Material.WOOD).nonOpaque()));
+    // public static final Block WINE_STATION = register("wine_station", new WineStationBlock(FabricBlockSettings.of(Material.WOOD).nonOpaque()));
     public static final Block WINE_RACK_1 = register("wine_rack_1", new NineBottleStorageBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block WINE_RACK_2 = register("wine_rack_2", new FourBottleStorageBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block WINE_RACK_3 = register("wine_rack_3", new WineRackStorageBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD), VinerySoundEvents.WINE_RACK_3_OPEN, VinerySoundEvents.WINE_RACK_3_CLOSE));
@@ -175,6 +190,32 @@ public class ObjectRegistry {
     public static final Block AEGIS_WINE = registerBigWine("aegis_wine", new WineBottleBlock(getWineSettings(), 3), StatusEffects.NAUSEA);
     public static final Block APPLE_WINE = registerBigWine("apple_wine", new WineBottleBlock(getWineSettings(), 3), StatusEffects.REGENERATION);
     public static final Block CHERRY_JAR = register("cherry_jar", new WineBottleBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS), 3));
+    //normal - light effects, small util
+    public static final Block CHORUS_WINE = registerBigWine("chorus_wine", new ChorusWineBlock(getWineSettings()), VineryEffects.TELEPORT);
+    public static final Block CHERRY_WINE = registerWine("cherry_wine", new CherryWineBlock(getWineSettings()), StatusEffects.REGENERATION);
+    public static final Block MAGNETIC_WINE = registerBigWine("magnetic_wine", new MagneticWineBlock(getWineSettings()), VineryEffects.MAGNET);
+    public static final Block NOIR_WINE = registerWine("noir_wine", new WineBottleBlock(getWineSettings()), StatusEffects.INSTANT_HEALTH);
+    //jungle - absorbtion and heal
+    public static final Block KING_DANIS_WINE = registerBigWine("king_danis_wine", new KingDanisBottleBlock(getWineSettings()), VineryEffects.IMPROVED_INSTANT_HEALTH);
+    public static final Block MELLOHI_WINE = registerBigWine("mellohi_wine", new MellohiWineBlock(getWineSettings()), VineryEffects.IMPROVED_FIRE_RESISTANCE);
+    public static final Block STAL_WINE = registerWine("stal_wine", new WineBottleBlock(getWineSettings()), VineryEffects.IMPROVED_REGENERATION);
+    public static final Block STRAD_WINE = registerBigWine("strad_wine", new ChenetBottleBlock(getWineSettings()), VineryEffects.IMPROVED_ABSORBTION);
+    //taiga wine - util, strength
+    public static final Block SOLARIS_WINE = registerWine("solaris_wine", new WineBottleBlock(getWineSettings()), VineryEffects.IMPROVED_STRENGTH);
+    public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings()), VineryEffects.IMPROVED_HASTE);
+    //savanna wine - util, speed / water breathing
+    public static final Block AEGIS_WINE = registerBigWine("aegis_wine", new WineBottleBlock(getWineSettings()), StatusEffects.NIGHT_VISION);
+    public static final Block CLARK_WINE = registerWine("clark_wine", new WineBottleBlock(getWineSettings()), VineryEffects.IMPROVED_JUMP_BOOST);
+    public static final Block CHENET_WINE = registerBigWine("chenet_wine", new ChenetBottleBlock(getWineSettings()), VineryEffects.IMPROVED_SPEED);
+    public static final Block KELP_CIDER = registerWine("kelp_cider", new WineBottleBlock(getWineSettings()), VineryEffects.IMPROVED_WATER_BREATHING);
+    //apple wine - heal
+    public static final Block APPLE_WINE = registerBigWine("apple_wine", new WineBottleBlock(getWineSettings()), VineryEffects.IMPROVED_INSTANT_HEALTH);
+    public static final Block APPLE_CIDER = registerBigWine("apple_cider", new ChenetBottleBlock(getWineSettings()), VineryEffects.IMPROVED_REGENERATION);
+    //rare wine
+    public static final Block JELLIE_WINE = registerBigWine("jellie_wine", new WineBottleBlock(getWineSettings()), VineryEffects.JELLIE);
+
+
+    public static final Block CHERRY_JAR = register("cherry_jar", new CherryJarBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
     public static final Block CHERRY_JAM = register("cherry_jam", new CherryJamBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
     public static final Block APPLE_JAM = register("apple_jam", new CherryJamBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
     public static final Block SWEETBERRY_JAM = register("sweetberry_jam", new CherryJamBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
@@ -220,14 +261,15 @@ public class ObjectRegistry {
     }
 
     private static <T extends Block> T register(String path, T block, boolean registerItem) {
-        return register(path, block, registerItem, settings -> {});
+        return register(path, block, registerItem, settings -> {
+        });
     }
 
     private static <T extends Block> T register(String path, T block, boolean registerItem, Consumer<Item.Settings> consumer) {
         return register(path, block, registerItem, BlockItem::new, consumer);
     }
 
-    private static <T extends Block> T register(String path, T block, boolean registerItem, BiFunction<T, Item.Settings, ? extends BlockItem> function,  Consumer<Item.Settings> consumer) {
+    private static <T extends Block> T register(String path, T block, boolean registerItem, BiFunction<T, Item.Settings, ? extends BlockItem> function, Consumer<Item.Settings> consumer) {
         final Identifier id = new VineryIdentifier(path);
         BLOCKS.put(id, block);
         if (registerItem) {
@@ -235,6 +277,7 @@ public class ObjectRegistry {
         }
         return block;
     }
+
 
     private static <T extends Block> T registerWine(String path, T block, StatusEffect effect) {
         return register(path, block, true, DrinkBlockItem::new, settings -> settings.food(wineFoodComponent(effect)));
@@ -285,7 +328,6 @@ public class ObjectRegistry {
     }
 
 
-
     private static Item.Settings getSettings(Consumer<Item.Settings> consumer) {
         Item.Settings settings = new Item.Settings().group(Vinery.CREATIVE_TAB);
         consumer.accept(settings);
@@ -293,7 +335,8 @@ public class ObjectRegistry {
     }
 
     private static Item.Settings getSettings() {
-        return getSettings(settings -> {});
+        return getSettings(settings -> {
+        });
     }
 
     private static Block.Settings getBushSettings() {
@@ -324,7 +367,7 @@ public class ObjectRegistry {
     public static List<ItemConvertible> getItemConvertibles() {
         List<ItemConvertible> list = new ArrayList<>();
         for (Block entry : BLOCKS.values()) {
-            if(entry.asItem() != null){
+            if (entry.asItem() != null) {
                 list.add(entry);
             }
         }

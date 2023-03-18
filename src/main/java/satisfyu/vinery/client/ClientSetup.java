@@ -2,6 +2,7 @@ package satisfyu.vinery.client;
 
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.entity.chair.ChairRenderer;
 import satisfyu.vinery.client.gui.*;
@@ -49,7 +50,8 @@ public class ClientSetup implements ClientModInitializer {
                                                 ObjectRegistry.NOIR_WINE, ObjectRegistry.WINE_BOTTLE, ObjectRegistry.TABLE, ObjectRegistry.APPLE_CIDER,
                                                 ObjectRegistry.APPLE_JAM, ObjectRegistry.APPLE_JUICE, ObjectRegistry.APPLE_WINE, ObjectRegistry.SOLARIS_WINE, ObjectRegistry.JELLIE_WINE,
                                                 ObjectRegistry.AEGIS_WINE, ObjectRegistry.SWEETBERRY_JAM, ObjectRegistry.GRAPE_JAM, ObjectRegistry.KELP_CIDER, ObjectRegistry.SAVANNA_RED_GRAPE_BUSH,
-                                                ObjectRegistry.SAVANNA_WHITE_GRAPE_BUSH, ObjectRegistry.CHORUS_WINE, ObjectRegistry.STAL_WINE, ObjectRegistry.MAGNETIC_WINE, ObjectRegistry.STRAD_WINE
+                                                ObjectRegistry.SAVANNA_WHITE_GRAPE_BUSH, ObjectRegistry.CHORUS_WINE, ObjectRegistry.STAL_WINE, ObjectRegistry.MAGNETIC_WINE, ObjectRegistry.STRAD_WINE,
+                                                ObjectRegistry.JUNGLE_WHITE_GRAPE_BUSH, ObjectRegistry.JUNGLE_RED_GRAPE_BUSH
 
 
         );
@@ -95,7 +97,6 @@ public class ClientSetup implements ClientModInitializer {
 
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.STORAGE_ENTITY, StorageBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_BOX_ENTITY, FlowerBoxBlockRenderer::new);
-
 
     }
     
