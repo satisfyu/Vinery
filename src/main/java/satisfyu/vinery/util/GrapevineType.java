@@ -15,7 +15,6 @@ public enum GrapevineType implements StringIdentifiable  {
 
 
     public boolean isPaleType() {
-        System.out.println(this);
         return !(this == JUNGLE_RED || this == JUNGLE_WHITE);
     }
 

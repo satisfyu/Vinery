@@ -17,13 +17,13 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class StackableBlock extends Block {
-    private static final VoxelShape SHAPE = VoxelShapes.cuboid(0.0625, 0, 0.0625, 0.9375, 0.75, 0.9375);
+public abstract class StackableBlock extends Block{
+    private final VoxelShape SHAPE = VoxelShapes.cuboid(0.0625, 0, 0.0625, 0.9375, 0.75, 0.9375);
+    public final IntProperty STACK;
 
-    public static final IntProperty STACK = IntProperty.of("stack", 1, 3);
-
-    public StackableBlock(Settings settings) {
+    public StackableBlock(Settings settings, int stacks) {
         super(settings);
+        STACK = IntProperty.of("stack", 1, stacks);
         setDefaultState(this.getDefaultState().with(STACK, 1));
     }
 
@@ -40,10 +40,7 @@ public class StackableBlock extends Block {
         return super.onUse(state, world, pos, player, hand, hit);
     }
 
-    @Override
-    public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
-        return true;
-    }
+
     
     public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
         return stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);

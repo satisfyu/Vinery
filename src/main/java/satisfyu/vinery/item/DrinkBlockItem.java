@@ -2,9 +2,10 @@ package satisfyu.vinery.item;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Items;
+import net.minecraft.item.ItemPlacementContext;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.WineYears;
 import net.minecraft.block.Block;
@@ -34,6 +35,14 @@ public class DrinkBlockItem extends BlockItem {
     @Override
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.DRINK;
+    }
+
+
+    @Nullable
+    @Override
+    protected BlockState getPlacementState(ItemPlacementContext context) {
+        BlockState blockState = this.getBlock().getPlacementState(context);
+        return blockState != null && this.canPlace(context, blockState) ? blockState : null;
     }
 
     @Override

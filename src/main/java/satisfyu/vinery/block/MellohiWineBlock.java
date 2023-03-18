@@ -15,7 +15,7 @@ public class MellohiWineBlock extends WineBottleBlock
 {
     public MellohiWineBlock(Settings settings)
     {
-        super(settings);
+        super(settings, 3);
     }
 
     @Override

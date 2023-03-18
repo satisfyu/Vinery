@@ -42,6 +42,7 @@ public class VineryEffects {
         JELLIE = registerEffect("jellie", new JellieEffect());
         MAGNET = registerEffect("magnet", new MagnetEffect());
         TELEPORT = registerEffect("teleport", new TeleportEffect());
+
         IMPROVED_ABSORBTION = registerEffect("improved_absorbtion", new ImprovedAbsorbtion());
         IMPROVED_SPEED = registerEffect("improved_speed", new ImprovedEffect(StatusEffectCategory.BENEFICIAL, 0x5783B3)
                 .addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, "8614E716-3E4B-D398-9CA2-2F9368FF8635", 0.20000000298023224, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)); //TODO FreeFall not

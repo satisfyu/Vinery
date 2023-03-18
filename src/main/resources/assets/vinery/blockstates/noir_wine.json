@@ -1,49 +1,64 @@
 {
   "variants": {
-    "facing=east,stack=1": {
-      "y": 180,
-      "model": "vinery:block/noir_wine_stack1"
+    "facing=east,count=0": {
+    "y": 180,
+    "model": "vinery:block/noir_wine_stack1"
     },
-    "facing=east,stack=2": {
+    "facing=east,count=1": {
       "y": 180,
-      "model": "vinery:block/noir_wine_stack2"
+      "model": "minecraft:block/air"
     },
-    "facing=east,stack=3": {
+    "facing=east,count=2": {
       "y": 180,
-      "model": "vinery:block/noir_wine_stack3"
+      "model": "minecraft:block/air"
     },
-    "facing=north,stack=1": {
+    "facing=east,count=3": {
+      "y": 180,
+      "model": "minecraft:block/air"
+    },
+    "facing=north,count=0": {
       "y": 90,
       "model": "vinery:block/noir_wine_stack1"
     },
-    "facing=north,stack=2": {
+    "facing=north,count=1": {
       "y": 90,
-      "model": "vinery:block/noir_wine_stack2"
+      "model": "minecraft:block/air"
     },
-    "facing=north,stack=3": {
+    "facing=north,count=2": {
       "y": 90,
-      "model": "vinery:block/noir_wine_stack3"
+      "model": "minecraft:block/air"
     },
-    "facing=south,stack=1": {
+    "facing=north,count=3": {
+      "y": 90,
+      "model": "minecraft:block/air"
+    },
+    "facing=south,count=0": {
       "y": 270,
       "model": "vinery:block/noir_wine_stack1"
     },
-    "facing=south,stack=2": {
+    "facing=south,count=1": {
       "y": 270,
-      "model": "vinery:block/noir_wine_stack2"
+      "model": "minecraft:block/air"
     },
-    "facing=south,stack=3": {
+    "facing=south,count=2": {
       "y": 270,
-      "model": "vinery:block/noir_wine_stack3"
+      "model": "minecraft:block/air"
     },
-    "facing=west,stack=1": {
+    "facing=south,count=3": {
+      "y": 270,
+      "model": "minecraft:block/air"
+    },
+    "facing=west,count=0": {
       "model": "vinery:block/noir_wine_stack1"
     },
-    "facing=west,stack=2": {
-      "model": "vinery:block/noir_wine_stack2"
+    "facing=west,count=1": {
+      "model": "minecraft:block/air"
     },
-    "facing=west,stack=3": {
-      "model": "vinery:block/noir_wine_stack3"
+    "facing=west,count=2": {
+      "model": "minecraft:block/air"
+    },
+    "facing=west,count=3": {
+      "model": "minecraft:block/air"
     }
   }
 }

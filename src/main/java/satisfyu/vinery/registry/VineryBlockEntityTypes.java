@@ -34,6 +34,9 @@ public class VineryBlockEntityTypes {
 
     public static final BlockEntityType<FlowerBoxBlockEntity> FLOWER_BOX_ENTITY = create("flower_box", FabricBlockEntityTypeBuilder.create(FlowerBoxBlockEntity::new, ObjectRegistry.FLOWER_BOX).build());
     public static final BlockEntityType<FlowerPotBlockEntity> FLOWER_POT_ENTITY = create("flower_pot", FabricBlockEntityTypeBuilder.create(FlowerPotBlockEntity::new, ObjectRegistry.FLOWER_POT).build());
+    public static final BlockEntityType<WineBottleBlockEntity> WINE_BOTTLE_ENTITY = create("wine_bottle", FabricBlockEntityTypeBuilder.create(WineBottleBlockEntity::new, ObjectRegistry.NOIR_WINE, ObjectRegistry.CLARK_WINE, ObjectRegistry.BOLVAR_WINE, ObjectRegistry.STAL_WINE, ObjectRegistry.CHERRY_WINE, ObjectRegistry.KELP_CIDER, ObjectRegistry.SOLARIS_WINE, ObjectRegistry.APPLE_WINE,
+            ObjectRegistry.APPLE_CIDER, ObjectRegistry.STRAD_WINE, ObjectRegistry.CHENET_WINE, ObjectRegistry.MELLOHI_WINE,
+            ObjectRegistry.KING_DANIS_WINE, ObjectRegistry.MAGNETIC_WINE, ObjectRegistry.CHORUS_WINE, ObjectRegistry.JELLIE_WINE, ObjectRegistry.AEGIS_WINE).build());
 
 
     public static Block[] b(){

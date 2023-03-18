@@ -7,11 +7,11 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
-public class CherryJarBlock extends StackableBlock
+public class CherryJarBlock extends WineBottleBlock
 {
     public CherryJarBlock(Settings settings)
     {
-        super(settings);
+        super(settings, 3);
     }
 
     @Override

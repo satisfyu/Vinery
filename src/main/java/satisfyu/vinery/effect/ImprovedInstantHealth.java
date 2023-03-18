@@ -7,8 +7,8 @@ import net.minecraft.entity.effect.InstantStatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import org.jetbrains.annotations.Nullable;
 
-public class ImprovedInstantEffect extends InstantStatusEffect {
-    public ImprovedInstantEffect(StatusEffectCategory statusEffectCategory, int color) {
+public class ImprovedInstantHealth extends InstantStatusEffect {
+    public ImprovedInstantHealth(StatusEffectCategory statusEffectCategory, int color) {
         super(statusEffectCategory, color);
     }
 

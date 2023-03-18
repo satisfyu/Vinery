@@ -23,7 +23,7 @@ public class ChorusWineBlock extends WineBottleBlock
 {
     public ChorusWineBlock(Settings settings)
     {
-        super(settings);
+        super(settings, 1);
     }
 
     @Override
