@@ -15,6 +15,7 @@ public class VineryEffects {
     public static final StatusEffect EMPTY;
     public static final StatusEffect JELLIE;
     public static final StatusEffect MAGNET;
+    public static final StatusEffect TELEPORT;
 
     public static final StatusEffect IMPROVED_SPEED;
     public static final StatusEffect IMPROVED_JUMP_BOOST;
@@ -38,6 +39,7 @@ public class VineryEffects {
         EMPTY = registerEffect("empty", new EmptyEffect());
         JELLIE = registerEffect("jellie", new JellieEffect());
         MAGNET = registerEffect("magnet", new MagnetEffect());
+        TELEPORT = registerEffect("teleport", new TeleportEffect());
 
         IMPROVED_SPEED = registerEffect("improved_speed", new ImprovedEffect(StatusEffectCategory.BENEFICIAL, 0x5783B3)
                 .addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, "8614E716-3E4B-D398-9CA2-2F9368FF8635", 0.20000000298023224, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)); //TODO FreeFall not
@@ -45,7 +47,7 @@ public class VineryEffects {
         IMPROVED_STRENGTH = registerEffect("improved_strength", new ImprovedEffect(StatusEffectCategory.BENEFICIAL, 0xB87334)
                 .addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "AF739E3F-3B12-4C0A-ACD6-5BA291ADB183", 0.1, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
                 .addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, "649DC064-6A60-4029-C0BE-CB923001D7A9", 3.0, EntityAttributeModifier.Operation.ADDITION));
-        IMPROVED_INSTANT_HEALTH = registerEffect("improved_instant_health", new ImprovedInstantEffect(StatusEffectCategory.BENEFICIAL, 0xFA5124));
+        IMPROVED_INSTANT_HEALTH = registerEffect("improved_instant_health", new ImprovedInstantHealth(StatusEffectCategory.BENEFICIAL, 0xFA5124));
         IMPROVED_REGENERATION = registerEffect("improved_regeneration", new ImprovedRegeneration(StatusEffectCategory.BENEFICIAL, 0xE36C6F)
                 .addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, "2DF48BAF-1526-71CC-B896-C6D44CEA0DA1", 4.0, EntityAttributeModifier.Operation.ADDITION));
         IMPROVED_FIRE_RESISTANCE = registerEffect("improved_fire_resistance", new ImprovedEffect(StatusEffectCategory.BENEFICIAL, 0xBF6130));

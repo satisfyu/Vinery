@@ -1,15 +1,10 @@
 package satisfyu.vinery.block.grape;
 
 import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.WorldView;
@@ -67,7 +62,7 @@ public class GrapeBush extends PlantBlock implements Fertilizable {
             return ActionResult.PASS;
         } else if (i > 1) {
             int x = world.random.nextInt(2);
-            dropStack(world, pos, new ItemStack(this.type == GrapevineType.RED ? ObjectRegistry.RED_GRAPE : ObjectRegistry.WHITE_GRAPE, x + (bl ? 1 : 0)));
+            dropStack(world, pos, new ItemStack(getGrapeType().getItem(), x + (bl ? 1 : 0)));
             world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             world.setBlockState(pos, state.with(AGE, 1), 2);
             return ActionResult.success(world.isClient);
@@ -122,6 +117,19 @@ public class GrapeBush extends PlantBlock implements Fertilizable {
             case TAIGA_WHITE -> new ItemStack(ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS);
             case SAVANNA_RED -> new ItemStack(ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS);
             case SAVANNA_WHITE -> new ItemStack(ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS);
+        };
+    }
+
+    public ItemStack getGrapeType() {
+        return switch (this.type) {
+            case NONE, RED -> new ItemStack(ObjectRegistry.RED_GRAPE);
+            case WHITE -> new ItemStack(ObjectRegistry.WHITE_GRAPE);
+            case JUNGLE_RED -> new ItemStack(ObjectRegistry.JUNGLE_RED_GRAPE);
+            case JUNGLE_WHITE -> new ItemStack(ObjectRegistry.JUNGLE_WHITE_GRAPE);
+            case TAIGA_RED -> new ItemStack(ObjectRegistry.TAIGA_RED_GRAPE);
+            case TAIGA_WHITE -> new ItemStack(ObjectRegistry.TAIGA_WHITE_GRAPE);
+            case SAVANNA_RED -> new ItemStack(ObjectRegistry.SAVANNA_RED_GRAPE);
+            case SAVANNA_WHITE -> new ItemStack(ObjectRegistry.SAVANNA_WHITE_GRAPE);
         };
     }
 

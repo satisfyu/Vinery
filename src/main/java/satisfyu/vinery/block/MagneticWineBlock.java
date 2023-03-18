@@ -23,7 +23,7 @@ public class MagneticWineBlock extends WineBottleBlock
 {
     public MagneticWineBlock(Settings settings)
     {
-        super(settings);
+        super(settings, 3);
     }
 
     @Override
