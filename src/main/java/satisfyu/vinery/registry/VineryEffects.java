@@ -50,7 +50,7 @@ public class VineryEffects {
         IMPROVED_STRENGTH = registerEffect("improved_strength", new ImprovedEffect(StatusEffectCategory.BENEFICIAL, 0xB87334)
                 .addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "AF739E3F-3B12-4C0A-ACD6-5BA291ADB183", 0.1, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
                 .addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, "649DC064-6A60-4029-C0BE-CB923001D7A9", 3.0, EntityAttributeModifier.Operation.ADDITION));
-        IMPROVED_INSTANT_HEALTH = registerEffect("improved_instant_health", new ImprovedInstantEffect(StatusEffectCategory.BENEFICIAL, 0xFA5124));
+        IMPROVED_INSTANT_HEALTH = registerEffect("improved_instant_health", new ImprovedInstantHealth(StatusEffectCategory.BENEFICIAL, 0xFA5124));
         IMPROVED_REGENERATION = registerEffect("improved_regeneration", new ImprovedRegeneration(StatusEffectCategory.BENEFICIAL, 0xE36C6F)
                 .addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, "2DF48BAF-1526-71CC-B896-C6D44CEA0DA1", 4.0, EntityAttributeModifier.Operation.ADDITION));
         IMPROVED_FIRE_RESISTANCE = registerEffect("improved_fire_resistance", new ImprovedEffect(StatusEffectCategory.BENEFICIAL, 0xBF6130));
