@@ -179,7 +179,9 @@
   "effect.vinery.improved_fire_resistance": "Improved Fire Resistance",
   "effect.vinery.improved_water_breathing": "Improved Water Breathing",
   "effect.vinery.improved_night_vision": "Improved Night Vision",
+  "effect.vinery.improved_absorbtion": "Improved Absorbtion",
   "effect.vinery.improved_haste": "Improved Haste",
+  "effect.vinery.teleport": "Teleport",
   "item.vinery.dough": "Dough",
   "item.vinery.bread_slice": "Slice of Bread",
   "block.vinery.winebox.tooltip.shift_1": "Storage for Wine Bottles",
@@ -206,7 +208,31 @@
   "tooltip.vinery.recipe_book": "Recipe Book",
   "tooltip.vinery.aging_barrel": "A different ingredient results in a different Wine",
   "tooltip.vinery.wine": "Wine",
-  "item.vinery.rottencherry.tooltip": "Ugh - you shouldn't eat this one. But maybe you can throw it at unpleasant Creatures?"
+  "item.vinery.rottencherry.tooltip": "Ugh - you shouldn't eat this one. But maybe you can throw it at unpleasant Creatures?",
+  "item.vinery.savanna_grape_seeds_red": "Red Savanna Grape Seeds",
+  "item.vinery.savanna_grape_seeds_white": "White Savanna Grape Seeds",
+  "item.vinery.savanna_grapes_red": "Red Savanna Grapes",
+  "item.vinery.savanna_grapes_white": "White Savanna Grapes",
+  "item.vinery.taiga_grape_seeds_red": "Red Taiga Grape Seeds",
+  "item.vinery.taiga_grape_seeds_white": "White Taiga Grape Seeds",
+  "item.vinery.taiga_grapes_red": "Red Taiga Grapes",
+  "item.vinery.taiga_grapes_white": "White Taiga Grapes",
+  "item.vinery.jungle_grape_seeds_red": "Red Jungle Grape Seeds",
+  "item.vinery.jungle_grape_seeds_white": "White Jungle Grape Seeds",
+  "item.vinery.jungle_grapes_red": "Red Jungle Grapes",
+  "item.vinery.jungle_grapes_white": "White Jungle Grapes",
+  "item.vinery.rotten_cherry": "Rotten Cherry",
+  "block.vinery.jungle_red_grapejuice_bottle": "Red Jungle Grapejuice",
+  "block.vinery.jungle_white_grapejuice_bottle": "White Jungle Grapejuice",
+  "block.vinery.taiga_red_grapejuice_bottle": "Red Taiga Grapejuice",
+  "block.vinery.taiga_white_grapejuice_bottle": "White Taiga Grapejuice",
+  "block.vinery.savanna_red_grapejuice_bottle": "Red Savanna Grapejuice",
+  "block.vinery.savanna_white_grapejuice_bottle": "White Savanna Grapejuice",
+  "block.vinery.chorus_wine": "Chorus Wine",
+  "block.vinery.strad_wine": "Strad Wine",
+  "block.vinery.stal_wine": "Stal Wine",
+  "block.vinery.magnetic_wine": "Magnetic Wine"
+
 
 
 }

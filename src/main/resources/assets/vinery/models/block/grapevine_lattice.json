@@ -4,9 +4,6 @@
 	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "vinery:block/lattice",
-		"1": "vinery:block/jungle_grape_bush_bushy_stage0",
-		"2": "vinery:block/jungle_grape_bush_stage0",
-		"4": "vinery:block/grapevine_overlay_red_stage2",
 		"particle": "vinery:block/lattice"
 	},
 	"elements": [
@@ -121,88 +118,38 @@
 				"up": {"uv": [6, 16, 8, 15], "rotation": 180, "texture": "#0"},
 				"down": {"uv": [6, 16, 8, 15], "rotation": 180, "texture": "#0"}
 			}
-		},
-		{
-			"name": "leaves",
-			"from": [0, 0, 14.8],
-			"to": [16, 16, 14.8],
-			"shade": false,
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, -1]},
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#2", "tintindex": 0},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#2", "tintindex": 0}
-			}
-		},
-		{
-			"name": "bushy",
-			"from": [0, 6.5, 14.8],
-			"to": [16, 14.5, 14.8],
-			"shade": false,
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 14, 14]},
-			"faces": {
-				"north": {"uv": [0, 8, 16, 0], "rotation": 180, "texture": "#1", "tintindex": 0},
-				"east": {"uv": [0, 0, 5, 0], "rotation": 90, "texture": "#1"},
-				"south": {"uv": [0, 0, 16, 8], "texture": "#1", "tintindex": 0},
-				"west": {"uv": [0, 0, 5, 0], "rotation": 270, "texture": "#1"},
-				"up": {"uv": [0, 0, 16, 0], "texture": "#1"},
-				"down": {"uv": [0, 0, 16, 0], "rotation": 180, "texture": "#1"}
-			}
-		},
-		{
-			"name": "bushy",
-			"from": [0, -0.5, 14.8],
-			"to": [16, 7.5, 14.8],
-			"shade": false,
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 7, 14]},
-			"faces": {
-				"north": {"uv": [0, 16, 16, 8], "rotation": 180, "texture": "#1", "tintindex": 0},
-				"east": {"uv": [0, 0, 8, 0], "rotation": 90, "texture": "#1"},
-				"south": {"uv": [0, 0, 16, 8], "texture": "#1", "tintindex": 0},
-				"west": {"uv": [0, 0, 8, 0], "rotation": 270, "texture": "#1"},
-				"up": {"uv": [0, 0, 16, 0], "texture": "#1"},
-				"down": {"uv": [0, 0, 16, 0], "rotation": 180, "texture": "#1"}
-			}
-		},
-		{
-			"name": "notint",
-			"from": [0, 0, 14.799],
-			"to": [16, 16, 14.799],
-			"shade": false,
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, -16]},
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#4"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#4"}
-			}
-		},
-		{
-			"name": "bushy, notint",
-			"from": [0, 6.5, 14.79],
-			"to": [16, 14.5, 14.79],
-			"shade": false,
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 14, 14]},
-			"faces": {
-				"north": {"uv": [0, 8, 16, 0], "rotation": 180, "texture": "#4"},
-				"east": {"uv": [0, 0, 5, 0], "rotation": 90, "texture": "#4"},
-				"south": {"uv": [0, 0, 16, 8], "texture": "#4"},
-				"west": {"uv": [0, 0, 5, 0], "rotation": 270, "texture": "#4"},
-				"up": {"uv": [0, 0, 16, 0], "texture": "#4"},
-				"down": {"uv": [0, 0, 16, 0], "rotation": 180, "texture": "#4"}
-			}
-		},
-		{
-			"name": "bushy, notint",
-			"from": [0, -0.5, 14.79],
-			"to": [16, 7.5, 14.79],
-			"shade": false,
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 7, 14]},
-			"faces": {
-				"north": {"uv": [0, 16, 16, 8], "rotation": 180, "texture": "#4"},
-				"east": {"uv": [0, 0, 8, 0], "rotation": 90, "texture": "#4"},
-				"south": {"uv": [0, 0, 16, 8], "texture": "#4"},
-				"west": {"uv": [0, 0, 8, 0], "rotation": 270, "texture": "#4"},
-				"up": {"uv": [0, 0, 16, 0], "texture": "#4"},
-				"down": {"uv": [0, 0, 16, 0], "rotation": 180, "texture": "#4"}
-			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 225, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"translation": [3.75, 0, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
 }
