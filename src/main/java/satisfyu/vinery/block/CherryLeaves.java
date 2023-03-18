@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.util.math.MathHelper;
 import satisfyu.vinery.registry.ObjectRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -27,6 +28,7 @@ public class CherryLeaves extends LeavesBlock {
     public static final BooleanProperty VARIANT = BooleanProperty.of("can_have_cherries");
 
     public static final BooleanProperty HAS_CHERRIES = BooleanProperty.of("has_cherries");
+
     public CherryLeaves(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(PERSISTENT, false).with(DISTANCE, 7).with(VARIANT, false).with(HAS_CHERRIES, false));
@@ -35,21 +37,28 @@ public class CherryLeaves extends LeavesBlock {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack stack = player.getStackInHand(hand);
-        if(state.get(VARIANT) && state.get(HAS_CHERRIES) && stack.getItem() instanceof ShearsItem) {
-            if(!world.isClient()) {
-                stack.damage(1, player, playerEntity ->  playerEntity.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
-                CherryLeaves.dropStack(world, pos, hit.getSide(), new ItemStack(ObjectRegistry.CHERRY, world.getRandom().nextBetween(1, 3)));
+        if (state.get(VARIANT) && state.get(HAS_CHERRIES) && stack.getItem() instanceof ShearsItem) {
+            if (!world.isClient()) {
+                stack.damage(1, player, playerEntity -> playerEntity.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+                int dropCount = world.getRandom().nextBoolean() ? MathHelper.nextInt(world.getRandom(), 1, 3) : 1;
+                ItemStack dropStack = new ItemStack(ObjectRegistry.CHERRY, dropCount);
+                if (world.getRandom().nextInt(8) == 0) {
+                    dropStack = new ItemStack(ObjectRegistry.ROTTEN_CHERRY, dropCount);
+                }
+                CherryLeaves.dropStack(world, pos, hit.getSide(), dropStack);
                 world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1F, 1F);
                 world.setBlockState(pos, state.with(HAS_CHERRIES, false));
             }
-            return ActionResult.success(world.isClient());
+            return ActionResult.SUCCESS;
         }
         return ActionResult.PASS;
     }
 
     @Override
     public boolean hasRandomTicks(BlockState state) {
-        if(state.get(VARIANT) && !state.get(HAS_CHERRIES)) return true;
+        if (state.get(VARIANT) && !state.get(HAS_CHERRIES)) {
+            return true;
+        }
         return super.hasRandomTicks(state);
     }
 
