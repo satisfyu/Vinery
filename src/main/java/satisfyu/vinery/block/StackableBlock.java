@@ -3,6 +3,7 @@ package satisfyu.vinery.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
@@ -16,14 +17,14 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import satisfyu.vinery.block.entity.WineBottleBlockEntity;
 
-public abstract class StackableBlock extends Block{
-    private final VoxelShape SHAPE = VoxelShapes.cuboid(0.0625, 0, 0.0625, 0.9375, 0.75, 0.9375);
-    public final IntProperty STACK;
+public class StackableBlock extends Block{
+    private final VoxelShape SHAPE = VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 0.875, 0.8125);
+    public static final IntProperty STACK = IntProperty.of("stack", 1, 3);
 
-    public StackableBlock(Settings settings, int stacks) {
+    public StackableBlock(Settings settings) {
         super(settings);
-        STACK = IntProperty.of("stack", 1, stacks);
         setDefaultState(this.getDefaultState().with(STACK, 1));
     }
 
@@ -31,11 +32,21 @@ public abstract class StackableBlock extends Block{
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         final ItemStack stack = player.getStackInHand(hand);
         if (stack.getItem() == this.asItem()) {
-            if (state.get(STACK) < 3) {
+            if (state.getBlock() instanceof StackableBlock && state.get(STACK) < 3) {
                 world.setBlockState(pos, state.with(STACK, state.get(STACK) + 1), Block.NOTIFY_ALL);
-                if (!player.isCreative()) stack.decrement(1);
+                if (!player.isCreative()) {
+                    stack.decrement(1);
+                }
                 return ActionResult.SUCCESS;
             }
+        } else if (stack.isEmpty()) {
+            if (state.get(STACK) > 1) {
+                world.setBlockState(pos, state.with(STACK, state.get(STACK) - 1), Block.NOTIFY_ALL);
+            } else if (state.get(STACK) == 1) {
+                world.breakBlock(pos, false);
+            }
+            player.giveItemStack(this.asItem().getDefaultStack());
+            return ActionResult.SUCCESS;
         }
         return super.onUse(state, world, pos, player, hand, hit);
     }
