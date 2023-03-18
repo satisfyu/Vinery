@@ -319,7 +319,7 @@ public class ObjectRegistry {
     }
 
     private static AbstractBlock.Settings getGrapevineSettings() {
-        return FabricBlockSettings.of(Material.WOOD).strength(2.0F).ticksRandomly().sounds(BlockSoundGroup.WOOD);
+        return FabricBlockSettings.of(Material.WOOD).strength(2.0F).ticksRandomly().sounds(BlockSoundGroup.WOOD).nonOpaque();
     }
 
     private static AbstractBlock.Settings getLogBlockSettings() {
