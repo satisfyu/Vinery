@@ -1,5 +1,6 @@
 package satisfyu.vinery.item;
 
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -8,13 +9,18 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.registry.VinerySoundEvents;
+
+import java.util.List;
 
 public class RottenCherryItem extends Item {
 
@@ -46,11 +52,13 @@ public class RottenCherryItem extends Item {
         if (hitResult.getType() == HitResult.Type.ENTITY) {
             EntityHitResult entityHitResult = (EntityHitResult) hitResult;
             Entity entity = entityHitResult.getEntity();
-            if (entity instanceof PlayerEntity) {
-                return null; // Players can't be poisoned
-            }
             return entity;
         }
         return null;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, @NotNull List<Text> tooltip, TooltipContext context) {
+        tooltip.add(Text.translatable(  "item.vinery.rottencherry.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }
