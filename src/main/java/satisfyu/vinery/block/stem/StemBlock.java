@@ -9,22 +9,18 @@ import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.GrapevineType;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 
-public abstract class StemBlock extends Block implements Waterloggable, Fertilizable {
+public abstract class StemBlock extends Block implements Fertilizable {
     public static final EnumProperty<GrapevineType> GRAPE;
     public static final IntProperty AGE;
 
@@ -77,6 +73,16 @@ public abstract class StemBlock extends Block implements Waterloggable, Fertiliz
         }
         else {
             return ActionResult.PASS;
+        }
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if (!isMature(state) && state.get(AGE) > 0) {
+            final int i;
+            if (world.getBaseLightLevel(pos, 0) >= 9 && (i = state.get(AGE)) < 4) {
+                world.setBlockState(pos, this.withAge(state,i + 1, state.get(GRAPE)), Block.NOTIFY_LISTENERS);
+            }
         }
     }
 

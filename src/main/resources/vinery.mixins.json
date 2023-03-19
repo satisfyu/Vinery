@@ -18,6 +18,8 @@
   "client": [
     "ArmorFeatureRendererMixin",
     "ArmorStandRendererMixin",
+    "LongToolTipsMixin",
+    "OrderedTextToolTipAccessor",
     "PlayerEntityRendererMixin"
   ],
   "injectors": {

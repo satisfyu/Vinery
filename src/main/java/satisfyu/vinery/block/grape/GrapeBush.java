@@ -28,8 +28,7 @@ import net.minecraft.world.World;
 public class GrapeBush extends PlantBlock implements Fertilizable {
 
     public static final IntProperty AGE;
-    private static final VoxelShape SMALL_SHAPE;
-    private static final VoxelShape LARGE_SHAPE;
+    private static final VoxelShape SHAPE;
     private final int chance;
 
     public final GrapevineType type;
@@ -44,19 +43,9 @@ public class GrapeBush extends PlantBlock implements Fertilizable {
         this.type = type;
     }
 
-    public static VoxelShape makeShape() {
-        VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(0, 0, 0, 1, 1, 1), BooleanBiFunction.OR);
-        return shape;
-    }
-
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (state.get(AGE) == 0) {
-            return SMALL_SHAPE;
-        } else {
-            return state.get(AGE) < 3 ? LARGE_SHAPE : super.getOutlineShape(state, world, pos, context);
-        }
+        return SHAPE;
     }
 
     public GrapevineType getType() {
@@ -153,12 +142,6 @@ public class GrapeBush extends PlantBlock implements Fertilizable {
         world.setBlockState(pos, state.with(AGE, i), 2);
     }
 
-    //TODO Blockstates
-
-    //TODO on state replace drops in json
-
-    //TODO effekte zu wine
-
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
@@ -166,8 +149,7 @@ public class GrapeBush extends PlantBlock implements Fertilizable {
 
     static {
         AGE = Properties.AGE_3;
-        SMALL_SHAPE = Block.createCuboidShape(3.0, 0.0, 3.0, 13.0, 8.0, 13.0);
-        LARGE_SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
+        SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 16.0);
     }
 
 

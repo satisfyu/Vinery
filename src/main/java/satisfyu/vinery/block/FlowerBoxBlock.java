@@ -1,22 +1,14 @@
 package satisfyu.vinery.block;
 
-import com.google.common.collect.Maps;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.piston.PistonBehavior;
 import satisfyu.vinery.block.entity.FlowerBoxBlockEntity;
-import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.util.EnumBlockSide;
 import net.minecraft.block.*;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
@@ -28,8 +20,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.util.VineryTags;
@@ -81,8 +71,6 @@ public class FlowerBoxBlock extends FacingBlock implements BlockEntityProvider {
 		Direction facing = state.get(FACING);
 		boolean left = (facing.getAxis() == Direction.Axis.X) ? (hit.getPos().z - pos.getZ() > 0.5D) : (hit.getPos().x - pos.getX() > 0.5D);
 		left = (facing == Direction.NORTH || facing == Direction.WEST) != left;
-
-		System.out.println(left);
 
 		ItemStack handStack = player.getStackInHand(hand);
 		if (handStack.isEmpty()) {

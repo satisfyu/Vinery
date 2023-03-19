@@ -22,7 +22,6 @@ public class TaigaGrapeBush extends GrapeBush {
 
     @Override
     public boolean canGrowPlace(WorldView world, BlockPos blockPos, BlockState blockState) {
-        System.out.println(world.getBaseLightLevel(blockPos, 0));
         if (world.getBaseLightLevel(blockPos, 0) <= 4) {
             return false;
         }
