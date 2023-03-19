@@ -5,6 +5,8 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
@@ -41,6 +43,7 @@ public class WineBottleBlock extends Block  implements BlockEntityProvider {
         if (stack.getItem() == this.asItem()) {
             if (blockEntity instanceof WineBottleBlockEntity wineEntity && !wineEntity.isFull()) {
                 wineEntity.addWine();
+                world.playSound(player, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.AMBIENT, 1.0F, 1.0F);
                 world.setBlockState(pos, state.with(COUNT, state.get(COUNT) + 1), Block.NOTIFY_ALL);
                 if (!player.isCreative()) {
                     stack.decrement(1);
@@ -50,6 +53,7 @@ public class WineBottleBlock extends Block  implements BlockEntityProvider {
         } else if (stack.isEmpty()) {
             if (blockEntity instanceof WineBottleBlockEntity wineEntity && wineEntity.getCount() >= 1) {
                 wineEntity.removeWine();
+                world.playSound(player, pos, SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.AMBIENT, 1.0F, 1.0F);
                 player.giveItemStack(this.asItem().getDefaultStack());
                 if (wineEntity.getCount() == 0) {
                     world.breakBlock(pos, false);

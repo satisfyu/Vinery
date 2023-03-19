@@ -68,7 +68,6 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
 }
 
     private void renderThree(WineBottleBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers, BlockState defaultState) {
-        //TODO 3 stehen
         matrices.translate(-0.25f, 0f, -0.25f);
         renderBlock(defaultState, matrices, vertexConsumers, entity);
         matrices.translate(.15f, 0f, .5f);
@@ -79,7 +78,8 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
             renderBlock(defaultState, matrices, vertexConsumers, entity);
             return;
         }
-        matrices.translate(.35f, 0f, -.25f);
+        matrices.translate(.1f, 0f, 0f);
+        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(30));
         renderBlock(defaultState, matrices, vertexConsumers, entity);
     }
 }
