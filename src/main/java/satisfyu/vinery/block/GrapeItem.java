@@ -4,8 +4,6 @@ package satisfyu.vinery.block;
 import satisfyu.vinery.util.GrapevineType;
 import net.minecraft.item.Item;
 
-import java.util.List;
-
 /**
  * Namespace for grape items
  */

@@ -144,11 +144,7 @@ public class GrapeBush extends PlantBlock implements Fertilizable {
         world.setBlockState(pos, state.with(AGE, i), 2);
     }
 
-    //TODO Blockstates
-
     //TODO on state replace drops in json
-
-    //TODO effekte zu wine
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

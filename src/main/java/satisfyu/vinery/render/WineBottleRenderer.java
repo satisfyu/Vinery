@@ -45,7 +45,7 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
                 matrices.translate(0f, 0f, 1f);
                 matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90));
             }
-            case EAST -> {
+            case WEST -> {
                 matrices.translate(1f, 0f, 1f);
                 matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
             }
@@ -57,32 +57,29 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
     }
 
     private void renderOne(WineBottleBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers, BlockState defaultState) {
-        //TODO 1 Flasche (der folgende code muss dann weg)
         renderBlock(defaultState, matrices, vertexConsumers, entity);
     }
 
     private void renderTwo(WineBottleBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers, BlockState defaultState) {
-        //TODO 2 Flaschen (der folgende code muss dann weg)
+        matrices.translate(-0.15f, 0f, -0.25f);
         renderBlock(defaultState, matrices, vertexConsumers, entity);
-        matrices.translate(0f, 1f, 0f);
+        matrices.translate(.35f, 0f, .5f);
         renderBlock(defaultState, matrices, vertexConsumers, entity);
 }
 
     private void renderThree(WineBottleBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers, BlockState defaultState) {
+        //TODO 3 stehen
+        matrices.translate(-0.25f, 0f, -0.25f);
+        renderBlock(defaultState, matrices, vertexConsumers, entity);
+        matrices.translate(.15f, 0f, .5f);
+        renderBlock(defaultState, matrices, vertexConsumers, entity);
         if (defaultState.getBlock() == ObjectRegistry.KELP_CIDER) {
-            //TODO 3 leigent (Kelb) (der folgende code muss dann weg)
-            renderBlock(defaultState, matrices, vertexConsumers, entity);
-            matrices.translate(0f, 1f, 0f);
-            renderBlock(defaultState, matrices, vertexConsumers, entity);
-            matrices.translate(0f, 1f, 0f);
+            matrices.translate(.35f, .7f, -.13f);
+            matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
             renderBlock(defaultState, matrices, vertexConsumers, entity);
             return;
         }
-        //TODO 3 stehen
-        renderBlock(defaultState, matrices, vertexConsumers, entity);
-        matrices.translate(0f, 1f, 0f);
-        renderBlock(defaultState, matrices, vertexConsumers, entity);
-        matrices.translate(0f, 1f, 0f);
+        matrices.translate(.35f, 0f, -.25f);
         renderBlock(defaultState, matrices, vertexConsumers, entity);
     }
 }

@@ -177,6 +177,4 @@ public class PaleStemBlock extends StemBlock {
     static {
         HAS_GROWTH_LEAVES = BooleanProperty.of("has_growth_leaves");
     }
-
-    //TODO ausbreitende büsche richtig
 }

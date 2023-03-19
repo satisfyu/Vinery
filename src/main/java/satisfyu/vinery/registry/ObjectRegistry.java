@@ -161,7 +161,7 @@ public class ObjectRegistry {
     public static final Block JUNGLE_WHITE_GRAPEJUICE_BOTTLE = registerWine("jungle_white_grapejuice_bottle", new WhiteGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
     public static final Block APPLE_JUICE = registerWine("apple_juice", new WhiteGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
     //normal - light effects, small util
-    public static final Block CHORUS_WINE = registerBigWine("chorus_wine", new WineBottleBlock(getWineSettings(), 1), VineryEffects.TELEPORT);
+    public static final Block CHORUS_WINE = registerBigWine("chorus_wine", new WineBottleBlock(getWineSettings(), 1), VineryEffects.TELEPORT, 1);
     public static final Block CHERRY_WINE = registerWine("cherry_wine", new WineBottleBlock(getWineSettings(), 3), StatusEffects.REGENERATION);
     public static final Block MAGNETIC_WINE = registerBigWine("magnetic_wine", new WineBottleBlock(getWineSettings(), 1), VineryEffects.MAGNET);
     public static final Block NOIR_WINE = registerWine("noir_wine", new WineBottleBlock(getWineSettings(), 3), StatusEffects.INSTANT_HEALTH);
@@ -248,18 +248,26 @@ public class ObjectRegistry {
         return block;
     }
 
-
     private static <T extends Block> T registerWine(String path, T block, StatusEffect effect) {
-        return register(path, block, true, DrinkBlockItem::new, settings -> settings.food(wineFoodComponent(effect)));
+        return registerWine(path, block, effect, 45 * 20);
+    }
+
+    private static <T extends Block> T registerWine(String path, T block, StatusEffect effect, int duration) {
+        return register(path, block, true, DrinkBlockItem::new, settings -> settings.food(wineFoodComponent(effect, duration)));
     }
 
     private static <T extends Block> T registerBigWine(String path, T block, StatusEffect effect) {
-        return register(path, block, true, DrinkBlockBigItem::new, settings -> settings.food(wineFoodComponent(effect)));
+        return registerBigWine(path, block, effect, 45 * 20);
     }
 
-    private static FoodComponent wineFoodComponent(StatusEffect effect) {
+    private static <T extends Block> T registerBigWine(String path, T block, StatusEffect effect, int duration) {
+        return register(path, block, true, DrinkBlockBigItem::new, settings -> settings.food(wineFoodComponent(effect, duration)));
+    }
+
+
+    private static FoodComponent wineFoodComponent(StatusEffect effect, int duration) {
         List<Pair<StatusEffectInstance, Float>> statusEffects = new ArrayList<>();
-        statusEffects.add(new Pair<>(new StatusEffectInstance(effect, 45 * 20), 1.0f));
+        statusEffects.add(new Pair<>(new StatusEffectInstance(effect, duration), 1.0f));
         return new VineryFoodComponent(statusEffects);
     }
 
