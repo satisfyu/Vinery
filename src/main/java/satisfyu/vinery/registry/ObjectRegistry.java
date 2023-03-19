@@ -146,15 +146,15 @@ public class ObjectRegistry {
     public static final Block DIRT_SLAB = register("dirt_slab", new VariantSlabBlock(FabricBlockSettings.copy(Blocks.DIRT)));
     public static final Block GRASS_SLAB = register("grass_slab", new SnowyVariantSlabBlock(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)));
     public static final Block WINE_BOTTLE = register("wine_bottle", new EmptyWineBottleBlock(AbstractBlock.Settings.copy(Blocks.GLASS).breakInstantly().nonOpaque()));
-    public static final Block RED_GRAPEJUICE_WINE_BOTTLE = registerWine("red_grapejuice_wine_bottle", new RedGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
-    public static final Block WHITE_GRAPEJUICE_WINE_BOTTLE = registerWine("white_grapejuice_wine_bottle", new WhiteGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
-    public static final Block SAVANNA_RED_GRAPEJUICE_BOTTLE = registerWine("savanna_red_grapejuice_bottle", new RedGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
-    public static final Block SAVANNA_WHITE_GRAPEJUICE_BOTTLE = registerWine("savanna_white_grapejuice_bottle", new WhiteGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
-    public static final Block TAIGA_RED_GRAPEJUICE_BOTTLE = registerWine("taiga_red_grapejuice_bottle", new RedGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
-    public static final Block TAIGA_WHITE_GRAPEJUICE_BOTTLE = registerWine("taiga_white_grapejuice_bottle", new WhiteGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
-    public static final Block JUNGLE_RED_GRAPEJUICE_BOTTLE = registerWine("jungle_red_grapejuice_bottle", new RedGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
-    public static final Block JUNGLE_WHITE_GRAPEJUICE_BOTTLE = registerWine("jungle_white_grapejuice_bottle", new WhiteGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
-    public static final Block APPLE_JUICE = registerWine("apple_juice", new WhiteGrapejuiceWineBottle(getWineSettings()), VineryEffects.EMPTY);
+    public static final Block RED_GRAPEJUICE_WINE_BOTTLE = register("red_grapejuice_wine_bottle", new StackableBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
+    public static final Block WHITE_GRAPEJUICE_WINE_BOTTLE = register("white_grapejuice_wine_bottle", new StackableBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
+    public static final Block SAVANNA_RED_GRAPEJUICE_BOTTLE = register("savanna_red_grapejuice_bottle", new StackableBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
+    public static final Block SAVANNA_WHITE_GRAPEJUICE_BOTTLE = register("savanna_white_grapejuice_bottle", new StackableBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
+    public static final Block TAIGA_RED_GRAPEJUICE_BOTTLE = register("taiga_red_grapejuice_bottle", new StackableBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
+    public static final Block TAIGA_WHITE_GRAPEJUICE_BOTTLE = register("taiga_white_grapejuice_bottle", new StackableBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
+    public static final Block JUNGLE_RED_GRAPEJUICE_BOTTLE = register("jungle_red_grapejuice_bottle", new StackableBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
+    public static final Block JUNGLE_WHITE_GRAPEJUICE_BOTTLE = register("jungle_white_grapejuice_bottle", new StackableBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
+    public static final Block APPLE_JUICE = register("apple_juice", new StackableBlock(FabricBlockSettings.of(Material.GLASS).breakInstantly().nonOpaque().sounds(BlockSoundGroup.GLASS)));
     //normal - light effects, small util
     public static final Block CHORUS_WINE = registerBigWine("chorus_wine", new WineBottleBlock(getWineSettings(), 1), VineryEffects.TELEPORT);
     public static final Block CHERRY_WINE = registerWine("cherry_wine", new WineBottleBlock(getWineSettings(), 3), StatusEffects.REGENERATION);

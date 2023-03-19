@@ -39,8 +39,10 @@
   "block.vinery.stackable_log": "Stackable Log",
   "block.vinery.cooking_pot": "Cooking Pot",
   "block.vinery.cherry_jar": "Cherry Jar",
+  "item.vinery.juice.tooltip.block.vinery.cherry_jar":"",
   "block.vinery.jellie_wine": "Jellie Wine",
   "block.vinery.cherry_jam": "Cherry Jam",
+  "item.vinery.juice.tooltip.block.vinery.cherry_jam":"",
   "block.vinery.fermentation_barrel": "Aging Barrel",
   "block.vinery.wine_bottle": "Wine Bottle",
   "block.vinery.red_grapejuice_wine_bottle": "Red Grapejuice",
@@ -150,7 +152,6 @@
   "item.vinery.grapeseed.tooltip.item.vinery.taiga_grape_seeds_white": "Heavy - needs sunlight and Coarse Dirt or Podzol nearby to grow",
   "item.vinery.grapeseed.tooltip.item.vinery.jungle_grape_seeds_red": "Relient - climbing Grapes",
   "item.vinery.grapeseed.tooltip.item.vinery.jungle_grape_seeds_white": "Relient - climbing Grapes",
-
   "item.vinery.cherry.tooltip": "Crafting Ingredient",
   "item.vinery.ingredient.tooltip": "Press §eSHIFT§r to show needed Ingredients",
   "item.vinery.chocolatebread_line1.tooltip": " - Dough",
@@ -173,6 +174,7 @@
   "block.vinery.apple_juice": "Apple Juice",
   "block.vinery.apple_crate": "Bag full of Apples",
   "block.vinery.apple_jam": "Apple Jam",
+  "item.vinery.juice.tooltip.block.vinery.apple_jam":"",
   "item.vinery.apple_mash": "Apple Mash",
   "item.vinery.applesauce": "Applesauce",
   "item.vinery.oven.tooltip": "§oBaked in a wood fired Oven§o",
@@ -211,7 +213,9 @@
   "block.vinery.pie.tooltip3.shift_3": " - Milk",
   "item.vinery.apple_cupcake": "Apple Cupcake",
   "block.vinery.sweetberry_jam": "Sweetberry Jam",
+  "item.vinery.juice.tooltip.block.vinery.sweetberry_jam":"",
   "block.vinery.grape_jam": "Grape Jam",
+  "item.vinery.juice.tooltip.block.vinery.grape_jam":"",
   "block.vinery.aegis_wine": "Aegis Wine",
   "block.vinery.big_bowl": "Bowl",
   "block.vinery.kelp_cider": "Kelp Cider",
@@ -246,8 +250,15 @@
   "block.vinery.chorus_wine": "Chorus Wine",
   "block.vinery.strad_wine": "Strad Wine",
   "block.vinery.stal_wine": "Stal Wine",
-  "block.vinery.magnetic_wine": "Magnetic Wine"
-
+  "block.vinery.magnetic_wine": "Magnetic Wine",
+  "item.vinery.juice.tooltip.block.vinery.jungle_red_grapejuice_bottle": "A relient red Grapejuice - used to craft Wines with the ability to heal and regenerate",
+  "item.vinery.juice.tooltip.block.vinery.jungle_white_grapejuice_bottle": "A relient white Grapejuice - used to craft Wines with the ability to heal and regenerate",
+  "item.vinery.juice.tooltip.block.vinery.taiga_red_grapejuice_bottle": "A light red Grapejuice - used to craft Wines who will increase resistance",
+  "item.vinery.juice.tooltip.block.vinery.taiga_white_grapejuice_bottle": "A light white Grapejuice - used to craft Wines who will increase resistance",
+  "item.vinery.juice.tooltip.block.vinery.savanna_red_grapejuice_bottle": "A heavy red Grapejuice - used to craft Wines with the ability to increase strength or haste",
+  "item.vinery.juice.tooltip.block.vinery.savanna_white_grapejuice_bottle": "A heavy white Grapejuice - used to craft Wines with the ability to increase strength or haste",
+  "item.vinery.juice.tooltip.block.vinery.white_grapejuice_wine_bottle": "A vigorous red Grapejuice - used to craft basic Wines",
+  "item.vinery.juice.tooltip.block.vinery.red_grapejuice_wine_bottle": "A vigorous white Grapejuice - used to craft basic Wines"
 
 
 }
