@@ -2,7 +2,6 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"1": "vinery:block/wine/apple_wine",
-		"6": "vinery:block/wine/chenet_wine",
 		"particle": "vinery:block/wine/apple_wine"
 	},
 	"elements": [
@@ -64,11 +63,11 @@
 			"rotation": {"angle": 0, "axis": "y", "origin": [7.271, 6.885, 2.271]},
 			"faces": {
 				"north": {"uv": [1, 15, 7, 16], "texture": "#1"},
-				"east": {"uv": [8, 0, 14, 1], "texture": "#1"},
-				"south": {"uv": [9, 0, 15, 1], "texture": "#1"},
-				"west": {"uv": [9, 0, 15, 1], "texture": "#1"},
-				"up": {"uv": [14, 3.5, 12, 1.5], "texture": "#6"},
-				"down": {"uv": [14, 8, 12, 10], "texture": "#6"}
+				"east": {"uv": [10, 0, 16, 1], "texture": "#1"},
+				"south": {"uv": [10, 0, 16, 1], "texture": "#1"},
+				"west": {"uv": [10, 0, 16, 1], "texture": "#1"},
+				"up": {"uv": [14, 3.5, 12, 1.5], "texture": "#1"},
+				"down": {"uv": [14, 8, 12, 10], "texture": "#1"}
 			}
 		},
 		{
