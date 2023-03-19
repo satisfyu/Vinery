@@ -115,6 +115,7 @@ public class PaleStemBlock extends StemBlock {
                 world.setBlockState(pos, this.withAge(state,i + 1, state.get(GRAPE)), Block.NOTIFY_LISTENERS);
             }
         }
+        super.randomTick(state, world, pos, random);
     }
 
     @Override

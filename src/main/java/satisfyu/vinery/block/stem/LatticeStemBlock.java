@@ -21,6 +21,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
@@ -32,7 +33,7 @@ import satisfyu.vinery.util.GrapevineType;
 
 import java.util.List;
 
-public class LatticeStemBlock extends StemBlock{
+public class LatticeStemBlock extends StemBlock {
 
     private static final VoxelShape LATTICE_SHAPE_N = Block.createCuboidShape(0, 0,15.0, 16.0,  16.0, 16.0);
     private static final VoxelShape LATTICE_SHAPE_E = Block.createCuboidShape(0, 0,0, 1.0,  16.0, 16.0);
@@ -58,7 +59,13 @@ public class LatticeStemBlock extends StemBlock{
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         BlockState blockState;
-        blockState = this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+        Direction side = ctx.getSide();
+        if (side != Direction.DOWN && side != Direction.UP) {
+            blockState = this.getDefaultState().with(FACING, ctx.getSide());
+        } else {
+            blockState = this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+        }
+
 
         if (blockState.canPlaceAt(ctx.getWorld(), ctx.getBlockPos())) {
             return blockState;
@@ -98,6 +105,17 @@ public class LatticeStemBlock extends StemBlock{
         }
 
         return super.onUse(state, world, pos, player, hand, hit);
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if (!isMature(state) && state.get(AGE) > 0) {
+            final int i;
+            if (world.getBaseLightLevel(pos, 0) >= 9 && (i = state.get(AGE)) < 4) {
+                world.setBlockState(pos, this.withAge(state,i + 1, state.get(GRAPE)), Block.NOTIFY_LISTENERS);
+            }
+        }
+        super.randomTick(state, world, pos, random);
     }
 
     @Override

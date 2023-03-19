@@ -77,16 +77,6 @@ public abstract class StemBlock extends Block implements Fertilizable {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (!isMature(state) && state.get(AGE) > 0) {
-            final int i;
-            if (world.getBaseLightLevel(pos, 0) >= 9 && (i = state.get(AGE)) < 4) {
-                world.setBlockState(pos, this.withAge(state,i + 1, state.get(GRAPE)), Block.NOTIFY_LISTENERS);
-            }
-        }
-    }
-
-    @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (state.get(AGE) > 2) {
             dropGrapes(world, state, pos);
