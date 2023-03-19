@@ -5,13 +5,15 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AbstractCauldronBlockAccessor",
+    "OrderedTextToolTipAccessor",
     "BlockMixin",
     "BoneMealItemMixin",
     "ClientPlayerEntityMixin",
     "FoxEntityEatSweetBerriesGoalMixin",
     "LivingEntityMixin",
     "StatusEffectUtilMixin",
-    "WanderingTraderManagerMixin"
+    "WanderingTraderManagerMixin",
+    "LongToolTipsMixin"
   ],
   "client": [
     "ArmorFeatureRendererMixin",
