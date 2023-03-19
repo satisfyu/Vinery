@@ -48,7 +48,7 @@ public class ObjectRegistry {
     private static final Map<Identifier, Item> ITEMS = new LinkedHashMap<>();
     private static final Map<Identifier, Block> BLOCKS = new LinkedHashMap<>();
     public static final Item CHERRY = register("cherry", new CherryItem(getSettings().food(FoodComponents.COOKIE)));
-    public static final Item ROTTEN_CHERRY = register("rotten_cherry", new CherryItem(getSettings().food(FoodComponents.POISONOUS_POTATO)));
+    public static final Item ROTTEN_CHERRY = register("rotten_cherry", new RottenCherryItem(getSettings().food(FoodComponents.POISONOUS_POTATO)));
     public static final Block RED_GRAPE_BUSH = register("red_grape_bush", new GrapeBush(getBushSettings(), GrapevineType.RED), false);
     public static final Item RED_GRAPE_SEEDS = register("red_grape_seeds", new GrapeBushSeedItem(RED_GRAPE_BUSH, getSettings(), GrapevineType.RED));
     public static final Item RED_GRAPE = register("red_grape", new FoodItemReturn(getSettings().food(FoodComponents.SWEET_BERRIES), ObjectRegistry.RED_GRAPE_SEEDS.getDefaultStack()));
