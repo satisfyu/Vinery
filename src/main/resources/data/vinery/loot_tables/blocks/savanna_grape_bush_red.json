@@ -7,13 +7,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:white_grape_seeds"
+          "name": "vinery:savanna_grape_seeds_red"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "vinery:white_grape_bush",
+          "block": "vinery:savanna_grape_bush_red",
           "properties": {
             "age": "3"
           }
@@ -45,13 +45,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:white_grape_seeds"
+          "name": "vinery:savanna_grape_seeds_red"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "vinery:white_grape_bush",
+          "block": "vinery:savanna_grape_bush_red",
           "properties": {
             "age": "2"
           }

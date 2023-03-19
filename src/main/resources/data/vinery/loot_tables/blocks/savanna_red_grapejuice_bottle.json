@@ -13,7 +13,7 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "vinery:apple_juice",
+                  "block": "vinery:savanna_red_grapejuice_bottle",
                   "properties": {
                     "stack": "2"
                   }
@@ -27,7 +27,7 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "vinery:apple_juice",
+                  "block": "vinery:savanna_red_grapejuice_bottle",
                   "properties": {
                     "stack": "3"
                   }
@@ -41,7 +41,7 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "vinery:apple_juice",
+                  "block": "vinery:savanna_red_grapejuice_bottle",
                   "properties": {
                     "stack": "4"
                   }
@@ -54,7 +54,7 @@
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "vinery:apple_juice"
+          "name": "vinery:savanna_red_grapejuice_bottle"
         }
       ]
     }

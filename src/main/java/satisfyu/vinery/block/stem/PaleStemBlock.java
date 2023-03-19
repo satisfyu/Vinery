@@ -3,6 +3,7 @@ package satisfyu.vinery.block.stem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
@@ -166,6 +167,11 @@ public class PaleStemBlock extends StemBlock {
     @Override
     public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("block.vinery.stem.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+        if (Screen.hasShiftDown()) {
+            tooltip.add(Text.translatable( "item.vinery.stem2.tooltip"));
+        } else {
+            tooltip.add(Text.translatable("item.vinery.faucet.tooltip"));
+        }
     }
 
     @Override

@@ -2,16 +2,16 @@
   "type": "vinery:wine_fermentation",
   "ingredients": [
     {
-      "item": "vinery:red_grapejuice_wine_bottle"
+      "item": "vinery:apple_wine"
     },
     {
-      "item": "vinery:white_grapejuice_wine_bottle"
+      "item": "vinery:chorus_wine"
     },
     {
-      "item": "minecraft:golden_apple"
+      "item": "vinery:chenet_wine"
     },
     {
-      "item": "minecraft:honey_bottle"
+      "item": "vinery:bolvar_wine"
     }
   ],
   "result": {

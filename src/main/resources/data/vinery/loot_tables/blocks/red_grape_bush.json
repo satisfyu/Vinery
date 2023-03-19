@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:red_grape"
+          "name": "vinery:red_grape_seeds"
         }
       ],
       "conditions": [
@@ -45,7 +45,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:red_grape"
+          "name": "vinery:red_grape_seeds"
         }
       ],
       "conditions": [
