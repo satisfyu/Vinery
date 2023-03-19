@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "vinery:wine_bottle",
     "vinery:bolvar_wine",
     "vinery:chenet_wine",
     "vinery:cherry_wine",
@@ -9,10 +8,10 @@
     "vinery:king_danis_wine",
     "vinery:mellohi_wine",
     "vinery:noir_wine",
-    "vinery:red_grapejuice_wine_bottle",
-    "vinery:white_grapejuice_wine_bottle",
     "vinery:cherry_jam",
     "vinery:cherry_jar",
-    "vinery:cooking_pot"
+    "vinery:cooking_pot",
+    "vinery:magnetic_wine",
+    "vinery:chorus_wine"
   ]
 }
