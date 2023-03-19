@@ -171,7 +171,6 @@ public class ObjectRegistry {
     //taiga wine - util, strength
     public static final Block SOLARIS_WINE = registerWine("solaris_wine", new WineBottleBlock(getWineSettings(), 3), VineryEffects.IMPROVED_STRENGTH);
     public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings(), 3), VineryEffects.IMPROVED_HASTE);
-
     //savanna wine - util, speed / water breathing
     public static final Block AEGIS_WINE = registerBigWine("aegis_wine", new WineBottleBlock(getWineSettings(), 3), StatusEffects.NIGHT_VISION);
     public static final Block CLARK_WINE = registerWine("clark_wine", new WineBottleBlock(getWineSettings(), 3), VineryEffects.IMPROVED_JUMP_BOOST);
