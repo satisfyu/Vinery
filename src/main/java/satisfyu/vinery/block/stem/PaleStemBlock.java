@@ -43,7 +43,7 @@ public class PaleStemBlock extends StemBlock {
     private static final VoxelShape PALE_SHAPE = Block.createCuboidShape(6.0, 0,6.0, 10.0,  16.0, 10.0);
     public PaleStemBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(GRAPE, GrapevineType.NONE).with(AGE, 0).with(WATERLOGGED, false).with(HAS_GROWTH_LEAVES, false));
+        this.setDefaultState(this.getDefaultState().with(GRAPE, GrapevineType.NONE).with(AGE, 0).with(HAS_GROWTH_LEAVES, false));
     }
 
     @Override
