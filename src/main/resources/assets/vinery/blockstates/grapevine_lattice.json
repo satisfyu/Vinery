@@ -4,18 +4,17 @@
       "model": "vinery:block/grapevine_lattice"
     },
     "age=0,facing=east,grape=none": {
-      "y" : 90,
+      "y": 90,
       "model": "vinery:block/grapevine_lattice"
     },
     "age=0,facing=south,grape=none": {
-      "y" : 180,
+      "y": 180,
       "model": "vinery:block/grapevine_lattice"
     },
     "age=0,facing=west,grape=none": {
-      "y" : 270,
+      "y": 270,
       "model": "vinery:block/grapevine_lattice"
     },
-
     "age=1,facing=north,grape=jungle_red": {
       "model": "vinery:block/jungle_grape_vine_stage0_lattice"
     },
@@ -23,30 +22,29 @@
       "model": "vinery:block/jungle_grape_vine_stage0_lattice"
     },
     "age=1,facing=east,grape=jungle_red": {
-      "y" : 90,
+      "y": 90,
       "model": "vinery:block/jungle_grape_vine_stage0_lattice"
     },
     "age=1,facing=east,grape=jungle_white": {
-      "y" : 90,
+      "y": 90,
       "model": "vinery:block/jungle_grape_vine_stage0_lattice"
     },
     "age=1,facing=south,grape=jungle_red": {
-      "y" : 180,
+      "y": 180,
       "model": "vinery:block/jungle_grape_vine_stage0_lattice"
     },
     "age=1,facing=south,grape=jungle_white": {
-      "y" : 180,
+      "y": 180,
       "model": "vinery:block/jungle_grape_vine_stage0_lattice"
     },
     "age=1,facing=west,grape=jungle_red": {
-      "y" : 270,
+      "y": 270,
       "model": "vinery:block/jungle_grape_vine_stage0_lattice"
     },
     "age=1,facing=west,grape=jungle_white": {
-      "y" : 270,
+      "y": 270,
       "model": "vinery:block/jungle_grape_vine_stage0_lattice"
     },
-
     "age=2,facing=north,grape=jungle_red": {
       "model": "vinery:block/jungle_grape_vine_stage1_lattice"
     },
@@ -54,30 +52,29 @@
       "model": "vinery:block/jungle_grape_vine_stage1_lattice"
     },
     "age=2,facing=east,grape=jungle_red": {
-      "y" : 90,
+      "y": 90,
       "model": "vinery:block/jungle_grape_vine_stage1_lattice"
     },
     "age=2,facing=east,grape=jungle_white": {
-      "y" : 90,
+      "y": 90,
       "model": "vinery:block/jungle_grape_vine_stage1_lattice"
     },
     "age=2,facing=south,grape=jungle_red": {
-      "y" : 180,
+      "y": 180,
       "model": "vinery:block/jungle_grape_vine_stage1_lattice"
     },
     "age=2,facing=south,grape=jungle_white": {
-      "y" : 180,
+      "y": 180,
       "model": "vinery:block/jungle_grape_vine_stage1_lattice"
     },
     "age=2,facing=west,grape=jungle_red": {
-      "y" : 270,
+      "y": 270,
       "model": "vinery:block/jungle_grape_vine_stage1_lattice"
     },
     "age=2,facing=west,grape=jungle_white": {
-      "y" : 270,
+      "y": 270,
       "model": "vinery:block/jungle_grape_vine_stage1_lattice"
     },
-
     "age=3,facing=north,grape=jungle_red": {
       "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
     },
@@ -85,30 +82,29 @@
       "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
     },
     "age=3,facing=east,grape=jungle_red": {
-      "y" : 90,
+      "y": 90,
       "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
     },
     "age=3,facing=east,grape=jungle_white": {
-      "y" : 90,
+      "y": 90,
       "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
     },
     "age=3,facing=south,grape=jungle_red": {
-      "y" : 180,
+      "y": 180,
       "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
     },
     "age=3,facing=south,grape=jungle_white": {
-      "y" : 180,
+      "y": 180,
       "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
     },
     "age=3,facing=west,grape=jungle_red": {
-      "y" : 270,
+      "y": 270,
       "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
     },
     "age=3,facing=west,grape=jungle_white": {
-      "y" : 270,
+      "y": 270,
       "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
     },
-
     "age=4,facing=north,grape=jungle_red": {
       "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
     },
@@ -116,28 +112,568 @@
       "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
     },
     "age=4,facing=east,grape=jungle_red": {
-      "y" : 90,
+      "y": 90,
       "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
     },
     "age=4,facing=east,grape=jungle_white": {
-      "y" : 90,
+      "y": 90,
       "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
     },
     "age=4,facing=south,grape=jungle_red": {
-      "y" : 180,
+      "y": 180,
       "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
     },
     "age=4,facing=south,grape=jungle_white": {
-      "y" : 180,
+      "y": 180,
       "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
     },
     "age=4,facing=west,grape=jungle_red": {
-      "y" : 270,
+      "y": 270,
       "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
     },
     "age=4,facing=west,grape=jungle_white": {
-      "y" : 270,
+      "y": 270,
       "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=1,facing=north,grape=none": {
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=east,grape=none": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=south,grape=none": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=west,grape=none": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=2,facing=north,grape=none": {
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=east,grape=none": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=south,grape=none": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=west,grape=none": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=3,facing=north,grape=none": {
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=3,facing=east,grape=none": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=3,facing=south,grape=none": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=3,facing=west,grape=none": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=4,facing=north,grape=none": {
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=4,facing=east,grape=none": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=4,facing=south,grape=none": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=4,facing=west,grape=none": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=1,facing=north,grape=taiga_red": {
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=north,grape=taiga_white": {
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=east,grape=taiga_red": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=east,grape=taiga_white": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=south,grape=taiga_red": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=south,grape=taiga_white": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=west,grape=taiga_red": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=west,grape=taiga_white": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=2,facing=north,grape=taiga_red": {
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=north,grape=taiga_white": {
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=east,grape=taiga_red": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=east,grape=taiga_white": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=south,grape=taiga_red": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=south,grape=taiga_white": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=west,grape=taiga_red": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=west,grape=taiga_white": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=3,facing=north,grape=taiga_red": {
+      "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
+    },
+    "age=3,facing=north,grape=taiga_white": {
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=3,facing=east,grape=taiga_red": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
+    },
+    "age=3,facing=east,grape=taiga_white": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=3,facing=south,grape=taiga_red": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
+    },
+    "age=3,facing=south,grape=taiga_white": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=3,facing=west,grape=taiga_red": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
+    },
+    "age=3,facing=west,grape=taiga_white": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=4,facing=north,grape=taiga_red": {
+      "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
+    },
+    "age=4,facing=north,grape=taiga_white": {
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=4,facing=east,grape=taiga_red": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
+    },
+    "age=4,facing=east,grape=taiga_white": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=4,facing=south,grape=taiga_red": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
+    },
+    "age=4,facing=south,grape=taiga_white": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=4,facing=west,grape=taiga_red": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
+    },
+    "age=4,facing=west,grape=taiga_white": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=1,facing=north,grape=savanna_red": {
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=north,grape=savanna_white": {
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=east,grape=savanna_red": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=east,grape=savanna_white": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=south,grape=savanna_red": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=south,grape=savanna_white": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=west,grape=savanna_red": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=west,grape=savanna_white": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=2,facing=north,grape=savanna_red": {
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=north,grape=savanna_white": {
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=east,grape=savanna_red": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=east,grape=savanna_white": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=south,grape=savanna_red": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=south,grape=savanna_white": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=west,grape=savanna_red": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=west,grape=savanna_white": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=3,facing=north,grape=savanna_red": {
+      "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
+    },
+    "age=3,facing=north,grape=savanna_white": {
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=3,facing=east,grape=savanna_red": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
+    },
+    "age=3,facing=east,grape=savanna_white": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=3,facing=south,grape=savanna_red": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
+    },
+    "age=3,facing=south,grape=savanna_white": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=3,facing=west,grape=savanna_red": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
+    },
+    "age=3,facing=west,grape=savanna_white": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=4,facing=north,grape=savanna_red": {
+      "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
+    },
+    "age=4,facing=north,grape=savanna_white": {
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=4,facing=east,grape=savanna_red": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
+    },
+    "age=4,facing=east,grape=savanna_white": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=4,facing=south,grape=savanna_red": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
+    },
+    "age=4,facing=south,grape=savanna_white": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=4,facing=west,grape=savanna_red": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
+    },
+    "age=4,facing=west,grape=savanna_white": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=1,facing=north,grape=red": {
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=north,grape=white": {
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=east,grape=red": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=east,grape=white": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=south,grape=red": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=south,grape=white": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=west,grape=red": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=1,facing=west,grape=white": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage0_lattice"
+    },
+    "age=2,facing=north,grape=red": {
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=north,grape=white": {
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=east,grape=red": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=east,grape=white": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=south,grape=red": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=south,grape=white": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=west,grape=red": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=2,facing=west,grape=white": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_stage1_lattice"
+    },
+    "age=3,facing=north,grape=red": {
+      "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
+    },
+    "age=3,facing=north,grape=white": {
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=3,facing=east,grape=red": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
+    },
+    "age=3,facing=east,grape=white": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=3,facing=south,grape=red": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
+    },
+    "age=3,facing=south,grape=white": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=3,facing=west,grape=red": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_red_stage2_lattice"
+    },
+    "age=3,facing=west,grape=white": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_white_stage2_lattice"
+    },
+    "age=4,facing=north,grape=red": {
+      "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
+    },
+    "age=4,facing=north,grape=white": {
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=4,facing=east,grape=red": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
+    },
+    "age=4,facing=east,grape=white": {
+      "y": 90,
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=4,facing=south,grape=red": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
+    },
+    "age=4,facing=south,grape=white": {
+      "y": 180,
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=4,facing=west,grape=red": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_red_stage3_lattice"
+    },
+    "age=4,facing=west,grape=white": {
+      "y": 270,
+      "model": "vinery:block/jungle_grape_vine_white_stage3_lattice"
+    },
+    "age=0,facing=north,grape=taiga_white": {
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=east,grape=taiga_white": {
+      "y": 90,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=south,grape=taiga_white": {
+      "y": 180,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=west,grape=taiga_white": {
+      "y": 270,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=north,grape=taiga_red": {
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=east,grape=taiga_red": {
+      "y": 90,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=south,grape=taiga_red": {
+      "y": 180,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=west,grape=taiga_red": {
+      "y": 270,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=north,grape=savanna_white": {
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=east,grape=savanna_white": {
+      "y": 90,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=south,grape=savanna_white": {
+      "y": 180,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=west,grape=savanna_white": {
+      "y": 270,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=north,grape=savanna_red": {
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=east,grape=savanna_red": {
+      "y": 90,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=south,grape=savanna_red": {
+      "y": 180,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=west,grape=savanna_red": {
+      "y": 270,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=north,grape=white": {
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=east,grape=white": {
+      "y": 90,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=south,grape=white": {
+      "y": 180,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=west,grape=white": {
+      "y": 270,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=north,grape=red": {
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=east,grape=red": {
+      "y": 90,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=south,grape=red": {
+      "y": 180,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=west,grape=red": {
+      "y": 270,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=north,grape=jungle_white": {
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=east,grape=jungle_white": {
+      "y": 90,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=south,grape=jungle_white": {
+      "y": 180,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=west,grape=jungle_white": {
+      "y": 270,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=north,grape=jungle_red": {
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=east,grape=jungle_red": {
+      "y": 90,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=south,grape=jungle_red": {
+      "y": 180,
+      "model": "vinery:block/grapevine_lattice"
+    },
+    "age=0,facing=west,grape=jungle_red": {
+      "y": 270,
+      "model": "vinery:block/grapevine_lattice"
     }
   }
 }

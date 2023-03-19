@@ -58,7 +58,7 @@ public class LatticeStemBlock extends StemBlock{
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         BlockState blockState;
-        blockState = this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite()).with(Properties.WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER);
+        blockState = this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
 
         if (blockState.canPlaceAt(ctx.getWorld(), ctx.getBlockPos())) {
             return blockState;

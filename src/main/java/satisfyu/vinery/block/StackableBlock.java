@@ -4,11 +4,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +20,10 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.block.entity.WineBottleBlockEntity;
+
+import java.util.List;
 
 public class StackableBlock extends Block{
     private final VoxelShape SHAPE = VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 0.875, 0.8125);
@@ -66,4 +72,10 @@ public class StackableBlock extends Block{
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(STACK);
     }
+
+    @Override
+    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("item.vinery.juice.tooltip." + this.getTranslationKey()).formatted(Formatting.ITALIC, Formatting.GRAY));
+    }
+
 }

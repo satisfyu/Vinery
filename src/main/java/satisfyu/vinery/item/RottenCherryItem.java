@@ -1,5 +1,6 @@
 package satisfyu.vinery.item;
 
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -11,10 +12,16 @@ import net.minecraft.item.SnowballItem;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 
 public class RottenCherryItem extends SnowballItem {
@@ -44,6 +51,10 @@ public class RottenCherryItem extends SnowballItem {
             LivingEntity livingEntity = (LivingEntity) entityHitResult.getEntity();
             livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 50, 1));
         }
+    }
 
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, @NotNull List<Text> tooltip, TooltipContext context) {
+        tooltip.add(Text.translatable(  "item.vinery.rottencherry.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
     }
 }

@@ -27,11 +27,10 @@ import net.minecraft.world.WorldAccess;
 public abstract class StemBlock extends Block implements Waterloggable, Fertilizable {
     public static final EnumProperty<GrapevineType> GRAPE;
     public static final IntProperty AGE;
-    public static final BooleanProperty WATERLOGGED;
 
     public StemBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(GRAPE, GrapevineType.NONE).with(AGE, 0).with(WATERLOGGED, false));
+        this.setDefaultState(this.getDefaultState().with(GRAPE, GrapevineType.NONE).with(AGE, 0));
     }
 
     public void dropGrapes(World world, BlockState state, BlockPos pos) {
@@ -65,14 +64,6 @@ public abstract class StemBlock extends Block implements Waterloggable, Fertiliz
             default -> null;
         };
         dropStack(world, pos, new ItemStack(grape));
-    }
-
-    @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (state.get(WATERLOGGED)) {
-            world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-        }
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override
@@ -124,14 +115,11 @@ public abstract class StemBlock extends Block implements Waterloggable, Fertiliz
         return state.with(AGE, age).with(GRAPE, type);
     }
 
-    @Override
-    public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
-    }
+
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED, AGE, GRAPE);
+        builder.add(AGE, GRAPE);
     }
 
     public boolean isMature(BlockState state) {
@@ -155,6 +143,5 @@ public abstract class StemBlock extends Block implements Waterloggable, Fertiliz
     static {
         GRAPE = EnumProperty.of("grape", GrapevineType.class);
         AGE = Properties.AGE_4;
-        WATERLOGGED = Properties.WATERLOGGED;
     }
 }
