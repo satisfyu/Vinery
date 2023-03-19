@@ -1,10 +1,11 @@
 {
 	"credit": "Made by Satisfy",
 	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"1": "vinery:block/grapevine_overlay_red_stage2",
-		"2": "vinery:block/taiga_grape_bush_bottom_stage0",
-		"particle": "vinery:block/taiga_grape_bush_bottom_stage0"
+		"2": "vinery:block/taiga_grape_bush",
+		"particle": "vinery:block/taiga_grape_bush"
 	},
 	"elements": [
 		{
@@ -29,8 +30,8 @@
 		},
 		{
 			"name": "notint",
-			"from": [0.8, 0, 7.99],
-			"to": [15.2, 16, 7.99],
+			"from": [0.8, -1, 7.99],
+			"to": [15.2, 15, 7.99],
 			"shade": false,
 			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
 			"faces": {
@@ -40,8 +41,8 @@
 		},
 		{
 			"name": "notint",
-			"from": [0.8, 0, 8.01],
-			"to": [15.2, 16, 8.01],
+			"from": [0.8, -1, 8.01],
+			"to": [15.2, 15, 8.01],
 			"shade": false,
 			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
 			"faces": {
@@ -51,8 +52,8 @@
 		},
 		{
 			"name": "notint",
-			"from": [8.01, 0, 0.8],
-			"to": [8.01, 16, 15.2],
+			"from": [8.01, -1, 0.8],
+			"to": [8.01, 15, 15.2],
 			"shade": false,
 			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
 			"faces": {
@@ -62,8 +63,8 @@
 		},
 		{
 			"name": "notint",
-			"from": [7.99, 0, 0.8],
-			"to": [7.99, 16, 15.2],
+			"from": [7.99, -1, 0.8],
+			"to": [7.99, 15, 15.2],
 			"shade": false,
 			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
 			"faces": {

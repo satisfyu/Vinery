@@ -1,9 +1,10 @@
 {
 	"credit": "Made by Satisfy",
 	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
 	"textures": {
-		"2": "vinery:block/taiga_grape_bush_top",
-		"particle": "vinery:block/taiga_grape_bush_top"
+		"1": "vinery:block/taiga_grape_bush",
+		"particle": "vinery:block/taiga_grape_bush"
 	},
 	"elements": [
 		{
@@ -12,8 +13,8 @@
 			"shade": false,
 			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
 			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#2", "tintindex": 0},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#2", "tintindex": 0}
+				"north": {"uv": [0, 0, 16, 16], "texture": "#1", "tintindex": 0},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#1", "tintindex": 0}
 			}
 		},
 		{
@@ -22,8 +23,8 @@
 			"shade": false,
 			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
 			"faces": {
-				"east": {"uv": [0, 0, 16, 16], "texture": "#2", "tintindex": 0},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#2", "tintindex": 0}
+				"east": {"uv": [0, 0, 16, 16], "texture": "#1", "tintindex": 0},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#1", "tintindex": 0}
 			}
 		}
 	]
