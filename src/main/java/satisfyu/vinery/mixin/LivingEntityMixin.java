@@ -39,7 +39,7 @@ public abstract class LivingEntityMixin extends Entity {
 		super(type, world);
 	}
 
-	public boolean hasStatusEffect(StatusEffect effect) {
+	private boolean hasStatusEffect(StatusEffect effect) {
 		return activeStatusEffects.containsKey(effect);
 	}
 	
