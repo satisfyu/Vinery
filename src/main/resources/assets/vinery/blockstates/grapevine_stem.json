@@ -86,6 +86,31 @@
     },
     "age=4,grape=savanna_white": {
       "model": "vinery:block/savanna_grapevine_white_stage4"
+    },
+    
+    "age=1,grape=jungle_red": {
+      "model": "vinery:block/grapevine_stem"
+    },
+    "age=1,grape=jungle_white": {
+      "model": "vinery:block/grapevine_stem"
+    },
+    "age=2,grape=jungle_red": {
+      "model": "vinery:block/grapevine_stem"
+    },
+    "age=2,grape=jungle_white": {
+      "model": "vinery:block/grapevine_stem"
+    },
+    "age=3,grape=jungle_red": {
+      "model": "vinery:block/grapevine_stem"
+    },
+    "age=3,grape=jungle_white": {
+      "model": "vinery:block/grapevine_stem"
+    },
+    "age=4,grape=jungle_red": {
+      "model": "vinery:block/grapevine_stem"
+    },
+    "age=4,grape=jungle_white": {
+      "model": "vinery:block/grapevine_stem"
     }
   }
 }

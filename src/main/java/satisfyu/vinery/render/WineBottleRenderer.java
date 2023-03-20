@@ -63,7 +63,8 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
     private void renderTwo(WineBottleBlockEntity entity, MatrixStack matrices, VertexConsumerProvider vertexConsumers, BlockState defaultState) {
         matrices.translate(-0.15f, 0f, -0.25f);
         renderBlock(defaultState, matrices, vertexConsumers, entity);
-        matrices.translate(.35f, 0f, .5f);
+        matrices.translate(.1f, 0f, .8f);
+        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(30));
         renderBlock(defaultState, matrices, vertexConsumers, entity);
 }
 

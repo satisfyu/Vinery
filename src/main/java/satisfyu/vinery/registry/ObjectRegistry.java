@@ -4,7 +4,6 @@ import com.mojang.datafixers.util.Pair;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import com.terraformersmc.terraform.wood.block.StrippableLogBlock;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import satisfyu.vinery.block.grape.GrapeBush;
 import satisfyu.vinery.block.grape.GrapeVineBlock;
 import satisfyu.vinery.block.grape.SavannaGrapeBush;
@@ -251,7 +250,7 @@ public class ObjectRegistry {
     }
 
     private static <T extends Block> T registerWine(String path, T block, StatusEffect effect, int duration) {
-        return register(path, block, true, DrinkBlockItem::new, settings -> settings.food(wineFoodComponent(effect, duration)));
+        return register(path, block, true, DrinkBlockSmallItem::new, settings -> settings.food(wineFoodComponent(effect, duration)));
     }
 
     private static <T extends Block> T registerBigWine(String path, T block, StatusEffect effect) {

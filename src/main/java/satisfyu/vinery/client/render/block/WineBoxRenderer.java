@@ -1,5 +1,6 @@
 package satisfyu.vinery.client.render.block;
 
+import satisfyu.vinery.block.WineBottleBlock;
 import satisfyu.vinery.block.entity.StorageBlockEntity;
 import satisfyu.vinery.util.ClientUtil;
 import net.minecraft.client.MinecraftClient;
@@ -23,7 +24,7 @@ public class WineBoxRenderer implements StorageTypeRenderer{
 
             matrices.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(90f));
 
-            ClientUtil.renderBlockFromItem(blockItem, matrices, vertexConsumers, entity);
+            ClientUtil.renderBlock(blockItem.getBlock().getDefaultState().with(WineBottleBlock.COUNT, 0), matrices, vertexConsumers, entity);
         }
     }
 }

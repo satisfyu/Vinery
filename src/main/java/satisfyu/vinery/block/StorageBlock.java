@@ -39,7 +39,9 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
             } else {
                 Pair<Float, Float> ff = optional.get();
                 int i = getSection(ff.getLeft(), ff.getRight());
-                if(i == Integer.MIN_VALUE) return ActionResult.PASS;
+                if (i == Integer.MIN_VALUE) {
+                    return ActionResult.PASS;
+                }
                 if (!shelfBlockEntity.getInventory().get(i).isEmpty()) {
                     remove(world, pos, player, shelfBlockEntity, i);
                     return ActionResult.success(world.isClient);
@@ -119,7 +121,7 @@ public abstract class StorageBlock extends FacingBlock implements BlockEntityPro
     public abstract int getSection(Float x, Float y);
 
 
-    private static HashMap<Identifier, StorageTypeRenderer> STORAGE_TYPES = new HashMap<>();
+    private static final HashMap<Identifier, StorageTypeRenderer> STORAGE_TYPES = new HashMap<>();
 
 
     public static Identifier registerStorageType(Identifier name, StorageTypeRenderer renderer){

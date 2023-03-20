@@ -1,6 +1,6 @@
 package satisfyu.vinery.block;
 
-import satisfyu.vinery.item.DrinkBlockItem;
+import satisfyu.vinery.item.DrinkBlockSmallItem;
 import satisfyu.vinery.registry.StorageTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -69,7 +69,7 @@ public class WineBox extends StorageBlock {
 
     @Override
     public boolean canInsertStack(ItemStack stack) {
-        return stack.getItem() instanceof DrinkBlockItem;
+        return stack.getItem() instanceof DrinkBlockSmallItem;
     }
 
     @Override
