@@ -1,8 +1,8 @@
 package satisfyu.vinery;
 
+import satisfyu.vinery.util.tab.GUIIcon;
+import satisfyu.vinery.util.tab.TabbedItemGroup;
 import satisfyu.vinery.world.VineryConfiguredFeatures;
-import net.moddingplayground.frame.api.tabbeditemgroups.v0.TabbedItemGroup;
-import net.moddingplayground.frame.api.util.GUIIcon;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -26,7 +26,7 @@ public class Vinery implements ModInitializer {
     public static final String MODID = "vinery";
 
     public static final Logger LOGGER = LogManager.getLogger(MODID);
-    public static final ItemGroup CREATIVE_TAB = TabbedItemGroup.builder().build(new VineryIdentifier("vinery_tab"), g -> GUIIcon.of(() -> new ItemStack(ObjectRegistry.RED_GRAPE)));
+    public static final ItemGroup CREATIVE_TAB = TabbedItemGroup.builder().build(new VineryIdentifier("vinery_tab"), g -> GUIIcon.of(() -> new ItemStack(ObjectRegistry.JUNGLE_RED_GRAPE)));
     public static final TagKey<Block> ALLOWS_COOKING_ON_POT = TagKey.of(Registry.BLOCK_KEY, new VineryIdentifier("allows_cooking_on_pot"));
 
     public void onInitialize() {

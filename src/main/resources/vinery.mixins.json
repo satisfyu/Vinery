@@ -13,14 +13,17 @@
     "LivingEntityMixin",
     "StatusEffectUtilMixin",
     "WanderingTraderManagerMixin",
-    "LongToolTipsMixin"
+    "LongToolTipsMixin",
+    "CreativeInventoryScreenMixin"
   ],
   "client": [
     "ArmorFeatureRendererMixin",
     "ArmorStandRendererMixin",
     "LongToolTipsMixin",
     "OrderedTextToolTipAccessor",
-    "PlayerEntityRendererMixin"
+    "PlayerEntityRendererMixin",
+    "CreativeInventoryScreenMixin",
+    "ScreenAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
