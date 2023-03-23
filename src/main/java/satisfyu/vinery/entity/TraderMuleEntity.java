@@ -3,15 +3,18 @@ package satisfyu.vinery.entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.passive.LlamaEntity;
+import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TraderLlamaEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.registry.VineryEntites;
 
 public class TraderMuleEntity extends TraderLlamaEntity {
 	
@@ -32,10 +35,14 @@ public class TraderMuleEntity extends TraderLlamaEntity {
 		this.goalSelector.add(9, new LookAroundGoal(this));
 	}
 
-	
 	@Override
-	protected LlamaEntity createChild() {
-		return null;
+	public boolean isBreedingItem(ItemStack stack) {
+		return false;
+	}
+
+	@Override
+	public TraderMuleEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
+		return VineryEntites.MULE.create(this.world);
 	}
 	
 	@Override

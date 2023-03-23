@@ -173,7 +173,9 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		}
 		this.isBeingBurned = isBeingBurned();
 		if (!this.isBeingBurned){
-			if(state.get(CookingPotBlock.LIT)) world.setBlockState(pos, state.with(CookingPotBlock.LIT, false), Block.NOTIFY_ALL);
+			if(state.get(CookingPotBlock.LIT)) {
+				world.setBlockState(pos, state.with(CookingPotBlock.LIT, false), Block.NOTIFY_ALL);
+			}
 			return;
 		}
 		Recipe<?> recipe = world.getRecipeManager().getFirstMatch(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE, this, world).orElse(null);
