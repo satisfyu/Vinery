@@ -8,6 +8,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
+import satisfyu.vinery.VineryIdentifier;
 
 import java.util.List;
 import java.util.function.Function;
@@ -15,7 +16,7 @@ import java.util.function.Function;
 import static satisfyu.vinery.util.tab.TabUtil.iconOf;
 
 public class Tab {
-    public static final Identifier DEFAULT_TAB_BACKGROUND = new Identifier("vinery", "textures/tabbed_item_group/tab_background");
+    public static final Identifier DEFAULT_TAB_BACKGROUND = new VineryIdentifier("textures/tabbed_item_group/tab_background");
     public static final int MAX_RECOMMENDED_TABS = TabWidget.TABS_PER_COLUMN * 2;
 
     private final String id;
