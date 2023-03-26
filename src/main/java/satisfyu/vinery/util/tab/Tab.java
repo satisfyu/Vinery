@@ -15,7 +15,7 @@ import java.util.function.Function;
 import static satisfyu.vinery.util.tab.TabUtil.iconOf;
 
 public class Tab {
-    public static final Identifier DEFAULT_TAB_BACKGROUND = new Identifier("frame", "textures/tabbed_item_group/tab_background");
+    public static final Identifier DEFAULT_TAB_BACKGROUND = new Identifier("vinery", "textures/tabbed_item_group/tab_background");
     public static final int MAX_RECOMMENDED_TABS = TabWidget.TABS_PER_COLUMN * 2;
 
     private final String id;

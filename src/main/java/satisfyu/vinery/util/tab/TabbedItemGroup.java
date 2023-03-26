@@ -106,7 +106,7 @@ public class TabbedItemGroup extends ItemGroup {
 
     public Identifier getIconTexture() {
         Identifier id = this.getId();
-        return new Identifier(id.getNamespace(), "textures/frame/tabbed_item_group/icon/%s".formatted(id.getPath()));
+        return new Identifier(id.getNamespace(), "textures/vinery/tabbed_item_group/icon/%s".formatted(id.getPath()));
     }
 
     public Identifier iconTex(String suffix) {
@@ -144,7 +144,7 @@ public class TabbedItemGroup extends ItemGroup {
     }
 
     public static class Builder {
-        private static final Logger LOGGER = LoggerFactory.getLogger("frame");
+        private static final Logger LOGGER = LoggerFactory.getLogger("vinery");
 
         private final List<Tab> tabs = new ArrayList<>();
         private Tab.Predicate defaultPredicate = Tab.Predicate.CONTAINS;
