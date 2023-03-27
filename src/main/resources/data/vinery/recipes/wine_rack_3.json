@@ -3,7 +3,7 @@
   "group": "wine_rack",
   "pattern": [
     "# #",
-    " B ",
+    "#B#",
     "# #"
   ],
   "key": {
