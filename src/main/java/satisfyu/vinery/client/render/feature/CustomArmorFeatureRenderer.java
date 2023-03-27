@@ -54,7 +54,7 @@ public class CustomArmorFeatureRenderer<T extends LivingEntity, M extends Entity
 						VineryApi api = entrypoint.getEntrypoint();
 						api.registerArmor(MODELS, modelLoader);
 					} catch (Throwable e) {
-						Vinery.LOGGER.error("Mod {} provides a broken implementation of CristelLibRegistry", modId, e);
+						Vinery.LOGGER.error("Mod {} provides a broken implementation of VineryApi, therefore couldn't register custom models", modId, e);
 					}
 				});
 
