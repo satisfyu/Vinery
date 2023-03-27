@@ -45,5 +45,12 @@
   "sounds": [
   "vinery:block/wine_rack/wine_rack_5_close"
     ]
+  },
+{
+  "block.cooking_pan.cooking": {
+    "sounds": [
+      "vinery:block/cooking_pan/pan_cooking",
+
+    ]
   }
 }
