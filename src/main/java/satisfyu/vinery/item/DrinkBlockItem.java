@@ -37,6 +37,7 @@ public class DrinkBlockItem extends BlockItem {
         return UseAction.DRINK;
     }
 
+
     @Nullable
     @Override
     protected BlockState getPlacementState(ItemPlacementContext context) {
