@@ -1,6 +1,5 @@
 package satisfyu.vinery.util;
 
-import net.minecraft.util.Identifier;
 import satisfyu.vinery.VineryIdentifier;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -17,4 +16,5 @@ public class VineryTags {
     public static final TagKey<Item> JAMS = TagKey.of(Registry.ITEM_KEY, new VineryIdentifier("jams"));
     public static final TagKey<Item> SMALL_FLOWER = TagKey.of(Registry.ITEM_KEY, new VineryIdentifier( "small_flower"));
     public static final TagKey<Item> BIG_FLOWER = TagKey.of(Registry.ITEM_KEY, new VineryIdentifier("big_flower"));
+    public static final TagKey<Item> WINE = TagKey.of(Registry.ITEM_KEY, new VineryIdentifier("wine"));
 }

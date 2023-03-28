@@ -26,7 +26,6 @@ public class FoodItemReturn extends Item {
 
     public void appendTooltip(ItemStack stack, @Nullable World world, @NotNull List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("item.vinery.grape.tooltip." + this.getTranslationKey()).formatted(Formatting.ITALIC, Formatting.GRAY));
-
     }
 
     @Override
