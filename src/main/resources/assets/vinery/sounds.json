@@ -35,15 +35,20 @@
     ]
   },
   "block.wine_rack_3.close": {
-  "subtitle": "subtitles.vinery.rack",
-  "sounds": [
-  "vinery:block/wine_rack/wine_rack_3_close"
+    "subtitle": "subtitles.vinery.rack",
+    "sounds": [
+      "vinery:block/wine_rack/wine_rack_3_close"
     ]
   },
   "block.wine_rack_5.close": {
-  "subtitle": "subtitles.vinery.rack",
-  "sounds": [
-  "vinery:block/wine_rack/wine_rack_5_close"
+    "subtitle": "subtitles.vinery.rack",
+    "sounds": [
+      "vinery:block/wine_rack/wine_rack_5_close"
+    ]
+  },
+  "block.cooking_pan.cooking": {
+    "sounds": [
+      "vinery:block/cooking_pan/pan_cooking"
     ]
   }
 }
