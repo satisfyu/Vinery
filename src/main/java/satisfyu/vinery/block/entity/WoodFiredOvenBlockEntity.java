@@ -1,7 +1,9 @@
 package satisfyu.vinery.block.entity;
 
+import net.minecraft.recipe.Recipe;
 import satisfyu.vinery.block.WoodFiredOvenBlock;
 import satisfyu.vinery.client.gui.handler.StoveGuiHandler;
+import satisfyu.vinery.item.EffectFoodItem;
 import satisfyu.vinery.recipe.WoodFiredOvenRecipe;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryRecipeTypes;
@@ -165,7 +167,7 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
         } else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
             return true;
         } else {
-            final ItemStack recipeOutput = recipe.getOutput();
+            final ItemStack recipeOutput = generateOutputItem(recipe);
             final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
             final int outputSlotCount = outputSlotStack.getCount();
             if (!outputSlotStack.isItemEqualIgnoreDamage(recipeOutput)) {
@@ -182,10 +184,10 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
         if (recipe == null || !canCraft(recipe)) {
             return;
         }
-        final ItemStack recipeOutput = recipe.getOutput();
+        final ItemStack recipeOutput = generateOutputItem(recipe);
         final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
-            setStack(OUTPUT_SLOT, recipeOutput.copy());
+            setStack(OUTPUT_SLOT, generateOutputItem(recipe));
         } else if (outputSlotStack.isOf(recipeOutput.getItem())) {
             outputSlotStack.increment(recipeOutput.getCount());
         }
@@ -220,6 +222,24 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
             }
         }
         this.experience += recipe.getExperience();
+    }
+
+    private ItemStack generateOutputItem(Recipe<?> recipe) {
+        ItemStack outputStack = recipe.getOutput();
+
+        if (!(outputStack.getItem() instanceof EffectFoodItem)) {
+            return outputStack;
+        }
+
+        for (Ingredient ingredient : recipe.getIngredients()) {
+            for (int j = 0; j < 6; j++) {
+                ItemStack stack = this.getStack(j);
+                if (ingredient.test(stack)) {
+                    EffectFoodItem.getEffects(stack).forEach(effect -> EffectFoodItem.addEffect(outputStack, effect));
+                }
+            }
+        }
+        return outputStack;
     }
 
     protected int getTotalBurnTime(ItemStack fuel) {
