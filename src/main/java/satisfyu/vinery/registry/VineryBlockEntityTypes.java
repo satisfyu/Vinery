@@ -45,10 +45,9 @@ public class VineryBlockEntityTypes {
             String modId = entrypoint.getProvider().getMetadata().getId();
             try {
                 VineryApi api = entrypoint.getEntrypoint();
-
                 api.registerBlocks(set);
             } catch (Throwable e) {
-                Vinery.LOGGER.error("Mod {} provides a broken implementation of CristelLibRegistry", modId, e);
+                Vinery.LOGGER.error("Mod {} provides a broken implementation of VineryApi, therefore couldn't register blocks to the Storage Block Entity", modId, e);
             }
         });
         return set.toArray(new Block[0]);

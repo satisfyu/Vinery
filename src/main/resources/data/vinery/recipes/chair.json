@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SBS",
+    "SXS",
     "SSS",
     "B B"
   ],
@@ -11,6 +11,9 @@
     },
     "B": {
       "item": "minecraft:stick"
+    },
+    "X": {
+      "tag": "minecraft:planks"
     }
   },
   "result": {
