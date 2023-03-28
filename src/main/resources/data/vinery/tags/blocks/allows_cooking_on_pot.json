@@ -3,7 +3,6 @@
   "values": [
     "minecraft:smoker",
     "vinery:stove",
-    "vinery:wood_fired_oven",
-    "farmersdelight:stove"
+    "vinery:wood_fired_oven"
   ]
 }
