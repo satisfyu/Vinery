@@ -3,6 +3,7 @@ package satisfyu.vinery.block.entity;
 import satisfyu.vinery.block.CookingPotBlock;
 import satisfyu.vinery.client.gui.handler.CookingPotGuiHandler;
 import satisfyu.vinery.compat.farmersdelight.FarmersCookingPot;
+import satisfyu.vinery.item.EffectFoodItem;
 import satisfyu.vinery.recipe.CookingPotRecipe;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryRecipeTypes;
@@ -104,13 +105,13 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		if (recipe == null || recipe.getOutput().isEmpty()) {
 			return false;
 		}
-		if(recipe instanceof CookingPotRecipe c){
-			if (!this.getStack(BOTTLE_INPUT_SLOT).isOf(c.getContainer().getItem())) {
+		if(recipe instanceof CookingPotRecipe cookingRecipe){
+			if (!this.getStack(BOTTLE_INPUT_SLOT).isOf(cookingRecipe.getContainer().getItem())) {
 				return false;
 			} else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
 				return true;
 			} else {
-				final ItemStack recipeOutput = c.getOutput();
+				final ItemStack recipeOutput = cookingRecipe.getOutput();
 				final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
 				final int outputSlotCount = outputSlotStack.getCount();
 				if (!outputSlotStack.isItemEqualIgnoreDamage(recipeOutput)) {
@@ -134,7 +135,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		if (!canCraft(recipe)) {
 			return;
 		}
-		final ItemStack recipeOutput = recipe.getOutput();
+		final ItemStack recipeOutput = generateOutputItem(recipe);
 		final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
 		if (outputSlotStack.isEmpty()) {
 			setStack(OUTPUT_SLOT, recipeOutput.copy());
@@ -166,6 +167,25 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		this.getStack(BOTTLE_INPUT_SLOT).decrement(1);
 	}
 
+	private ItemStack generateOutputItem(Recipe<?> recipe) {
+		ItemStack outputStack = recipe.getOutput();
+
+		if (!(outputStack.getItem() instanceof EffectFoodItem)) {
+			return outputStack;
+		}
+
+		for (Ingredient ingredient : recipe.getIngredients()) {
+			for (int j = 0; j < 6; j++) {
+				ItemStack stack = this.getStack(j);
+				if (ingredient.test(stack)) {
+					EffectFoodItem.getEffects(stack).forEach(effect -> EffectFoodItem.addEffect(outputStack, effect));
+				}
+			}
+		}
+		return outputStack;
+	}
+
+
 	@Override
 	public void tick(World world, BlockPos pos, BlockState state, CookingPotEntity blockEntity) {
 		if (world.isClient()) {
@@ -173,7 +193,9 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		}
 		this.isBeingBurned = isBeingBurned();
 		if (!this.isBeingBurned){
-			if(state.get(CookingPotBlock.LIT)) world.setBlockState(pos, state.with(CookingPotBlock.LIT, false), Block.NOTIFY_ALL);
+			if(state.get(CookingPotBlock.LIT)) {
+				world.setBlockState(pos, state.with(CookingPotBlock.LIT, false), Block.NOTIFY_ALL);
+			}
 			return;
 		}
 		Recipe<?> recipe = world.getRecipeManager().getFirstMatch(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE, this, world).orElse(null);

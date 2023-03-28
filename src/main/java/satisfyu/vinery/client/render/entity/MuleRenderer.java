@@ -11,8 +11,7 @@ import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
 
 @Environment(value= EnvType.CLIENT)
-public class MuleRenderer
-        extends MobEntityRenderer<TraderMuleEntity, MuleModel> {
+public class MuleRenderer extends MobEntityRenderer<TraderMuleEntity, MuleModel> {
     private static final Identifier TEXTURE = new VineryIdentifier("textures/entity/wandering_mule.png");
 
     public MuleRenderer(EntityRendererFactory.Context context) {
@@ -20,7 +19,7 @@ public class MuleRenderer
     }
 
     @Override
-    public Identifier getTexture(TraderMuleEntity cowEntity) {
+    public Identifier getTexture(TraderMuleEntity muleEntity) {
         return TEXTURE;
     }
 }
