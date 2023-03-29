@@ -1,6 +1,9 @@
 package satisfyu.vinery.block;
 
 import net.minecraft.block.ShapeContext;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionUtil;
+import net.minecraft.potion.Potions;
 import net.minecraft.world.BlockView;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VinerySoundEvents;
@@ -57,20 +60,30 @@ public class KitchenSinkBlock extends Block {
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), VinerySoundEvents.BLOCK_FAUCET, SoundCategory.BLOCKS, 1.0f, 1.0f);
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, 1.0f, 1.0f);
 			return ActionResult.SUCCESS;
-		} else if (item == Items.WATER_BUCKET && !state.get(FILLED)) {
+		} else if ((item == Items.WATER_BUCKET || item == Items.GLASS_BOTTLE) && !state.get(FILLED)) {
 			world.setBlockState(pos, state.with(HAS_FAUCET, state.get(HAS_FAUCET)).with(FILLED, true), Block.NOTIFY_ALL);
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
 			if (!player.isCreative()) {
-				itemStack.decrement(1);
-				player.giveItemStack(new ItemStack(Items.BUCKET));
+				if (item == Items.WATER_BUCKET) {
+					itemStack.decrement(1);
+					player.giveItemStack(new ItemStack(Items.BUCKET));
+				} else {
+					itemStack.decrement(1);
+					player.giveItemStack(new ItemStack(Items.GLASS_BOTTLE));
+				}
 			}
 			return ActionResult.SUCCESS;
-		} else if (item == Items.BUCKET && state.get(FILLED)) {
+		} else if ((item == Items.BUCKET || item == Items.GLASS_BOTTLE) && state.get(FILLED)) {
 			world.setBlockState(pos, state.with(FILLED, false), Block.NOTIFY_ALL);
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
 			if (!player.isCreative()) {
-				itemStack.decrement(1);
-				player.giveItemStack(new ItemStack(Items.WATER_BUCKET));
+				if (item == Items.BUCKET) {
+					itemStack.decrement(1);
+					player.giveItemStack(new ItemStack(Items.WATER_BUCKET));
+				} else {
+					itemStack.decrement(1);
+					player.giveItemStack(PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER));
+				}
 			}
 			return ActionResult.SUCCESS;
 		}

@@ -51,31 +51,31 @@ public class ObjectRegistry {
     public static final Item ROTTEN_CHERRY = register("rotten_cherry", new RottenCherryItem(getSettings().food(FoodComponents.POISONOUS_POTATO)));
     public static final Block RED_GRAPE_BUSH = register("red_grape_bush", new GrapeBush(getBushSettings(), GrapevineType.RED), false);
     public static final Item RED_GRAPE_SEEDS = register("red_grape_seeds", new GrapeBushSeedItem(RED_GRAPE_BUSH, getSettings(), GrapevineType.RED));
-    public static final Item RED_GRAPE = register("red_grape", new FoodItemReturn(getSettings().food(FoodComponents.SWEET_BERRIES), ObjectRegistry.RED_GRAPE_SEEDS.getDefaultStack()));
+    public static final Item RED_GRAPE = register("red_grape", new GrapeItem(getSettings().food(FoodComponents.SWEET_BERRIES), GrapevineType.RED, ObjectRegistry.RED_GRAPE_SEEDS.getDefaultStack()));
     public static final Block WHITE_GRAPE_BUSH = register("white_grape_bush", new GrapeBush(getBushSettings(), GrapevineType.WHITE), false);
     public static final Item WHITE_GRAPE_SEEDS = register("white_grape_seeds", new GrapeBushSeedItem(WHITE_GRAPE_BUSH, getSettings(), GrapevineType.WHITE));
-    public static final Item WHITE_GRAPE = register("white_grape", new FoodItemReturn(getSettings().food(FoodComponents.SWEET_BERRIES), ObjectRegistry.WHITE_GRAPE_SEEDS.getDefaultStack()));
+    public static final Item WHITE_GRAPE = register("white_grape", new GrapeItem(getSettings().food(FoodComponents.SWEET_BERRIES), GrapevineType.WHITE, ObjectRegistry.WHITE_GRAPE_SEEDS.getDefaultStack()));
 
     public static final Block SAVANNA_RED_GRAPE_BUSH = register("savanna_grape_bush_red", new SavannaGrapeBush(getBushSettings(), GrapevineType.SAVANNA_RED), false);
     public static final Item SAVANNA_RED_GRAPE_SEEDS = register("savanna_grape_seeds_red", new GrapeBushSeedItem(SAVANNA_RED_GRAPE_BUSH, getSettings(), GrapevineType.SAVANNA_RED));
-    public static final Item SAVANNA_RED_GRAPE = register("savanna_grapes_red", new FoodItemReturn(getSettings().food(FoodComponents.SWEET_BERRIES), ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS.getDefaultStack()));
+    public static final Item SAVANNA_RED_GRAPE = register("savanna_grapes_red", new GrapeItem(getSettings().food(FoodComponents.SWEET_BERRIES), GrapevineType.SAVANNA_RED, ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS.getDefaultStack()));
     public static final Block SAVANNA_WHITE_GRAPE_BUSH = register("savanna_grape_bush_white", new SavannaGrapeBush(getBushSettings(), GrapevineType.SAVANNA_WHITE), false);
     public static final Item SAVANNA_WHITE_GRAPE_SEEDS = register("savanna_grape_seeds_white", new GrapeBushSeedItem(SAVANNA_WHITE_GRAPE_BUSH, getSettings(), GrapevineType.SAVANNA_WHITE));
-    public static final Item SAVANNA_WHITE_GRAPE = register("savanna_grapes_white", new FoodItemReturn(getSettings().food(FoodComponents.SWEET_BERRIES), ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS.getDefaultStack()));
+    public static final Item SAVANNA_WHITE_GRAPE = register("savanna_grapes_white", new GrapeItem(getSettings().food(FoodComponents.SWEET_BERRIES), GrapevineType.SAVANNA_WHITE, ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS.getDefaultStack()));
 
     public static final Block TAIGA_RED_GRAPE_BUSH = register("taiga_grape_bush_red", new TaigaGrapeBush(getBushSettings(), GrapevineType.TAIGA_RED), false);
     public static final Item TAIGA_RED_GRAPE_SEEDS = register("taiga_grape_seeds_red", new GrapeBushSeedItem(TAIGA_RED_GRAPE_BUSH, getSettings(), GrapevineType.TAIGA_RED));
-    public static final Item TAIGA_RED_GRAPE = register("taiga_grapes_red", new FoodItemReturn(getSettings().food(FoodComponents.SWEET_BERRIES), ObjectRegistry.TAIGA_RED_GRAPE_SEEDS.getDefaultStack()));
+    public static final Item TAIGA_RED_GRAPE = register("taiga_grapes_red", new GrapeItem(getSettings().food(FoodComponents.SWEET_BERRIES), GrapevineType.TAIGA_RED, ObjectRegistry.TAIGA_RED_GRAPE_SEEDS.getDefaultStack()));
     public static final Block TAIGA_WHITE_GRAPE_BUSH = register("taiga_grape_bush_white", new TaigaGrapeBush(getBushSettings(), GrapevineType.TAIGA_WHITE), false);
     public static final Item TAIGA_WHITE_GRAPE_SEEDS = register("taiga_grape_seeds_white", new GrapeBushSeedItem(TAIGA_WHITE_GRAPE_BUSH, getSettings(), GrapevineType.TAIGA_WHITE));
-    public static final Item TAIGA_WHITE_GRAPE = register("taiga_grapes_white", new FoodItemReturn(getSettings().food(FoodComponents.SWEET_BERRIES), ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS.getDefaultStack()));
+    public static final Item TAIGA_WHITE_GRAPE = register("taiga_grapes_white", new GrapeItem(getSettings().food(FoodComponents.SWEET_BERRIES), GrapevineType.TAIGA_WHITE,ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS.getDefaultStack()));
 
     public static final Block JUNGLE_RED_GRAPE_BUSH = register("jungle_grape_bush_red", new GrapeVineBlock(getBushSettings(), GrapevineType.JUNGLE_RED), false);
     public static final Item JUNGLE_RED_GRAPE_SEEDS = register("jungle_grape_seeds_red", new GrapeBushSeedItem(JUNGLE_RED_GRAPE_BUSH, getSettings(), GrapevineType.JUNGLE_RED));
-    public static final Item JUNGLE_RED_GRAPE = register("jungle_grapes_red", new FoodItemReturn(getSettings().food(FoodComponents.BAKED_POTATO), ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS.getDefaultStack()));
+    public static final Item JUNGLE_RED_GRAPE = register("jungle_grapes_red", new GrapeItem(getSettings().food(FoodComponents.BAKED_POTATO), GrapevineType.JUNGLE_RED, ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS.getDefaultStack()));
     public static final Block JUNGLE_WHITE_GRAPE_BUSH = register("jungle_grape_bush_white", new GrapeVineBlock(getBushSettings(), GrapevineType.JUNGLE_WHITE), false);
     public static final Item JUNGLE_WHITE_GRAPE_SEEDS = register("jungle_grape_seeds_white", new GrapeBushSeedItem(JUNGLE_WHITE_GRAPE_BUSH, getSettings(), GrapevineType.JUNGLE_WHITE));
-    public static final Item JUNGLE_WHITE_GRAPE = register("jungle_grapes_white", new FoodItemReturn(getSettings().food(FoodComponents.BAKED_POTATO), ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS.getDefaultStack()));
+    public static final Item JUNGLE_WHITE_GRAPE = register("jungle_grapes_white", new GrapeItem(getSettings().food(FoodComponents.BAKED_POTATO), GrapevineType.JUNGLE_WHITE, ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS.getDefaultStack()));
 
     public static final Block CHERRY_SAPLING = register("cherry_sapling", new SaplingBlock(new SaplingGenerator() {
         @Nullable
@@ -162,7 +162,7 @@ public class ObjectRegistry {
     public static final Block CHORUS_WINE = registerBigWine("chorus_wine", new WineBottleBlock(getWineSettings(), 1), VineryEffects.TELEPORT, 1);
     public static final Block CHERRY_WINE = registerWine("cherry_wine", new WineBottleBlock(getWineSettings(), 3), StatusEffects.REGENERATION);
     public static final Block MAGNETIC_WINE = registerBigWine("magnetic_wine", new WineBottleBlock(getWineSettings(), 1), VineryEffects.MAGNET);
-    public static final Block NOIR_WINE = registerWine("noir_wine", new WineBottleBlock(getWineSettings(), 3), StatusEffects.INSTANT_HEALTH);
+    public static final Block NOIR_WINE = registerWine("noir_wine", new WineBottleBlock(getWineSettings(), 3), StatusEffects.INSTANT_HEALTH, 1);
     //jungle - absorption and heal
     public static final Block KING_DANIS_WINE = registerBigWine("king_danis_wine", new WineBottleBlock(getWineSettings(), 1), VineryEffects.IMPROVED_INSTANT_HEALTH);
     public static final Block MELLOHI_WINE = registerBigWine("mellohi_wine", new WineBottleBlock(getWineSettings(), 2), VineryEffects.IMPROVED_FIRE_RESISTANCE);
@@ -177,7 +177,7 @@ public class ObjectRegistry {
     public static final Block CHENET_WINE = registerBigWine("chenet_wine", new WineBottleBlock(getWineSettings(), 2), VineryEffects.IMPROVED_SPEED);
     public static final Block KELP_CIDER = registerWine("kelp_cider", new WineBottleBlock(getWineSettings(), 3), VineryEffects.IMPROVED_WATER_BREATHING);
     //apple wine - heal
-    public static final Block APPLE_WINE = registerBigWine("apple_wine", new WineBottleBlock(getWineSettings(), 3), VineryEffects.IMPROVED_INSTANT_HEALTH);
+    public static final Block APPLE_WINE = registerBigWine("apple_wine", new WineBottleBlock(getWineSettings(), 3), VineryEffects.IMPROVED_INSTANT_HEALTH, 1);
     public static final Block APPLE_CIDER = registerBigWine("apple_cider", new WineBottleBlock(getWineSettings(), 2), VineryEffects.IMPROVED_REGENERATION);
     //rare wine
     public static final Block JELLIE_WINE = registerBigWine("jellie_wine", new WineBottleBlock(getWineSettings(), 1), VineryEffects.JELLIE);

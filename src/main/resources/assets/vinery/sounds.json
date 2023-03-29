@@ -46,9 +46,9 @@
       "vinery:block/wine_rack/wine_rack_5_close"
     ]
   },
-  "block.cooking_pan.cooking": {
+  "block.cooking_pan.frying": {
     "sounds": [
-      "vinery:block/cooking_pan/pan_cooking"
+      "vinery:block/cooking_pan.frying"
     ]
   }
 }
