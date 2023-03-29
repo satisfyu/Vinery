@@ -1,5 +1,6 @@
 {
   "itemGroup.vinery.vinery_tab": "葡园酒香",
+  "itemgroup.vinery.vinery_tab.tab": "烛光晚餐",
   "block.vinery.red_grape_bush": "红葡萄丛",
   "block.vinery.grapevine": "葡萄藤",
   "block.vinery.white_grape_bush": "白葡萄丛",
@@ -262,5 +263,11 @@
   "item.vinery.juice.tooltip.item.vinery.savanna_white_grapejuice_bottle": "轻淡的白葡萄汁 - 用于制作拥有力量和急迫提升的酒",
   "item.vinery.juice.tooltip.item.vinery.apple_juice": "用于制作苹果酒和苹果葡萄酒",
   "item.vinery.lattice2.tooltip": "用于对丛林葡萄藤的支撑 - 在架子上的葡萄将生长更快、结得更多",
-  "item.vinery.stem2.tooltip": "用于对葡萄藤的支撑 - 在杆子上的葡萄将生长更快、结得更多"
+  "item.vinery.stem2.tooltip": "用于对葡萄藤的支撑 - 在杆子上的葡萄将生长更快、结得更多",
+  "block.vinery.jungle_grape_bush_red": "丛林红葡萄丛",
+  "block.vinery.jungle_grape_bush_white": "丛林白葡萄丛",
+  "block.vinery.taiga_grape_bush_red": "针叶林红葡萄丛",
+  "block.vinery.taiga_grape_bush_white": "针叶林白葡萄丛",
+  "block.vinery.savanna_grape_bush_red": "热带草原红葡萄丛",
+  "block.vinery.savanna_grape_bush_white": "热带草原白葡萄丛"
 }
