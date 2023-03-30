@@ -256,5 +256,7 @@
   "item.vinery.juice.tooltip.item.vinery.white_grapejuice_wine_bottle": "Ein kräftiger roter Traubensaft - wird verwendet, um einfache Weine herzustellen",
   "item.vinery.juice.tooltip.item.vinery.apple_juice": "Wird verwendet, um Apfelwein und Apfelmost herzustellen",
   "item.vinery.lattice2.tooltip": "Das Gitternetz dient als Unterstützung für Dschungel-Traubenreben - wenn es auf einem Gitternetz verwendet wird, wachsen die Trauben schneller und erzeugen eine höhere Ausbeute",
-  "item.vinery.stem2.tooltip": "Stämme dienen als Unterstützung für Traubenreben - wenn sie auf einem Stamm verwendet werden, wachsen die Trauben schneller und erzeugen eine höhere Ausbeute"
+  "item.vinery.stem2.tooltip": "Stämme dienen als Unterstützung für Traubenreben - wenn sie auf einem Stamm verwendet werden, wachsen die Trauben schneller und erzeugen eine höhere Ausbeute",
+  "block.vinery.expandable.tooltip": "Erweiterbar"
+
 }
