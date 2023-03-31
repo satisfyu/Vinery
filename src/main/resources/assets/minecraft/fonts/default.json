@@ -1,0 +1,22 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "vinery:gui/container/left.png",
+      "ascent": 13,
+      "height": 166,
+      "chars": [
+        "\uEff1"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "vinery:gui/container/right.png",
+      "ascent": 13,
+      "height": 166,
+      "chars": [
+        "\uEff2"
+      ]
+    }
+  ]
+}

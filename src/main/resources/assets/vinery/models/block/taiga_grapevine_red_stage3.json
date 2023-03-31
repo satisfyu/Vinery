@@ -1,0 +1,50 @@
+{
+	"credit": "Made by Satisfy",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"2": "vinery:block/grapevine_overlay_red_stage1",
+		"4": "vinery:block/taiga_grapevine_leaves",
+		"6": "vinery:block/grapevine_stem",
+		"particle": "vinery:block/grapevine_stem"
+	},
+	"elements": [
+		{
+			"from": [2, -1, 2],
+			"to": [14, 13, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 3, 2]},
+			"faces": {
+				"north": {"uv": [2, 0, 14, 14], "texture": "#4", "tintindex": 0},
+				"east": {"uv": [0, 0, 12, 14], "texture": "#4", "tintindex": 0},
+				"south": {"uv": [2, 0, 14, 14], "texture": "#4", "tintindex": 0},
+				"west": {"uv": [0, 0, 12, 14], "texture": "#4", "tintindex": 0},
+				"up": {"uv": [2, 2, 14, 14], "texture": "#4", "tintindex": 0},
+				"down": {"uv": [2, 2, 14, 14], "texture": "#4", "tintindex": 0}
+			}
+		},
+		{
+			"name": "stem, notint",
+			"from": [6, 0, 6],
+			"to": [10, 16, 10],
+			"faces": {
+				"north": {"uv": [0, 0, 4, 16], "texture": "#6"},
+				"east": {"uv": [0, 0, 4, 16], "texture": "#6"},
+				"south": {"uv": [0, 0, 4, 16], "texture": "#6"},
+				"west": {"uv": [0, 0, 4, 16], "texture": "#6"},
+				"up": {"uv": [4, 0, 8, 4], "texture": "#6"},
+				"down": {"uv": [4, 0, 8, 4], "texture": "#6"}
+			}
+		},
+		{
+			"name": "notint",
+			"from": [1.95, -1, 1.95],
+			"to": [14.05, 13, 14.05],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1.95, 3, 1.95]},
+			"faces": {
+				"north": {"uv": [2, 0, 14, 14], "texture": "#2"},
+				"east": {"uv": [0, 0, 12, 14], "texture": "#2"},
+				"south": {"uv": [2, 0, 14, 14], "texture": "#2"},
+				"west": {"uv": [2, 1, 14, 15], "texture": "#2"}
+			}
+		}
+	]
+}

@@ -1,0 +1,108 @@
+{
+	"credit": "Made by Satisfy",
+	"parent": "block/block",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"1": "vinery:block/savanna_grape_bush_side",
+		"2": "vinery:block/grapevine_overlay_stem",
+		"3": "vinery:block/grapevine_overlay_leaves",
+		"4": "vinery:block/savanna_grape_bush_top",
+		"5": "vinery:block/grapevine_overlay_red_stage1",
+		"particle": "vinery:block/savanna_grape_bush_side"
+	},
+	"elements": [
+		{
+			"from": [0, 16, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"up": {"uv": [0, 0, 16, 16], "texture": "#4", "cullface": "up", "tintindex": 0},
+				"down": {"uv": [0, 16, 16, 0], "texture": "#4", "tintindex": 0}
+			}
+		},
+		{
+			"from": [0, 5, 0],
+			"to": [16, 16, 0.01],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 11], "texture": "#1", "cullface": "north", "tintindex": 0},
+				"south": {"uv": [16, 0, 0, 11], "texture": "#1", "tintindex": 0}
+			}
+		},
+		{
+			"from": [0, 5, 15.99],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [16, 0, 0, 11], "texture": "#1", "tintindex": 0},
+				"south": {"uv": [0, 0, 16, 11], "texture": "#1", "cullface": "south", "tintindex": 0}
+			}
+		},
+		{
+			"from": [0, 5, 0],
+			"to": [0.01, 16, 16],
+			"faces": {
+				"east": {"uv": [16, 0, 0, 11], "texture": "#1", "tintindex": 0},
+				"west": {"uv": [0, 0, 16, 11], "texture": "#1", "cullface": "west", "tintindex": 0}
+			}
+		},
+		{
+			"from": [15.99, 5, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"east": {"uv": [0, 0, 16, 11], "texture": "#1", "cullface": "east", "tintindex": 0},
+				"west": {"uv": [16, 0, 0, 11], "texture": "#1", "tintindex": 0}
+			}
+		},
+		{
+			"name": "cross_1",
+			"from": [8, 0, 0.1],
+			"to": [8, 15.9, 15.9],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 16], "texture": "#3", "tintindex": 0},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#3", "tintindex": 0}
+			}
+		},
+		{
+			"name": "cross_2",
+			"from": [0.1, 0, 8],
+			"to": [15.9, 15.9, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#3", "tintindex": 0},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#3", "tintindex": 0}
+			}
+		},
+		{
+			"name": "cross_1_notint",
+			"from": [8, 0, 0.1],
+			"to": [8, 15.9, 15.9],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#2"}
+			}
+		},
+		{
+			"name": "cross_2_notint",
+			"from": [0.1, 0, 8],
+			"to": [15.9, 15.9, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#2"}
+			}
+		},
+		{
+			"name": "notint",
+			"from": [-0.05, 1, -0.05],
+			"to": [16.05, 17, 16.05],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-0.055, 0, -0.055]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#5"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#5"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#5"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#5"}
+			}
+		}
+	]
+}

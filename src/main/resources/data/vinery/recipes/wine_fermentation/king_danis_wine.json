@@ -1,0 +1,17 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    {
+      "item": "vinery:jungle_red_grapejuice_bottle"
+    },
+    {
+      "item": "minecraft:honey_bottle"
+    },
+    {
+      "item": "vinery:cherry"
+    }
+  ],
+  "result": {
+    "item": "vinery:king_danis_wine"
+  }
+}

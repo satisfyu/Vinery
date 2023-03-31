@@ -2,11 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "SSS",
+    "X X",
     "B B"
   ],
   "key": {
     "S": {
       "tag": "minecraft:wooden_slabs"
+    },
+    "X": {
+      "tag": "minecraft:planks"
     },
     "B": {
       "item": "minecraft:stick"

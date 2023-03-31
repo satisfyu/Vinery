@@ -2,12 +2,12 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
+      "rolls": 1,
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:red_grape"
+          "name": "vinery:red_grape_seeds"
         }
       ],
       "conditions": [
@@ -40,12 +40,12 @@
       ]
     },
     {
-      "rolls": 1.0,
+      "rolls": 1,
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:red_grape"
+          "name": "vinery:red_grape_seeds"
         }
       ],
       "conditions": [

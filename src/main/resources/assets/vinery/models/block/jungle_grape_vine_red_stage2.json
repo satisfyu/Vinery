@@ -1,0 +1,78 @@
+{
+	"credit": "Made by Satisfy",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"1": "vinery:block/grapevine_overlay_top_red_stage1",
+		"2": "vinery:block/jungle_grape_bush_bushy_stage0",
+		"3": "vinery:block/jungle_grape_bush_stage0",
+		"4": "vinery:block/grapevine_overlay_red_stage1",
+		"particle": "vinery:block/jungle_grape_bush_stage0"
+	},
+	"elements": [
+		{
+			"name": "notint",
+			"from": [0, 0, 15.19],
+			"to": [16, 16, 15.19],
+			"shade": false,
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#4"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#4"}
+			}
+		},
+		{
+			"name": "notint",
+			"from": [0, 6.5, 14.99],
+			"to": [16, 14.5, 14.99],
+			"shade": false,
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 14, 15]},
+			"faces": {
+				"north": {"uv": [0, 16, 16, 8], "rotation": 180, "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 8], "texture": "#1"}
+			}
+		},
+		{
+			"name": "notint",
+			"from": [0, -0.5, 14.99],
+			"to": [16, 7.5, 14.99],
+			"shade": false,
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 7, 15]},
+			"faces": {
+				"north": {"uv": [0, 8, 16, 0], "rotation": 180, "texture": "#4"},
+				"south": {"uv": [0, 0, 16, 8], "texture": "#4"}
+			}
+		},
+		{
+			"name": "vine",
+			"from": [0, -0.5, 15],
+			"to": [16, 7.5, 15],
+			"shade": false,
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 7, 15]},
+			"faces": {
+				"north": {"uv": [0, 16, 16, 8], "rotation": 180, "texture": "#2", "tintindex": 0},
+				"south": {"uv": [0, 0, 16, 8], "texture": "#2", "tintindex": 0}
+			}
+		},
+		{
+			"name": "vine",
+			"from": [0, 6.5, 15],
+			"to": [16, 14.5, 15],
+			"shade": false,
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 14, 15]},
+			"faces": {
+				"north": {"uv": [0, 8, 16, 0], "rotation": 180, "texture": "#2", "tintindex": 0},
+				"south": {"uv": [0, 0, 16, 8], "texture": "#2", "tintindex": 0}
+			}
+		},
+		{
+			"name": "vine",
+			"from": [0, 0, 15.2],
+			"to": [16, 16, 15.2],
+			"shade": false,
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#3", "tintindex": 0},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#3", "tintindex": 0}
+			}
+		}
+	]
+}

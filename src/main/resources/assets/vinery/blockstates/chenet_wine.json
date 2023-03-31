@@ -1,34 +1,64 @@
 {
   "variants": {
-    "facing=east,stack=1": {
+    "facing=east,count=0": {
       "y": 180,
-      "model": "vinery:block/chenet_wine_stack1"
+      "model": "vinery:block/chenet_wine"
     },
-    "facing=east,stack=2": {
+    "facing=east,count=1": {
       "y": 180,
-      "model": "vinery:block/chenet_wine_stack2"
+      "model": "vinery:block/transparent"
     },
-    "facing=north,stack=1": {
+    "facing=east,count=2": {
+      "y": 180,
+      "model": "vinery:block/transparent"
+    },
+    "facing=east,count=3": {
+      "y": 180,
+      "model": "vinery:block/transparent"
+    },
+    "facing=north,count=0": {
       "y": 90,
-      "model": "vinery:block/chenet_wine_stack1"
+      "model": "vinery:block/chenet_wine"
     },
-    "facing=north,stack=2": {
+    "facing=north,count=1": {
       "y": 90,
-      "model": "vinery:block/chenet_wine_stack2"
+      "model": "vinery:block/transparent"
     },
-    "facing=south,stack=1": {
+    "facing=north,count=2": {
+      "y": 90,
+      "model": "vinery:block/transparent"
+    },
+    "facing=north,count=3": {
+      "y": 90,
+      "model": "vinery:block/transparent"
+    },
+    "facing=south,count=0": {
       "y": 270,
-      "model": "vinery:block/chenet_wine_stack1"
+      "model": "vinery:block/chenet_wine"
     },
-    "facing=south,stack=2": {
+    "facing=south,count=1": {
       "y": 270,
-      "model": "vinery:block/chenet_wine_stack2"
+      "model": "vinery:block/transparent"
     },
-    "facing=west,stack=1": {
-      "model": "vinery:block/chenet_wine_stack1"
+    "facing=south,count=2": {
+      "y": 270,
+      "model": "vinery:block/transparent"
     },
-    "facing=west,stack=2": {
-      "model": "vinery:block/chenet_wine_stack2"
+    "facing=south,count=3": {
+      "y": 270,
+      "model": "vinery:block/transparent"
+    },
+    "facing=west,count=0": {
+      "model": "vinery:block/chenet_wine"
+    },
+    "facing=west,count=1": {
+      "model": "vinery:block/transparent"
+    },
+    "facing=west,count=2": {
+      "model": "vinery:block/transparent"
+    },
+    "facing=west,count=3": {
+      "model": "vinery:block/transparent"
     }
   }
 }

@@ -1,0 +1,55 @@
+{
+  "block.cooking_pot.juice_boiling": {
+    "subtitle": "subtitles.vinery.juice_boiling",
+    "sounds": [
+      "vinery:block/cooking_pot/juice_boiling"
+    ]
+  },
+  "block.kitchen_sink.faucet": {
+    "subtitle": "subtitles.vinery.faucet",
+    "sounds": [
+      "vinery:block/kitchen_sink/faucet1",
+      "vinery:block/kitchen_sink/faucet2",
+      "vinery:block/kitchen_sink/faucet3"
+    ]
+  },
+  "block.grapevine_pot.squeeze": {
+    "subtitle": "subtitles.vinery.squeeze",
+    "sounds": [
+      "vinery:block/grapevine_pot/squeeze1",
+      "vinery:block/grapevine_pot/squeeze2",
+      "vinery:block/grapevine_pot/squeeze3",
+      "vinery:block/grapevine_pot/squeeze4"
+    ]
+  },
+  "block.wine_rack_3.open": {
+    "subtitle": "subtitles.vinery.rack",
+    "sounds": [
+      "vinery:block/wine_rack/wine_rack_3_open"
+    ]
+  },
+  "block.wine_rack_5.open": {
+    "subtitle": "subtitles.vinery.rack",
+    "sounds": [
+      "vinery:block/wine_rack/wine_rack_5_open"
+    ]
+  },
+  "block.wine_rack_3.close": {
+    "subtitle": "subtitles.vinery.rack",
+    "sounds": [
+      "vinery:block/wine_rack/wine_rack_3_close"
+    ]
+  },
+  "block.wine_rack_5.close": {
+    "subtitle": "subtitles.vinery.rack",
+    "sounds": [
+      "vinery:block/wine_rack/wine_rack_5_close"
+    ]
+  },
+  "block.cooking_pan.pan_frying": {
+    "subtitle": "subtitles.vinery.pan_frying",
+    "sounds": [
+      "vinery:block/cooking_pan/pan_frying"
+    ]
+  }
+}
