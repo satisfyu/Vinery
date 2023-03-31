@@ -123,7 +123,7 @@ public class WoodFiredOvenBlock extends Block implements BlockEntityProvider {
 
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-        boolean isLit = world.getBlockState(pos).get(LIT);
+        boolean isLit = state.get(LIT);
         if (isLit && !entity.isFireImmune() && entity instanceof LivingEntity livingEntity &&
                 !EnchantmentHelper.hasFrostWalker(livingEntity)) {
             entity.damage(DamageSourceRegistry.STOVE_BLOCK, 1.f);
