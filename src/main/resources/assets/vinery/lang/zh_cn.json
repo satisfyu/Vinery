@@ -107,7 +107,7 @@
   "rei.vinery.cooking_pot_category": "煮锅",
   "rei.vinery.wood_fired_oven_category": "燃木烤箱",
   "rei.vinery.fermentation_barrel_category": "陈酿桶",
-  "entity.minecraft.villager.vinery.winemaker": "酿酒师",
+  "entity.minecraft.villager.winemaker": "酿酒师",
   "entity.vinery.mule": "骡",
   "entity.vinery.wandering_winemaker": "流浪酿酒师",
   "vinery.tooltip.winemaker_armor": "酿酒师的心愿:",
@@ -225,7 +225,7 @@
   "subtitles.vinery.squeeze": "葡萄：压榨",
   "subtitles.vinery.open": "打开声",
   "subtitles.vinery.close": "关闭声",
-
+  "subtitles.vinery.pan_frying": "平底锅：煎炒",
   "tooltip.vinery.recipe_book": "配方书",
   "tooltip.vinery.aging_barrel": "不同的原料会酿成不同的酒",
   "tooltip.vinery.wine": "酒",
@@ -269,5 +269,6 @@
   "block.vinery.taiga_grape_bush_red": "针叶林红葡萄丛",
   "block.vinery.taiga_grape_bush_white": "针叶林白葡萄丛",
   "block.vinery.savanna_grape_bush_red": "热带草原红葡萄丛",
-  "block.vinery.savanna_grape_bush_white": "热带草原白葡萄丛"
+  "block.vinery.savanna_grape_bush_white": "热带草原白葡萄丛",
+  "block.vinery.expandable.tooltip": "可拓展"
 }
