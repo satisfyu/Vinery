@@ -14,7 +14,7 @@ public class VinerySoundEvents {
 
     public static final SoundEvent BLOCK_GRAPEVINE_POT_SQUEEZE = create("block.grapevine_pot.squeeze");
     public static final SoundEvent BLOCK_COOKING_POT_JUICE_BOILING = create("block.cooking_pot.juice_boiling");
-    public static final SoundEvent BLOCK_COOKING_PAN_FRYING = create("block.cooking_pan.frying");
+    public static final SoundEvent BLOCK_COOKING_PAN_FRYING = create("block.cooking_pan.pan_frying");
     public static final SoundEvent BLOCK_FAUCET = create("block.kitchen_sink.faucet");
     public static final SoundEvent WINE_RACK_3_OPEN = create("block.wine_rack_3.open");
     public static final SoundEvent WINE_RACK_3_CLOSE = create("block.wine_rack_3.close");
