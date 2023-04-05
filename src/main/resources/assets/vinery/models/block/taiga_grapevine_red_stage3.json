@@ -1,5 +1,6 @@
 {
 	"credit": "Made by Satisfy",
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"2": "vinery:block/grapevine_overlay_red_stage1",
 		"4": "vinery:block/taiga_grapevine_leaves",
@@ -35,9 +36,9 @@
 		},
 		{
 			"name": "notint",
-			"from": [1.995, -1, 1.995],
-			"to": [14.005, 13, 14.005],
-			"rotation": {"angle": 0, "axis": "y", "origin": [1.995, 3, 1.995]},
+			"from": [1.95, -1, 1.95],
+			"to": [14.05, 13, 14.05],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1.95, 3, 1.95]},
 			"faces": {
 				"north": {"uv": [2, 0, 14, 14], "texture": "#2"},
 				"east": {"uv": [0, 0, 12, 14], "texture": "#2"},

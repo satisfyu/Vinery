@@ -225,7 +225,7 @@
   "subtitles.vinery.squeeze": "Grapes Squeezing",
   "subtitles.vinery.open": "Opening Sound",
   "subtitles.vinery.close": "Closing Sound",
-
+  "subtitles.vinery.pan_frying": "Pan Frying",
   "tooltip.vinery.recipe_book": "Recipe Book",
   "tooltip.vinery.aging_barrel": "A different ingredient results in a different Wine",
   "tooltip.vinery.wine": "Wine",
@@ -264,6 +264,13 @@
   "item.vinery.juice.tooltip.item.vinery.apple_juice": "Used to craft Apple Wine and Cider",
   "item.vinery.lattice2.tooltip": "Lattice functions as a support for Jungle Grapevines - when used on a lattice Grapes will grow faster and generate a higher output",
   "item.vinery.stem2.tooltip": "Stems functions as a support for Grapevines - when used on a Stem Grapes will grow faster and generate a higher output",
+  "block.vinery.jungle_grape_bush_red": "Red Jungle Grape Bush",
+  "block.vinery.jungle_grape_bush_white": "White Jungle Grape Bush",
+  "block.vinery.taiga_grape_bush_red": "Red Taiga Grape Bush",
+  "block.vinery.taiga_grape_bush_white": "White Taiga Grape Bush",
+  "block.vinery.savanna_grape_bush_red": "Red savanna Grape Bush",
+  "block.vinery.savanna_grape_bush_white": "White savanna Grape Bush",
+  "block.vinery.expandable.tooltip": "Expandable",
 
   "gui.vinery.recipebook.toggleRecipes.cookable" : "Showing Cookable",
   "gui.vinery.recipebook.toggleRecipes.fermentable" : "Showing Fermentable"

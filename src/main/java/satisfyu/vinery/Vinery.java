@@ -33,12 +33,6 @@ public class Vinery implements ModInitializer {
         VineryBlockEntityTypes.init();
         VineryScreenHandlerTypes.init();
         VineryRecipeTypes.init();
-        LootTableEvents.MODIFY.register((resourceManager, manager, id, supplier, setter) -> {
-            final Identifier resourceLocation = new VineryIdentifier("inject/seeds");
-            if (Blocks.GRASS.getLootTableId().equals(id) || Blocks.TALL_GRASS.getLootTableId().equals(id) || Blocks.FERN.getLootTableId().equals(id)) {
-                supplier.pool(LootPool.builder().with(LootTableEntry.builder(resourceLocation).weight(1)).build());
-            }
-        });
         VineryBoatTypes.init();
         VineryConfiguredFeatures.init();
         VinerySoundEvents.init();

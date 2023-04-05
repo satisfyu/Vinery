@@ -196,7 +196,7 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
         final ItemStack recipeOutput = generateOutputItem(recipe);
         final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
-            setStack(OUTPUT_SLOT, generateOutputItem(recipe));
+            setStack(OUTPUT_SLOT, recipeOutput);
         } else if (outputSlotStack.isOf(recipeOutput.getItem())) {
             outputSlotStack.increment(recipeOutput.getCount());
         }
