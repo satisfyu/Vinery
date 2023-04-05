@@ -30,7 +30,7 @@ public class FermentationBarrelRecipe implements Recipe<Inventory> {
         RecipeMatcher recipeMatcher = new RecipeMatcher();
         int matchingStacks = 0;
 
-        for(int i = 2; i < inventory.size(); ++i) {
+        for(int i = 1; i < 5; ++i) {
             ItemStack itemStack = inventory.getStack(i);
             if (!itemStack.isEmpty()) {
                 ++matchingStacks;

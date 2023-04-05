@@ -2,7 +2,6 @@ package satisfyu.vinery.client;
 
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.entity.chair.ChairRenderer;
 import satisfyu.vinery.client.gui.*;
@@ -34,7 +33,10 @@ import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.entity.player.PlayerEntity;
 
 @Environment(EnvType.CLIENT)
-public class ClientSetup implements ClientModInitializer {
+public class VineryClient implements ClientModInitializer {
+
+    public static boolean rememberedRecipeBookOpen = false;
+    public static boolean rememberedCraftableToggle = true;
 
     public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(new VineryIdentifier("trader_mule"), "main");
 

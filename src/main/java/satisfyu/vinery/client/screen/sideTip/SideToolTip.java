@@ -1,4 +1,4 @@
-package satisfyu.vinery.screen.sideTip;
+package satisfyu.vinery.client.screen.sideTip;
 
 import net.minecraft.text.Text;
 

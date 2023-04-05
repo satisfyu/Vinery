@@ -18,7 +18,7 @@
       "satisfyu.vinery.Vinery"
     ],
     "client": [
-      "satisfyu.vinery.client.ClientSetup"
+      "satisfyu.vinery.client.VineryClient"
     ],
     "rei_client": [
       "satisfyu.vinery.compat.rei.VineryReiClientPlugin"

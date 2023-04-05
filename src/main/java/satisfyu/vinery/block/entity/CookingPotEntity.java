@@ -3,7 +3,8 @@ package satisfyu.vinery.block.entity;
 import satisfyu.vinery.block.CookingPotBlock;
 import satisfyu.vinery.client.gui.handler.CookingPotGuiHandler;
 import satisfyu.vinery.compat.farmersdelight.FarmersCookingPot;
-import satisfyu.vinery.item.EffectFoodItem;
+import satisfyu.vinery.item.food.EffectFood;
+import satisfyu.vinery.item.food.EffectFoodHelper;
 import satisfyu.vinery.recipe.CookingPotRecipe;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryRecipeTypes;
@@ -31,6 +32,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import static net.minecraft.item.ItemStack.canCombine;
 
 public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<CookingPotEntity>, Inventory, NamedScreenHandlerFactory {
 	
@@ -111,10 +114,16 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 			} else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
 				return true;
 			} else {
-				final ItemStack recipeOutput = cookingRecipe.getOutput();
+				if (this.getStack(OUTPUT_SLOT).isEmpty()) {
+					return true;
+				}
+				final ItemStack recipeOutput = this.generateOutputItem(recipe);
 				final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
 				final int outputSlotCount = outputSlotStack.getCount();
-				if (!outputSlotStack.isItemEqualIgnoreDamage(recipeOutput)) {
+				if (this.getStack(OUTPUT_SLOT).isEmpty()) {
+					return true;
+				}
+				else if (!canCombine(outputSlotStack, recipeOutput)) {
 					return false;
 				} else if (outputSlotCount < this.getMaxCountPerStack() && outputSlotCount < outputSlotStack.getMaxCount()) {
 					return true;
@@ -170,7 +179,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 	private ItemStack generateOutputItem(Recipe<?> recipe) {
 		ItemStack outputStack = recipe.getOutput();
 
-		if (!(outputStack.getItem() instanceof EffectFoodItem)) {
+		if (!(outputStack.getItem() instanceof EffectFood)) {
 			return outputStack;
 		}
 
@@ -178,7 +187,8 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 			for (int j = 0; j < 6; j++) {
 				ItemStack stack = this.getStack(j);
 				if (ingredient.test(stack)) {
-					EffectFoodItem.getEffects(stack).forEach(effect -> EffectFoodItem.addEffect(outputStack, effect));
+					EffectFoodHelper.getEffects(stack).forEach(effect -> EffectFoodHelper.addEffect(outputStack, effect));
+					break;
 				}
 			}
 		}

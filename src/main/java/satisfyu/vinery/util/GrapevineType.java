@@ -1,8 +1,10 @@
 package satisfyu.vinery.util;
 
+import net.minecraft.item.Item;
 import net.minecraft.util.StringIdentifiable;
+import satisfyu.vinery.registry.ObjectRegistry;
 
-public enum GrapevineType implements StringIdentifiable  {
+public enum GrapevineType implements StringIdentifiable {
     NONE,
     RED,
     WHITE,
@@ -34,6 +36,34 @@ public enum GrapevineType implements StringIdentifiable  {
             case TAIGA_WHITE -> "taiga_white";
             case SAVANNA_RED -> "savanna_red";
             case SAVANNA_WHITE -> "savanna_white";
+        };
+    }
+
+    public Item getGrape() {
+        return switch (this) {
+            case RED -> ObjectRegistry.RED_GRAPE;
+            case WHITE -> ObjectRegistry.WHITE_GRAPE;
+            case JUNGLE_RED -> ObjectRegistry.JUNGLE_RED_GRAPE;
+            case JUNGLE_WHITE -> ObjectRegistry.JUNGLE_WHITE_GRAPE;
+            case TAIGA_RED -> ObjectRegistry.TAIGA_RED_GRAPE;
+            case TAIGA_WHITE -> ObjectRegistry.TAIGA_WHITE_GRAPE;
+            case SAVANNA_RED -> ObjectRegistry.SAVANNA_RED_GRAPE;
+            case SAVANNA_WHITE -> ObjectRegistry.SAVANNA_WHITE_GRAPE;
+            default -> ObjectRegistry.RED_GRAPE;
+        };
+    }
+
+    public Item getGrapeSeeds() {
+        return switch (this) {
+            case RED -> ObjectRegistry.RED_GRAPE_SEEDS;
+            case WHITE -> ObjectRegistry.WHITE_GRAPE_SEEDS;
+            case JUNGLE_RED -> ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS;
+            case JUNGLE_WHITE -> ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS;
+            case TAIGA_RED -> ObjectRegistry.TAIGA_RED_GRAPE_SEEDS;
+            case TAIGA_WHITE -> ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS;
+            case SAVANNA_RED -> ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS;
+            case SAVANNA_WHITE -> ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS;
+            default -> null;
         };
     }
 }

@@ -3,7 +3,8 @@ package satisfyu.vinery.block.entity;
 import net.minecraft.recipe.Recipe;
 import satisfyu.vinery.block.WoodFiredOvenBlock;
 import satisfyu.vinery.client.gui.handler.StoveGuiHandler;
-import satisfyu.vinery.item.EffectFoodItem;
+import satisfyu.vinery.item.food.EffectFood;
+import satisfyu.vinery.item.food.EffectFoodHelper;
 import satisfyu.vinery.recipe.WoodFiredOvenRecipe;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryRecipeTypes;
@@ -31,6 +32,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import static net.minecraft.item.ItemStack.canCombine;
 
 public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntityTicker<WoodFiredOvenBlockEntity>, Inventory, NamedScreenHandlerFactory {
 
@@ -167,10 +170,16 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
         } else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
             return true;
         } else {
-            final ItemStack recipeOutput = generateOutputItem(recipe);
+            if (this.getStack(OUTPUT_SLOT).isEmpty()) {
+                return true;
+            }
+            final ItemStack recipeOutput = this.generateOutputItem(recipe);
             final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
             final int outputSlotCount = outputSlotStack.getCount();
-            if (!outputSlotStack.isItemEqualIgnoreDamage(recipeOutput)) {
+            if (this.getStack(OUTPUT_SLOT).isEmpty()) {
+                return true;
+            }
+            else if (!canCombine(outputSlotStack, recipeOutput)) {
                 return false;
             } else if (outputSlotCount < this.getMaxCountPerStack() && outputSlotCount < outputSlotStack.getMaxCount()) {
                 return true;
@@ -227,15 +236,16 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
     private ItemStack generateOutputItem(Recipe<?> recipe) {
         ItemStack outputStack = recipe.getOutput();
 
-        if (!(outputStack.getItem() instanceof EffectFoodItem)) {
+        if (!(outputStack.getItem() instanceof EffectFood)) {
             return outputStack;
         }
 
         for (Ingredient ingredient : recipe.getIngredients()) {
-            for (int j = 0; j < 6; j++) {
+            for (int j = 0; j < 3; j++) {
                 ItemStack stack = this.getStack(j);
                 if (ingredient.test(stack)) {
-                    EffectFoodItem.getEffects(stack).forEach(effect -> EffectFoodItem.addEffect(outputStack, effect));
+                    EffectFoodHelper.getEffects(stack).forEach(effect -> EffectFoodHelper.addEffect(outputStack, effect));
+                    break;
                 }
             }
         }

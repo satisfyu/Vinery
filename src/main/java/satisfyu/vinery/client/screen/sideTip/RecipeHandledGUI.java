@@ -1,4 +1,4 @@
-package satisfyu.vinery.screen.sideTip;
+package satisfyu.vinery.client.screen.sideTip;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -8,23 +8,20 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeHandledGUI<T extends RecipeGUIHandler> extends HandledScreen<T> {
 
     private final SideTipButton SIDE_TIP_BUTTON = new SideTipButton(this.x, this.y, (buttonWidget) -> showSideTip());
+
     private final Identifier BACKGROUND;
-    private final SideTip SIDE_TIP;
-
-    private final List<SideToolTip> sideToolTips = new ArrayList<>();
+    public final SideTip SIDE_TIP;
 
 
-    public RecipeHandledGUI(T handler, PlayerInventory inventory, Text title, Identifier background, Identifier sideTip, int frames) {
+    public RecipeHandledGUI(T handler, PlayerInventory inventory, Text title, Identifier background, Identifier[] sideTip, int frames, List<List<SideToolTip>> tooltips) {
         super(handler, inventory, title);
         BACKGROUND = background;
-        SIDE_TIP = new SideTip(this.x, this.y, 147, 180, 256, sideTip, 256, 256 * frames, frames);
-        addToolTips();
+        SIDE_TIP = new SideTip(this.x, this.y, 147, 180, 256, sideTip, 256, 256 * frames, frames, tooltips);
     }
 
     @Override
@@ -37,17 +34,8 @@ public class RecipeHandledGUI<T extends RecipeGUIHandler> extends HandledScreen<
         addDrawableChild(SIDE_TIP_BUTTON);
 
         super.render(matrices, mouseX, mouseY, delta);
-
         renderTooltips(matrices, mouseX, mouseY);
         drawMouseoverTooltip(matrices, mouseX, mouseY);
-    }
-
-    private void renderTooltips(MatrixStack matrices, int mouseX, int mouseY) {
-        for (SideToolTip sideToolTip : sideToolTips) {
-            if (sideToolTip.isMouseOver(mouseX - this.x, mouseY - this.y)) {
-                renderTooltip(matrices, sideToolTip.getText(), mouseX, mouseY);
-            }
-        }
     }
 
     @Override
@@ -80,14 +68,11 @@ public class RecipeHandledGUI<T extends RecipeGUIHandler> extends HandledScreen<
         SIDE_TIP.visible = !SIDE_TIP.visible;
     }
 
-    public void addToolTips() {
-        addToolTip(new SideToolTip(SideTip.WIDTH + 4, 25, 20, 18, Text.translatable("tooltip.vinery.recipe_book")));
+    private void renderTooltips(MatrixStack matrices, int mouseX, int mouseY) {
+        SideToolTip sideToolTip = new SideToolTip(SideTip.WIDTH + 4, 25, 20, 18, Text.translatable("tooltip.vinery.recipe_book"));
+        if (sideToolTip.isMouseOver(mouseX - this.x, mouseY - this.y)) {
+            renderTooltip(matrices,  sideToolTip.getText(), mouseX, mouseY);
+        }
+
     }
-
-    public void addToolTip(SideToolTip sideToolTip) {
-        //pos in Book
-        this.sideToolTips.add(sideToolTip);
-    }
-
-
 }
