@@ -48,17 +48,7 @@ public abstract class StemBlock extends Block implements Fertilizable {
     }
 
     public void dropGrapeSeeds(World world, BlockState state, BlockPos pos) {
-        Item grape = switch (state.get(GRAPE)) {
-            case RED -> ObjectRegistry.RED_GRAPE_SEEDS;
-            case WHITE -> ObjectRegistry.WHITE_GRAPE_SEEDS;
-            case JUNGLE_RED -> ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS;
-            case JUNGLE_WHITE -> ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS;
-            case TAIGA_RED -> ObjectRegistry.TAIGA_RED_GRAPE_SEEDS;
-            case TAIGA_WHITE -> ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS;
-            case SAVANNA_RED -> ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS;
-            case SAVANNA_WHITE -> ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS;
-            default -> null;
-        };
+        Item grape = state.get(GRAPE).getGrapeSeeds();
         dropStack(world, pos, new ItemStack(grape));
     }
 

@@ -270,7 +270,9 @@
   "block.vinery.taiga_grape_bush_white": "White Taiga Grape Bush",
   "block.vinery.savanna_grape_bush_red": "Red savanna Grape Bush",
   "block.vinery.savanna_grape_bush_white": "White savanna Grape Bush",
-  "block.vinery.expandable.tooltip": "Expandable"
+  "block.vinery.expandable.tooltip": "Expandable",
 
+  "gui.vinery.recipebook.toggleRecipes.cookable" : "Showing Cookable",
+  "gui.vinery.recipebook.toggleRecipes.fermentable" : "Showing Fermentable"
 
 }

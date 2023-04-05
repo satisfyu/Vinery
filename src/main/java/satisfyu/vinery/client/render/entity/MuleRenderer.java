@@ -1,7 +1,7 @@
 package satisfyu.vinery.client.render.entity;
 
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.client.ClientSetup;
+import satisfyu.vinery.client.VineryClient;
 import satisfyu.vinery.client.model.MuleModel;
 import satisfyu.vinery.entity.TraderMuleEntity;
 import net.fabricmc.api.EnvType;
@@ -15,7 +15,7 @@ public class MuleRenderer extends MobEntityRenderer<TraderMuleEntity, MuleModel>
     private static final Identifier TEXTURE = new VineryIdentifier("textures/entity/wandering_mule.png");
 
     public MuleRenderer(EntityRendererFactory.Context context) {
-        super(context, new MuleModel(context.getPart(ClientSetup.LAYER_LOCATION)), 0.7f);
+        super(context, new MuleModel(context.getPart(VineryClient.LAYER_LOCATION)), 0.7f);
     }
 
     @Override

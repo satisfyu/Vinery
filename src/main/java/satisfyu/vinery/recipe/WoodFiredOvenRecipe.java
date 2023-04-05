@@ -50,7 +50,7 @@ public class WoodFiredOvenRecipe implements Recipe<Inventory> {
 
     @Override
     public ItemStack getOutput() {
-        return this.output;
+        return this.output.copy();
     }
 
     @Override

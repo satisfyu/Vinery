@@ -3,6 +3,8 @@ package satisfyu.vinery.block.entity;
 import satisfyu.vinery.block.CookingPotBlock;
 import satisfyu.vinery.client.gui.handler.CookingPotGuiHandler;
 import satisfyu.vinery.compat.farmersdelight.FarmersCookingPot;
+import satisfyu.vinery.item.food.EffectFood;
+import satisfyu.vinery.item.food.EffectFoodHelper;
 import satisfyu.vinery.recipe.CookingPotRecipe;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryRecipeTypes;
@@ -30,6 +32,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import static net.minecraft.item.ItemStack.canCombine;
 
 public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<CookingPotEntity>, Inventory, NamedScreenHandlerFactory {
 	
@@ -104,16 +108,22 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		if (recipe == null || recipe.getOutput().isEmpty()) {
 			return false;
 		}
-		if(recipe instanceof CookingPotRecipe c){
-			if (!this.getStack(BOTTLE_INPUT_SLOT).isOf(c.getContainer().getItem())) {
+		if(recipe instanceof CookingPotRecipe cookingRecipe){
+			if (!this.getStack(BOTTLE_INPUT_SLOT).isOf(cookingRecipe.getContainer().getItem())) {
 				return false;
 			} else if (this.getStack(OUTPUT_SLOT).isEmpty()) {
 				return true;
 			} else {
-				final ItemStack recipeOutput = c.getOutput();
+				if (this.getStack(OUTPUT_SLOT).isEmpty()) {
+					return true;
+				}
+				final ItemStack recipeOutput = this.generateOutputItem(recipe);
 				final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
 				final int outputSlotCount = outputSlotStack.getCount();
-				if (!outputSlotStack.isItemEqualIgnoreDamage(recipeOutput)) {
+				if (this.getStack(OUTPUT_SLOT).isEmpty()) {
+					return true;
+				}
+				else if (!canCombine(outputSlotStack, recipeOutput)) {
 					return false;
 				} else if (outputSlotCount < this.getMaxCountPerStack() && outputSlotCount < outputSlotStack.getMaxCount()) {
 					return true;
@@ -134,7 +144,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		if (!canCraft(recipe)) {
 			return;
 		}
-		final ItemStack recipeOutput = recipe.getOutput();
+		final ItemStack recipeOutput = generateOutputItem(recipe);
 		final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
 		if (outputSlotStack.isEmpty()) {
 			setStack(OUTPUT_SLOT, recipeOutput.copy());
@@ -165,6 +175,26 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		}
 		this.getStack(BOTTLE_INPUT_SLOT).decrement(1);
 	}
+
+	private ItemStack generateOutputItem(Recipe<?> recipe) {
+		ItemStack outputStack = recipe.getOutput();
+
+		if (!(outputStack.getItem() instanceof EffectFood)) {
+			return outputStack;
+		}
+
+		for (Ingredient ingredient : recipe.getIngredients()) {
+			for (int j = 0; j < 6; j++) {
+				ItemStack stack = this.getStack(j);
+				if (ingredient.test(stack)) {
+					EffectFoodHelper.getEffects(stack).forEach(effect -> EffectFoodHelper.addEffect(outputStack, effect));
+					break;
+				}
+			}
+		}
+		return outputStack;
+	}
+
 
 	@Override
 	public void tick(World world, BlockPos pos, BlockState state, CookingPotEntity blockEntity) {
