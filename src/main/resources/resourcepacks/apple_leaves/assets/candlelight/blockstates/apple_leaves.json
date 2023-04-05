@@ -1,0 +1,16 @@
+{
+	"variants":  {
+		"can_have_apples=false,has_apples=false": [
+				{   "model": "candlelight:block/apple_leaves_stage0_bushy1", "weight": 1 }   ,
+				{   "model": "candlelight:block/apple_leaves_stage0_bushy2", "weight": 1 }  ],
+		"can_have_apples=false,has_apples=true": [
+				{   "model": "candlelight:block/apple_leaves_stage0_bushy1", "weight": 1 }   ,
+				{   "model": "candlelight:block/apple_leaves_stage0_bushy2", "weight": 1 }  ],
+		"can_have_apples=true,has_apples=false": [
+				{   "model": "candlelight:block/apple_leaves_stage1_bushy1", "weight": 1 } 	 ,
+				{   "model": "candlelight:block/apple_leaves_stage1_bushy2", "weight": 1 } 	 ,
+				{   "model": "candlelight:block/apple_leaves_stage1_bushy3", "weight": 1 } 	],
+		"can_have_apples=true,has_apples=true": [
+				{   "model": "candlelight:block/apple_leaves_stage2_bushy", "weight": 1 } 	]
+			}
+		}
