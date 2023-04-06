@@ -1,6 +1,6 @@
 package satisfyu.vinery.item;
 
-import satisfyu.vinery.client.ClientSetup;
+import satisfyu.vinery.client.VineryClient;
 import satisfyu.vinery.registry.ObjectRegistry;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.entity.EquipmentSlot;
@@ -14,7 +14,7 @@ import java.util.List;
 public interface WineMakerArmorItem {
 
     default void tooltip(List<Text> tooltip){
-        PlayerEntity player = ClientSetup.getClientPlayer();
+        PlayerEntity player = VineryClient.getClientPlayer();
         if (player == null) return;
         ItemStack helmet = player.getEquippedStack(EquipmentSlot.HEAD);
         ItemStack chestplate = player.getEquippedStack(EquipmentSlot.CHEST);

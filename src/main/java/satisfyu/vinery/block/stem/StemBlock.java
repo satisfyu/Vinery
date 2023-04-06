@@ -5,7 +5,6 @@ import net.minecraft.state.property.*;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
-import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.GrapevineType;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -32,33 +31,13 @@ public abstract class StemBlock extends Block implements Fertilizable {
     public void dropGrapes(World world, BlockState state, BlockPos pos) {
         final int x = 1 + world.random.nextInt(this.isMature(state) ? 2 : 1);
         final int bonus = this.isMature(state) ? 2 : 1;
-        Item grape = switch (state.get(GRAPE)) {
-            case RED -> ObjectRegistry.RED_GRAPE;
-            case WHITE -> ObjectRegistry.WHITE_GRAPE;
-            case JUNGLE_RED -> ObjectRegistry.JUNGLE_RED_GRAPE;
-            case JUNGLE_WHITE -> ObjectRegistry.JUNGLE_WHITE_GRAPE;
-            case TAIGA_RED -> ObjectRegistry.TAIGA_RED_GRAPE;
-            case TAIGA_WHITE -> ObjectRegistry.TAIGA_WHITE_GRAPE;
-            case SAVANNA_RED -> ObjectRegistry.SAVANNA_RED_GRAPE;
-            case SAVANNA_WHITE -> ObjectRegistry.SAVANNA_WHITE_GRAPE;
-            default -> null;
-        };
+        Item grape = state.get(GRAPE).getFruit();
         dropStack(world, pos, new ItemStack(grape, x + bonus));
         world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
     }
 
     public void dropGrapeSeeds(World world, BlockState state, BlockPos pos) {
-        Item grape = switch (state.get(GRAPE)) {
-            case RED -> ObjectRegistry.RED_GRAPE_SEEDS;
-            case WHITE -> ObjectRegistry.WHITE_GRAPE_SEEDS;
-            case JUNGLE_RED -> ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS;
-            case JUNGLE_WHITE -> ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS;
-            case TAIGA_RED -> ObjectRegistry.TAIGA_RED_GRAPE_SEEDS;
-            case TAIGA_WHITE -> ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS;
-            case SAVANNA_RED -> ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS;
-            case SAVANNA_WHITE -> ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS;
-            default -> null;
-        };
+        Item grape = state.get(GRAPE).getSeeds();
         dropStack(world, pos, new ItemStack(grape));
     }
 

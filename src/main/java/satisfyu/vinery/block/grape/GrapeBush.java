@@ -5,13 +5,10 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
-import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.GrapevineType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -106,29 +103,11 @@ public class GrapeBush extends PlantBlock implements Fertilizable {
 
     @Override
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        return switch (this.type) {
-            case NONE, RED -> new ItemStack(ObjectRegistry.RED_GRAPE_SEEDS);
-            case WHITE -> new ItemStack(ObjectRegistry.WHITE_GRAPE_SEEDS);
-            case JUNGLE_RED -> new ItemStack(ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS);
-            case JUNGLE_WHITE -> new ItemStack(ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS);
-            case TAIGA_RED -> new ItemStack(ObjectRegistry.TAIGA_RED_GRAPE_SEEDS);
-            case TAIGA_WHITE -> new ItemStack(ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS);
-            case SAVANNA_RED -> new ItemStack(ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS);
-            case SAVANNA_WHITE -> new ItemStack(ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS);
-        };
+        return new ItemStack(this.type.getSeeds());
     }
 
     public ItemStack getGrapeType() {
-        return switch (this.type) {
-            case NONE, RED -> new ItemStack(ObjectRegistry.RED_GRAPE);
-            case WHITE -> new ItemStack(ObjectRegistry.WHITE_GRAPE);
-            case JUNGLE_RED -> new ItemStack(ObjectRegistry.JUNGLE_RED_GRAPE);
-            case JUNGLE_WHITE -> new ItemStack(ObjectRegistry.JUNGLE_WHITE_GRAPE);
-            case TAIGA_RED -> new ItemStack(ObjectRegistry.TAIGA_RED_GRAPE);
-            case TAIGA_WHITE -> new ItemStack(ObjectRegistry.TAIGA_WHITE_GRAPE);
-            case SAVANNA_RED -> new ItemStack(ObjectRegistry.SAVANNA_RED_GRAPE);
-            case SAVANNA_WHITE -> new ItemStack(ObjectRegistry.SAVANNA_WHITE_GRAPE);
-        };
+        return new ItemStack(this.type.getFruit());
     }
 
     @Override

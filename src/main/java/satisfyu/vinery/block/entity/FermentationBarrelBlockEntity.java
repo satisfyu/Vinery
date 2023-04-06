@@ -1,12 +1,14 @@
 package satisfyu.vinery.block.entity;
 
+import net.minecraft.item.Item;
+import net.minecraft.recipe.Recipe;
 import satisfyu.vinery.client.gui.handler.FermentationBarrelGuiHandler;
-import satisfyu.vinery.recipe.FermentationBarrelRecipe;
+import satisfyu.vinery.item.food.EffectFood;
+import satisfyu.vinery.item.food.EffectFoodHelper;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryRecipeTypes;
 import satisfyu.vinery.util.WineYears;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -32,7 +34,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
     public static final int CAPACITY = 6;
     public static final int COOKING_TIME_IN_TICKS = 1800; // 90s or 3 minutes
     private static final int BOTTLE_INPUT_SLOT = 0;
-    private static final int OUTPUT_SLOT = 1;
+    private static final int OUTPUT_SLOT = 5;
     private int fermentationTime = 0;
     private int totalFermentationTime;
 
@@ -88,15 +90,13 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
     public void tick(World world, BlockPos pos, BlockState state, FermentationBarrelBlockEntity blockEntity) {
         if (world.isClient) return;
         boolean dirty = false;
-        final var recipeType = world.getRecipeManager()
-                .getFirstMatch(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE, blockEntity, world)
-                .orElse(null);
-        if (canCraft(recipeType)) {
+        Recipe<?> recipe = world.getRecipeManager().getFirstMatch(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE, this, world).orElse(null);
+        if (canCraft(recipe)) {
             this.fermentationTime++;
 
-            if (this.fermentationTime == this.totalFermentationTime) {
+            if (this.fermentationTime >= this.totalFermentationTime) {
                 this.fermentationTime = 0;
-                craft(recipeType);
+                craft(recipe);
                 dirty = true;
             }
         } else {
@@ -108,7 +108,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
 
     }
 
-    private boolean canCraft(FermentationBarrelRecipe recipe) {
+    private boolean canCraft(Recipe<?> recipe) {
         if (recipe == null || recipe.getOutput().isEmpty()) {
             return false;
         } else if (areInputsEmpty()) {
@@ -116,8 +116,8 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
         } else if (this.getStack(BOTTLE_INPUT_SLOT).isEmpty()) {
             return false;
         } else {
-            final Block block = Block.getBlockFromItem(this.getStack(BOTTLE_INPUT_SLOT).getItem());
-            if (block != ObjectRegistry.WINE_BOTTLE) {
+            final Item item = this.getStack(BOTTLE_INPUT_SLOT).getItem();
+            if (item != ObjectRegistry.WINE_BOTTLE.asItem()) {
                 return false;
             }
             return this.getStack(OUTPUT_SLOT).isEmpty();
@@ -126,16 +126,16 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
 
     private boolean areInputsEmpty() {
         int emptyStacks = 0;
-        for (int i = 2; i < 6; i++) {
+        for (int i = 1; i < 5; i++) {
             if (this.getStack(i).isEmpty()) emptyStacks++;
         }
         return emptyStacks == 4;
     }
-    private void craft(FermentationBarrelRecipe recipe) {
+    private void craft(Recipe<?> recipe) {
         if (!canCraft(recipe)) {
             return;
         }
-        final ItemStack recipeOutput = recipe.getOutput();
+        final ItemStack recipeOutput = generateOutputItem(recipe);
         final ItemStack outputSlotStack = this.getStack(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
             ItemStack output = recipeOutput.copy();
@@ -152,6 +152,9 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
 
         // Decrement ingredient
         for (Ingredient entry : recipe.getIngredients()) {
+            if (entry.test(this.getStack(1))) {
+                removeStack(1, 1);
+            }
             if (entry.test(this.getStack(2))) {
                 removeStack(2, 1);
             }
@@ -161,10 +164,26 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
             if (entry.test(this.getStack(4))) {
                 removeStack(4, 1);
             }
-            if (entry.test(this.getStack(5))) {
-                removeStack(5, 1);
+        }
+    }
+
+    private ItemStack generateOutputItem(Recipe<?> recipe) {
+        ItemStack outputStack = recipe.getOutput();
+
+        if (!(outputStack.getItem() instanceof EffectFood)) {
+            return outputStack;
+        }
+
+        for (Ingredient ingredient : recipe.getIngredients()) {
+            for (int j = 0; j < 5; j++) {
+                ItemStack stack = this.getStack(j);
+                if (ingredient.test(stack)) {
+                    EffectFoodHelper.getEffects(stack).forEach(effect -> EffectFoodHelper.addEffect(outputStack, effect));
+                    break;
+                }
             }
         }
+        return outputStack;
     }
 
 

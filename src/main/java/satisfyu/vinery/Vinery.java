@@ -22,9 +22,7 @@ import org.apache.logging.log4j.Logger;
 import satisfyu.vinery.registry.*;
 
 public class Vinery implements ModInitializer {
-
     public static final String MODID = "vinery";
-
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static final ItemGroup CREATIVE_TAB = TabbedItemGroup.builder().build(new VineryIdentifier("vinery_tab"), g -> GUIIcon.of(() -> new ItemStack(ObjectRegistry.JUNGLE_RED_GRAPE)));
     public static final TagKey<Block> ALLOWS_COOKING_ON_POT = TagKey.of(Registry.BLOCK_KEY, new VineryIdentifier("allows_cooking_on_pot"));
@@ -44,6 +42,10 @@ public class Vinery implements ModInitializer {
 
         FabricLoader.getInstance().getModContainer(MODID).ifPresent(container -> {
             ResourceManagerHelper.registerBuiltinResourcePack(new VineryIdentifier("bushy_leaves"), container, ResourcePackActivationType.NORMAL);
+        });
+
+        FabricLoader.getInstance().getModContainer(MODID).ifPresent(container -> {
+            ResourceManagerHelper.registerBuiltinResourcePack(new VineryIdentifier("apple_leaves"), container, ResourcePackActivationType.NORMAL);
         });
     }
 
