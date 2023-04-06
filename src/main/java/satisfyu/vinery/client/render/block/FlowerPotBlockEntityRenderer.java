@@ -1,4 +1,4 @@
-package satisfyu.vinery.render;
+package satisfyu.vinery.client.render.block;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.TallPlantBlock;
