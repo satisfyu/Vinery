@@ -257,6 +257,9 @@
   "item.vinery.juice.tooltip.item.vinery.apple_juice": "Wird verwendet, um Apfelwein und Apfelmost herzustellen",
   "item.vinery.lattice2.tooltip": "Das Gitternetz dient als Unterstützung für Dschungel-Traubenreben - wenn es auf einem Gitternetz verwendet wird, wachsen die Trauben schneller und erzeugen eine höhere Ausbeute",
   "item.vinery.stem2.tooltip": "Stämme dienen als Unterstützung für Traubenreben - wenn sie auf einem Stamm verwendet werden, wachsen die Trauben schneller und erzeugen eine höhere Ausbeute",
-  "block.vinery.expandable.tooltip": "Erweiterbar"
-
+  "block.vinery.expandable.tooltip": "Erweiterbar",
+  "item.vinery.tomato": "Tomate",
+  "item.vinery.tomato_seeds": "Tomatensamen",
+  "item.vinery.grapeseed.tooltip.item.vinery.tomato_seeds": "Kann auf Ackerland oder Stämmen angebaut werden",
+  "item.vinery.juice.tooltip.item.vinery.tomato": "Handwerkszutat - Wilde Tomaten können in warmen Biomen gefunden werden"
 }

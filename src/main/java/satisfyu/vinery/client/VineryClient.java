@@ -53,7 +53,8 @@ public class VineryClient implements ClientModInitializer {
                                                 ObjectRegistry.APPLE_JAM, ObjectRegistry.APPLE_WINE, ObjectRegistry.SOLARIS_WINE, ObjectRegistry.JELLIE_WINE,
                                                 ObjectRegistry.AEGIS_WINE, ObjectRegistry.SWEETBERRY_JAM, ObjectRegistry.GRAPE_JAM, ObjectRegistry.KELP_CIDER, ObjectRegistry.SAVANNA_RED_GRAPE_BUSH,
                                                 ObjectRegistry.SAVANNA_WHITE_GRAPE_BUSH, ObjectRegistry.CHORUS_WINE, ObjectRegistry.STAL_WINE, ObjectRegistry.MAGNETIC_WINE, ObjectRegistry.STRAD_WINE,
-                                                ObjectRegistry.JUNGLE_WHITE_GRAPE_BUSH, ObjectRegistry.JUNGLE_RED_GRAPE_BUSH, ObjectRegistry.TAIGA_RED_GRAPE_BUSH, ObjectRegistry.TAIGA_WHITE_GRAPE_BUSH
+                                                ObjectRegistry.JUNGLE_WHITE_GRAPE_BUSH, ObjectRegistry.JUNGLE_RED_GRAPE_BUSH, ObjectRegistry.TAIGA_RED_GRAPE_BUSH, ObjectRegistry.TAIGA_WHITE_GRAPE_BUSH,
+                                                ObjectRegistry.TOMATO_CROP
 
 
         );

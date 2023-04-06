@@ -1,6 +1,7 @@
 package satisfyu.vinery.item;
 
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -29,4 +30,5 @@ public class GrapeBushSeedItem extends AliasedBlockItem {
     public GrapevineType getType() {
         return type;
     }
+
 }
