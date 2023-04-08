@@ -141,8 +141,8 @@
   "item.vinery.white_grape_seeds": "白葡萄种子",
   "item.vinery.grape.tooltip.item.vinery.red_grape": "丰硕饱满的葡萄 - 可在温带群系中获得",
   "item.vinery.grape.tooltip.item.vinery.white_grape": "丰硕饱满的葡萄 - 可在温带群系中获得",
-  "item.vinery.grape.tooltip.item.vinery.savanna_grapes_red": "小巧型葡萄变种 - 可在温热群系中获得",
-  "item.vinery.grape.tooltip.item.vinery.savanna_grapes_white": "小巧型葡萄变种 - 可在温热群系中获得",
+  "item.vinery.grape.tooltip.item.vinery.savanna_grapes_red": "小巧型葡萄变种 - 可在温暖群系中获得",
+  "item.vinery.grape.tooltip.item.vinery.savanna_grapes_white": "小巧型葡萄变种 - 可在温暖群系中获得",
   "item.vinery.grape.tooltip.item.vinery.taiga_grapes_red": "结实型葡萄变种 - 可在寒冷群系中获得",
   "item.vinery.grape.tooltip.item.vinery.taiga_grapes_white": "结实型葡萄变种 - 可在寒冷群系中获得",
   "item.vinery.grape.tooltip.item.vinery.jungle_grapes_red": "胶黏型红葡萄 - 可在丛林中获得",
@@ -272,7 +272,11 @@
   "block.vinery.savanna_grape_bush_red": "热带草原红葡萄丛",
   "block.vinery.savanna_grape_bush_white": "热带草原白葡萄丛",
   "block.vinery.expandable.tooltip": "可拓展",
-
+  "item.vinery.tomato": "番茄",
+  "item.vinery.tomato_seeds": "番茄种子",
+  "item.vinery.grapeseed.tooltip.item.vinery.tomato_seeds": "可种植在耕地或葡萄藤杆上",
+  "item.vinery.juice.tooltip.item.vinery.tomato": "工艺原料 - 可在温暖群系中获得",
+  
   "gui.vinery.recipebook.toggleRecipes.cookable" : "显示可烹饪物品",
   "gui.vinery.recipebook.toggleRecipes.fermentable" : "显示可酿造物品"
 }
