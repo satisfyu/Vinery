@@ -2,9 +2,9 @@
 	"credit": "Made by Satisfy",
 	"parent": "block/block",
 	"textures": {
-		"1": "candlelight:block/apple_leaves_bushy2",
-		"2": "candlelight:block/apple_leaves_bushy3",
-		"particle": "candlelight:block/apple_leaves_0"
+		"1": "vinery:block/apple_leaves_bushy2",
+		"2": "vinery:block/apple_leaves_bushy3",
+		"particle": "vinery:block/apple_leaves_0"
 	},
 	"elements": [
 		{

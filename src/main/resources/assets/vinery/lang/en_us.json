@@ -271,6 +271,11 @@
   "block.vinery.savanna_grape_bush_red": "Red savanna Grape Bush",
   "block.vinery.savanna_grape_bush_white": "White savanna Grape Bush",
   "block.vinery.expandable.tooltip": "Expandable",
+  "item.vinery.tomato": "Tomato",
+  "item.vinery.tomato_seeds": "Tomato Seeds",
+  "item.vinery.grapeseed.tooltip.item.vinery.tomato_seeds": "Can be grown on farmland or grapevine stems",
+  "item.vinery.juice.tooltip.item.vinery.tomato": "Crafting Ingredient - Wild Tomatoes can be found in warm biomes",
+
 
   "gui.vinery.recipebook.toggleRecipes.cookable" : "Showing Cookable",
   "gui.vinery.recipebook.toggleRecipes.fermentable" : "Showing Fermentable"
