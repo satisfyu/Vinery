@@ -296,7 +296,7 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
     @Override
     public void setStack(int slot, ItemStack stack) {
         final ItemStack stackInSlot = this.inventory.get(slot);
-        boolean dirty = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(stackInSlot) && ItemStack.areNbtEqual(stack, stackInSlot);
+        boolean dirty = !stack.isEmpty() && stack.isItemEqual(stackInSlot) && ItemStack.areNbtEqual(stack, stackInSlot);
         this.inventory.set(slot, stack);
         if (stack.getCount() > this.getMaxCountPerStack()) {
             stack.setCount(this.getMaxCountPerStack());

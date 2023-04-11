@@ -1,5 +1,6 @@
 package satisfyu.vinery.block.entity;
 
+import net.minecraft.registry.Registries;
 import satisfyu.vinery.block.CookingPotBlock;
 import satisfyu.vinery.client.gui.handler.CookingPotGuiHandler;
 import satisfyu.vinery.compat.farmersdelight.FarmersCookingPot;
@@ -29,7 +30,6 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -94,7 +94,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		if (getWorld() == null)
 			throw new NullPointerException("Null world invoked");
 		final BlockState belowState = this.getWorld().getBlockState(getPos().down());
-		final var optionalList = Registry.BLOCK.getEntryList(VineryTags.ALLOWS_COOKING_ON_POT);
+		final var optionalList = Registries.BLOCK.getEntryList(VineryTags.ALLOWS_COOKING_ON_POT);
 		final var entryList = optionalList.orElse(null);
 		if (entryList == null) {
 			return false;

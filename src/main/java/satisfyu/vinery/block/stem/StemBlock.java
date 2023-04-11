@@ -5,6 +5,7 @@ import net.minecraft.state.property.*;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.world.WorldView;
 import satisfyu.vinery.util.GrapevineType;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -92,7 +93,7 @@ public abstract class StemBlock extends Block implements Fertilizable {
     }
 
     @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
         return !isMature(state) && world.getBlockState(pos.down()).getBlock() == this && state.get(AGE) > 0;
     }
     @Override

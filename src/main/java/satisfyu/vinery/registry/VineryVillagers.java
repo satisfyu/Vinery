@@ -1,5 +1,8 @@
 package satisfyu.vinery.registry;
 
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import satisfyu.vinery.VineryIdentifier;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;
@@ -12,8 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
@@ -22,7 +23,7 @@ import net.minecraft.world.poi.PointOfInterestType;
 public class VineryVillagers {
     private static final VineryIdentifier WINEMAKER_POI_IDENTIFIER = new VineryIdentifier("winemaker_poi");
     public static final PointOfInterestType WINEMAKER_POI = PointOfInterestHelper.register(WINEMAKER_POI_IDENTIFIER, 1, 12, ObjectRegistry.WINE_PRESS);
-    public static final VillagerProfession WINEMAKER = Registry.register(Registry.VILLAGER_PROFESSION, new Identifier("vinery", "winemaker"), VillagerProfessionBuilder.create().id(new Identifier("vinery", "winemaker")).workstation(RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY, WINEMAKER_POI_IDENTIFIER)).build());
+    public static final VillagerProfession WINEMAKER = Registry.register(Registries.VILLAGER_PROFESSION, new Identifier("vinery", "winemaker"), VillagerProfessionBuilder.create().id(new Identifier("vinery", "winemaker")).workstation(RegistryKey.of(Registries.POINT_OF_INTEREST_TYPE.getKey(), WINEMAKER_POI_IDENTIFIER)).build());
 
     public static void init() {
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 1, factories -> {

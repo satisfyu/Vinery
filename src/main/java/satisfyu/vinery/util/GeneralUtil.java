@@ -27,7 +27,7 @@ import java.util.Optional;
 public class GeneralUtil {
 	
 	public static RegistryKey<ConfiguredFeature<?, ?>> configuredFeatureKey(String name) {
-		return RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(Vinery.MODID, name));
+		return RegistryKey.of(Registries.CONFIGURED_FEATURE_KEY, new Identifier(Vinery.MODID, name));
 	}
 	
 	public static boolean matchesRecipe(Inventory inventory, DefaultedList<Ingredient> recipe, int startIndex, int endIndex) {

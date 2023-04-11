@@ -38,14 +38,14 @@ public class PrivateAnimatedResultButton extends ClickableWidget {
     }
 
     public void setPos(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.setX(x);
+        this.setY(y);
     }
 
     @Override
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
         int i = 29;
         if (!craftingScreenHandler.hasIngredient(this.recipe)) {
@@ -59,18 +59,18 @@ public class PrivateAnimatedResultButton extends ClickableWidget {
         if (bl) {
             float f = 1.0F + 0.1F * (float)Math.sin((this.bounce / 15.0F * 3.1415927F));
             matrixStack.push();
-            matrixStack.translate((this.x + 8), (this.y + 12), 0.0);
+            matrixStack.translate((this.getX() + 8), (this.getY() + 12), 0.0);
             matrixStack.scale(f, f, 1.0F);
-            matrixStack.translate((-(this.x + 8)), (-(this.y + 12)), 0.0);
+            matrixStack.translate((-(this.getX() + 8)), (-(this.getY() + 12)), 0.0);
             RenderSystem.applyModelViewMatrix();
             this.bounce -= delta;
         }
 
-        this.drawTexture(matrices, this.x, this.y, i, j, this.width, this.height);
+        this.drawTexture(matrices, this.getX(), this.getY(), i, j, this.width, this.height);
         Recipe<?> recipe = this.getResult();
         int k = 4;
 
-        minecraftClient.getItemRenderer().renderInGui(recipe.getOutput(), this.x + k, this.y + k);
+        minecraftClient.getItemRenderer().renderInGui(recipe.getOutput(), this.getX() + k, this.getY() + k);
         if (bl) {
             matrixStack.pop();
             RenderSystem.applyModelViewMatrix();
@@ -101,12 +101,13 @@ public class PrivateAnimatedResultButton extends ClickableWidget {
     }
 
     @Override
-    public void appendNarrations(NarrationMessageBuilder builder) {
+    protected void appendClickableNarrations(NarrationMessageBuilder builder) {
         ItemStack itemStack = this.getResult().getOutput();
         builder.put(NarrationPart.TITLE, Text.translatable("narration.recipe", itemStack.getName()));
 
         builder.put(NarrationPart.USAGE, Text.translatable("narration.button.usage.hovered"));
     }
+
 
     @Override
     public int getWidth() {

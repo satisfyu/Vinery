@@ -27,13 +27,13 @@ public class PrivateRecipeGroupButtonWidget extends ToggleButtonWidget {
         if (this.bounce > 0.0F) {
             float f = 1.0F + 0.1F * (float)Math.sin((this.bounce / 15.0F * 3.1415927F));
             matrices.push();
-            matrices.translate((this.x + 8), (this.y + 12), 0.0);
+            matrices.translate((this.getX() + 8), (this.getY() + 12), 0.0);
             matrices.scale(1.0F, f, 1.0F);
-            matrices.translate((-(this.x + 8)), (-(this.y + 12)), 0.0);
+            matrices.translate((-(this.getX() + 8)), (-(this.getY() + 12)), 0.0);
         }
 
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderTexture(0, this.texture);
         RenderSystem.disableDepthTest();
         int i = this.u;
@@ -46,13 +46,13 @@ public class PrivateRecipeGroupButtonWidget extends ToggleButtonWidget {
             j += this.hoverVOffset;
         }
 
-        int k = this.x;
+        int k = this.getX();
         if (this.toggled) {
             k -= 2;
         }
 
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        this.drawTexture(matrices, k, this.y, i, j, this.width, this.height);
+        this.drawTexture(matrices, k, this.getY(), i, j, this.width, this.height);
         RenderSystem.enableDepthTest();
         this.renderIcons(minecraftClient.getItemRenderer());
         if (this.bounce > 0.0F) {
@@ -65,10 +65,10 @@ public class PrivateRecipeGroupButtonWidget extends ToggleButtonWidget {
         List<ItemStack> list = this.group.getIcons();
         int i = this.toggled ? -2 : 0;
         if (list.size() == 1) {
-            itemRenderer.renderInGui( list.get(0), this.x + 9 + i, this.y + 5);
+            itemRenderer.renderInGui( list.get(0), this.getX() + 9 + i, this.getY() + 5);
         } else if (list.size() == 2) {
-            itemRenderer.renderInGui( list.get(0), this.x + 3 + i, this.y + 5);
-            itemRenderer.renderInGui( list.get(1), this.x + 14 + i, this.y + 5);
+            itemRenderer.renderInGui( list.get(0), this.getX() + 3 + i, this.getY() + 5);
+            itemRenderer.renderInGui( list.get(1), this.getX() + 14 + i, this.getY() + 5);
         }
 
     }

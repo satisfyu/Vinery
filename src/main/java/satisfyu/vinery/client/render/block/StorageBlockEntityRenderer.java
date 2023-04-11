@@ -1,5 +1,6 @@
 package satisfyu.vinery.client.render.block;
 
+import net.minecraft.util.math.RotationAxis;
 import satisfyu.vinery.block.StorageBlock;
 import satisfyu.vinery.block.entity.StorageBlockEntity;
 import net.minecraft.block.BlockState;
@@ -10,7 +11,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.Vec3f;
 
 public class StorageBlockEntityRenderer implements BlockEntityRenderer<StorageBlockEntity> {
 
@@ -38,6 +38,6 @@ public class StorageBlockEntityRenderer implements BlockEntityRenderer<StorageBl
     public static void applyBlockAngle(MatrixStack matrices, BlockState state, float angleOffset) {
         float angle = state.get(StorageBlock.FACING).asRotation();
         matrices.translate(0.5, 0, 0.5);
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(angleOffset - angle));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotation(angleOffset - angle));
     }
 }

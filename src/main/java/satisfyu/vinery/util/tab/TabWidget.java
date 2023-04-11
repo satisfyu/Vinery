@@ -93,8 +93,8 @@ public class TabWidget extends ButtonWidget {
         boolean selected = this.isSelected();
 
         int xo = hovered || selected ? (this.isRightColumn() ? 2 : -2) : 0;
-        int x = this.x + 11 + xo;
-        int y = this.y + 4;
+        int x = this.getX() + 11 + xo;
+        int y = this.getY() + 4;
 
         // render background
         this.renderBackground(matrices, client, mouseX, mouseY);
@@ -110,7 +110,7 @@ public class TabWidget extends ButtonWidget {
     }
 
     public void renderButtonTexture(Identifier texture, MatrixStack matrices, int x, int y) {
-        setShader(GameRenderer::getPositionTexShader);
+        setShader(GameRenderer::getPositionTexProgram);
         setShaderTexture(0, texture);
         drawTexture(matrices, x, y, 0, 0, 16, 16, 16, 16);
     }

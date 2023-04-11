@@ -5,7 +5,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
 import satisfyu.vinery.block.WineBottleBlock;
 import satisfyu.vinery.block.entity.WineBottleBlockEntity;
 import satisfyu.vinery.registry.ObjectRegistry;
@@ -43,15 +43,15 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
         switch (state.get(WineBottleBlock.FACING)) {
             case NORTH -> {
                 matrices.translate(0f, 0f, 1f);
-                matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90));
+                matrices.multiply(RotationAxis.POSITIVE_Y.rotation(90));
             }
             case WEST -> {
                 matrices.translate(1f, 0f, 1f);
-                matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
+                matrices.multiply(RotationAxis.POSITIVE_Y.rotation(180));
             }
             case SOUTH -> {
                 matrices.translate(1f, 0f, 0f);
-                matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(270));
+                matrices.multiply(RotationAxis.POSITIVE_Y.rotation(270));
             }
         }
     }
@@ -64,7 +64,7 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
         matrices.translate(-0.15f, 0f, -0.25f);
         renderBlock(defaultState, matrices, vertexConsumers, entity);
         matrices.translate(.1f, 0f, .8f);
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(30));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotation(30));
         renderBlock(defaultState, matrices, vertexConsumers, entity);
 }
 
@@ -75,12 +75,12 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
         renderBlock(defaultState, matrices, vertexConsumers, entity);
         if (defaultState.getBlock() == ObjectRegistry.KELP_CIDER) {
             matrices.translate(.35f, .7f, -.13f);
-            matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
+            matrices.multiply(RotationAxis.POSITIVE_Y.rotation(90));
             renderBlock(defaultState, matrices, vertexConsumers, entity);
             return;
         }
         matrices.translate(.1f, 0f, 0f);
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(30));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotation(30));
         renderBlock(defaultState, matrices, vertexConsumers, entity);
     }
 }

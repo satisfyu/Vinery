@@ -9,6 +9,7 @@ import net.minecraft.client.util.Window;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
@@ -100,7 +101,7 @@ public class TabbedItemGroup extends ItemGroup {
     public void appendStacks(DefaultedList<ItemStack> stacks) {
         Optional<Tab> tab = this.getSelectedTab();
         Tab.Predicate predicate = tab.map(Tab::getPredicate).orElse(this.defaultPredicate);
-        Stream<Item> stream = Registry.ITEM.stream().filter(i -> predicate.test(this, i));
+        Stream<Item> stream = Registries.ITEM.stream().filter(i -> predicate.test(this, i));
         for (Item item : stream.toList()) stacks.add(new ItemStack(item));
     }
 

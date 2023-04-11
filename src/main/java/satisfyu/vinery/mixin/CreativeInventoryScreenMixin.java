@@ -81,7 +81,7 @@ public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScre
     private void onRenderTabIcon(MatrixStack matrices, ItemGroup group, CallbackInfo ci, boolean selected, boolean isTopRow, int column, int u, int v, int x, int y) {
         if (group instanceof TabbedItemGroup tabbedGroup) {
             tabbedGroup.getIconTexture(this.frame_isHovered(group, column, isTopRow), Identifier.class).ifPresent(texture -> {
-                setShader(GameRenderer::getPositionTexShader);
+                setShader(GameRenderer::getPositionTexProgram);
                 setShaderTexture(0, texture);
                 drawTexture(matrices, x + 6, y + (group.isTopRow() ? 9 : 7), 0, 0, 16, 16, 16, 16);
                 ci.cancel();

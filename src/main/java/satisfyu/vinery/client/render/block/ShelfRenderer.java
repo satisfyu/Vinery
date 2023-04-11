@@ -1,5 +1,6 @@
 package satisfyu.vinery.client.render.block;
 
+import net.minecraft.util.math.RotationAxis;
 import satisfyu.vinery.block.entity.StorageBlockEntity;
 import satisfyu.vinery.util.ClientUtil;
 import net.minecraft.client.MinecraftClient;
@@ -8,7 +9,6 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.Vec3f;
 
 public class ShelfRenderer implements StorageTypeRenderer{
     @Override
@@ -16,7 +16,7 @@ public class ShelfRenderer implements StorageTypeRenderer{
         ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
 
         matrices.translate(-0.4, 0.5, 0.25);
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90f));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotation(90));
         matrices.scale(0.5f, 0.5f, 0.5f);
 
         for (int i = 0; i < itemStacks.size(); i++) {
@@ -24,7 +24,7 @@ public class ShelfRenderer implements StorageTypeRenderer{
             if (!stack.isEmpty()) {
                 matrices.push();
                 matrices.translate(0f, 0f, 0.2f * i);
-                matrices.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(22.5f));
+                matrices.multiply(RotationAxis.NEGATIVE_Y.rotation(90));
                 ClientUtil.renderItem(stack, matrices, vertexConsumers, entity);
                 matrices.pop();
             }

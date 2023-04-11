@@ -1,20 +1,20 @@
 package satisfyu.vinery.compat.farmersdelight;
 
 import com.nhoryzon.mc.farmersdelight.recipe.CookingPotRecipe;
+import net.minecraft.registry.Registries;
 import satisfyu.vinery.block.entity.CookingPotEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.stream.Stream;
 
 public class FarmersCookingPot {
     public static Recipe<?> getRecipe(World world, Inventory inventory){
-        return world.getRecipeManager().getFirstMatch((RecipeType<? extends Recipe<Inventory>>) Registry.RECIPE_TYPE.get(new Identifier("farmersdelight", "cooking")), inventory, world).orElse(null);
+        return world.getRecipeManager().getFirstMatch((RecipeType<? extends Recipe<Inventory>>) Registries.RECIPE_TYPE.get(new Identifier("farmersdelight", "cooking")), inventory, world).orElse(null);
 
     }
 
@@ -28,7 +28,7 @@ public class FarmersCookingPot {
                 final ItemStack recipeOutput = r.getOutput();
                 final ItemStack outputSlotStack = entity.getStack(CookingPotEntity.OUTPUT_SLOT);
                 final int outputSlotCount = outputSlotStack.getCount();
-                if (!outputSlotStack.isItemEqualIgnoreDamage(recipeOutput)) {
+                if (!outputSlotStack.isItemEqual(recipeOutput)) {
                     return false;
                 } else if (outputSlotCount < entity.getMaxCountPerStack() && outputSlotCount < outputSlotStack.getMaxCount()) {
                     return true;
@@ -60,6 +60,6 @@ public class FarmersCookingPot {
     }
 
     private static Stream<CookingPotRecipe> recipeStream(World world) {
-        return world.getRecipeManager().listAllOfType((RecipeType<CookingPotRecipe>) Registry.RECIPE_TYPE.get(new Identifier("farmersdelight", "cooking"))).stream();
+        return world.getRecipeManager().listAllOfType((RecipeType<CookingPotRecipe>) Registries.RECIPE_TYPE.get(new Identifier("farmersdelight", "cooking"))).stream();
     }
 }

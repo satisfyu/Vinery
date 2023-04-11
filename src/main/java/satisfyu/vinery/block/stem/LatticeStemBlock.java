@@ -140,7 +140,7 @@ public class LatticeStemBlock extends StemBlock {
     }
 
     @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
         return !isMature(state) && state.get(AGE) > 0;
     }
 

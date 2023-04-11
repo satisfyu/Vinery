@@ -3,10 +3,10 @@ package satisfyu.vinery.registry;
 import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
+import net.minecraft.registry.Registry;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import net.minecraft.item.Item;
-import net.minecraft.util.registry.Registry;
 
 public class VineryBoatTypes {
 

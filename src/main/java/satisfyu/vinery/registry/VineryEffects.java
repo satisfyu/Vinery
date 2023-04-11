@@ -2,12 +2,13 @@ package satisfyu.vinery.registry;
 
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.effect.*;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.util.registry.Registry;
 
 public class VineryEffects {
 
@@ -30,7 +31,7 @@ public class VineryEffects {
 
 
     private static StatusEffect registerEffect(String name, StatusEffect effect){
-        return Registry.register(Registry.STATUS_EFFECT, new VineryIdentifier(name), effect);
+        return Registry.register(Registries.STATUS_EFFECT, new VineryIdentifier(name), effect);
     }
 
     public static void init(){

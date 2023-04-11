@@ -1,5 +1,7 @@
 package satisfyu.vinery.registry;
 
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.entity.*;
@@ -14,7 +16,6 @@ import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.*;
 
@@ -59,7 +60,7 @@ public class VineryBlockEntityTypes {
 
 
     public static final EntityType<ChairEntity> CHAIR = Registry.register(
-            Registry.ENTITY_TYPE,
+            Registries.ENTITY_TYPE,
             new Identifier(Vinery.MODID, "chair"),
             FabricEntityTypeBuilder.<ChairEntity>create(SpawnGroup.MISC, ChairEntity::new).dimensions(EntityDimensions.fixed(0.001F, 0.001F)).build()
     );
@@ -73,7 +74,7 @@ public class VineryBlockEntityTypes {
 
     public static void init() {
         for (Map.Entry<Identifier, BlockEntityType<?>> entry : BLOCK_ENTITY_TYPES.entrySet()) {
-            Registry.register(Registry.BLOCK_ENTITY_TYPE, entry.getKey(), entry.getValue());
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, entry.getKey(), entry.getValue());
         }
     }
 }

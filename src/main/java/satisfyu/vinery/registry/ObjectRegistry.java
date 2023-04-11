@@ -4,23 +4,6 @@ import com.mojang.datafixers.util.Pair;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import com.terraformersmc.terraform.wood.block.StrippableLogBlock;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import satisfyu.vinery.block.crops.TomatoCropBlock;
-import satisfyu.vinery.block.grape.GrapeBush;
-import satisfyu.vinery.block.grape.GrapeVineBlock;
-import satisfyu.vinery.block.grape.SavannaGrapeBush;
-import satisfyu.vinery.block.grape.TaigaGrapeBush;
-import satisfyu.vinery.block.stem.LatticeStemBlock;
-import satisfyu.vinery.block.stem.PaleStemBlock;
-import satisfyu.vinery.item.GrapeBushSeedItem;
-import satisfyu.vinery.Vinery;
-import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.block.*;
-import satisfyu.vinery.block.FlowerPotBlock;
-import satisfyu.vinery.item.*;
-import satisfyu.vinery.util.GrapevineType;
-import satisfyu.vinery.util.VineryFoodComponent;
-import satisfyu.vinery.world.VineryConfiguredFeatures;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -31,15 +14,30 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.Vinery;
+import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.block.FlowerPotBlock;
+import satisfyu.vinery.block.*;
+import satisfyu.vinery.block.crops.TomatoCropBlock;
+import satisfyu.vinery.block.grape.GrapeBush;
+import satisfyu.vinery.block.grape.GrapeVineBlock;
+import satisfyu.vinery.block.grape.SavannaGrapeBush;
+import satisfyu.vinery.block.grape.TaigaGrapeBush;
+import satisfyu.vinery.block.stem.LatticeStemBlock;
+import satisfyu.vinery.block.stem.PaleStemBlock;
+import satisfyu.vinery.item.*;
+import satisfyu.vinery.util.GrapevineType;
+import satisfyu.vinery.util.VineryFoodComponent;
+import satisfyu.vinery.world.VineryConfiguredFeatures;
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -134,7 +132,7 @@ public class ObjectRegistry {
     public static final Block CHERRY_SLAB = register("cherry_slab", new SlabBlock(getSlabSettings()));
     public static final Block CHERRY_FENCE = register("cherry_fence", new FenceBlock(AbstractBlock.Settings.copy(Blocks.OAK_FENCE)));
     public static final Block CHERRY_FENCE_GATE = register("cherry_fence_gate", new FenceGateBlock(AbstractBlock.Settings.copy(Blocks.OAK_FENCE)));
-    public static final Block CHERRY_BUTTON = register("cherry_button", new WoodenButtonBlock(AbstractBlock.Settings.copy(Blocks.OAK_BUTTON)));
+    public static final Block CHERRY_BUTTON = register("cherry_button", new ButtonBlock(FabricBlockSettings.Settings.copy(Blocks.OAK_BUTTON)));
     public static final Block CHERRY_PRESSURE_PLATE = register("cherry_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, AbstractBlock.Settings.copy(Blocks.OAK_PRESSURE_PLATE)));
     public static final Block CHERRY_DOOR = register("cherry_door", new DoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_DOOR)));
     public static final Block CHERRY_TRAPDOOR = register("cherry_trapdoor", new TrapdoorBlock(AbstractBlock.Settings.copy(Blocks.OAK_TRAPDOOR)));
@@ -285,10 +283,10 @@ public class ObjectRegistry {
 
     public static void init() {
         for (Map.Entry<Identifier, Block> entry : BLOCKS.entrySet()) {
-            Registry.register(Registry.BLOCK, entry.getKey(), entry.getValue());
+            Registry.register(Registries.BLOCK, entry.getKey(), entry.getValue());
         }
         for (Map.Entry<Identifier, Item> entry : ITEMS.entrySet()) {
-            Registry.register(Registry.ITEM, entry.getKey(), entry.getValue());
+            Registry.register(Registries.ITEM, entry.getKey(), entry.getValue());
         }
         FlammableBlockRegistry flammableRegistry = FlammableBlockRegistry.getDefaultInstance();
         flammableRegistry.add(CHERRY_PLANKS, 5, 20);

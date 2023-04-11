@@ -1,5 +1,6 @@
 package satisfyu.vinery.client.gui.handler;
 
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import satisfyu.vinery.block.entity.CookingPotEntity;
@@ -110,5 +111,10 @@ public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
     @Override
     public int getCraftingSlotCount() {
         return 7;
+    }
+
+    @Override
+    public ItemStack quickMove(PlayerEntity player, int slot) {
+        return null;
     }
 }

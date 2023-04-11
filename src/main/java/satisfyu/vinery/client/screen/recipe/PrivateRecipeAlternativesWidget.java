@@ -187,9 +187,11 @@ public class PrivateRecipeAlternativesWidget extends DrawableHelper implements D
             this.alignRecipeToGrid(3, 3, -1, recipe, recipe.getIngredients().iterator(), 0);
         }
 
-        public void appendNarrations(NarrationMessageBuilder builder) {
+        protected void appendClickableNarrations(NarrationMessageBuilder builder) {
             this.appendDefaultNarrations(builder);
         }
+
+
 
         public void acceptAlignedInput(Iterator<Ingredient> inputs, int slot, int amount, int gridX, int gridY) {
             ItemStack[] itemStacks = inputs.next().getMatchingStacks();
@@ -211,10 +213,10 @@ public class PrivateRecipeAlternativesWidget extends DrawableHelper implements D
                 j += 26;
             }
 
-            this.drawTexture(matrices, this.x, this.y, i, j, this.width, this.height);
+            this.drawTexture(matrices, this.getX(), this.getY(), i, j, this.width, this.height);
             MatrixStack matrixStack = RenderSystem.getModelViewStack();
             matrixStack.push();
-            matrixStack.translate( (this.x + 2), (this.y + 2), 125.0);
+            matrixStack.translate( (this.getX() + 2), (this.getY() + 2), 125.0);
 
             for (InputSlot inputSlot : this.slots) {
                 matrixStack.push();

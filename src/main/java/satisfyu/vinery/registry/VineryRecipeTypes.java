@@ -1,14 +1,15 @@
 package satisfyu.vinery.registry;
 
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.recipe.CookingPotRecipe;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.recipe.WoodFiredOvenRecipe;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,10 +43,10 @@ public class VineryRecipeTypes {
 
     public static void init() {
         for (Map.Entry<Identifier, RecipeSerializer<?>> entry : RECIPE_SERIALIZERS.entrySet()) {
-            Registry.register(Registry.RECIPE_SERIALIZER, entry.getKey(), entry.getValue());
+            Registry.register(Registries.RECIPE_SERIALIZER, entry.getKey(), entry.getValue());
         }
         for (Map.Entry<Identifier, RecipeType<?>> entry : RECIPE_TYPES.entrySet()) {
-            Registry.register(Registry.RECIPE_TYPE, entry.getKey(), entry.getValue());
+            Registry.register(Registries.RECIPE_TYPE, entry.getKey(), entry.getValue());
         }
     }
 
