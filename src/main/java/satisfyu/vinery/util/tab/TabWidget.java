@@ -14,6 +14,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
+import java.util.function.Supplier;
+
 import static com.mojang.blaze3d.systems.RenderSystem.*;
 
 @Environment(EnvType.CLIENT)
@@ -26,7 +28,7 @@ public class TabWidget extends ButtonWidget {
     private boolean selected;
 
     public TabWidget(int x, int y, TabbedItemGroup group, int index, Text message, GUIIcon<Identifier> backgroundTexture) {
-        super(x, y, 34, 26, message, button -> {});
+        super(x, y, 34, 26, message, button -> {}, Supplier::get);
         this.group = group;
         this.index = index;
         this.backgroundTexture = backgroundTexture;
@@ -106,7 +108,7 @@ public class TabWidget extends ButtonWidget {
         );
 
         // render tooltip
-        if (hovered) this.renderTooltip(matrices, mouseX, mouseY);
+        if (hovered) this.renderTooltip(matrices);
     }
 
     public void renderButtonTexture(Identifier texture, MatrixStack matrices, int x, int y) {
@@ -129,11 +131,10 @@ public class TabWidget extends ButtonWidget {
         defaultBlendFunc();
         blendFunc(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA);
         setShaderTexture(0, this.getBackgroundTexture());
-        drawTexture(matrices, this.x, this.y, 0, this.isRightColumn() ? 32 : 0, 64, 32, 64, 64);
+        drawTexture(matrices, this.getX(), this.getY(), 0, this.isRightColumn() ? 32 : 0, 64, 32, 64, 64);
     }
 
-    @Override
-    public void renderTooltip(MatrixStack matrices, int mouseX, int mouseY) {
+    public void renderTooltip(MatrixStack matrices) {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.currentScreen != null && !this.isSelected()) {
             Text message = this.getMessage();
@@ -142,7 +143,7 @@ public class TabWidget extends ButtonWidget {
             int height = tooltip.getHeight();
             int ox = this.isRightColumn() ? -this.width + 62 : -(width + this.width) + 20;
             int oz = -(height + this.height) + 16;
-            client.currentScreen.renderTooltip(matrices, message, x + ox, y - oz);
+            client.currentScreen.renderTooltip(matrices, message, this.getX() + ox, this.getY() - oz);
         }
     }
 }

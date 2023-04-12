@@ -1,44 +1,19 @@
 package satisfyu.vinery.world;
 
-import com.google.common.collect.ImmutableList;
-import satisfyu.vinery.block.CherryLeaves;
-import satisfyu.vinery.feature.JungleRedBushFeature;
-import satisfyu.vinery.feature.JungleWhiteBushFeature;
-import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.block.grape.GrapeBush;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.fabricmc.fabric.api.biome.v1.*;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DataPool;
-import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.world.biome.BiomeKeys;
-import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
-import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
-import net.minecraft.world.gen.foliage.RandomSpreadFoliagePlacer;
-import net.minecraft.world.gen.placementmodifier.*;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
-import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
-import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
-import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer;
-import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-import static satisfyu.vinery.block.CherryLeaves.VARIANT;
 
 public class VineryConfiguredFeatures {
 
-
+    /*
     public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> TAIGA_RED_GRAPE_BUSH_PATCH = ConfiguredFeatures.register(VineryIdentifier.asString("taiga_red_grape_bush"), Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(ObjectRegistry.TAIGA_RED_GRAPE_BUSH.getDefaultState().with(GrapeBush.AGE, 2))), List.of(Blocks.GRASS_BLOCK), 36));
     public static final RegistryEntry<PlacedFeature> TAIGA_RED_GRAPE_PATCH_CHANCE = PlacedFeatures.register(VineryIdentifier.asString("taiga_red_grape_bush_chance"), TAIGA_RED_GRAPE_BUSH_PATCH, RarityFilterPlacementModifier.of(92), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
     public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> TAIGA_WHITE_GRAPE_BUSH_PATCH = ConfiguredFeatures.register(VineryIdentifier.asString("taiga_white_grape_bush"), Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(ObjectRegistry.TAIGA_WHITE_GRAPE_BUSH.getDefaultState().with(GrapeBush.AGE, 2))), List.of(Blocks.GRASS_BLOCK), 36));
@@ -67,6 +42,8 @@ public class VineryConfiguredFeatures {
 
 
 
+
+
     private static <C extends FeatureConfig, F extends Feature<C>> F register(String name, F feature) {
         return Registry.register(Registry.FEATURE, name, feature);
     }
@@ -86,20 +63,22 @@ public class VineryConfiguredFeatures {
         Predicate<BiomeSelectionContext> jungleBiomes = BiomeSelectors.includeByKey(BiomeKeys.JUNGLE, BiomeKeys.SPARSE_JUNGLE, BiomeKeys.BAMBOO_JUNGLE, BiomeKeys.WOODED_BADLANDS);
 
 
-        world.add(ModificationPhase.ADDITIONS, plainsBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, RED_GRAPE_PATCH_CHANCE.value()));
-        world.add(ModificationPhase.ADDITIONS, plainsBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, WHITE_GRAPE_PATCH_CHANCE.value()));
-        world.add(ModificationPhase.ADDITIONS, savannaBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, SAVANNA_RED_GRAPE_PATCH_CHANCE.value()));
-        world.add(ModificationPhase.ADDITIONS, savannaBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, SAVANNA_WHITE_GRAPE_PATCH_CHANCE.value()));
-        world.add(ModificationPhase.ADDITIONS, taigaBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, TAIGA_RED_GRAPE_PATCH_CHANCE.value()));
-        world.add(ModificationPhase.ADDITIONS, taigaBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, TAIGA_WHITE_GRAPE_PATCH_CHANCE.value()));
-        world.add(ModificationPhase.ADDITIONS, jungleBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, JUNGLE_RED_GRAPE_PATCH_CHANCE.value()));
-        world.add(ModificationPhase.ADDITIONS, jungleBiomes, ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, JUNGLE_WHITE_GRAPE_PATCH_CHANCE.value()));
-        world.add(ModificationPhase.ADDITIONS, getTreesSelector(), ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, TREE_CHERRY.value()));
-        world.add(ModificationPhase.ADDITIONS, getTreesSelector(), ctx -> ctx.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.VEGETAL_DECORATION, TREE_CHERRY_OLD.value()));
+        world.add(ModificationPhase.ADDITIONS, plainsBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, RED_GRAPE_PATCH_CHANCE.value()));
+        world.add(ModificationPhase.ADDITIONS, plainsBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, WHITE_GRAPE_PATCH_CHANCE.value()));
+        world.add(ModificationPhase.ADDITIONS, savannaBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, SAVANNA_RED_GRAPE_PATCH_CHANCE.value()));
+        world.add(ModificationPhase.ADDITIONS, savannaBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, SAVANNA_WHITE_GRAPE_PATCH_CHANCE.value()));
+        world.add(ModificationPhase.ADDITIONS, taigaBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, TAIGA_RED_GRAPE_PATCH_CHANCE.value()));
+        world.add(ModificationPhase.ADDITIONS, taigaBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, TAIGA_WHITE_GRAPE_PATCH_CHANCE.value()));
+        world.add(ModificationPhase.ADDITIONS, jungleBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, JUNGLE_RED_GRAPE_PATCH_CHANCE.value()));
+        world.add(ModificationPhase.ADDITIONS, jungleBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, JUNGLE_WHITE_GRAPE_PATCH_CHANCE.value()));
+        world.add(ModificationPhase.ADDITIONS, getTreesSelector(), ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, TREE_CHERRY.value()));
+        world.add(ModificationPhase.ADDITIONS, getTreesSelector(), ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Feature.VEGETAL_DECORATION, TREE_CHERRY_OLD.value()));
     }
+
+     */
  
 	private static Predicate<BiomeSelectionContext> getTreesSelector() {
-        return BiomeSelectors.tag(TagKey.of(Registry.BIOME_KEY, new Identifier("vinery:has_structure/tree")));
+        return BiomeSelectors.tag(TagKey.of(RegistryKeys.BIOME, new Identifier("vinery:has_structure/tree")));
 	}
 
     private static BlockPredicate createBlockPredicate(List<Block> validGround) {

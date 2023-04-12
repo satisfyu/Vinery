@@ -78,8 +78,7 @@ public abstract class  PrivateRecipeBookWidget extends DrawableHelper implements
         if (this.open) {
             this.reset();
         }
-
-        client.keyboard.setRepeatEvents(true);
+        //client.keyboard.setRepeatEvents(true);
     }
 
     protected void setOpen(boolean opened) {
@@ -102,9 +101,12 @@ public abstract class  PrivateRecipeBookWidget extends DrawableHelper implements
     public void toggleOpen() {
         this.setOpen(!this.isOpen());
     }
+    /*
     public void close() {
         this.client.keyboard.setRepeatEvents(false);
     }
+
+     */
     private boolean toggleFilteringCraftable() {
         boolean bl = !VineryClient.rememberedCraftableToggle;
         VineryClient.rememberedCraftableToggle = bl;
@@ -115,7 +117,7 @@ public abstract class  PrivateRecipeBookWidget extends DrawableHelper implements
         if (this.isOpen()) {
             matrices.push();
             matrices.translate(0.0, 0.0, 100.0);
-            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShader(GameRenderer::getPositionTexProgram);
             RenderSystem.setShaderTexture(0, TEXTURE);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             int i = (this.parentWidth - 147) / 2 - this.leftOffset;

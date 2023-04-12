@@ -33,7 +33,7 @@ public abstract class WanderingTraderManagerMixin implements Spawner {
 	
 	@Shadow @Final private ServerWorldProperties properties;
 	
-	@Inject(method = "trySpawn", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/entity/EntityType;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/nbt/NbtCompound;Lnet/minecraft/text/Text;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/SpawnReason;ZZ)Lnet/minecraft/entity/Entity;"), cancellable = true)
+	@Inject(method = "trySpawn", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/entity/EntityType;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/SpawnReason;)Lnet/minecraft/entity/Entity;"), cancellable = true)
 	private void trySpawn(ServerWorld world, CallbackInfoReturnable<Boolean> cir) {
 		if (world.random.nextBoolean()) {
 			ServerPlayerEntity playerEntity = world.getRandomAlivePlayer();
@@ -48,14 +48,14 @@ public abstract class WanderingTraderManagerMixin implements Spawner {
 					return;
 				}
 				
-				WanderingTraderEntity wanderingTraderEntity = VineryEntites.WANDERING_WINEMAKER.spawn(world, null, null, null, blockPos3, SpawnReason.EVENT, false, false);
+				WanderingTraderEntity wanderingTraderEntity = VineryEntites.WANDERING_WINEMAKER.spawn(world,  blockPos3, SpawnReason.EVENT);
 				if (wanderingTraderEntity != null) {
 					for (int j = 0; j < 2; ++j) {
 						BlockPos blockPos4 = this.getNearbySpawnPos(world, wanderingTraderEntity.getBlockPos(), 4);
 						if (blockPos4 == null) {
 							return;
 						}
-						TraderLlamaEntity traderLlamaEntity = VineryEntites.MULE.spawn(world, null, null, null, blockPos4, SpawnReason.EVENT, false, false);
+						TraderLlamaEntity traderLlamaEntity = VineryEntites.MULE.spawn(world, blockPos4, SpawnReason.EVENT);
 						if (traderLlamaEntity == null) {
 							return;
 						}

@@ -58,7 +58,7 @@ public abstract class AbstractRecipeBookGUIScreen<T extends AbstractPrivateRecip
 
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, BACKGROUND);
 
@@ -115,7 +115,7 @@ public abstract class AbstractRecipeBookGUIScreen<T extends AbstractPrivateRecip
 
     @Override
     public void removed() {
-        this.recipeBook.close();
+        //this.recipeBook.close();
         super.removed();
     }
 

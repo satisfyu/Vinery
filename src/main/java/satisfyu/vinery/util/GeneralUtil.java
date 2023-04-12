@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -12,12 +11,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import satisfyu.vinery.Vinery;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,10 +20,12 @@ import java.util.List;
 import java.util.Optional;
 
 public class GeneralUtil {
-	
+	/*
 	public static RegistryKey<ConfiguredFeature<?, ?>> configuredFeatureKey(String name) {
 		return RegistryKey.of(Registries.CONFIGURED_FEATURE_KEY, new Identifier(Vinery.MODID, name));
 	}
+
+	 */
 	
 	public static boolean matchesRecipe(Inventory inventory, DefaultedList<Ingredient> recipe, int startIndex, int endIndex) {
 		final List<ItemStack> validStacks = new ArrayList<>();
