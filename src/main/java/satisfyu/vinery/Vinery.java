@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import satisfyu.vinery.registry.*;
 import satisfyu.vinery.world.VineryBiomeModification;
+import satisfyu.vinery.world.VineryFeatures;
 
 public class Vinery implements ModInitializer {
     public static final String MODID = "vinery";
@@ -26,6 +27,7 @@ public class Vinery implements ModInitializer {
         VineryScreenHandlerTypes.init();
         VineryRecipeTypes.init();
         VineryBoatTypes.init();
+        VineryFeatures.init();
         VineryBiomeModification.init();
         VinerySoundEvents.init();
         VineryVillagers.init();
@@ -34,9 +36,6 @@ public class Vinery implements ModInitializer {
 
         FabricLoader.getInstance().getModContainer(MODID).ifPresent(container -> {
             ResourceManagerHelper.registerBuiltinResourcePack(new VineryIdentifier("bushy_leaves"), container, ResourcePackActivationType.NORMAL);
-        });
-
-        FabricLoader.getInstance().getModContainer(MODID).ifPresent(container -> {
             ResourceManagerHelper.registerBuiltinResourcePack(new VineryIdentifier("apple_leaves"), container, ResourcePackActivationType.NORMAL);
         });
     }
