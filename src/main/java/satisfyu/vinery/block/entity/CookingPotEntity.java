@@ -134,7 +134,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		}
 		else {
 			if(VineryUtils.isFDLoaded()){
-				return FarmersCookingPot.canCraft(recipe, this);
+				//return FarmersCookingPot.canCraft(recipe, this);
 			}
 		}
 		return false;
@@ -210,7 +210,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		}
 		Recipe<?> recipe = world.getRecipeManager().getFirstMatch(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE, this, world).orElse(null);
 		if(recipe == null && VineryUtils.isFDLoaded()){
-			recipe = FarmersCookingPot.getRecipe(world, this);
+			//recipe = FarmersCookingPot.getRecipe(world, this);
 		}
 
 		boolean canCraft = canCraft(recipe);

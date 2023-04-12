@@ -50,7 +50,7 @@ public class VineryReiClientPlugin implements REIClientPlugin {
     @Override
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerFiller(CookingPotRecipe.class, CookingPotDisplay::new);
-        if(VineryUtils.isFDLoaded()) registry.registerFiller(FarmersCookingPot.getRecipeClass(), CookingPotDisplay::new);
+        //if(VineryUtils.isFDLoaded()) registry.registerFiller(FarmersCookingPot.getRecipeClass(), CookingPotDisplay::new);
         registry.registerFiller(WoodFiredOvenRecipe.class, WoodFiredOvenDisplay::new);
         registry.registerFiller(FermentationBarrelRecipe.class, FermentationBarrelDisplay::new);
         registry.add(new WinePressDisplay());

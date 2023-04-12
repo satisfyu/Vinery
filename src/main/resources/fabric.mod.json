@@ -25,6 +25,9 @@
     ],
     "vinery": [
       "satisfyu.vinery.registry.StorageTypes"
+    ],
+    "fabric-datagen": [
+      "satisfyu.vinery.datagen.ModDataGeneration"
     ]
   },
   "mixins": [

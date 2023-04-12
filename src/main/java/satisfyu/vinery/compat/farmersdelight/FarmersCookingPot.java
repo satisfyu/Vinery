@@ -1,6 +1,5 @@
 package satisfyu.vinery.compat.farmersdelight;
 
-import com.nhoryzon.mc.farmersdelight.recipe.CookingPotRecipe;
 import net.minecraft.registry.Registries;
 import satisfyu.vinery.block.entity.CookingPotEntity;
 import net.minecraft.inventory.Inventory;
@@ -13,12 +12,15 @@ import net.minecraft.world.World;
 import java.util.stream.Stream;
 
 public class FarmersCookingPot {
+    /*
     public static Recipe<?> getRecipe(World world, Inventory inventory){
         return world.getRecipeManager().getFirstMatch((RecipeType<? extends Recipe<Inventory>>) Registries.RECIPE_TYPE.get(new Identifier("farmersdelight", "cooking")), inventory, world).orElse(null);
 
     }
 
+
     public static boolean canCraft(Recipe<?> recipe, CookingPotEntity entity){
+
         if(recipe instanceof CookingPotRecipe r){
             if (!entity.getStack(CookingPotEntity.BOTTLE_INPUT_SLOT).isOf(r.getContainer().getItem())) {
                 return false;
@@ -62,4 +64,6 @@ public class FarmersCookingPot {
     private static Stream<CookingPotRecipe> recipeStream(World world) {
         return world.getRecipeManager().listAllOfType((RecipeType<CookingPotRecipe>) Registries.RECIPE_TYPE.get(new Identifier("farmersdelight", "cooking"))).stream();
     }
+
+     */
 }

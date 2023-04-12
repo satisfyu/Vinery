@@ -1,5 +1,6 @@
 package satisfyu.vinery.registry;
 
+import blue.endless.jankson.annotation.Nullable;
 import com.mojang.datafixers.util.Pair;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
@@ -8,6 +9,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
+import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -15,10 +17,13 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.FlowerPotBlock;
 import satisfyu.vinery.block.*;
@@ -32,6 +37,7 @@ import satisfyu.vinery.block.stem.PaleStemBlock;
 import satisfyu.vinery.item.*;
 import satisfyu.vinery.util.GrapevineType;
 import satisfyu.vinery.util.VineryFoodComponent;
+import satisfyu.vinery.world.VineryConfiguredFeatures;
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -70,30 +76,30 @@ public class ObjectRegistry {
     public static final Block JUNGLE_WHITE_GRAPE_BUSH = register("jungle_grape_bush_white", new GrapeVineBlock(getBushSettings(), GrapevineType.JUNGLE_WHITE), false);
     public static final Item JUNGLE_WHITE_GRAPE_SEEDS = register("jungle_grape_seeds_white", new GrapeBushSeedItem(JUNGLE_WHITE_GRAPE_BUSH, getSettings(), GrapevineType.JUNGLE_WHITE));
     public static final Item JUNGLE_WHITE_GRAPE = register("jungle_grapes_white", new GrapeItem(getSettings().food(FoodComponents.BAKED_POTATO), GrapevineType.JUNGLE_WHITE, ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS.getDefaultStack()));
-    /*
+
     public static final Block CHERRY_SAPLING = register("cherry_sapling", new SaplingBlock(new SaplingGenerator() {
         @Nullable
         @Override
-        protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
-            if (random.nextBoolean()) return VineryConfiguredFeatures.CHERRY;
-            return VineryConfiguredFeatures.CHERRY_VARIANT;
+        protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(net.minecraft.util.math.random.Random random, boolean bees) {
+            if (random.nextBoolean()) return VineryConfiguredFeatures.CHERRY_KEY;
+            return VineryConfiguredFeatures.CHERRY_VARIANT_KEY;
         }
     }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)));
     public static final Block OLD_CHERRY_SAPLING = register("old_cherry_sapling", new SaplingBlock(new SaplingGenerator() {
         @Nullable
         @Override
-        protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
+        protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(net.minecraft.util.math.random.Random random, boolean bees) {
             if (random.nextBoolean()) {
-                if (bees) return VineryConfiguredFeatures.OLD_CHERRY_BEE;
-                return VineryConfiguredFeatures.OLD_CHERRY;
+                if (bees) return VineryConfiguredFeatures.OLD_CHERRY_BEE_KEY;
+                return VineryConfiguredFeatures.OLD_CHERRY_KEY;
             } else {
-                if (bees) return VineryConfiguredFeatures.OLD_CHERRY_VARIANT_WITH_BEE;
-                return VineryConfiguredFeatures.OLD_CHERRY_VARIANT;
+                if (bees) return VineryConfiguredFeatures.OLD_CHERRY_VARIANT_WITH_BEE_KEY;
+                return VineryConfiguredFeatures.OLD_CHERRY_VARIANT_KEY;
             }
         }
     }, AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)), true);
 
-     */
+
     public static final Block GRAPEVINE_LEAVES = register("grapevine_leaves", new GrapevineLeaves(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
     public static final Block CHERRY_LEAVES = register("cherry_leaves", new CherryLeaves(FabricBlockSettings.copy(Blocks.OAK_LEAVES)));
     public static final Block WHITE_GRAPE_CRATE = register("white_grape_crate", new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));

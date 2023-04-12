@@ -43,7 +43,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	include(modImplementation("com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraform_wood_api_version}"))
 
-	modImplementation "curse.maven:farmersdelightfabric-482834:${project.delight_version}"
+	//modImplementation "curse.maven:farmersdelightfabric-482834:${project.delight_version}"
 
 	// REI Runtime for Fabric
 	modApi "dev.architectury:architectury-fabric:$architectury_version"
@@ -51,6 +51,33 @@ dependencies {
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version"
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:$rei_version"
 }
+
+	loom {
+		runs {
+			//
+			// This adds a new gradle task that runs the datagen API: "gradlew runDatagenClient"
+			//
+			datagenClient {
+				inherit client
+				name "Data Generation"
+				vmArg "-Dfabric-api.datagen"
+				vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+				vmArg "-Dfabric-api.datagen.modid=${archives_base_name}"
+
+				runDir "build/datagen"
+			}
+		}
+	}
+
+	sourceSets {
+		main {
+			resources {
+				srcDirs += [
+						'src/main/generated'
+				]
+			}
+		}
+	}
 
 processResources {
 	inputs.property "version", project.version

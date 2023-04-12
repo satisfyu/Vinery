@@ -43,7 +43,8 @@ public class CookingPotDisplay extends BasicDisplay {
             return c.getContainer();
         }
         else if(VineryUtils.isFDLoaded()){
-            return FarmersCookingPot.getContainer(recipe);
+            //return FarmersCookingPot.getContainer(recipe);
+            return ItemStack.EMPTY;
         }
         else return ItemStack.EMPTY;
     }
