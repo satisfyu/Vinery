@@ -39,7 +39,7 @@ public class NineBottleRenderer implements StorageTypeRenderer{
                 }
 
                 matrices.translate(x, y, 0f);
-                matrices.multiply(RotationAxis.POSITIVE_Y.rotation(90));
+                matrices.multiply(RotationAxis.NEGATIVE_X.rotationDegrees(90));
                 ClientUtil.renderBlock(blockItem.getBlock().getDefaultState().with(WineBottleBlock.COUNT, 0), matrices, vertexConsumers, entity);
                 matrices.pop();
             }

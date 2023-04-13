@@ -35,7 +35,7 @@ public class FourBottleRenderer implements StorageTypeRenderer{
                     matrices.pop();
                     continue;
                 }
-                matrices.multiply(RotationAxis.NEGATIVE_X.rotation(90));
+                matrices.multiply(RotationAxis.NEGATIVE_X.rotationDegrees(90));
                 ClientUtil.renderBlock(blockItem.getBlock().getDefaultState().with(WineBottleBlock.COUNT, 0), matrices, vertexConsumers, entity);
                 matrices.pop();
             }
