@@ -39,7 +39,7 @@ public class TeleportEffect extends InstantStatusEffect {
         BlockPos target = null;
         for (double i = 12; i >= 2; i -= 0.5) {
             Vec3d v3d = targetVec.add(lookVec.multiply(i, i, i));
-            target = new BlockPos(Math.round(v3d.x), Math.round(v3d.y), Math.round(v3d.z));
+            target = new BlockPos((int) Math.round(v3d.x), (int) Math.round(v3d.y), (int) Math.round(v3d.z));
             if (!fullBlockAt(world, target) && !fullBlockAt(world, target.up())) {
                 break;
             } else {

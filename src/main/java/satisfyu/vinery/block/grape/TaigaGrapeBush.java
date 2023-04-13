@@ -5,7 +5,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -48,7 +47,7 @@ public class TaigaGrapeBush extends GrapeBush {
                 double d = Math.abs(entity.getX() - entity.lastRenderX);
                 double e = Math.abs(entity.getZ() - entity.lastRenderZ);
                 if (d >= 0.003000000026077032 || e >= 0.003000000026077032) {
-                    entity.damage(DamageSource.SWEET_BERRY_BUSH, 1.0F);
+                    entity.damage(world.getDamageSources().sweetBerryBush(), 1.0F);
                 }
             }
 

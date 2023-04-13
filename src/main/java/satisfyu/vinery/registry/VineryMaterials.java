@@ -1,6 +1,7 @@
 package satisfyu.vinery.registry;
 
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ArmorMaterials;
 import net.minecraft.recipe.Ingredient;
@@ -9,14 +10,16 @@ import net.minecraft.sound.SoundEvent;
 public class VineryMaterials {
 
     public static final ArmorMaterial VINEMAKER_ARMOR = new ArmorMaterial() {
+
+
         @Override
-        public int getDurability(EquipmentSlot slot) {
-            return ArmorMaterials.LEATHER.getDurability(slot);
+        public int getDurability(ArmorItem.Type type) {
+            return ArmorMaterials.LEATHER.getDurability(type);
         }
 
         @Override
-        public int getProtectionAmount(EquipmentSlot slot) {
-            return ArmorMaterials.LEATHER.getProtectionAmount(slot);
+        public int getProtection(ArmorItem.Type type) {
+            return ArmorMaterials.LEATHER.getProtection(type);
         }
 
         @Override

@@ -1,6 +1,5 @@
 package satisfyu.vinery.block;
 
-import satisfyu.vinery.registry.DamageSourceRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FacingBlock;
@@ -38,7 +37,7 @@ public class StoveBlock extends FacingBlock {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        return getDefaultState().with(FACING, context.getPlayerFacing().getOpposite()).with(LIT, true);
+        return getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite()).with(LIT, true);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class StoveBlock extends FacingBlock {
         boolean isLit = state.get(LIT);
         if (isLit && !entity.isFireImmune() && entity instanceof LivingEntity livingEntity &&
                 !EnchantmentHelper.hasFrostWalker(livingEntity)) {
-            entity.damage(DamageSourceRegistry.STOVE_BLOCK, 1.f);
+            entity.damage(world.getDamageSources().inFire(), 1.f);
         }
         super.onSteppedOn(world, pos, state, entity);
     }

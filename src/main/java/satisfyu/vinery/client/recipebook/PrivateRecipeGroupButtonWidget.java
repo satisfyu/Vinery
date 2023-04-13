@@ -54,21 +54,21 @@ public class PrivateRecipeGroupButtonWidget extends ToggleButtonWidget {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         this.drawTexture(matrices, k, this.getY(), i, j, this.width, this.height);
         RenderSystem.enableDepthTest();
-        this.renderIcons(minecraftClient.getItemRenderer());
+        this.renderIcons(matrices, minecraftClient.getItemRenderer());
         if (this.bounce > 0.0F) {
             matrices.pop();
             this.bounce -= delta;
         }
     }
 
-    private void renderIcons(ItemRenderer itemRenderer) {
+    private void renderIcons(MatrixStack matrices, ItemRenderer itemRenderer) {
         List<ItemStack> list = this.group.getIcons();
         int i = this.toggled ? -2 : 0;
         if (list.size() == 1) {
-            itemRenderer.renderInGui( list.get(0), this.getX() + 9 + i, this.getY() + 5);
+            itemRenderer.renderInGui(matrices, list.get(0), this.getX() + 9 + i, this.getY() + 5);
         } else if (list.size() == 2) {
-            itemRenderer.renderInGui( list.get(0), this.getX() + 3 + i, this.getY() + 5);
-            itemRenderer.renderInGui( list.get(1), this.getX() + 14 + i, this.getY() + 5);
+            itemRenderer.renderInGui(matrices, list.get(0), this.getX() + 3 + i, this.getY() + 5);
+            itemRenderer.renderInGui(matrices, list.get(1), this.getX() + 14 + i, this.getY() + 5);
         }
 
     }

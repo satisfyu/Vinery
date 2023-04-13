@@ -49,10 +49,10 @@ public class ChenetBlock extends Block {
     }
 
     @Override
-    public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
+    public boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
         return true;
     }
-    
+
     public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
         return stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
     }

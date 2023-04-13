@@ -35,8 +35,8 @@ public class VineryPlacedFeatures {
     public static void bootstrap(Registerable<PlacedFeature> c) {
         var configuredFeatureRegistryEntryLookup = c.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
-        register(c, TREE_CHERRY_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.CHERRY_KEY), VegetationPlacedFeatures.modifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(0, 0.01f, 1), ObjectRegistry.CHERRY_SAPLING));
-        register(c, TREE_CHERRY_OLD_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.OLD_CHERRY_KEY), VegetationPlacedFeatures.modifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(0, 0.01f, 1), ObjectRegistry.OLD_CHERRY_SAPLING));
+        register(c, TREE_CHERRY_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.CHERRY_KEY), VegetationPlacedFeatures.treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(0, 0.01f, 1), ObjectRegistry.CHERRY_SAPLING));
+        register(c, TREE_CHERRY_OLD_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.OLD_CHERRY_KEY), VegetationPlacedFeatures.treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(0, 0.01f, 1), ObjectRegistry.OLD_CHERRY_SAPLING));
 
         register(c, RED_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.RED_GRAPE_BUSH_PATCH_KEY), getGrapeModifiers());
         register(c, WHITE_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.WHITE_GRAPE_BUSH_PATCH_KEY), getGrapeModifiers());

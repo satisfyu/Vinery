@@ -163,7 +163,7 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
     }
 
     protected boolean canCraft(WoodFiredOvenRecipe recipe) {
-        if (recipe == null || recipe.getOutput().isEmpty()) {
+        if (recipe == null || recipe.getOutput(this.world.getRegistryManager()).isEmpty()) {
             return false;
         } else if (this.getStack(FUEL_SLOT).isEmpty()) {
             return false;
@@ -234,7 +234,7 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
     }
 
     private ItemStack generateOutputItem(Recipe<?> recipe) {
-        ItemStack outputStack = recipe.getOutput();
+        ItemStack outputStack = recipe.getOutput(this.world.getRegistryManager());
 
         if (!(outputStack.getItem() instanceof EffectFood)) {
             return outputStack;

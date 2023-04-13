@@ -105,7 +105,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 	}
 	
 	private boolean canCraft(Recipe<?> recipe) {
-		if (recipe == null || recipe.getOutput().isEmpty()) {
+		if (recipe == null || recipe.getOutput(this.world.getRegistryManager()).isEmpty()) {
 			return false;
 		}
 		if(recipe instanceof CookingPotRecipe cookingRecipe){
@@ -177,7 +177,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 	}
 
 	private ItemStack generateOutputItem(Recipe<?> recipe) {
-		ItemStack outputStack = recipe.getOutput();
+		ItemStack outputStack = recipe.getOutput(this.world.getRegistryManager());
 
 		if (!(outputStack.getItem() instanceof EffectFood)) {
 			return outputStack;

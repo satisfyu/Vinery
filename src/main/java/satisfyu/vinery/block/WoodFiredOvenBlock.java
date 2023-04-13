@@ -1,7 +1,6 @@
 package satisfyu.vinery.block;
 
 import satisfyu.vinery.block.entity.WoodFiredOvenBlockEntity;
-import satisfyu.vinery.registry.DamageSourceRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -76,7 +75,7 @@ public class WoodFiredOvenBlock extends Block implements BlockEntityProvider {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
     @Override
@@ -126,7 +125,7 @@ public class WoodFiredOvenBlock extends Block implements BlockEntityProvider {
         boolean isLit = state.get(LIT);
         if (isLit && !entity.isFireImmune() && entity instanceof LivingEntity livingEntity &&
                 !EnchantmentHelper.hasFrostWalker(livingEntity)) {
-            entity.damage(DamageSourceRegistry.STOVE_BLOCK, 1.f);
+            entity.damage(world.getDamageSources().inFire(), 1.f);
         }
 
         super.onSteppedOn(world, pos, state, entity);

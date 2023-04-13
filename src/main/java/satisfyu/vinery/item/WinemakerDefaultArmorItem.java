@@ -13,8 +13,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class WinemakerDefaultArmorItem extends ArmorItem implements WineMakerArmorItem{
-	public WinemakerDefaultArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
-		super(material, slot, settings);
+	public WinemakerDefaultArmorItem(ArmorMaterial material, Type type, Settings settings) {
+		super(material, type, settings);
 	}
 
 	@Override

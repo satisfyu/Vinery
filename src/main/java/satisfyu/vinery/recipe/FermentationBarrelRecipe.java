@@ -2,6 +2,7 @@ package satisfyu.vinery.recipe;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import net.minecraft.registry.DynamicRegistryManager;
 import satisfyu.vinery.registry.VineryRecipeTypes;
 import satisfyu.vinery.util.VineryUtils;
 import net.minecraft.inventory.Inventory;
@@ -42,14 +43,15 @@ public class FermentationBarrelRecipe implements Recipe<Inventory> {
     }
 
     @Override
+    public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
+        return ItemStack.EMPTY;
+    }
+
+    @Override
     public DefaultedList<Ingredient> getIngredients() {
         return this.inputs;
     }
 
-    @Override
-    public ItemStack craft(Inventory inventory) {
-        return ItemStack.EMPTY;
-    }
 
     @Override
     public boolean fits(int width, int height) {
@@ -57,7 +59,7 @@ public class FermentationBarrelRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public ItemStack getOutput() {
+    public ItemStack getOutput(DynamicRegistryManager registryManager) {
         return this.output.copy();
     }
 
@@ -108,7 +110,7 @@ public class FermentationBarrelRecipe implements Recipe<Inventory> {
                 ingredient.write(buf);
             }
 
-            buf.writeItemStack(recipe.getOutput());
+            buf.writeItemStack(recipe.output);
         }
     }
 }

@@ -3,9 +3,11 @@ package satisfyu.vinery.client.recipebook.custom;
 import com.google.common.collect.ImmutableList;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Recipe;
+import net.minecraft.registry.DynamicRegistryManager;
 import satisfyu.vinery.client.recipebook.IRecipeBookGroup;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
@@ -27,7 +29,7 @@ public enum FermentationBarrelRecipeBookGroup implements IRecipeBookGroup {
         this.icons = ImmutableList.copyOf(entries);
     }
 
-    public boolean fitRecipe(Recipe<?> recipe) {
+    public boolean fitRecipe(Recipe<?> recipe, DynamicRegistryManager registryManager) {
         System.out.println("test");
         System.out.println(recipe instanceof FermentationBarrelRecipe fermentationBarrelRecipe);
         if (recipe instanceof FermentationBarrelRecipe fermentationBarrelRecipe) {
@@ -36,12 +38,12 @@ public enum FermentationBarrelRecipeBookGroup implements IRecipeBookGroup {
                     return true;
                 }
                 case WINE -> {
-                    if (fermentationBarrelRecipe.getOutput().isIn(VineryTags.WINE)) {
+                    if (fermentationBarrelRecipe.getOutput(registryManager).isIn(VineryTags.WINE)) {
                         return true;
                     }
                 }
                 case MISC -> {
-                    if (!fermentationBarrelRecipe.getOutput().isIn(VineryTags.WINE)) {
+                    if (!fermentationBarrelRecipe.getOutput(registryManager).isIn(VineryTags.WINE)) {
                         return true;
                     }
                 }

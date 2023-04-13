@@ -29,7 +29,7 @@ public class WoodFiredOvenRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots) {
-        this.ghostSlots.addSlot(recipe.getOutput(), slots.get(4).x, slots.get(4).y);
+        this.ghostSlots.addSlot(recipe.getOutput(this.client.world.getRegistryManager()), slots.get(4).x, slots.get(4).y);
         int j = 0;
         for (Ingredient ingredient : recipe.getIngredients()) {
             ItemStack[] inputStacks = ingredient.getMatchingStacks();
@@ -77,5 +77,15 @@ public class WoodFiredOvenRecipeBook extends PrivateRecipeBookWidget {
 
     static {
         TOGGLE_COOKABLE_TEXT = Text.translatable("gui.vinery.recipebook.toggleRecipes.cookable");
+    }
+
+    @Override
+    public void setFocused(boolean focused) {
+
+    }
+
+    @Override
+    public boolean isFocused() {
+        return false;
     }
 }

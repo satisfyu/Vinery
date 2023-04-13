@@ -63,7 +63,7 @@ public class LatticeStemBlock extends StemBlock {
         if (side != Direction.DOWN && side != Direction.UP) {
             blockState = this.getDefaultState().with(FACING, ctx.getSide());
         } else {
-            blockState = this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+            blockState = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
         }
 
 

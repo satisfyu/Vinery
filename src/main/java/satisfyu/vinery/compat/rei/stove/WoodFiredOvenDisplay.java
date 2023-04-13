@@ -24,7 +24,7 @@ public class WoodFiredOvenDisplay extends BasicDisplay implements SimpleGridMenu
     private final float xp;
 
     public WoodFiredOvenDisplay(WoodFiredOvenRecipe recipe) {
-        this(EntryIngredients.ofIngredients(recipe.getIngredients()), Collections.singletonList(EntryIngredients.of(recipe.getOutput())), recipe, recipe.getExperience());
+        this(EntryIngredients.ofIngredients(recipe.getIngredients()), Collections.singletonList(EntryIngredients.of(recipe.getOutput(BasicDisplay.registryAccess()))), recipe, recipe.getExperience());
     }
 
     public WoodFiredOvenDisplay(List<EntryIngredient> input, List<EntryIngredient> output, NbtCompound tag) {

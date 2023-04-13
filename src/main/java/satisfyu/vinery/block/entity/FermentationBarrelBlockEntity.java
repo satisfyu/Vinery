@@ -109,7 +109,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
     }
 
     private boolean canCraft(Recipe<?> recipe) {
-        if (recipe == null || recipe.getOutput().isEmpty()) {
+        if (recipe == null || recipe.getOutput(this.world.getRegistryManager()).isEmpty()) {
             return false;
         } else if (areInputsEmpty()) {
             return false;
@@ -168,7 +168,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Invent
     }
 
     private ItemStack generateOutputItem(Recipe<?> recipe) {
-        ItemStack outputStack = recipe.getOutput();
+        ItemStack outputStack = recipe.getOutput(this.world.getRegistryManager());
 
         if (!(outputStack.getItem() instanceof EffectFood)) {
             return outputStack;

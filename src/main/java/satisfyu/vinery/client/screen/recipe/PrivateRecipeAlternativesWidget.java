@@ -114,6 +114,16 @@ public class PrivateRecipeAlternativesWidget extends DrawableHelper implements D
         }
     }
 
+    @Override
+    public void setFocused(boolean focused) {
+
+    }
+
+    @Override
+    public boolean isFocused() {
+        return false;
+    }
+
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         if (this.visible) {
             this.time += delta;
@@ -224,7 +234,7 @@ public class PrivateRecipeAlternativesWidget extends DrawableHelper implements D
                 matrixStack.scale(0.375F, 0.375F, 1.0F);
                 matrixStack.translate(-8.0, -8.0, 0.0);
                 RenderSystem.applyModelViewMatrix();
-                PrivateRecipeAlternativesWidget.this.client.getItemRenderer().renderInGuiWithOverrides(inputSlot.stacks[MathHelper.floor(PrivateRecipeAlternativesWidget.this.time / 30.0F) % inputSlot.stacks.length], 0, 0);
+                PrivateRecipeAlternativesWidget.this.client.getItemRenderer().renderInGuiWithOverrides(matrices, inputSlot.stacks[MathHelper.floor(PrivateRecipeAlternativesWidget.this.time / 30.0F) % inputSlot.stacks.length], 0, 0);
                 matrixStack.pop();
             }
 

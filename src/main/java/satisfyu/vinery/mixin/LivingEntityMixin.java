@@ -3,9 +3,11 @@ package satisfyu.vinery.mixin;
 import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.registry.tag.DamageTypeTags;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
@@ -91,7 +93,7 @@ public abstract class LivingEntityMixin extends Entity {
 
 	@Inject(method = "damage", at = @At(value = "HEAD"), cancellable = true)
 	private void hasImprovedFireResistance(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		if (source.isFire() && hasStatusEffect(VineryEffects.IMPROVED_FIRE_RESISTANCE)) {
+		if (source.isIn(DamageTypeTags.IS_FIRE) && hasStatusEffect(VineryEffects.IMPROVED_FIRE_RESISTANCE)) {
 			cir.setReturnValue(false);
 		}
 	}

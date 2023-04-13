@@ -70,7 +70,7 @@ public class PrivateAnimatedResultButton extends ClickableWidget {
         Recipe<?> recipe = this.getResult();
         int k = 4;
 
-        minecraftClient.getItemRenderer().renderInGui(recipe.getOutput(), this.getX() + k, this.getY() + k);
+        minecraftClient.getItemRenderer().renderInGui(matrices, recipe.getOutput(minecraftClient.world.getRegistryManager()), this.getX() + k, this.getY() + k);
         if (bl) {
             matrixStack.pop();
             RenderSystem.applyModelViewMatrix();
@@ -96,13 +96,13 @@ public class PrivateAnimatedResultButton extends ClickableWidget {
     }
 
     public List<Text> getTooltip(Screen screen) {
-        ItemStack itemStack = this.getResult().getOutput();
+        ItemStack itemStack = this.getResult().getOutput(MinecraftClient.getInstance().world.getRegistryManager());
         return Lists.newArrayList(screen.getTooltipFromItem(itemStack));
     }
 
     @Override
     protected void appendClickableNarrations(NarrationMessageBuilder builder) {
-        ItemStack itemStack = this.getResult().getOutput();
+        ItemStack itemStack = this.getResult().getOutput(MinecraftClient.getInstance().world.getRegistryManager());
         builder.put(NarrationPart.TITLE, Text.translatable("narration.recipe", itemStack.getName()));
 
         builder.put(NarrationPart.USAGE, Text.translatable("narration.button.usage.hovered"));

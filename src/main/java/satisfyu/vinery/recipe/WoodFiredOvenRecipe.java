@@ -2,6 +2,7 @@ package satisfyu.vinery.recipe;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import net.minecraft.registry.DynamicRegistryManager;
 import satisfyu.vinery.registry.VineryRecipeTypes;
 import satisfyu.vinery.util.VineryUtils;
 import net.minecraft.inventory.Inventory;
@@ -32,11 +33,11 @@ public class WoodFiredOvenRecipe implements Recipe<Inventory> {
         return VineryUtils.matchesRecipe(inventory, inputs, 0, 2);
     }
 
-
     @Override
-    public ItemStack craft(Inventory inventory) {
+    public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
         return output.copy();
     }
+
 
     @Override
     public boolean fits(int width, int height) {
@@ -44,14 +45,15 @@ public class WoodFiredOvenRecipe implements Recipe<Inventory> {
     }
 
     @Override
+    public ItemStack getOutput(DynamicRegistryManager registryManager) {
+        return this.output.copy();
+    }
+
+    @Override
     public DefaultedList<Ingredient> getIngredients() {
         return this.inputs;
     }
 
-    @Override
-    public ItemStack getOutput() {
-        return this.output.copy();
-    }
 
     @Override
     public Identifier getId() {

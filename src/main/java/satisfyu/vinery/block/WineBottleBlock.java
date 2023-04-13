@@ -75,7 +75,7 @@ public class WineBottleBlock extends Block  implements BlockEntityProvider {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(COUNT, 1).with(FACING, ctx.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(COUNT, 1).with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
     @Override

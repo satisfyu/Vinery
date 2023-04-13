@@ -35,7 +35,7 @@ public abstract class AbstractRecipeBookGUIScreen<T extends AbstractPrivateRecip
         this.addDrawableChild(new TexturedButtonWidget(this.x + 5, this.y + 25, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, (button) -> {
             this.recipeBook.toggleOpen();
             this.x = this.recipeBook.findLeftEdge(this.width, this.backgroundWidth);
-            ((TexturedButtonWidget)button).setPos(this.x +  5, this.y + 25);
+            button.setPosition(this.x +  5, this.y + 25);
         }));
         this.titleX += 20;
     }

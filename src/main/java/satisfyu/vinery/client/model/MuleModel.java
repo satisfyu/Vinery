@@ -1,5 +1,7 @@
 package satisfyu.vinery.client.model;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.AbstractHorseEntity;
 import satisfyu.vinery.entity.TraderMuleEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
@@ -94,8 +96,8 @@ public class MuleModel extends EntityModel<TraderMuleEntity> {
 
 	@Override
 	public void animateModel(TraderMuleEntity abstractHorseEntity, float f, float g, float h) {
-		float i = MathHelper.lerpAngle(abstractHorseEntity.prevBodyYaw, abstractHorseEntity.bodyYaw, h);
-		float j = MathHelper.lerpAngle(abstractHorseEntity.prevHeadYaw, abstractHorseEntity.headYaw, h);
+		float i = MathHelper.lerpAngleDegrees(h, abstractHorseEntity.prevBodyYaw, abstractHorseEntity.bodyYaw);
+		float j = MathHelper.lerpAngleDegrees(h, abstractHorseEntity.prevHeadYaw, abstractHorseEntity.headYaw);
 		float k = MathHelper.lerp(h, abstractHorseEntity.prevPitch, abstractHorseEntity.getPitch());
 		float l = j - i;
 		float m = k * ((float)Math.PI / 180);

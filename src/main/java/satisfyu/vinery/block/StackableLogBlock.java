@@ -1,7 +1,6 @@
 package satisfyu.vinery.block;
 
 import net.minecraft.state.property.DirectionProperty;
-import satisfyu.vinery.registry.DamageSourceRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.SlabType;
 import net.minecraft.client.gui.screen.Screen;
@@ -78,10 +77,10 @@ public class StackableLogBlock extends SlabBlock implements Waterloggable {
         BlockPos blockPos = ctx.getBlockPos();
         BlockState blockState = ctx.getWorld().getBlockState(blockPos);
         if (blockState.isOf(this)) {
-            return blockState.with(TYPE, SlabType.DOUBLE).with(FIRED, false).with(WATERLOGGED, false).with(FACING, ctx.getPlayerFacing().getOpposite());
+            return blockState.with(TYPE, SlabType.DOUBLE).with(FIRED, false).with(WATERLOGGED, false).with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
         } else {
             FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-            BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(FACING, ctx.getPlayerFacing().getOpposite()).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+            BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(FACING, ctx.getHorizontalPlayerFacing().getOpposite()).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
             Direction direction = ctx.getSide();
             return direction != Direction.DOWN && (direction == Direction.UP || !(ctx.getHitPos().getY() - (double)blockPos.getY() > 0.5)) ? blockState2 : blockState2.with(TYPE, SlabType.TOP);
         }
@@ -134,7 +133,7 @@ public class StackableLogBlock extends SlabBlock implements Waterloggable {
         boolean isLit = world.getBlockState(pos).get(FIRED);
         if (isLit && !entity.isFireImmune() && entity instanceof LivingEntity livingEntity &&
                 !EnchantmentHelper.hasFrostWalker(livingEntity)) {
-            entity.damage(DamageSourceRegistry.STOVE_BLOCK, 1.f);
+            entity.damage(world.getDamageSources().inFire(), 1.f);
         }
 
         super.onSteppedOn(world, pos, state, entity);

@@ -3,9 +3,11 @@ package satisfyu.vinery.client.recipebook.custom;
 import com.google.common.collect.ImmutableList;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Recipe;
+import net.minecraft.registry.DynamicRegistryManager;
 import satisfyu.vinery.client.recipebook.IRecipeBookGroup;
 import satisfyu.vinery.recipe.CookingPotRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
@@ -26,7 +28,7 @@ public enum CookingPotRecipeBookGroup implements IRecipeBookGroup {
         this.icons = ImmutableList.copyOf(entries);
     }
 
-    public boolean fitRecipe(Recipe<?> recipe) {
+    public boolean fitRecipe(Recipe<?> recipe, DynamicRegistryManager registryManager) {
         if (recipe instanceof CookingPotRecipe cookingPotRecipe) {
             switch (this) {
                 case SEARCH -> {
@@ -49,6 +51,7 @@ public enum CookingPotRecipeBookGroup implements IRecipeBookGroup {
         }
         return false;
     }
+
 
     @Override
     public List<ItemStack> getIcons() {

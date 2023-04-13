@@ -200,7 +200,7 @@ public abstract class  PrivateRecipeBookWidget extends DrawableHelper implements
         String string = this.searchField.getText();
 
         if (!string.isEmpty()) {
-            recipes.removeIf((recipe) -> !recipe.getOutput().getName().getString().toLowerCase(Locale.ROOT).contains(string.toLowerCase(Locale.ROOT)));
+            recipes.removeIf((recipe) -> !recipe.getOutput(client.world.getRegistryManager()).getName().getString().toLowerCase(Locale.ROOT).contains(string.toLowerCase(Locale.ROOT)));
         }
 
         if (VineryClient.rememberedCraftableToggle) {
@@ -213,7 +213,7 @@ public abstract class  PrivateRecipeBookWidget extends DrawableHelper implements
     private <T extends Recipe<Inventory>> List<T> getResultsForGroup(IRecipeBookGroup group, List<T> recipes) {
         List<T> results = Lists.newArrayList();
         for (T recipe : recipes) {
-            if (group.fitRecipe(recipe)) {
+            if (group.fitRecipe(recipe, client.world.getRegistryManager())) {
                 results.add(recipe);
             }
         }
@@ -228,7 +228,7 @@ public abstract class  PrivateRecipeBookWidget extends DrawableHelper implements
         int l = 0;
         for (PrivateRecipeGroupButtonWidget recipeGroupButtonWidget : this.tabButtons) {
             recipeGroupButtonWidget.visible = true;
-            recipeGroupButtonWidget.setPos(i, j + 27 * l++);
+            recipeGroupButtonWidget.setPosition(i, j + 27 * l++);
         }
     }
 
@@ -362,7 +362,7 @@ public abstract class  PrivateRecipeBookWidget extends DrawableHelper implements
                 return true;
             } else if (this.client.options.chatKey.matchesKey(keyCode, scanCode) && !this.searchField.isFocused()) {
                 this.searching = true;
-                this.searchField.setTextFieldFocused(true);
+                this.searchField.setFocused(true);
                 return true;
             } else {
                 return false;

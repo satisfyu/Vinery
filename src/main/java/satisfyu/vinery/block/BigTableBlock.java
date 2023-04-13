@@ -80,7 +80,7 @@ public class BigTableBlock extends HorizontalFacingBlock {
 
 	@Nullable
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		Direction direction = ctx.getPlayerFacing().rotateYClockwise();
+		Direction direction = ctx.getHorizontalPlayerFacing().rotateYClockwise();
 		BlockPos blockPos = ctx.getBlockPos();
 		BlockPos blockPos2 = blockPos.offset(direction);
 		World world = ctx.getWorld();

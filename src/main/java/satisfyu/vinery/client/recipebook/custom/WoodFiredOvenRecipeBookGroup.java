@@ -6,6 +6,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Recipe;
+import net.minecraft.registry.DynamicRegistryManager;
 import satisfyu.vinery.client.recipebook.IRecipeBookGroup;
 import satisfyu.vinery.recipe.WoodFiredOvenRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
@@ -26,7 +27,7 @@ public enum WoodFiredOvenRecipeBookGroup implements IRecipeBookGroup {
         this.icons = ImmutableList.copyOf(entries);
     }
 
-    public boolean fitRecipe(Recipe<?> recipe) {
+    public boolean fitRecipe(Recipe<?> recipe, DynamicRegistryManager registryManager) {
         if (recipe instanceof WoodFiredOvenRecipe woodFiredOvenRecipe) {
             switch (this) {
                 case SEARCH -> {
