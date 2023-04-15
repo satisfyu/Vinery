@@ -1,0 +1,16 @@
+{
+    "variants": {
+		"can_have_cherries=false,has_cherries=false": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=false,has_cherries=true": {
+			"model": "vinery:block/cherry_leaves"
+		},
+		"can_have_cherries=true,has_cherries=false": {
+			"model": "vinery:block/cherry_leaves_stage0"
+		},
+		"can_have_cherries=true,has_cherries=true": {
+			"model": "vinery:block/cherry_leaves_stage1"
+		}
+	}
+}

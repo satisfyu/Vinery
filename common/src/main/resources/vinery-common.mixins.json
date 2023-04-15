@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "satisfyu.vinery.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "MixinTitleScreen",
+    "boat.MixinBoatEntityRenderer"
+  ],
+  "mixins": [
+    "WoodTypeAccessor",
+    "boat.MixinBoatEntity"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
