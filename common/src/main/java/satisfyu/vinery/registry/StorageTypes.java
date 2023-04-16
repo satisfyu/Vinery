@@ -1,5 +1,6 @@
 package satisfyu.vinery.registry;
 
+import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.StorageBlock;
 import satisfyu.vinery.client.model.feature.StrawHatModel;
@@ -26,7 +27,7 @@ public class StorageTypes implements VineryApi {
     public static final ResourceLocation WINE_BOX = registerStorageType("wine_box", new WineBoxRenderer());
 
     public static void init(){
-        VineryO.LOGGER.debug("Registering Storage Block Renderers!");
+        Vinery.LOGGER.debug("Registering Storage Block Renderers!");
     }
 
     public static ResourceLocation registerStorageType(String string, StorageTypeRenderer renderer){
@@ -35,14 +36,14 @@ public class StorageTypes implements VineryApi {
 
     @Override
     public void registerBlocks(Set<Block> blocks) {
-        blocks.add(ObjectRegistry.WINE_RACK_2);
-        blocks.add(ObjectRegistry.WINE_RACK_1);
-        blocks.add(ObjectRegistry.SHELF);
-        blocks.add(ObjectRegistry.WINE_BOX);
+        blocks.add(ObjectRegistry.WINE_RACK_2.get());
+        blocks.add(ObjectRegistry.WINE_RACK_1.get());
+        blocks.add(ObjectRegistry.SHELF.get());
+        blocks.add(ObjectRegistry.WINE_BOX.get());
     }
 
     @Override
     public <T extends LivingEntity> void registerArmor(Map<Item, EntityModel<T>> models, EntityModelSet modelLoader) {
-        models.put(ObjectRegistry.STRAW_HAT, new StrawHatModel<>(modelLoader.bakeLayer(StrawHatModel.LAYER_LOCATION)));
+        models.put(ObjectRegistry.STRAW_HAT.get(), new StrawHatModel<>(modelLoader.bakeLayer(StrawHatModel.LAYER_LOCATION)));
     }
 }

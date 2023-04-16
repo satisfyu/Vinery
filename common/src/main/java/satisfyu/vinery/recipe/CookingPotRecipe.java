@@ -7,7 +7,6 @@ import satisfyu.vinery.util.VineryUtils;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.recipe.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
@@ -62,12 +61,12 @@ public class CookingPotRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return VineryRecipeTypes.COOKING_POT_RECIPE_SERIALIZER;
+        return VineryRecipeTypes.COOKING_POT_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return VineryRecipeTypes.COOKING_POT_RECIPE_TYPE;
+        return VineryRecipeTypes.COOKING_POT_RECIPE_TYPE.get();
     }
 
     @Override
@@ -106,7 +105,7 @@ public class CookingPotRecipe implements Recipe<Container> {
         }
 
         @Override
-        public void write(FriendlyByteBuf buf, CookingPotRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buf, CookingPotRecipe recipe) {
             buf.writeVarInt(recipe.inputs.size());
             recipe.inputs.forEach(entry -> entry.toNetwork(buf));
             buf.writeItem(recipe.getContainer());

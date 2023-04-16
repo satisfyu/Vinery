@@ -87,7 +87,7 @@ public class VineryClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(VineryEntites.MULE, MuleRenderer::new);
         EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
-        EntityRendererRegistry.register(VineryBlockEntityTypes.CHAIR, ChairRenderer::new);
+        EntityRendererRegistry.register(VineryEntites.CHAIR, ChairRenderer::new);
         EntityModelLayerRegistry.register(LAYER_LOCATION, MuleModel::getTexturedModelData);
 
 
@@ -96,10 +96,10 @@ public class VineryClient implements ClientModInitializer {
         MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.COOKING_POT_SCREEN_HANDLER, CookingPotGui::new);
         MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.WINE_PRESS_SCREEN_HANDLER, WinePressGui::new);
 
-        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_POT_ENTITY, FlowerPotBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.WINE_BOTTLE_ENTITY, WineBottleRenderer::new);
-        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.STORAGE_ENTITY, StorageBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_BOX_ENTITY, FlowerBoxBlockRenderer::new);
+        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_POT_ENTITY.get(), FlowerPotBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.WINE_BOTTLE_ENTITY.get(), WineBottleRenderer::new);
+        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.STORAGE_ENTITY.get(), StorageBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_BOX_ENTITY.get(), FlowerBoxBlockRenderer::new);
 
     }
     

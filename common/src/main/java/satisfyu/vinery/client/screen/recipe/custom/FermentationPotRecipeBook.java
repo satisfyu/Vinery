@@ -76,7 +76,7 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     protected RecipeType<? extends Recipe<Container>> getRecipeType() {
-        return VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE;
+        return VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get();
     }
 
     @Override

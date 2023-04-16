@@ -48,14 +48,14 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 					return;
 				}
 				
-				WanderingTrader wanderingTraderEntity = VineryEntites.WANDERING_WINEMAKER.spawn(world,  blockPos3, MobSpawnType.EVENT);
+				WanderingTrader wanderingTraderEntity = VineryEntites.WANDERING_WINEMAKER.get().spawn(world,  blockPos3, MobSpawnType.EVENT);
 				if (wanderingTraderEntity != null) {
 					for (int j = 0; j < 2; ++j) {
 						BlockPos blockPos4 = this.getNearbySpawnPos(world, wanderingTraderEntity.blockPosition(), 4);
 						if (blockPos4 == null) {
 							return;
 						}
-						TraderLlama traderLlamaEntity = VineryEntites.MULE.spawn(world, blockPos4, MobSpawnType.EVENT);
+						TraderLlama traderLlamaEntity = VineryEntites.MULE.get().spawn(world, blockPos4, MobSpawnType.EVENT);
 						if (traderLlamaEntity == null) {
 							return;
 						}

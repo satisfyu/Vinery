@@ -1,25 +1,19 @@
 package satisfyu.vinery.world;
 
 import com.google.common.collect.ImmutableList;
-import net.fabricmc.fabric.api.biome.v1.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.RandomSpreadFoliagePlacer;
@@ -34,7 +28,6 @@ import satisfyu.vinery.block.grape.GrapeBush;
 import satisfyu.vinery.registry.ObjectRegistry;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import static satisfyu.vinery.block.CherryLeaves.VARIANT;
 
@@ -60,26 +53,26 @@ public class VineryConfiguredFeatures {
 
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> c) {
-        register(c, CHERRY_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ObjectRegistry.CHERRY_LOG), new StraightTrunkPlacer(5, 2, 0), cherryLeaveProvider(), new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build());
-        register(c, CHERRY_VARIANT_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ObjectRegistry.CHERRY_LOG), new StraightTrunkPlacer(5, 2, 0), cherryLeaveProvider(), new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build());
-        register(c, OLD_CHERRY_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ObjectRegistry.OLD_CHERRY_LOG), new FancyTrunkPlacer(4, 14, 2), cherryLeaveProvider(), new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 50), new TwoLayersFeatureSize(1, 1, 2)).decorators(ImmutableList.of()).forceDirt().build());
-        register(c, OLD_CHERRY_BEE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ObjectRegistry.OLD_CHERRY_LOG), new FancyTrunkPlacer(4, 14, 2), cherryLeaveProvider(), new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 50), new TwoLayersFeatureSize(1, 1, 2)).decorators(ImmutableList.of(new BeehiveDecorator(0.5f))).forceDirt().build());
-        register(c, OLD_CHERRY_VARIANT_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ObjectRegistry.OLD_CHERRY_LOG), new FancyTrunkPlacer(4, 14, 2), cherryLeaveProvider(), new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 50), new TwoLayersFeatureSize(1, 1, 2)).decorators(ImmutableList.of()).forceDirt().build());
-        register(c, OLD_CHERRY_VARIANT_WITH_BEE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ObjectRegistry.OLD_CHERRY_LOG), new FancyTrunkPlacer(4, 14, 2), cherryLeaveProvider(), new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 50), new TwoLayersFeatureSize(1, 1, 2)).decorators(ImmutableList.of(new BeehiveDecorator(0.5f))).forceDirt().build());
+        register(c, CHERRY_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ObjectRegistry.CHERRY_LOG.get()), new StraightTrunkPlacer(5, 2, 0), cherryLeaveProvider(), new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build());
+        register(c, CHERRY_VARIANT_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ObjectRegistry.CHERRY_LOG.get()), new StraightTrunkPlacer(5, 2, 0), cherryLeaveProvider(), new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build());
+        register(c, OLD_CHERRY_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ObjectRegistry.OLD_CHERRY_LOG.get()), new FancyTrunkPlacer(4, 14, 2), cherryLeaveProvider(), new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 50), new TwoLayersFeatureSize(1, 1, 2)).decorators(ImmutableList.of()).forceDirt().build());
+        register(c, OLD_CHERRY_BEE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ObjectRegistry.OLD_CHERRY_LOG.get()), new FancyTrunkPlacer(4, 14, 2), cherryLeaveProvider(), new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 50), new TwoLayersFeatureSize(1, 1, 2)).decorators(ImmutableList.of(new BeehiveDecorator(0.5f))).forceDirt().build());
+        register(c, OLD_CHERRY_VARIANT_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ObjectRegistry.OLD_CHERRY_LOG.get()), new FancyTrunkPlacer(4, 14, 2), cherryLeaveProvider(), new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 50), new TwoLayersFeatureSize(1, 1, 2)).decorators(ImmutableList.of()).forceDirt().build());
+        register(c, OLD_CHERRY_VARIANT_WITH_BEE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ObjectRegistry.OLD_CHERRY_LOG.get()), new FancyTrunkPlacer(4, 14, 2), cherryLeaveProvider(), new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 50), new TwoLayersFeatureSize(1, 1, 2)).decorators(ImmutableList.of(new BeehiveDecorator(0.5f))).forceDirt().build());
 
 
-        register(c, RED_GRAPE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(ObjectRegistry.RED_GRAPE_BUSH, 3));
-        register(c, WHITE_GRAPE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(ObjectRegistry.WHITE_GRAPE_BUSH, 3));
+        register(c, RED_GRAPE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(ObjectRegistry.RED_GRAPE_BUSH.get(), 3));
+        register(c, WHITE_GRAPE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(ObjectRegistry.WHITE_GRAPE_BUSH.get(), 3));
 
-        register(c, TAIGA_RED_GRAPE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(ObjectRegistry.TAIGA_RED_GRAPE_BUSH, 2));
-        register(c, TAIGA_WHITE_GRAPE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(ObjectRegistry.TAIGA_WHITE_GRAPE_BUSH, 2));
+        register(c, TAIGA_RED_GRAPE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(ObjectRegistry.TAIGA_RED_GRAPE_BUSH.get(), 2));
+        register(c, TAIGA_WHITE_GRAPE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(ObjectRegistry.TAIGA_WHITE_GRAPE_BUSH.get(), 2));
 
-        register(c, SAVANNA_RED_GRAPE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(ObjectRegistry.SAVANNA_RED_GRAPE_BUSH, 3));
-        register(c, SAVANNA_WHITE_GRAPE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(ObjectRegistry.SAVANNA_WHITE_GRAPE_BUSH, 3));
+        register(c, SAVANNA_RED_GRAPE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(ObjectRegistry.SAVANNA_RED_GRAPE_BUSH.get(), 3));
+        register(c, SAVANNA_WHITE_GRAPE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(ObjectRegistry.SAVANNA_WHITE_GRAPE_BUSH.get(), 3));
 
 
-        register(c, JUNGLE_RED_GRAPE_BUSH_PATCH_KEY, VineryFeatures.JUNGLE_RED_GRAPE_FEATURE, new NoneFeatureConfiguration());
-        register(c, JUNGLE_WHITE_GRAPE_BUSH_PATCH_KEY, VineryFeatures.JUNGLE_WHITE_GRAPE_FEATURE, new NoneFeatureConfiguration());
+        register(c, JUNGLE_RED_GRAPE_BUSH_PATCH_KEY, VineryFeatures.JUNGLE_RED_GRAPE_FEATURE.get(), new NoneFeatureConfiguration());
+        register(c, JUNGLE_WHITE_GRAPE_BUSH_PATCH_KEY, VineryFeatures.JUNGLE_WHITE_GRAPE_FEATURE.get(), new NoneFeatureConfiguration());
     }
 
     public static RandomPatchConfiguration createRandomPatchFeatureConfig(Block block, int age){
@@ -103,7 +96,7 @@ public class VineryConfiguredFeatures {
     }
 
     public static WeightedStateProvider cherryLeaveProvider(){
-        return new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ObjectRegistry.CHERRY_LEAVES.defaultBlockState(), 10).add(ObjectRegistry.CHERRY_LEAVES.defaultBlockState().setValue(VARIANT, true), 4).add(ObjectRegistry.CHERRY_LEAVES.defaultBlockState().setValue(VARIANT, true).setValue(CherryLeaves.HAS_CHERRIES, true), 2));
+        return new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ObjectRegistry.CHERRY_LEAVES.get().defaultBlockState(), 10).add(ObjectRegistry.CHERRY_LEAVES.get().defaultBlockState().setValue(VARIANT, true), 4).add(ObjectRegistry.CHERRY_LEAVES.get().defaultBlockState().setValue(VARIANT, true).setValue(CherryLeaves.HAS_CHERRIES, true), 2));
     }
  
 

@@ -55,7 +55,7 @@ public class StoveGuiHandler extends AbstractRecipeBookGUIScreenHandler {
     }
 
     private boolean isIngredient(ItemStack stack) {
-        return this.world.getRecipeManager().getAllRecipesFor(VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_TYPE).stream().anyMatch(recipe -> recipe.getIngredients().stream().anyMatch(x -> x.test(stack)));
+        return this.world.getRecipeManager().getAllRecipesFor(VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_TYPE.get()).stream().anyMatch(recipe -> recipe.getIngredients().stream().anyMatch(x -> x.test(stack)));
     }
     private static boolean isFuel(ItemStack stack) {
         return AbstractFurnaceBlockEntity.isFuel(stack);

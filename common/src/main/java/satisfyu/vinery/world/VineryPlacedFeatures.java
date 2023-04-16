@@ -1,22 +1,17 @@
 package satisfyu.vinery.world;
 
-import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.registry.ObjectRegistry;
-
-import java.util.List;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
-import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraft.world.level.levelgen.placement.*;
+import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.registry.ObjectRegistry;
+
+import java.util.List;
 
 public class VineryPlacedFeatures {
     public static final ResourceKey<PlacedFeature> TREE_CHERRY_PLACED_KEY = registerKey("tree_cherry");
@@ -36,8 +31,8 @@ public class VineryPlacedFeatures {
     public static void bootstrap(BootstapContext<PlacedFeature> c) {
         var configuredFeatureRegistryEntryLookup = c.lookup(Registries.CONFIGURED_FEATURE);
 
-        register(c, TREE_CHERRY_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.CHERRY_KEY), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.01f, 1), ObjectRegistry.CHERRY_SAPLING));
-        register(c, TREE_CHERRY_OLD_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.OLD_CHERRY_KEY), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.01f, 1), ObjectRegistry.OLD_CHERRY_SAPLING));
+        register(c, TREE_CHERRY_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.CHERRY_KEY), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.01f, 1), ObjectRegistry.CHERRY_SAPLING.get()));
+        register(c, TREE_CHERRY_OLD_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.OLD_CHERRY_KEY), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.01f, 1), ObjectRegistry.OLD_CHERRY_SAPLING.get()));
 
         register(c, RED_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.RED_GRAPE_BUSH_PATCH_KEY), getGrapeModifiers());
         register(c, WHITE_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.WHITE_GRAPE_BUSH_PATCH_KEY), getGrapeModifiers());

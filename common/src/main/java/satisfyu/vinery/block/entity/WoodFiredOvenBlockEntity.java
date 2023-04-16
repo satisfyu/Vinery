@@ -81,7 +81,7 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
         }
     };
     public WoodFiredOvenBlockEntity(BlockPos pos, BlockState state) {
-        super(VineryBlockEntityTypes.WOOD_FIRED_OVEN_BLOCK_ENTITY, pos, state);
+        super(VineryBlockEntityTypes.WOOD_FIRED_OVEN_BLOCK_ENTITY.get(), pos, state);
         this.inventory = NonNullList.withSize(5, ItemStack.EMPTY);
     }
 
@@ -126,7 +126,7 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
             --this.burnTime;
         }
 
-        final WoodFiredOvenRecipe recipe = world.getRecipeManager().getRecipeFor(VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_TYPE, this, world).orElse(null);
+        final WoodFiredOvenRecipe recipe = world.getRecipeManager().getRecipeFor(VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_TYPE.get(), this, world).orElse(null);
         if (!initialBurningState && canCraft(recipe)) {
             this.burnTime = this.burnTimeTotal = this.getTotalBurnTime(this.getItem(FUEL_SLOT));
             if (burnTime > 0) {

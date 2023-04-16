@@ -83,7 +83,7 @@ public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     protected RecipeType<? extends Recipe<Container>> getRecipeType() {
-        return VineryRecipeTypes.COOKING_POT_RECIPE_TYPE;
+        return VineryRecipeTypes.COOKING_POT_RECIPE_TYPE.get();
     }
 
     @Override

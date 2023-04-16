@@ -211,7 +211,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 			}
 			return;
 		}
-		Recipe<?> recipe = world.getRecipeManager().getRecipeFor(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE, this, world).orElse(null);
+		Recipe<?> recipe = world.getRecipeManager().getRecipeFor(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE.get(), this, world).orElse(null);
 		if(recipe == null && VineryUtils.isFDLoaded()){
 			//recipe = FarmersCookingPot.getRecipe(world, this);
 		}

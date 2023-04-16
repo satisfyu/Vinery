@@ -25,7 +25,7 @@ public class VineryBoatTypes {
     public static void init() {
         Item cherryBoat = TerraformBoatItemHelper.registerBoatItem(new VineryIdentifier("cherry_boat"), CHERRY_BOAT_KEY, false);
         Item cherryChestBoat = TerraformBoatItemHelper.registerBoatItem(new VineryIdentifier("cherry_chest_boat"), CHERRY_BOAT_KEY, true);
-        CHERRY = () -> new TerraformBoatType.Builder().item(cherryBoat).chestItem(cherryChestBoat).planks(ObjectRegistry.CHERRY_PLANKS.asItem()).build();
+        CHERRY = () -> new TerraformBoatType.Builder().item(cherryBoat).chestItem(cherryChestBoat).planks(ObjectRegistry.CHERRY_PLANKS.get().asItem()).build();
 
         TerraformBoatTypeRegistry.INSTANCE.register(new VineryIdentifier("cherry"), CHERRY);
     }

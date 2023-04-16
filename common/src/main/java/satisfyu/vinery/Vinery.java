@@ -1,5 +1,6 @@
 package satisfyu.vinery;
 
+import dev.architectury.hooks.item.tool.AxeItemHooks;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.RegistrarManager;
 import net.minecraft.resources.ResourceLocation;

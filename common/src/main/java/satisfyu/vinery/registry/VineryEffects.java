@@ -6,6 +6,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.effect.*;
 
@@ -34,7 +35,7 @@ public class VineryEffects {
     }
 
     public static void init(){
-        VineryO.LOGGER.debug("Mob effects");
+        Vinery.LOGGER.debug("Mob effects");
     }
 
     static {

@@ -12,6 +12,14 @@ import net.minecraft.util.Tuple;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -25,7 +33,21 @@ public class GeneralUtil {
 	}
 
 	 */
-	
+
+
+	public static RotatedPillarBlock logBlock(MaterialColor wood, MaterialColor bark) {
+		return new RotatedPillarBlock(
+				BlockBehaviour.Properties.of(
+						Material.WOOD,
+						(state) -> Direction.Axis.Y.equals(state.getValue(RotatedPillarBlock.AXIS)) ? wood : bark
+				).strength(2.0F).sound(SoundType.WOOD)
+		);
+	}
+
+	public static RotatedPillarBlock logBlock() {
+		return new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG));
+	}
+
 	public static boolean matchesRecipe(Container inventory, NonNullList<Ingredient> recipe, int startIndex, int endIndex) {
 		final List<ItemStack> validStacks = new ArrayList<>();
 		for (int i = startIndex; i <= endIndex; i++) {

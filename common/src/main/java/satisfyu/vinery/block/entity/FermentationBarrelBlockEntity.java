@@ -90,7 +90,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Contai
     public void tick(Level world, BlockPos pos, BlockState state, FermentationBarrelBlockEntity blockEntity) {
         if (world.isClientSide) return;
         boolean dirty = false;
-        Recipe<?> recipe = world.getRecipeManager().getRecipeFor(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE, this, world).orElse(null);
+        Recipe<?> recipe = world.getRecipeManager().getRecipeFor(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get(), this, world).orElse(null);
         if (canCraft(recipe)) {
             this.fermentationTime++;
 

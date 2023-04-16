@@ -7,7 +7,6 @@ import satisfyu.vinery.util.VineryUtils;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.recipe.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
@@ -76,12 +75,12 @@ public class FermentationBarrelRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_SERIALIZER;
+        return VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE;
+        return VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get();
     }
 
     @Override
@@ -110,7 +109,7 @@ public class FermentationBarrelRecipe implements Recipe<Container> {
         }
 
         @Override
-        public void write(FriendlyByteBuf buf, FermentationBarrelRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buf, FermentationBarrelRecipe recipe) {
             buf.writeVarInt(recipe.inputs.size());
             for (Ingredient ingredient : recipe.inputs) {
                 ingredient.toNetwork(buf);

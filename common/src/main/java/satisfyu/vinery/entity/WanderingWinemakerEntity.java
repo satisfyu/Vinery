@@ -1,15 +1,15 @@
 package satisfyu.vinery.entity;
 
-import satisfyu.vinery.registry.ObjectRegistry;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import java.util.Map;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.npc.VillagerTrades;
-import net.minecraft.world.entity.npc.VillagerTrades.ItemsForEmeralds;
 import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
+import satisfyu.vinery.registry.ObjectRegistry;
+
+import java.util.Map;
 
 public class WanderingWinemakerEntity extends WanderingTrader {
 	public static final Int2ObjectMap<VillagerTrades.ItemListing[]> TRADES = new Int2ObjectOpenHashMap<>(Map.of(1, new VillagerTrades.ItemListing[] {
@@ -21,8 +21,8 @@ public class WanderingWinemakerEntity extends WanderingTrader {
 			new ItemsForEmeralds(ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS, 1, 1, 8, 1),
 			new ItemsForEmeralds(ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS, 1, 1, 8, 1),
 			new ItemsForEmeralds(ObjectRegistry.JUNGLE_WHITE_GRAPE, 1, 1, 8, 1),
-			//new SellItemFactory(ObjectRegistry.CHERRY_SAPLING, 3, 1, 8, 1),
-			//new SellItemFactory(ObjectRegistry.OLD_CHERRY_SAPLING, 5, 1, 8, 1),
+			new ItemsForEmeralds(ObjectRegistry.CHERRY_SAPLING, 3, 1, 8, 1),
+			new ItemsForEmeralds(ObjectRegistry.OLD_CHERRY_SAPLING, 5, 1, 8, 1),
 			new ItemsForEmeralds(ObjectRegistry.RED_GRAPE, 2, 1, 8, 1),
 			new ItemsForEmeralds(ObjectRegistry.RED_GRAPEJUICE_WINE_BOTTLE, 4, 1, 8, 1),
 			new ItemsForEmeralds(ObjectRegistry.WHITE_GRAPEJUICE_WINE_BOTTLE, 4, 1, 8, 1),

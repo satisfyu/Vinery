@@ -24,7 +24,7 @@ public class WoodFiredOvenRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     protected RecipeType<? extends Recipe<Container>> getRecipeType() {
-        return VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_TYPE;
+        return VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_TYPE.get();
     }
 
     @Override

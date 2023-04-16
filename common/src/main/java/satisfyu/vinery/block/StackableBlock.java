@@ -1,9 +1,5 @@
 package satisfyu.vinery.block;
 
-import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.block.entity.WineBottleBlockEntity;
-
-import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -23,6 +19,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import java.util.List;
 
 public class StackableBlock extends Block{
     private final VoxelShape SHAPE = Shapes.box(0.1875, 0, 0.1875, 0.8125, 0.875, 0.8125);

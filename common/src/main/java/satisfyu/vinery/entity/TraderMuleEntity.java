@@ -51,7 +51,7 @@ public class TraderMuleEntity extends TraderLlama {
 
 	@Override
 	public TraderMuleEntity getBreedOffspring(ServerLevel serverWorld, AgeableMob passiveEntity) {
-		return VineryEntites.MULE.create(this.level);
+		return VineryEntites.MULE.get().create(this.level);
 	}
 	
 	@Override

@@ -1,42 +1,40 @@
 package satisfyu.vinery.registry;
 
+import dev.architectury.registry.registries.Registrar;
+import dev.architectury.registry.registries.RegistrySupplier;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.entity.*;
-import satisfyu.vinery.block.entity.chair.ChairEntity;
 import satisfyu.vinery.util.VineryApi;
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import java.util.*;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Supplier;
 
 public class VineryBlockEntityTypes {
 
-    private static final Map<ResourceLocation, BlockEntityType<?>> BLOCK_ENTITY_TYPES = new HashMap<>();
+    private static final Registrar<BlockEntityType<?>> BLOCK_ENTITY_TYPES = Vinery.REGISTRIES.get(Registries.BLOCK_ENTITY_TYPE);
 
-    public static final BlockEntityType<WoodFiredOvenBlockEntity> WOOD_FIRED_OVEN_BLOCK_ENTITY = create("wood_fired_oven", FabricBlockEntityTypeBuilder.create(WoodFiredOvenBlockEntity::new, ObjectRegistry.WOOD_FIRED_OVEN).build());
-    public static final BlockEntityType<CookingPotEntity> COOKING_POT_BLOCK_ENTITY = create("cooking_pot", FabricBlockEntityTypeBuilder.create(CookingPotEntity::new, ObjectRegistry.COOKING_POT).build());
+    public static final RegistrySupplier<BlockEntityType<WoodFiredOvenBlockEntity>> WOOD_FIRED_OVEN_BLOCK_ENTITY = create("wood_fired_oven",() -> BlockEntityType.Builder.of(WoodFiredOvenBlockEntity::new, ObjectRegistry.WOOD_FIRED_OVEN.get()).build(null));
+    public static final RegistrySupplier<BlockEntityType<CookingPotEntity>> COOKING_POT_BLOCK_ENTITY = create("cooking_pot", () -> BlockEntityType.Builder.of(CookingPotEntity::new, ObjectRegistry.COOKING_POT.get()).build(null));
 
-    public static final BlockEntityType<WinePressBlockEntity> WINE_PRESS_BLOCK_ENTITY = create("wine_press", FabricBlockEntityTypeBuilder.create(WinePressBlockEntity::new, ObjectRegistry.WINE_PRESS).build());
+    public static final RegistrySupplier<BlockEntityType<WinePressBlockEntity>> WINE_PRESS_BLOCK_ENTITY = create("wine_press", () -> BlockEntityType.Builder.of(WinePressBlockEntity::new, ObjectRegistry.WINE_PRESS.get()).build(null));
 
-    public static final BlockEntityType<FermentationBarrelBlockEntity> FERMENTATION_BARREL_ENTITY = create("fermentation_barrel", FabricBlockEntityTypeBuilder.create(FermentationBarrelBlockEntity::new, ObjectRegistry.FERMENTATION_BARREL).build());
-    public static final BlockEntityType<WineRackBlockEntity> WINE_RACK_ENTITY = create("wine_rack", FabricBlockEntityTypeBuilder.create(WineRackBlockEntity::new, ObjectRegistry.WINE_RACK_3, ObjectRegistry.WINE_RACK_5).build());
+    public static final RegistrySupplier<BlockEntityType<FermentationBarrelBlockEntity>> FERMENTATION_BARREL_ENTITY = create("fermentation_barrel", () -> BlockEntityType.Builder.of(FermentationBarrelBlockEntity::new, ObjectRegistry.FERMENTATION_BARREL.get()).build(null));
+    public static final RegistrySupplier<BlockEntityType<WineRackBlockEntity>> WINE_RACK_ENTITY = create("wine_rack", () -> BlockEntityType.Builder.of(WineRackBlockEntity::new, ObjectRegistry.WINE_RACK_3.get(), ObjectRegistry.WINE_RACK_5.get()).build(null));
 
-    public static final BlockEntityType<WineRackStorageBlockEntity> WINE_RACK_STORAGE_ENTITY = create("wine_rack_storage", FabricBlockEntityTypeBuilder.create(WineRackStorageBlockEntity::new, ObjectRegistry.WINE_RACK_3, ObjectRegistry.WINE_RACK_5).build());
+    public static final RegistrySupplier<BlockEntityType<WineRackStorageBlockEntity>> WINE_RACK_STORAGE_ENTITY = create("wine_rack_storage", () -> BlockEntityType.Builder.of(WineRackStorageBlockEntity::new, ObjectRegistry.WINE_RACK_3.get(), ObjectRegistry.WINE_RACK_5.get()).build(null));
 
-    public static final BlockEntityType<FlowerBoxBlockEntity> FLOWER_BOX_ENTITY = create("flower_box", FabricBlockEntityTypeBuilder.create(FlowerBoxBlockEntity::new, ObjectRegistry.FLOWER_BOX).build());
-    public static final BlockEntityType<FlowerPotBlockEntity> FLOWER_POT_ENTITY = create("flower_pot", FabricBlockEntityTypeBuilder.create(FlowerPotBlockEntity::new, ObjectRegistry.FLOWER_POT).build());
-    public static final BlockEntityType<WineBottleBlockEntity> WINE_BOTTLE_ENTITY = create("wine_bottle", FabricBlockEntityTypeBuilder.create(WineBottleBlockEntity::new, ObjectRegistry.NOIR_WINE, ObjectRegistry.CLARK_WINE, ObjectRegistry.BOLVAR_WINE, ObjectRegistry.STAL_WINE, ObjectRegistry.CHERRY_WINE, ObjectRegistry.KELP_CIDER, ObjectRegistry.SOLARIS_WINE, ObjectRegistry.APPLE_WINE,
-            ObjectRegistry.APPLE_CIDER, ObjectRegistry.STRAD_WINE, ObjectRegistry.CHENET_WINE, ObjectRegistry.MELLOHI_WINE,
-            ObjectRegistry.KING_DANIS_WINE, ObjectRegistry.MAGNETIC_WINE, ObjectRegistry.CHORUS_WINE, ObjectRegistry.JELLIE_WINE, ObjectRegistry.AEGIS_WINE).build());
+    public static final RegistrySupplier<BlockEntityType<FlowerBoxBlockEntity>> FLOWER_BOX_ENTITY = create("flower_box", () -> BlockEntityType.Builder.of(FlowerBoxBlockEntity::new, ObjectRegistry.FLOWER_BOX.get()).build(null));
+    public static final RegistrySupplier<BlockEntityType<FlowerPotBlockEntity>> FLOWER_POT_ENTITY = create("flower_pot", () -> BlockEntityType.Builder.of(FlowerPotBlockEntity::new, ObjectRegistry.FLOWER_POT.get()).build(null));
+    public static final RegistrySupplier<BlockEntityType<WineBottleBlockEntity>> WINE_BOTTLE_ENTITY = create("wine_bottle", () -> BlockEntityType.Builder.of(WineBottleBlockEntity::new,
+            ObjectRegistry.NOIR_WINE.get(), ObjectRegistry.CLARK_WINE.get(), ObjectRegistry.BOLVAR_WINE.get(), ObjectRegistry.STAL_WINE.get(), ObjectRegistry.CHERRY_WINE.get(), ObjectRegistry.KELP_CIDER.get(),
+            ObjectRegistry.SOLARIS_WINE.get(), ObjectRegistry.APPLE_WINE.get(), ObjectRegistry.APPLE_CIDER.get(), ObjectRegistry.STRAD_WINE.get(), ObjectRegistry.CHENET_WINE.get(), ObjectRegistry.MELLOHI_WINE.get(),
+            ObjectRegistry.KING_DANIS_WINE.get(), ObjectRegistry.MAGNETIC_WINE.get(), ObjectRegistry.CHORUS_WINE.get(), ObjectRegistry.JELLIE_WINE.get(), ObjectRegistry.AEGIS_WINE.get()).build(null));
 
 
     public static Block[] b(){
@@ -53,27 +51,20 @@ public class VineryBlockEntityTypes {
         return set.toArray(new Block[0]);
     }
 
-    public static final BlockEntityType<StorageBlockEntity> STORAGE_ENTITY = create("storage", FabricBlockEntityTypeBuilder.create(
-            StorageBlockEntity::new, b()).build());
+    public static final RegistrySupplier<BlockEntityType<StorageBlockEntity>> STORAGE_ENTITY = create("storage", () -> BlockEntityType.Builder.of(
+            StorageBlockEntity::new, b()).build(null));
 
 
 
-    public static final EntityType<ChairEntity> CHAIR = Registry.register(
-            BuiltInRegistries.ENTITY_TYPE,
-            new ResourceLocation(Vinery.MODID, "chair"),
-            FabricEntityTypeBuilder.<ChairEntity>create(MobCategory.MISC, ChairEntity::new).dimensions(EntityDimensions.fixed(0.001F, 0.001F)).build()
-    );
 
 
 
-    private static <T extends BlockEntityType<?>> T create(final String path, final T type) {
-        BLOCK_ENTITY_TYPES.put(new VineryIdentifier(path), type);
-        return type;
+
+    private static <T extends BlockEntityType<?>> RegistrySupplier<T> create(final String path, final Supplier<T> type) {
+        return BLOCK_ENTITY_TYPES.register(new VineryIdentifier(path), type);
     }
 
     public static void init() {
-        for (Map.Entry<ResourceLocation, BlockEntityType<?>> entry : BLOCK_ENTITY_TYPES.entrySet()) {
-            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, entry.getKey(), entry.getValue());
-        }
+        
     }
 }

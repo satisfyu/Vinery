@@ -65,7 +65,7 @@ public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
     }
 
     private boolean isContainer(ItemStack stack) {
-        return this.world.getRecipeManager().getAllRecipesFor(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE).stream().anyMatch(recipe -> stack.getItem() == recipe.getContainer().getItem());
+        return this.world.getRecipeManager().getAllRecipesFor(VineryRecipeTypes.COOKING_POT_RECIPE_TYPE.get()).stream().anyMatch(recipe -> stack.getItem() == recipe.getContainer().getItem());
     }
 
     public int getScaledProgress(int arrowWidth) {

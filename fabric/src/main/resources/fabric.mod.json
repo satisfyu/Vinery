@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "satisfyu.vinery.VineryO"
+      "satisfyu.vinery.fabric.VineryFabric"
     ],
     "client": [
       "satisfyu.vinery.client.VineryClient"

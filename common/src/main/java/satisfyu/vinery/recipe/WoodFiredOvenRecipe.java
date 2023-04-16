@@ -7,7 +7,6 @@ import satisfyu.vinery.util.VineryUtils;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.recipe.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
@@ -72,12 +71,12 @@ public class WoodFiredOvenRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_SERIALIZER;
+        return VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_TYPE;
+        return VineryRecipeTypes.WOOD_FIRED_OVEN_RECIPE_TYPE.get();
     }
 
     @Override
@@ -114,7 +113,7 @@ public class WoodFiredOvenRecipe implements Recipe<Container> {
         }
 
         @Override
-        public void write(FriendlyByteBuf packet, WoodFiredOvenRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf packet, WoodFiredOvenRecipe recipe) {
             packet.writeVarInt(recipe.inputs.size());
             recipe.inputs.forEach(entry -> entry.toNetwork(packet));
             packet.writeItem(recipe.output);

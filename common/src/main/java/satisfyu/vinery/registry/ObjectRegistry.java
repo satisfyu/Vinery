@@ -1,116 +1,75 @@
 package satisfyu.vinery.registry;
 
-import com.mojang.datafixers.util.Pair;
+import dev.architectury.core.item.ArchitecturySpawnEggItem;
+import dev.architectury.hooks.item.tool.AxeItemHooks;
+import dev.architectury.registry.fuel.FuelRegistry;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SignItem;
-import net.minecraft.world.item.SpawnEggItem;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.BarrelBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ButtonBlock;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.FenceBlock;
-import net.minecraft.world.level.block.FenceGateBlock;
-import net.minecraft.world.level.block.PressurePlateBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.*;
-import satisfyu.vinery.block.crops.TomatoCropBlock;
+import satisfyu.vinery.block.FlowerPotBlock;
 import satisfyu.vinery.block.grape.GrapeBush;
-import satisfyu.vinery.block.grape.GrapeVineBlock;
-import satisfyu.vinery.block.grape.SavannaGrapeBush;
-import satisfyu.vinery.block.grape.TaigaGrapeBush;
-import satisfyu.vinery.block.stem.LatticeStemBlock;
 import satisfyu.vinery.block.stem.PaleStemBlock;
 import satisfyu.vinery.item.*;
+import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.util.GrapevineType;
-import satisfyu.vinery.util.VineryFoodComponent;
+import satisfyu.vinery.util.sign.block.TerraformSignBlock;
+import satisfyu.vinery.util.sign.block.TerraformWallSignBlock;
 import satisfyu.vinery.world.VineryConfiguredFeatures;
 
-import java.util.*;
-import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import static satisfyu.vinery.Vinery.REGISTRIES;
 
 public class ObjectRegistry {
-
     public static Registrar<Item> ITEMS = REGISTRIES.get(Registries.ITEM);
     public static Registrar<Block> BLOCKS = REGISTRIES.get(Registries.BLOCK);
 
+    //Grapes
+    public static final RegistrySupplier<Block> RED_GRAPE_BUSH = registerB("red_grape_bush", () -> new GrapeBush(getBushSettings(), GrapevineType.RED));
+    public static final RegistrySupplier<Block> WHITE_GRAPE_BUSH = registerB("white_grape_bush", () -> new GrapeBush(getBushSettings(), GrapevineType.WHITE));
+    public static final RegistrySupplier<Item> RED_GRAPE_SEEDS = registerI("red_grape_seeds", () -> new GrapeBushSeedItem(RED_GRAPE_BUSH.get(), getSettings(), GrapevineType.RED));
+    public static final RegistrySupplier<Item> WHITE_GRAPE_SEEDS = registerI("white_grape_seeds", () -> new GrapeBushSeedItem(WHITE_GRAPE_BUSH.get(), getSettings(), GrapevineType.WHITE));
+    public static final RegistrySupplier<Item> RED_GRAPE = registerI("red_grape", () -> new GrapeItem(getSettings().food(Foods.SWEET_BERRIES), GrapevineType.RED, RED_GRAPE_SEEDS.get().getDefaultInstance()));
+    public static final RegistrySupplier<Item> WHITE_GRAPE = registerI("white_grape", () -> new GrapeItem(getSettings().food(Foods.SWEET_BERRIES), GrapevineType.WHITE, WHITE_GRAPE_SEEDS.get().getDefaultInstance()));
 
-    public static final Item CHERRY = register("cherry", new CherryItem(getSettings().food(Foods.COOKIE)));
-    public static final Item ROTTEN_CHERRY = register("rotten_cherry", new RottenCherryItem(getSettings().food(Foods.POISONOUS_POTATO)));
-    public static final Block RED_GRAPE_BUSH = register("red_grape_bush", new GrapeBush(getBushSettings(), GrapevineType.RED), false);
-    public static final Item RED_GRAPE_SEEDS = register("red_grape_seeds", new GrapeBushSeedItem(RED_GRAPE_BUSH, getSettings(), GrapevineType.RED));
-    public static final Item RED_GRAPE = register("red_grape", new GrapeItem(getSettings().food(Foods.SWEET_BERRIES), GrapevineType.RED, ObjectRegistry.RED_GRAPE_SEEDS.getDefaultInstance()));
-    public static final Block WHITE_GRAPE_BUSH = register("white_grape_bush", new GrapeBush(getBushSettings(), GrapevineType.WHITE), false);
-    public static final Item WHITE_GRAPE_SEEDS = register("white_grape_seeds", new GrapeBushSeedItem(WHITE_GRAPE_BUSH, getSettings(), GrapevineType.WHITE));
-    public static final Item WHITE_GRAPE = register("white_grape", new GrapeItem(getSettings().food(Foods.SWEET_BERRIES), GrapevineType.WHITE, ObjectRegistry.WHITE_GRAPE_SEEDS.getDefaultInstance()));
-
-    public static final Block SAVANNA_RED_GRAPE_BUSH = register("savanna_grape_bush_red", new SavannaGrapeBush(getBushSettings(), GrapevineType.SAVANNA_RED), false);
-    public static final Item SAVANNA_RED_GRAPE_SEEDS = register("savanna_grape_seeds_red", new GrapeBushSeedItem(SAVANNA_RED_GRAPE_BUSH, getSettings(), GrapevineType.SAVANNA_RED));
-    public static final Item SAVANNA_RED_GRAPE = register("savanna_grapes_red", new GrapeItem(getSettings().food(Foods.SWEET_BERRIES), GrapevineType.SAVANNA_RED, ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS.getDefaultInstance()));
-    public static final Block SAVANNA_WHITE_GRAPE_BUSH = register("savanna_grape_bush_white", new SavannaGrapeBush(getBushSettings(), GrapevineType.SAVANNA_WHITE), false);
-    public static final Item SAVANNA_WHITE_GRAPE_SEEDS = register("savanna_grape_seeds_white", new GrapeBushSeedItem(SAVANNA_WHITE_GRAPE_BUSH, getSettings(), GrapevineType.SAVANNA_WHITE));
-    public static final Item SAVANNA_WHITE_GRAPE = register("savanna_grapes_white", new GrapeItem(getSettings().food(Foods.SWEET_BERRIES), GrapevineType.SAVANNA_WHITE, ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS.getDefaultInstance()));
-
-    public static final Block TAIGA_RED_GRAPE_BUSH = register("taiga_grape_bush_red", new TaigaGrapeBush(getBushSettings(), GrapevineType.TAIGA_RED), false);
-    public static final Item TAIGA_RED_GRAPE_SEEDS = register("taiga_grape_seeds_red", new GrapeBushSeedItem(TAIGA_RED_GRAPE_BUSH, getSettings(), GrapevineType.TAIGA_RED));
-    public static final Item TAIGA_RED_GRAPE = register("taiga_grapes_red", new GrapeItem(getSettings().food(Foods.SWEET_BERRIES), GrapevineType.TAIGA_RED, ObjectRegistry.TAIGA_RED_GRAPE_SEEDS.getDefaultInstance()));
-    public static final Block TAIGA_WHITE_GRAPE_BUSH = register("taiga_grape_bush_white", new TaigaGrapeBush(getBushSettings(), GrapevineType.TAIGA_WHITE), false);
-    public static final Item TAIGA_WHITE_GRAPE_SEEDS = register("taiga_grape_seeds_white", new GrapeBushSeedItem(TAIGA_WHITE_GRAPE_BUSH, getSettings(), GrapevineType.TAIGA_WHITE));
-    public static final Item TAIGA_WHITE_GRAPE = register("taiga_grapes_white", new GrapeItem(getSettings().food(Foods.SWEET_BERRIES), GrapevineType.TAIGA_WHITE,ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS.getDefaultInstance()));
-
-    public static final Block JUNGLE_RED_GRAPE_BUSH = register("jungle_grape_bush_red", new GrapeVineBlock(getBushSettings(), GrapevineType.JUNGLE_RED), false);
-    public static final Item JUNGLE_RED_GRAPE_SEEDS = register("jungle_grape_seeds_red", new GrapeBushSeedItem(JUNGLE_RED_GRAPE_BUSH, getSettings(), GrapevineType.JUNGLE_RED));
-    public static final Item JUNGLE_RED_GRAPE = register("jungle_grapes_red", new GrapeItem(getSettings().food(Foods.BAKED_POTATO), GrapevineType.JUNGLE_RED, ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS.getDefaultInstance()));
-    public static final Block JUNGLE_WHITE_GRAPE_BUSH = register("jungle_grape_bush_white", new GrapeVineBlock(getBushSettings(), GrapevineType.JUNGLE_WHITE), false);
-    public static final Item JUNGLE_WHITE_GRAPE_SEEDS = register("jungle_grape_seeds_white", new GrapeBushSeedItem(JUNGLE_WHITE_GRAPE_BUSH, getSettings(), GrapevineType.JUNGLE_WHITE));
-    public static final Item JUNGLE_WHITE_GRAPE = register("jungle_grapes_white", new GrapeItem(getSettings().food(Foods.BAKED_POTATO), GrapevineType.JUNGLE_WHITE, ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS.getDefaultInstance()));
-
-    public static final Block CHERRY_SAPLING = register("cherry_sapling", new SaplingBlock(new AbstractTreeGrower() {
-        @Nullable
+    //Saplings
+    public static final RegistrySupplier<Block> CHERRY_SAPLING = registerB("cherry_sapling", () -> new SaplingBlock(new AbstractTreeGrower() {
         @Override
-        protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(net.minecraft.util.RandomSource random, boolean bees) {
+        protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull RandomSource random, boolean bees) {
             if (random.nextBoolean()) return VineryConfiguredFeatures.CHERRY_KEY;
             return VineryConfiguredFeatures.CHERRY_VARIANT_KEY;
         }
     }, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static final Block OLD_CHERRY_SAPLING = register("old_cherry_sapling", new SaplingBlock(new AbstractTreeGrower() {
-        @Nullable
+    public static final RegistrySupplier<Item>  CHERRY_SAPLING_ITEM = registerI("cherry_sapling", () -> new BlockItem(CHERRY_SAPLING.get(), getSettings()));
+    public static final RegistrySupplier<Block> OLD_CHERRY_SAPLING = registerB("old_cherry_sapling", () -> new SaplingBlock(new AbstractTreeGrower() {
         @Override
-        protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(net.minecraft.util.RandomSource random, boolean bees) {
+        protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull RandomSource random, boolean bees) {
             if (random.nextBoolean()) {
                 if (bees) return VineryConfiguredFeatures.OLD_CHERRY_BEE_KEY;
                 return VineryConfiguredFeatures.OLD_CHERRY_KEY;
@@ -119,133 +78,219 @@ public class ObjectRegistry {
                 return VineryConfiguredFeatures.OLD_CHERRY_VARIANT_KEY;
             }
         }
-    }, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)), true);
+    }, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
+    public static final RegistrySupplier<Item>  OLD_CHERRY_SAPLING_ITEM = registerI("old_cherry_sapling", () -> new BlockItem(OLD_CHERRY_SAPLING.get(), getSettings()));
 
 
-    public static final Block GRAPEVINE_LEAVES = register("grapevine_leaves", new GrapevineLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
-    public static final Block CHERRY_LEAVES = register("cherry_leaves", new CherryLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
-    public static final Block WHITE_GRAPE_CRATE = register("white_grape_crate", new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-    public static final Block RED_GRAPE_CRATE = register("red_grape_crate", new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-    public static final Block CHERRY_CRATE = register("cherry_crate", new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-    public static final Block APPLE_CRATE = register("apple_crate", new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-    public static final Block GRAPEVINE_POT = register("grapevine_pot", new GrapevinePotBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)));
-    public static final Block FERMENTATION_BARREL = register("fermentation_barrel", new FermentationBarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL).noOcclusion()));
-    public static final Block WINE_PRESS = register("wine_press", new WinePressBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final Block CHAIR = register("chair", new ChairBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0f, 3.0f).sound(SoundType.WOOD)));
-    public static final Block TABLE = register("table", new TableBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
-    public static final Block WOOD_FIRED_OVEN = register("wood_fired_oven", new WoodFiredOvenBlock(BlockBehaviour.Properties.copy(Blocks.BRICKS).lightLevel(state -> state.getValue(WoodFiredOvenBlock.LIT) ? 13 : 0)));
-    public static final Block STOVE = register("stove", new StoveBlock(BlockBehaviour.Properties.copy(Blocks.BRICKS).luminance(12)));
-    public static final Block KITCHEN_SINK = register("kitchen_sink", new KitchenSinkBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
-    public static final Block WINE_RACK_1 = register("wine_rack_1", new NineBottleStorageBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final Block WINE_RACK_2 = register("wine_rack_2", new FourBottleStorageBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final Block WINE_RACK_3 = register("wine_rack_3", new WineRackStorageBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD), VinerySoundEvents.WINE_RACK_3_OPEN, VinerySoundEvents.WINE_RACK_3_CLOSE));
-    public static final Block WINE_RACK_5 = register("wine_rack_5", new WineRackStorageBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD), VinerySoundEvents.WINE_RACK_5_OPEN, VinerySoundEvents.WINE_RACK_5_CLOSE));
-    public static final Block BARREL = register("barrel", new BarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)));
-    public static final Block STRIPPED_CHERRY_LOG = registerLog("stripped_cherry_log");
-    public static final Block CHERRY_LOG = register("cherry_log", new StrippableLogBlock(() -> STRIPPED_CHERRY_LOG, MaterialColor.WOOD, getLogBlockSettings()));
-    public static final Block STRIPPED_CHERRY_WOOD = registerLog("stripped_cherry_wood");
-    public static final Block CHERRY_WOOD = register("cherry_wood", new StrippableLogBlock(() -> STRIPPED_CHERRY_WOOD, MaterialColor.WOOD, getLogBlockSettings()));
-    public static final Block STRIPPED_OLD_CHERRY_LOG = registerLog("stripped_old_cherry_log");
-    public static final Block OLD_CHERRY_LOG = register("old_cherry_log", new StrippableLogBlock(() -> STRIPPED_OLD_CHERRY_LOG, MaterialColor.WOOD, getLogBlockSettings()));
-    public static final Block STRIPPED_OLD_CHERRY_WOOD = registerLog("stripped_old_cherry_wood");
-    public static final Block OLD_CHERRY_WOOD = register("old_cherry_wood", new StrippableLogBlock(() -> STRIPPED_OLD_CHERRY_WOOD, MaterialColor.WOOD, getLogBlockSettings()));
-    public static final Block CHERRY_BEAM = registerLog("cherry_beam");
-    public static final Block CHERRY_PLANKS = register("cherry_planks", new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-    public static final Block CHERRY_FLOORBOARD = register("cherry_floorboard", new Block(BlockBehaviour.Properties.copy(CHERRY_PLANKS)));
-    public static final Block CHERRY_STAIRS = register("cherry_stairs", new StairBlock(CHERRY_PLANKS.defaultBlockState(), BlockBehaviour.Properties.copy(CHERRY_PLANKS)));
-    public static final Block CHERRY_SLAB = register("cherry_slab", new SlabBlock(getSlabSettings()));
-    public static final Block CHERRY_FENCE = register("cherry_fence", new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)));
-    public static final Block CHERRY_FENCE_GATE = register("cherry_fence_gate", new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE), WoodType.CHERRY));
-    public static final Block CHERRY_BUTTON = register("cherry_button", createWoodenButtonBlock());
-    public static final Block CHERRY_PRESSURE_PLATE = register("cherry_pressure_plate", new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE), BlockSetType.CHERRY));
-    public static final Block CHERRY_DOOR = register("cherry_door", new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR), BlockSetType.CHERRY));
-    public static final Block CHERRY_TRAPDOOR = register("cherry_trapdoor", new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR), BlockSetType.CHERRY));
+    public static final RegistrySupplier<Item> CHERRY = registerI("cherry", () -> new CherryItem(getSettings().food(Foods.COOKIE)));
+    public static final RegistrySupplier<Block> GRAPEVINE_LEAVES = registerB("grapevine_leaves", () -> new GrapevineLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
+    public static final RegistrySupplier<Item>  GRAPEVINE_LEAVES_ITEM = registerI("grapevine_leaves", () -> new BlockItem(GRAPEVINE_LEAVES.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_LEAVES = registerB("cherry_leaves", VariantLeavesBlock::new);
+    public static final RegistrySupplier<Item>  CHERRY_LEAVES_ITEM = registerI("cherry_leaves", () -> new BlockItem(CHERRY_LEAVES.get(), getSettings()));
+    public static final RegistrySupplier<Block> WHITE_GRAPE_CRATE = registerB("white_grape_crate", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistrySupplier<Item>  WHITE_GRAPE_CRATE_ITEM = registerI("white_grape_crate", () -> new BlockItem(WHITE_GRAPE_CRATE.get(), getSettings()));
+    public static final RegistrySupplier<Block> RED_GRAPE_CRATE = registerB("red_grape_crate", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistrySupplier<Item>  RED_GRAPE_CRATE_ITEM = registerI("red_grape_crate", () -> new BlockItem(RED_GRAPE_CRATE.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_CRATE = registerB("cherry_crate", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistrySupplier<Item>  CHERRY_CRATE_ITEM = registerI("cherry_crate", () -> new BlockItem(CHERRY_CRATE.get(), getSettings()));
+    public static final RegistrySupplier<Block> GRAPEVINE_STEM = registerB("grapevine_stem", () -> new PaleStemBlock(getGrapevineSettings()));
+    public static final RegistrySupplier<Item>  GRAPEVINE_STEM_ITEM = registerI("grapevine_stem", () -> new BlockItem(GRAPEVINE_STEM.get(), getSettings()));
+    public static final RegistrySupplier<Block> GRAPEVINE_POT = registerB("grapevine_pot", () -> new GrapevinePotBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)));
+    public static final RegistrySupplier<Item>  GRAPEVINE_POT_ITEM = registerI("grapevine_pot", () -> new BlockItem(GRAPEVINE_POT.get(), getSettings()));
+    public static final RegistrySupplier<Block> FERMENTATION_BARREL = registerB("fermentation_barrel", () -> new FermentationBarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL).noOcclusion()));
+    public static final RegistrySupplier<Item>  FERMENTATION_BARREL_ITEM = registerI("fermentation_barrel", () -> new BlockItem(FERMENTATION_BARREL.get(), getSettings()));
+    public static final RegistrySupplier<Block> WINE_PRESS = registerB("wine_press", () -> new WinePressBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item>  WINE_PRESS_ITEM = registerI("wine_press", () -> new BlockItem(WINE_PRESS.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHAIR = registerB("chair", () -> new ChairBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0f, 3.0f).sound(SoundType.WOOD)));
+    public static final RegistrySupplier<Item>  CHAIR_ITEM = registerI("chair", () -> new BlockItem(CHAIR.get(), getSettings()));
+    public static final RegistrySupplier<Block> TABLE = registerB("table", () -> new TableBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistrySupplier<Item>  TABLE_ITEM = registerI("table", () -> new BlockItem(TABLE.get(), getSettings()));
+    public static final RegistrySupplier<Block> WOOD_FIRED_OVEN = registerB("wood_fired_oven", () -> new WoodFiredOvenBlock(BlockBehaviour.Properties.copy(Blocks.BRICKS).lightLevel(state -> state.getValue(WoodFiredOvenBlock.LIT) ? 13 : 0)));
+    public static final RegistrySupplier<Item>  WOOD_FIRED_OVEN_ITEM = registerI("wood_fired_oven", () -> new BlockItem(WOOD_FIRED_OVEN.get(), getSettings()));
+    public static final RegistrySupplier<Block> STOVE = registerB("stove", () -> new StoveBlock(BlockBehaviour.Properties.copy(Blocks.BRICKS).lightLevel(block -> 12)));
+    public static final RegistrySupplier<Item>  STOVE_ITEM = registerI("stove", () -> new BlockItem(STOVE.get(), getSettings()));
+    public static final RegistrySupplier<Block> KITCHEN_SINK = registerB("kitchen_sink", () -> new KitchenSinkBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+    public static final RegistrySupplier<Item>  KITCHEN_SINK_ITEM = registerI("kitchen_sink", () -> new BlockItem(KITCHEN_SINK.get(), getSettings()));
+    public static final RegistrySupplier<Block> WINE_RACK_1 = registerB("wine_rack_1", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item>  WINE_RACK_1_ITEM = registerI("wine_rack_1", () -> new BlockItem(WINE_RACK_1.get(), getSettings()));
+    public static final RegistrySupplier<Block> WINE_RACK_2 = registerB("wine_rack_2", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item>  WINE_RACK_2_ITEM = registerI("wine_rack_2", () -> new BlockItem(WINE_RACK_2.get(), getSettings()));
+    public static final RegistrySupplier<Block> WINE_RACK_3 = registerB("wine_rack_3", () -> new WineRackStorageBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD), VinerySoundEvents.WINE_RACK_3_OPEN.get(), VinerySoundEvents.WINE_RACK_3_CLOSE.get()));
+    public static final RegistrySupplier<Item>  WINE_RACK_3_ITEM = registerI("wine_rack_3", () -> new BlockItem(WINE_RACK_3.get(), getSettings()));
+    public static final RegistrySupplier<Block> WINE_RACK_5 = registerB("wine_rack_5", () -> new WineRackStorageBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD), VinerySoundEvents.WINE_RACK_5_OPEN.get(), VinerySoundEvents.WINE_RACK_5_CLOSE.get()));
+    public static final RegistrySupplier<Item>  WINE_RACK_5_ITEM = registerI("wine_rack_5", () -> new BlockItem(WINE_RACK_5.get(), getSettings()));
+    public static final RegistrySupplier<Block> BARREL = registerB("barrel", () -> new BarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)));
+    public static final RegistrySupplier<Item>  BARREL_ITEM = registerI("barrel", () -> new BlockItem(BARREL.get(), getSettings()));
+    public static final RegistrySupplier<Block> STORAGE_POT = registerB("storage_pot", () -> new StoragePotBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundEvents.DYE_USE, SoundEvents.DYE_USE));
+    public static final RegistrySupplier<Item>  STORAGE_POT_ITEM = registerI("storage_pot", () -> new BlockItem(STORAGE_POT.get(), getSettings()));
+    public static final RegistrySupplier<Block> STRIPPED_CHERRY_LOG = registerB("stripped_cherry_log", GeneralUtil::logBlock);
+    public static final RegistrySupplier<Item>  STRIPPED_CHERRY_LOG_ITEM = registerI("stripped_cherry_log", () -> new BlockItem(STRIPPED_CHERRY_LOG.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_LOG = registerB("cherry_log", GeneralUtil::logBlock);
+    public static final RegistrySupplier<Item>  CHERRY_LOG_ITEM = registerI("cherry_log", () -> new BlockItem(CHERRY_LOG.get(), getSettings()));
+    public static final RegistrySupplier<Block> STRIPPED_CHERRY_WOOD = registerB("stripped_cherry_wood", GeneralUtil::logBlock);
+    public static final RegistrySupplier<Item>  STRIPPED_CHERRY_WOOD_ITEM = registerI("stripped_cherry_wood", () -> new BlockItem(STRIPPED_CHERRY_WOOD.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_WOOD = registerB("cherry_wood", GeneralUtil::logBlock);
+    public static final RegistrySupplier<Item>  CHERRY_WOOD_ITEM = registerI("cherry_wood", () -> new BlockItem(CHERRY_WOOD.get(), getSettings()));
+    public static final RegistrySupplier<Block> STRIPPED_OLD_CHERRY_LOG = registerB("stripped_old_cherry_log", GeneralUtil::logBlock);
+    public static final RegistrySupplier<Item>  STRIPPED_OLD_CHERRY_LOG_ITEM = registerI("stripped_old_cherry_log", () -> new BlockItem(STRIPPED_OLD_CHERRY_LOG.get(), getSettings()));
+    public static final RegistrySupplier<Block> OLD_CHERRY_LOG = registerB("old_cherry_log", GeneralUtil::logBlock);
+    public static final RegistrySupplier<Item>  OLD_CHERRY_LOG_ITEM = registerI("old_cherry_log", () -> new BlockItem(OLD_CHERRY_LOG.get(), getSettings()));
+    public static final RegistrySupplier<Block> STRIPPED_OLD_CHERRY_WOOD = registerB("stripped_old_cherry_wood", GeneralUtil::logBlock);
+    public static final RegistrySupplier<Item>  STRIPPED_OLD_CHERRY_WOOD_ITEM = registerI("stripped_old_cherry_wood", () -> new BlockItem(STRIPPED_OLD_CHERRY_WOOD.get(), getSettings()));
+    public static final RegistrySupplier<Block> OLD_CHERRY_WOOD = registerB("old_cherry_wood", GeneralUtil::logBlock);
+    public static final RegistrySupplier<Item>  OLD_CHERRY_WOOD_ITEM = registerI("old_cherry_wood", () -> new BlockItem(OLD_CHERRY_WOOD.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_BEAM = registerB("cherry_beam", GeneralUtil::logBlock);
+    public static final RegistrySupplier<Item>  CHERRY_BEAM_ITEM = registerI("cherry_beam", () -> new BlockItem(CHERRY_BEAM.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_PLANKS = registerB("cherry_planks", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD));
+    public static final RegistrySupplier<Item> CHERRY_PLANK_ITEM = registerI("cherry_planks", () -> new BlockItem(CHERRY_PLANKS.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_FLOORBOARD = registerB("cherry_floorboard", () -> new Block(BlockBehaviour.Properties.copy(CHERRY_PLANKS.get())));
+    public static final RegistrySupplier<Item>  CHERRY_FLOORBOARD_ITEM = registerI("cherry_floorboard", () -> new BlockItem(CHERRY_FLOORBOARD.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_STAIRS = registerB("cherry_stairs", () -> new StairBlock(CHERRY_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(CHERRY_PLANKS.get())));
+    public static final RegistrySupplier<Item>  CHERRY_STAIRS_ITEM = registerI("cherry_stairs", () -> new BlockItem(CHERRY_STAIRS.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_SLAB = registerB("cherry_slab", () -> new SlabBlock(getSlabSettings()));
+    public static final RegistrySupplier<Item>  CHERRY_SLAB_ITEM = registerI("cherry_slab", () -> new BlockItem(CHERRY_SLAB.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_FENCE = registerB("cherry_fence", () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)));
+    public static final RegistrySupplier<Item>  CHERRY_FENCE_ITEM = registerI("cherry_fence", () -> new BlockItem(CHERRY_FENCE.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_FENCE_GATE = registerB("cherry_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)));
+    public static final RegistrySupplier<Item>  CHERRY_FENCE_GATE_ITEM = registerI("cherry_fence_gate", () -> new BlockItem(CHERRY_FENCE_GATE.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_BUTTON = registerB("cherry_button", () -> new WoodButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON)));
+    public static final RegistrySupplier<Item>  CHERRY_BUTTON_ITEM = registerI("cherry_button", () -> new BlockItem(CHERRY_BUTTON.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_PRESSURE_PLATE = registerB("cherry_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE)));
+    public static final RegistrySupplier<Item>  CHERRY_PRESSURE_PLATE_ITEM = registerI("cherry_pressure_plate", () -> new BlockItem(CHERRY_PRESSURE_PLATE.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_DOOR = registerB("cherry_door", () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR)));
+    public static final RegistrySupplier<Item>  CHERRY_DOOR_ITEM = registerI("cherry_door", () -> new BlockItem(CHERRY_DOOR.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_TRAPDOOR = registerB("cherry_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR)));
+    public static final RegistrySupplier<Item>  CHERRY_TRAPDOOR_ITEM = registerI("cherry_trapdoor", () -> new BlockItem(CHERRY_TRAPDOOR.get(), getSettings()));
+
+    //Signs
     private static final ResourceLocation CHERRY_SIGN_TEXTURE = new ResourceLocation("entity/signs/cherry");
-    public static final TerraformSignBlock CHERRY_SIGN = register("cherry_sign", new TerraformSignBlock(CHERRY_SIGN_TEXTURE, BlockBehaviour.Properties.copy(Blocks.OAK_SIGN)), false);
-    public static final Block CHERRY_WALL_SIGN = register("cherry_wall_sign", new TerraformWallSignBlock(CHERRY_SIGN_TEXTURE, BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN)), false);
-    public static final Item CHERRY_SIGN_ITEM = register("cherry_sign", new SignItem(getSettings().stacksTo(16), CHERRY_SIGN, CHERRY_WALL_SIGN));
-    public static final Block WINDOW = register("window", new WindowBlock(BlockBehaviour.Properties.copy(Blocks.GLASS_PANE)));
-    public static final Block GRAPEVINE_LATTICE = register("grapevine_lattice", new LatticeStemBlock(getGrapevineSettings()));
-    public static final Block LOAM = register("loam", new Block(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 3.0F).sound(SoundType.MUD)));
-    public static final Block LOAM_STAIRS = register("loam_stairs", new StairBlock(LOAM.defaultBlockState(), BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 3.0F).sound(SoundType.MUD)));
-    public static final Block LOAM_SLAB = register("loam_slab", new SlabBlock(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 3.0F).sound(SoundType.MUD)));
-    public static final Block COARSE_DIRT_SLAB = register("coarse_dirt_slab", new VariantSlabBlock(BlockBehaviour.Properties.copy(Blocks.COARSE_DIRT)));
-    public static final Block DIRT_SLAB = register("dirt_slab", new VariantSlabBlock(BlockBehaviour.Properties.copy(Blocks.DIRT)));
-    public static final Block GRASS_SLAB = register("grass_slab", new SnowyVariantSlabBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
-    public static final Block WINE_BOTTLE = register("wine_bottle", new EmptyWineBottleBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).instabreak().noOcclusion()));
-    public static final JuiceItem RED_GRAPEJUICE_WINE_BOTTLE = register("red_grapejuice_wine_bottle", new JuiceItem(getSettings()));
-    public static final JuiceItem WHITE_GRAPEJUICE_WINE_BOTTLE = register("white_grapejuice_wine_bottle", new JuiceItem(getSettings()));
-    public static final JuiceItem SAVANNA_RED_GRAPEJUICE_BOTTLE = register("savanna_red_grapejuice_bottle",  new JuiceItem(getSettings()));
-    public static final JuiceItem SAVANNA_WHITE_GRAPEJUICE_BOTTLE = register("savanna_white_grapejuice_bottle",  new JuiceItem(getSettings()));
-    public static final JuiceItem TAIGA_RED_GRAPEJUICE_BOTTLE = register("taiga_red_grapejuice_bottle",  new JuiceItem(getSettings()));
-    public static final JuiceItem TAIGA_WHITE_GRAPEJUICE_BOTTLE = register("taiga_white_grapejuice_bottle", new JuiceItem(getSettings()));
-    public static final JuiceItem JUNGLE_RED_GRAPEJUICE_BOTTLE = register("jungle_red_grapejuice_bottle",  new JuiceItem(getSettings()));
-    public static final JuiceItem JUNGLE_WHITE_GRAPEJUICE_BOTTLE = register("jungle_white_grapejuice_bottle",  new JuiceItem(getSettings()));
-    public static final JuiceItem APPLE_JUICE = register("apple_juice",  new JuiceItem(getSettings()));
-    //normal - light effects, small util
-    public static final Block CHORUS_WINE = registerBigWine("chorus_wine", new WineBottleBlock(getWineSettings(), 1), VineryEffects.TELEPORT, 1);
-    public static final Block CHERRY_WINE = registerWine("cherry_wine", new WineBottleBlock(getWineSettings(), 3), MobEffects.REGENERATION);
-    public static final Block MAGNETIC_WINE = registerBigWine("magnetic_wine", new WineBottleBlock(getWineSettings(), 1), VineryEffects.MAGNET);
-    public static final Block NOIR_WINE = registerWine("noir_wine", new WineBottleBlock(getWineSettings(), 3), MobEffects.HEAL, 1);
-    //jungle - absorption and heal
-    public static final Block KING_DANIS_WINE = registerBigWine("king_danis_wine", new WineBottleBlock(getWineSettings(), 1), VineryEffects.IMPROVED_INSTANT_HEALTH);
-    public static final Block MELLOHI_WINE = registerBigWine("mellohi_wine", new WineBottleBlock(getWineSettings(), 2), VineryEffects.IMPROVED_FIRE_RESISTANCE);
-    public static final Block STAL_WINE = registerWine("stal_wine", new WineBottleBlock(getWineSettings(), 3), VineryEffects.IMPROVED_REGENERATION);
-    public static final Block STRAD_WINE = registerBigWine("strad_wine", new WineBottleBlock(getWineSettings(), 2), VineryEffects.IMPROVED_ABSORBTION);
-    //taiga wine - util, strength
-    public static final Block SOLARIS_WINE = registerWine("solaris_wine", new WineBottleBlock(getWineSettings(), 3), VineryEffects.IMPROVED_STRENGTH);
-    public static final Block BOLVAR_WINE = registerWine("bolvar_wine", new WineBottleBlock(getWineSettings(), 3), VineryEffects.IMPROVED_HASTE);
-    //savanna wine - util, speed / water breathing
-    public static final Block AEGIS_WINE = registerBigWine("aegis_wine", new WineBottleBlock(getWineSettings(), 3), MobEffects.NIGHT_VISION);
-    public static final Block CLARK_WINE = registerWine("clark_wine", new WineBottleBlock(getWineSettings(), 3), VineryEffects.IMPROVED_JUMP_BOOST);
-    public static final Block CHENET_WINE = registerBigWine("chenet_wine", new WineBottleBlock(getWineSettings(), 2), VineryEffects.IMPROVED_SPEED);
-    public static final Block KELP_CIDER = registerWine("kelp_cider", new WineBottleBlock(getWineSettings(), 3), VineryEffects.IMPROVED_WATER_BREATHING);
-    //apple wine - heal
-    public static final Block APPLE_WINE = registerBigWine("apple_wine", new WineBottleBlock(getWineSettings(), 3), VineryEffects.IMPROVED_INSTANT_HEALTH, 1);
-    public static final Block APPLE_CIDER = registerBigWine("apple_cider", new WineBottleBlock(getWineSettings(), 2), VineryEffects.IMPROVED_REGENERATION);
-    //rare wine
-    public static final Block JELLIE_WINE = registerBigWine("jellie_wine", new WineBottleBlock(getWineSettings(), 1), VineryEffects.JELLIE);
+    public static final RegistrySupplier<Block> CHERRY_SIGN = registerB("cherry_sign", () -> new TerraformSignBlock(CHERRY_SIGN_TEXTURE, BlockBehaviour.Properties.copy(Blocks.OAK_SIGN)));
+    public static final RegistrySupplier<Block> CHERRY_WALL_SIGN = registerB("cherry_wall_sign", () -> new TerraformWallSignBlock(CHERRY_SIGN_TEXTURE, BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN)));
+    public static final RegistrySupplier<Item> CHERRY_SIGN_ITEM = registerI("cherry_sign", () -> new SignItem(getSettings().stacksTo(16), CHERRY_SIGN.get(), CHERRY_WALL_SIGN.get()));
+
+    //Wines
+    public static final RegistrySupplier<Block> WINE_BOTTLE = registerB("wine_bottle", () -> new EmptyWineBottleBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).instabreak().noOcclusion()));
+    public static final RegistrySupplier<Item>  WINE_BOTTLE_ITEM = registerI("wine_bottle", () -> new DrinkBlockItem(WINE_BOTTLE.get(), getSettings()));
+    public static final RegistrySupplier<Item>  APPLE_JUICE_ITEM = registerI("apple_juice", () -> new JuiceItem(getSettings()));
+
+    public static final RegistrySupplier<Block> SOLARIS_WINE = registerB("solaris_wine", () -> new WineBottleBlock(getWineSettings()));
+    public static final RegistrySupplier<Item>  SOLARIS_WINE_ITEM = registerI("solaris_wine", () -> new DrinkBlockItem(SOLARIS_WINE.get(), getWineItemSettings(MobEffects.NIGHT_VISION)));
+
+    public static final RegistrySupplier<Block> RED_GRAPEJUICE_WINE_BOTTLE = registerB("red_grapejuice_wine_bottle", () -> new RedGrapejuiceWineBottle(getWineSettings()));
+    public static final RegistrySupplier<Item>  RED_GRAPEJUICE_WINE_BOTTLE_ITEM = registerI("red_grapejuice_wine_bottle", () -> new DrinkBlockItem(RED_GRAPEJUICE_WINE_BOTTLE.get(), getWineItemSettings(VineryEffects.EMPTY.get())));
+    public static final RegistrySupplier<Block> WHITE_GRAPEJUICE_WINE_BOTTLE = registerB("white_grapejuice_wine_bottle", () -> new WhiteGrapejuiceWineBottle(getWineSettings()));
+    public static final RegistrySupplier<Item>  WHITE_GRAPEJUICE_WINE_BOTTLE_ITEM = registerI("white_grapejuice_wine_bottle", () -> new DrinkBlockItem(WHITE_GRAPEJUICE_WINE_BOTTLE.get(), getWineItemSettings(VineryEffects.EMPTY.get())));
+    public static final RegistrySupplier<Block> NOIR_WINE = registerB("noir_wine", () -> new WineBottleBlock(getWineSettings()));
+    public static final RegistrySupplier<Item>  NOIR_WINE_ITEM = registerI("noir_wine", () -> new DrinkBlockItem(NOIR_WINE.get(), getWineItemSettings(MobEffects.WATER_BREATHING)));
+    public static final RegistrySupplier<Block> BOLVAR_WINE = registerB("bolvar_wine", () -> new WineBottleBlock(getWineSettings()));
+    public static final RegistrySupplier<Item>  BOLVAR_WINE_ITEM = registerI("bolvar_wine", () -> new DrinkBlockItem(BOLVAR_WINE.get(), getWineItemSettings(MobEffects.HEALTH_BOOST)));
+    public static final RegistrySupplier<Block> CHERRY_WINE = registerB("cherry_wine", () -> new CherryWineBlock(getWineSettings()));
+    public static final RegistrySupplier<Item>  CHERRY_WINE_ITEM = registerI("cherry_wine", () -> new DrinkBlockItem(CHERRY_WINE.get(), getWineItemSettings(MobEffects.MOVEMENT_SPEED)));
+    public static final RegistrySupplier<Block> CLARK_WINE = registerB("clark_wine", () -> new WineBottleBlock(getWineSettings()));
+    public static final RegistrySupplier<Item>  CLARK_WINE_ITEM = registerI("clark_wine", () -> new DrinkBlockItem(CLARK_WINE.get(), getWineItemSettings(MobEffects.FIRE_RESISTANCE)));
+    //Big Wines
+    public static final RegistrySupplier<Block> JELLIE_WINE = registerB("jellie_wine", () -> new WineBottleBlock(getWineSettings()));
+    public static final RegistrySupplier<Item>  JELLIE_WINE_ITEM = registerI("jellie_wine", () -> new DrinkBlockBigItem(JELLIE_WINE.get(), getWineItemSettings(VineryEffects.JELLIE.get())));
+
+    public static final RegistrySupplier<Block> APPLE_CIDER = registerB("apple_cider", () -> new ChenetBottleBlock(getWineSettings()));
+    public static final RegistrySupplier<Item>  APPLE_CIDER_ITEM = registerI("apple_cider", () -> new DrinkBlockBigItem(JELLIE_WINE.get(), getWineItemSettings(MobEffects.HEAL)));
+
+    public static final RegistrySupplier<Block> APPLE_WINE = registerB("apple_wine", () -> new WineBottleBlock(getWineSettings()));
+    public static final RegistrySupplier<Item>  APPLE_WINE_ITEM = registerI("apple_wine", () -> new DrinkBlockBigItem(JELLIE_WINE.get(), getWineItemSettings(MobEffects.REGENERATION)));
+
+    public static final RegistrySupplier<Block> CHENET_WINE = registerB("chenet_wine", () -> new ChenetBottleBlock(getWineSettings()));
+    public static final RegistrySupplier<Item>  CHENET_WINE_ITEM = registerI("chenet_wine", () -> new DrinkBlockBigItem(CHENET_WINE.get(), getWineItemSettings(MobEffects.JUMP)));
+    public static final RegistrySupplier<Block> KING_DANIS_WINE = registerB("king_danis_wine", () -> new KingDanisBottleBlock(getWineSettings()));
+    public static final RegistrySupplier<Item>  KING_DANIS_WINE_ITEM = registerI("king_danis_wine", () -> new DrinkBlockBigItem(KING_DANIS_WINE.get(), getWineItemSettings(MobEffects.LUCK)));
+    public static final RegistrySupplier<Block> MELLOHI_WINE = registerB("mellohi_wine", () -> new MellohiWineBlock(getWineSettings()));
+    public static final RegistrySupplier<Item>  MELLOHI_WINE_ITEM = registerI("mellohi_wine", () -> new DrinkBlockBigItem(MELLOHI_WINE.get(), getWineItemSettings(MobEffects.DAMAGE_BOOST)));
 
 
-    public static final Block CHERRY_JAR = register("cherry_jar", new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion().sound(SoundType.GLASS)));
-    public static final Block CHERRY_JAM = register("cherry_jam", new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion().sound(SoundType.GLASS)));
-    public static final Block APPLE_JAM = register("apple_jam", new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion().sound(SoundType.GLASS)));
-    public static final Block SWEETBERRY_JAM = register("sweetberry_jam", new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion().sound(SoundType.GLASS)));
-    public static final Block GRAPE_JAM = register("grape_jam", new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion().sound(SoundType.GLASS)));
-    public static final Block PALE_STEM_BLOCK = register("grapevine_stem", new PaleStemBlock(getGrapevineSettings()));
-    public static final Block STORAGE_POT = register("storage_pot", new StoragePotBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundEvents.DYE_USE, SoundEvents.DYE_USE));
-    public static final Block WINE_BOX = register("wine_box", new WineBox(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).noOcclusion()));
-    public static final Block BIG_TABLE = register("big_table", new BigTableBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 2.0F)));
-    public static final Block SHELF = register("shelf", new ShelfBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final Block FLOWER_BOX = register("flower_box", new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
-    public static final Block FLOWER_POT = register("flower_pot", new FlowerPotBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
-    public static final Block BASKET = register("basket", new BasketBlock(BlockBehaviour.Properties.of(Material.DECORATION).instabreak().noOcclusion(), 1));
-    public static final Block COOKING_POT = register("cooking_pot", new CookingPotBlock(BlockBehaviour.Properties.of(Material.METAL).noOcclusion()));
-    public static final Block STACKABLE_LOG = register("stackable_log", new StackableLogBlock(getLogBlockSettings().noOcclusion().lightLevel(state -> state.getValue(StackableLogBlock.FIRED) ? 13 : 0)));
-    public static final Item FAUCET = register("faucet", new FaucetItem(getSettings()));
-    public static final Item STRAW_HAT = register("straw_hat", new StrawHatItem(getSettings().rarity(Rarity.COMMON)));
-    public static final Item VINEMAKER_APRON = register("vinemaker_apron", new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.CHESTPLATE, getSettings().rarity(Rarity.EPIC)));
-    public static final Item VINEMAKER_LEGGINGS = register("vinemaker_leggings", new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.LEGGINGS, getSettings().rarity(Rarity.RARE)));
-    public static final Item VINEMAKER_BOOTS = register("vinemaker_boots", new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.BOOTS, getSettings().rarity(Rarity.EPIC)));
-    public static final Item GLOVES = register("gloves", new GlovesItem(getSettings().rarity(Rarity.RARE)));
-    public static final Item DOUGH = register("dough", new CherryItem(getSettings()));
-    public static final Item CHOCOLATE_BREAD = register("chocolate_bread", new ChocolateBreadItem(getSettings().food(Foods.BREAD)));
-    public static final Item TOAST = register("toast", new ToastItem(getSettings().food(Foods.BEETROOT_SOUP)));
-    public static final Item DONUT = register("donut", new DoughnutItem(getSettings().food(Foods.CARROT)));
-    public static final Item MILK_BREAD = register("milk_bread", new MilkBreadItem(getSettings().food(Foods.COOKIE)));
-    public static final Block CRUSTY_BREAD = register("crusty_bread", new BreadBlock(BlockBehaviour.Properties.copy(Blocks.CAKE).noOcclusion()));
-    public static final Item BREAD_SLICE = register("bread_slice", new Item(getSettings().food(Foods.BAKED_POTATO)));
-    public static final Item APPLE_CUPCAKE = register("apple_cupcake", new CupcakeItem(getSettings().food(Foods.GOLDEN_CARROT)));
-    public static final Item APPLE_PIE_SLICE = register("apple_pie_slice", new Item(getSettings().food(Foods.GOLDEN_CARROT)));
-    public static final Block APPLE_PIE = register("apple_pie", new PieBlock((BlockBehaviour.Properties.copy(Blocks.CAKE)), ObjectRegistry.APPLE_PIE_SLICE));
-    public static final Item APPLE_MASH = register("apple_mash", new CherryItem(getSettings().food(Foods.APPLE)));
-    public static final Block TOMATO_CROP = register("tomato_crop", new TomatoCropBlock(getBushSettings()), false);
-    public static final Item TOMATO_SEEDS = register("tomato_seeds", new GrapeBushSeedItem(TOMATO_CROP, getSettings(), GrapevineType.TOMATO));
-    public static final Item APPLESAUCE = register("applesauce", new AppleSauceItem(getSettings().food(Foods.BAKED_POTATO)));
-    public static final Item MULE_SPAWN_EGG = register("mule_spawn_egg", new SpawnEggItem(VineryEntites.MULE, 0x8b7867, 0x5a4e43, getSettings()));
-    public static final Item WANDERING_WINEMAKER_SPAWN_EGG = register("wandering_winemaker_spawn_egg", new SpawnEggItem(VineryEntites.WANDERING_WINEMAKER, 0xb78272, 0x3c4a73, getSettings()));
+    //Flower Box/Pot
+    public static final RegistrySupplier<Block> FLOWER_BOX = registerB("flower_box", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Item>  FLOWER_BOX_ITEM = registerI("flower_box", () -> new BlockItem(FLOWER_BOX.get(), getSettings()));
+    public static final RegistrySupplier<Block> FLOWER_BOX_ALLIUM = registerB("flower_box_allium", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_BOX_AZURE_BLUET = registerB("flower_box_azure_bluet", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_BOX_BLUE_ORCHID = registerB("flower_box_blue_orchid", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_BOX_BLUE_CORNFLOWER = registerB("flower_box_cornflower", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_BOX_BLUE_DANDELION = registerB("flower_box_dandelion", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_BOX_BLUE_LILY_OF_THE_VALLEY = registerB("flower_box_lily_of_the_valley", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_BOX_BLUE_ORANGE_TULIP = registerB("flower_box_orange_tulip", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_BOX_BLUE_OXEYE_DAISY = registerB("flower_box_oxeye_daisy", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_BOX_BLUE_PINK_TULIP = registerB("flower_box_pink_tulip", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_BOX_BLUE_POPPY = registerB("flower_box_poppy", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_BOX_BLUE_RED_TULIP = registerB("flower_box_red_tulip", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_BOX_BLUE_WHITE_TULIP = registerB("flower_box_white_tulip", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_BOX_BLUE_WHITER_ROSE = registerB("flower_box_whiter_rose", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Block> FLOWER_POT = registerB("flower_pot", () -> new FlowerPotBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Item>  FLOWER_POT_ITEM = registerI("flower_pot", () -> new BlockItem(FLOWER_POT.get(), getSettings()));
+    ///
 
-    public static final Item TOMATO = register("tomato", new JuiceItem(getSettings().food(Foods.APPLE)));
+    public static final RegistrySupplier<Block> WINDOW = registerB("window", () -> new WindowBlock(BlockBehaviour.Properties.copy(Blocks.GLASS_PANE)));
+    public static final RegistrySupplier<Item>  WINDOW_ITEM = registerI("window", () -> new BlockItem(WINDOW.get(), getSettings()));
+    public static final RegistrySupplier<Block> LOAM = registerB("loam", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 3.0F).sound(SoundType.MUD)));
+    public static final RegistrySupplier<Item>  LOAM_ITEM = registerI("loam", () -> new BlockItem(LOAM.get(), getSettings()));
+    public static final RegistrySupplier<Block> LOAM_STAIRS = registerB("loam_stairs", () -> new StairBlock(LOAM.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 3.0F).sound(SoundType.MUD)));
+    public static final RegistrySupplier<Item>  LOAM_STAIRS_ITEM = registerI("loam_stairs", () -> new BlockItem(LOAM_STAIRS.get(), getSettings()));
+    public static final RegistrySupplier<Block> LOAM_SLAB = registerB("loam_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 3.0F).sound(SoundType.MUD)));
+    public static final RegistrySupplier<Item>  LOAM_SLAB_ITEM = registerI("loam_slab", () -> new BlockItem(LOAM_SLAB.get(), getSettings()));
+    public static final RegistrySupplier<Block> COARSE_DIRT_SLAB = registerB("coarse_dirt_slab", () -> new VariantSlabBlock(BlockBehaviour.Properties.copy(Blocks.COARSE_DIRT)));
+    public static final RegistrySupplier<Item>  COARSE_DIRT_SLAB_ITEM = registerI("coarse_dirt_slab", () -> new BlockItem(COARSE_DIRT_SLAB.get(), getSettings()));
+    public static final RegistrySupplier<Block> DIRT_SLAB = registerB("dirt_slab", () -> new VariantSlabBlock(BlockBehaviour.Properties.copy(Blocks.DIRT)));
+    public static final RegistrySupplier<Item>  DIRT_SLAB_ITEM = registerI("dirt_slab", () -> new BlockItem(DIRT_SLAB.get(), getSettings()));
+    public static final RegistrySupplier<Block> GRASS_SLAB = registerB("grass_slab", () -> new SnowyVariantSlabBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
+    public static final RegistrySupplier<Item>  GRASS_SLAB_ITEM = registerI("grass_slab", () -> new BlockItem(GRASS_SLAB.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_JAR = registerB("cherry_jar", () -> new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion()));
+    public static final RegistrySupplier<Item>  CHERRY_JAR_ITEM= registerI("cherry_jar", () -> new BlockItem(CHERRY_JAR.get(), getSettings()));
+    public static final RegistrySupplier<Block> CHERRY_JAM = registerB("cherry_jam", () -> new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion()));
+    public static final RegistrySupplier<Item>  CHERRY_JAM_ITEM = registerI("cherry_jam", () -> new BlockItem(CHERRY_JAM.get(), getSettings()));
+    public static final RegistrySupplier<Block> WINE_BOX = registerB("wine_box", () -> new WineBox(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).noOcclusion()));
+    public static final RegistrySupplier<Item>  WINE_BOX_ITEM = registerI("wine_box", () -> new BlockItem(WINE_BOX.get(), getSettings()));
+    public static final RegistrySupplier<Block> BIG_TABLE = registerB("big_table", () -> new BigTableBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 2.0F)));
+    public static final RegistrySupplier<Item>  BIG_TABLE_ITEM = registerI("big_table", () -> new BlockItem(BIG_TABLE.get(), getSettings()));
+    public static final RegistrySupplier<Block> SHELF = registerB("shelf", () -> new ShelfBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item>  SHELF_ITEM = registerI("shelf", () -> new BlockItem(SHELF.get(), getSettings()));
+    public static final RegistrySupplier<Block> APPLE_CRATE = registerB("apple_crate", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistrySupplier<Item>  APPLE_CRATE_ITEM = registerI("apple_crate", () -> new BlockItem(APPLE_CRATE.get(), getSettings()));
+
+    public static final RegistrySupplier<Block> BASKET = registerB("basket", () -> new BasketBlock(BlockBehaviour.Properties.of(Material.DECORATION).instabreak().noOcclusion(), 1));
+    public static final RegistrySupplier<Item>  BASKET_ITEM = registerI("basket", () -> new BlockItem(BASKET.get(), getSettings()));
+    public static final RegistrySupplier<Block> COOKING_POT = registerB("cooking_pot", () -> new CookingPotBlock(BlockBehaviour.Properties.of(Material.STONE).instabreak().noOcclusion()));
+    public static final RegistrySupplier<Item>  COOKING_POT_ITEM = registerI("cooking_pot", () -> new BlockItem(COOKING_POT.get(), getSettings()));
+    public static final RegistrySupplier<Block> STACKABLE_LOG = registerB("stackable_log", () -> new StackableLogBlock(getLogBlockSettings().noOcclusion().lightLevel(state -> state.getValue(StackableLogBlock.FIRED) ? 13 : 0)));
+    public static final RegistrySupplier<Item>  STACKABLE_LOG_ITEM = registerI("stackable_log", () -> new BlockItem(STACKABLE_LOG.get(), getSettings()));
+    public static final RegistrySupplier<Item> FAUCET = registerI("faucet", () -> new FaucetItem(getSettings()));
+
+    public static final RegistrySupplier<Item> STRAW_HAT = registerI("straw_hat", () -> new StrawHatItem(getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> VINEMAKER_APRON = registerI("vinemaker_apron", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.CHESTPLATE, getSettings().rarity(Rarity.EPIC)));
+    public static final RegistrySupplier<Item> VINEMAKER_LEGGINGS = registerI("vinemaker_leggings", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.LEGGINGS, getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> VINEMAKER_BOOTS = registerI("vinemaker_boots", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.BOOTS, getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> GLOVES = registerI("gloves", () -> new GlovesItem(getSettings().rarity(Rarity.RARE)));
+
+    public static final RegistrySupplier<Item> APPLE_MASH = registerI("apple_mash", () -> new CherryItem(getSettings().food(Foods.APPLE)));
+    public static final RegistrySupplier<Item> APPLESAUCE = registerI("applesauce", () -> new AppleSauceItem(getSettings().food(Foods.COOKED_RABBIT)));
+
+    public static final RegistrySupplier<Item> APPLE_PIE_SLICE = registerI("apple_pie_slice", () -> new Item(getSettings().food(Foods.COOKED_BEEF)));
+
+    public static final RegistrySupplier<Block> APPLE_JAM = registerB("apple_jam", () -> new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion()));
+    public static final RegistrySupplier<Item>  APPLE_JAM_ITEM = registerI("apple_jam", () -> new BlockItem(APPLE_JAM.get(), getSettings()));
+    public static final RegistrySupplier<Block> APPLE_PIE = registerB("apple_pie", () -> new PieBlock(BlockBehaviour.Properties.copy(Blocks.CAKE), APPLE_PIE_SLICE.get()));
+    public static final RegistrySupplier<Item>  APPLE_PIE_ITEM = registerI("apple_pie", () -> new BlockItem(APPLE_PIE.get(), getSettings()));
+
+    public static final RegistrySupplier<Item> DOUGH = registerI("dough", () -> new CherryItem(getSettings()));
+
+    public static final RegistrySupplier<Item> CHOCOLATE_BREAD = registerI("chocolate_bread", () -> new ChocolateBreadItem(getSettings().food(Foods.BREAD)));
+    public static final RegistrySupplier<Item> TOAST = registerI("toast", () -> new ToastItem(getSettings().food(Foods.BEETROOT_SOUP)));
+    public static final RegistrySupplier<Item> DONUT = registerI("donut", () -> new DoughnutItem(getSettings().food(Foods.CARROT)));
+    public static final RegistrySupplier<Item> MILK_BREAD = registerI("milk_bread", () -> new MilkBreadItem(getSettings().food(Foods.COOKIE)));
+    public static final RegistrySupplier<Item> BREAD_SLICE = registerI("bread_slice", () -> new Item(getSettings().food(Foods.BAKED_POTATO)));
+
+    public static final RegistrySupplier<Block> CRUSTY_BREAD = registerB("crusty_bread", () -> new BreadBlock(BlockBehaviour.Properties.copy(Blocks.CAKE).noOcclusion()));
+    public static final RegistrySupplier<Item>  CRUSTY_BREAD_ITEM = registerI("crusty_bread", () -> new BlockItem(CRUSTY_BREAD.get(), getSettings()));
+
+
+    public static final RegistrySupplier<Item> MULE_SPAWN_EGG = registerI("mule_spawn_egg", () -> new ArchitecturySpawnEggItem(VineryEntites.MULE, 0x8b7867, 0x5a4e43, getSettings()));
+    public static final RegistrySupplier<Item> WANDERING_WINEMAKER_SPAWN_EGG = registerI("wandering_winemaker_spawn_egg", () -> new ArchitecturySpawnEggItem(VineryEntites.WANDERING_WINEMAKER, 0xb78272, 0x3c4a73, getSettings()));
 
 
 
@@ -262,20 +307,20 @@ public class ObjectRegistry {
 
     /*
 
-    private static <T extends Block> T registerWine(String path, T block, MobEffect effect) {
-        return registerWine(path, block, effect, 45 * 20);
+    private static <T extends Block> T registerBWine(String path, T block, MobEffect effect) {
+        return registerBWine(path, block, effect, 45 * 20);
     }
 
-    private static <T extends Block> T registerWine(String path, T block, MobEffect effect, int duration) {
-        return register(path, block, true, DrinkBlockSmallItem::new, settings -> settings.food(wineFoodComponent(effect, duration)));
+    private static <T extends Block> T registerBWine(String path, T block, MobEffect effect, int duration) {
+        return registerB(path, block, true, DrinkBlockSmallItem::new, settings -> settings.food(wineFoodComponent(effect, duration)));
     }
 
-    private static <T extends Block> T registerBigWine(String path, T block, MobEffect effect) {
-        return registerBigWine(path, block, effect, 45 * 20);
+    private static <T extends Block> T registerBBigWine(String path, T block, MobEffect effect) {
+        return registerBBigWine(path, block, effect, 45 * 20);
     }
 
-    private static <T extends Block> T registerBigWine(String path, T block, MobEffect effect, int duration) {
-        return register(path, block, true, DrinkBlockBigItem::new, settings -> settings.food(wineFoodComponent(effect, duration)));
+    private static <T extends Block> T registerBBigWine(String path, T block, MobEffect effect, int duration) {
+        return registerB(path, block, true, DrinkBlockBigItem::new, settings -> settings.food(wineFoodComponent(effect, duration)));
     }
 
 
@@ -284,6 +329,8 @@ public class ObjectRegistry {
         statusEffects.add(new Pair<>(new MobEffectInstance(effect, duration), 1.0f));
         return new VineryFoodComponent(statusEffects);
     }
+    
+     */
 
     public static void init() {
         /*
@@ -301,16 +348,17 @@ public class ObjectRegistry {
         flammableRegistry.add(CHERRY_STAIRS, 5, 20);
         flammableRegistry.add(CHERRY_FENCE, 5, 20);
         flammableRegistry.add(CHERRY_FENCE_GATE, 5, 20);
-        FuelRegistry fuelRegistry = FuelRegistry.INSTANCE;
-        fuelRegistry.add(CHERRY_FENCE, 300);
-        fuelRegistry.add(CHERRY_FENCE_GATE, 300);
-        fuelRegistry.add(STACKABLE_LOG, 300);
-        fuelRegistry.add(FERMENTATION_BARREL, 300);
+        
+     */
+        FuelRegistry.register(300, ObjectRegistry.CHERRY_FENCE.get(), ObjectRegistry.CHERRY_FENCE_GATE.get(), ObjectRegistry.STACKABLE_LOG.get(), ObjectRegistry.FERMENTATION_BARREL.get());
 
-
+        AxeItemHooks.addStrippable(ObjectRegistry.CHERRY_LOG.get(), ObjectRegistry.STRIPPED_CHERRY_LOG.get());
+        AxeItemHooks.addStrippable(ObjectRegistry.CHERRY_WOOD.get(), ObjectRegistry.STRIPPED_CHERRY_WOOD.get());
+        AxeItemHooks.addStrippable(ObjectRegistry.OLD_CHERRY_LOG.get(), ObjectRegistry.STRIPPED_OLD_CHERRY_LOG.get());
+        AxeItemHooks.addStrippable(ObjectRegistry.OLD_CHERRY_WOOD.get(), ObjectRegistry.STRIPPED_OLD_CHERRY_WOOD.get());
     }
 
-     */
+     
 
 
 

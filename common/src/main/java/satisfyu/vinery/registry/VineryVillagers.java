@@ -1,9 +1,6 @@
 package satisfyu.vinery.registry;
 
 import satisfyu.vinery.VineryIdentifier;
-import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
-import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;
-import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -26,6 +23,7 @@ public class VineryVillagers {
     public static final VillagerProfession WINEMAKER = Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, new ResourceLocation("vinery", "winemaker"), VillagerProfessionBuilder.create().id(new ResourceLocation("vinery", "winemaker")).workstation(ResourceKey.create(BuiltInRegistries.POINT_OF_INTEREST_TYPE.key(), WINEMAKER_POI_IDENTIFIER)).build());
 
     public static void init() {
+
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 1, factories -> {
             factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.RED_GRAPE, 15, 4, 5));
             factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.WHITE_GRAPE, 15, 4, 5));
