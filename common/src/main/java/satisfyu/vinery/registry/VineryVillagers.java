@@ -1,5 +1,14 @@
 package satisfyu.vinery.registry;
 
+import com.google.common.collect.ImmutableSet;
+import dev.architectury.registry.level.entity.trade.TradeRegistry;
+import dev.architectury.registry.registries.Registrar;
+import dev.architectury.registry.registries.RegistrySupplier;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.EntityType;
+import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -17,44 +26,47 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class VineryVillagers {
-    private static final VineryIdentifier WINEMAKER_POI_IDENTIFIER = new VineryIdentifier("winemaker_poi");
-    public static final PoiType WINEMAKER_POI = PointOfInterestHelper.register(WINEMAKER_POI_IDENTIFIER, 1, 12, ObjectRegistry.WINE_PRESS);
-    public static final VillagerProfession WINEMAKER = Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, new ResourceLocation("vinery", "winemaker"), VillagerProfessionBuilder.create().id(new ResourceLocation("vinery", "winemaker")).workstation(ResourceKey.create(BuiltInRegistries.POINT_OF_INTEREST_TYPE.key(), WINEMAKER_POI_IDENTIFIER)).build());
+    private static final Registrar<PoiType> POI_TYPES = Vinery.REGISTRIES.get(Registries.POINT_OF_INTEREST_TYPE);
+    private static final Registrar<VillagerProfession> VILLAGER_PROFESSIONS = Vinery.REGISTRIES.get(Registries.VILLAGER_PROFESSION);
+
+
+    public static final RegistrySupplier<PoiType> WINEMAKER_POI = POI_TYPES.register(new VineryIdentifier("winemaker_poi"), () ->
+            new PoiType(ImmutableSet.copyOf(ObjectRegistry.WINE_PRESS.get().getStateDefinition().getPossibleStates()), 1, 1));
+
+    public static final RegistrySupplier<VillagerProfession> WINEMAKER = VILLAGER_PROFESSIONS.register(new VineryIdentifier("winemaker"), () ->
+            new VillagerProfession("winemaker", x -> x.value() == WINEMAKER_POI.get(), x -> x.value() == WINEMAKER_POI.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_FARMER));
+
 
     public static void init() {
-
-        TradeOfferHelper.registerVillagerOffers(WINEMAKER, 1, factories -> {
-            factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.RED_GRAPE, 15, 4, 5));
-            factories.add(new BuyForOneEmeraldFactory(ObjectRegistry.WHITE_GRAPE, 15, 4, 5));
-            factories.add(new SellItemFactory(ObjectRegistry.RED_GRAPE_SEEDS, 2, 1, 5));
-            factories.add(new SellItemFactory(ObjectRegistry.WHITE_GRAPE_SEEDS, 2, 1, 5));
-        });
-        TradeOfferHelper.registerVillagerOffers(WINEMAKER, 2, factories -> {
-            factories.add(new SellItemFactory(ObjectRegistry.WINE_BOTTLE, 1, 2, 7));
-        });
-        TradeOfferHelper.registerVillagerOffers(WINEMAKER, 3, factories -> {
-            factories.add(new SellItemFactory(ObjectRegistry.COOKING_POT, 3, 1, 10));
-            factories.add(new SellItemFactory(ObjectRegistry.FLOWER_BOX, 3, 1, 10));
-            factories.add(new SellItemFactory(ObjectRegistry.WHITE_GRAPE_CRATE, 7, 1, 10));
-            factories.add(new SellItemFactory(ObjectRegistry.RED_GRAPE_CRATE, 7, 1, 10));
-
-        });
-        TradeOfferHelper.registerVillagerOffers(WINEMAKER, 4, factories -> {
-            factories.add(new SellItemFactory(ObjectRegistry.BASKET, 4, 1, 10));
-            factories.add(new SellItemFactory(ObjectRegistry.FLOWER_POT, 5, 1, 10));
-            factories.add(new SellItemFactory(ObjectRegistry.WINDOW, 12, 1, 10));
-            factories.add(new SellItemFactory(ObjectRegistry.CHERRY_BEAM, 6, 1, 10));
-
-
-        });
-        TradeOfferHelper.registerVillagerOffers(WINEMAKER, 5, factories -> {
-            factories.add(new SellItemFactory(ObjectRegistry.WINE_BOX, 10, 1, 10));
-            factories.add(new SellItemFactory(ObjectRegistry.KING_DANIS_WINE, 4, 1, 10));
-            factories.add(new SellItemFactory(ObjectRegistry.GLOVES, 12, 1, 15));
-
-
-        });
+        TradeRegistry.registerVillagerTrade(WINEMAKER.get(), 1,
+            new BuyForOneEmeraldFactory(ObjectRegistry.RED_GRAPE.get(), 15, 4, 5),
+            new BuyForOneEmeraldFactory(ObjectRegistry.WHITE_GRAPE.get(), 15, 4, 5),
+            new SellItemFactory(ObjectRegistry.RED_GRAPE_SEEDS.get(), 2, 1, 5),
+            new SellItemFactory(ObjectRegistry.WHITE_GRAPE_SEEDS.get(), 2, 1, 5)
+        );
+        TradeRegistry.registerVillagerTrade(WINEMAKER.get(), 2,
+            new SellItemFactory(ObjectRegistry.WINE_BOTTLE.get(), 1, 2, 7)
+        );
+        TradeRegistry.registerVillagerTrade(WINEMAKER.get(), 3,
+            new SellItemFactory(ObjectRegistry.COOKING_POT.get(), 3, 1, 10),
+            new SellItemFactory(ObjectRegistry.FLOWER_BOX.get(), 3, 1, 10),
+            new SellItemFactory(ObjectRegistry.WHITE_GRAPE_CRATE.get(), 7, 1, 10),
+            new SellItemFactory(ObjectRegistry.RED_GRAPE_CRATE.get(), 7, 1, 10)
+        );
+        TradeRegistry.registerVillagerTrade(WINEMAKER.get(), 4,
+            new SellItemFactory(ObjectRegistry.BASKET.get(), 4, 1, 10),
+            new SellItemFactory(ObjectRegistry.FLOWER_POT.get(), 5, 1, 10),
+            new SellItemFactory(ObjectRegistry.WINDOW.get(), 12, 1, 10),
+            new SellItemFactory(ObjectRegistry.CHERRY_BEAM.get(), 6, 1, 10)
+        );
+        TradeRegistry.registerVillagerTrade(WINEMAKER.get(), 5,
+            new SellItemFactory(ObjectRegistry.WINE_BOX.get(), 10, 1, 10),
+            new SellItemFactory(ObjectRegistry.KING_DANIS_WINE.get(), 4, 1, 10),
+            new SellItemFactory(ObjectRegistry.GLOVES.get(), 12, 1, 15)
+        );
 
     }
 

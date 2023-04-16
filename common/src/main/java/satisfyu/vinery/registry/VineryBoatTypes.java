@@ -1,6 +1,7 @@
 package satisfyu.vinery.registry;
 
 
+import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -23,10 +24,9 @@ public class VineryBoatTypes {
     public static Supplier<TerraformBoatType> CHERRY;
 
     public static void init() {
-        Item cherryBoat = TerraformBoatItemHelper.registerBoatItem(new VineryIdentifier("cherry_boat"), CHERRY_BOAT_KEY, false);
-        Item cherryChestBoat = TerraformBoatItemHelper.registerBoatItem(new VineryIdentifier("cherry_chest_boat"), CHERRY_BOAT_KEY, true);
-        CHERRY = () -> new TerraformBoatType.Builder().item(cherryBoat).chestItem(cherryChestBoat).planks(ObjectRegistry.CHERRY_PLANKS.get().asItem()).build();
-
+        RegistrySupplier<Item> cherryBoat = TerraformBoatItemHelper.registerBoatItem(new VineryIdentifier("cherry_boat"), CHERRY_BOAT_KEY, false);
+        RegistrySupplier<Item> cherryChestBoat = TerraformBoatItemHelper.registerBoatItem(new VineryIdentifier("cherry_chest_boat"), CHERRY_BOAT_KEY, true);
+        CHERRY = () -> new TerraformBoatType.Builder().item(cherryBoat.get()).chestItem(cherryChestBoat.get()).planks(ObjectRegistry.CHERRY_PLANKS.get().asItem()).build();
         TerraformBoatTypeRegistry.INSTANCE.register(new VineryIdentifier("cherry"), CHERRY);
     }
 }

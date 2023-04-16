@@ -7,6 +7,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import satisfyu.vinery.Vinery;
+import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.entity.*;
 import satisfyu.vinery.util.VineryApi;
@@ -37,22 +38,10 @@ public class VineryBlockEntityTypes {
             ObjectRegistry.KING_DANIS_WINE.get(), ObjectRegistry.MAGNETIC_WINE.get(), ObjectRegistry.CHORUS_WINE.get(), ObjectRegistry.JELLIE_WINE.get(), ObjectRegistry.AEGIS_WINE.get()).build(null));
 
 
-    public static Block[] b(){
-        Set<Block> set = new HashSet<>();
-        FabricLoader.getInstance().getEntrypointContainers("vinery", VineryApi.class).forEach(entrypoint -> {
-            String modId = entrypoint.getProvider().getMetadata().getId();
-            try {
-                VineryApi api = entrypoint.getEntrypoint();
-                api.registerBlocks(set);
-            } catch (Throwable e) {
-                Vinery.LOGGER.error("Mod {} provides a broken implementation of VineryApi, therefore couldn't register blocks to the Storage Block Entity", modId, e);
-            }
-        });
-        return set.toArray(new Block[0]);
-    }
+
 
     public static final RegistrySupplier<BlockEntityType<StorageBlockEntity>> STORAGE_ENTITY = create("storage", () -> BlockEntityType.Builder.of(
-            StorageBlockEntity::new, b()).build(null));
+            StorageBlockEntity::new, VineryExpectPlatform.getBlocksForStorage()).build(null));
 
 
 

@@ -6,47 +6,47 @@ import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import dev.architectury.registry.client.rendering.ColorHandlerRegistry;
 import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.Sheets;
-import net.minecraft.client.resources.model.Material;
-import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.block.entity.chair.ChairRenderer;
-import satisfyu.vinery.client.gui.*;
-import satisfyu.vinery.client.render.block.FlowerBoxBlockRenderer;
-import satisfyu.vinery.client.render.block.StorageBlockEntityRenderer;
-import satisfyu.vinery.client.model.MuleModel;
-import satisfyu.vinery.client.render.entity.MuleRenderer;
-import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
-import satisfyu.vinery.registry.*;
-import satisfyu.vinery.client.render.block.FlowerPotBlockEntityRenderer;
-import satisfyu.vinery.client.render.block.WineBottleRenderer;
-import satisfyu.vinery.util.boat.api.client.TerraformBoatClientHelper;
-import satisfyu.vinery.util.boat.impl.client.TerraformBoatClientInitializer;
-import satisfyu.vinery.util.networking.VineryMessages;
-import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GrassColor;
+import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.block.entity.chair.ChairRenderer;
+import satisfyu.vinery.client.gui.CookingPotGui;
+import satisfyu.vinery.client.gui.FermentationBarrelGui;
+import satisfyu.vinery.client.gui.StoveGui;
+import satisfyu.vinery.client.gui.WinePressGui;
+import satisfyu.vinery.client.model.MuleModel;
+import satisfyu.vinery.client.render.block.FlowerBoxBlockRenderer;
+import satisfyu.vinery.client.render.block.FlowerPotBlockEntityRenderer;
+import satisfyu.vinery.client.render.block.StorageBlockEntityRenderer;
+import satisfyu.vinery.client.render.block.WineBottleRenderer;
+import satisfyu.vinery.client.render.entity.MuleRenderer;
+import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
+import satisfyu.vinery.registry.*;
+import satisfyu.vinery.util.boat.api.client.TerraformBoatClientHelper;
+import satisfyu.vinery.util.boat.impl.client.TerraformBoatClientInitializer;
+import satisfyu.vinery.util.networking.VineryMessages;
 import satisfyu.vinery.util.sign.SpriteIdentifierRegistry;
 
 @Environment(EnvType.CLIENT)
-public class VineryClient implements ClientModInitializer {
+public class VineryClient {
 
     public static boolean rememberedRecipeBookOpen = false;
     public static boolean rememberedCraftableToggle = true;
 
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("trader_mule"), "main");
 
-    @Override
-    public void onInitializeClient() {
+    public static void onInitializeClient() {
         TerraformBoatClientInitializer.init();
         VineryMessages.registerS2CPackets();
-        CustomArmorRegistry.registerModels();
+        CustomArmorRegistry.registerArmorModelLayers();
         TerraformBoatClientHelper.registerModelLayers(new VineryIdentifier("cherry"), false);
 
 

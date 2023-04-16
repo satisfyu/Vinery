@@ -19,13 +19,13 @@
       "satisfyu.vinery.fabric.VineryFabric"
     ],
     "client": [
-      "satisfyu.vinery.client.VineryClient"
+      "satisfyu.vinery.fabriclike.client.VineryClientFabricLike"
     ],
     "rei_client": [
       "satisfyu.vinery.compat.rei.VineryReiClientPlugin"
     ],
     "vinery": [
-      "satisfyu.vinery.registry.StorageTypes"
+      "satisfyu.vinery.fabriclike.registry.VineryFabricLikeDefaultAPI"
     ],
     "fabric-datagen": [
       "satisfyu.vinery.fabric.datagen.ModDataGeneration"

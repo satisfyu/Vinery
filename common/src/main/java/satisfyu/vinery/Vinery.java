@@ -1,6 +1,5 @@
 package satisfyu.vinery;
 
-import dev.architectury.hooks.item.tool.AxeItemHooks;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.RegistrarManager;
 import net.minecraft.resources.ResourceLocation;
@@ -9,6 +8,7 @@ import net.minecraft.world.item.Items;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import satisfyu.vinery.registry.*;
+import satisfyu.vinery.util.boat.impl.client.TerraformBoatClientInitializer;
 import satisfyu.vinery.world.VineryBiomeModification;
 import satisfyu.vinery.world.VineryFeatures;
 
@@ -26,14 +26,16 @@ public class Vinery {
         VineryEffects.init();
         ObjectRegistry.init();
         VineryBlockEntityTypes.init();
+        VineryStorageTypes.init();
         VineryScreenHandlerTypes.init();
         VineryRecipeTypes.init();
+        VineryEntites.init();
+        TerraformBoatClientInitializer.init();
         VineryBoatTypes.init();
         VineryFeatures.init();
         VineryBiomeModification.init();
         VinerySoundEvents.init();
         VineryVillagers.init();
-        VineryEntites.init();
         VineryCompostableItems.init();
     }
 }

@@ -1,5 +1,6 @@
 package satisfyu.vinery.util.boat.api.item;
 
+import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -7,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.DispenserBlock;
+import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.impl.item.TerraformBoatDispenserBehavior;
 import satisfyu.vinery.util.boat.impl.item.TerraformBoatItem;
@@ -40,7 +42,7 @@ public final class TerraformBoatItemHelper {
 	 * @param boatKey a {@linkplain ResourceKey registry key} for the {@linkplain TerraformBoatType Terraform boat type} that should be spawned by this item and dispenser behavior
 	 * @param chest whether the boat contains a chest
 	 */
-	public static Item registerBoatItem(ResourceLocation id, ResourceKey<TerraformBoatType> boatKey, boolean chest) {
+	public static RegistrySupplier<Item> registerBoatItem(ResourceLocation id, ResourceKey<TerraformBoatType> boatKey, boolean chest) {
 		return registerBoatItem(id, boatKey, chest, new Item.Properties().stacksTo(1));
 	}
 
@@ -61,11 +63,9 @@ public final class TerraformBoatItemHelper {
 	 * @param boatKey a {@linkplain ResourceKey registry key} for the {@linkplain TerraformBoatType Terraform boat type} that should be spawned by this item and dispenser behavior
 	 * @param chest whether the boat contains a chest
 	 */
-	public static Item registerBoatItem(ResourceLocation id, ResourceKey<TerraformBoatType> boatKey, boolean chest, Item.Properties settings) {
-		Item item = new TerraformBoatItem(boatKey, chest, settings);
-		Registry.register(BuiltInRegistries.ITEM, id, item);
-
-		registerBoatDispenserBehavior(item, boatKey, chest);
+	public static RegistrySupplier<Item> registerBoatItem(ResourceLocation id, ResourceKey<TerraformBoatType> boatKey, boolean chest, Item.Properties settings) {
+		RegistrySupplier<Item> item = ObjectRegistry.ITEMS.register(id, () -> new TerraformBoatItem(boatKey, chest, settings));
+		registerBoatDispenserBehavior(item.get(), boatKey, chest);
 		return item;
 	}
 

@@ -34,17 +34,17 @@ public abstract class LivingEntityMixin extends Entity {
 
 	@Final
 	@Shadow
-	private final Map<MobEffect, MobEffectInstance> activeStatusEffects = Maps.newHashMap();
+	private final Map<MobEffect, MobEffectInstance> activeEffects = Maps.newHashMap();
 
 	protected LivingEntityMixin(EntityType<?> type, Level world) {
 		super(type, world);
 	}
 
 	public boolean hasStatusEffect(MobEffect effect) {
-		return activeStatusEffects.containsKey(effect);
+		return activeEffects.containsKey(effect);
 	}
 	
-	@Inject(method = "applyFoodEffects", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "addEatEffect", at = @At("HEAD"), cancellable = true)
 	private void applyFoodEffects(ItemStack stack, Level world, LivingEntity targetEntity, CallbackInfo ci) {
 		if (stack.isEdible() && stack.getItem().getFoodProperties() instanceof VineryFoodComponent) {
 			ci.cancel();
@@ -64,40 +64,40 @@ public abstract class LivingEntityMixin extends Entity {
 		}
 	}
 
-	@Inject(method = "canWalkOnFluid", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
+	@Inject(method = "canStandOnFluid", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
 	private void canWalkOnWater(FluidState state, CallbackInfoReturnable<Boolean> cir) {
 		if (state.getType() == Fluids.WATER && !this.isUnderWater() && !this.isSwimming() && !this.isVisuallySwimming()) {
 			cir.setReturnValue(this.hasStatusEffect(VineryEffects.IMPROVED_SPEED));
 		}
 	}
 
-	@Inject(method = "onAttacking", at = @At(value = "HEAD"))
+	@Inject(method = "setLastHurtMob", at = @At(value = "HEAD"))
 	private void setTargetOnFire(Entity target, CallbackInfo ci) {
 		if (target instanceof LivingEntity targetEntity && hasStatusEffect(VineryEffects.IMPROVED_FIRE_RESISTANCE)) {
 			targetEntity.setSecondsOnFire(5);
 		}
 	}
 
-	@Redirect(method = "computeFallDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Lnet/minecraft/entity/effect/StatusEffectInstance;"))
+	@Redirect(method = "calculateFallDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getEffect(Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;"))
 	public MobEffectInstance improvedJumpBoostFall(LivingEntity livingEntity, MobEffect effect) {
 		return livingEntity.hasEffect(VineryEffects.IMPROVED_JUMP_BOOST) ? livingEntity.getEffect(VineryEffects.IMPROVED_JUMP_BOOST) : livingEntity.getEffect(MobEffects.JUMP);
 	}
 
-	@Inject(method = "getJumpBoostVelocityModifier", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "getJumpBoostPower", at = @At(value = "HEAD"), cancellable = true)
 	private void improvedJumpBoost(CallbackInfoReturnable<Double> cir) {
 		if (this.hasStatusEffect(VineryEffects.IMPROVED_JUMP_BOOST)) {
-			cir.setReturnValue((double)(0.1F * (float)(this.activeStatusEffects.get(VineryEffects.IMPROVED_JUMP_BOOST).getAmplifier() + 1)));
+			cir.setReturnValue((double)(0.1F * (float)(this.activeEffects.get(VineryEffects.IMPROVED_JUMP_BOOST).getAmplifier() + 1)));
 		}
 	}
 
-	@Inject(method = "damage", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "hurt", at = @At(value = "HEAD"), cancellable = true)
 	private void hasImprovedFireResistance(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		if (source.is(DamageTypeTags.IS_FIRE) && hasStatusEffect(VineryEffects.IMPROVED_FIRE_RESISTANCE)) {
 			cir.setReturnValue(false);
 		}
 	}
 
-	@Redirect(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z", ordinal = 1))
+	@Redirect(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hasEffect(Lnet/minecraft/world/effect/MobEffect;)Z", ordinal = 1))
 	public boolean improvedWaterBreathingSpeed(LivingEntity livingEntity, MobEffect effect) {
 		return livingEntity.hasEffect(MobEffects.DOLPHINS_GRACE) || livingEntity.hasEffect(VineryEffects.IMPROVED_WATER_BREATHING);
 	}
@@ -117,7 +117,7 @@ public abstract class LivingEntityMixin extends Entity {
 	}
 	 */
 
-	@Redirect(method = "updatePotionVisibility", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z"))
+	@Redirect(method = "updateInvisibilityStatus", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hasEffect(Lnet/minecraft/world/effect/MobEffect;)Z"))
 	public boolean improvedNightVision(LivingEntity livingEntity, MobEffect effect) {
 		return livingEntity.hasEffect(MobEffects.INVISIBILITY) || livingEntity.hasEffect(VineryEffects.IMPROVED_NIGHT_VISION);
 	}

@@ -1,6 +1,6 @@
 package satisfyu.vinery.block;
 
-import satisfyu.vinery.registry.StorageTypes;
+import satisfyu.vinery.registry.VineryDefaultAPI;
 import satisfyu.vinery.util.VineryTags;
 import satisfyu.vinery.util.VineryUtils;
 import java.util.HashMap;
@@ -65,7 +65,7 @@ public class ShelfBlock extends StorageBlock{
 
     @Override
     public ResourceLocation type() {
-        return StorageTypes.SHELF;
+        return VineryDefaultAPI.SHELF;
     }
 
     @Override

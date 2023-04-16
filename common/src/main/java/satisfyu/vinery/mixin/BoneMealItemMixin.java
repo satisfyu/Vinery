@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BoneMealItem.class)
 public abstract class BoneMealItemMixin {
 	
-	@Inject(method = "useOnBlock", at = @At("RETURN"))
+	@Inject(method = "useOn", at = @At("RETURN"))
 	public void useOnBlock(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
 		if (cir.getReturnValue() == InteractionResult.CONSUME) {
 			Player player = context.getPlayer();

@@ -24,11 +24,11 @@ public class TerraformChestBoatEntity extends ChestBoat implements TerraformBoat
 	}
 
 	public TerraformChestBoatEntity(Level world) {
-		this(TerraformBoatInitializer.CHEST_BOAT, world);
+		this(TerraformBoatInitializer.CHEST_BOAT.get(), world);
 	}
 
 	public TerraformChestBoatEntity(Level world, double x, double y, double z) {
-		this(TerraformBoatInitializer.CHEST_BOAT, world);
+		this(TerraformBoatInitializer.CHEST_BOAT.get(), world);
 
 		this.setPos(x, y, z);
 		this.xo = x;
