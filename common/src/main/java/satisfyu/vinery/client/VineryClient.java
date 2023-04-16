@@ -4,8 +4,12 @@ import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import dev.architectury.registry.client.rendering.ColorHandlerRegistry;
+import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.resources.model.Material;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.entity.chair.ChairRenderer;
 import satisfyu.vinery.client.gui.*;
@@ -28,6 +32,7 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GrassColor;
+import satisfyu.vinery.util.sign.SpriteIdentifierRegistry;
 
 @Environment(EnvType.CLIENT)
 public class VineryClient implements ClientModInitializer {
@@ -45,9 +50,9 @@ public class VineryClient implements ClientModInitializer {
         TerraformBoatClientHelper.registerModelLayers(new VineryIdentifier("cherry"), false);
 
 
-        /*
-        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new Material(Sheets.SIGN_SHEET, ObjectRegistry.CHERRY_SIGN.getTexture()));
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), ObjectRegistry.RED_GRAPE_BUSH, ObjectRegistry.WHITE_GRAPE_BUSH,
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new Material(Sheets.SIGN_SHEET, ObjectRegistry.CHERRY_SIGN.get().getTexture()));
+
+        RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.RED_GRAPE_BUSH, ObjectRegistry.WHITE_GRAPE_BUSH,
                                                 ObjectRegistry.CHERRY_DOOR, ObjectRegistry.COOKING_POT,
                                                 ObjectRegistry.CHERRY_JAM, ObjectRegistry.CHERRY_JAR, ObjectRegistry.FERMENTATION_BARREL,
                                                 ObjectRegistry.MELLOHI_WINE, ObjectRegistry.CLARK_WINE, ObjectRegistry.BOLVAR_WINE, ObjectRegistry.CHERRY_WINE,
@@ -61,7 +66,7 @@ public class VineryClient implements ClientModInitializer {
 
 
         );
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), ObjectRegistry.PALE_STEM_BLOCK, ObjectRegistry.GRAPEVINE_LATTICE, ObjectRegistry.WINE_BOTTLE,
+        RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.PALE_STEM_BLOCK, ObjectRegistry.GRAPEVINE_LATTICE, ObjectRegistry.WINE_BOTTLE,
 
                                                ObjectRegistry.WINE_BOX, ObjectRegistry.FLOWER_POT,
                                                ObjectRegistry.CHAIR,
@@ -70,9 +75,9 @@ public class VineryClient implements ClientModInitializer {
                                                ObjectRegistry.JUNGLE_RED_GRAPE_BUSH, ObjectRegistry.JUNGLE_WHITE_GRAPE_BUSH
                                               );
 
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.translucent(), ObjectRegistry.WINDOW);
+        RenderTypeRegistry.register(RenderType.translucent(), ObjectRegistry.WINDOW.get());
 
-         */
+
         ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> BiomeColors.getAverageGrassColor(world, pos), ObjectRegistry.GRASS_SLAB, ObjectRegistry.TAIGA_WHITE_GRAPE_BUSH, ObjectRegistry.TAIGA_RED_GRAPE_BUSH);
         ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> BiomeColors.getAverageFoliageColor(world, pos), ObjectRegistry.SAVANNA_RED_GRAPE_BUSH, ObjectRegistry.SAVANNA_WHITE_GRAPE_BUSH, ObjectRegistry.JUNGLE_RED_GRAPE_BUSH, ObjectRegistry.JUNGLE_WHITE_GRAPE_BUSH, ObjectRegistry.PALE_STEM_BLOCK, ObjectRegistry.GRAPEVINE_LATTICE);
         ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> GrassColor.get(1.0, 0.5), ObjectRegistry.GRASS_SLAB);
