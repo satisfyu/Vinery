@@ -1,18 +1,20 @@
 package satisfyu.vinery.util;
 
 import com.google.gson.JsonArray;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+
+import java.util.*;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -33,7 +35,18 @@ public class GeneralUtil {
 	}
 
 	 */
+	public static Collection<ServerPlayer> tracking(ServerLevel world, BlockPos pos) {
+		Objects.requireNonNull(pos, "BlockPos cannot be null");
 
+		return tracking(world, new ChunkPos(pos));
+	}
+
+	public static Collection<ServerPlayer> tracking(ServerLevel world, ChunkPos pos) {
+		Objects.requireNonNull(world, "The world cannot be null");
+		Objects.requireNonNull(pos, "The chunk pos cannot be null");
+
+		return world.getChunkSource().chunkMap.getPlayers(pos, false);
+	}
 
 	public static RotatedPillarBlock logBlock(MaterialColor wood, MaterialColor bark) {
 		return new RotatedPillarBlock(

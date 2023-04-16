@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
+import satisfyu.vinery.util.GeneralUtil;
 
 public class FlowerPotBlockEntity extends BlockEntity {
     private Item flower;
@@ -77,7 +78,7 @@ public class FlowerPotBlockEntity extends BlockEntity {
         if(level != null && !level.isClientSide()) {
             Packet<ClientGamePacketListener> updatePacket = getUpdatePacket();
 
-            for (ServerPlayer player : PlayerLookup.tracking((ServerLevel) level, getBlockPos())) {
+            for (ServerPlayer player : GeneralUtil.tracking((ServerLevel) level, getBlockPos())) {
                 player.connection.send(updatePacket);
             }
         }

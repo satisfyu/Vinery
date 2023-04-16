@@ -18,8 +18,4 @@ public enum VineryLineConnectingType implements StringRepresentable {
     public String getSerializedName() {
         return this.name;
     }
-
-    public String getSerializedName() {
-        return this.name;
-    }
 }

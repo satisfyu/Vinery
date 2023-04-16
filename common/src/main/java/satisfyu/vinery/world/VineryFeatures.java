@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 public class VineryFeatures {
 
     private static final Registrar<Feature<?>> FEATURES = Vinery.REGISTRIES.get(Registries.FEATURE);
-    public static final RegistrySupplier<Feature<NoneFeatureConfiguration>> JUNGLE_RED_GRAPE_FEATURE = register("jungle_red_grape_feature", ()-> new JungleRedBushFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistrySupplier<Feature<NoneFeatureConfiguration>> JUNGLE_RED_GRAPE_FEATURE = register("jungle_red_grape_feature", () -> new JungleRedBushFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistrySupplier<Feature<NoneFeatureConfiguration>> JUNGLE_WHITE_GRAPE_FEATURE = register("jungle_white_grape_feature", () -> new JungleWhiteBushFeature(NoneFeatureConfiguration.CODEC));
 
     public static void init(){

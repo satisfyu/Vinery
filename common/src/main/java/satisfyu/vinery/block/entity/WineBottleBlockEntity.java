@@ -11,6 +11,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
+import satisfyu.vinery.util.GeneralUtil;
 
 public class WineBottleBlockEntity extends BlockEntity {
     private  int count;
@@ -77,7 +78,7 @@ public class WineBottleBlockEntity extends BlockEntity {
         if(level != null && !level.isClientSide()) {
             Packet<ClientGamePacketListener> updatePacket = getUpdatePacket();
 
-            for (ServerPlayer player : PlayerLookup.tracking((ServerLevel) level, getBlockPos())) {
+            for (ServerPlayer player : GeneralUtil.tracking((ServerLevel) level, getBlockPos())) {
                 player.connection.send(updatePacket);
             }
         }

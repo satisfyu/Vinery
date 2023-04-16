@@ -6,7 +6,6 @@ import satisfyu.vinery.registry.VinerySoundEvents;
 import satisfyu.vinery.util.VineryUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
-import net.minecraft.block.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -130,7 +129,7 @@ public class CookingPotBlock extends BaseEntityBlock {
             double e = pos.getY() + 0.3;
             double f = (double)pos.getZ() + 1.0;
             if (random.nextDouble() < 0.3) {
-                world.playLocalSound(d, e, f, VinerySoundEvents.BLOCK_COOKING_POT_JUICE_BOILING, SoundSource.BLOCKS, 1.0F, 1.0F, false);
+                world.playLocalSound(d, e, f, VinerySoundEvents.BLOCK_COOKING_POT_JUICE_BOILING.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
             Direction direction = state.getValue(FACING);
             Direction.Axis axis = direction.getAxis();
@@ -148,7 +147,7 @@ public class CookingPotBlock extends BaseEntityBlock {
             double e = pos.getY() + 0.3;
             double f = (double)pos.getZ() + 1.0;
             if (random.nextDouble() < 0.3) {
-                world.playLocalSound(d, e, f, VinerySoundEvents.BLOCK_COOKING_POT_JUICE_BOILING, SoundSource.BLOCKS, 1.0F, 1.0F, false);
+                world.playLocalSound(d, e, f, VinerySoundEvents.BLOCK_COOKING_POT_JUICE_BOILING.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
             Direction direction = state.getValue(FACING);
             Direction.Axis axis = direction.getAxis();
@@ -176,7 +175,7 @@ public class CookingPotBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, VineryBlockEntityTypes.COOKING_POT_BLOCK_ENTITY, (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
+        return createTickerHelper(type, VineryBlockEntityTypes.COOKING_POT_BLOCK_ENTITY.get(), (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
     }
 
     @Nullable

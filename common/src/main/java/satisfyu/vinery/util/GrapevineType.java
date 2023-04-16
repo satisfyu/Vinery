@@ -42,31 +42,31 @@ public enum GrapevineType implements IGrapevineType, StringRepresentable {
 
     public Item getFruit() {
         return switch (this) {
-            case RED -> ObjectRegistry.RED_GRAPE;
-            case WHITE -> ObjectRegistry.WHITE_GRAPE;
-            case JUNGLE_RED -> ObjectRegistry.JUNGLE_RED_GRAPE;
-            case JUNGLE_WHITE -> ObjectRegistry.JUNGLE_WHITE_GRAPE;
-            case TAIGA_RED -> ObjectRegistry.TAIGA_RED_GRAPE;
-            case TAIGA_WHITE -> ObjectRegistry.TAIGA_WHITE_GRAPE;
-            case SAVANNA_RED -> ObjectRegistry.SAVANNA_RED_GRAPE;
-            case SAVANNA_WHITE -> ObjectRegistry.SAVANNA_WHITE_GRAPE;
-            case TOMATO -> ObjectRegistry.TOMATO;
-            default -> ObjectRegistry.RED_GRAPE;
+            case RED -> ObjectRegistry.RED_GRAPE.get();
+            case WHITE -> ObjectRegistry.WHITE_GRAPE.get();
+            case JUNGLE_RED -> ObjectRegistry.JUNGLE_RED_GRAPE.get();
+            case JUNGLE_WHITE -> ObjectRegistry.JUNGLE_WHITE_GRAPE.get();
+            case TAIGA_RED -> ObjectRegistry.TAIGA_RED_GRAPE.get();
+            case TAIGA_WHITE -> ObjectRegistry.TAIGA_WHITE_GRAPE.get();
+            case SAVANNA_RED -> ObjectRegistry.SAVANNA_RED_GRAPE.get();
+            case SAVANNA_WHITE -> ObjectRegistry.SAVANNA_WHITE_GRAPE.get();
+            case TOMATO -> ObjectRegistry.TOMATO.get();
+            default -> ObjectRegistry.RED_GRAPE.get();
         };
     }
 
     public Item getSeeds() {
         return switch (this) {
-            case RED -> ObjectRegistry.RED_GRAPE_SEEDS;
-            case WHITE -> ObjectRegistry.WHITE_GRAPE_SEEDS;
-            case JUNGLE_RED -> ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS;
-            case JUNGLE_WHITE -> ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS;
-            case TAIGA_RED -> ObjectRegistry.TAIGA_RED_GRAPE_SEEDS;
-            case TAIGA_WHITE -> ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS;
-            case SAVANNA_RED -> ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS;
-            case SAVANNA_WHITE -> ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS;
-            case TOMATO -> ObjectRegistry.TOMATO_SEEDS;
-            default -> ObjectRegistry.RED_GRAPE_SEEDS;
+            case RED -> ObjectRegistry.RED_GRAPE_SEEDS.get();
+            case WHITE -> ObjectRegistry.WHITE_GRAPE_SEEDS.get();
+            case JUNGLE_RED -> ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS.get();
+            case JUNGLE_WHITE -> ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS.get();
+            case TAIGA_RED -> ObjectRegistry.TAIGA_RED_GRAPE_SEEDS.get();
+            case TAIGA_WHITE -> ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS.get();
+            case SAVANNA_RED -> ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS.get();
+            case SAVANNA_WHITE -> ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS.get();
+            case TOMATO -> ObjectRegistry.TOMATO_SEEDS.get();
+            default -> ObjectRegistry.RED_GRAPE_SEEDS.get();
         };
     }
 }

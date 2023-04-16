@@ -1,5 +1,6 @@
 package satisfyu.vinery.world;
 
+import dev.architectury.registry.level.biome.BiomeModifications;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
