@@ -16,7 +16,7 @@ public class ChairRenderer extends EntityRenderer<ChairEntity> {
     }
 
     @Override
-    public ResourceLocation getTexture(ChairEntity entity) {
+    public ResourceLocation getTextureLocation(ChairEntity entity) {
         return null;
     }
 

@@ -77,7 +77,7 @@ public class GrapevinePotBlock extends Block {
                 if (activeStage < MAX_STAGE) {
                     world.setBlock(pos, state.setValue(STAGE, activeStage + 1), Block.UPDATE_ALL);
                 }
-                world.playSound(null, pos, VinerySoundEvents.BLOCK_GRAPEVINE_POT_SQUEEZE, SoundSource.BLOCKS, 1.0F, 1.0F);
+                world.playSound(null, pos, VinerySoundEvents.BLOCK_GRAPEVINE_POT_SQUEEZE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             }
         }
     }

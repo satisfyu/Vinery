@@ -53,7 +53,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 	private final ContainerData delegate;
 	
 	public CookingPotEntity(BlockPos pos, BlockState state) {
-		super(VineryBlockEntityTypes.COOKING_POT_BLOCK_ENTITY, pos, state);
+		super(VineryBlockEntityTypes.COOKING_POT_BLOCK_ENTITY.get(), pos, state);
 		this.delegate = new ContainerData() {
 			@Override
 			public int get(int index) {

@@ -12,19 +12,23 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
+import satisfyu.vinery.util.GeneralUtil;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 public class FlowerBoxBlockEntity extends BlockEntity {
 
 	private NonNullList<ItemStack> flowers;
 
 	public FlowerBoxBlockEntity(BlockPos pos, BlockState state) {
-		super(VineryBlockEntityTypes.FLOWER_BOX_ENTITY, pos, state);
+		super(VineryBlockEntityTypes.FLOWER_BOX_ENTITY.get(), pos, state);
 		this.flowers = NonNullList.withSize(2, ItemStack.EMPTY);
 	}
 
@@ -80,12 +84,14 @@ public class FlowerBoxBlockEntity extends BlockEntity {
 		return this.saveWithoutMetadata();
 	}
 
+
+
 	@Override
 	public void setChanged() {
 		if(level != null && !level.isClientSide()) {
 			Packet<ClientGamePacketListener> updatePacket = getUpdatePacket();
 
-			for (ServerPlayer player : PlayerLookup.tracking((ServerLevel) level, getBlockPos())) {
+			for (ServerPlayer player : GeneralUtil.tracking((ServerLevel) level, getBlockPos())) {
 				player.connection.send(updatePacket);
 			}
 		}

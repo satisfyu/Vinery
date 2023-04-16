@@ -65,7 +65,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Contai
     };
 
     public FermentationBarrelBlockEntity(BlockPos pos, BlockState state) {
-        super(VineryBlockEntityTypes.FERMENTATION_BARREL_ENTITY, pos, state);
+        super(VineryBlockEntityTypes.FERMENTATION_BARREL_ENTITY.get(), pos, state);
         this.inventory = NonNullList.withSize(CAPACITY, ItemStack.EMPTY);
     }
 
@@ -117,7 +117,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Contai
             return false;
         } else {
             final Item item = this.getItem(BOTTLE_INPUT_SLOT).getItem();
-            if (item != ObjectRegistry.WINE_BOTTLE.asItem()) {
+            if (item != ObjectRegistry.WINE_BOTTLE.get().asItem()) {
                 return false;
             }
             return this.getItem(OUTPUT_SLOT).isEmpty();

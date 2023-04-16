@@ -1,10 +1,10 @@
 package satisfyu.vinery.block.entity;
 
+import dev.architectury.networking.NetworkManager;
+import io.netty.buffer.Unpooled;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
+import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.util.networking.VineryMessages;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -24,11 +24,11 @@ public class StorageBlockEntity extends BlockEntity {
     private NonNullList<ItemStack> inventory;
 
     public StorageBlockEntity(BlockPos pos, BlockState state) {
-        super(VineryBlockEntityTypes.STORAGE_ENTITY, pos, state);
+        super(VineryBlockEntityTypes.STORAGE_ENTITY.get(), pos, state);
     }
 
     public StorageBlockEntity(BlockPos pos, BlockState state, int size) {
-        super(VineryBlockEntityTypes.STORAGE_ENTITY, pos, state);
+        super(VineryBlockEntityTypes.STORAGE_ENTITY.get(), pos, state);
         this.size = size;
         this.inventory = NonNullList.withSize(this.size, ItemStack.EMPTY);
     }
@@ -47,15 +47,15 @@ public class StorageBlockEntity extends BlockEntity {
     @Override
     public void setChanged() {
         if(!level.isClientSide()) {
-            FriendlyByteBuf data = PacketByteBufs.create();
+            FriendlyByteBuf data = new FriendlyByteBuf(Unpooled.buffer());
             data.writeInt(inventory.size());
             for (ItemStack itemStack : inventory) {
                 data.writeItem(itemStack);
             }
             data.writeBlockPos(getBlockPos());
 
-            for (ServerPlayer player : PlayerLookup.tracking((ServerLevel) level, getBlockPos())) {
-                ServerPlayNetworking.send(player, VineryMessages.ITEM_SYNC, data);
+            for (ServerPlayer player : GeneralUtil.tracking((ServerLevel) level, getBlockPos())) {
+                NetworkManager.sendToPlayer(player, VineryMessages.ITEM_SYNC, data);
             }
         }
         super.setChanged();
