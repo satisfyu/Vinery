@@ -4,7 +4,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import satisfyu.vinery.item.DrinkBlockSmallItem;
-import satisfyu.vinery.registry.StorageTypes;
+import satisfyu.vinery.registry.VineryDefaultAPI;
 
 public class FourBottleStorageBlock extends StorageBlock {
 
@@ -25,7 +25,7 @@ public class FourBottleStorageBlock extends StorageBlock {
 
     @Override
     public ResourceLocation type() {
-        return StorageTypes.FOUR_BOTTLE;
+        return VineryDefaultAPI.FOUR_BOTTLE;
     }
 
     @Override

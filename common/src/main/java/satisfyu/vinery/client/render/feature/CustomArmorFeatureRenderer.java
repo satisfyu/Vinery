@@ -19,6 +19,8 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import satisfyu.vinery.Vinery;
+import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.item.CustomModelArmorItem;
 import satisfyu.vinery.util.VineryApi;
 
@@ -45,17 +47,7 @@ public class CustomArmorFeatureRenderer<T extends LivingEntity, M extends Entity
 		Item hatItem = getHatItem(entity, slot);
 		if(hatItem != null) {
 			if(MODELS.isEmpty()) {
-
-				FabricLoader.getInstance().getEntrypointContainers("vinery", VineryApi.class).forEach(entrypoint -> {
-					String modId = entrypoint.getProvider().getMetadata().getId();
-					try {
-						VineryApi api = entrypoint.getEntrypoint();
-						api.registerArmor(MODELS, modelLoader);
-					} catch (Throwable e) {
-						VineryO.LOGGER.error("Mod {} provides a broken implementation of VineryApi, therefore couldn't register custom models", modId, e);
-					}
-				});
-
+				VineryExpectPlatform.registerArmor(MODELS, modelLoader);
 			}
 			return MODELS.get(hatItem);
 		}

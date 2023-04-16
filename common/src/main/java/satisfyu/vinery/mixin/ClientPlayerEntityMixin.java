@@ -28,7 +28,7 @@ public abstract class ClientPlayerEntityMixin extends AbstractClientPlayer {
         super(world, profile);
     }
 
-    @Inject(method = "tickMovement", at = @At("HEAD"))
+    @Inject(method = "aiStep", at = @At("HEAD"))
     private void tickMovement(CallbackInfo info) {
         if(this.hasEffect(VineryEffects.IMPROVED_JUMP_BOOST)) {
             LocalPlayer player = (LocalPlayer) (Object) this;
@@ -46,12 +46,12 @@ public abstract class ClientPlayerEntityMixin extends AbstractClientPlayer {
         }
     }
 
-    @Redirect(method = "autoJump", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z"))
+    @Redirect(method = "updateAutoJump", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;hasEffect(Lnet/minecraft/world/effect/MobEffect;)Z"))
     public boolean improvedJumpBoost(LocalPlayer livingEntity, MobEffect statusEffect) {
         return livingEntity.hasEffect(MobEffects.JUMP) || livingEntity.hasEffect(VineryEffects.IMPROVED_JUMP_BOOST);
     }
 
-    @Redirect(method = "autoJump", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;getStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Lnet/minecraft/entity/effect/StatusEffectInstance;"))
+    @Redirect(method = "updateAutoJump", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getEffect(Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;"))
     public MobEffectInstance improvedJumpBoostAmplifier(LocalPlayer livingEntity, MobEffect statusEffect) {
         return livingEntity.hasEffect(VineryEffects.IMPROVED_JUMP_BOOST) ?  livingEntity.getEffect(VineryEffects.IMPROVED_JUMP_BOOST) : livingEntity.getEffect(MobEffects.JUMP);
     }

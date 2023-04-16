@@ -3,10 +3,20 @@
   "package": "satisfyu.vinery.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "ArmorFeatureRendererMixin",
+    "ClientPlayerEntityMixin",
+    "LongToolTipsMixin",
     "MixinTitleScreen",
     "boat.MixinBoatEntityRenderer"
   ],
   "mixins": [
+    "BlockMixin",
+    "BoneMealItemMixin",
+    "FoxEntityEatSweetBerriesGoalMixin",
+    "LivingEntityMixin",
+    "PlayerEntityMixin",
+    "StatusEffectUtilMixin",
+    "WanderingTraderManagerMixin",
     "WoodTypeAccessor",
     "boat.MixinBoatEntity"
   ],

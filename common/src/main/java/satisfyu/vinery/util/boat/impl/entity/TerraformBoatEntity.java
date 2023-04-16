@@ -22,11 +22,11 @@ public class TerraformBoatEntity extends Boat implements TerraformBoatHolder {
 	}
 
 	public TerraformBoatEntity(Level world) {
-		this(TerraformBoatInitializer.BOAT, world);
+		this(TerraformBoatInitializer.BOAT.get(), world);
 	}
 
 	public TerraformBoatEntity(Level world, double x, double y, double z) {
-		this(TerraformBoatInitializer.BOAT, world);
+		this(TerraformBoatInitializer.BOAT.get(), world);
 
 		this.setPos(x, y, z);
 		this.xo = x;

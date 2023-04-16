@@ -30,7 +30,7 @@ public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToBlockGoal 
         super(mob, speed, range);
     }
 
-    @Inject(method = "isTargetPos", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "isValidTarget", at = @At("HEAD"), cancellable = true)
     private void isTargetPos(LevelReader world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         BlockState state = world.getBlockState(pos);
         if (state.getBlock() instanceof GrapeBush) {
@@ -38,7 +38,7 @@ public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToBlockGoal 
         }
     }
 
-    @Inject(method = "eatBerries", at = @At("TAIL"))
+    @Inject(method = "onReachedTarget", at = @At("TAIL"))
     private void eatGrapes(CallbackInfo ci) {
         final BlockState state = field_17975.level.getBlockState(this.blockPos);
         if (state.getBlock() instanceof GrapeBush bush) {

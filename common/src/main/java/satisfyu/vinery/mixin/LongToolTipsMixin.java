@@ -1,5 +1,6 @@
 package satisfyu.vinery.mixin;
 
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,22 +18,22 @@ import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent
 @Mixin(Screen.class)
 public abstract class LongToolTipsMixin {
     @Shadow
-    protected Font textRenderer;
+    protected Font font;
     @Shadow
     public int width;
 
-    @ModifyVariable(method = "renderTooltipFromComponents", at = @At(value = "HEAD"), index = 2, argsOnly = true)
+    @ModifyVariable(method = "renderTooltipInternal", at = @At(value = "HEAD"), index = 2, argsOnly = true)
     public List<ClientTooltipComponent> makeListMutable(List<ClientTooltipComponent> value) {
         return new ArrayList<>(value);
     }
 
-    @Inject(method = "renderTooltipFromComponents", at = @At(value = "INVOKE", target = "Ljava/util/List;size()I", ordinal = 0))
-    public void fix(PoseStack matrices, List<ClientTooltipComponent> components, int x, int y, CallbackInfo ci) {
-        TooltipHelper.newFix(components, textRenderer, x, width);
+    @Inject(method = "renderTooltipInternal", at = @At(value = "INVOKE", target = "Ljava/util/List;size()I", ordinal = 0))
+    public void fix(PoseStack poseStack, List<ClientTooltipComponent> list, int x, int y, ClientTooltipPositioner clientTooltipPositioner, CallbackInfo ci) {
+        TooltipHelper.newFix(list, font, x, width);
     }
 
-    @ModifyVariable(method = "renderTooltipFromComponents", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;push()V"), index = 7)
+    @ModifyVariable(method = "renderTooltipInternal", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V"), index = 7)
     public int modifyRenderX(int value, PoseStack matrices, List<ClientTooltipComponent> components, int x, int y) {
-        return TooltipHelper.shouldFlip(components, textRenderer, x);
+        return TooltipHelper.shouldFlip(components, font, x);
     }
 }

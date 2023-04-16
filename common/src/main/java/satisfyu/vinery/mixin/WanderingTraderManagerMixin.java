@@ -27,13 +27,13 @@ import net.minecraft.world.level.storage.ServerLevelData;
 
 @Mixin(WanderingTraderSpawner.class)
 public abstract class WanderingTraderManagerMixin implements CustomSpawner {
-	@Shadow @Nullable protected abstract BlockPos getNearbySpawnPos(LevelReader world, BlockPos pos, int range);
+	@Shadow @Nullable protected abstract BlockPos findSpawnPositionNear(LevelReader world, BlockPos pos, int range);
 	
-	@Shadow protected abstract boolean doesNotSuffocateAt(BlockGetter world, BlockPos pos);
+	@Shadow protected abstract boolean hasEnoughSpace(BlockGetter world, BlockPos pos);
 	
-	@Shadow @Final private ServerLevelData properties;
+	@Shadow @Final private ServerLevelData serverLevelData;
 	
-	@Inject(method = "trySpawn", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/entity/EntityType;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/SpawnReason;)Lnet/minecraft/entity/Entity;"), cancellable = true)
+	@Inject(method = "spawn", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/world/entity/EntityType;spawn(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/MobSpawnType;)Lnet/minecraft/world/entity/Entity;"), cancellable = true)
 	private void trySpawn(ServerLevel world, CallbackInfoReturnable<Boolean> cir) {
 		if (world.random.nextBoolean()) {
 			ServerPlayer playerEntity = world.getRandomPlayer();
@@ -42,8 +42,8 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 			PoiManager pointOfInterestStorage = world.getPoiManager();
 			Optional<BlockPos> optional = pointOfInterestStorage.find(type -> type.is(PoiTypes.MEETING), pos -> true, blockPos, 48, PoiManager.Occupancy.ANY);
 			BlockPos blockPos2 = optional.orElse(blockPos);
-			BlockPos blockPos3 = this.getNearbySpawnPos(world, blockPos2, 48);
-			if (blockPos3 != null && this.doesNotSuffocateAt(world, blockPos3)) {
+			BlockPos blockPos3 = this.findSpawnPositionNear(world, blockPos2, 48);
+			if (blockPos3 != null && this.hasEnoughSpace(world, blockPos3)) {
 				if (world.getBiome(blockPos3).is(Biomes.THE_VOID)) {
 					return;
 				}
@@ -51,7 +51,7 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 				WanderingTrader wanderingTraderEntity = VineryEntites.WANDERING_WINEMAKER.get().spawn(world,  blockPos3, MobSpawnType.EVENT);
 				if (wanderingTraderEntity != null) {
 					for (int j = 0; j < 2; ++j) {
-						BlockPos blockPos4 = this.getNearbySpawnPos(world, wanderingTraderEntity.blockPosition(), 4);
+						BlockPos blockPos4 = this.findSpawnPositionNear(world, wanderingTraderEntity.blockPosition(), 4);
 						if (blockPos4 == null) {
 							return;
 						}
@@ -61,7 +61,7 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 						}
 						traderLlamaEntity.setLeashedTo(wanderingTraderEntity, true);
 					}
-					this.properties.setWanderingTraderId(wanderingTraderEntity.getUUID());
+					this.serverLevelData.setWanderingTraderId(wanderingTraderEntity.getUUID());
 					wanderingTraderEntity.setDespawnDelay(48000);
 					wanderingTraderEntity.setWanderTarget(blockPos2);
 					wanderingTraderEntity.restrictTo(blockPos2, 16);

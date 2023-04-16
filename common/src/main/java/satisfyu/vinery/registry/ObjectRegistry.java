@@ -164,7 +164,7 @@ public class ObjectRegistry {
 
     //Signs
     private static final ResourceLocation CHERRY_SIGN_TEXTURE = new ResourceLocation("entity/signs/cherry");
-    public static final RegistrySupplier<Block> CHERRY_SIGN = registerB("cherry_sign", () -> new TerraformSignBlock(CHERRY_SIGN_TEXTURE, BlockBehaviour.Properties.copy(Blocks.OAK_SIGN)));
+    public static final RegistrySupplier<TerraformSignBlock> CHERRY_SIGN = registerB("cherry_sign", () -> new TerraformSignBlock(CHERRY_SIGN_TEXTURE, BlockBehaviour.Properties.copy(Blocks.OAK_SIGN)));
     public static final RegistrySupplier<Block> CHERRY_WALL_SIGN = registerB("cherry_wall_sign", () -> new TerraformWallSignBlock(CHERRY_SIGN_TEXTURE, BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN)));
     public static final RegistrySupplier<Item> CHERRY_SIGN_ITEM = registerI("cherry_sign", () -> new SignItem(getSettings().stacksTo(16), CHERRY_SIGN.get(), CHERRY_WALL_SIGN.get()));
 
