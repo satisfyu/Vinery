@@ -32,7 +32,7 @@ public final class TerraformBoatInitializer {
 		.sized(1.375f, 0.5625f)
 		.build(CHEST_BOAT_ID.toString()));
 
-	public void init() {
+	public static void init() {
 		TerraformBoatTrackedData.register();
 	}
 }

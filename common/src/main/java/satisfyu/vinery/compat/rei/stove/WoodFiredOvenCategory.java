@@ -67,7 +67,7 @@ public class WoodFiredOvenCategory implements DisplayCategory<WoodFiredOvenDispl
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ObjectRegistry.WOOD_FIRED_OVEN);
+        return EntryStacks.of(ObjectRegistry.WOOD_FIRED_OVEN.get());
     }
 
     @Override

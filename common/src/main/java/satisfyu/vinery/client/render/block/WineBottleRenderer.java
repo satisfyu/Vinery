@@ -74,7 +74,7 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
         renderBlock(defaultState, matrices, vertexConsumers, entity);
         matrices.translate(.15f, 0f, .5f);
         renderBlock(defaultState, matrices, vertexConsumers, entity);
-        if (defaultState.getBlock() == ObjectRegistry.KELP_CIDER) {
+        if (defaultState.getBlock() == ObjectRegistry.KELP_CIDER.get()) {
             matrices.translate(.35f, .7f, -.13f);
             matrices.mulPose(Axis.YP.rotation(90));
             renderBlock(defaultState, matrices, vertexConsumers, entity);

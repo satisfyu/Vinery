@@ -27,7 +27,7 @@ public class WinePressCategory implements DisplayCategory<WinePressDisplay> {
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ObjectRegistry.WINE_PRESS);
+        return EntryStacks.of(ObjectRegistry.WINE_PRESS.get());
     }
 
     @Override

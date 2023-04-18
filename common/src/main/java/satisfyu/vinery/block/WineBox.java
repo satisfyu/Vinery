@@ -1,7 +1,6 @@
 package satisfyu.vinery.block;
 
 import satisfyu.vinery.item.DrinkBlockSmallItem;
-import satisfyu.vinery.registry.VineryDefaultAPI;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -26,6 +25,8 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import satisfyu.vinery.registry.VineryStorageTypes;
+
 import java.util.List;
 
 public class WineBox extends StorageBlock {
@@ -86,7 +87,7 @@ public class WineBox extends StorageBlock {
 
     @Override
     public ResourceLocation type() {
-        return VineryDefaultAPI.WINE_BOX;
+        return VineryStorageTypes.WINE_BOX;
     }
 
     @Override

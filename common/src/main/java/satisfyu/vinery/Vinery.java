@@ -8,6 +8,7 @@ import net.minecraft.world.item.Items;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import satisfyu.vinery.registry.*;
+import satisfyu.vinery.util.boat.impl.TerraformBoatInitializer;
 import satisfyu.vinery.util.boat.impl.client.TerraformBoatClientInitializer;
 import satisfyu.vinery.world.VineryBiomeModification;
 import satisfyu.vinery.world.VineryFeatures;
@@ -23,6 +24,8 @@ public class Vinery {
 
     
     public static void init() {
+        TerraformBoatInitializer.init();
+
         VineryEffects.init();
         ObjectRegistry.init();
         VineryBlockEntityTypes.init();
@@ -30,7 +33,6 @@ public class Vinery {
         VineryScreenHandlerTypes.init();
         VineryRecipeTypes.init();
         VineryEntites.init();
-        TerraformBoatClientInitializer.init();
         VineryBoatTypes.init();
         VineryFeatures.init();
         VineryBiomeModification.init();

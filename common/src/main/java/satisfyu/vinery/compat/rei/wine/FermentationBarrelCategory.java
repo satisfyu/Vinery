@@ -28,7 +28,7 @@ public class FermentationBarrelCategory implements DisplayCategory<FermentationB
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ObjectRegistry.FERMENTATION_BARREL);
+        return EntryStacks.of(ObjectRegistry.FERMENTATION_BARREL.get());
     }
 
     @Override

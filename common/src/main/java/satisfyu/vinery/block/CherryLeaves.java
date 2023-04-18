@@ -41,9 +41,9 @@ public class CherryLeaves extends LeavesBlock {
             if (!world.isClientSide()) {
                 stack.hurtAndBreak(1, player, playerEntity -> playerEntity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
                 int dropCount = world.getRandom().nextBoolean() ? Mth.nextInt(world.getRandom(), 1, 3) : 1;
-                ItemStack dropStack = new ItemStack(ObjectRegistry.CHERRY, dropCount);
+                ItemStack dropStack = new ItemStack(ObjectRegistry.CHERRY.get(), dropCount);
                 if (world.getRandom().nextInt(8) == 0) {
-                    dropStack = new ItemStack(ObjectRegistry.ROTTEN_CHERRY, dropCount);
+                    dropStack = new ItemStack(ObjectRegistry.ROTTEN_CHERRY.get(), dropCount);
                 }
                 CherryLeaves.popResourceFromFace(world, pos, hit.getDirection(), dropStack);
                 world.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1F, 1F);

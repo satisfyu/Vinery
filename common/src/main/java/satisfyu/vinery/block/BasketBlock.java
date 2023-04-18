@@ -53,8 +53,8 @@ public class BasketBlock extends Block {
         final ItemStack stack = player.getItemInHand(hand);
         if (player.isShiftKeyDown() && state.getValue(STAGE) > 0) {
             world.setBlock(pos, state.setValue(STAGE, state.getValue(STAGE) - 1), 3);
-            player.addItem(new ItemStack(ObjectRegistry.RED_GRAPE));
-        } else if (stack.getItem() == ObjectRegistry.RED_GRAPE.asItem() && state.getValue(STAGE) < MAX_STAGE) {
+            player.addItem(new ItemStack(ObjectRegistry.RED_GRAPE.get()));
+        } else if (stack.getItem() == ObjectRegistry.RED_GRAPE.get().asItem() && state.getValue(STAGE) < MAX_STAGE) {
             world.setBlock(pos, state.setValue(STAGE, state.getValue(STAGE) + 1), 3);
             if (!player.isCreative())
                 stack.shrink(1);
@@ -111,7 +111,7 @@ public class BasketBlock extends Block {
 
         int amount = Mth.clamp(state.getValue(STAGE), 0, MAX_STAGE);
 
-        if(amount > 0) list.add(new ItemStack(ObjectRegistry.RED_GRAPE, amount));
+        if(amount > 0) list.add(new ItemStack(ObjectRegistry.RED_GRAPE.get(), amount));
         return list;
     }
 

@@ -23,7 +23,7 @@ public class WinePressDisplay implements Display {
 
     @Override
     public List<EntryIngredient> getOutputEntries() {
-        return Collections.singletonList(EntryIngredients.of(ObjectRegistry.APPLE_MASH));
+        return Collections.singletonList(EntryIngredients.of(ObjectRegistry.APPLE_MASH.get()));
     }
 
     @Override

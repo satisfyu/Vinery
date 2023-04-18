@@ -19,7 +19,8 @@ public class MuleRenderer extends MobRenderer<TraderMuleEntity, MuleModel> {
     }
 
     @Override
-    public ResourceLocation getTexture(TraderMuleEntity muleEntity) {
+    public ResourceLocation getTextureLocation(TraderMuleEntity entity) {
         return TEXTURE;
     }
+
 }

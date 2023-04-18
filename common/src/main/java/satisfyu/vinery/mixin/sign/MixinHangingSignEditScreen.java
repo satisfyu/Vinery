@@ -1,6 +1,5 @@
 package satisfyu.vinery.mixin.sign;
 
-import com.terraformersmc.terraform.sign.TerraformHangingSign;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screens.inventory.HangingSignEditScreen;
@@ -12,6 +11,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import satisfyu.vinery.util.sign.TerraformHangingSign;
 
 @Mixin(HangingSignEditScreen.class)
 @Environment(EnvType.CLIENT)

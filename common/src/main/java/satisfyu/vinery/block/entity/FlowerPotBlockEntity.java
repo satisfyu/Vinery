@@ -1,6 +1,5 @@
 package satisfyu.vinery.block.entity;
 
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -20,7 +19,7 @@ public class FlowerPotBlockEntity extends BlockEntity {
     public static final String FLOWER_KEY ="flower";
 
     public FlowerPotBlockEntity(BlockPos pos, BlockState state) {
-        super(VineryBlockEntityTypes.FLOWER_POT_ENTITY, pos, state);
+        super(VineryBlockEntityTypes.FLOWER_POT_ENTITY.get(), pos, state);
     }
 
     public Item getFlower() {

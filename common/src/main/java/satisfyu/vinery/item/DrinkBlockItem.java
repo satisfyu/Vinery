@@ -122,6 +122,6 @@ public class DrinkBlockItem extends BlockItem {
 
     public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
         ItemStack itemStack = super.finishUsingItem(stack, world, user);
-        return user instanceof Player && ((Player)user).getAbilities().instabuild ? itemStack : new ItemStack(ObjectRegistry.WINE_BOTTLE);
+        return user instanceof Player && ((Player)user).getAbilities().instabuild ? itemStack : new ItemStack(ObjectRegistry.WINE_BOTTLE.get());
     }
 }

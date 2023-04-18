@@ -70,7 +70,7 @@ public class WindowBlock extends IronBarsBlock {
         do{
             pos = pos.above();
         }
-        while(world.getBlockState(pos).is(ObjectRegistry.WINDOW));
+        while(world.getBlockState(pos).is(ObjectRegistry.WINDOW.get()));
         return pos.below();
     }
 
@@ -82,7 +82,7 @@ public class WindowBlock extends IronBarsBlock {
             i++;
             highestPos = highestPos.below();
         }
-        while(world.getBlockState(highestPos).is(ObjectRegistry.WINDOW));
+        while(world.getBlockState(highestPos).is(ObjectRegistry.WINDOW.get()));
         return i;
     }
 
@@ -108,7 +108,7 @@ public class WindowBlock extends IronBarsBlock {
         do{
             pos = pos.above();
         }
-        while(world.getBlockState(pos).is(ObjectRegistry.WINDOW));
+        while(world.getBlockState(pos).is(ObjectRegistry.WINDOW.get()));
         return pos.below();
     }
 
@@ -120,7 +120,7 @@ public class WindowBlock extends IronBarsBlock {
             i++;
             highestPos = highestPos.below();
         }
-        while(world.getBlockState(highestPos).is(ObjectRegistry.WINDOW));
+        while(world.getBlockState(highestPos).is(ObjectRegistry.WINDOW.get()));
         return i;
     }
 
@@ -135,7 +135,7 @@ public class WindowBlock extends IronBarsBlock {
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         BlockState downState = world.getBlockState(pos.below());
         BlockState downState2 = world.getBlockState(pos.below(2));
-        return !downState.is(ObjectRegistry.WINDOW) || downState.getValue(PART) != 3 || !downState2.is(ObjectRegistry.WINDOW) || downState2.getValue(PART) != 2;
+        return !downState.is(ObjectRegistry.WINDOW.get()) || downState.getValue(PART) != 3 || !downState2.is(ObjectRegistry.WINDOW.get()) || downState2.getValue(PART) != 2;
     }
 
 }
