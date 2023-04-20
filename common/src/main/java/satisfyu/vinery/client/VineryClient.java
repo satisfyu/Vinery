@@ -50,7 +50,7 @@ public class VineryClient {
 
 
 
-        TerraformBoatClientHelper.registerModelLayers(new VineryIdentifier("cherry"), false);
+        TerraformBoatClientHelper.registerModelLayers(VineryBoatTypes.CHERRY_BOAT_ID, false);
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new Material(Sheets.SIGN_SHEET, ObjectRegistry.CHERRY_SIGN.get().getTexture()));
 
         RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.RED_GRAPE_BUSH.get(), ObjectRegistry.WHITE_GRAPE_BUSH.get(),
@@ -95,10 +95,10 @@ public class VineryClient {
         EntityModelLayerRegistry.register(LAYER_LOCATION, MuleModel::getTexturedModelData);
 
 
-        MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.STOVE_GUI_HANDLER, StoveGui::new);
-        MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER, FermentationBarrelGui::new);
-        MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.COOKING_POT_SCREEN_HANDLER, CookingPotGui::new);
-        MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.WINE_PRESS_SCREEN_HANDLER, WinePressGui::new);
+        MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.STOVE_GUI_HANDLER.get(), StoveGui::new);
+        MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER.get(), FermentationBarrelGui::new);
+        MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.COOKING_POT_SCREEN_HANDLER.get(), CookingPotGui::new);
+        MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.WINE_PRESS_SCREEN_HANDLER.get(), WinePressGui::new);
 
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_POT_ENTITY.get(), FlowerPotBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.WINE_BOTTLE_ENTITY.get(), WineBottleRenderer::new);

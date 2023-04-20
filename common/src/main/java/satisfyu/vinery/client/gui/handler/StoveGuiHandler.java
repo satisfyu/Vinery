@@ -28,7 +28,7 @@ public class StoveGuiHandler extends AbstractRecipeBookGUIScreenHandler {
     }
 
     public StoveGuiHandler(int syncId, Inventory playerInventory, Container inventory, ContainerData delegate) {
-        super(VineryScreenHandlerTypes.STOVE_GUI_HANDLER, syncId, 4, playerInventory, inventory, delegate);
+        super(VineryScreenHandlerTypes.STOVE_GUI_HANDLER.get(), syncId, 4, playerInventory, inventory, delegate);
         buildBlockEntityContainer(playerInventory, inventory);
         buildPlayerContainer(playerInventory);
     }

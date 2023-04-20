@@ -10,6 +10,7 @@ import satisfyu.vinery.VineryIdentifier;
 public class VineryFabricLike {
     public static void init() {
         Vinery.init();
+        Vinery.commonSetup();
 
         FabricLoader.getInstance().getModContainer(Vinery.MODID).ifPresent(container -> {
             ResourceManagerHelper.registerBuiltinResourcePack(new VineryIdentifier("bushy_leaves"), container, ResourcePackActivationType.NORMAL);

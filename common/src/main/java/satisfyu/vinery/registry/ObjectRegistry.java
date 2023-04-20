@@ -329,8 +329,8 @@ public class ObjectRegistry {
 
     public static final RegistrySupplier<Block> APPLE_JAM = registerB("apple_jam", () -> new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion()));
     public static final RegistrySupplier<Item>  APPLE_JAM_ITEM = registerI("apple_jam", () -> new BlockItem(APPLE_JAM.get(), getSettings()));
-    public static final RegistrySupplier<Block> APPLE_PIE = registerB("apple_pie", () -> new PieBlock(BlockBehaviour.Properties.copy(Blocks.CAKE), APPLE_PIE_SLICE.get()));
-    public static final RegistrySupplier<Item>  APPLE_PIE_ITEM = registerI("apple_pie", () -> new BlockItem(APPLE_PIE.get(), getSettings()));
+    //public static final RegistrySupplier<Block> APPLE_PIE = registerB("apple_pie", () -> new PieBlock(BlockBehaviour.Properties.copy(Blocks.CAKE), APPLE_PIE_SLICE.get()));
+    //public static final RegistrySupplier<Item>  APPLE_PIE_ITEM = registerI("apple_pie", () -> new BlockItem(APPLE_PIE.get(), getSettings()));
 
     public static final RegistrySupplier<Item> DOUGH = registerI("dough", () -> new CherryItem(getSettings()));
 
@@ -390,29 +390,7 @@ public class ObjectRegistry {
      */
 
     public static void init() {
-        /*
-        FlammableBlockRegistry flammableRegistry = FlammableBlockRegistry.getDefaultInstance();
-        flammableRegistry.add(CHERRY_PLANKS, 5, 20);
-        flammableRegistry.add(STRIPPED_CHERRY_LOG, 5, 5);
-        flammableRegistry.add(STRIPPED_OLD_CHERRY_LOG, 5, 5);
-        flammableRegistry.add(CHERRY_LOG, 5, 5);
-        flammableRegistry.add(OLD_CHERRY_LOG, 5, 5);
-        flammableRegistry.add(STRIPPED_CHERRY_WOOD, 5, 5);
-        flammableRegistry.add(CHERRY_WOOD, 5, 5);
-        flammableRegistry.add(OLD_CHERRY_WOOD, 5, 5);
-        flammableRegistry.add(STRIPPED_OLD_CHERRY_WOOD, 5, 5);
-        flammableRegistry.add(CHERRY_SLAB, 5, 20);
-        flammableRegistry.add(CHERRY_STAIRS, 5, 20);
-        flammableRegistry.add(CHERRY_FENCE, 5, 20);
-        flammableRegistry.add(CHERRY_FENCE_GATE, 5, 20);
-        
-     */
-        FuelRegistry.register(300, ObjectRegistry.CHERRY_FENCE.get(), ObjectRegistry.CHERRY_FENCE_GATE.get(), ObjectRegistry.STACKABLE_LOG.get(), ObjectRegistry.FERMENTATION_BARREL.get());
-
-        AxeItemHooks.addStrippable(ObjectRegistry.CHERRY_LOG.get(), ObjectRegistry.STRIPPED_CHERRY_LOG.get());
-        AxeItemHooks.addStrippable(ObjectRegistry.CHERRY_WOOD.get(), ObjectRegistry.STRIPPED_CHERRY_WOOD.get());
-        AxeItemHooks.addStrippable(ObjectRegistry.OLD_CHERRY_LOG.get(), ObjectRegistry.STRIPPED_OLD_CHERRY_LOG.get());
-        AxeItemHooks.addStrippable(ObjectRegistry.OLD_CHERRY_WOOD.get(), ObjectRegistry.STRIPPED_OLD_CHERRY_WOOD.get());
+        VineryBoatTypes.initItems();
     }
 
      

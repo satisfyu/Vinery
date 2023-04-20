@@ -20,7 +20,7 @@
     "environment": "*",
     "entrypoints": {
       "init": [
-        "satisfyu.vinery.quilt.ExampleModQuilt"
+        "satisfyu.vinery.quilt.VineryQuilt"
       ]
     },
     "depends": [

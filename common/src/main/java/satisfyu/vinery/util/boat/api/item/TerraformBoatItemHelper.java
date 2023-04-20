@@ -24,9 +24,7 @@ public final class TerraformBoatItemHelper {
 		return registerBoatItem(id, boatKey, chest, new Item.Properties().stacksTo(1));
 	}
 	public static RegistrySupplier<Item> registerBoatItem(ResourceLocation id, ResourceKey<TerraformBoatType> boatKey, boolean chest, Item.Properties settings) {
-		RegistrySupplier<Item> item = ObjectRegistry.ITEMS.register(id, () -> new TerraformBoatItem(boatKey, chest, settings));
-		registerBoatDispenserBehavior(item.get(), boatKey, chest);
-		return item;
+		return ObjectRegistry.ITEMS.register(id, () -> new TerraformBoatItem(boatKey, chest, settings));
 	}
 
 	public static void registerBoatDispenserBehavior(ItemLike item, ResourceKey<TerraformBoatType> boatKey, boolean chest) {
