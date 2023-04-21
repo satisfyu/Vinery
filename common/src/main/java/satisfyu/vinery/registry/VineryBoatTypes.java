@@ -26,13 +26,11 @@ public class VineryBoatTypes {
 
     public static void init() {
 
-        Vinery.LOGGER.error("Registering CHERRY boat type");
         VineryExpectPlatform.register(CHERRY_BOAT_ID, CHERRY);
         /*
         final ResourceKey<TerraformBoatType> CHERRY_BOAT_KEY = VineryExpectPlatform.createKey(CHERRY_BOAT_ID);
         TerraformBoatItemHelper.registerBoatDispenserBehavior(CHERRY_BOAT.get(), CHERRY_BOAT_KEY, false);
         TerraformBoatItemHelper.registerBoatDispenserBehavior(CHERRY_CHEST_BOAT.get(), CHERRY_BOAT_KEY, true);
-
          */
     }
     public static void initItems(){

@@ -1,7 +1,6 @@
 package satisfyu.vinery.forge;
 
 import dev.architectury.platform.forge.EventBuses;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -16,7 +15,6 @@ import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Supplier;
 
 @Mod(Vinery.MODID)
@@ -26,7 +24,6 @@ public class VineryForge {
 
     public static Supplier<IForgeRegistry<TerraformBoatType>> typeSupplier;
 
-    public static DeferredRegister<TerraformBoatType> deferredRegister;
 
 
     //public static DeferredRegister<TerraformBoatType> terraformBoatTypeDeferredRegister = DeferredRegister.create(ResourceKey.createRegistryKey(TerraformBoatTypeRegistry.REGISTRY_ID), Vinery.MODID);
@@ -38,35 +35,17 @@ public class VineryForge {
 
         //terraformBoatTypeDeferredRegister.makeRegistry(() -> new RegistryBuilder<TerraformBoatType>().legacyName("boat").allowModification());
 
-        deferredRegister = DeferredRegister.create(TerraformBoatTypeRegistry.createRegistryKey(TerraformBoatTypeRegistry.REGISTRY_ID), Vinery.MODID);
+        DeferredRegister<TerraformBoatType> deferredRegister = DeferredRegister.create(TerraformBoatTypeRegistry.createRegistryKey(TerraformBoatTypeRegistry.REGISTRY_ID), Vinery.MODID);
         typeSupplier = deferredRegister.makeRegistry(RegistryBuilder::new);
-
         VineryBoatTypes.init();
-
-        for(Map.Entry<ResourceLocation, Supplier<TerraformBoatType>> type : VineryExpectPlatformImpl.INSTANCE.entrySet()){
-            ResourceLocation location = type.getKey();
-            Supplier<TerraformBoatType> typeSupplier1 = type.getValue();
-            deferredRegister.register(location.getPath(), typeSupplier1);
-        }
-
+        for(Map.Entry<ResourceLocation, Supplier<TerraformBoatType>> type : VineryExpectPlatformImpl.INSTANCE.entrySet()) deferredRegister.register(type.getKey().getPath(), type.getValue());
         deferredRegister.register(FMLJavaModLoadingContext.get().getModEventBus());
-
-
         modEventBus.addListener(this::commonSetup);
-
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
-
-        Set<Map.Entry<ResourceKey<TerraformBoatType>, TerraformBoatType>> set = typeSupplier.get().getEntries();
-        if(set.isEmpty()) Vinery.LOGGER.error("isEmpty");
-        set.forEach(lol -> Vinery.LOGGER.error("Check if that works: " + lol.getKey()));
-
         terraformBoatTypeDeferredRegister = typeSupplier.get();
-
         Vinery.commonSetup();
-        //terraformBoatTypeDeferredRegister.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
 

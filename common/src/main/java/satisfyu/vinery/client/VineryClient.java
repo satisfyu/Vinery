@@ -44,13 +44,12 @@ public class VineryClient {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("trader_mule"), "main");
 
     public static void onInitializeClient() {
-        TerraformBoatClientInitializer.init();
+
         VineryMessages.registerS2CPackets();
-        CustomArmorRegistry.registerArmorModelLayers();
+        registerEntityRenderers();
 
 
 
-        TerraformBoatClientHelper.registerModelLayers(VineryBoatTypes.CHERRY_BOAT_ID, false);
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new Material(Sheets.SIGN_SHEET, ObjectRegistry.CHERRY_SIGN.get().getTexture()));
 
         RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.RED_GRAPE_BUSH.get(), ObjectRegistry.WHITE_GRAPE_BUSH.get(),
@@ -89,10 +88,7 @@ public class VineryClient {
 
 
 
-        EntityRendererRegistry.register(VineryEntites.MULE, MuleRenderer::new);
-        EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
-        EntityRendererRegistry.register(VineryEntites.CHAIR, ChairRenderer::new);
-        EntityModelLayerRegistry.register(LAYER_LOCATION, MuleModel::getTexturedModelData);
+
 
 
         MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.STOVE_GUI_HANDLER.get(), StoveGui::new);
@@ -106,6 +102,21 @@ public class VineryClient {
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_BOX_ENTITY.get(), FlowerBoxBlockRenderer::new);
 
     }
+
+    private static void registerEntityRenderers(){
+
+        //renderers
+        TerraformBoatClientInitializer.init();
+        EntityRendererRegistry.register(VineryEntites.MULE, MuleRenderer::new);
+        EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
+        EntityRendererRegistry.register(VineryEntites.CHAIR, ChairRenderer::new);
+
+        //layers
+        EntityModelLayerRegistry.register(LAYER_LOCATION, MuleModel::getTexturedModelData);
+        CustomArmorRegistry.registerArmorModelLayers();
+        TerraformBoatClientHelper.registerModelLayers(VineryBoatTypes.CHERRY_BOAT_ID, false);
+    }
+
     
     public static Player getClientPlayer() {
         return Minecraft.getInstance().player;

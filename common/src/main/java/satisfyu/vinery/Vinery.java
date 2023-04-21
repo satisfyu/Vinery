@@ -43,8 +43,6 @@ public class Vinery {
         VineryFeatures.init();
         VineryBiomeModification.init();
         VinerySoundEvents.init();
-
-        VineryBoatTypes.init();
     }
 
     public static void commonSetup(){
