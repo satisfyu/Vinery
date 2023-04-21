@@ -25,7 +25,7 @@ public class WineRackBlockEntity extends RandomizableContainerBlockEntity {
 	private ContainerOpenersCounter stateManager;
 	
 	public WineRackBlockEntity(BlockPos pos, BlockState state) {
-		super(VineryBlockEntityTypes.WINE_RACK_ENTITY, pos, state);
+		super(VineryBlockEntityTypes.WINE_RACK_ENTITY.get(), pos, state);
 		this.inventory = NonNullList.withSize(18, ItemStack.EMPTY);
 		this.stateManager = new ContainerOpenersCounter() {
 			

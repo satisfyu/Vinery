@@ -8,19 +8,28 @@
     "group": "${group}",
     "id": "examplemod",
     "version": "${version}",
-    "name": "Example Mod",
-    "description": "This is an example description! Tell everyone what your mod is about!",
-    "authors": ["Me!"],
-    "contact": {
-      "sources": "https://github.com/architectury/architectury-templates"
+    "metadata": {
+      "name": "Vinery",
+      "description": "Hi. this is vinery",
+      "contact": {
+        "sources": "https://github.com/architectury/architectury-templates"
+      },
+      "contributors": {
+        "Cristelknight" : "Developer"
+      },
+      "license": {
+        "name": "Perfectly Awesome License v1.0",
+        "id": "ARR",
+        "url": "https://theperfectlyawesomelicense.com/",
+        "description": "This license does things and stuff and says that you can do things and stuff too!"
+      },
+      "icon": "assets/vinery/icon.png"
     },
-    "license": "Insert License Here",
-    "icon": "assets/vinery/icon.png",
     "intermediate_mappings": "net.fabricmc:intermediary",
-    "environment": "*",
+
     "entrypoints": {
       "init": [
-        "satisfyu.vinery.quilt.ExampleModQuilt"
+        "satisfyu.vinery.quilt.VineryQuilt"
       ]
     },
     "depends": [
@@ -41,5 +50,8 @@
         "version": ">=6.2.43"
       }
     ]
+  },
+  "minecraft": {
+    "environment": "*"
   }
 }

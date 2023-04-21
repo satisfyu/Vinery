@@ -1,12 +1,6 @@
 package satisfyu.vinery.block;
 
-import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.block.entity.FlowerPotBlockEntity;
-import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.registry.VineryBlockEntityTypes;
-import satisfyu.vinery.util.EnumTallFlower;
 import net.minecraft.ChatFormatting;
-import net.minecraft.block.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
@@ -29,11 +23,11 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.block.entity.FlowerPotBlockEntity;
 import satisfyu.vinery.util.VineryTags;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Supplier;
 
 public class FlowerPotBlock extends Block implements EntityBlock{

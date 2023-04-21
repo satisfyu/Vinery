@@ -19,6 +19,8 @@ import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.vehicle.Boat;
+import org.jetbrains.annotations.NotNull;
+import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 import satisfyu.vinery.util.boat.api.client.TerraformBoatClientHelper;
@@ -31,9 +33,7 @@ public class TerraformBoatEntityRenderer extends BoatRenderer {
 	public TerraformBoatEntityRenderer(EntityRendererProvider.Context context, boolean chest) {
 		super(context, chest);
 
-		this.texturesAndModels = TerraformBoatTypeRegistry.INSTANCE.entrySet().stream().collect(ImmutableMap.toImmutableMap(entry -> {
-			return entry.getValue();
-		}, entry -> {
+		this.texturesAndModels = VineryExpectPlatform.entrySet().stream().collect(ImmutableMap.toImmutableMap(Map.Entry::getValue, entry -> {
 			boolean raft = entry.getValue().isRaft();
 			String prefix = raft ? (chest ? "chest_raft/" : "raft/") : (chest ? "chest_boat/" : "boat/");
 
@@ -48,7 +48,7 @@ public class TerraformBoatEntityRenderer extends BoatRenderer {
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(Boat entity) {
+	public @NotNull ResourceLocation getTextureLocation(@NotNull Boat entity) {
 		if (entity instanceof TerraformBoatHolder) {
 			TerraformBoatType boat = ((TerraformBoatHolder) entity).getTerraformBoat();
 			return this.texturesAndModels.get(boat).getFirst();

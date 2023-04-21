@@ -1,15 +1,79 @@
 package satisfyu.vinery.fabric;
 
+import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import org.quiltmc.loader.api.QuiltLoader;
-import satisfyu.vinery.VineryExpectPlatform;
+import satisfyu.vinery.Vinery;
+import satisfyu.vinery.util.VineryApi;
+import satisfyu.vinery.util.boat.api.TerraformBoatType;
+import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 
-import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+import java.util.function.Supplier;
 
 public class VineryExpectPlatformImpl {
-    /**
-     * This is our actual method to {@link VineryExpectPlatform#getConfigDirectory()}.
-     */
-    public static Path getConfigDirectory() {
-        return QuiltLoader.getConfigDir();
+
+    public static final Registry<TerraformBoatType> INSTANCE = FabricRegistryBuilder.createSimple(TerraformBoatType.class, TerraformBoatTypeRegistry.REGISTRY_ID).buildAndRegister();
+
+    public static void register(ResourceLocation location, Supplier<TerraformBoatType> boatTypeSupplier) {
+        Registry.register(INSTANCE, location, boatTypeSupplier.get());
     }
+
+    public static ResourceKey<TerraformBoatType> createKey(ResourceLocation id) {
+        return ResourceKey.create(INSTANCE.key(), id);
+    }
+
+    public static ResourceLocation getId(TerraformBoatType type) {
+        return INSTANCE.getKey(type);
+    }
+
+    public static Set<Map.Entry<ResourceKey<TerraformBoatType>, TerraformBoatType>> entrySet() {
+        return INSTANCE.entrySet();
+    }
+
+
+    public static Block[] getBlocksForStorage() {
+        Set<Block> set = new HashSet<>();
+        QuiltLoader.getEntrypointContainers("vinery", VineryApi.class).forEach(entrypoint -> {
+            String modId = entrypoint.getProvider().metadata().id();
+            try {
+                VineryApi api = entrypoint.getEntrypoint();
+                api.registerBlocks(set);
+            } catch (Throwable e) {
+                Vinery.LOGGER.error("Mod {} provides a broken implementation of VineryApi, therefore couldn't register blocks to the Storage Block Entity", modId, e);
+            }
+        });
+        return set.toArray(new Block[0]);
+    }
+
+    public static <T extends LivingEntity> void registerArmor(Map<Item, EntityModel<T>> models, EntityModelSet modelLoader) {
+        QuiltLoader.getEntrypointContainers("vinery", VineryApi.class).forEach(entrypoint -> {
+            String modId = entrypoint.getProvider().metadata().id();
+            try {
+                VineryApi api = entrypoint.getEntrypoint();
+                api.registerArmor(models, modelLoader);
+            } catch (Throwable e) {
+                Vinery.LOGGER.error("Mod {} provides a broken implementation of VineryApi, therefore couldn't register custom models", modId, e);
+            }
+        });
+    }
+    public static void loadInstance() {
+        Registry<TerraformBoatType> registry = INSTANCE;
+    }
+
+    public static TerraformBoatType get(ResourceLocation location) {
+        return INSTANCE.get(location);
+    }
+
 }

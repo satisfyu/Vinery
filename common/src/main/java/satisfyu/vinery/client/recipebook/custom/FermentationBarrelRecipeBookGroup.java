@@ -17,8 +17,8 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 public enum FermentationBarrelRecipeBookGroup implements IRecipeBookGroup {
     SEARCH(new ItemStack(Items.COMPASS)),
-    WINE(new ItemStack(ObjectRegistry.WINE_BOTTLE)),
-    MISC(new ItemStack(ObjectRegistry.APPLE_JUICE));
+    WINE(new ItemStack(ObjectRegistry.WINE_BOTTLE.get())),
+    MISC(new ItemStack(ObjectRegistry.APPLE_JUICE.get()));
 
     public static final List<IRecipeBookGroup> FERMENTATION_GROUPS = ImmutableList.of(SEARCH, WINE, MISC);
 

@@ -26,7 +26,7 @@ public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
     }
 
     public CookingPotGuiHandler(int syncId, Inventory playerInventory, Container inventory, ContainerData propertyDelegate) {
-        super(VineryScreenHandlerTypes.COOKING_POT_SCREEN_HANDLER, syncId, 7, playerInventory, inventory, propertyDelegate);
+        super(VineryScreenHandlerTypes.COOKING_POT_SCREEN_HANDLER.get(), syncId, 7, playerInventory, inventory, propertyDelegate);
         buildBlockEntityContainer(inventory);
         buildPlayerContainer(playerInventory);
     }

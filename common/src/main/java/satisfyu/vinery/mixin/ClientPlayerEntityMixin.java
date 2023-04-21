@@ -30,7 +30,7 @@ public abstract class ClientPlayerEntityMixin extends AbstractClientPlayer {
 
     @Inject(method = "aiStep", at = @At("HEAD"))
     private void tickMovement(CallbackInfo info) {
-        if(this.hasEffect(VineryEffects.IMPROVED_JUMP_BOOST)) {
+        if(this.hasEffect(VineryEffects.IMPROVED_JUMP_BOOST.get())) {
             LocalPlayer player = (LocalPlayer) (Object) this;
             if (player.isOnGround() || player.onClimbable()) {
                 jumpCount = 1;
@@ -48,12 +48,12 @@ public abstract class ClientPlayerEntityMixin extends AbstractClientPlayer {
 
     @Redirect(method = "updateAutoJump", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;hasEffect(Lnet/minecraft/world/effect/MobEffect;)Z"))
     public boolean improvedJumpBoost(LocalPlayer livingEntity, MobEffect statusEffect) {
-        return livingEntity.hasEffect(MobEffects.JUMP) || livingEntity.hasEffect(VineryEffects.IMPROVED_JUMP_BOOST);
+        return livingEntity.hasEffect(MobEffects.JUMP) || livingEntity.hasEffect(VineryEffects.IMPROVED_JUMP_BOOST.get());
     }
 
     @Redirect(method = "updateAutoJump", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getEffect(Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;"))
     public MobEffectInstance improvedJumpBoostAmplifier(LocalPlayer livingEntity, MobEffect statusEffect) {
-        return livingEntity.hasEffect(VineryEffects.IMPROVED_JUMP_BOOST) ?  livingEntity.getEffect(VineryEffects.IMPROVED_JUMP_BOOST) : livingEntity.getEffect(MobEffects.JUMP);
+        return livingEntity.hasEffect(VineryEffects.IMPROVED_JUMP_BOOST.get()) ?  livingEntity.getEffect(VineryEffects.IMPROVED_JUMP_BOOST.get()) : livingEntity.getEffect(MobEffects.JUMP);
     }
 
     private boolean wearingUsableElytra(LocalPlayer player) {

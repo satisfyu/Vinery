@@ -28,7 +28,7 @@ public class CookingPotCategory implements DisplayCategory<CookingPotDisplay> {
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ObjectRegistry.COOKING_POT);
+        return EntryStacks.of(ObjectRegistry.COOKING_POT.get());
     }
 
     @Override

@@ -14,21 +14,21 @@ import satisfyu.vinery.registry.VineryEffects;
 public abstract class StatusEffectUtilMixin {
     @Inject(method = "hasDigSpeed", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private static void hasImprovedLuck(LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(entity.hasEffect(MobEffects.DIG_SPEED) || entity.hasEffect(MobEffects.CONDUIT_POWER) || entity.hasEffect(VineryEffects.IMPROVED_HASTE));
+        cir.setReturnValue(entity.hasEffect(MobEffects.DIG_SPEED) || entity.hasEffect(MobEffects.CONDUIT_POWER) || entity.hasEffect(VineryEffects.IMPROVED_HASTE.get()));
     }
 
     @Inject(method = "getDigSpeedAmplification", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private static void getImprovedLuckAmplifier(LivingEntity entity, CallbackInfoReturnable<Integer> cir, int i, int j) {
         int k = 0;
-        if (entity.hasEffect(VineryEffects.IMPROVED_HASTE)) {
-            k = entity.getEffect(VineryEffects.IMPROVED_HASTE).getAmplifier();
+        if (entity.hasEffect(VineryEffects.IMPROVED_HASTE.get())) {
+            k = entity.getEffect(VineryEffects.IMPROVED_HASTE.get()).getAmplifier();
         }
         cir.setReturnValue(Math.max(Math.max(i, j), k));
     }
 
     @Inject(method = "hasWaterBreathing", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private static void hasImprovedWaterBreathing(LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(entity.hasEffect(MobEffects.WATER_BREATHING) || entity.hasEffect(MobEffects.CONDUIT_POWER) || entity.hasEffect(VineryEffects.IMPROVED_WATER_BREATHING));
+        cir.setReturnValue(entity.hasEffect(MobEffects.WATER_BREATHING) || entity.hasEffect(MobEffects.CONDUIT_POWER) || entity.hasEffect(VineryEffects.IMPROVED_WATER_BREATHING.get()));
     }
 
 

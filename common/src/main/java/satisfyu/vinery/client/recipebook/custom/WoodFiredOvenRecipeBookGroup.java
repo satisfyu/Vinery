@@ -16,7 +16,7 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 public enum WoodFiredOvenRecipeBookGroup implements IRecipeBookGroup {
     SEARCH(new ItemStack(Items.COMPASS)),
-    BAKE(new ItemStack(ObjectRegistry.DOUGH)),
+    BAKE(new ItemStack(ObjectRegistry.DOUGH.get())),
     MISC(new ItemStack(Items.SUGAR));
 
     public static final List<IRecipeBookGroup> WOOD_FIRED_OVEN_GROUPS = ImmutableList.of(SEARCH, BAKE, MISC);
@@ -34,12 +34,12 @@ public enum WoodFiredOvenRecipeBookGroup implements IRecipeBookGroup {
                     return true;
                 }
                 case BAKE -> {
-                    if (woodFiredOvenRecipe.getIngredients().stream().anyMatch((ingredient -> ingredient.test(ObjectRegistry.DOUGH.getDefaultInstance())))) {
+                    if (woodFiredOvenRecipe.getIngredients().stream().anyMatch((ingredient -> ingredient.test(ObjectRegistry.DOUGH.get().getDefaultInstance())))) {
                         return true;
                     }
                 }
                 case MISC -> {
-                    if (woodFiredOvenRecipe.getIngredients().stream().noneMatch((ingredient -> ingredient.test(ObjectRegistry.DOUGH.getDefaultInstance())))) {
+                    if (woodFiredOvenRecipe.getIngredients().stream().noneMatch((ingredient -> ingredient.test(ObjectRegistry.DOUGH.get().getDefaultInstance())))) {
                         return true;
                     }
                 }

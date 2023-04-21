@@ -1,13 +1,11 @@
 package satisfyu.vinery.block;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.block.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import satisfyu.vinery.block.entity.WinePressBlockEntity;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
-import net.minecraft.util.*;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -81,7 +79,7 @@ public class WinePressBlock extends BaseEntityBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, VineryBlockEntityTypes.WINE_PRESS_BLOCK_ENTITY, WinePressBlockEntity::tick);
+		return createTickerHelper(type, VineryBlockEntityTypes.WINE_PRESS_BLOCK_ENTITY.get(), WinePressBlockEntity::tick);
 	}
 
 

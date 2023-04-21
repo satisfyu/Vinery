@@ -27,7 +27,7 @@ public class JungleWhiteBushFeature extends Feature<NoneFeatureConfiguration> {
 
             for (Direction direction : directions) {
                 if (direction != Direction.DOWN && GrapeVineBlock.isAcceptableNeighbour(structureWorldAccess, blockPos.relative(direction), direction)) {
-                    structureWorldAccess.setBlock(blockPos, ObjectRegistry.JUNGLE_WHITE_GRAPE_BUSH.defaultBlockState().setValue(GrapeVineBlock.AGE, 2).setValue(GrapeVineBlock.getPropertyForFace(direction), true), 2);
+                    structureWorldAccess.setBlock(blockPos, ObjectRegistry.JUNGLE_WHITE_GRAPE_BUSH.get().defaultBlockState().setValue(GrapeVineBlock.AGE, 2).setValue(GrapeVineBlock.getPropertyForFace(direction), true), 2);
                     return true;
                 }
             }

@@ -4,10 +4,16 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
     "ArmorFeatureRendererMixin",
+    "ArmorStandRendererMixin",
     "ClientPlayerEntityMixin",
     "LongToolTipsMixin",
-    "MixinTitleScreen",
-    "boat.MixinBoatEntityRenderer"
+    "OrderedTextToolTipAccessor",
+    "PlayerEntityRendererMixin",
+    "sign.MixinHangingSignBlockEntityRenderer",
+    "sign.MixinHangingSignEditScreen",
+    "sign.MixinSignBlockEntityRenderer",
+    "sign.MixinSignEditScreen",
+    "sign.MixinTexturedRenderLayers"
   ],
   "mixins": [
     "BlockMixin",
@@ -17,8 +23,8 @@
     "PlayerEntityMixin",
     "StatusEffectUtilMixin",
     "WanderingTraderManagerMixin",
-    "WoodTypeAccessor",
-    "boat.MixinBoatEntity"
+    "boat.MixinBoatEntity",
+    "sign.MixinBlockEntityType"
   ],
   "injectors": {
     "defaultRequire": 1

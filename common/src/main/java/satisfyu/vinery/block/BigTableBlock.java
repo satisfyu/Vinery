@@ -3,7 +3,6 @@ package satisfyu.vinery.block;
 import satisfyu.vinery.util.VineryUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
-import net.minecraft.block.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;

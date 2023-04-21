@@ -93,16 +93,18 @@ public class MuleModel extends EntityModel<TraderMuleEntity> {
 		return LayerDefinition.create(modelData, 128, 128);
 	}
 
+
+
 	@Override
-	public void setAngles(TraderMuleEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+	public void setupAnim(TraderMuleEntity entity, float f, float g, float h, float i, float j) {
 
 	}
 
 	@Override
-	public void animateModel(TraderMuleEntity abstractHorseEntity, float f, float g, float h) {
-		float i = Mth.rotLerp(h, abstractHorseEntity.yBodyRotO, abstractHorseEntity.yBodyRot);
-		float j = Mth.rotLerp(h, abstractHorseEntity.yHeadRotO, abstractHorseEntity.yHeadRot);
-		float k = Mth.lerp(h, abstractHorseEntity.xRotO, abstractHorseEntity.getXRot());
+	public void prepareMobModel(TraderMuleEntity entity, float f, float g, float h) {
+		float i = Mth.rotLerp(h, entity.yBodyRotO, entity.yBodyRot);
+		float j = Mth.rotLerp(h, entity.yHeadRotO, entity.yHeadRot);
+		float k = Mth.lerp(h, entity.xRotO, entity.getXRot());
 		float l = j - i;
 		float m = k * ((float)Math.PI / 180);
 		if (l > 20.0f) {
@@ -114,16 +116,16 @@ public class MuleModel extends EntityModel<TraderMuleEntity> {
 		if (g > 0.2f) {
 			m += Mth.cos(f * 0.4f) * 0.15f * g;
 		}
-		float n = abstractHorseEntity.getEatAnim(h);
-		float o = abstractHorseEntity.getStandAnim(h);
+		float n = entity.getEatAnim(h);
+		float o = entity.getStandAnim(h);
 		float p = 1.0f - o;
-		float q = abstractHorseEntity.getMouthAnim(h);
-		boolean bl = abstractHorseEntity.tailCounter != 0;
-		float r = (float) abstractHorseEntity.tickCount + h;
+		float q = entity.getMouthAnim(h);
+		boolean bl = entity.tailCounter != 0;
+		float r = (float) entity.tickCount + h;
 		this.body.xRot = 0.0f;
 		this.head.xRot = 0.5235988f + m;
 		this.head.yRot = l * ((float)Math.PI / 180);
-		float s = abstractHorseEntity.isInWater() ? 0.2f : 1.0f;
+		float s = entity.isInWater() ? 0.2f : 1.0f;
 		float t = Mth.cos(s * f * 0.6662f + (float)Math.PI);
 		float u = t * 0.8f * g;
 		float v = (1.0f - Math.max(o, n)) * (0.5235988f + m + q * Mth.sin(r) * 0.05f);
@@ -147,6 +149,7 @@ public class MuleModel extends EntityModel<TraderMuleEntity> {
 		this.tail.yRot = bl ? Mth.cos(r * 0.7f) : 0.0f;
 	}
 
+
 	@Override
 	public void renderToBuffer(PoseStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
 		body.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
@@ -162,4 +165,6 @@ public class MuleModel extends EntityModel<TraderMuleEntity> {
 		Saddle.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 		bb_main.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 	}
+
+	
 }

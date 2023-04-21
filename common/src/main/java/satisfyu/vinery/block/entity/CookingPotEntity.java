@@ -1,22 +1,6 @@
 package satisfyu.vinery.block.entity;
 
-import satisfyu.vinery.block.CookingPotBlock;
-import satisfyu.vinery.client.gui.handler.CookingPotGuiHandler;
-import satisfyu.vinery.compat.farmersdelight.FarmersCookingPot;
-import satisfyu.vinery.item.food.EffectFood;
-import satisfyu.vinery.item.food.EffectFoodHelper;
-import satisfyu.vinery.recipe.CookingPotRecipe;
-import satisfyu.vinery.registry.VineryBlockEntityTypes;
-import satisfyu.vinery.registry.VineryRecipeTypes;
-import satisfyu.vinery.util.VineryTags;
-import satisfyu.vinery.util.VineryUtils;
-import org.jetbrains.annotations.Nullable;
-
-import static net.minecraft.world.item.ItemStack.isSameItemSameTags;
-
-import java.util.Optional;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderSet.Named;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -37,6 +21,18 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.block.CookingPotBlock;
+import satisfyu.vinery.client.gui.handler.CookingPotGuiHandler;
+import satisfyu.vinery.item.food.EffectFood;
+import satisfyu.vinery.item.food.EffectFoodHelper;
+import satisfyu.vinery.recipe.CookingPotRecipe;
+import satisfyu.vinery.registry.VineryBlockEntityTypes;
+import satisfyu.vinery.registry.VineryRecipeTypes;
+import satisfyu.vinery.util.VineryTags;
+import satisfyu.vinery.util.VineryUtils;
+
+import static net.minecraft.world.item.ItemStack.isSameItemSameTags;
 
 public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<CookingPotEntity>, Container, MenuProvider {
 	

@@ -37,13 +37,13 @@ public class VineryReiClientPlugin implements REIClientPlugin {
         registry.add(new FermentationBarrelCategory());
         registry.add(new WinePressCategory());
 
-        registry.addWorkstations(CookingPotDisplay.COOKING_POT_DISPLAY, EntryStacks.of(ObjectRegistry.COOKING_POT));
-        registry.addWorkstations(WoodFiredOvenDisplay.WOOD_FIRED_OVEN_DISPLAY, EntryStacks.of(ObjectRegistry.WOOD_FIRED_OVEN));
-        registry.addWorkstations(FermentationBarrelDisplay.FERMENTATION_BARREL_DISPLAY, EntryStacks.of(ObjectRegistry.FERMENTATION_BARREL));
-        registry.addWorkstations(WinePressDisplay.WINE_PRESS_DISPLAY, EntryStacks.of(ObjectRegistry.WINE_PRESS));
-        if(VineryUtils.isFDLoaded()) registry.addWorkstations(CategoryIdentifier.of("farmersdelight", "cooking"), EntryStacks.of(ObjectRegistry.COOKING_POT));
+        registry.addWorkstations(CookingPotDisplay.COOKING_POT_DISPLAY, EntryStacks.of(ObjectRegistry.COOKING_POT.get()));
+        registry.addWorkstations(WoodFiredOvenDisplay.WOOD_FIRED_OVEN_DISPLAY, EntryStacks.of(ObjectRegistry.WOOD_FIRED_OVEN.get()));
+        registry.addWorkstations(FermentationBarrelDisplay.FERMENTATION_BARREL_DISPLAY, EntryStacks.of(ObjectRegistry.FERMENTATION_BARREL.get()));
+        registry.addWorkstations(WinePressDisplay.WINE_PRESS_DISPLAY, EntryStacks.of(ObjectRegistry.WINE_PRESS.get()));
+        if(VineryUtils.isFDLoaded()) registry.addWorkstations(CategoryIdentifier.of("farmersdelight", "cooking"), EntryStacks.of(ObjectRegistry.COOKING_POT.get()));
 
-        registry.addWorkstations(BuiltinPlugin.FUEL, EntryStacks.of(ObjectRegistry.WOOD_FIRED_OVEN));
+        registry.addWorkstations(BuiltinPlugin.FUEL, EntryStacks.of(ObjectRegistry.WOOD_FIRED_OVEN.get()));
     }
 
     @Override

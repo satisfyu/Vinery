@@ -3,7 +3,6 @@ package satisfyu.vinery.block;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.VineryTags;
 import net.minecraft.ChatFormatting;
-import net.minecraft.block.*;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -70,9 +69,9 @@ public class BreadBlock extends FacingBlock {
             return InteractionResult.PASS;
         }
         if(stack.is(VineryTags.JAMS)){
-            BreadBlock.popResourceFromFace((Level) world, pos, Direction.UP, new ItemStack(ObjectRegistry.BREAD_SLICE));
+            BreadBlock.popResourceFromFace((Level) world, pos, Direction.UP, new ItemStack(ObjectRegistry.BREAD_SLICE.get()));
             stack.shrink(1);
-            player.addItem(new ItemStack(ObjectRegistry.CHERRY_JAR));
+            player.addItem(new ItemStack(ObjectRegistry.CHERRY_JAR.get()));
         }
         else{
             player.getFoodData().eat(6, 0.6f);

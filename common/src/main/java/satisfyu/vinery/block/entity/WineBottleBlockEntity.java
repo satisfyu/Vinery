@@ -1,6 +1,5 @@
 package satisfyu.vinery.block.entity;
 
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -22,7 +21,7 @@ public class WineBottleBlockEntity extends BlockEntity {
     }
 
     public WineBottleBlockEntity(BlockPos pos, BlockState state, int maxCount) {
-        super(VineryBlockEntityTypes.WINE_BOTTLE_ENTITY, pos, state);
+        super(VineryBlockEntityTypes.WINE_BOTTLE_ENTITY.get(), pos, state);
         this.count = 1;
         this.maxCount = maxCount;
     }
