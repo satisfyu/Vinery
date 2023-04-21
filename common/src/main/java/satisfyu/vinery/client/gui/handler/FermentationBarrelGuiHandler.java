@@ -27,7 +27,7 @@ public class FermentationBarrelGuiHandler extends AbstractRecipeBookGUIScreenHan
         this(syncId, playerInventory, new SimpleContainer(6), new SimpleContainerData(2));
     }
     public FermentationBarrelGuiHandler(int syncId, Inventory playerInventory, Container inventory, ContainerData propertyDelegate) {
-        super(VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER, syncId, 5, playerInventory, inventory, propertyDelegate);
+        super(VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER.get(), syncId, 5, playerInventory, inventory, propertyDelegate);
         buildBlockEntityContainer(playerInventory, inventory);
         buildPlayerContainer(playerInventory);
     }

@@ -21,7 +21,7 @@ public class WinePressGuiHandler extends AbstractContainerMenu {
     }
 
     public WinePressGuiHandler(int syncId, Inventory playerInventory, Container inventory, ContainerData delegate) {
-        super(VineryScreenHandlerTypes.WINE_PRESS_SCREEN_HANDLER, syncId);
+        super(VineryScreenHandlerTypes.WINE_PRESS_SCREEN_HANDLER.get(), syncId);
         checkContainerSize(inventory, 2);
         this.inventory = inventory;
         inventory.startOpen(playerInventory.player);

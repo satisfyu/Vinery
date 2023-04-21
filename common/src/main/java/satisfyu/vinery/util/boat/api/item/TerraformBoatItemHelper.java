@@ -20,11 +20,11 @@ public final class TerraformBoatItemHelper {
 	}
 
 
-	public static RegistrySupplier<Item> registerBoatItem(ResourceLocation id, ResourceKey<TerraformBoatType> boatKey, boolean chest) {
-		return registerBoatItem(id, boatKey, chest, new Item.Properties().stacksTo(1));
+	public static RegistrySupplier<Item> registerBoatItem(ResourceLocation id, boolean chest) {
+		return registerBoatItem(id, chest, new Item.Properties().stacksTo(1));
 	}
-	public static RegistrySupplier<Item> registerBoatItem(ResourceLocation id, ResourceKey<TerraformBoatType> boatKey, boolean chest, Item.Properties settings) {
-		return ObjectRegistry.ITEMS.register(id, () -> new TerraformBoatItem(boatKey, chest, settings));
+	public static RegistrySupplier<Item> registerBoatItem(ResourceLocation id, boolean chest, Item.Properties settings) {
+		return ObjectRegistry.ITEMS.register(id, () -> new TerraformBoatItem(id, chest, settings));
 	}
 
 	public static void registerBoatDispenserBehavior(ItemLike item, ResourceKey<TerraformBoatType> boatKey, boolean chest) {

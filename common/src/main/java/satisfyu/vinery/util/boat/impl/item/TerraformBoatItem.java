@@ -1,9 +1,8 @@
 package satisfyu.vinery.util.boat.impl.item;
 
-import java.util.List;
-import java.util.function.Predicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -19,10 +18,16 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import satisfyu.vinery.Vinery;
+import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
-import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 import satisfyu.vinery.util.boat.impl.entity.TerraformBoatEntity;
 import satisfyu.vinery.util.boat.impl.entity.TerraformChestBoatEntity;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * An {@linkplain Item item} that spawns a {@linkplain TerraformBoatEntity boat entity} with a given {@linkplain TerraformBoatType Terraform boat type}.
@@ -30,16 +35,14 @@ import satisfyu.vinery.util.boat.impl.entity.TerraformChestBoatEntity;
 public class TerraformBoatItem extends Item {
 	private static final Predicate<Entity> RIDERS = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
 
-	private final ResourceKey<TerraformBoatType> boatKey;
+	private final ResourceLocation location;
 	private final boolean chest;
 
-	/**
-	 * @param boatKey a {@linkplain ResourceKey registry key} for the {@linkplain TerraformBoatType Terraform boat type} that should be spawned by this item
-	 */
-	public TerraformBoatItem(ResourceKey<TerraformBoatType> boatKey, boolean chest, Properties settings) {
+
+	public TerraformBoatItem(ResourceLocation location, boolean chest, Properties settings) {
 		super(settings);
 
-		this.boatKey = boatKey;
+		this.location = location;
 		this.chest = chest;
 	}
 
@@ -71,7 +74,12 @@ public class TerraformBoatItem extends Item {
 			double y = hitResult.getLocation().y;
 			double z = hitResult.getLocation().z;
 
-			TerraformBoatType boatType = TerraformBoatTypeRegistry.INSTANCE.get(this.boatKey.location());
+			Set<Map.Entry<ResourceKey<TerraformBoatType>, TerraformBoatType>> set = VineryExpectPlatform.entrySet();
+			if(set.isEmpty()) Vinery.LOGGER.error("isEmpty");
+			set.forEach(lol -> Vinery.LOGGER.error("Check if that works: " + lol.getKey()));
+
+			TerraformBoatType boatType = VineryExpectPlatform.get(this.location);
+
 			Boat boatEntity;
 
 			if (this.chest) {

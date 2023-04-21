@@ -1,5 +1,7 @@
 package satisfyu.vinery.util.boat.impl;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
 
@@ -8,11 +10,11 @@ import satisfyu.vinery.util.boat.api.TerraformBoatType;
  */
 public class TerraformBoatTypeImpl implements TerraformBoatType {
 	private final boolean raft;
-	private final Item item;
-	private final Item chestItem;
-	private final Item planks;
+	private final ResourceLocation item;
+	private final ResourceLocation chestItem;
+	private final ResourceLocation planks;
 
-	public TerraformBoatTypeImpl(boolean raft, Item item, Item chestItem, Item planks) {
+	public TerraformBoatTypeImpl(boolean raft, ResourceLocation item, ResourceLocation chestItem, ResourceLocation planks) {
 		this.raft = raft;
 		this.item = item;
 		this.chestItem = chestItem;
@@ -26,16 +28,16 @@ public class TerraformBoatTypeImpl implements TerraformBoatType {
 
 	@Override
 	public Item getItem() {
-		return this.item;
+		return BuiltInRegistries.ITEM.get(this.item);
 	}
 
 	@Override
 	public Item getChestItem() {
-		return this.chestItem;
+		return BuiltInRegistries.ITEM.get(this.chestItem);
 	}
 
 	@Override
 	public Item getPlanks() {
-		return this.planks;
+		return BuiltInRegistries.ITEM.get(this.planks);
 	}
 }

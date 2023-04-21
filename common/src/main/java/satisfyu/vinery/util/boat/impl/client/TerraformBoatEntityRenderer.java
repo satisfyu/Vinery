@@ -19,6 +19,7 @@ import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.vehicle.Boat;
+import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 import satisfyu.vinery.util.boat.api.client.TerraformBoatClientHelper;
@@ -31,7 +32,7 @@ public class TerraformBoatEntityRenderer extends BoatRenderer {
 	public TerraformBoatEntityRenderer(EntityRendererProvider.Context context, boolean chest) {
 		super(context, chest);
 
-		this.texturesAndModels = TerraformBoatTypeRegistry.INSTANCE.entrySet().stream().collect(ImmutableMap.toImmutableMap(entry -> {
+		this.texturesAndModels = VineryExpectPlatform.entrySet().stream().collect(ImmutableMap.toImmutableMap(entry -> {
 			return entry.getValue();
 		}, entry -> {
 			boolean raft = entry.getValue().isRaft();

@@ -11,6 +11,8 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
+import satisfyu.vinery.Vinery;
+import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 import satisfyu.vinery.util.boat.impl.entity.TerraformBoatEntity;
@@ -52,7 +54,7 @@ public class TerraformBoatDispenserBehavior extends DefaultDispenseItemBehavior 
 			return FALLBACK_BEHAVIOR.dispense(pointer, stack);
 		}
 
-		TerraformBoatType boatType = TerraformBoatTypeRegistry.INSTANCE.get(this.boatKey.location());
+		TerraformBoatType boatType = VineryExpectPlatform.get(this.boatKey.location());
 		Boat boatEntity;
 
 		if (this.chest) {

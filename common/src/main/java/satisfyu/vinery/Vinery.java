@@ -4,6 +4,7 @@ import dev.architectury.event.EventHandler;
 import dev.architectury.hooks.item.tool.AxeItemHooks;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.fuel.FuelRegistry;
+import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrarManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -26,8 +27,7 @@ public class Vinery {
     public static final RegistrarManager REGISTRIES = RegistrarManager.get(MODID);
     public static final Logger LOGGER = LogManager.getLogger(MODID);
 
-    public static final CreativeTabRegistry.TabSupplier EXAMPLE_TAB = CreativeTabRegistry.create(new ResourceLocation(MODID, "example_tab"), () ->
-            new ItemStack(Items.SADDLE));
+
 
     
     public static void init() {
@@ -44,13 +44,14 @@ public class Vinery {
         VineryBiomeModification.init();
         VinerySoundEvents.init();
 
+        VineryBoatTypes.init();
     }
 
     public static void commonSetup(){
 
         VineryCompostableItems.init();
         //VineryVillagers.init();
-        VineryBoatTypes.init();
+
 
         FuelRegistry.register(300, ObjectRegistry.CHERRY_FENCE.get(), ObjectRegistry.CHERRY_FENCE_GATE.get(), ObjectRegistry.STACKABLE_LOG.get(), ObjectRegistry.FERMENTATION_BARREL.get());
         AxeItemHooks.addStrippable(ObjectRegistry.CHERRY_LOG.get(), ObjectRegistry.STRIPPED_CHERRY_LOG.get());
