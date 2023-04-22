@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#vinery:has_structure/tree",
+  "features": "vinery:cherry_tree",
+  "step": "vegetal_decoration"
+}

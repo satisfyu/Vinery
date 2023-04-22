@@ -29,7 +29,6 @@ public class VineryExpectPlatformImpl {
     public static final Registry<TerraformBoatType> INSTANCE = FabricRegistryBuilder.createSimple(TerraformBoatType.class, TerraformBoatTypeRegistry.REGISTRY_ID).buildAndRegister();
 
     public static void register(ResourceLocation location, Supplier<TerraformBoatType> boatTypeSupplier) {
-        Vinery.LOGGER.error("Registering: " + location);
         Registry.register(INSTANCE, location, boatTypeSupplier.get());
     }
 

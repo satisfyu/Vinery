@@ -6,13 +6,14 @@ import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.fabriclike.world.VineryBiomeModification;
 import satisfyu.vinery.registry.VineryBoatTypes;
 
 public class VineryFabricLike {
     public static void init() {
 
         Vinery.init();
-
+        VineryBiomeModification.init();
         VineryBoatTypes.init();
         Vinery.commonSetup();
 

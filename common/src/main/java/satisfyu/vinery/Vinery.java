@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import satisfyu.vinery.registry.*;
 import satisfyu.vinery.util.boat.impl.TerraformBoatInitializer;
 import satisfyu.vinery.util.boat.impl.TerraformBoatTrackedData;
-import satisfyu.vinery.world.VineryBiomeModification;
 import satisfyu.vinery.world.VineryFeatures;
 
 public class Vinery {
@@ -16,8 +15,6 @@ public class Vinery {
     public static final String MODID = "vinery";
     public static final RegistrarManager REGISTRIES = RegistrarManager.get(MODID);
     public static final Logger LOGGER = LogManager.getLogger(MODID);
-
-
 
     
     public static void init() {
@@ -31,13 +28,12 @@ public class Vinery {
         VineryRecipeTypes.init();
         VineryEntites.init();
         VineryFeatures.init();
-        VineryBiomeModification.init();
         VinerySoundEvents.init();
     }
 
     public static void commonSetup(){
         VineryCompostableItems.init();
-        //VineryVillagers.init();
+        VineryVillagers.init();
 
         FuelRegistry.register(300, ObjectRegistry.CHERRY_FENCE.get(), ObjectRegistry.CHERRY_FENCE_GATE.get(), ObjectRegistry.STACKABLE_LOG.get(), ObjectRegistry.FERMENTATION_BARREL.get());
         AxeItemHooks.addStrippable(ObjectRegistry.CHERRY_LOG.get(), ObjectRegistry.STRIPPED_CHERRY_LOG.get());

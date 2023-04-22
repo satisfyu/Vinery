@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#vinery:has_structure/bush",
+  "features": "vinery:white_grape_bush_patch",
+  "step": "vegetal_decoration"
+}
