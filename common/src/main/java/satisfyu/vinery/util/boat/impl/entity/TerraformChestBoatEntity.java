@@ -16,7 +16,7 @@ import satisfyu.vinery.util.boat.impl.TerraformBoatTrackedData;
 /**
  * A {@linkplain ChestBoat chest boat entity} that stores a {@linkplain TerraformBoatType Terraform boat type}.
  */
-public class TerraformChestBoatEntity extends ChestBoat implements TerraformBoatHolder {
+public class TerraformChestBoatEntity extends ChestBoat implements MyHolder {
 	private static final EntityDataAccessor<Optional<TerraformBoatType>> TERRAFORM_BOAT = SynchedEntityData.defineId(TerraformChestBoatEntity.class, TerraformBoatTrackedData.HANDLER);
 
 	public TerraformChestBoatEntity(EntityType<? extends TerraformChestBoatEntity> type, Level world) {

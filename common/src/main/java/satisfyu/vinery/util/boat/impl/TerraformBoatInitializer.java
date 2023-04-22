@@ -30,6 +30,6 @@ public final class TerraformBoatInitializer {
 		.build(CHEST_BOAT_ID.toString()));
 
 	public static void init() {
-		TerraformBoatTrackedData.register();
+
 	}
 }

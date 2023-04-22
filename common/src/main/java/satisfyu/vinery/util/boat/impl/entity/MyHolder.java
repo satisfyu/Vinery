@@ -5,9 +5,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.vehicle.Boat;
 import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
-import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 
-public interface TerraformBoatHolder {
+public interface MyHolder {
 	static final String BOAT_KEY = "VineryBoat";
 
 	TerraformBoatType getTerraformBoat();

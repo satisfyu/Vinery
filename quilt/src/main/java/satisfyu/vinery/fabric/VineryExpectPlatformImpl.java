@@ -5,13 +5,17 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.core.Registry;
+import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.NotNull;
 import org.quiltmc.loader.api.QuiltLoader;
+import org.quiltmc.qsl.entity.networking.api.tracked_data.QuiltTrackedDataHandlerRegistry;
 import satisfyu.vinery.Vinery;
+import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.util.VineryApi;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
@@ -75,5 +79,4 @@ public class VineryExpectPlatformImpl {
     public static TerraformBoatType get(ResourceLocation location) {
         return INSTANCE.get(location);
     }
-
 }

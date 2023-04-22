@@ -9,6 +9,7 @@
     "LongToolTipsMixin",
     "OrderedTextToolTipAccessor",
     "PlayerEntityRendererMixin",
+    "boat.MixinBoatEntityRenderer",
     "sign.MixinHangingSignBlockEntityRenderer",
     "sign.MixinHangingSignEditScreen",
     "sign.MixinSignBlockEntityRenderer",

@@ -25,7 +25,7 @@ public final class TerraformBoatTrackedData {
 		return VineryExpectPlatform.get(buf.readResourceLocation());
 	}
 
-	protected static void register() {
+	public static void register() {
 		EntityDataSerializers.registerSerializer(HANDLER);
 	}
 }

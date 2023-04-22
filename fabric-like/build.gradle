@@ -6,13 +6,6 @@ loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
 }
 
-repositories {
-    maven {
-        name "terraform wood api, trinkets"
-        url "https://maven.terraformersmc.com"
-    }
-}
-
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"

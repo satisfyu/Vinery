@@ -18,6 +18,5 @@ public class VineryFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         VineryFabricLike.init();
-        //EntityRendererRegistry.register(TerraformBoatInitializer.BOAT, context -> new TerraformBoatEntityRenderer(context, false));
     }
 }

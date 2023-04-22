@@ -78,7 +78,9 @@ public class TerraformBoatItem extends Item {
 			if(set.isEmpty()) Vinery.LOGGER.error("isEmpty");
 			set.forEach(lol -> Vinery.LOGGER.error("Check if that works: " + lol.getKey()));
 
-			TerraformBoatType boatType = VineryExpectPlatform.get(this.location);
+			String key = this.location.getPath();
+			if(this.chest) key = key.replace("_chest", "");
+			TerraformBoatType boatType = VineryExpectPlatform.get(new ResourceLocation(this.location.getNamespace(), key));
 
 			Boat boatEntity;
 

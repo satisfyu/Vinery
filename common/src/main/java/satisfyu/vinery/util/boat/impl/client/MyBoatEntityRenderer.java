@@ -22,15 +22,15 @@ import net.minecraft.world.entity.vehicle.Boat;
 import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
-import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 import satisfyu.vinery.util.boat.api.client.TerraformBoatClientHelper;
-import satisfyu.vinery.util.boat.impl.entity.TerraformBoatHolder;
+import satisfyu.vinery.util.boat.impl.entity.MyHolder;
 
 @Environment(EnvType.CLIENT)
-public class TerraformBoatEntityRenderer extends BoatRenderer {
+public class MyBoatEntityRenderer extends BoatRenderer {
+
 	private final Map<TerraformBoatType, Pair<ResourceLocation, ListModel<Boat>>> texturesAndModels;
 
-	public TerraformBoatEntityRenderer(EntityRendererProvider.Context context, boolean chest) {
+	public MyBoatEntityRenderer(EntityRendererProvider.Context context, boolean chest) {
 		super(context, chest);
 
 		this.texturesAndModels = VineryExpectPlatform.entrySet().stream().collect(ImmutableMap.toImmutableMap(Map.Entry::getValue, entry -> {
@@ -49,14 +49,14 @@ public class TerraformBoatEntityRenderer extends BoatRenderer {
 
 	@Override
 	public @NotNull ResourceLocation getTextureLocation(@NotNull Boat entity) {
-		if (entity instanceof TerraformBoatHolder) {
-			TerraformBoatType boat = ((TerraformBoatHolder) entity).getTerraformBoat();
+		if (entity instanceof MyHolder) {
+			TerraformBoatType boat = ((MyHolder) entity).getTerraformBoat();
 			return this.texturesAndModels.get(boat).getFirst();
 		}
 		return super.getTextureLocation(entity);
 	}
 
-	public Pair<ResourceLocation, ListModel<Boat>> getTextureAndModel(TerraformBoatHolder holder) {
+	public Pair<ResourceLocation, ListModel<Boat>> getTextureAndModel(MyHolder holder) {
 		return this.texturesAndModels.get(holder.getTerraformBoat());
 	}
 

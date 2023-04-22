@@ -1,8 +1,6 @@
 package satisfyu.vinery.util.boat.api.item;
 
 import dev.architectury.registry.registries.RegistrySupplier;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;

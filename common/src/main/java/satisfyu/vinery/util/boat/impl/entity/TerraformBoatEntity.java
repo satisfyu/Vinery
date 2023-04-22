@@ -14,7 +14,7 @@ import satisfyu.vinery.util.boat.impl.TerraformBoatTrackedData;
 
 import java.util.Optional;
 
-public class TerraformBoatEntity extends Boat implements TerraformBoatHolder {
+public class TerraformBoatEntity extends Boat implements MyHolder {
 	private static final EntityDataAccessor<Optional<TerraformBoatType>> TERRAFORM_BOAT = SynchedEntityData.defineId(TerraformBoatEntity.class, TerraformBoatTrackedData.HANDLER);
 
 	public TerraformBoatEntity(EntityType<? extends TerraformBoatEntity> type, Level world) {

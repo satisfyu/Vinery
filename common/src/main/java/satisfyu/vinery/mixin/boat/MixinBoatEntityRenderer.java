@@ -14,17 +14,19 @@ import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.vehicle.Boat;
-import satisfyu.vinery.util.boat.impl.client.TerraformBoatEntityRenderer;
-import satisfyu.vinery.util.boat.impl.entity.TerraformBoatHolder;
+import satisfyu.vinery.util.boat.impl.client.MyBoatEntityRenderer;
+import satisfyu.vinery.util.boat.impl.entity.MyHolder;
 
 @Mixin(BoatRenderer.class)
 @Environment(EnvType.CLIENT)
 public class MixinBoatEntityRenderer {
+
 	@Redirect(method = "render(Lnet/minecraft/world/entity/vehicle/Boat;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"))
-	private Object getTerraformBoatTextureAndModel(Map<Boat.Type, Pair<ResourceLocation, BoatModel>> map, Object type, Boat entity) {
-		if (entity instanceof TerraformBoatHolder && (Object) this instanceof TerraformBoatEntityRenderer) {
-			return ((TerraformBoatEntityRenderer) (Object) this).getTextureAndModel((TerraformBoatHolder) entity);
+	private Object getBoatTextureAndModel(Map<Boat.Type, Pair<ResourceLocation, BoatModel>> map, Object type, Boat entity) {
+		if (entity instanceof MyHolder && (Object) this instanceof MyBoatEntityRenderer) {
+			return ((MyBoatEntityRenderer) (Object) this).getTextureAndModel((MyHolder) entity);
 		}
 		return map.get(type);
 	}
+
 }
