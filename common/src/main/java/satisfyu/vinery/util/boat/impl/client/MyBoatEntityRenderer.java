@@ -1,17 +1,25 @@
 package satisfyu.vinery.util.boat.impl.client;
 
 import com.google.common.collect.ImmutableMap;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
+import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.vehicle.Boat;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Quaternionf;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 import satisfyu.vinery.util.boat.api.client.TerraformBoatClientHelper;
@@ -40,6 +48,44 @@ public class MyBoatEntityRenderer extends BoatRenderer {
 			return new Pair<>(textureId, model);
 		}));
 	}
+
+	@Override
+	public void render(Boat boat, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int i) {
+		if(boat instanceof MyHolder myHolder){
+			poseStack.pushPose();
+			poseStack.translate(0.0f, 0.375f, 0.0f);
+			poseStack.mulPose(Axis.YP.rotationDegrees(180.0f - f));
+			float h = (float)boat.getHurtTime() - g;
+			float j = boat.getDamage() - g;
+			if (j < 0.0f) {
+				j = 0.0f;
+			}
+			if (h > 0.0f) {
+				poseStack.mulPose(Axis.XP.rotationDegrees(Mth.sin(h) * h * j / 10.0f * (float)boat.getHurtDir()));
+			}
+			if (!Mth.equal(boat.getBubbleAngle(g), 0.0f)) {
+				poseStack.mulPose(new Quaternionf().setAngleAxis(boat.getBubbleAngle(g) * ((float)Math.PI / 180), 1.0f, 0.0f, 1.0f));
+			}
+			Pair<ResourceLocation, ListModel<Boat>> pair = this.getTextureAndModel(myHolder);
+			ResourceLocation resourceLocation = pair.getFirst();
+			ListModel<Boat> listModel = pair.getSecond();
+			poseStack.scale(-1.0f, -1.0f, 1.0f);
+			poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
+			listModel.setupAnim(boat, g, 0.0f, -0.1f, 0.0f, 0.0f);
+			VertexConsumer vertexConsumer = multiBufferSource.getBuffer(listModel.renderType(resourceLocation));
+			listModel.renderToBuffer(poseStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
+			if (!boat.isUnderWater()) {
+				VertexConsumer vertexConsumer2 = multiBufferSource.getBuffer(RenderType.waterMask());
+				if (listModel instanceof WaterPatchModel waterPatchModel) {
+					waterPatchModel.waterPatch().render(poseStack, vertexConsumer2, i, OverlayTexture.NO_OVERLAY);
+				}
+			}
+			poseStack.popPose();
+		}
+	}
+
+
+
 
 	@Override
 	public @NotNull ResourceLocation getTextureLocation(@NotNull Boat entity) {

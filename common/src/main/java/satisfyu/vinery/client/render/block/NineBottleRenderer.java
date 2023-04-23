@@ -15,7 +15,6 @@ import satisfyu.vinery.util.ClientUtil;
 public class NineBottleRenderer implements StorageTypeRenderer{
     @Override
     public void render(StorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> itemStacks) {
-        BlockRenderDispatcher manager = Minecraft.getInstance().getBlockRenderer();
         matrices.translate(-0.13, 0.335, 0.125);
         matrices.scale(0.9f, 0.9f, 0.9f);
         for (int i = 0; i < itemStacks.size(); i++) {

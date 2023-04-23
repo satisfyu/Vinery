@@ -17,7 +17,6 @@ public class MixinBoatEntity {
 			TerraformBoatType boat = ((MyHolder) this).getTerraformBoat();
 			return boat.getPlanks();
 		}
-
 		return original;
 	}
 }
