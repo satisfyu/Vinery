@@ -12,6 +12,8 @@ public interface TerraformBoatType {
 	Item getChestItem();
 	Item getPlanks();
 
+	ResourceLocation getKey();
+
 	public static class Builder {
 		private boolean raft;
 		private ResourceLocation item;

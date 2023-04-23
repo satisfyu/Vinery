@@ -5,6 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.vehicle.Boat;
 import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
+import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 
 public interface MyHolder {
 	static final String BOAT_KEY = "VineryBoat";
@@ -20,7 +21,7 @@ public interface MyHolder {
 	default void readTerraformBoatFromNbt(CompoundTag nbt) {
 		ResourceLocation id = ResourceLocation.tryParse(nbt.getString(BOAT_KEY));
 		if (id != null) {
-			TerraformBoatType boat = VineryExpectPlatform.get(id);
+			TerraformBoatType boat = TerraformBoatTypeRegistry.get(id);
 			if (boat != null) {
 				this.setTerraformBoat(boat);
 			}
@@ -28,7 +29,7 @@ public interface MyHolder {
 	}
 
 	default void writeTerraformBoatToNbt(CompoundTag nbt) {
-		ResourceLocation boatId = VineryExpectPlatform.getId(this.getTerraformBoat());
+		ResourceLocation boatId = TerraformBoatTypeRegistry.getId(this.getTerraformBoat());
 		if (boatId != null) {
 			nbt.putString(BOAT_KEY, boatId.toString());
 		}

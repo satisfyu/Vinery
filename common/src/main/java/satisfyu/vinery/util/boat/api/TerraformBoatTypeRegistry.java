@@ -1,15 +1,33 @@
 package satisfyu.vinery.util.boat.api;
 
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import satisfyu.vinery.VineryIdentifier;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class TerraformBoatTypeRegistry {
-	public static final ResourceLocation REGISTRY_ID = new VineryIdentifier("boat");
 
-	public static <T> ResourceKey<Registry<T>> createRegistryKey(ResourceLocation key) {
-		return ResourceKey.createRegistryKey(key);
+	private static Map<ResourceLocation, TerraformBoatType> INSTANCE = new HashMap<>();
+
+	public static void register(ResourceLocation location, TerraformBoatType type){
+		INSTANCE.put(location, type);
 	}
+
+	public static TerraformBoatType get(ResourceLocation location){
+		return INSTANCE.get(location);
+	}
+
+	public static Set<Map.Entry<ResourceLocation, TerraformBoatType>> entrySet(){
+		return INSTANCE.entrySet();
+	}
+
+	public static ResourceLocation getId(TerraformBoatType type){
+		for(ResourceLocation location : INSTANCE.keySet()){
+			if(get(location).equals(type)) return location;
+		}
+		throw new NullPointerException("Couldn't find BoatType");
+	}
+
 
 }

@@ -1,18 +1,10 @@
 package satisfyu.vinery.util.boat.impl.client;
 
-import java.util.Map;
-
 import com.google.common.collect.ImmutableMap;
 import com.mojang.datafixers.util.Pair;
-
-
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.ChestBoatModel;
-import net.minecraft.client.model.ChestRaftModel;
-import net.minecraft.client.model.ListModel;
-import net.minecraft.client.model.RaftModel;
+import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.entity.BoatRenderer;
@@ -20,10 +12,12 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.vehicle.Boat;
 import org.jetbrains.annotations.NotNull;
-import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
+import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 import satisfyu.vinery.util.boat.api.client.TerraformBoatClientHelper;
 import satisfyu.vinery.util.boat.impl.entity.MyHolder;
+
+import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class MyBoatEntityRenderer extends BoatRenderer {
@@ -33,11 +27,11 @@ public class MyBoatEntityRenderer extends BoatRenderer {
 	public MyBoatEntityRenderer(EntityRendererProvider.Context context, boolean chest) {
 		super(context, chest);
 
-		this.texturesAndModels = VineryExpectPlatform.entrySet().stream().collect(ImmutableMap.toImmutableMap(Map.Entry::getValue, entry -> {
+		this.texturesAndModels = TerraformBoatTypeRegistry.entrySet().stream().collect(ImmutableMap.toImmutableMap(Map.Entry::getValue, entry -> {
 			boolean raft = entry.getValue().isRaft();
 			String prefix = raft ? (chest ? "chest_raft/" : "raft/") : (chest ? "chest_boat/" : "boat/");
 
-			ResourceLocation id = entry.getKey().location();
+			ResourceLocation id = entry.getValue().getKey();
 			ResourceLocation textureId = new ResourceLocation(id.getNamespace(), "textures/entity/" + prefix + id.getPath() + ".png");
 
 			ModelLayerLocation layer = TerraformBoatClientHelper.getLayer(id, raft, chest);

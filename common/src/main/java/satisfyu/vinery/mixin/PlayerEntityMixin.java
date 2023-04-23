@@ -19,7 +19,7 @@ public abstract class PlayerEntityMixin extends LivingEntity{
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, Level world) {
         super(entityType, world);
     }
-    /*
+
     @Inject(method = "getDestroySpeed", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private void hasImprovedLuck(BlockState block, CallbackInfoReturnable<Float> cir, float f) {
         if (this.hasEffect(VineryEffects.IMPROVED_HASTE.get())) {
@@ -28,7 +28,7 @@ public abstract class PlayerEntityMixin extends LivingEntity{
         cir.setReturnValue(f);
     }
 
-     */
+
 
     private int getImprovedLuckAmplifier() {
         int i = 0;

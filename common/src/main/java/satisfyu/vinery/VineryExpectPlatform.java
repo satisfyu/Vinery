@@ -28,38 +28,4 @@ public class VineryExpectPlatform {
         // Just throw an error, the content should get replaced at runtime.
         throw new AssertionError();
     }
-
-
-
-    @ExpectPlatform
-    public static  void register(ResourceLocation location, Supplier<TerraformBoatType> boatTypeSupplier) {
-        // Just throw an error, the content should get replaced at runtime.
-        throw new AssertionError();
-    }
-
-    @ExpectPlatform
-    public static void loadInstance() {
-        // Just throw an error, the content should get replaced at runtime.
-        throw new AssertionError();
-    }
-
-
-    @ExpectPlatform
-    public static ResourceKey<TerraformBoatType> createKey(ResourceLocation id) {
-        throw new AssertionError();
-    }
-    @ExpectPlatform
-    public static ResourceLocation getId(TerraformBoatType type) {
-        throw new AssertionError();
-    }
-
-    @ExpectPlatform
-    public static TerraformBoatType get(ResourceLocation location) {
-        throw new AssertionError();
-    }
-    @ExpectPlatform
-    public static Set<Map.Entry<ResourceKey<TerraformBoatType>, TerraformBoatType>> entrySet() {
-        throw new AssertionError();
-    }
-
 }

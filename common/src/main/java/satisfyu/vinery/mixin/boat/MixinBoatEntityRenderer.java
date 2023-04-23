@@ -21,7 +21,7 @@ import satisfyu.vinery.util.boat.impl.entity.MyHolder;
 @Environment(EnvType.CLIENT)
 public class MixinBoatEntityRenderer {
 
-	/*
+
 	@Redirect(method = "render(Lnet/minecraft/world/entity/vehicle/Boat;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"))
 	private Object getBoatTextureAndModel(Map<Boat.Type, Pair<ResourceLocation, BoatModel>> map, Object type, Boat entity) {
 		if (entity instanceof MyHolder && (Object) this instanceof MyBoatEntityRenderer) {
@@ -29,6 +29,6 @@ public class MixinBoatEntityRenderer {
 		}
 		return map.get(type);
 	}
-	 */
+
 
 }

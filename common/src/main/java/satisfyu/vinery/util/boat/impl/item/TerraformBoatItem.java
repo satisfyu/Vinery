@@ -21,6 +21,7 @@ import net.minecraft.world.phys.Vec3;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
+import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 import satisfyu.vinery.util.boat.impl.entity.TerraformBoatEntity;
 import satisfyu.vinery.util.boat.impl.entity.TerraformChestBoatEntity;
 
@@ -35,14 +36,14 @@ import java.util.function.Predicate;
 public class TerraformBoatItem extends Item {
 	private static final Predicate<Entity> RIDERS = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
 
-	private final ResourceLocation location;
+	private final ResourceLocation key;
 	private final boolean chest;
 
 
-	public TerraformBoatItem(ResourceLocation location, boolean chest, Properties settings) {
+	public TerraformBoatItem(ResourceLocation key, boolean chest, Properties settings) {
 		super(settings);
 
-		this.location = location;
+		this.key = key;
 		this.chest = chest;
 	}
 
@@ -75,9 +76,7 @@ public class TerraformBoatItem extends Item {
 			double z = hitResult.getLocation().z;
 
 
-			String key = this.location.getPath();
-			if(this.chest) key = key.replace("_chest", "");
-			TerraformBoatType boatType = VineryExpectPlatform.get(new ResourceLocation(this.location.getNamespace(), key));
+			TerraformBoatType boatType = TerraformBoatTypeRegistry.get(key);
 
 			Boat boatEntity;
 
