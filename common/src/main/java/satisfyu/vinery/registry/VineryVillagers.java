@@ -38,10 +38,6 @@ public class VineryVillagers {
     private static final Registrar<PoiType> POI_TYPES = Vinery.REGISTRIES.get(Registries.POINT_OF_INTEREST_TYPE);
     private static final Registrar<VillagerProfession> VILLAGER_PROFESSIONS = Vinery.REGISTRIES.get(Registries.VILLAGER_PROFESSION);
 
-
-
-
-
     public static final PoiType WINEMAKER_POI_TYPE = new PoiType(ImmutableSet.copyOf(ObjectRegistry.WINE_PRESS.get().getStateDefinition().getPossibleStates()), 1, 1);
 
     public static final RegistrySupplier<PoiType> WINEMAKER_POI = POI_TYPES.register(new VineryIdentifier("winemaker_poi"), () ->
@@ -50,6 +46,10 @@ public class VineryVillagers {
     public static final RegistrySupplier<VillagerProfession> WINEMAKER = VILLAGER_PROFESSIONS.register(new VineryIdentifier("winemaker"), () ->
             new VillagerProfession("winemaker", x -> x.value() == WINEMAKER_POI.get(), x -> x.value() == WINEMAKER_POI.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_FARMER));
 
+
+    public static void register(){
+
+    }
 
     public static void init() {
 
