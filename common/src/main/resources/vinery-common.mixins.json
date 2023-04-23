@@ -21,7 +21,7 @@
     "BoneMealItemMixin",
     "FoxEntityEatSweetBerriesGoalMixin",
     "LivingEntityMixin",
-    "PlayerEntityMixin",
+    "MobEffectUtilMixin",
     "StatusEffectUtilMixin",
     "WanderingTraderManagerMixin",
     "boat.MixinBoatEntity",

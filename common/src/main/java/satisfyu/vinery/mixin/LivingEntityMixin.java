@@ -64,7 +64,7 @@ public abstract class LivingEntityMixin extends Entity {
 		}
 	}
 
-	@Inject(method = "canStandOnFluid", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
+	@Inject(method = "canStandOnFluid", at = @At(value = "TAIL"), cancellable = true)
 	private void canWalkOnWater(FluidState state, CallbackInfoReturnable<Boolean> cir) {
 		if (state.getType() == Fluids.WATER && !this.isUnderWater() && !this.isSwimming() && !this.isVisuallySwimming()) {
 			cir.setReturnValue(this.hasStatusEffect(VineryEffects.IMPROVED_SPEED.get()));

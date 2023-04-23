@@ -12,6 +12,7 @@ import satisfyu.vinery.registry.VineryEffects;
 
 @Mixin(MobEffectUtil.class)
 public abstract class StatusEffectUtilMixin {
+
     @Inject(method = "hasDigSpeed", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private static void hasImprovedLuck(LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
         cir.setReturnValue(entity.hasEffect(MobEffects.DIG_SPEED) || entity.hasEffect(MobEffects.CONDUIT_POWER) || entity.hasEffect(VineryEffects.IMPROVED_HASTE.get()));

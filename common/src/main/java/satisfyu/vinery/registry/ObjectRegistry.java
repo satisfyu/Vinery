@@ -205,7 +205,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> MAGNETIC_WINE = registerB("magnetic_wine", () -> new WineBottleBlock(getWineSettings(), 1));
     public static final RegistrySupplier<Item>  MAGNETIC_WINE_ITEM = registerI("magnetic_wine", () -> new DrinkBlockItem(MAGNETIC_WINE.get(), getWineItemSettings(VineryEffects.MAGNET.get())));
     public static final RegistrySupplier<Block> CHORUS_WINE = registerB("chorus_wine", () -> new WineBottleBlock(getWineSettings(), 1));
-    public static final RegistrySupplier<Item>  CHORUS_WINE_ITEM = registerI("chorus_wine", () -> new DrinkBlockItem(CHORUS_WINE.get(), getWineItemSettings(VineryEffects.TELEPORT.get())));
+    public static final RegistrySupplier<Item>  CHORUS_WINE_ITEM = registerI("chorus_wine", () -> new DrinkBlockItem(CHORUS_WINE.get(), getWineItemSettings(VineryEffects.TELEPORT.get(), 1)));
     public static final RegistrySupplier<Block> AEGIS_WINE = registerB("aegis_wine", () -> new WineBottleBlock(getWineSettings(), 3));
     public static final RegistrySupplier<Item>  AEGIS_WINE_ITEM = registerI("aegis_wine", () -> new DrinkBlockItem(AEGIS_WINE.get(), getWineItemSettings(MobEffects.NIGHT_VISION)));
 
@@ -229,7 +229,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> NOIR_WINE = registerB("noir_wine", () -> new WineBottleBlock(getWineSettings(), 3));
     public static final RegistrySupplier<Item>  NOIR_WINE_ITEM = registerI("noir_wine", () -> new DrinkBlockItem(NOIR_WINE.get(), getWineItemSettings(MobEffects.WATER_BREATHING)));
     public static final RegistrySupplier<Block> BOLVAR_WINE = registerB("bolvar_wine", () -> new WineBottleBlock(getWineSettings(), 3));
-    public static final RegistrySupplier<Item>  BOLVAR_WINE_ITEM = registerI("bolvar_wine", () -> new DrinkBlockItem(BOLVAR_WINE.get(), getWineItemSettings(MobEffects.HEALTH_BOOST)));
+    public static final RegistrySupplier<Item>  BOLVAR_WINE_ITEM = registerI("bolvar_wine", () -> new DrinkBlockItem(BOLVAR_WINE.get(), getWineItemSettings(VineryEffects.IMPROVED_HASTE.get())));
     public static final RegistrySupplier<Block> CHERRY_WINE = registerB("cherry_wine", () -> new CherryWineBlock(getWineSettings()));
     public static final RegistrySupplier<Item>  CHERRY_WINE_ITEM = registerI("cherry_wine", () -> new DrinkBlockItem(CHERRY_WINE.get(), getWineItemSettings(MobEffects.MOVEMENT_SPEED)));
     public static final RegistrySupplier<Block> CLARK_WINE = registerB("clark_wine", () -> new WineBottleBlock(getWineSettings(), 3));
@@ -409,12 +409,16 @@ public class ObjectRegistry {
     }
 
     private static Item.Properties getWineItemSettings(MobEffect effect) {
-        return getSettings().food(wineFoodComponent(effect));
+        return getSettings().food(wineFoodComponent(effect, 45 * 20));
     }
 
-    private static FoodProperties wineFoodComponent(MobEffect effect) {
+    private static Item.Properties getWineItemSettings(MobEffect effect, int duration) {
+        return getSettings().food(wineFoodComponent(effect, duration));
+    }
+
+    private static FoodProperties wineFoodComponent(MobEffect effect, int duration) {
         FoodProperties.Builder component = new FoodProperties.Builder().nutrition(1);
-        if(effect != null) component.effect(new MobEffectInstance(effect, 45 * 20), 1.0f);
+        if (effect != null) component.effect(new MobEffectInstance(effect, duration), 1.0f);
         return component.build();
     }
 
