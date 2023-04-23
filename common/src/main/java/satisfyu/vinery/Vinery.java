@@ -42,7 +42,6 @@ public class Vinery {
         AxeItemHooks.addStrippable(ObjectRegistry.OLD_CHERRY_LOG.get(), ObjectRegistry.STRIPPED_OLD_CHERRY_LOG.get());
         AxeItemHooks.addStrippable(ObjectRegistry.OLD_CHERRY_WOOD.get(), ObjectRegistry.STRIPPED_OLD_CHERRY_WOOD.get());
 
-        VineryBoatTypes.dispenser();
 /*
         FlammableBlockRegistry flammableRegistry = FlammableBlockRegistry.getDefaultInstance();
         flammableRegistry.add(CHERRY_PLANKS, 5, 20);

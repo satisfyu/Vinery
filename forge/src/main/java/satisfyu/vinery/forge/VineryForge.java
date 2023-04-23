@@ -20,31 +20,18 @@ import java.util.function.Supplier;
 @Mod(Vinery.MODID)
 public class VineryForge {
 
-    public static IForgeRegistry<TerraformBoatType> terraformBoatTypeDeferredRegister;
-
-    public static Supplier<IForgeRegistry<TerraformBoatType>> typeSupplier;
-
-
-
-    //public static DeferredRegister<TerraformBoatType> terraformBoatTypeDeferredRegister = DeferredRegister.create(ResourceKey.createRegistryKey(TerraformBoatTypeRegistry.REGISTRY_ID), Vinery.MODID);
     public VineryForge() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        // Submit our event bus to let architectury register our content on the right time
         EventBuses.registerModEventBus(Vinery.MODID, modEventBus);
+
+
         Vinery.init();
 
-        //terraformBoatTypeDeferredRegister.makeRegistry(() -> new RegistryBuilder<TerraformBoatType>().legacyName("boat").allowModification());
 
-        DeferredRegister<TerraformBoatType> deferredRegister = DeferredRegister.create(TerraformBoatTypeRegistry.createRegistryKey(TerraformBoatTypeRegistry.REGISTRY_ID), Vinery.MODID);
-        typeSupplier = deferredRegister.makeRegistry(RegistryBuilder::new);
-        VineryBoatTypes.init();
-        for(Map.Entry<ResourceLocation, Supplier<TerraformBoatType>> type : VineryExpectPlatformImpl.INSTANCE.entrySet()) deferredRegister.register(type.getKey().getPath(), type.getValue());
-        deferredRegister.register(FMLJavaModLoadingContext.get().getModEventBus());
         modEventBus.addListener(this::commonSetup);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        terraformBoatTypeDeferredRegister = typeSupplier.get();
         Vinery.commonSetup();
     }
 

@@ -40,4 +40,9 @@ public class TerraformBoatTypeImpl implements TerraformBoatType {
 	public Item getPlanks() {
 		return BuiltInRegistries.ITEM.get(this.planks);
 	}
+
+	@Override
+	public ResourceLocation getKey() {
+		return item;
+	}
 }

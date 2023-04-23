@@ -18,11 +18,11 @@ public final class TerraformBoatTrackedData {
 	public static final EntityDataSerializer<Optional<TerraformBoatType>> HANDLER = EntityDataSerializer.optional(TerraformBoatTrackedData::write, TerraformBoatTrackedData::read);
 
 	private static void write(FriendlyByteBuf buf, TerraformBoatType boat) {
-		buf.writeResourceLocation(VineryExpectPlatform.getId(boat));
+		buf.writeResourceLocation(TerraformBoatTypeRegistry.getId(boat));
 	}
 
 	private static TerraformBoatType read(FriendlyByteBuf buf) {
-		return VineryExpectPlatform.get(buf.readResourceLocation());
+		return TerraformBoatTypeRegistry.get(buf.readResourceLocation());
 	}
 
 	public static void register() {
