@@ -10,7 +10,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryBuilder;
 import satisfyu.vinery.Vinery;
+import satisfyu.vinery.forge.registry.VineryForgeVillagers;
 import satisfyu.vinery.registry.VineryBoatTypes;
+import satisfyu.vinery.registry.VineryVillagers;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 
@@ -23,7 +25,7 @@ public class VineryForge {
     public VineryForge() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         EventBuses.registerModEventBus(Vinery.MODID, modEventBus);
-
+        VineryForgeVillagers.register(modEventBus);
 
         Vinery.init();
 
@@ -32,6 +34,7 @@ public class VineryForge {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(VineryForgeVillagers::registerPOIs);
         Vinery.commonSetup();
     }
 
