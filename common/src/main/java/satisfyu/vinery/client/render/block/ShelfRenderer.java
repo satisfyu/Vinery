@@ -13,7 +13,7 @@ public class ShelfRenderer implements StorageTypeRenderer{
     public void render(StorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> itemStacks) {
 
         matrices.translate(-0.4, 0.5, 0.25);
-        matrices.mulPose(Axis.YP.rotation(90));
+        matrices.mulPose(Axis.YP.rotationDegrees(90));
         matrices.scale(0.5f, 0.5f, 0.5f);
 
         for (int i = 0; i < itemStacks.size(); i++) {
@@ -21,7 +21,7 @@ public class ShelfRenderer implements StorageTypeRenderer{
             if (!stack.isEmpty()) {
                 matrices.pushPose();
                 matrices.translate(0f, 0f, 0.2f * i);
-                matrices.mulPose(Axis.YN.rotation(90));
+                matrices.mulPose(Axis.YN.rotationDegrees(22.5f));
                 ClientUtil.renderItem(stack, matrices, vertexConsumers, entity, entity.getLevel());
                 matrices.popPose();
             }

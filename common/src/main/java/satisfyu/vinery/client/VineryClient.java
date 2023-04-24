@@ -104,6 +104,10 @@ public class VineryClient {
 
     }
 
+
+    /**
+     * You can do that all again in VineryClientForge. I love it
+     */
     private static void registerEntityRenderers(){
         //renderers
         TerraformBoatClientInitializer.init();

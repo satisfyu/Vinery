@@ -23,6 +23,7 @@ public class Vinery {
         VineryEffects.init();
         ObjectRegistry.init();
         TerraformBoatInitializer.init();
+        VineryBoatTypes.init();
         VineryBlockEntityTypes.init();
         VineryStorageTypes.init();
         VineryScreenHandlerTypes.init();
@@ -35,6 +36,7 @@ public class Vinery {
     public static void commonSetup(){
         VineryCompostableItems.init();
         //VineryVillagers.init();
+        VineryBoatTypes.dispenser();
 
         FuelRegistry.register(300, ObjectRegistry.CHERRY_FENCE.get(), ObjectRegistry.CHERRY_FENCE_GATE.get(), ObjectRegistry.STACKABLE_LOG.get(), ObjectRegistry.FERMENTATION_BARREL.get());
         AxeItemHooks.addStrippable(ObjectRegistry.CHERRY_LOG.get(), ObjectRegistry.STRIPPED_CHERRY_LOG.get());

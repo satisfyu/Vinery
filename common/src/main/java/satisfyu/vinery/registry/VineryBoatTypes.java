@@ -11,7 +11,7 @@ import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 import satisfyu.vinery.util.boat.api.item.TerraformBoatItemHelper;
 
 public class VineryBoatTypes {
-    
+
     public static final ResourceLocation CHERRY_BOAT_ID = new ResourceLocation(Vinery.MODID, "cherry_boat");
     public static final ResourceLocation CHERRY_CHEST_BOAT_ID = new ResourceLocation(Vinery.MODID, "cherry_chest_boat");
 
@@ -22,14 +22,10 @@ public class VineryBoatTypes {
 
     public static void init() {
         TerraformBoatTypeRegistry.register(CHERRY_BOAT_ID, CHERRY);
-        dispenser();
     }
 
     public static void dispenser(){
         TerraformBoatItemHelper.registerBoatDispenserBehavior(CHERRY_BOAT.get(), CHERRY_BOAT_ID, false);
         TerraformBoatItemHelper.registerBoatDispenserBehavior(CHERRY_CHEST_BOAT.get(), CHERRY_BOAT_ID, true);
-    }
-    public static void initItems(){
-
     }
 }
