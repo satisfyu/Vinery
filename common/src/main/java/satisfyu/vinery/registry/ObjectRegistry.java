@@ -242,7 +242,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  APPLE_CIDER_ITEM = registerI("apple_cider", () -> new DrinkBlockBigItem(JELLIE_WINE.get(), getWineItemSettings(MobEffects.HEAL)));
 
     public static final RegistrySupplier<Block> APPLE_WINE = registerB("apple_wine", () -> new WineBottleBlock(getWineSettings(), 3));
-    public static final RegistrySupplier<Item>  APPLE_WINE_ITEM = registerI("apple_wine", () -> new DrinkBlockBigItem(JELLIE_WINE.get(), getWineItemSettings(MobEffects.REGENERATION)));
+    public static final RegistrySupplier<Item>  APPLE_WINE_ITEM = registerI("apple_wine", () -> new DrinkBlockBigItem(APPLE_WINE.get(), getWineItemSettings(MobEffects.REGENERATION)));
 
     public static final RegistrySupplier<Block> CHENET_WINE = registerB("chenet_wine", () -> new ChenetBottleBlock(getWineSettings()));
     public static final RegistrySupplier<Item>  CHENET_WINE_ITEM = registerI("chenet_wine", () -> new DrinkBlockBigItem(CHENET_WINE.get(), getWineItemSettings(MobEffects.JUMP)));
@@ -360,34 +360,6 @@ public class ObjectRegistry {
         return BLOCKS.register(id, block);
     }
 
-
-
-    /*
-
-    private static <T extends Block> T registerBWine(String path, T block, MobEffect effect) {
-        return registerBWine(path, block, effect, 45 * 20);
-    }
-
-    private static <T extends Block> T registerBWine(String path, T block, MobEffect effect, int duration) {
-        return registerB(path, block, true, DrinkBlockSmallItem::new, settings -> settings.food(wineFoodComponent(effect, duration)));
-    }
-
-    private static <T extends Block> T registerBBigWine(String path, T block, MobEffect effect) {
-        return registerBBigWine(path, block, effect, 45 * 20);
-    }
-
-    private static <T extends Block> T registerBBigWine(String path, T block, MobEffect effect, int duration) {
-        return registerB(path, block, true, DrinkBlockBigItem::new, settings -> settings.food(wineFoodComponent(effect, duration)));
-    }
-
-
-    private static FoodProperties wineFoodComponent(MobEffect effect, int duration) {
-        List<Pair<MobEffectInstance, Float>> statusEffects = new ArrayList<>();
-        statusEffects.add(new Pair<>(new MobEffectInstance(effect, duration), 1.0f));
-        return new VineryFoodComponent(statusEffects);
-    }
-    
-     */
 
     public static void init() {
 

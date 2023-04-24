@@ -44,6 +44,8 @@ public class BasketBlock extends Block {
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(STAGE, 0));
     }
 
+
+
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         //Vinery.LOGGER.info("Used Basket Block!");

@@ -12,7 +12,7 @@ import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.registry.VineryVillagers;
+import satisfyu.vinery.util.VineryVillagerUtil;
 
 public class VineryFabricVillagers {
 
@@ -22,33 +22,33 @@ public class VineryFabricVillagers {
 
     public static void init() {
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 1, factories -> {
-            factories.add(new VineryVillagers.BuyForOneEmeraldFactory(ObjectRegistry.RED_GRAPE.get(), 15, 4, 5));
-            factories.add(new VineryVillagers.BuyForOneEmeraldFactory(ObjectRegistry.WHITE_GRAPE.get(), 15, 4, 5));
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.RED_GRAPE_SEEDS.get(), 2, 1, 5));
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.WHITE_GRAPE_SEEDS.get(), 2, 1, 5));
+            factories.add(new VineryVillagerUtil.BuyForOneEmeraldFactory(ObjectRegistry.RED_GRAPE.get(), 15, 4, 5));
+            factories.add(new VineryVillagerUtil.BuyForOneEmeraldFactory(ObjectRegistry.WHITE_GRAPE.get(), 15, 4, 5));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.RED_GRAPE_SEEDS.get(), 2, 1, 5));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.WHITE_GRAPE_SEEDS.get(), 2, 1, 5));
         });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 2, factories -> {
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.WINE_BOTTLE.get(), 1, 2, 7));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.WINE_BOTTLE.get(), 1, 2, 7));
         });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 3, factories -> {
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.COOKING_POT.get(), 3, 1, 10));
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.FLOWER_BOX.get(), 3, 1, 10));
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.WHITE_GRAPE_CRATE.get(), 7, 1, 10));
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.RED_GRAPE_CRATE.get(), 7, 1, 10));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.COOKING_POT.get(), 3, 1, 10));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.FLOWER_BOX.get(), 3, 1, 10));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.WHITE_GRAPE_CRATE.get(), 7, 1, 10));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.RED_GRAPE_CRATE.get(), 7, 1, 10));
 
         });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 4, factories -> {
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.BASKET.get(), 4, 1, 10));
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.FLOWER_POT.get(), 5, 1, 10));
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.WINDOW.get(), 12, 1, 10));
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.CHERRY_BEAM.get(), 6, 1, 10));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.BASKET.get(), 4, 1, 10));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.FLOWER_POT.get(), 5, 1, 10));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.WINDOW.get(), 12, 1, 10));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.CHERRY_BEAM.get(), 6, 1, 10));
 
 
         });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 5, factories -> {
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.WINE_BOX.get(), 10, 1, 10));
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.KING_DANIS_WINE.get(), 4, 1, 10));
-            factories.add(new VineryVillagers.SellItemFactory(ObjectRegistry.GLOVES.get(), 12, 1, 15));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.WINE_BOX.get(), 10, 1, 10));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.KING_DANIS_WINE.get(), 4, 1, 10));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.GLOVES.get(), 12, 1, 15));
 
 
         });

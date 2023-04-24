@@ -18,6 +18,7 @@
   "mixins": [
     "BlockMixin",
     "BoneMealItemMixin",
+    "FireBlockMixin",
     "FoxEntityEatSweetBerriesGoalMixin",
     "LivingEntityMixin",
     "MobEffectUtilMixin",

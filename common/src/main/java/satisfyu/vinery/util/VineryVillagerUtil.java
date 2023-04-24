@@ -1,4 +1,4 @@
-package satisfyu.vinery.registry;
+package satisfyu.vinery.util;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -10,7 +10,7 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
-public class VineryVillagers {
+public class VineryVillagerUtil {
 
     public static class BuyForOneEmeraldFactory implements VillagerTrades.ItemListing {
         private final Item buy;
