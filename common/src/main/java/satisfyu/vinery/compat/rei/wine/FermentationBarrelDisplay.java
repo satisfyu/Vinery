@@ -1,16 +1,17 @@
 package satisfyu.vinery.compat.rei.wine;
 
 
-import satisfyu.vinery.Vinery;
-import satisfyu.vinery.compat.rei.VineryReiClientPlugin;
-import satisfyu.vinery.recipe.FermentationBarrelRecipe;
-import satisfyu.vinery.registry.ObjectRegistry;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import satisfyu.vinery.Vinery;
+import satisfyu.vinery.compat.rei.VineryReiClientPlugin;
+import satisfyu.vinery.recipe.FermentationBarrelRecipe;
+import satisfyu.vinery.registry.ObjectRegistry;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;

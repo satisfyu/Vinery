@@ -18,9 +18,10 @@
   "mixins": [
     "BlockMixin",
     "BoneMealItemMixin",
+    "FireBlockMixin",
     "FoxEntityEatSweetBerriesGoalMixin",
     "LivingEntityMixin",
-    "PlayerEntityMixin",
+    "MobEffectUtilMixin",
     "StatusEffectUtilMixin",
     "WanderingTraderManagerMixin",
     "boat.MixinBoatEntity",

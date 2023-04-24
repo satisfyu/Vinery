@@ -1,6 +1,7 @@
 package satisfyu.vinery.compat.rei.wine;
 
 import com.google.common.collect.Lists;
+import net.minecraft.network.chat.Component;
 import satisfyu.vinery.block.entity.FermentationBarrelBlockEntity;
 import satisfyu.vinery.registry.ObjectRegistry;
 import me.shedaniel.math.Point;
@@ -11,7 +12,7 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.network.chat.Component;
+
 import java.util.List;
 
 public class FermentationBarrelCategory implements DisplayCategory<FermentationBarrelDisplay> {

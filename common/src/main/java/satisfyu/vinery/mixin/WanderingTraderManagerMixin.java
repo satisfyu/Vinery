@@ -1,5 +1,6 @@
 package satisfyu.vinery.mixin;
 
+import satisfyu.vinery.entity.TraderMuleEntity;
 import satisfyu.vinery.registry.VineryEntites;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
@@ -55,7 +56,7 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 						if (blockPos4 == null) {
 							return;
 						}
-						TraderLlama traderLlamaEntity = VineryEntites.MULE.get().spawn(world, blockPos4, MobSpawnType.EVENT);
+						TraderMuleEntity traderLlamaEntity = VineryEntites.MULE.get().spawn(world, blockPos4, MobSpawnType.EVENT);
 						if (traderLlamaEntity == null) {
 							return;
 						}

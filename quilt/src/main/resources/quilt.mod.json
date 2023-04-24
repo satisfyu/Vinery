@@ -6,7 +6,7 @@
   ],
   "quilt_loader": {
     "group": "${group}",
-    "id": "examplemod",
+    "id": "vinery",
     "version": "${version}",
     "metadata": {
       "name": "Vinery",
@@ -26,11 +26,10 @@
       "icon": "assets/vinery/icon.png"
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
-
     "entrypoints": {
-      "init": [
-        "satisfyu.vinery.quilt.VineryQuilt"
-      ]
+      "init": "satisfyu.vinery.quilt.VineryQuilt",
+      "client": "satisfyu.vinery.fabriclike.client.VineryClientFabricLike",
+      "vinery": "satisfyu.vinery.fabriclike.registry.VineryFabricLikeDefaultAPI"
     },
     "depends": [
       {

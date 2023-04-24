@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#vinery:spanws_jungle_grape",
+  "features": "vinery:jungle_red_grape_bush_chance",
+  "step": "vegetal_decoration"
+}

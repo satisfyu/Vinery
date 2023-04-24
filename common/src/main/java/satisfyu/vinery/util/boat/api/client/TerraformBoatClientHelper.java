@@ -28,7 +28,7 @@ public final class TerraformBoatClientHelper {
 		return new ModelLayerLocation(getLayerId(boatId, raft, chest), "main");
 	}
 
-	private static Supplier<LayerDefinition> getTexturedModelDataProvider(boolean raft, boolean chest) {
+	public static Supplier<LayerDefinition> getTexturedModelDataProvider(boolean raft, boolean chest) {
 		if (raft) {
 			return chest ? ChestRaftModel::createBodyModel : RaftModel::createBodyModel;
 		} else {

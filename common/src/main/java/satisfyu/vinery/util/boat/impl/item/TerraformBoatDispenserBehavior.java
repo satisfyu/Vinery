@@ -6,12 +6,12 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
-import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
@@ -25,14 +25,14 @@ public class TerraformBoatDispenserBehavior extends DefaultDispenseItemBehavior 
 	private static final DispenseItemBehavior FALLBACK_BEHAVIOR = new DefaultDispenseItemBehavior();
 	private static final float OFFSET_MULTIPLIER = 1.125F;
 
-	private final ResourceKey<TerraformBoatType> boatKey;
+	private final ResourceLocation boatKey;
 	private final boolean chest;
 
 	/**
 	 * @param boatKey a {@linkplain ResourceKey registry key} for the {@linkplain TerraformBoatType Terraform boat type} that should be spawned by this dispenser behavior
 	 * @param chest whether the boat contains a chest
 	 */
-	public TerraformBoatDispenserBehavior(ResourceKey<TerraformBoatType> boatKey, boolean chest) {
+	public TerraformBoatDispenserBehavior(ResourceLocation boatKey, boolean chest) {
 		this.boatKey = boatKey;
 		this.chest = chest;
 	}
@@ -54,7 +54,7 @@ public class TerraformBoatDispenserBehavior extends DefaultDispenseItemBehavior 
 			return FALLBACK_BEHAVIOR.dispense(pointer, stack);
 		}
 
-		TerraformBoatType boatType = VineryExpectPlatform.get(this.boatKey.location());
+		TerraformBoatType boatType = TerraformBoatTypeRegistry.get(this.boatKey);
 		Boat boatEntity;
 
 		if (this.chest) {

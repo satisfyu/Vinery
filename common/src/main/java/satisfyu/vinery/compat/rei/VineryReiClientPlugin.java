@@ -1,5 +1,16 @@
 package satisfyu.vinery.compat.rei;
 
+import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
+import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
+import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
+import me.shedaniel.rei.api.common.category.CategoryIdentifier;
+import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
+import me.shedaniel.rei.api.common.util.EntryStacks;
+import me.shedaniel.rei.plugin.common.BuiltinPlugin;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import satisfyu.vinery.compat.farmersdelight.FarmersCookingPot;
 import satisfyu.vinery.compat.rei.cooking.CookingPotCategory;
 import satisfyu.vinery.compat.rei.cooking.CookingPotDisplay;
@@ -14,19 +25,10 @@ import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.recipe.WoodFiredOvenRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.VineryUtils;
-import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
-import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
-import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
-import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
-import me.shedaniel.rei.api.common.util.EntryStacks;
-import me.shedaniel.rei.plugin.common.BuiltinPlugin;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class VineryReiClientPlugin implements REIClientPlugin {
 

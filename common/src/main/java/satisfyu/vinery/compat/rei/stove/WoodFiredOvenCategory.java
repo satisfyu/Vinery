@@ -1,6 +1,7 @@
 package satisfyu.vinery.compat.rei.stove;
 
 import com.google.common.collect.Lists;
+import net.minecraft.network.chat.Component;
 import satisfyu.vinery.block.entity.WoodFiredOvenBlockEntity;
 import satisfyu.vinery.registry.ObjectRegistry;
 import me.shedaniel.math.Point;
@@ -13,7 +14,7 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.network.chat.Component;
+
 import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;

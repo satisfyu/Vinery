@@ -14,9 +14,6 @@ public final class TerraformBoatInitializer {
 
 	// Hack that prevents the following crash during client startup:
 	// Caused by: java.lang.NoClassDefFoundError: Could not initialize class com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry
-	static {
-		VineryExpectPlatform.loadInstance();
-	}
 
 	private static final ResourceLocation BOAT_ID = new VineryIdentifier("boat");
 	public static final RegistrySupplier<EntityType<TerraformBoatEntity>> BOAT =  VineryEntites.create("boat", () -> EntityType.Builder.<TerraformBoatEntity>of(TerraformBoatEntity::new, MobCategory.MISC)
@@ -30,6 +27,6 @@ public final class TerraformBoatInitializer {
 		.build(CHEST_BOAT_ID.toString()));
 
 	public static void init() {
-		TerraformBoatTrackedData.register();
+
 	}
 }

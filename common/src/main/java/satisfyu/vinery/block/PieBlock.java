@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -34,9 +35,9 @@ public class PieBlock extends FacingBlock {
 
     private static final VoxelShape SHAPE = Block.box(6, 0, 6, 12, 4, 12);
     public static final IntegerProperty CUTS = IntegerProperty.create("cuts", 0, 3);
-    private final Item slice;
+    private final RegistrySupplier<Item> slice;
 
-    public PieBlock(Properties settings, Item slice) {
+    public PieBlock(Properties settings, RegistrySupplier<Item> slice) {
         super(settings);
         this.slice = slice;
         this.registerDefaultState(this.defaultBlockState().setValue(CUTS, 0));
@@ -71,7 +72,7 @@ public class PieBlock extends FacingBlock {
 
     private InteractionResult tryEat(LevelAccessor world, BlockPos pos, BlockState state, Player player) {
         world.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1, 1);
-        PieBlock.popResourceFromFace((Level) world, pos, Direction.UP, new ItemStack(slice));
+        PieBlock.popResourceFromFace((Level) world, pos, Direction.UP, new ItemStack(slice.get()));
         player.awardStat(Stats.EAT_CAKE_SLICE);
         int i = state.getValue(CUTS);
         world.gameEvent(player, GameEvent.EAT, pos);

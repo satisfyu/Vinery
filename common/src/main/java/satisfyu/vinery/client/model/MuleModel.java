@@ -1,5 +1,7 @@
 package satisfyu.vinery.client.model;
 
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.entity.TraderMuleEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -13,7 +15,9 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
-public class MuleModel extends EntityModel<TraderMuleEntity> {
+public class MuleModel<T extends TraderMuleEntity> extends EntityModel<T> {
+
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("trader_mule"), "main");
 
 	private final ModelPart body;
 	private final ModelPart tail;

@@ -1,5 +1,6 @@
 package satisfyu.vinery.client;
 
+import dev.architectury.platform.Platform;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
@@ -41,12 +42,12 @@ public class VineryClient {
     public static boolean rememberedRecipeBookOpen = false;
     public static boolean rememberedCraftableToggle = true;
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("trader_mule"), "main");
+
 
     public static void onInitializeClient() {
 
         VineryMessages.registerS2CPackets();
-        registerEntityRenderers();
+        if(!Platform.isForge()) registerEntityRenderers();
 
 
 
@@ -103,8 +104,11 @@ public class VineryClient {
 
     }
 
-    private static void registerEntityRenderers(){
 
+    /**
+     * You can do that all again in VineryClientForge. I love it
+     */
+    private static void registerEntityRenderers(){
         //renderers
         TerraformBoatClientInitializer.init();
         EntityRendererRegistry.register(VineryEntites.MULE, MuleRenderer::new);
@@ -112,7 +116,7 @@ public class VineryClient {
         EntityRendererRegistry.register(VineryEntites.CHAIR, ChairRenderer::new);
 
         //layers
-        EntityModelLayerRegistry.register(LAYER_LOCATION, MuleModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);
         CustomArmorRegistry.registerArmorModelLayers();
         TerraformBoatClientHelper.registerModelLayers(VineryBoatTypes.CHERRY_BOAT_ID, false);
     }

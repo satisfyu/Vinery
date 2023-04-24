@@ -44,15 +44,15 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
         switch (state.getValue(WineBottleBlock.FACING)) {
             case NORTH -> {
                 matrices.translate(0f, 0f, 1f);
-                matrices.mulPose(Axis.YP.rotation(90));
+                matrices.mulPose(Axis.YP.rotationDegrees(90));
             }
             case WEST -> {
                 matrices.translate(1f, 0f, 1f);
-                matrices.mulPose(Axis.YP.rotation(180));
+                matrices.mulPose(Axis.YP.rotationDegrees(180));
             }
             case SOUTH -> {
                 matrices.translate(1f, 0f, 0f);
-                matrices.mulPose(Axis.YP.rotation(270));
+                matrices.mulPose(Axis.YP.rotationDegrees(270));
             }
         }
     }
@@ -65,7 +65,7 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
         matrices.translate(-0.15f, 0f, -0.25f);
         renderBlock(defaultState, matrices, vertexConsumers, entity);
         matrices.translate(.1f, 0f, .8f);
-        matrices.mulPose(Axis.YP.rotation(30));
+        matrices.mulPose(Axis.YP.rotationDegrees(30));
         renderBlock(defaultState, matrices, vertexConsumers, entity);
 }
 
@@ -76,12 +76,12 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
         renderBlock(defaultState, matrices, vertexConsumers, entity);
         if (defaultState.getBlock() == ObjectRegistry.KELP_CIDER.get()) {
             matrices.translate(.35f, .7f, -.13f);
-            matrices.mulPose(Axis.YP.rotation(90));
+            matrices.mulPose(Axis.XP.rotationDegrees(90));
             renderBlock(defaultState, matrices, vertexConsumers, entity);
             return;
         }
         matrices.translate(.1f, 0f, 0f);
-        matrices.mulPose(Axis.YP.rotation(30));
+        matrices.mulPose(Axis.YP.rotationDegrees(30));
         renderBlock(defaultState, matrices, vertexConsumers, entity);
     }
 }

@@ -11,11 +11,11 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(value= EnvType.CLIENT)
-public class MuleRenderer extends MobRenderer<TraderMuleEntity, MuleModel> {
+public class MuleRenderer<T extends TraderMuleEntity> extends MobRenderer<T, MuleModel<T>> {
     private static final ResourceLocation TEXTURE = new VineryIdentifier("textures/entity/wandering_mule.png");
 
     public MuleRenderer(EntityRendererProvider.Context context) {
-        super(context, new MuleModel(context.bakeLayer(VineryClient.LAYER_LOCATION)), 0.7f);
+        super(context, new MuleModel<>(context.bakeLayer(MuleModel.LAYER_LOCATION)), 0.7f);
     }
 
     @Override

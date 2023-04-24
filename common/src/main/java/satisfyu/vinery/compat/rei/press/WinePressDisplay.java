@@ -1,13 +1,14 @@
 package satisfyu.vinery.compat.rei.press;
 
 
+import net.minecraft.world.item.Items;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.registry.ObjectRegistry;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
-import net.minecraft.world.item.Items;
+
 import java.util.Collections;
 import java.util.List;
 
