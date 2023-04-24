@@ -121,10 +121,12 @@ public class LatticeStemBlock extends StemBlock {
     @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (!state.canSurvive(world, pos)) {
+            if (state.getValue(AGE) > 0) {
+                dropGrapeSeeds(world, state, pos);
+            }
             if (state.getValue(AGE) > 2) {
                 dropGrapes(world, state, pos);
             }
-            dropGrapeSeeds(world, state, pos);
             world.destroyBlock(pos, true);
         }
     }
