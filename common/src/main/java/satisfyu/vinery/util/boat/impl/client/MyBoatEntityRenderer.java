@@ -39,7 +39,7 @@ public class MyBoatEntityRenderer extends BoatRenderer {
 			boolean raft = entry.getValue().isRaft();
 			String prefix = raft ? (chest ? "chest_raft/" : "raft/") : (chest ? "chest_boat/" : "boat/");
 
-			ResourceLocation id = entry.getValue().getKey();
+			ResourceLocation id = entry.getKey();
 			ResourceLocation textureId = new ResourceLocation(id.getNamespace(), "textures/entity/" + prefix + id.getPath() + ".png");
 
 			ModelLayerLocation layer = TerraformBoatClientHelper.getLayer(id, raft, chest);

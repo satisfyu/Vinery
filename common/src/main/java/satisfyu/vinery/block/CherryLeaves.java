@@ -51,7 +51,7 @@ public class CherryLeaves extends LeavesBlock {
             }
             return InteractionResult.SUCCESS;
         }
-        return InteractionResult.PASS;
+        return super.use(state, world, pos, player, hand, hit);
     }
 
     @Override

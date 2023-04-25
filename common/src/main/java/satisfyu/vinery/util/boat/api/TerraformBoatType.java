@@ -12,13 +12,11 @@ public interface TerraformBoatType {
 	Item getChestItem();
 	Item getPlanks();
 
-	ResourceLocation getKey();
-
 	public static class Builder {
 		private boolean raft;
-		private ResourceLocation item;
-		private ResourceLocation chestItem;
-		private ResourceLocation planks;
+		private Item item;
+		private Item chestItem;
+		private Item planks;
 
 		public TerraformBoatType build() {
 			return new TerraformBoatTypeImpl(this.raft, this.item, this.chestItem, this.planks);
@@ -28,17 +26,17 @@ public interface TerraformBoatType {
 			return this;
 		}
 
-		public Builder item(ResourceLocation item) {
+		public Builder item(Item item) {
 			this.item = item;
 			return this;
 		}
 
-		public Builder chestItem(ResourceLocation chestItem) {
+		public Builder chestItem(Item chestItem) {
 			this.chestItem = chestItem;
 			return this;
 		}
 
-		public Builder planks(ResourceLocation planks) {
+		public Builder planks(Item planks) {
 			this.planks = planks;
 			return this;
 		}

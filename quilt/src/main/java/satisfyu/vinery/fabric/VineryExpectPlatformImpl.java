@@ -1,30 +1,18 @@
 package satisfyu.vinery.fabric;
 
-import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
-import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.core.Registry;
-import net.minecraft.network.syncher.EntityDataSerializer;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import org.jetbrains.annotations.NotNull;
 import org.quiltmc.loader.api.QuiltLoader;
-import org.quiltmc.qsl.entity.networking.api.tracked_data.QuiltTrackedDataHandlerRegistry;
 import satisfyu.vinery.Vinery;
-import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.util.VineryApi;
-import satisfyu.vinery.util.boat.api.TerraformBoatType;
-import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Set;
-import java.util.function.Supplier;
 
 public class VineryExpectPlatformImpl {
 
@@ -53,4 +41,10 @@ public class VineryExpectPlatformImpl {
             }
         });
     }
+
+    public static void addFlammable(int burnOdd, int igniteOdd, Block... blocks) {
+        FlammableBlockRegistry registry = FlammableBlockRegistry.getDefaultInstance();
+        for(Block b : blocks) registry.add(b, burnOdd, igniteOdd);
+    }
+
 }

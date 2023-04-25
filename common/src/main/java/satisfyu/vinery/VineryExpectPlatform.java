@@ -17,6 +17,14 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 public class VineryExpectPlatform {
+
+    @ExpectPlatform
+    public static void addFlammable(int burnOdd, int igniteOdd, Block... blocks){
+        // Just throw an error, the content should get replaced at runtime.
+        throw new AssertionError();
+    }
+
+
     @ExpectPlatform
     public static Block[] getBlocksForStorage() {
         // Just throw an error, the content should get replaced at runtime.
