@@ -10,11 +10,11 @@ import satisfyu.vinery.util.boat.api.TerraformBoatType;
  */
 public class TerraformBoatTypeImpl implements TerraformBoatType {
 	private final boolean raft;
-	private final ResourceLocation item;
-	private final ResourceLocation chestItem;
-	private final ResourceLocation planks;
+	private final Item item;
+	private final Item chestItem;
+	private final Item planks;
 
-	public TerraformBoatTypeImpl(boolean raft, ResourceLocation item, ResourceLocation chestItem, ResourceLocation planks) {
+	public TerraformBoatTypeImpl(boolean raft, Item item, Item chestItem, Item planks) {
 		this.raft = raft;
 		this.item = item;
 		this.chestItem = chestItem;
@@ -28,21 +28,16 @@ public class TerraformBoatTypeImpl implements TerraformBoatType {
 
 	@Override
 	public Item getItem() {
-		return BuiltInRegistries.ITEM.get(this.item);
+		return this.item;
 	}
 
 	@Override
 	public Item getChestItem() {
-		return BuiltInRegistries.ITEM.get(this.chestItem);
+		return this.chestItem;
 	}
 
 	@Override
 	public Item getPlanks() {
-		return BuiltInRegistries.ITEM.get(this.planks);
-	}
-
-	@Override
-	public ResourceLocation getKey() {
-		return item;
+		return this.planks;
 	}
 }

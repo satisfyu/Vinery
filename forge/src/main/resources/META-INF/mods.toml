@@ -6,7 +6,7 @@ license = "Insert License Here"
 [[mods]]
 modId = "vinery"
 version = "${version}"
-displayName = "Example Mod"
+displayName = "Vinery"
 authors = "Me!"
 description = '''
 This is an example description! Tell everyone what your mod is about!

@@ -15,6 +15,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.forge.extraapiutil.APIFinder;
+import satisfyu.vinery.forge.registry.BurningBlockRegistry;
 import satisfyu.vinery.util.VineryApi;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
 
@@ -40,5 +41,9 @@ public class VineryExpectPlatformImpl {
             VineryApi api = apiPair.getSecond();
             api.registerArmor(models, modelLoader);
         }
+    }
+
+    public static void addFlammable(int burnOdd, int igniteOdd, Block... blocks) {
+        BurningBlockRegistry.add(burnOdd, igniteOdd, blocks);
     }
 }

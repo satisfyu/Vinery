@@ -1,4 +1,4 @@
-package satisfyu.vinery.registry;
+package satisfyu.vinery.forge.registry;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.world.level.block.Block;

@@ -1,4 +1,4 @@
-package satisfyu.vinery.mixin;
+package satisfyu.vinery.forge.mixin;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FireBlock;
@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import satisfyu.vinery.registry.BurningBlockRegistry;
+import satisfyu.vinery.forge.registry.BurningBlockRegistry;
 
 @Mixin(FireBlock.class)
 public class FireBlockMixin {

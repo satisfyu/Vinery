@@ -20,9 +20,8 @@ public class Vinery {
     public static void init() {
         TerraformBoatTrackedData.register();
         VineryEffects.init();
-        ObjectRegistry.init();
         TerraformBoatInitializer.init();
-        VineryBoatTypes.init();
+        ObjectRegistry.init();
         VineryBlockEntityTypes.init();
         VineryStorageTypes.init();
         VineryScreenHandlerTypes.init();
@@ -34,24 +33,14 @@ public class Vinery {
 
     public static void commonSetup(){
         VineryCompostableItems.init();
-        VineryBoatTypes.dispenser();
+        VineryFlammableBlocks.init();
+        VineryBoatTypes.init();
 
         FuelRegistry.register(300, ObjectRegistry.CHERRY_FENCE.get(), ObjectRegistry.CHERRY_FENCE_GATE.get(), ObjectRegistry.STACKABLE_LOG.get(), ObjectRegistry.FERMENTATION_BARREL.get());
+
         AxeItemHooks.addStrippable(ObjectRegistry.CHERRY_LOG.get(), ObjectRegistry.STRIPPED_CHERRY_LOG.get());
         AxeItemHooks.addStrippable(ObjectRegistry.CHERRY_WOOD.get(), ObjectRegistry.STRIPPED_CHERRY_WOOD.get());
         AxeItemHooks.addStrippable(ObjectRegistry.OLD_CHERRY_LOG.get(), ObjectRegistry.STRIPPED_OLD_CHERRY_LOG.get());
         AxeItemHooks.addStrippable(ObjectRegistry.OLD_CHERRY_WOOD.get(), ObjectRegistry.STRIPPED_OLD_CHERRY_WOOD.get());
-
-        
-        BurningBlockRegistry.add(5, 20, ObjectRegistry.CHERRY_PLANKS.get(), ObjectRegistry.CHERRY_SLAB.get(), ObjectRegistry.CHERRY_STAIRS.get(), ObjectRegistry.CHERRY_FENCE.get(),
-                ObjectRegistry.CHERRY_FENCE_GATE.get());
-
-        BurningBlockRegistry.add(5, 5, ObjectRegistry.STRIPPED_CHERRY_LOG.get(), ObjectRegistry.STRIPPED_OLD_CHERRY_LOG.get(), ObjectRegistry.CHERRY_LOG.get(), ObjectRegistry.OLD_CHERRY_LOG.get(),
-                ObjectRegistry.STRIPPED_CHERRY_WOOD.get(), ObjectRegistry.CHERRY_WOOD.get(), ObjectRegistry.OLD_CHERRY_WOOD.get(), ObjectRegistry.STRIPPED_OLD_CHERRY_WOOD.get());
-
-
-
-         
-
     }
 }
