@@ -6,7 +6,6 @@
     "ArmorFeatureRendererMixin",
     "ArmorStandRendererMixin",
     "ClientPlayerEntityMixin",
-    "LongToolTipsMixin",
     "OrderedTextToolTipAccessor",
     "PlayerEntityRendererMixin",
     "sign.MixinHangingSignBlockEntityRenderer",

@@ -1,6 +1,7 @@
 package satisfyu.vinery.fabric;
 
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -50,6 +51,11 @@ public class VineryExpectPlatformImpl {
                 Vinery.LOGGER.error("Mod {} provides a broken implementation of VineryApi, therefore couldn't register custom models", modId, e);
             }
         });
+    }
+
+    public static void addFlammable(int burnOdd, int igniteOdd, Block... blocks) {
+        FlammableBlockRegistry registry = FlammableBlockRegistry.getDefaultInstance();
+        for(Block b : blocks) registry.add(b, burnOdd, igniteOdd);
     }
 
 }
