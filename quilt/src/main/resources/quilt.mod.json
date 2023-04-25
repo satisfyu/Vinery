@@ -10,18 +10,20 @@
     "version": "${version}",
     "metadata": {
       "name": "Vinery",
-      "description": "Hi. this is vinery",
+      "description": "Vinery contains nearly everything needed for not only creating wine but also for building up your own vinery.",
       "contact": {
-        "sources": "https://github.com/architectury/architectury-templates"
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine",
+        "sources": "https://github.com/satisfyu/Vinery-Fabric"
       },
       "contributors": {
-        "Cristelknight" : "Developer"
+        "satisfy_u" : "Author",
+        "Cristelknight" : "Developer",
+        "BaumeisterJO" : "Developer"
       },
       "license": {
-        "name": "Perfectly Awesome License v1.0",
+        "name": "All Rights Reserved",
         "id": "ARR",
-        "url": "https://theperfectlyawesomelicense.com/",
-        "description": "This license does things and stuff and says that you can do things and stuff too!"
+        "url": ""
       },
       "icon": "assets/vinery/icon.png"
     },
@@ -29,7 +31,8 @@
     "entrypoints": {
       "init": "satisfyu.vinery.quilt.VineryQuilt",
       "client": "satisfyu.vinery.fabriclike.client.VineryClientFabricLike",
-      "vinery": "satisfyu.vinery.fabriclike.registry.VineryFabricLikeDefaultAPI"
+      "vinery": "satisfyu.vinery.fabriclike.registry.VineryFabricLikeDefaultAPI",
+      "rei_client": "satisfyu.vinery.compat.rei.VineryReiClientPlugin"
     },
     "depends": [
       {
@@ -52,5 +55,12 @@
   },
   "minecraft": {
     "environment": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/Vqu6wYZwdZ"
+      }
+    }
   }
 }

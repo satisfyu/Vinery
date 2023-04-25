@@ -8,10 +8,10 @@
     "satisfy_u, Cristelknight, BaumeisterJO(weird name but a nice guy)"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine",
+    "sources": "https://github.com/satisfyu/Vinery-Fabric"
   },
-  "license": "Insert License Here",
+  "license": "ARR",
   "icon": "assets/vinery/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -31,12 +31,19 @@
       "satisfyu.vinery.fabric.datagen.ModDataGeneration"
     ]
   },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/Vqu6wYZwdZ"
+      }
+    }
+  },
   "mixins": [
     "vinery.mixins.json",
     "vinery-common.mixins.json"
   ],
   "depends": {
-    "fabric": "*",
+    "fabric-api": "*",
     "minecraft": ">=1.19.4",
     "architectury": ">=8.1.79"
   }

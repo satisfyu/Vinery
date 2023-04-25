@@ -1,35 +1,35 @@
 modLoader = "javafml"
 loaderVersion = "[43,)"
 #issueTrackerURL = ""
-license = "Insert License Here"
+license = "ARR"
 
 [[mods]]
 modId = "vinery"
 version = "${version}"
 displayName = "Vinery"
-authors = "Me!"
+authors = "satisfy_u, Cristelknight, BaumeisterJO(weird name but a nice guy)"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+Vinery contains nearly everything needed for not only creating wine but also for building up your own vinery.
 '''
-#logoFile = ""
+logoFile = "assets/vinery/icon.png"
 
 [[dependencies.vinery]]
 modId = "forge"
 mandatory = true
-versionRange = "[43,)"
+versionRange = "[45,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.vinery]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.19.2,)"
+versionRange = "[1.19.4,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.vinery]]
 modId = "architectury"
 mandatory = true
-versionRange = "[6.2.43,)"
+versionRange = "[8.1.79,)"
 ordering = "AFTER"
 side = "BOTH"

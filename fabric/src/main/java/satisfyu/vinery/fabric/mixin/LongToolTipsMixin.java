@@ -1,4 +1,4 @@
-package satisfyu.vinery.mixin;
+package satisfyu.vinery.fabric.mixin;
 
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
 import org.spongepowered.asm.mixin.Mixin;

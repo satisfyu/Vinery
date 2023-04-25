@@ -3,6 +3,7 @@
   "package": "satisfyu.vinery.quilt.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "LongToolTipsMixin"
   ],
   "mixins": [
   ],
