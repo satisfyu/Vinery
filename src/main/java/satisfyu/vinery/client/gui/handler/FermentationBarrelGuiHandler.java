@@ -34,7 +34,7 @@ public class FermentationBarrelGuiHandler extends AbstractRecipeBookGUIScreenHan
 
     private void buildBlockEntityContainer(PlayerInventory playerInventory, Inventory inventory) {
         // Wine input
-        this.addSlot(new ExtendedSlot(inventory, 0, 79, 51, stack -> stack.isOf(Item.fromBlock(ObjectRegistry.WINE_BOTTLE))));
+        this.addSlot(new ExtendedSlot(inventory, 0, 79, 51, stack -> stack.isOf(ObjectRegistry.WINE_BOTTLE)));
         // Inputs
         this.addSlot(new ExtendedSlot(inventory, 1, 33, 26, this::isIngredient));
         this.addSlot(new ExtendedSlot(inventory, 2, 51, 26, this::isIngredient));

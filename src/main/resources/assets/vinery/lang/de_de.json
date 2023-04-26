@@ -39,7 +39,7 @@
   "item.vinery.apple_juice": "Apfelsaft",
   "block.vinery.cherry_jam": "Marmeladenglas voller Kirschmarmelade",
   "block.vinery.fermentation_barrel": "Reifefass",
-  "block.vinery.wine_bottle": "Weinflasche",
+  "item.vinery.wine_bottle": "Weinflasche",
   "item.vinery.red_grapejuice_wine_bottle": "Roter Traubensaft",
   "item.vinery.white_grapejuice_wine_bottle": "Weisser Traubensaft",
   "block.vinery.chenet_wine": "Chenet Wein",

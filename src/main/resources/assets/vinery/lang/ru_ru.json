@@ -44,7 +44,7 @@
   "block.vinery.jellie_wine": "Желейное Вино",
   "block.vinery.cherry_jam": "Вишневое варенье",
   "block.vinery.fermentation_barrel": "Бочка для ферментации",
-  "block.vinery.wine_bottle": "Бутылка вина",
+  "item.vinery.wine_bottle": "Бутылка вина",
   "block.vinery.red_grapejuice_wine_bottle": "Красный виноградный сок",
   "block.vinery.white_grapejuice_wine_bottle": "Белый виноградный сок",
   "block.vinery.chenet_wine": "Вино Шене",

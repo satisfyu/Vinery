@@ -49,7 +49,7 @@ public class VineryClient implements ClientModInitializer {
                                                 ObjectRegistry.CHERRY_JAM, ObjectRegistry.CHERRY_JAR, ObjectRegistry.FERMENTATION_BARREL,
                                                 ObjectRegistry.MELLOHI_WINE, ObjectRegistry.CLARK_WINE, ObjectRegistry.BOLVAR_WINE, ObjectRegistry.CHERRY_WINE,
                                                 ObjectRegistry.KING_DANIS_WINE, ObjectRegistry.CHERRY_JAR, ObjectRegistry.CHENET_WINE, ObjectRegistry.MELLOHI_WINE,
-                                                ObjectRegistry.NOIR_WINE, ObjectRegistry.WINE_BOTTLE, ObjectRegistry.TABLE, ObjectRegistry.APPLE_CIDER,
+                                                ObjectRegistry.NOIR_WINE, ObjectRegistry.TABLE, ObjectRegistry.APPLE_CIDER,
                                                 ObjectRegistry.APPLE_JAM, ObjectRegistry.APPLE_WINE, ObjectRegistry.SOLARIS_WINE, ObjectRegistry.JELLIE_WINE,
                                                 ObjectRegistry.AEGIS_WINE, ObjectRegistry.SWEETBERRY_JAM, ObjectRegistry.GRAPE_JAM, ObjectRegistry.KELP_CIDER, ObjectRegistry.SAVANNA_RED_GRAPE_BUSH,
                                                 ObjectRegistry.SAVANNA_WHITE_GRAPE_BUSH, ObjectRegistry.CHORUS_WINE, ObjectRegistry.STAL_WINE, ObjectRegistry.MAGNETIC_WINE, ObjectRegistry.STRAD_WINE,
@@ -58,7 +58,7 @@ public class VineryClient implements ClientModInitializer {
 
 
         );
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ObjectRegistry.PALE_STEM_BLOCK, ObjectRegistry.GRAPEVINE_LATTICE, ObjectRegistry.WINE_BOTTLE,
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ObjectRegistry.PALE_STEM_BLOCK, ObjectRegistry.GRAPEVINE_LATTICE,
 
                                                ObjectRegistry.WINE_BOX, ObjectRegistry.FLOWER_POT,
                                                ObjectRegistry.CHAIR,

@@ -150,7 +150,7 @@ public class ObjectRegistry {
     public static final Block COARSE_DIRT_SLAB = register("coarse_dirt_slab", new VariantSlabBlock(FabricBlockSettings.copy(Blocks.COARSE_DIRT)));
     public static final Block DIRT_SLAB = register("dirt_slab", new VariantSlabBlock(FabricBlockSettings.copy(Blocks.DIRT)));
     public static final Block GRASS_SLAB = register("grass_slab", new SnowyVariantSlabBlock(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)));
-    public static final Block WINE_BOTTLE = register("wine_bottle", new EmptyWineBottleBlock(AbstractBlock.Settings.copy(Blocks.GLASS).breakInstantly().nonOpaque()));
+    public static final Item WINE_BOTTLE = register("wine_bottle", new Item(getSettings()));
     public static final JuiceItem RED_GRAPEJUICE_WINE_BOTTLE = register("red_grapejuice_wine_bottle", new JuiceItem(getSettings()));
     public static final JuiceItem WHITE_GRAPEJUICE_WINE_BOTTLE = register("white_grapejuice_wine_bottle", new JuiceItem(getSettings()));
     public static final JuiceItem SAVANNA_RED_GRAPEJUICE_BOTTLE = register("savanna_red_grapejuice_bottle",  new JuiceItem(getSettings()));
@@ -223,7 +223,7 @@ public class ObjectRegistry {
     public static final Item MULE_SPAWN_EGG = register("mule_spawn_egg", new SpawnEggItem(VineryEntites.MULE, 0x8b7867, 0x5a4e43, getSettings()));
     public static final Item WANDERING_WINEMAKER_SPAWN_EGG = register("wandering_winemaker_spawn_egg", new SpawnEggItem(VineryEntites.WANDERING_WINEMAKER, 0xb78272, 0x3c4a73, getSettings()));
 
-    public static final Item TOMATO = register("tomato", new JuiceItem(getSettings().food(FoodComponents.APPLE).group(ItemGroup.FOOD)));
+    public static final Item TOMATO = register("tomato", new Item(getSettings().food(FoodComponents.APPLE).group(ItemGroup.FOOD)));
 
 
 
