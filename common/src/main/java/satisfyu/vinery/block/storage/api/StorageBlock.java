@@ -1,8 +1,9 @@
 package satisfyu.vinery.block.storage.api;
 
+import net.minecraft.world.level.material.PushReaction;
 import satisfyu.vinery.block.FacingBlock;
 import satisfyu.vinery.block.entity.StorageBlockEntity;
-import satisfyu.vinery.client.render.block.StorageTypeRenderer;
+import satisfyu.vinery.client.render.block.storage.api.StorageTypeRenderer;
 import satisfyu.vinery.util.VineryUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -77,6 +78,11 @@ public abstract class StorageBlock extends FacingBlock implements EntityBlock {
             }
             level.gameEvent(player, GameEvent.BLOCK_CHANGE, blockPos);
         }
+    }
+
+    @Override
+    public PushReaction getPistonPushReaction(BlockState state) {
+        return PushReaction.IGNORE;
     }
 
     public void remove(Level level, BlockPos blockPos, Player player, StorageBlockEntity shelfBlockEntity, int i) {

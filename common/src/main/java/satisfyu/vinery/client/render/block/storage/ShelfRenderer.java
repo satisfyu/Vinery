@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.render.block;
+package satisfyu.vinery.client.render.block.storage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -6,9 +6,10 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
 import satisfyu.vinery.block.entity.StorageBlockEntity;
+import satisfyu.vinery.client.render.block.storage.api.StorageTypeRenderer;
 import satisfyu.vinery.util.ClientUtil;
 
-public class ShelfRenderer implements StorageTypeRenderer{
+public class ShelfRenderer implements StorageTypeRenderer {
     @Override
     public void render(StorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> itemStacks) {
 

@@ -1,5 +1,6 @@
-package satisfyu.vinery.block;
+package satisfyu.vinery.block.storage;
 
+import net.minecraft.resources.ResourceLocation;
 import satisfyu.vinery.block.entity.FlowerBoxBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -28,6 +29,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.block.storage.api.StorageBlock;
+import satisfyu.vinery.registry.VineryStorageTypes;
 import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.util.VineryTags;
 
@@ -36,9 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class FlowerBoxBlock extends FacingBlock implements EntityBlock {
-
-	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+public class FlowerBoxBlock extends StorageBlock {
 
 	private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
 		VoxelShape shape = Shapes.empty();
@@ -66,74 +67,38 @@ public class FlowerBoxBlock extends FacingBlock implements EntityBlock {
 
 	@Override
 	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (world.isClientSide) {
-			return InteractionResult.SUCCESS;
-		}
-
-		FlowerBoxBlockEntity blockEntity = (FlowerBoxBlockEntity) world.getBlockEntity(pos);
-		if (blockEntity == null || player.isShiftKeyDown()) {
+		if (player.isShiftKeyDown())
 			return InteractionResult.PASS;
-		}
-
-		Direction facing = state.getValue(FACING);
-		boolean left = (facing.getAxis() == Direction.Axis.X) ? (hit.getLocation().z - pos.getZ() > 0.5D) : (hit.getLocation().x - pos.getX() > 0.5D);
-		left = (facing == Direction.NORTH || facing == Direction.WEST) != left;
-
-		ItemStack handStack = player.getItemInHand(hand);
-		if (handStack.isEmpty()) {
-			ItemStack flowerStack = blockEntity.removeFlower(left ? 0 : 1);
-			if (!flowerStack.isEmpty()) {
-				player.addItem(flowerStack);
-				return InteractionResult.SUCCESS;
-			}
-			flowerStack = blockEntity.removeFlower(left ? 1 : 0);
-			if (!flowerStack.isEmpty()) {
-				player.addItem(flowerStack);
-				return InteractionResult.SUCCESS;
-			}
-		} else if (handStack.is(VineryTags.SMALL_FLOWER)) {
-			if (blockEntity.isSlotEmpty(left ? 0 : 1)) {
-				blockEntity.addFlower(new ItemStack(handStack.getItem()), left ? 0 : 1);
-				if (!player.isCreative()) {
-					handStack.shrink(1);
-				}
-				return InteractionResult.SUCCESS;
-			}
-			if (blockEntity.isSlotEmpty(left ? 1 : 0)) {
-				blockEntity.addFlower(new ItemStack(handStack.getItem()), left ? 1 : 0);
-				if (!player.isCreative()) {
-					handStack.shrink(1);
-				}
-				return InteractionResult.SUCCESS;
-			}
-		}
 
 		return super.use(state, world, pos, player, hand, hit);
 	}
 
+
 	@Override
-	public PushReaction getPistonPushReaction(BlockState state) {
-		return PushReaction.IGNORE;
+	public int size() {
+		return 2;
 	}
 
 	@Override
-	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
-		if (state.getBlock() != newState.getBlock()) {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof FlowerBoxBlockEntity be) {
-				for(Item stack : be.getFlowers()){
-					Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(stack));
-				}
-				world.updateNeighbourForOutputSignal(pos,this);
-			}
-			super.onRemove(state, world, pos, newState, moved);
-		}
+	public ResourceLocation type() {
+		return VineryStorageTypes.FLOWER_BOX;
 	}
 
-	@Nullable
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new FlowerBoxBlockEntity(pos, state);
+	public Direction[] unAllowedDirections() {
+		return new Direction[]{Direction.DOWN};
+	}
+
+	@Override
+	public boolean canInsertStack(ItemStack stack) {
+		return stack.is(VineryTags.SMALL_FLOWER);
+	}
+
+
+	@Override
+	public int getSection(Float x, Float y) {
+		if(x < 0.5) return 0;
+		return 1;
 	}
 
 	@Override

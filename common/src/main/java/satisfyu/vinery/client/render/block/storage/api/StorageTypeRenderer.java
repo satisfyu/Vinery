@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.render.block;
+package satisfyu.vinery.client.render.block.storage.api;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;

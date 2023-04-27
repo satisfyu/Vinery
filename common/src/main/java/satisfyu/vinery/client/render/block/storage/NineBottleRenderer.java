@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.render.block;
+package satisfyu.vinery.client.render.block.storage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -8,9 +8,10 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import satisfyu.vinery.block.WineBottleBlock;
 import satisfyu.vinery.block.entity.StorageBlockEntity;
+import satisfyu.vinery.client.render.block.storage.api.StorageTypeRenderer;
 import satisfyu.vinery.util.ClientUtil;
 
-public class FourBottleRenderer implements StorageTypeRenderer{
+public class NineBottleRenderer implements StorageTypeRenderer {
     @Override
     public void render(StorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> itemStacks) {
         matrices.translate(-0.13, 0.335, 0.125);
@@ -19,22 +20,23 @@ public class FourBottleRenderer implements StorageTypeRenderer{
             ItemStack stack = itemStacks.get(i);
             if (!stack.isEmpty() && stack.getItem() instanceof BlockItem blockItem) {
                 matrices.pushPose();
-                if(i == 0){
-                    matrices.translate(-0.35f, 0, 0f);
+                int line = i >= 6 ? 3 : i >= 3 ? 2 : 1;
+                float x;
+                float y;
+                if(line == 1){
+                    x = -0.35f * i;
+                    y = 0;
                 }
-                else if(i == 1){
-                    matrices.translate(0, -0.33f, 0f);
+                else if(line == 2){
+                    x = -0.35f * (i - 3);
+                    y = -0.33f;
                 }
-                else if(i == 2){
-                    matrices.translate(-0.7f, -0.33f, 0f);
+                else{
+                    x = -0.35f * (i - 6);
+                    y = -0.66f;
                 }
-                else if(i == 3){
-                    matrices.translate(-0.35f, -0.66f, 0f);
-                }
-                else {
-                    matrices.popPose();
-                    continue;
-                }
+
+                matrices.translate(x, y, 0f);
                 matrices.mulPose(Axis.XN.rotationDegrees(90));
                 ClientUtil.renderBlock(blockItem.getBlock().defaultBlockState().setValue(WineBottleBlock.COUNT, 0), matrices, vertexConsumers, entity);
                 matrices.popPose();
