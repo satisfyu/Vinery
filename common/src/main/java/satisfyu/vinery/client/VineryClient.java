@@ -10,14 +10,12 @@ import dev.architectury.registry.menu.MenuRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GrassColor;
-import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.entity.chair.ChairRenderer;
 import satisfyu.vinery.client.gui.CookingPotGui;
 import satisfyu.vinery.client.gui.FermentationBarrelGui;
@@ -36,6 +34,8 @@ import satisfyu.vinery.util.boat.impl.client.TerraformBoatClientInitializer;
 import satisfyu.vinery.util.networking.VineryMessages;
 import satisfyu.vinery.util.sign.SpriteIdentifierRegistry;
 
+import static satisfyu.vinery.registry.ObjectRegistry.*;
+
 @Environment(EnvType.CLIENT)
 public class VineryClient {
 
@@ -45,49 +45,39 @@ public class VineryClient {
 
 
     public static void onInitializeClient() {
-
         VineryMessages.registerS2CPackets();
         if(!Platform.isForge()) registerEntityRenderers();
 
 
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new Material(Sheets.SIGN_SHEET, CHERRY_SIGN.get().getTexture()));
 
-        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new Material(Sheets.SIGN_SHEET, ObjectRegistry.CHERRY_SIGN.get().getTexture()));
-
-        RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.RED_GRAPE_BUSH.get(), ObjectRegistry.WHITE_GRAPE_BUSH.get(),
-                                                ObjectRegistry.CHERRY_DOOR.get(), ObjectRegistry.COOKING_POT.get(),
-                                                ObjectRegistry.SWEETBERRY_JAM.get(), ObjectRegistry.CHERRY_JAM.get(), ObjectRegistry.CHERRY_JAR.get(), ObjectRegistry.FERMENTATION_BARREL.get(),
-                                                ObjectRegistry.MELLOHI_WINE.get(), ObjectRegistry.CLARK_WINE.get(), ObjectRegistry.BOLVAR_WINE.get(), ObjectRegistry.CHERRY_WINE.get(),
-                                                ObjectRegistry.KING_DANIS_WINE.get(), ObjectRegistry.CHERRY_JAR.get(), ObjectRegistry.CHENET_WINE.get(), ObjectRegistry.MELLOHI_WINE.get(),
-                                                ObjectRegistry.NOIR_WINE.get(), ObjectRegistry.WINE_BOTTLE.get(), ObjectRegistry.TABLE.get(), ObjectRegistry.APPLE_CIDER.get(),
-                                                ObjectRegistry.APPLE_JAM.get(), ObjectRegistry.APPLE_WINE.get(), ObjectRegistry.SOLARIS_WINE.get(), ObjectRegistry.JELLIE_WINE.get(),
-                                                ObjectRegistry.AEGIS_WINE.get(), ObjectRegistry.GRAPE_JAM.get(), ObjectRegistry.KELP_CIDER.get(), ObjectRegistry.SAVANNA_RED_GRAPE_BUSH.get(),
-                                                ObjectRegistry.SAVANNA_WHITE_GRAPE_BUSH.get(), ObjectRegistry.CHORUS_WINE.get(), ObjectRegistry.STAL_WINE.get(), ObjectRegistry.MAGNETIC_WINE.get(), ObjectRegistry.STRAD_WINE.get(),
-                                                ObjectRegistry.JUNGLE_WHITE_GRAPE_BUSH.get(), ObjectRegistry.JUNGLE_RED_GRAPE_BUSH.get(), ObjectRegistry.TAIGA_RED_GRAPE_BUSH.get(), ObjectRegistry.TAIGA_WHITE_GRAPE_BUSH.get(),
-                                                ObjectRegistry.TOMATO_CROP.get()
+        RenderTypeRegistry.register(RenderType.cutout(),
+                RED_GRAPE_BUSH.get(), WHITE_GRAPE_BUSH.get(), CHERRY_DOOR.get(), COOKING_POT.get(),
+                SWEETBERRY_JAM.get(), CHERRY_JAM.get(), CHERRY_JAR.get(), FERMENTATION_BARREL.get(),
+                MELLOHI_WINE.get(), CLARK_WINE.get(), BOLVAR_WINE.get(), CHERRY_WINE.get(),
+                KING_DANIS_WINE.get(), CHENET_WINE.get(), NOIR_WINE.get(), TABLE.get(), APPLE_CIDER.get(),
+                APPLE_JAM.get(), APPLE_WINE.get(), SOLARIS_WINE.get(), JELLIE_WINE.get(), AEGIS_WINE.get(),
+                GRAPE_JAM.get(), KELP_CIDER.get(), SAVANNA_RED_GRAPE_BUSH.get(), SAVANNA_WHITE_GRAPE_BUSH.get(),
+                CHORUS_WINE.get(), STAL_WINE.get(), MAGNETIC_WINE.get(), STRAD_WINE.get(), JUNGLE_WHITE_GRAPE_BUSH.get(),
+                JUNGLE_RED_GRAPE_BUSH.get(), TAIGA_RED_GRAPE_BUSH.get(), TAIGA_WHITE_GRAPE_BUSH.get(),
+                TOMATO_CROP.get(), PALE_STEM.get(), GRAPEVINE_LATTICE.get(), WINE_BOX.get(), FLOWER_POT.get(), CHAIR.get(),
+                WINE_PRESS.get(), GRASS_SLAB.get(), CHERRY_JAR.get(), CHERRY_SAPLING.get(), OLD_CHERRY_SAPLING.get(),
+                KITCHEN_SINK.get(), STACKABLE_LOG.get()
         );
-        RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.PALE_STEM.get(), ObjectRegistry.GRAPEVINE_LATTICE.get(), ObjectRegistry.WINE_BOTTLE.get(),
 
-                                               ObjectRegistry.WINE_BOX.get(), ObjectRegistry.FLOWER_POT.get(),
-                                               ObjectRegistry.CHAIR.get(),
-                                               ObjectRegistry.WINE_PRESS.get(), ObjectRegistry.GRASS_SLAB.get(), ObjectRegistry.CHERRY_JAR.get(),
-                                               ObjectRegistry.CHERRY_SAPLING.get(), ObjectRegistry.OLD_CHERRY_SAPLING.get(), ObjectRegistry.KITCHEN_SINK.get(), ObjectRegistry.STACKABLE_LOG.get(),
-                                               ObjectRegistry.JUNGLE_RED_GRAPE_BUSH.get(), ObjectRegistry.JUNGLE_WHITE_GRAPE_BUSH.get()
-                                              );
-
-        RenderTypeRegistry.register(RenderType.translucent(), ObjectRegistry.WINDOW.get());
+        RenderTypeRegistry.register(RenderType.translucent(), WINDOW.get());
 
 
-        ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> BiomeColors.getAverageGrassColor(world, pos), ObjectRegistry.GRASS_SLAB, ObjectRegistry.TAIGA_WHITE_GRAPE_BUSH, ObjectRegistry.TAIGA_RED_GRAPE_BUSH);
-        ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> BiomeColors.getAverageFoliageColor(world, pos), ObjectRegistry.SAVANNA_RED_GRAPE_BUSH, ObjectRegistry.SAVANNA_WHITE_GRAPE_BUSH, ObjectRegistry.JUNGLE_RED_GRAPE_BUSH, ObjectRegistry.JUNGLE_WHITE_GRAPE_BUSH/*, ObjectRegistry.PALE_STEM_BLOCK, ObjectRegistry.GRAPEVINE_LATTICE*/);
-        ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> GrassColor.get(1.0, 0.5), ObjectRegistry.GRASS_SLAB);
+        ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> BiomeColors.getAverageGrassColor(world, pos), GRASS_SLAB, TAIGA_WHITE_GRAPE_BUSH, TAIGA_RED_GRAPE_BUSH);
+        ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> BiomeColors.getAverageFoliageColor(world, pos), SAVANNA_RED_GRAPE_BUSH, SAVANNA_WHITE_GRAPE_BUSH, JUNGLE_RED_GRAPE_BUSH, JUNGLE_WHITE_GRAPE_BUSH, PALE_STEM, GRAPEVINE_LATTICE);
         ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
             if (world == null || pos == null) {
                 return -1;
             }
             return BiomeColors.getAverageWaterColor(world, pos);
-            }, ObjectRegistry.KITCHEN_SINK);
+            }, KITCHEN_SINK);
 
-
+        ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> GrassColor.get(1.0, 0.5), GRASS_SLAB);
 
 
 

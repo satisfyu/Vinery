@@ -1,5 +1,6 @@
-package satisfyu.vinery.block;
+package satisfyu.vinery.block.storage;
 
+import satisfyu.vinery.block.storage.api.StorageBlock;
 import satisfyu.vinery.registry.VineryStorageTypes;
 import satisfyu.vinery.util.VineryTags;
 import satisfyu.vinery.util.VineryUtils;
@@ -19,7 +20,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ShelfBlock extends StorageBlock{
+public class ShelfBlock extends StorageBlock {
 
 
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {

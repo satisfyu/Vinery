@@ -1,6 +1,7 @@
 package satisfyu.vinery.util;
 
 import com.google.gson.JsonArray;
+import dev.architectury.platform.Platform;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -95,7 +96,8 @@ public class VineryUtils {
         }
     }
 
+
     public static boolean isFDLoaded(){
-        return FabricLoader.getInstance().isModLoaded("farmersdelight");
+        return Platform.isModLoaded("farmersdelight");
     }
 }

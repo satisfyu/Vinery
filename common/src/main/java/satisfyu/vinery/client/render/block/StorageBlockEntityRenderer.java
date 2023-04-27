@@ -9,7 +9,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import satisfyu.vinery.block.StorageBlock;
+import satisfyu.vinery.block.storage.api.StorageBlock;
 import satisfyu.vinery.block.entity.StorageBlockEntity;
 
 public class StorageBlockEntityRenderer implements BlockEntityRenderer<StorageBlockEntity> {

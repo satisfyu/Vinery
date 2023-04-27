@@ -2,6 +2,13 @@ package satisfyu.vinery.item;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.*;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.WineYears;
 import org.jetbrains.annotations.Nullable;
@@ -18,10 +25,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -120,8 +123,28 @@ public class DrinkBlockItem extends BlockItem {
         tooltip.add(Component.translatable("tooltip.vinery.year").withStyle(ChatFormatting.GRAY).append(Component.nullToEmpty(" " + WineYears.getWineYear(stack, world))));
     }
 
-    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
-        ItemStack itemStack = super.finishUsingItem(stack, world, user);
-        return user instanceof Player && ((Player)user).getAbilities().instabuild ? itemStack : new ItemStack(ObjectRegistry.WINE_BOTTLE.get());
+    @Override
+    public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
+        super.finishUsingItem(itemStack, level, livingEntity);
+        if (livingEntity instanceof ServerPlayer serverPlayer) {
+            CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, itemStack);
+            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
+        }
+        if (itemStack.isEmpty()) {
+            return new ItemStack(ObjectRegistry.WINE_BOTTLE.get());
+        }
+        if (livingEntity instanceof Player player && !((Player)livingEntity).getAbilities().instabuild) {
+            ItemStack itemStack2 = new ItemStack(ObjectRegistry.WINE_BOTTLE.get());
+            if (!player.getInventory().add(itemStack2)) {
+                player.drop(itemStack2, false);
+            }
+        }
+        return itemStack;
+    }
+
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
+        return ItemUtils.startUsingInstantly(level, player, interactionHand);
     }
 }

@@ -1,5 +1,6 @@
-package satisfyu.vinery.block;
+package satisfyu.vinery.block.storage.api;
 
+import satisfyu.vinery.block.FacingBlock;
 import satisfyu.vinery.block.entity.StorageBlockEntity;
 import satisfyu.vinery.client.render.block.StorageTypeRenderer;
 import satisfyu.vinery.util.VineryUtils;

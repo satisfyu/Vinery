@@ -35,12 +35,11 @@ import java.util.List;
 
 public class BreadBlock extends FacingBlock {
     public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, 3);
-    public static final BooleanProperty JAM = BooleanProperty.create("jam");
     protected static final VoxelShape VOXEL_SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
 
     public BreadBlock(BlockBehaviour.Properties settings) {
         super(settings);
-        this.registerDefaultState(this.defaultBlockState().setValue(BITES, 0).setValue(FACING, Direction.NORTH).setValue(JAM, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(BITES, 0).setValue(FACING, Direction.NORTH));
     }
 
     @Override
@@ -65,7 +64,7 @@ public class BreadBlock extends FacingBlock {
 
 
     private static InteractionResult tryEat(LevelAccessor world, BlockPos pos, BlockState state, Player player, ItemStack stack, InteractionHand hand) {
-        if (!player.canEat(false) && !(stack.is(VineryTags.JAMS))) {
+        if (!stack.is(VineryTags.JAMS)) {
             return InteractionResult.PASS;
         }
         if(stack.is(VineryTags.JAMS)){
@@ -104,7 +103,7 @@ public class BreadBlock extends FacingBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(BITES, JAM, FACING);
+        builder.add(BITES, FACING);
     }
 
     @Override
