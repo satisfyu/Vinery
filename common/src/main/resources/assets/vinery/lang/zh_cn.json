@@ -45,7 +45,7 @@
   "block.vinery.cherry_jam": "樱桃果酱",
   "item.vinery.juice.tooltip.block.vinery.cherry_jam":"与面包混合以获取面包片",
   "block.vinery.fermentation_barrel": "陈酿桶",
-  "block.vinery.wine_bottle": "葡萄酒瓶",
+  "item.vinery.wine_bottle": "葡萄酒瓶",
   "item.vinery.red_grapejuice_wine_bottle": "红葡萄汁",
   "item.vinery.white_grapejuice_wine_bottle": "白葡萄汁",
   "block.vinery.chenet_wine": "香奈红葡萄酒",

@@ -46,7 +46,7 @@
   "block.vinery.cherry_jam": "Cherry Jam",
   "item.vinery.juice.tooltip.block.vinery.cherry_jam":"Combine it with Bread to get Bread Slices",
   "block.vinery.fermentation_barrel": "Aging Barrel",
-  "block.vinery.wine_bottle": "Wine Bottle",
+  "item.vinery.wine_bottle": "Wine Bottle",
   "item.vinery.red_grapejuice_wine_bottle": "Red Grape juice",
   "item.vinery.white_grapejuice_wine_bottle": "White Grape juice",
   "block.vinery.chenet_wine": "Chenet Wine",
