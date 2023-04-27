@@ -30,7 +30,7 @@ import satisfyu.vinery.util.VineryTags;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class FlowerPotBlock extends Block implements EntityBlock{
+public class FlowerPotBlock extends Block implements EntityBlock {
 	private static final VoxelShape SHAPE;
 
 	private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
@@ -54,7 +54,7 @@ public class FlowerPotBlock extends Block implements EntityBlock{
 
 	@Override
 	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (world.isClientSide || hand == InteractionHand.OFF_HAND) return InteractionResult.SUCCESS;
+		if (hand == InteractionHand.OFF_HAND) return InteractionResult.PASS;
 		FlowerPotBlockEntity be = (FlowerPotBlockEntity)world.getBlockEntity(pos);
 		if (be == null || player.isShiftKeyDown()) return InteractionResult.PASS;
 
@@ -63,16 +63,20 @@ public class FlowerPotBlock extends Block implements EntityBlock{
 
 		if (handStack.isEmpty()) {
 			if (flower != null) {
-				player.addItem(flower.getDefaultInstance());
-				be.setFlower(null);
-				return InteractionResult.SUCCESS;
+				if(!world.isClientSide){
+					player.addItem(flower.getDefaultInstance());
+					be.setFlower(null);
+				}
+				return InteractionResult.sidedSuccess(world.isClientSide);
 			}
 		} else if (fitInPot(handStack) && flower == null) {
-			be.setFlower(handStack.getItem());
-			if (!player.isCreative()) {
-				handStack.shrink(1);
+			if(!world.isClientSide){
+				be.setFlower(handStack.getItem());
+				if (!player.isCreative()) {
+					handStack.shrink(1);
+				}
 			}
-			return InteractionResult.SUCCESS;
+			return InteractionResult.sidedSuccess(world.isClientSide);
 		}
 		return super.use(state, world, pos, player, hand, hit);
 	}

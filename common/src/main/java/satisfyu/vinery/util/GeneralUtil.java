@@ -15,6 +15,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -29,17 +31,25 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class GeneralUtil {
-	/*
-	public static RegistryKey<ConfiguredFeature<?, ?>> configuredFeatureKey(String name) {
-		return RegistryKey.of(Registries.CONFIGURED_FEATURE_KEY, new Identifier(Vinery.MODID, name));
-	}
-
-	 */
 	public static Collection<ServerPlayer> tracking(ServerLevel world, BlockPos pos) {
 		Objects.requireNonNull(pos, "BlockPos cannot be null");
 
 		return tracking(world, new ChunkPos(pos));
 	}
+
+	public static boolean isFullAndSolid(LevelReader levelReader, BlockPos blockPos){
+		return isFaceFull(levelReader, blockPos) && isSolid(levelReader, blockPos);
+	}
+
+	public static boolean isFaceFull(LevelReader levelReader, BlockPos blockPos){
+		BlockPos belowPos = blockPos.below();
+		return Block.isFaceFull(levelReader.getBlockState(belowPos).getShape(levelReader, belowPos), Direction.UP);
+	}
+
+	public static boolean isSolid(LevelReader levelReader, BlockPos blockPos){
+		return levelReader.getBlockState(blockPos.below()).getMaterial().isSolid();
+	}
+
 
 	public static Collection<ServerPlayer> tracking(ServerLevel world, ChunkPos pos) {
 		Objects.requireNonNull(world, "The world cannot be null");

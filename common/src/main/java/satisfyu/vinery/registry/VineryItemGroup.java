@@ -33,7 +33,7 @@ public class VineryItemGroup {
                 APPLE_CIDER.get(),
 
                 JELLIE_WINE.get(),
-                CHERRY_JAR.get(), CHERRY_JAM.get(), APPLE_JAM.get(), SWEETBERRY_JAM.get(), GRAPE_JAM.get(), PALE_STEM.get(), SHELF.get(), FLOWER_BOX.get(),
+                CHERRY_JAR.get(), CHERRY_JAM.get(), APPLE_JAM.get(), SWEETBERRY_JAM.get(), GRAPE_JAM.get(), GRAPEVINE_STEM.get(), SHELF.get(), FLOWER_BOX.get(),
                 FLOWER_POT.get(), BASKET.get(), COOKING_POT.get(), STACKABLE_LOG.get()
         );
 

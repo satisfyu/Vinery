@@ -3,7 +3,6 @@ package satisfyu.vinery.client.render.block;
 import satisfyu.vinery.block.FlowerBoxBlock;
 import satisfyu.vinery.block.entity.FlowerBoxBlockEntity;
 
-import static satisfyu.vinery.util.ClientUtil.renderBlock;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -12,6 +11,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.state.BlockState;
+import satisfyu.vinery.util.ClientUtil;
 
 
 public class FlowerBoxBlockRenderer implements BlockEntityRenderer<FlowerBoxBlockEntity> {
@@ -29,13 +29,11 @@ public class FlowerBoxBlockRenderer implements BlockEntityRenderer<FlowerBoxBloc
             applyBlockAngle(matrices, selfState);
             matrices.translate(-0.25f, 0.25f, 0.25f);
             if (!entity.isSlotEmpty(0)) {
-                BlockState state = ((BlockItem) entity.getFlower(0).getItem()).getBlock().defaultBlockState();
-                renderBlock(state, matrices, vertexConsumers, entity);
+                ClientUtil.renderBlockFromItem((BlockItem) entity.getFlower(0).getItem(), matrices, vertexConsumers, entity);
             }
             matrices.translate(0.5f, 0f, 0f);
             if (!entity.isSlotEmpty(1)) {
-                BlockState state = ((BlockItem) entity.getFlower(1).getItem()).getBlock().defaultBlockState();
-                renderBlock(state, matrices, vertexConsumers, entity);
+                ClientUtil.renderBlockFromItem((BlockItem) entity.getFlower(1).getItem(), matrices, vertexConsumers, entity);
             }
             matrices.popPose();
         }

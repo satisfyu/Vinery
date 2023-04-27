@@ -10,10 +10,11 @@ import net.minecraft.world.item.HoneyBottleItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import satisfyu.vinery.registry.ObjectRegistry;
 
-public class JuiceItem extends HoneyBottleItem {
+public class JuiceItem extends ConsumAndReturnItem {
     public JuiceItem(Properties settings) {
-        super(settings);
+        super(settings, 40, ObjectRegistry.WINE_BOTTLE, true);
     }
 
     @Override
