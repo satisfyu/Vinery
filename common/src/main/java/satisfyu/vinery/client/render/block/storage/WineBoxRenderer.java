@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.render.block;
+package satisfyu.vinery.client.render.block.storage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -10,9 +10,10 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import satisfyu.vinery.block.WineBottleBlock;
 import satisfyu.vinery.block.entity.StorageBlockEntity;
+import satisfyu.vinery.client.render.block.storage.api.StorageTypeRenderer;
 import satisfyu.vinery.util.ClientUtil;
 
-public class WineBoxRenderer implements StorageTypeRenderer{
+public class WineBoxRenderer implements StorageTypeRenderer {
     @Override
     public void render(StorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> itemStacks) {
         BlockRenderDispatcher manager = Minecraft.getInstance().getBlockRenderer();
