@@ -43,7 +43,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class StackableLogBlock extends SlabBlock implements SimpleWaterloggedBlock {
+public class StackableLogBlock extends SlabBlock{
     public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;
     public static final BooleanProperty FIRED = BooleanProperty.create("fired");
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -93,7 +93,8 @@ public class StackableLogBlock extends SlabBlock implements SimpleWaterloggedBlo
     }
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(TYPE, FIRED, FACING, BlockStateProperties.WATERLOGGED);
+        super.createBlockStateDefinition(builder);
+        builder.add(FIRED, FACING);
     }
 
     @Override

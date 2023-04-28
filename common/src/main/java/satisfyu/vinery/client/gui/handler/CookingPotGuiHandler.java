@@ -111,9 +111,4 @@ public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
     public int getCraftingSlotCount() {
         return 7;
     }
-
-    @Override
-    public ItemStack quickMoveStack(Player player, int slot) {
-        return null;
-    }
 }

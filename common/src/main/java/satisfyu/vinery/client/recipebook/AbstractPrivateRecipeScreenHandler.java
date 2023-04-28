@@ -19,6 +19,4 @@ public abstract class AbstractPrivateRecipeScreenHandler extends AbstractContain
     public abstract boolean hasIngredient(Recipe<?> recipe);
 
     public abstract int getCraftingSlotCount();
-
-    public abstract ItemStack transferSlot(Player player, int invSlot);
 }

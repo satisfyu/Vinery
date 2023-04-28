@@ -2,26 +2,21 @@ package satisfyu.vinery.world;
 
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.feature.JungleRedBushFeature;
-import satisfyu.vinery.feature.JungleWhiteBushFeature;
+import satisfyu.vinery.feature.JungleGrapeFeature;
 
 import java.util.function.Supplier;
 
 public class VineryFeatures {
 
     private static final Registrar<Feature<?>> FEATURES = Vinery.REGISTRIES.get(Registries.FEATURE);
-    public static final RegistrySupplier<Feature<NoneFeatureConfiguration>> JUNGLE_RED_GRAPE_FEATURE = register("jungle_red_grape_feature", () -> new JungleRedBushFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistrySupplier<Feature<NoneFeatureConfiguration>> JUNGLE_WHITE_GRAPE_FEATURE = register("jungle_white_grape_feature", () -> new JungleWhiteBushFeature(NoneFeatureConfiguration.CODEC));
-
+    public static final RegistrySupplier<Feature<BlockStateConfiguration>> JUNGLE_GRAPE_FEATURE = register("jungle_grape_feature", () -> new JungleGrapeFeature(BlockStateConfiguration.CODEC));
     public static void init(){
         Vinery.LOGGER.debug("Registering Features!");
     }

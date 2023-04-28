@@ -195,6 +195,8 @@ public abstract class  PrivateRecipeBookWidget extends GuiComponent implements P
         }
     }
 
+
+
     private void refreshResults(boolean resetCurrentPage) {
         if (this.currentTab == null) return;
         if (this.searchField == null) return;
@@ -292,6 +294,7 @@ public abstract class  PrivateRecipeBookWidget extends GuiComponent implements P
 
     }
 
+    @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (this.open && !this.client.player.isSpectator()) {
             if (this.recipesArea.mouseClicked(mouseX, mouseY, button, (this.parentWidth - 147) / 2 - this.leftOffset, (this.parentHeight - 166) / 2, 147, 166)) {

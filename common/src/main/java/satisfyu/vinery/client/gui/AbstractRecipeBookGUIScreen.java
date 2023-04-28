@@ -2,6 +2,7 @@ package satisfyu.vinery.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -64,7 +65,7 @@ public abstract class AbstractRecipeBookGUIScreen<T extends AbstractPrivateRecip
 
         final int posX = this.leftPos;
         final int posY = this.topPos;
-        this.blit(matrices, posX, posY, 0, 0, this.imageWidth - 1, this.imageHeight);
+        blit(matrices, posX, posY, 0, 0, this.imageWidth - 1, this.imageHeight);
 
         renderProgressArrow(matrices);
         renderBurnIcon(matrices, posX, posY);

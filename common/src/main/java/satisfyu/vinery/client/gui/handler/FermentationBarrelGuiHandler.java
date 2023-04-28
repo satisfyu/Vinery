@@ -105,8 +105,4 @@ public class FermentationBarrelGuiHandler extends AbstractRecipeBookGUIScreenHan
         return 5;
     }
 
-    @Override
-    public ItemStack quickMoveStack(Player player, int slot) {
-        return null;
-    }
 }

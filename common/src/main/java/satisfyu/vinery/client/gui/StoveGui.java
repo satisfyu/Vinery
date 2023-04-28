@@ -1,6 +1,7 @@
 package satisfyu.vinery.client.gui;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import satisfyu.vinery.VineryIdentifier;
@@ -23,13 +24,13 @@ public class StoveGui extends AbstractRecipeBookGUIScreen<StoveGuiHandler> {
     @Override
     public void renderProgressArrow(PoseStack matrices) {
         int progress = this.menu.getScaledProgress(18);
-        this.blit(matrices, leftPos + 93, topPos + 32, 178, 20, progress, 25); //Position Arrow
+        blit(matrices, leftPos + 93, topPos + 32, 178, 20, progress, 25); //Position Arrow
     }
 
     @Override
     public void renderBurnIcon(PoseStack matrices, int posX, int posY) {
         if (this.menu.isBeingBurned()) {
-            this.blit(matrices, posX + 62, posY + 49, 176, 0, 17, 15); //fire
+            blit(matrices, posX + 62, posY + 49, 176, 0, 17, 15); //fire
         }
     }
 }

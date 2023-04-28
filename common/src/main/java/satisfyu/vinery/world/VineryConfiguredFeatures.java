@@ -71,8 +71,8 @@ public class VineryConfiguredFeatures {
         register(c, SAVANNA_WHITE_GRAPE_BUSH_PATCH_KEY, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(ObjectRegistry.SAVANNA_WHITE_GRAPE_BUSH.get(), 3));
 
 
-        register(c, JUNGLE_RED_GRAPE_BUSH_PATCH_KEY, VineryFeatures.JUNGLE_RED_GRAPE_FEATURE.get(), new NoneFeatureConfiguration());
-        register(c, JUNGLE_WHITE_GRAPE_BUSH_PATCH_KEY, VineryFeatures.JUNGLE_WHITE_GRAPE_FEATURE.get(), new NoneFeatureConfiguration());
+        register(c, JUNGLE_RED_GRAPE_BUSH_PATCH_KEY, VineryFeatures.JUNGLE_GRAPE_FEATURE.get(), new BlockStateConfiguration(ObjectRegistry.JUNGLE_RED_GRAPE_BUSH.get().defaultBlockState()));
+        register(c, JUNGLE_WHITE_GRAPE_BUSH_PATCH_KEY, VineryFeatures.JUNGLE_GRAPE_FEATURE.get(), new BlockStateConfiguration(ObjectRegistry.JUNGLE_WHITE_GRAPE_BUSH.get().defaultBlockState()));
     }
 
     public static RandomPatchConfiguration createRandomPatchFeatureConfig(Block block, int age){

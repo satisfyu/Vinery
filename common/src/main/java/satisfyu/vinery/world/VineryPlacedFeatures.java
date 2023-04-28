@@ -34,18 +34,24 @@ public class VineryPlacedFeatures {
         register(c, TREE_CHERRY_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.CHERRY_KEY), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.01f, 1), ObjectRegistry.CHERRY_SAPLING.get()));
         register(c, TREE_CHERRY_OLD_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.OLD_CHERRY_KEY), VegetationPlacements.treePlacement(PlacementUtils.countExtra(0, 0.01f, 1), ObjectRegistry.OLD_CHERRY_SAPLING.get()));
 
-        register(c, RED_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.RED_GRAPE_BUSH_PATCH_KEY), getGrapeModifiers());
-        register(c, WHITE_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.WHITE_GRAPE_BUSH_PATCH_KEY), getGrapeModifiers());
-        register(c, TAIGA_RED_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.TAIGA_RED_GRAPE_BUSH_PATCH_KEY), getGrapeModifiers());
-        register(c, TAIGA_WHITE_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.TAIGA_WHITE_GRAPE_BUSH_PATCH_KEY), getGrapeModifiers());
-        register(c, SAVANNA_RED_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.SAVANNA_RED_GRAPE_BUSH_PATCH_KEY), getGrapeModifiers());
-        register(c, SAVANNA_WHITE_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.SAVANNA_WHITE_GRAPE_BUSH_PATCH_KEY), getGrapeModifiers());
-        register(c, JUNGLE_RED_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.JUNGLE_RED_GRAPE_BUSH_PATCH_KEY), getGrapeModifiers());
-        register(c, JUNGLE_WHITE_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.JUNGLE_WHITE_GRAPE_BUSH_PATCH_KEY), getGrapeModifiers());
+        register(c, RED_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.RED_GRAPE_BUSH_PATCH_KEY), getGrapeBushModifiers());
+        register(c, WHITE_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.WHITE_GRAPE_BUSH_PATCH_KEY), getGrapeBushModifiers());
+        register(c, TAIGA_RED_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.TAIGA_RED_GRAPE_BUSH_PATCH_KEY), getGrapeBushModifiers());
+        register(c, TAIGA_WHITE_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.TAIGA_WHITE_GRAPE_BUSH_PATCH_KEY), getGrapeBushModifiers());
+        register(c, SAVANNA_RED_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.SAVANNA_RED_GRAPE_BUSH_PATCH_KEY), getGrapeBushModifiers());
+        register(c, SAVANNA_WHITE_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.SAVANNA_WHITE_GRAPE_BUSH_PATCH_KEY), getGrapeBushModifiers());
+        register(c, JUNGLE_RED_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.JUNGLE_RED_GRAPE_BUSH_PATCH_KEY), getJungleGrapeModifiers());
+        register(c, JUNGLE_WHITE_GRAPE_PATCH_CHANCE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(VineryConfiguredFeatures.JUNGLE_WHITE_GRAPE_BUSH_PATCH_KEY), getJungleGrapeModifiers());
     }
 
-    private static List<PlacementModifier> getGrapeModifiers(){
-        return List.of(RarityFilter.onAverageOnceEvery(92), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+    private static List<PlacementModifier> getGrapeModifiers(int rarity){
+        return List.of(RarityFilter.onAverageOnceEvery(rarity), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+    }
+    private static List<PlacementModifier> getJungleGrapeModifiers(){
+        return getGrapeModifiers(5);
+    }
+    private static List<PlacementModifier> getGrapeBushModifiers(){
+        return getGrapeModifiers(92);
     }
 
     private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration, List<PlacementModifier> modifiers) {
