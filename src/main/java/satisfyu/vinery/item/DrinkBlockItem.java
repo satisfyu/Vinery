@@ -6,6 +6,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemUsageContext;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.RaycastContext;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.WineYears;
 import net.minecraft.block.Block;
@@ -43,6 +49,14 @@ public class DrinkBlockItem extends BlockItem {
         BlockState blockState = this.getBlock().getPlacementState(context);
         return blockState != null && this.canPlace(context, blockState) ? blockState : null;
     }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        PlayerEntity playerEntity = context.getPlayer();
+        if(playerEntity == null || playerEntity.isSneaking()) return super.useOnBlock(context);
+        return ActionResult.PASS;
+    }
+
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
@@ -117,6 +131,7 @@ public class DrinkBlockItem extends BlockItem {
         }
         
         tooltip.add(Text.empty());
+        tooltip.add(Text.translatable("block.vinery.canbeplaced.tooltip").formatted(Formatting.GRAY, Formatting.ITALIC));
         tooltip.add(Text.translatable("tooltip.vinery.year").formatted(Formatting.GRAY).append(Text.of(" " + WineYears.getWineYear(stack, world))));
     }
 

@@ -50,7 +50,7 @@ public class GrapevinePotBlock extends Block {
             Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 4.0, 16.0)
     );
     private static final int MAX_STAGE = 6;
-    private static final int MAX_STORAGE = 9;
+    private static final int MAX_STORAGE = 6;
     private static final IntProperty STAGE = IntProperty.of("stage", 0, MAX_STAGE);
     private static final IntProperty STORAGE = IntProperty.of("storage", 0, MAX_STORAGE);
     private static final int DECREMENT_PER_WINE_BOTTLE = 3;
@@ -58,7 +58,7 @@ public class GrapevinePotBlock extends Block {
 
     public GrapevinePotBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(STAGE, 0).with(STORAGE, 0));
+        this.setDefaultState(this.getDefaultState().with(STAGE, 0).with(STORAGE, 0).with(GRAPEVINE_TYPE, GrapevineType.NONE));
     }
 
     @Override

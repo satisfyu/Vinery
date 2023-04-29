@@ -2,6 +2,7 @@ package satisfyu.vinery.block;
 
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -11,7 +12,9 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
@@ -23,6 +26,8 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.block.entity.WineBottleBlockEntity;
+
+import java.util.List;
 
 public class WineBottleBlock extends Block  implements BlockEntityProvider {
     public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
@@ -52,20 +57,26 @@ public class WineBottleBlock extends Block  implements BlockEntityProvider {
             }
         } else if (stack.isEmpty()) {
             if (blockEntity instanceof WineBottleBlockEntity wineEntity && wineEntity.getCount() >= 1) {
-                wineEntity.removeWine();
-                world.playSound(player, pos, SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.AMBIENT, 1.0F, 1.0F);
-                player.giveItemStack(this.asItem().getDefaultStack());
-                if (wineEntity.getCount() == 0) {
-                    world.breakBlock(pos, false);
+               if (player.isSneaking()) {
+                    wineEntity.removeWine();
+                    world.playSound(player, pos, SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.AMBIENT, 1.0F, 1.0F);
+                    player.giveItemStack(this.asItem().getDefaultStack());
+                    if (wineEntity.getCount() == 0) {
+                        world.breakBlock(pos, false);
+                    }
+                    else {
+                        world.setBlockState(pos, state.with(COUNT, state.get(COUNT) - 1), Block.NOTIFY_ALL);
+                    }
+                    return ActionResult.SUCCESS;
+                } else {
+                    return ActionResult.PASS;
                 }
-                else {
-                    world.setBlockState(pos, state.with(COUNT, state.get(COUNT) - 1), Block.NOTIFY_ALL);
-                }
-                return ActionResult.SUCCESS;
             }
         }
         return super.onUse(state, world, pos, player, hand, hit);
     }
+
+
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -100,4 +111,10 @@ public class WineBottleBlock extends Block  implements BlockEntityProvider {
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new WineBottleBlockEntity(pos, state, maxCount);
     }
+
+    @Override
+    public void appendTooltip(ItemStack itemStack, BlockView world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("block.vinery.canbeplaced.tooltip").formatted(Formatting.ITALIC, Formatting.GRAY));
+    }
 }
+
