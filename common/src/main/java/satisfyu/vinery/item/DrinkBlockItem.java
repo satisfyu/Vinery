@@ -40,9 +40,12 @@ public class DrinkBlockItem extends BlockItem {
         return UseAnim.DRINK;
     }
 
-    @Nullable
+
     @Override
     protected BlockState getPlacementState(BlockPlaceContext context) {
+        if (!context.getPlayer().isCrouching()) {
+            return null;
+        }
         BlockState blockState = this.getBlock().getStateForPlacement(context);
         return blockState != null && this.canPlace(context, blockState) ? blockState : null;
     }
@@ -120,6 +123,7 @@ public class DrinkBlockItem extends BlockItem {
         }
         
         tooltip.add(Component.empty());
+        tooltip.add(Component.translatable("block.vinery.canbeplaced.tooltip").withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("tooltip.vinery.year").withStyle(ChatFormatting.GRAY).append(Component.nullToEmpty(" " + WineYears.getWineYear(stack, world))));
     }
 
