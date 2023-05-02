@@ -9,7 +9,7 @@ import satisfyu.vinery.util.boat.impl.TerraformBoatInitializer;
 public final class TerraformBoatClientInitializer  {
 
 	public static void init() {
-		EntityRendererRegistry.register(TerraformBoatInitializer.BOAT, context -> new MyBoatEntityRenderer(context, false));
-		EntityRendererRegistry.register(TerraformBoatInitializer.CHEST_BOAT, context -> new MyBoatEntityRenderer(context, true));
+		EntityRendererRegistry.register(TerraformBoatInitializer.BOAT, context -> new CustomBoatEntityRenderer(context, false));
+		EntityRendererRegistry.register(TerraformBoatInitializer.CHEST_BOAT, context -> new CustomBoatEntityRenderer(context, true));
 	}
 }

@@ -22,17 +22,17 @@ import org.jetbrains.annotations.NotNull;
 import org.joml.Quaternionf;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
-import satisfyu.vinery.util.boat.api.client.TerraformBoatClientHelper;
+import satisfyu.vinery.util.boat.api.client.CustomBoatClientHelper;
 import satisfyu.vinery.util.boat.impl.entity.MyHolder;
 
 import java.util.Map;
 
 @Environment(EnvType.CLIENT)
-public class MyBoatEntityRenderer extends BoatRenderer {
+public class CustomBoatEntityRenderer extends BoatRenderer {
 
 	private final Map<TerraformBoatType, Pair<ResourceLocation, ListModel<Boat>>> texturesAndModels;
 
-	public MyBoatEntityRenderer(EntityRendererProvider.Context context, boolean chest) {
+	public CustomBoatEntityRenderer(EntityRendererProvider.Context context, boolean chest) {
 		super(context, chest);
 
 		this.texturesAndModels = TerraformBoatTypeRegistry.entrySet().stream().collect(ImmutableMap.toImmutableMap(Map.Entry::getValue, entry -> {
@@ -42,7 +42,7 @@ public class MyBoatEntityRenderer extends BoatRenderer {
 			ResourceLocation id = entry.getKey();
 			ResourceLocation textureId = new ResourceLocation(id.getNamespace(), "textures/entity/" + prefix + id.getPath() + ".png");
 
-			ModelLayerLocation layer = TerraformBoatClientHelper.getLayer(id, raft, chest);
+			ModelLayerLocation layer = CustomBoatClientHelper.getLayer(id, raft, chest);
 			ListModel<Boat> model = createModel(context.bakeLayer(layer), raft, chest);
 
 			return new Pair<>(textureId, model);
@@ -82,6 +82,7 @@ public class MyBoatEntityRenderer extends BoatRenderer {
 			}
 			poseStack.popPose();
 		}
+		else super.render(boat, f, g, poseStack, multiBufferSource, i);
 	}
 
 

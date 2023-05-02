@@ -1,6 +1,5 @@
 package satisfyu.vinery.forge.client;
 
-import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -16,9 +15,9 @@ import satisfyu.vinery.client.render.entity.MuleRenderer;
 import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
 import satisfyu.vinery.registry.VineryBoatTypes;
 import satisfyu.vinery.registry.VineryEntites;
-import satisfyu.vinery.util.boat.api.client.TerraformBoatClientHelper;
+import satisfyu.vinery.util.boat.api.client.CustomBoatClientHelper;
 import satisfyu.vinery.util.boat.impl.TerraformBoatInitializer;
-import satisfyu.vinery.util.boat.impl.client.MyBoatEntityRenderer;
+import satisfyu.vinery.util.boat.impl.client.CustomBoatEntityRenderer;
 
 @Mod.EventBusSubscriber(modid = Vinery.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class VineryClientForge {
@@ -33,8 +32,8 @@ public class VineryClientForge {
         event.registerEntityRenderer(VineryEntites.MULE.get(), MuleRenderer::new);
         event.registerEntityRenderer(VineryEntites.CHAIR.get(), ChairRenderer::new);
         event.registerEntityRenderer(VineryEntites.WANDERING_WINEMAKER.get(), WanderingWinemakerRenderer::new);
-        event.registerEntityRenderer(TerraformBoatInitializer.BOAT.get(), context -> new MyBoatEntityRenderer(context, false));
-        event.registerEntityRenderer(TerraformBoatInitializer.CHEST_BOAT.get(), context -> new MyBoatEntityRenderer(context, true));
+        event.registerEntityRenderer(TerraformBoatInitializer.BOAT.get(), context -> new CustomBoatEntityRenderer(context, false));
+        event.registerEntityRenderer(TerraformBoatInitializer.CHEST_BOAT.get(), context -> new CustomBoatEntityRenderer(context, true));
     }
 
     @SubscribeEvent
@@ -50,7 +49,7 @@ public class VineryClientForge {
 
 
     private static void registerModelLayer(EntityRenderersEvent.RegisterLayerDefinitions event, ResourceLocation boatId, boolean raft, boolean chest) {
-        event.registerLayerDefinition(TerraformBoatClientHelper.getLayer(boatId, raft, chest), TerraformBoatClientHelper.getTexturedModelDataProvider(raft, chest));
+        event.registerLayerDefinition(CustomBoatClientHelper.getLayer(boatId, raft, chest), CustomBoatClientHelper.getTexturedModelDataProvider(raft, chest));
     }
     public static void registerModelLayers(EntityRenderersEvent.RegisterLayerDefinitions event, ResourceLocation boatId, boolean raft) {
         registerModelLayer(event, boatId, raft, false);

@@ -14,8 +14,8 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.function.Supplier;
 
 @Environment(EnvType.CLIENT)
-public final class TerraformBoatClientHelper {
-	private TerraformBoatClientHelper() {
+public final class CustomBoatClientHelper {
+	private CustomBoatClientHelper() {
 		return;
 	}
 

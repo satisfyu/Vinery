@@ -14,9 +14,11 @@ public class VineryForge {
     public VineryForge() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         EventBuses.registerModEventBus(Vinery.MODID, modEventBus);
-        VineryForgeVillagers.register(modEventBus);
 
         Vinery.init();
+        VineryForgeVillagers.register(modEventBus);
+
+
 
 
         modEventBus.addListener(this::commonSetup);

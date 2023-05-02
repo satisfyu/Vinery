@@ -28,7 +28,7 @@ import satisfyu.vinery.client.render.block.WineBottleRenderer;
 import satisfyu.vinery.client.render.entity.MuleRenderer;
 import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
 import satisfyu.vinery.registry.*;
-import satisfyu.vinery.util.boat.api.client.TerraformBoatClientHelper;
+import satisfyu.vinery.util.boat.api.client.CustomBoatClientHelper;
 import satisfyu.vinery.util.boat.impl.client.TerraformBoatClientInitializer;
 import satisfyu.vinery.util.networking.VineryMessages;
 import satisfyu.vinery.util.sign.SpriteIdentifierRegistry;
@@ -111,7 +111,7 @@ public class VineryClient {
         //layers
         EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);
         CustomArmorRegistry.registerArmorModelLayers();
-        TerraformBoatClientHelper.registerModelLayers(VineryBoatTypes.CHERRY_BOAT_ID, false);
+        CustomBoatClientHelper.registerModelLayers(VineryBoatTypes.CHERRY_BOAT_ID, false);
     }
 
     

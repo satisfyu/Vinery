@@ -18,6 +18,9 @@ import java.util.function.Supplier;
 
 public class VineryBlockEntityTypes {
 
+    
+
+
     private static final Registrar<BlockEntityType<?>> BLOCK_ENTITY_TYPES = Vinery.REGISTRIES.get(Registries.BLOCK_ENTITY_TYPE);
 
     public static final RegistrySupplier<BlockEntityType<WoodFiredOvenBlockEntity>> WOOD_FIRED_OVEN_BLOCK_ENTITY = create("wood_fired_oven",() -> BlockEntityType.Builder.of(WoodFiredOvenBlockEntity::new, ObjectRegistry.WOOD_FIRED_OVEN.get()).build(null));

@@ -10,8 +10,8 @@ import satisfyu.vinery.util.boat.impl.item.TerraformBoatDispenserBehavior;
 import satisfyu.vinery.util.boat.impl.item.TerraformBoatItem;
 
 
-public final class TerraformBoatItemHelper {
-	private TerraformBoatItemHelper() {
+public final class CustomBoatItemHelper {
+	private CustomBoatItemHelper() {
 		return;
 	}
 
