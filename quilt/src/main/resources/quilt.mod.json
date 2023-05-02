@@ -31,7 +31,7 @@
     "entrypoints": {
       "init": "satisfyu.vinery.quilt.VineryQuilt",
       "client": "satisfyu.vinery.fabriclike.client.VineryClientFabricLike",
-      "vinery": "satisfyu.vinery.fabriclike.registry.VineryFabricLikeDefaultAPI",
+      "vinery": "satisfyu.vinery.util.api.VineryDefaultAPI",
       "rei_client": "satisfyu.vinery.compat.rei.VineryReiClientPlugin"
     },
     "depends": [

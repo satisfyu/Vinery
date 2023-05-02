@@ -8,6 +8,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.ProfilePublicKey;
 import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -24,8 +25,8 @@ public abstract class ClientPlayerEntityMixin extends AbstractClientPlayer {
     private int jumpCount = 0;
     private boolean jumpedLastTick = false;
 
-    public ClientPlayerEntityMixin(ClientLevel world, GameProfile profile) {
-        super(world, profile);
+    public ClientPlayerEntityMixin(ClientLevel world, GameProfile profile, @Nullable ProfilePublicKey publicKey) {
+        super(world, profile, publicKey);
     }
 
     @Inject(method = "aiStep", at = @At("HEAD"))

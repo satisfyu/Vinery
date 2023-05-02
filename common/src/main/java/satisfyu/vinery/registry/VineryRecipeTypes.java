@@ -1,30 +1,25 @@
 package satisfyu.vinery.registry;
 
+import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.core.Registry;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.recipe.CookingPotRecipe;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.recipe.WoodFiredOvenRecipe;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Supplier;
 
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 
 public class VineryRecipeTypes {
 
-    private static final Registrar<RecipeType<?>> RECIPE_TYPES = Vinery.REGISTRIES.get(Registries.RECIPE_TYPE);
-    private static final Registrar<RecipeSerializer<?>> RECIPE_SERIALIZERS = Vinery.REGISTRIES.get(Registries.RECIPE_SERIALIZER);
+    private static final Registrar<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Vinery.MODID, Registry.RECIPE_TYPE_REGISTRY).getRegistrar();
+    private static final Registrar<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Vinery.MODID, Registry.RECIPE_SERIALIZER_REGISTRY).getRegistrar();
 
     public static final RegistrySupplier<RecipeType<WoodFiredOvenRecipe>> WOOD_FIRED_OVEN_RECIPE_TYPE = create("wood_fired_oven_cooking");
     public static final RegistrySupplier<RecipeSerializer<WoodFiredOvenRecipe>> WOOD_FIRED_OVEN_RECIPE_SERIALIZER = create("wood_fired_oven_cooking", WoodFiredOvenRecipe.Serializer::new);

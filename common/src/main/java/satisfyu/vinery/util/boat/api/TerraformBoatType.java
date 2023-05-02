@@ -1,43 +1,35 @@
 package satisfyu.vinery.util.boat.api;
 
-import net.minecraft.resources.ResourceLocation;
+import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import satisfyu.vinery.util.boat.impl.TerraformBoatTypeImpl;
-import satisfyu.vinery.util.boat.impl.entity.TerraformBoatEntity;
-import satisfyu.vinery.util.boat.impl.entity.TerraformChestBoatEntity;
+
 
 public interface TerraformBoatType {
-	boolean isRaft();
+
 	Item getItem();
+
 	Item getChestItem();
-	Item getPlanks();
+	default Item getPlanks() {
+		return Items.OAK_PLANKS;
+	}
 
 	public static class Builder {
-		private boolean raft;
-		private Item item;
-		private Item chestItem;
-		private Item planks;
+		private RegistrySupplier<Item> item;
+		private RegistrySupplier<Item> chestItem;
 
 		public TerraformBoatType build() {
-			return new TerraformBoatTypeImpl(this.raft, this.item, this.chestItem, this.planks);
-		}
-		public Builder raft() {
-			this.raft = true;
-			return this;
+			return new TerraformBoatTypeImpl(this.item, this.chestItem);
 		}
 
-		public Builder item(Item item) {
+		public Builder item(RegistrySupplier<Item> item) {
 			this.item = item;
 			return this;
 		}
 
-		public Builder chestItem(Item chestItem) {
+		public Builder chestItem(RegistrySupplier<Item> chestItem) {
 			this.chestItem = chestItem;
-			return this;
-		}
-
-		public Builder planks(Item planks) {
-			this.planks = planks;
 			return this;
 		}
 	}

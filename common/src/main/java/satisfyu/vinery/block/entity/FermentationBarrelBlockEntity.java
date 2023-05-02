@@ -109,7 +109,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Contai
     }
 
     private boolean canCraft(Recipe<?> recipe) {
-        if (recipe == null || recipe.getResultItem(this.level.registryAccess()).isEmpty()) {
+        if (recipe == null || recipe.getResultItem().isEmpty()) {
             return false;
         } else if (areInputsEmpty()) {
             return false;
@@ -168,7 +168,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Contai
     }
 
     private ItemStack generateOutputItem(Recipe<?> recipe) {
-        ItemStack outputStack = recipe.getResultItem(this.level.registryAccess());
+        ItemStack outputStack = recipe.getResultItem();
 
         if (!(outputStack.getItem() instanceof EffectFood)) {
             return outputStack;

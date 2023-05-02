@@ -1,5 +1,6 @@
 package satisfyu.vinery.client.render.block;
 
+import com.mojang.math.Vector3f;
 import satisfyu.vinery.block.WineBottleBlock;
 import satisfyu.vinery.block.entity.WineBottleBlockEntity;
 import satisfyu.vinery.registry.ObjectRegistry;
@@ -8,7 +9,6 @@ import static satisfyu.vinery.block.WineBottleBlock.COUNT;
 import static satisfyu.vinery.util.ClientUtil.renderBlock;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -44,15 +44,15 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
         switch (state.getValue(WineBottleBlock.FACING)) {
             case NORTH -> {
                 matrices.translate(0f, 0f, 1f);
-                matrices.mulPose(Axis.YP.rotationDegrees(90));
+                matrices.mulPose(Vector3f.YP.rotationDegrees(90));
             }
             case WEST -> {
                 matrices.translate(1f, 0f, 1f);
-                matrices.mulPose(Axis.YP.rotationDegrees(180));
+                matrices.mulPose(Vector3f.YP.rotationDegrees(180));
             }
             case SOUTH -> {
                 matrices.translate(1f, 0f, 0f);
-                matrices.mulPose(Axis.YP.rotationDegrees(270));
+                matrices.mulPose(Vector3f.YP.rotationDegrees(270));
             }
         }
     }
@@ -65,7 +65,7 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
         matrices.translate(-0.15f, 0f, -0.25f);
         renderBlock(defaultState, matrices, vertexConsumers, entity);
         matrices.translate(.1f, 0f, .8f);
-        matrices.mulPose(Axis.YP.rotationDegrees(30));
+        matrices.mulPose(Vector3f.YP.rotationDegrees(30));
         renderBlock(defaultState, matrices, vertexConsumers, entity);
 }
 
@@ -76,12 +76,12 @@ public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEn
         renderBlock(defaultState, matrices, vertexConsumers, entity);
         if (defaultState.getBlock() == ObjectRegistry.KELP_CIDER.get()) {
             matrices.translate(.35f, .7f, -.13f);
-            matrices.mulPose(Axis.XP.rotationDegrees(90));
+            matrices.mulPose(Vector3f.XP.rotationDegrees(90));
             renderBlock(defaultState, matrices, vertexConsumers, entity);
             return;
         }
         matrices.translate(.1f, 0f, 0f);
-        matrices.mulPose(Axis.YP.rotationDegrees(30));
+        matrices.mulPose(Vector3f.YP.rotationDegrees(30));
         renderBlock(defaultState, matrices, vertexConsumers, entity);
     }
 }

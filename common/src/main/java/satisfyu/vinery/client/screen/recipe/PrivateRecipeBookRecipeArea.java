@@ -44,7 +44,9 @@ public class PrivateRecipeBookRecipeArea {
         this.cookingPanScreenHandler = cookingPanScreenHandler;
 
         for(int i = 0; i < this.resultButtons.size(); ++i) {
-            this.resultButtons.get(i).setPos(parentLeft + 11 + 25 * (i % 5), parentTop + 31 + 25 * (i / 5));
+            PrivateAnimatedResultButton button = this.resultButtons.get(i);
+            button.x = parentLeft + 11 + 25 * (i % 5);
+            button.y = parentTop + 31 + 25 * (i / 5);
         }
 
         this.nextPageButton = new StateSwitchingButton(parentLeft + 93, parentTop + 137, 12, 17, false);
@@ -97,7 +99,7 @@ public class PrivateRecipeBookRecipeArea {
 
         for (PrivateAnimatedResultButton animatedResultButton : this.resultButtons) {
             animatedResultButton.render(matrices, mouseX, mouseY, delta);
-            if (animatedResultButton.visible && animatedResultButton.isHovered()) {
+            if (animatedResultButton.visible && animatedResultButton.isHoveredOrFocused()) {
                 this.hoveredResultButton = animatedResultButton;
             }
         }

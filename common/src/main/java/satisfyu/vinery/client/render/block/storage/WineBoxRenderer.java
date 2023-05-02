@@ -1,7 +1,7 @@
 package satisfyu.vinery.client.render.block.storage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
+import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
@@ -21,9 +21,9 @@ public class WineBoxRenderer implements StorageTypeRenderer {
         matrices.scale(0.7f, 0.7f, 0.7f);
         ItemStack stack = itemStacks.get(0);
         if (!stack.isEmpty() && stack.getItem() instanceof BlockItem blockItem) {
-            matrices.mulPose(Axis.ZP.rotation(90f));
+            matrices.mulPose(Vector3f.ZP.rotation(90f));
 
-            matrices.mulPose(Axis.YN.rotation(90f));
+            matrices.mulPose(Vector3f.YN.rotation(90f));
 
             ClientUtil.renderBlock(blockItem.getBlock().defaultBlockState().setValue(WineBottleBlock.COUNT, 0), matrices, vertexConsumers, entity);
         }

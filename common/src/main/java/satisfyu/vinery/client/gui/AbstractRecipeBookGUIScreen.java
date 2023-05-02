@@ -14,6 +14,7 @@ import net.minecraft.world.inventory.Slot;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.recipebook.AbstractPrivateRecipeScreenHandler;
 import satisfyu.vinery.client.recipebook.PrivateRecipeBookWidget;
+import satisfyu.vinery.util.ClientUtil;
 
 public abstract class AbstractRecipeBookGUIScreen<T extends AbstractPrivateRecipeScreenHandler> extends AbstractContainerScreen<T> {
     private final ResourceLocation BACKGROUND;
@@ -36,7 +37,8 @@ public abstract class AbstractRecipeBookGUIScreen<T extends AbstractPrivateRecip
         this.addRenderableWidget(new ImageButton(this.leftPos + 5, this.topPos + 25, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, (button) -> {
             this.recipeBook.toggleOpen();
             this.leftPos = this.recipeBook.findLeftEdge(this.width, this.imageWidth);
-            button.setPosition(this.leftPos +  5, this.topPos + 25);
+            ClientUtil.setButtonPosition(button, this.leftPos +  5, this.topPos + 25);
+
         }));
         this.titleLabelX += 20;
     }

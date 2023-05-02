@@ -1,5 +1,6 @@
 package satisfyu.vinery.item;
 
+import net.minecraft.world.entity.EquipmentSlot;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.registry.VineryMaterials;
@@ -15,7 +16,7 @@ public class StrawHatItem extends CustomModelArmorItem implements WineMakerArmor
 
 
     public StrawHatItem(Properties settings) {
-        super(VineryMaterials.VINEMAKER_ARMOR, Type.HELMET, settings);
+        super(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.HEAD, settings);
     }
 
     @Override

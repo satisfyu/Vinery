@@ -6,7 +6,6 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import satisfyu.vinery.registry.VineryEffects;
 import satisfyu.vinery.util.VineryFoodComponent;
 import satisfyu.vinery.util.WineYears;
@@ -15,7 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 import java.util.Map;
-import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -92,7 +90,7 @@ public abstract class LivingEntityMixin extends Entity {
 
 	@Inject(method = "hurt", at = @At(value = "HEAD"), cancellable = true)
 	private void hasImprovedFireResistance(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		if (source.is(DamageTypeTags.IS_FIRE) && hasStatusEffect(VineryEffects.IMPROVED_FIRE_RESISTANCE.get())) {
+		if (source.isFire() && hasStatusEffect(VineryEffects.IMPROVED_FIRE_RESISTANCE.get())) {
 			cir.setReturnValue(false);
 		}
 	}

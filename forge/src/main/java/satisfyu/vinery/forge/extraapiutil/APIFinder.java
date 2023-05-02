@@ -7,7 +7,8 @@ import net.minecraftforge.forgespi.language.IModInfo;
 import net.minecraftforge.forgespi.language.ModFileScanData;
 import org.objectweb.asm.Type;
 import satisfyu.vinery.Vinery;
-import satisfyu.vinery.util.VineryApi;
+import satisfyu.vinery.util.api.VineryApi;
+import satisfyu.vinery.util.api.VineryPlugin;
 
 import java.util.List;
 

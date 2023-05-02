@@ -1,4 +1,4 @@
-package satisfyu.vinery.forge.extraapiutil;
+package satisfyu.vinery.util.api;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

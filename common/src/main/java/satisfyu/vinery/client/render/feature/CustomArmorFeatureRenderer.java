@@ -4,7 +4,6 @@ package satisfyu.vinery.client.render.feature;
 import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -19,10 +18,8 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.item.CustomModelArmorItem;
-import satisfyu.vinery.util.VineryApi;
 
 import java.util.Map;
 

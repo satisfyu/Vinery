@@ -1,5 +1,6 @@
 package satisfyu.vinery.effect;
 
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.InstantenousMobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
@@ -14,7 +15,7 @@ public class ImprovedInstantHealth extends InstantenousMobEffect {
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity.isInvertedHealAndHarm()) {
-            entity.hurt(entity.level.damageSources().magic(), (float)(6 << amplifier));
+            entity.hurt(DamageSource.MAGIC, (float)(6 << amplifier));
         } else {
             entity.heal((float)Math.max(6 << amplifier, 0));
         }
@@ -24,7 +25,7 @@ public class ImprovedInstantHealth extends InstantenousMobEffect {
     @Override
     public void applyInstantenousEffect(@Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
         if (target.isInvertedHealAndHarm()) {
-            target.hurt(target.level.damageSources().magic(), (float)(6 << amplifier));
+            target.hurt(DamageSource.MAGIC, (float)(6 << amplifier));
         } else {
             int i = (int)(proximity * (double)(4 << amplifier) + 0.5);
             target.heal((float) i);

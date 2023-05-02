@@ -1,43 +1,31 @@
 package satisfyu.vinery.util.boat.impl;
 
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
 
-/**
- * A simple implementation of {@link TerraformBoatType}.
- */
 public class TerraformBoatTypeImpl implements TerraformBoatType {
-	private final boolean raft;
-	private final Item item;
-	private final Item chestItem;
-	private final Item planks;
+	private final RegistrySupplier<Item> item;
+	private final RegistrySupplier<Item> chestItem;
 
-	public TerraformBoatTypeImpl(boolean raft, Item item, Item chestItem, Item planks) {
-		this.raft = raft;
+	public TerraformBoatTypeImpl(RegistrySupplier<Item> item, RegistrySupplier<Item> chestItem) {
 		this.item = item;
 		this.chestItem = chestItem;
-		this.planks = planks;
-	}
-
-	@Override
-	public boolean isRaft() {
-		return this.raft;
 	}
 
 	@Override
 	public Item getItem() {
-		return this.item;
+		return this.item.get();
 	}
 
 	@Override
 	public Item getChestItem() {
-		return this.chestItem;
+		return this.chestItem.get();
 	}
 
 	@Override
 	public Item getPlanks() {
-		return this.planks;
+		return Items.OAK_PLANKS;
 	}
 }

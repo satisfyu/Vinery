@@ -8,7 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import org.quiltmc.loader.api.QuiltLoader;
 import satisfyu.vinery.Vinery;
-import satisfyu.vinery.util.VineryApi;
+import satisfyu.vinery.util.api.VineryApi;
 
 import java.util.HashSet;
 import java.util.Map;

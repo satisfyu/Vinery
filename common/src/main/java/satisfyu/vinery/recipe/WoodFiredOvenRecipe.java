@@ -38,7 +38,7 @@ public class WoodFiredOvenRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container inventory, RegistryAccess registryManager) {
+    public ItemStack assemble(Container container) {
         return output.copy();
     }
 
@@ -49,9 +49,10 @@ public class WoodFiredOvenRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess registryManager) {
+    public ItemStack getResultItem() {
         return this.output.copy();
     }
+
 
     @Override
     public NonNullList<Ingredient> getIngredients() {

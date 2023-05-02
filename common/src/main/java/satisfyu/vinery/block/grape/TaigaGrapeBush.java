@@ -1,5 +1,6 @@
 package satisfyu.vinery.block.grape;
 
+import net.minecraft.world.damagesource.DamageSource;
 import satisfyu.vinery.util.GrapevineType;
 
 import java.util.Iterator;
@@ -47,7 +48,7 @@ public class TaigaGrapeBush extends GrapeBush {
                 double d = Math.abs(entity.getX() - entity.xOld);
                 double e = Math.abs(entity.getZ() - entity.zOld);
                 if (d >= 0.003000000026077032 || e >= 0.003000000026077032) {
-                    entity.hurt(world.damageSources().sweetBerryBush(), 1.0F);
+                    entity.hurt(DamageSource.SWEET_BERRY_BUSH, 1.0F);
                 }
             }
 

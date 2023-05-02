@@ -7,6 +7,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 
 public interface IRecipeBookGroup {
-    boolean fitRecipe(Recipe<? extends Container> recipe, RegistryAccess registryManager);
+    boolean fitRecipe(Recipe<? extends Container> recipe);
     List<ItemStack> getIcons();
 }

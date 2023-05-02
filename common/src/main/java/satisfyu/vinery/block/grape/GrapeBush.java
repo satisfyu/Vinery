@@ -87,6 +87,11 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
     }
 
     @Override
+    public boolean isValidBonemealTarget(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, boolean bl) {
+        return blockState.getValue(AGE) < 3;
+    }
+
+    @Override
     public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
@@ -114,10 +119,6 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
         return new ItemStack(this.type.getFruit());
     }
 
-    @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, boolean isClient) {
-        return state.getValue(AGE) < 3;
-    }
 
     @Override
     public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {

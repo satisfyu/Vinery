@@ -2,12 +2,13 @@ package satisfyu.vinery.util;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
@@ -30,9 +31,14 @@ public class ClientUtil {
         renderBlock(item.getBlock().defaultBlockState(), matrices, vertexConsumers, entity);
     }
 
-    public static <T extends BlockEntity> void renderItem(ItemStack stack, PoseStack matrices, MultiBufferSource vertexConsumers, T entity, Level world){
-        Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemDisplayContext.GUI, ClientUtil.getLightLevel(entity.getLevel(), entity.getBlockPos()),
-                OverlayTexture.NO_OVERLAY, matrices, vertexConsumers, world, 1);
+    public static <T extends BlockEntity> void renderItem(ItemStack stack, PoseStack matrices, MultiBufferSource vertexConsumers, T entity){
+        Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.GUI, ClientUtil.getLightLevel(entity.getLevel(), entity.getBlockPos()),
+                OverlayTexture.NO_OVERLAY, matrices, vertexConsumers, 1);
+    }
+
+    public static <T extends Button> void setButtonPosition(T button, int x, int y){
+        button.x = x;
+        button.y = y;
     }
 
 }

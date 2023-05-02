@@ -26,7 +26,7 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots) {
-        this.ghostSlots.addSlot(recipe.getResultItem(this.client.level.registryAccess()), slots.get(5).x, slots.get(5).y);
+        this.ghostSlots.addSlot(recipe.getResultItem(), slots.get(5).x, slots.get(5).y);
         this.ghostSlots.addSlot(ObjectRegistry.WINE_BOTTLE.get().asItem().getDefaultInstance(), slots.get(0).x, slots.get(0).y);
         int j = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {
@@ -88,13 +88,4 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
         TOGGLE_FERMENTABLE_TEXT = Component.translatable("gui.vinery.recipebook.toggleRecipes.fermentable");
     }
 
-    @Override
-    public void setFocused(boolean focused) {
-
-    }
-
-    @Override
-    public boolean isFocused() {
-        return false;
-    }
 }

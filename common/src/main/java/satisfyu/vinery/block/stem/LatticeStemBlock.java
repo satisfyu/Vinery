@@ -142,7 +142,7 @@ public class LatticeStemBlock extends StemBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(BlockGetter world, BlockPos pos, BlockState state, boolean isClient) {
         return !isMature(state) && state.getValue(AGE) > 0;
     }
 

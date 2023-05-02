@@ -2,7 +2,7 @@ package satisfyu.vinery.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
@@ -93,7 +93,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		if (getLevel() == null)
 			throw new NullPointerException("Null world invoked");
 		final BlockState belowState = this.getLevel().getBlockState(getBlockPos().below());
-		final var optionalList = BuiltInRegistries.BLOCK.getTag(VineryTags.ALLOWS_COOKING_ON_POT);
+		final var optionalList = Registry.BLOCK.getTag(VineryTags.ALLOWS_COOKING_ON_POT);
 		final var entryList = optionalList.orElse(null);
 		if (entryList == null) {
 			return false;
@@ -104,7 +104,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 	}
 	
 	private boolean canCraft(Recipe<?> recipe) {
-		if (recipe == null || recipe.getResultItem(this.level.registryAccess()).isEmpty()) {
+		if (recipe == null || recipe.getResultItem().isEmpty()) {
 			return false;
 		}
 		if(recipe instanceof CookingPotRecipe cookingRecipe){
@@ -176,7 +176,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 	}
 
 	private ItemStack generateOutputItem(Recipe<?> recipe) {
-		ItemStack outputStack = recipe.getResultItem(this.level.registryAccess());
+		ItemStack outputStack = recipe.getResultItem();
 
 		if (!(outputStack.getItem() instanceof EffectFood)) {
 			return outputStack;

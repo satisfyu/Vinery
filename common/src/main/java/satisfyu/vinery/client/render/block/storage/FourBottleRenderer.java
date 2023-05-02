@@ -1,7 +1,7 @@
 package satisfyu.vinery.client.render.block.storage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
+import com.mojang.math.Vector3f;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.BlockItem;
@@ -36,7 +36,7 @@ public class FourBottleRenderer implements StorageTypeRenderer {
                     matrices.popPose();
                     continue;
                 }
-                matrices.mulPose(Axis.XN.rotationDegrees(90));
+                matrices.mulPose(Vector3f.XN.rotationDegrees(90));
                 ClientUtil.renderBlock(blockItem.getBlock().defaultBlockState().setValue(WineBottleBlock.COUNT, 0), matrices, vertexConsumers, entity);
                 matrices.popPose();
             }

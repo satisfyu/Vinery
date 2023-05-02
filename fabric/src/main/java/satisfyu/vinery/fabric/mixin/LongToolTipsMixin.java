@@ -1,6 +1,5 @@
 package satisfyu.vinery.fabric.mixin;
 
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,7 +27,7 @@ public abstract class LongToolTipsMixin {
     }
 
     @Inject(method = "renderTooltipInternal", at = @At(value = "INVOKE", target = "Ljava/util/List;size()I", ordinal = 0))
-    public void fix(PoseStack poseStack, List<ClientTooltipComponent> list, int x, int y, ClientTooltipPositioner clientTooltipPositioner, CallbackInfo ci) {
+    public void fix(PoseStack poseStack, List<ClientTooltipComponent> list, int x, int y, CallbackInfo ci) {
         TooltipHelper.newFix(list, font, x, width);
     }
 

@@ -66,8 +66,6 @@ public class FermentationBarrelGuiHandler extends AbstractRecipeBookGUIScreenHan
         if (progress == 0) {
             return 0;
         }
-
-        System.out.println(progress * arrowWidth/ totalProgress + 1);
         return progress * arrowWidth/ totalProgress + 1;
     }
 

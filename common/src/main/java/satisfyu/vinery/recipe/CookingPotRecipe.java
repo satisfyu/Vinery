@@ -38,7 +38,7 @@ public class CookingPotRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container inventory, RegistryAccess registryManager) {
+    public ItemStack assemble(Container inventory) {
         return ItemStack.EMPTY;
     }
 
@@ -49,7 +49,7 @@ public class CookingPotRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess registryManager) {
+    public ItemStack getResultItem() {
         return this.output.copy();
     }
 

@@ -1,39 +1,33 @@
 package satisfyu.vinery.util.boat.impl.item;
 
+import java.util.function.Supplier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
-import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
-import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 import satisfyu.vinery.util.boat.impl.entity.TerraformBoatEntity;
 import satisfyu.vinery.util.boat.impl.entity.TerraformChestBoatEntity;
 
-/**
- * A {@linkplain DispenseItemBehavior dispenser behavior} that spawns a {@linkplain TerraformBoatEntity boat entity} with a given {@linkplain TerraformBoatType Terraform boat type}.
- */
 public class TerraformBoatDispenserBehavior extends DefaultDispenseItemBehavior {
 	private static final DispenseItemBehavior FALLBACK_BEHAVIOR = new DefaultDispenseItemBehavior();
 	private static final float OFFSET_MULTIPLIER = 1.125F;
 
-	private final ResourceLocation boatKey;
+	private final Supplier<TerraformBoatType> boatSupplier;
 	private final boolean chest;
 
 	/**
-	 * @param boatKey a {@linkplain ResourceKey registry key} for the {@linkplain TerraformBoatType Terraform boat type} that should be spawned by this dispenser behavior
+	 * @param boatSupplier a {@linkplain Supplier supplier} for the {@linkplain TerraformBoatType Terraform boat type} that should be spawned by this dispenser behavior
 	 * @param chest whether the boat contains a chest
 	 */
-	public TerraformBoatDispenserBehavior(ResourceLocation boatKey, boolean chest) {
-		this.boatKey = boatKey;
+	public TerraformBoatDispenserBehavior(Supplier<TerraformBoatType> boatSupplier, boolean chest) {
+		this.boatSupplier = boatSupplier;
 		this.chest = chest;
 	}
 
@@ -54,7 +48,7 @@ public class TerraformBoatDispenserBehavior extends DefaultDispenseItemBehavior 
 			return FALLBACK_BEHAVIOR.dispense(pointer, stack);
 		}
 
-		TerraformBoatType boatType = TerraformBoatTypeRegistry.get(this.boatKey);
+		TerraformBoatType boatType = this.boatSupplier.get();
 		Boat boatEntity;
 
 		if (this.chest) {

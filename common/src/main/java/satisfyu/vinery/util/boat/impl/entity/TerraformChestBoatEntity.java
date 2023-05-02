@@ -1,8 +1,9 @@
 package satisfyu.vinery.util.boat.impl.entity;
 
-import java.util.Optional;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.EntityType;
@@ -13,11 +14,9 @@ import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.impl.TerraformBoatInitializer;
 import satisfyu.vinery.util.boat.impl.TerraformBoatTrackedData;
 
-/**
- * A {@linkplain ChestBoat chest boat entity} that stores a {@linkplain TerraformBoatType Terraform boat type}.
- */
-public class TerraformChestBoatEntity extends ChestBoat implements MyHolder {
-	private static final EntityDataAccessor<Optional<TerraformBoatType>> TERRAFORM_BOAT = SynchedEntityData.defineId(TerraformChestBoatEntity.class, TerraformBoatTrackedData.HANDLER);
+
+public class TerraformChestBoatEntity extends ChestBoat implements TerraformBoatHolder {
+	private static final EntityDataAccessor<TerraformBoatType> TERRAFORM_BOAT = SynchedEntityData.defineId(TerraformChestBoatEntity.class, TerraformBoatTrackedData.HANDLER);
 
 	public TerraformChestBoatEntity(EntityType<? extends TerraformChestBoatEntity> type, Level world) {
 		super(type, world);
@@ -38,12 +37,12 @@ public class TerraformChestBoatEntity extends ChestBoat implements MyHolder {
 
 	@Override
 	public TerraformBoatType getTerraformBoat() {
-		return this.entityData.get(TERRAFORM_BOAT).orElse(null);
+		return this.entityData.get(TERRAFORM_BOAT);
 	}
 
 	@Override
 	public void setTerraformBoat(TerraformBoatType boat) {
-		this.entityData.set(TERRAFORM_BOAT, Optional.of(boat));
+		this.entityData.set(TERRAFORM_BOAT, boat);
 	}
 
 	@Override
@@ -71,19 +70,19 @@ public class TerraformChestBoatEntity extends ChestBoat implements MyHolder {
 	}
 
 	@Override
-	public void setVariant(Type type) {
+	public void setType(Type type) {
 		return;
 	}
 
 	@Override
-	public Type getVariant() {
-		return this.getImpersonatedBoatType();
+	public Type getBoatType() {
+		return Type.OAK;
 	}
 
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(TERRAFORM_BOAT, Optional.empty());
+		this.entityData.define(TERRAFORM_BOAT, null);
 	}
 
 	// Serialization

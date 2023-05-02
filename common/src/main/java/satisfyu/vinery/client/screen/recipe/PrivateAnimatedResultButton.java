@@ -37,13 +37,9 @@ public class PrivateAnimatedResultButton extends AbstractWidget {
         return this.recipe;
     }
 
-    public void setPos(int x, int y) {
-        this.setX(x);
-        this.setY(y);
-    }
 
     @Override
-    public void renderWidget(PoseStack matrices, int mouseX, int mouseY, float delta) {
+    public void renderButton(PoseStack matrices, int mouseX, int mouseY, float delta) {
         Minecraft minecraftClient = Minecraft.getInstance();
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
@@ -59,24 +55,24 @@ public class PrivateAnimatedResultButton extends AbstractWidget {
         if (bl) {
             float f = 1.0F + 0.1F * (float)Math.sin((this.bounce / 15.0F * 3.1415927F));
             matrixStack.pushPose();
-            matrixStack.translate((this.getX() + 8), (this.getY() + 12), 0.0);
+            matrixStack.translate((this.x + 8), (this.y + 12), 0.0);
             matrixStack.scale(f, f, 1.0F);
-            matrixStack.translate((-(this.getX() + 8)), (-(this.getY() + 12)), 0.0);
+            matrixStack.translate((-(this.x + 8)), (-(this.y + 12)), 0.0);
             RenderSystem.applyModelViewMatrix();
             this.bounce -= delta;
         }
 
-        this.blit(matrices, this.getX(), this.getY(), i, j, this.width, this.height);
+        this.blit(matrices, this.x, this.y, i, j, this.width, this.height);
         Recipe<?> recipe = this.getResult();
         int k = 4;
 
-        minecraftClient.getItemRenderer().renderAndDecorateFakeItem(matrices, recipe.getResultItem(minecraftClient.level.registryAccess()), this.getX() + k, this.getY() + k);
+        minecraftClient.getItemRenderer().renderAndDecorateFakeItem(recipe.getResultItem(), this.x + k, this.y + k);
         if (bl) {
             matrixStack.popPose();
             RenderSystem.applyModelViewMatrix();
         }
-
     }
+
 
     private Recipe<?> getResult() {
         return this.recipe;
@@ -96,21 +92,23 @@ public class PrivateAnimatedResultButton extends AbstractWidget {
     }
 
     public List<Component> getTooltip(Screen screen) {
-        ItemStack itemStack = this.getResult().getResultItem(Minecraft.getInstance().level.registryAccess());
+        ItemStack itemStack = this.getResult().getResultItem();
         return Lists.newArrayList(screen.getTooltipFromItem(itemStack));
     }
-
-    @Override
-    protected void updateWidgetNarration(NarrationElementOutput builder) {
-        ItemStack itemStack = this.getResult().getResultItem(Minecraft.getInstance().level.registryAccess());
-        builder.add(NarratedElementType.TITLE, Component.translatable("narration.recipe", itemStack.getHoverName()));
-
-        builder.add(NarratedElementType.USAGE, Component.translatable("narration.button.usage.hovered"));
-    }
+    
+    
 
 
     @Override
     public int getWidth() {
         return 25;
+    }
+
+    @Override
+    public void updateNarration(NarrationElementOutput builder) {
+        ItemStack itemStack = this.getResult().getResultItem();
+        builder.add(NarratedElementType.TITLE, Component.translatable("narration.recipe", itemStack.getHoverName()));
+
+        builder.add(NarratedElementType.USAGE, Component.translatable("narration.button.usage.hovered"));
     }
 }

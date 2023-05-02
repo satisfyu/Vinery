@@ -1,4 +1,4 @@
-package satisfyu.vinery.util;
+package satisfyu.vinery.util.api;
 
 import java.util.Map;
 import java.util.Set;

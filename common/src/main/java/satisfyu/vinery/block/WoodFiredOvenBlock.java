@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.world.damagesource.DamageSource;
 import satisfyu.vinery.block.entity.WoodFiredOvenBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -125,7 +126,7 @@ public class WoodFiredOvenBlock extends Block implements EntityBlock {
         boolean isLit = state.getValue(LIT);
         if (isLit && !entity.fireImmune() && entity instanceof LivingEntity livingEntity &&
                 !EnchantmentHelper.hasFrostWalker(livingEntity)) {
-            entity.hurt(world.damageSources().inFire(), 1.f);
+            entity.hurt(DamageSource.IN_FIRE, 1.f);
         }
 
         super.stepOn(world, pos, state, entity);

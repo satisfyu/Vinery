@@ -25,7 +25,7 @@ public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots) {
-        this.ghostSlots.addSlot(recipe.getResultItem(this.client.level.registryAccess()), slots.get(7).x, slots.get(7).y);
+        this.ghostSlots.addSlot(recipe.getResultItem(), slots.get(7).x, slots.get(7).y);
         if (recipe instanceof CookingPotRecipe cookingPotRecipe) {
             this.ghostSlots.addSlot(cookingPotRecipe.getContainer(), slots.get(0).x, slots.get(0).y);
         }
@@ -93,15 +93,5 @@ public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
 
     static {
         TOGGLE_COOKABLE_TEXT = Component.translatable("gui.vinery.recipebook.toggleRecipes.cookable");
-    }
-
-    @Override
-    public void setFocused(boolean focused) {
-
-    }
-
-    @Override
-    public boolean isFocused() {
-        return false;
     }
 }

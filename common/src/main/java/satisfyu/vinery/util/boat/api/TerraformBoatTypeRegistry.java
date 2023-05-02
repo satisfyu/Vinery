@@ -5,9 +5,9 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Supplier;
 
 public class TerraformBoatTypeRegistry {
-
 	private static Map<ResourceLocation, TerraformBoatType> INSTANCE = new HashMap<>();
 
 	public static void register(ResourceLocation location, TerraformBoatType type){
@@ -28,6 +28,4 @@ public class TerraformBoatTypeRegistry {
 		}
 		throw new NullPointerException("Couldn't find BoatType");
 	}
-
-
 }

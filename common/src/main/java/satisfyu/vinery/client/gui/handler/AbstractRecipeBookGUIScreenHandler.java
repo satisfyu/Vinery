@@ -59,7 +59,7 @@ public abstract class AbstractRecipeBookGUIScreenHandler extends AbstractPrivate
                 return ItemStack.EMPTY;
             }
             if (itemStack2.isEmpty()) {
-                slot.setByPlayer(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             }
             slot.setChanged();
             if (itemStack2.getCount() == itemStack.getCount()) {

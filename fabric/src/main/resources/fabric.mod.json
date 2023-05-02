@@ -25,10 +25,7 @@
       "satisfyu.vinery.compat.rei.VineryReiClientPlugin"
     ],
     "vinery": [
-      "satisfyu.vinery.fabriclike.registry.VineryFabricLikeDefaultAPI"
-    ],
-    "fabric-datagen": [
-      "satisfyu.vinery.fabric.datagen.ModDataGeneration"
+      "satisfyu.vinery.util.api.VineryDefaultAPI"
     ]
   },
   "custom": {
@@ -44,7 +41,7 @@
   ],
   "depends": {
     "fabric-api": "*",
-    "minecraft": ">=1.19.4",
-    "architectury": ">=8.1.79"
+    "minecraft": ">=1.19.2",
+    "architectury": ">=6.5.77"
   }
 }

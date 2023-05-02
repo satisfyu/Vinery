@@ -1,15 +1,21 @@
 package satisfyu.vinery.util.boat.impl.client;
 
-import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
+
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.world.entity.EntityType;
+import satisfyu.vinery.client.VineryClient;
 import satisfyu.vinery.util.boat.impl.TerraformBoatInitializer;
 
-@Environment(EnvType.CLIENT)
-public final class TerraformBoatClientInitializer  {
+import java.util.Map;
+import java.util.function.Supplier;
 
-	public static void init() {
-		EntityRendererRegistry.register(TerraformBoatInitializer.BOAT, context -> new CustomBoatEntityRenderer(context, false));
-		EntityRendererRegistry.register(TerraformBoatInitializer.CHEST_BOAT, context -> new CustomBoatEntityRenderer(context, true));
+@Environment(EnvType.CLIENT)
+public final class TerraformBoatClientInitializer {
+
+	public static void init(Map<Supplier<EntityType<?>>, EntityRendererProvider<?>> map) {
+		VineryClient.registerEntityRenderer(map, TerraformBoatInitializer.BOAT, context -> new TerraformBoatEntityRenderer(context, false));
+		VineryClient.registerEntityRenderer(map, TerraformBoatInitializer.CHEST_BOAT, context -> new TerraformBoatEntityRenderer(context, true));
 	}
 }

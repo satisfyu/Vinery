@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
@@ -27,7 +28,7 @@ public enum CookingPotRecipeBookGroup implements IRecipeBookGroup {
         this.icons = ImmutableList.copyOf(entries);
     }
 
-    public boolean fitRecipe(Recipe<?> recipe, RegistryAccess registryManager) {
+    public boolean fitRecipe(Recipe<?> recipe) {
         if (recipe instanceof CookingPotRecipe cookingPotRecipe) {
             switch (this) {
                 case SEARCH -> {

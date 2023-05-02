@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -140,7 +141,7 @@ public class StackableLogBlock extends SlabBlock{
         boolean isLit = world.getBlockState(pos).getValue(FIRED);
         if (isLit && !entity.fireImmune() && entity instanceof LivingEntity livingEntity &&
                 !EnchantmentHelper.hasFrostWalker(livingEntity)) {
-            entity.hurt(world.damageSources().inFire(), 1.f);
+            entity.hurt(DamageSource.IN_FIRE, 1.f);
         }
 
         super.stepOn(world, pos, state, entity);

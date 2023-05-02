@@ -1,9 +1,10 @@
 package satisfyu.vinery.registry;
 
 import dev.architectury.core.item.ArchitecturySpawnEggItem;
+import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -11,17 +12,19 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.Material;
 import org.jetbrains.annotations.NotNull;
+import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.FlowerPotBlock;
 import satisfyu.vinery.block.*;
@@ -36,6 +39,7 @@ import satisfyu.vinery.block.storage.*;
 import satisfyu.vinery.item.*;
 import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.util.GrapevineType;
+import satisfyu.vinery.util.generators.ConfiguredFeatureSaplingGenerator;
 import satisfyu.vinery.util.sign.block.TerraformSignBlock;
 import satisfyu.vinery.util.sign.block.TerraformWallSignBlock;
 import satisfyu.vinery.world.VineryConfiguredFeatures;
@@ -43,11 +47,12 @@ import satisfyu.vinery.world.VineryConfiguredFeatures;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static satisfyu.vinery.Vinery.REGISTRIES;
 
 public class ObjectRegistry {
-    public static Registrar<Item> ITEMS = REGISTRIES.get(Registries.ITEM);
-    public static Registrar<Block> BLOCKS = REGISTRIES.get(Registries.BLOCK);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Vinery.MODID, Registry.ITEM_REGISTRY);
+    public static final Registrar<Item> ITEM_REGISTRAR = ITEMS.getRegistrar();
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Vinery.MODID, Registry.BLOCK_REGISTRY);
+    public static final Registrar<Block> BLOCK_REGISTRAR = BLOCKS.getRegistrar();
 
     //Grapes
     public static final RegistrySupplier<Block> RED_GRAPE_BUSH = registerB("red_grape_bush", () -> new GrapeBush(getBushSettings(), GrapevineType.RED));
@@ -81,17 +86,19 @@ public class ObjectRegistry {
 
 
     //Saplings
-    public static final RegistrySupplier<Block> CHERRY_SAPLING = registerB("cherry_sapling", () -> new SaplingBlock(new AbstractTreeGrower() {
+    public static final RegistrySupplier<Block> CHERRY_SAPLING = registerB("cherry_sapling", () -> new SaplingBlock(new ConfiguredFeatureSaplingGenerator() {
+
         @Override
-        protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull RandomSource random, boolean bees) {
+        protected @NotNull ResourceKey<ConfiguredFeature<?, ?>> getTreeConfiguredFeature(RandomSource random, boolean bees) {
             if (random.nextBoolean()) return VineryConfiguredFeatures.CHERRY_KEY;
             return VineryConfiguredFeatures.CHERRY_VARIANT_KEY;
         }
+
     }, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static final RegistrySupplier<Item>  CHERRY_SAPLING_ITEM = registerI("cherry_sapling", () -> new BlockItem(CHERRY_SAPLING.get(), getSettings()));
-    public static final RegistrySupplier<Block> OLD_CHERRY_SAPLING = registerB("old_cherry_sapling", () -> new SaplingBlock(new AbstractTreeGrower() {
+    public static final RegistrySupplier<Block> OLD_CHERRY_SAPLING = registerB("old_cherry_sapling", () -> new SaplingBlock(new ConfiguredFeatureSaplingGenerator() {
         @Override
-        protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull RandomSource random, boolean bees) {
+        protected @NotNull ResourceKey<ConfiguredFeature<?, ?>> getTreeConfiguredFeature(RandomSource random, boolean bees) {
             if (random.nextBoolean()) {
                 if (bees) return VineryConfiguredFeatures.OLD_CHERRY_BEE_KEY;
                 return VineryConfiguredFeatures.OLD_CHERRY_KEY;
@@ -179,15 +186,15 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  CHERRY_SLAB_ITEM = registerI("cherry_slab", () -> new BlockItem(CHERRY_SLAB.get(), getSettings()));
     public static final RegistrySupplier<Block> CHERRY_FENCE = registerB("cherry_fence", () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)));
     public static final RegistrySupplier<Item>  CHERRY_FENCE_ITEM = registerI("cherry_fence", () -> new BlockItem(CHERRY_FENCE.get(), getSettings()));
-    public static final RegistrySupplier<Block> CHERRY_FENCE_GATE = registerB("cherry_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE), WoodType.CHERRY));
+    public static final RegistrySupplier<Block> CHERRY_FENCE_GATE = registerB("cherry_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)));
     public static final RegistrySupplier<Item>  CHERRY_FENCE_GATE_ITEM = registerI("cherry_fence_gate", () -> new BlockItem(CHERRY_FENCE_GATE.get(), getSettings()));
-    public static final RegistrySupplier<Block> CHERRY_BUTTON = registerB("cherry_button", () -> woodenButton(BlockSetType.CHERRY));
+    public static final RegistrySupplier<Block> CHERRY_BUTTON = registerB("cherry_button", ObjectRegistry::woodenButton);
     public static final RegistrySupplier<Item>  CHERRY_BUTTON_ITEM = registerI("cherry_button", () -> new BlockItem(CHERRY_BUTTON.get(), getSettings()));
-    public static final RegistrySupplier<Block> CHERRY_PRESSURE_PLATE = registerB("cherry_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE), BlockSetType.CHERRY));
+    public static final RegistrySupplier<Block> CHERRY_PRESSURE_PLATE = registerB("cherry_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE)));
     public static final RegistrySupplier<Item>  CHERRY_PRESSURE_PLATE_ITEM = registerI("cherry_pressure_plate", () -> new BlockItem(CHERRY_PRESSURE_PLATE.get(), getSettings()));
-    public static final RegistrySupplier<Block> CHERRY_DOOR = registerB("cherry_door", () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR), BlockSetType.CHERRY));
+    public static final RegistrySupplier<Block> CHERRY_DOOR = registerB("cherry_door", () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR)));
     public static final RegistrySupplier<Item>  CHERRY_DOOR_ITEM = registerI("cherry_door", () -> new BlockItem(CHERRY_DOOR.get(), getSettings()));
-    public static final RegistrySupplier<Block> CHERRY_TRAPDOOR = registerB("cherry_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR), BlockSetType.CHERRY));
+    public static final RegistrySupplier<Block> CHERRY_TRAPDOOR = registerB("cherry_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR)));
     public static final RegistrySupplier<Item>  CHERRY_TRAPDOOR_ITEM = registerI("cherry_trapdoor", () -> new BlockItem(CHERRY_TRAPDOOR.get(), getSettings()));
 
     //Signs
@@ -303,9 +310,9 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> FAUCET = registerI("faucet", () -> new FaucetItem(getSettings()));
 
     public static final RegistrySupplier<Item> STRAW_HAT = registerI("straw_hat", () -> new StrawHatItem(getSettings().rarity(Rarity.RARE)));
-    public static final RegistrySupplier<Item> VINEMAKER_APRON = registerI("vinemaker_apron", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.CHESTPLATE, getSettings().rarity(Rarity.EPIC)));
-    public static final RegistrySupplier<Item> VINEMAKER_LEGGINGS = registerI("vinemaker_leggings", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.LEGGINGS, getSettings().rarity(Rarity.RARE)));
-    public static final RegistrySupplier<Item> VINEMAKER_BOOTS = registerI("vinemaker_boots", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.BOOTS, getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> VINEMAKER_APRON = registerI("vinemaker_apron", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings().rarity(Rarity.EPIC)));
+    public static final RegistrySupplier<Item> VINEMAKER_LEGGINGS = registerI("vinemaker_leggings", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> VINEMAKER_BOOTS = registerI("vinemaker_boots", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings().rarity(Rarity.RARE)));
     public static final RegistrySupplier<Item> GLOVES = registerI("gloves", () -> new GlovesItem(getSettings().rarity(Rarity.RARE)));
 
     public static final RegistrySupplier<Item> APPLE_MASH = registerI("apple_mash", () -> new CherryItem(getSettings().food(Foods.APPLE)));
@@ -340,17 +347,17 @@ public class ObjectRegistry {
 
     private static <T extends Item> RegistrySupplier<T> registerI(String path, Supplier<T> item) {
         final ResourceLocation id = new VineryIdentifier(path);
-        return ITEMS.register(id, item);
+        return ITEM_REGISTRAR.register(id, item);
     }
 
     private static <T extends Block> RegistrySupplier<T> registerB(String path, Supplier<T> block) {
         final ResourceLocation id = new VineryIdentifier(path);
-        return BLOCKS.register(id, block);
+        return BLOCK_REGISTRAR.register(id, block);
     }
 
 
     public static void init() {
-        VineryBoatTypes.initItems();
+
     }
 
      
@@ -407,13 +414,9 @@ public class ObjectRegistry {
         return BlockBehaviour.Properties.copy(Blocks.GLASS).noOcclusion().instabreak();
     }
 
-    private static ButtonBlock woodenButton(BlockSetType blockSetType) {
-        return new ButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5F), blockSetType, 30, true);
+    private static ButtonBlock woodenButton() {
+        return new WoodButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON));
     }
 
-
-    private static ButtonBlock createWoodenButtonBlock() {
-        return new ButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5f).sound(SoundType.WOOD), BlockSetType.CHERRY, 30,true);
-    }
 
 }

@@ -1,10 +1,8 @@
 package satisfyu.vinery.fabriclike.world;
 
 import net.fabricmc.fabric.api.biome.v1.*;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.world.VineryPlacedFeatures;
@@ -42,7 +40,7 @@ public class VineryBiomeModification {
     }
 
     private static Predicate<BiomeSelectionContext> getVinerySelector(String path) {
-        return BiomeSelectors.tag(TagKey.create(Registries.BIOME, new VineryIdentifier(path)));
+        return BiomeSelectors.tag(TagKey.create(Registry.BIOME_REGISTRY, new VineryIdentifier(path)));
     }
 
 

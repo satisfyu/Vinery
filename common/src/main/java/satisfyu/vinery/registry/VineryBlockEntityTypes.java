@@ -1,19 +1,15 @@
 package satisfyu.vinery.registry;
 
+import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
+import dev.architectury.registry.registries.Registries;
 import dev.architectury.registry.registries.RegistrySupplier;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.entity.*;
-import satisfyu.vinery.util.VineryApi;
-
-import java.util.HashSet;
-import java.util.Set;
 import java.util.function.Supplier;
 
 public class VineryBlockEntityTypes {
@@ -21,7 +17,7 @@ public class VineryBlockEntityTypes {
     
 
 
-    private static final Registrar<BlockEntityType<?>> BLOCK_ENTITY_TYPES = Vinery.REGISTRIES.get(Registries.BLOCK_ENTITY_TYPE);
+    private static final Registrar<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Vinery.MODID, Registry.BLOCK_ENTITY_TYPE_REGISTRY).getRegistrar();
 
     public static final RegistrySupplier<BlockEntityType<WoodFiredOvenBlockEntity>> WOOD_FIRED_OVEN_BLOCK_ENTITY = create("wood_fired_oven",() -> BlockEntityType.Builder.of(WoodFiredOvenBlockEntity::new, ObjectRegistry.WOOD_FIRED_OVEN.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<CookingPotEntity>> COOKING_POT_BLOCK_ENTITY = create("cooking_pot", () -> BlockEntityType.Builder.of(CookingPotEntity::new, ObjectRegistry.COOKING_POT.get()).build(null));

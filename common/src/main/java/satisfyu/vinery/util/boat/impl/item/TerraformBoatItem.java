@@ -1,8 +1,9 @@
 package satisfyu.vinery.util.boat.impl.item;
 
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -18,32 +19,23 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import satisfyu.vinery.Vinery;
-import satisfyu.vinery.VineryExpectPlatform;
 import satisfyu.vinery.util.boat.api.TerraformBoatType;
-import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 import satisfyu.vinery.util.boat.impl.entity.TerraformBoatEntity;
 import satisfyu.vinery.util.boat.impl.entity.TerraformChestBoatEntity;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Predicate;
-
-/**
- * An {@linkplain Item item} that spawns a {@linkplain TerraformBoatEntity boat entity} with a given {@linkplain TerraformBoatType Terraform boat type}.
- */
 public class TerraformBoatItem extends Item {
 	private static final Predicate<Entity> RIDERS = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
 
-	private final ResourceLocation key;
+	private final Supplier<TerraformBoatType> boatSupplier;
 	private final boolean chest;
 
-
-	public TerraformBoatItem(ResourceLocation key, boolean chest, Properties settings) {
+	/**
+	 * @param boatSupplier a {@linkplain Supplier supplier} for the {@linkplain TerraformBoatType Terraform boat type} that should be spawned by this item
+	 */
+	public TerraformBoatItem(Supplier<TerraformBoatType> boatSupplier, boolean chest, Properties settings) {
 		super(settings);
 
-		this.key = key;
+		this.boatSupplier = boatSupplier;
 		this.chest = chest;
 	}
 
@@ -75,9 +67,7 @@ public class TerraformBoatItem extends Item {
 			double y = hitResult.getLocation().y;
 			double z = hitResult.getLocation().z;
 
-
-			TerraformBoatType boatType = TerraformBoatTypeRegistry.get(key);
-
+			TerraformBoatType boatType = this.boatSupplier.get();
 			Boat boatEntity;
 
 			if (this.chest) {
@@ -98,7 +88,7 @@ public class TerraformBoatItem extends Item {
 			
 			if (!world.isClientSide()) {
 				world.addFreshEntity(boatEntity);
-				world.gameEvent(user, GameEvent.ENTITY_PLACE, BlockPos.containing(hitResult.getLocation()));
+				world.gameEvent(user, GameEvent.ENTITY_PLACE, new BlockPos(hitResult.getLocation()));
 
 				if (!user.getAbilities().instabuild) {
 					stack.shrink(1);
