@@ -3,8 +3,6 @@ package satisfyu.vinery.client.recipebook.custom;
 import com.google.common.collect.ImmutableList;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
@@ -51,7 +49,6 @@ public enum CookingPotRecipeBookGroup implements IRecipeBookGroup {
         }
         return false;
     }
-
 
     @Override
     public List<ItemStack> getIcons() {

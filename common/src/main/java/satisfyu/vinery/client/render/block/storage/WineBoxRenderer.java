@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import satisfyu.vinery.block.WineBottleBlock;
 import satisfyu.vinery.block.entity.StorageBlockEntity;
 import satisfyu.vinery.client.render.block.storage.api.StorageTypeRenderer;
-import satisfyu.vinery.util.ClientUtil;
+import satisfyu.vinery.client.ClientUtil;
 
 public class WineBoxRenderer implements StorageTypeRenderer {
     @Override

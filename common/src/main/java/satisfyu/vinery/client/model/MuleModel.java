@@ -1,5 +1,7 @@
 package satisfyu.vinery.client.model;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.entity.TraderMuleEntity;
@@ -15,6 +17,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 
+@Environment(EnvType.CLIENT)
 public class MuleModel<T extends TraderMuleEntity> extends EntityModel<T> {
 
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("trader_mule"), "main");

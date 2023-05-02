@@ -27,18 +27,12 @@ public abstract class AbstractRecipeBookGUIScreenHandler extends AbstractPrivate
     }
 
     @Override
-    public boolean stillValid(Player player) {
-        return this.inventory.stillValid(player);
-    }
-
-    @Override
     public ItemStack quickMoveStack(Player player, int invSlot) {
         final int entityInputStart = 0;
         int entityOutputSlot = this.inputSlots;
         final int inventoryStart = entityOutputSlot + 1;
         final int hotbarStart = inventoryStart + 9 * 3;
         final int hotbarEnd = hotbarStart + 9;
-
 
 
         ItemStack itemStack = ItemStack.EMPTY;
@@ -71,4 +65,8 @@ public abstract class AbstractRecipeBookGUIScreenHandler extends AbstractPrivate
         return itemStack;
     }
 
+    @Override
+    public boolean stillValid(Player player) {
+        return this.inventory.stillValid(player);
+    }
 }

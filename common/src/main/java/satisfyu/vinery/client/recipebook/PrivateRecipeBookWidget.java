@@ -10,8 +10,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.components.StateSwitchingButton;
+import net.minecraft.client.gui.components.Widget;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.recipebook.RecipeShownListener;
 import net.minecraft.client.renderer.GameRenderer;
@@ -226,7 +226,7 @@ public abstract class  PrivateRecipeBookWidget extends GuiComponent implements P
     private void refreshTabButtons() {
         int i = (this.parentWidth - 147) / 2 - this.leftOffset - 30;
         int j = (this.parentHeight - 166) / 2 + 3;
-
+        
         int l = 0;
         for (PrivateRecipeGroupButtonWidget recipeGroupButtonWidget : this.tabButtons) {
             recipeGroupButtonWidget.visible = true;

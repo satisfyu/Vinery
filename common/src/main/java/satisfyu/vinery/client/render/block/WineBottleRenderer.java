@@ -6,7 +6,7 @@ import satisfyu.vinery.block.entity.WineBottleBlockEntity;
 import satisfyu.vinery.registry.ObjectRegistry;
 
 import static satisfyu.vinery.block.WineBottleBlock.COUNT;
-import static satisfyu.vinery.util.ClientUtil.renderBlock;
+import static satisfyu.vinery.client.ClientUtil.renderBlock;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;

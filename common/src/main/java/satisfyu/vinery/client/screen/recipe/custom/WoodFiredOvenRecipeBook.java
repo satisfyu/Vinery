@@ -78,5 +78,4 @@ public class WoodFiredOvenRecipeBook extends PrivateRecipeBookWidget {
     static {
         TOGGLE_COOKABLE_TEXT = Component.translatable("gui.vinery.recipebook.toggleRecipes.cookable");
     }
-
 }

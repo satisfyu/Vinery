@@ -1,5 +1,7 @@
 package satisfyu.vinery.client.model.feature;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import satisfyu.vinery.VineryIdentifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -14,6 +16,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.Entity;
 
+@Environment(EnvType.CLIENT)
 public class StrawHatModel<T extends Entity> extends EntityModel<T> {
 
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("straw_hat"), "main");

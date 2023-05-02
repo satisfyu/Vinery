@@ -87,5 +87,4 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
     static {
         TOGGLE_FERMENTABLE_TEXT = Component.translatable("gui.vinery.recipebook.toggleRecipes.fermentable");
     }
-
 }

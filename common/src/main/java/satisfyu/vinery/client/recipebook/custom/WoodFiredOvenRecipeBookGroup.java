@@ -3,8 +3,6 @@ package satisfyu.vinery.client.recipebook.custom;
 import com.google.common.collect.ImmutableList;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
@@ -28,9 +26,7 @@ public enum WoodFiredOvenRecipeBookGroup implements IRecipeBookGroup {
         this.icons = ImmutableList.copyOf(entries);
     }
 
-
-    @Override
-    public boolean fitRecipe(Recipe<? extends Container> recipe) {
+    public boolean fitRecipe(Recipe<?> recipe) {
         if (recipe instanceof WoodFiredOvenRecipe woodFiredOvenRecipe) {
             switch (this) {
                 case SEARCH -> {

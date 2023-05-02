@@ -12,11 +12,9 @@ import java.util.List;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -102,5 +100,4 @@ public class FermentationBarrelGuiHandler extends AbstractRecipeBookGUIScreenHan
     public int getCraftingSlotCount() {
         return 5;
     }
-
 }

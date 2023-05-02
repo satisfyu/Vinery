@@ -37,6 +37,10 @@ public class PrivateAnimatedResultButton extends AbstractWidget {
         return this.recipe;
     }
 
+    public void setPos(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 
     @Override
     public void renderButton(PoseStack matrices, int mouseX, int mouseY, float delta) {
@@ -71,8 +75,8 @@ public class PrivateAnimatedResultButton extends AbstractWidget {
             matrixStack.popPose();
             RenderSystem.applyModelViewMatrix();
         }
-    }
 
+    }
 
     private Recipe<?> getResult() {
         return this.recipe;
@@ -95,14 +99,6 @@ public class PrivateAnimatedResultButton extends AbstractWidget {
         ItemStack itemStack = this.getResult().getResultItem();
         return Lists.newArrayList(screen.getTooltipFromItem(itemStack));
     }
-    
-    
-
-
-    @Override
-    public int getWidth() {
-        return 25;
-    }
 
     @Override
     public void updateNarration(NarrationElementOutput builder) {
@@ -110,5 +106,10 @@ public class PrivateAnimatedResultButton extends AbstractWidget {
         builder.add(NarratedElementType.TITLE, Component.translatable("narration.recipe", itemStack.getHoverName()));
 
         builder.add(NarratedElementType.USAGE, Component.translatable("narration.button.usage.hovered"));
+    }
+
+    @Override
+    public int getWidth() {
+        return 25;
     }
 }

@@ -1,7 +1,6 @@
 package satisfyu.vinery.client.gui;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import satisfyu.vinery.VineryIdentifier;
@@ -23,6 +22,6 @@ public class FermentationBarrelGui extends AbstractRecipeBookGUIScreen<Fermentat
     @Override
     public void renderProgressArrow(PoseStack matrices) {
         int progress = this.menu.getScaledProgress(23);
-        blit(matrices, leftPos + 94, topPos + 37, 177, 17, progress, 10); //Position Arrow
+        this.blit(matrices, leftPos + 94, topPos + 37, 177, 17, progress, 10); //Position Arrow
     }
 }

@@ -7,7 +7,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
 import satisfyu.vinery.block.entity.StorageBlockEntity;
 import satisfyu.vinery.client.render.block.storage.api.StorageTypeRenderer;
-import satisfyu.vinery.util.ClientUtil;
+import satisfyu.vinery.client.ClientUtil;
 
 public class ShelfRenderer implements StorageTypeRenderer {
     @Override

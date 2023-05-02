@@ -3,10 +3,8 @@ package satisfyu.vinery.client.recipebook;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 
 public abstract class AbstractPrivateRecipeScreenHandler extends AbstractContainerMenu {

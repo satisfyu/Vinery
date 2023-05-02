@@ -3,8 +3,6 @@ package satisfyu.vinery.client.recipebook.custom;
 import com.google.common.collect.ImmutableList;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
@@ -29,8 +27,9 @@ public enum FermentationBarrelRecipeBookGroup implements IRecipeBookGroup {
         this.icons = ImmutableList.copyOf(entries);
     }
 
-    @Override
-    public boolean fitRecipe(Recipe<? extends Container> recipe) {
+    public boolean fitRecipe(Recipe<?> recipe) {
+        System.out.println("test");
+        System.out.println(recipe instanceof FermentationBarrelRecipe fermentationBarrelRecipe);
         if (recipe instanceof FermentationBarrelRecipe fermentationBarrelRecipe) {
             switch (this) {
                 case SEARCH -> {

@@ -20,13 +20,13 @@ import net.minecraft.world.level.Level;
  */
 public class GrapeItem extends Item {
     private static final double CHANCE_OF_GETTING_SEEDS = 0.2;
-    private final ItemStack returnStack;
+    private final Item returnItem;
 
     private final GrapevineType type;
-    public GrapeItem(Properties settings, GrapevineType type, ItemStack returnStack) {
+    public GrapeItem(Properties settings, GrapevineType type, Item returnItem) {
         super(settings);
         this.type = type;
-        this.returnStack = returnStack;
+        this.returnItem = returnItem;
     }
 
     public GrapevineType getType() {
@@ -39,11 +39,13 @@ public class GrapeItem extends Item {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entityLiving) {
-        if (entityLiving instanceof Player playerEntity) {
+        if (!world.isClientSide() && entityLiving instanceof Player player) {
             if (stack.getItem() == this) {
-
-                if (RandomSource.create().nextDouble() < CHANCE_OF_GETTING_SEEDS) {
-                    playerEntity.addItem(returnStack);
+                if (world.getRandom().nextFloat() < CHANCE_OF_GETTING_SEEDS) {
+                    ItemStack returnStack = new ItemStack(returnItem);
+                    if (!player.getInventory().add(returnStack)) {
+                        player.drop(returnStack, false);
+                    }
                 }
             }
         }

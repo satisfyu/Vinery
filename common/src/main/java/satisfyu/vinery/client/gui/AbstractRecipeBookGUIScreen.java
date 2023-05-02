@@ -2,7 +2,6 @@ package satisfyu.vinery.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -14,7 +13,6 @@ import net.minecraft.world.inventory.Slot;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.recipebook.AbstractPrivateRecipeScreenHandler;
 import satisfyu.vinery.client.recipebook.PrivateRecipeBookWidget;
-import satisfyu.vinery.util.ClientUtil;
 
 public abstract class AbstractRecipeBookGUIScreen<T extends AbstractPrivateRecipeScreenHandler> extends AbstractContainerScreen<T> {
     private final ResourceLocation BACKGROUND;
@@ -37,8 +35,7 @@ public abstract class AbstractRecipeBookGUIScreen<T extends AbstractPrivateRecip
         this.addRenderableWidget(new ImageButton(this.leftPos + 5, this.topPos + 25, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, (button) -> {
             this.recipeBook.toggleOpen();
             this.leftPos = this.recipeBook.findLeftEdge(this.width, this.imageWidth);
-            ClientUtil.setButtonPosition(button, this.leftPos +  5, this.topPos + 25);
-
+            ((ImageButton)button).setPosition(this.leftPos +  5, this.topPos + 25);
         }));
         this.titleLabelX += 20;
     }
@@ -67,7 +64,7 @@ public abstract class AbstractRecipeBookGUIScreen<T extends AbstractPrivateRecip
 
         final int posX = this.leftPos;
         final int posY = this.topPos;
-        blit(matrices, posX, posY, 0, 0, this.imageWidth - 1, this.imageHeight);
+        this.blit(matrices, posX, posY, 0, 0, this.imageWidth - 1, this.imageHeight);
 
         renderProgressArrow(matrices);
         renderBurnIcon(matrices, posX, posY);
@@ -118,7 +115,7 @@ public abstract class AbstractRecipeBookGUIScreen<T extends AbstractPrivateRecip
 
     @Override
     public void removed() {
-        //this.recipeBook.close();
+        this.recipeBook.close();
         super.removed();
     }
 
