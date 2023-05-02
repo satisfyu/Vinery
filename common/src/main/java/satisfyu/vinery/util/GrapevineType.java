@@ -50,7 +50,6 @@ public enum GrapevineType implements IGrapevineType, StringRepresentable {
             case TAIGA_WHITE -> ObjectRegistry.TAIGA_WHITE_GRAPE.get();
             case SAVANNA_RED -> ObjectRegistry.SAVANNA_RED_GRAPE.get();
             case SAVANNA_WHITE -> ObjectRegistry.SAVANNA_WHITE_GRAPE.get();
-            case TOMATO -> ObjectRegistry.TOMATO.get();
             default -> ObjectRegistry.RED_GRAPE.get();
         };
     }
@@ -65,7 +64,6 @@ public enum GrapevineType implements IGrapevineType, StringRepresentable {
             case TAIGA_WHITE -> ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS.get();
             case SAVANNA_RED -> ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS.get();
             case SAVANNA_WHITE -> ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS.get();
-            case TOMATO -> ObjectRegistry.TOMATO_SEEDS.get();
             default -> ObjectRegistry.RED_GRAPE_SEEDS.get();
         };
     }

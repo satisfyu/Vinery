@@ -67,7 +67,7 @@ public class VineryClient {
                 GRAPE_JAM.get(), KELP_CIDER.get(), SAVANNA_RED_GRAPE_BUSH.get(), SAVANNA_WHITE_GRAPE_BUSH.get(),
                 CHORUS_WINE.get(), STAL_WINE.get(), MAGNETIC_WINE.get(), STRAD_WINE.get(), JUNGLE_WHITE_GRAPE_BUSH.get(),
                 JUNGLE_RED_GRAPE_BUSH.get(), TAIGA_RED_GRAPE_BUSH.get(), TAIGA_WHITE_GRAPE_BUSH.get(),
-                TOMATO_CROP.get(), GRAPEVINE_STEM.get(), GRAPEVINE_LATTICE.get(), WINE_BOX.get(), FLOWER_POT.get(), CHAIR.get(),
+                GRAPEVINE_STEM.get(), GRAPEVINE_LATTICE.get(), WINE_BOX.get(), FLOWER_POT.get(), CHAIR.get(),
                 WINE_PRESS.get(), GRASS_SLAB.get(), CHERRY_JAR.get(), CHERRY_SAPLING.get(), OLD_CHERRY_SAPLING.get(),
                 KITCHEN_SINK.get(), STACKABLE_LOG.get()
         );

@@ -28,7 +28,6 @@ import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.FlowerPotBlock;
 import satisfyu.vinery.block.*;
-import satisfyu.vinery.block.crops.TomatoCropBlock;
 import satisfyu.vinery.block.grape.GrapeBush;
 import satisfyu.vinery.block.grape.GrapeVineBlock;
 import satisfyu.vinery.block.grape.SavannaGrapeBush;
@@ -111,9 +110,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  OLD_CHERRY_SAPLING_ITEM = registerI("old_cherry_sapling", () -> new BlockItem(OLD_CHERRY_SAPLING.get(), getSettings()));
 
 
-    public static final RegistrySupplier<Block> TOMATO_CROP = registerB("tomato_crop", () -> new TomatoCropBlock(getBushSettings()));
-    public static final RegistrySupplier<Item> TOMATO_SEEDS = registerI("tomato_seeds", () -> new GrapeBushSeedItem(TOMATO_CROP.get(), getSettings(), GrapevineType.TOMATO));
-    public static final RegistrySupplier<Item> TOMATO = registerI("tomato", () -> new Item(getSettings().food(Foods.APPLE)));
+
     public static final RegistrySupplier<Item> CHERRY = registerI("cherry", () -> new CherryItem(getSettings().food(Foods.COOKIE)));
     public static final RegistrySupplier<Item> ROTTEN_CHERRY = registerI("rotten_cherry", () -> new RottenCherryItem(getSettings().food(Foods.POISONOUS_POTATO)));
     public static final RegistrySupplier<Block> GRAPEVINE_LEAVES = registerB("grapevine_leaves", () -> new GrapevineLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
@@ -126,8 +123,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  RED_GRAPE_CRATE_ITEM = registerI("red_grape_crate", () -> new BlockItem(RED_GRAPE_CRATE.get(), getSettings()));
     public static final RegistrySupplier<Block> CHERRY_CRATE = registerB("cherry_crate", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistrySupplier<Item>  CHERRY_CRATE_ITEM = registerI("cherry_crate", () -> new BlockItem(CHERRY_CRATE.get(), getSettings()));
-    public static final RegistrySupplier<Block> GRAPEVINE_STEM = registerB("grapevine_stem", () -> new PaleStemBlock(getGrapevineSettings()));
-    public static final RegistrySupplier<Item>  GRAPEVINE_STEM_ITEM = registerI("grapevine_stem", () -> new BlockItem(GRAPEVINE_STEM.get(), getSettings()));
     public static final RegistrySupplier<Block> GRAPEVINE_LATTICE = registerB("grapevine_lattice", () -> new LatticeStemBlock(getGrapevineSettings()));
     public static final RegistrySupplier<Item>  GRAPEVINE_LATTICE_ITEM = registerI("grapevine_lattice", () -> new BlockItem(GRAPEVINE_LATTICE.get(), getSettings()));
     public static final RegistrySupplier<Block> GRAPEVINE_POT = registerB("grapevine_pot", () -> new GrapevinePotBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)));
@@ -156,8 +151,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  WINE_RACK_5_ITEM = registerI("wine_rack_5", () -> new BlockItem(WINE_RACK_5.get(), getSettings()));
     public static final RegistrySupplier<Block> BARREL = registerB("barrel", () -> new BarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)));
     public static final RegistrySupplier<Item>  BARREL_ITEM = registerI("barrel", () -> new BlockItem(BARREL.get(), getSettings()));
-    public static final RegistrySupplier<Block> STORAGE_POT = registerB("storage_pot", () -> new StoragePotBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundEvents.DYE_USE, SoundEvents.DYE_USE));
-    public static final RegistrySupplier<Item>  STORAGE_POT_ITEM = registerI("storage_pot", () -> new BlockItem(STORAGE_POT.get(), getSettings()));
     public static final RegistrySupplier<Block> STRIPPED_CHERRY_LOG = registerB("stripped_cherry_log", GeneralUtil::logBlock);
     public static final RegistrySupplier<Item>  STRIPPED_CHERRY_LOG_ITEM = registerI("stripped_cherry_log", () -> new BlockItem(STRIPPED_CHERRY_LOG.get(), getSettings()));
     public static final RegistrySupplier<Block> CHERRY_LOG = registerB("cherry_log", GeneralUtil::logBlock);
@@ -202,20 +195,21 @@ public class ObjectRegistry {
     public static final RegistrySupplier<TerraformSignBlock> CHERRY_SIGN = registerB("cherry_sign", () -> new TerraformSignBlock(CHERRY_SIGN_TEXTURE, BlockBehaviour.Properties.copy(Blocks.OAK_SIGN)));
     public static final RegistrySupplier<Block> CHERRY_WALL_SIGN = registerB("cherry_wall_sign", () -> new TerraformWallSignBlock(CHERRY_SIGN_TEXTURE, BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN)));
     public static final RegistrySupplier<Item> CHERRY_SIGN_ITEM = registerI("cherry_sign", () -> new SignItem(getSettings().stacksTo(16), CHERRY_SIGN.get(), CHERRY_WALL_SIGN.get()));
-
+    public static final RegistrySupplier<Block> WINDOW = registerB("window", () -> new WindowBlock(BlockBehaviour.Properties.copy(Blocks.GLASS_PANE)));
+    public static final RegistrySupplier<Item>  WINDOW_ITEM = registerI("window", () -> new BlockItem(WINDOW.get(), getSettings()));
+    public static final RegistrySupplier<Block> LOAM = registerB("loam", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 3.0F).sound(SoundType.MUD)));
+    public static final RegistrySupplier<Item>  LOAM_ITEM = registerI("loam", () -> new BlockItem(LOAM.get(), getSettings()));
+    public static final RegistrySupplier<Block> LOAM_STAIRS = registerB("loam_stairs", () -> new StairBlock(LOAM.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 3.0F).sound(SoundType.MUD)));
+    public static final RegistrySupplier<Item>  LOAM_STAIRS_ITEM = registerI("loam_stairs", () -> new BlockItem(LOAM_STAIRS.get(), getSettings()));
+    public static final RegistrySupplier<Block> LOAM_SLAB = registerB("loam_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 3.0F).sound(SoundType.MUD)));
+    public static final RegistrySupplier<Item>  LOAM_SLAB_ITEM = registerI("loam_slab", () -> new BlockItem(LOAM_SLAB.get(), getSettings()));
+    public static final RegistrySupplier<Block> COARSE_DIRT_SLAB = registerB("coarse_dirt_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.COARSE_DIRT)));
+    public static final RegistrySupplier<Item>  COARSE_DIRT_SLAB_ITEM = registerI("coarse_dirt_slab", () -> new BlockItem(COARSE_DIRT_SLAB.get(), getSettings()));
+    public static final RegistrySupplier<Block> DIRT_SLAB = registerB("dirt_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DIRT)));
+    public static final RegistrySupplier<Item>  DIRT_SLAB_ITEM = registerI("dirt_slab", () -> new BlockItem(DIRT_SLAB.get(), getSettings()));
+    public static final RegistrySupplier<Block> GRASS_SLAB = registerB("grass_slab", () -> new SnowyVariantSlabBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
+    public static final RegistrySupplier<Item>  GRASS_SLAB_ITEM = registerI("grass_slab", () -> new BlockItem(GRASS_SLAB.get(), getSettings()));
     //Wines
-    public static final RegistrySupplier<Block> STAL_WINE = registerB("stal_wine", () -> new WineBottleBlock(getWineSettings(), 3));
-    public static final RegistrySupplier<Item>  STAL_WINE_ITEM = registerI("stal_wine", () -> new DrinkBlockSmallItem(STAL_WINE.get(), getWineItemSettings(VineryEffects.IMPROVED_REGENERATION.get())));
-    public static final RegistrySupplier<Block> KELP_CIDER = registerB("kelp_cider", () -> new WineBottleBlock(getWineSettings(), 3));
-    public static final RegistrySupplier<Item>  KELP_CIDER_ITEM = registerI("kelp_cider", () -> new DrinkBlockSmallItem(KELP_CIDER.get(), getWineItemSettings(VineryEffects.IMPROVED_WATER_BREATHING.get())));
-    public static final RegistrySupplier<Block> STRAD_WINE = registerB("strad_wine", () -> new WineBottleBlock(getWineSettings(), 2));
-    public static final RegistrySupplier<Item>  STRAD_WINE_ITEM = registerI("strad_wine", () -> new DrinkBlockItem(STRAD_WINE.get(), getWineItemSettings(VineryEffects.IMPROVED_ABSORBTION.get())));
-    public static final RegistrySupplier<Block> MAGNETIC_WINE = registerB("magnetic_wine", () -> new WineBottleBlock(getWineSettings(), 1));
-    public static final RegistrySupplier<Item>  MAGNETIC_WINE_ITEM = registerI("magnetic_wine", () -> new DrinkBlockItem(MAGNETIC_WINE.get(), getWineItemSettings(VineryEffects.MAGNET.get())));
-    public static final RegistrySupplier<Block> CHORUS_WINE = registerB("chorus_wine", () -> new WineBottleBlock(getWineSettings(), 1));
-    public static final RegistrySupplier<Item>  CHORUS_WINE_ITEM = registerI("chorus_wine", () -> new DrinkBlockItem(CHORUS_WINE.get(), getWineItemSettings(VineryEffects.TELEPORT.get(), 1)));
-    public static final RegistrySupplier<Block> AEGIS_WINE = registerB("aegis_wine", () -> new WineBottleBlock(getWineSettings(), 3));
-    public static final RegistrySupplier<Item>  AEGIS_WINE_ITEM = registerI("aegis_wine", () -> new DrinkBlockItem(AEGIS_WINE.get(), getWineItemSettings(MobEffects.NIGHT_VISION)));
 
 
     public static final RegistrySupplier<Item>  WINE_BOTTLE = registerI("wine_bottle", () -> new Item(getSettings()));
@@ -230,6 +224,18 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> JUNGLE_RED_GRAPEJUICE_BOTTLE = registerI("jungle_red_grapejuice_bottle",  () -> new JuiceItem(getSettings()));
     public static final RegistrySupplier<Item> JUNGLE_WHITE_GRAPEJUICE_BOTTLE = registerI("jungle_white_grapejuice_bottle",  () -> new JuiceItem(getSettings()));
 
+    public static final RegistrySupplier<Block> STAL_WINE = registerB("stal_wine", () -> new WineBottleBlock(getWineSettings(), 3));
+    public static final RegistrySupplier<Item>  STAL_WINE_ITEM = registerI("stal_wine", () -> new DrinkBlockSmallItem(STAL_WINE.get(), getWineItemSettings(VineryEffects.IMPROVED_REGENERATION.get())));
+    public static final RegistrySupplier<Block> KELP_CIDER = registerB("kelp_cider", () -> new WineBottleBlock(getWineSettings(), 3));
+    public static final RegistrySupplier<Item>  KELP_CIDER_ITEM = registerI("kelp_cider", () -> new DrinkBlockSmallItem(KELP_CIDER.get(), getWineItemSettings(VineryEffects.IMPROVED_WATER_BREATHING.get())));
+    public static final RegistrySupplier<Block> STRAD_WINE = registerB("strad_wine", () -> new WineBottleBlock(getWineSettings(), 2));
+    public static final RegistrySupplier<Item>  STRAD_WINE_ITEM = registerI("strad_wine", () -> new DrinkBlockItem(STRAD_WINE.get(), getWineItemSettings(VineryEffects.IMPROVED_ABSORBTION.get())));
+    public static final RegistrySupplier<Block> MAGNETIC_WINE = registerB("magnetic_wine", () -> new WineBottleBlock(getWineSettings(), 1));
+    public static final RegistrySupplier<Item>  MAGNETIC_WINE_ITEM = registerI("magnetic_wine", () -> new DrinkBlockItem(MAGNETIC_WINE.get(), getWineItemSettings(VineryEffects.MAGNET.get())));
+    public static final RegistrySupplier<Block> CHORUS_WINE = registerB("chorus_wine", () -> new WineBottleBlock(getWineSettings(), 1));
+    public static final RegistrySupplier<Item>  CHORUS_WINE_ITEM = registerI("chorus_wine", () -> new DrinkBlockItem(CHORUS_WINE.get(), getWineItemSettings(VineryEffects.TELEPORT.get(), 1)));
+    public static final RegistrySupplier<Block> AEGIS_WINE = registerB("aegis_wine", () -> new WineBottleBlock(getWineSettings(), 3));
+    public static final RegistrySupplier<Item>  AEGIS_WINE_ITEM = registerI("aegis_wine", () -> new DrinkBlockItem(AEGIS_WINE.get(), getWineItemSettings(MobEffects.NIGHT_VISION)));
 
     public static final RegistrySupplier<Block> SOLARIS_WINE = registerB("solaris_wine", () -> new WineBottleBlock(getWineSettings(), 3));
     public static final RegistrySupplier<Item>  SOLARIS_WINE_ITEM = registerI("solaris_wine", () -> new DrinkBlockSmallItem(SOLARIS_WINE.get(), getWineItemSettings(VineryEffects.IMPROVED_STRENGTH.get())));
@@ -258,7 +264,10 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> MELLOHI_WINE = registerB("mellohi_wine", () -> new WineBottleBlock(getWineSettings(), 2));
     public static final RegistrySupplier<Item>  MELLOHI_WINE_ITEM = registerI("mellohi_wine", () -> new DrinkBlockBigItem(MELLOHI_WINE.get(), getWineItemSettings(VineryEffects.IMPROVED_FIRE_RESISTANCE.get())));
 
-
+    public static final RegistrySupplier<Block> GRAPEVINE_STEM = registerB("grapevine_stem", () -> new PaleStemBlock(getGrapevineSettings()));
+    public static final RegistrySupplier<Item>  GRAPEVINE_STEM_ITEM = registerI("grapevine_stem", () -> new BlockItem(GRAPEVINE_STEM.get(), getSettings()));
+    public static final RegistrySupplier<Block> STORAGE_POT = registerB("storage_pot", () -> new StoragePotBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundEvents.DYE_USE, SoundEvents.DYE_USE));
+    public static final RegistrySupplier<Item>  STORAGE_POT_ITEM = registerI("storage_pot", () -> new BlockItem(STORAGE_POT.get(), getSettings()));
     //Flower Box/Pot
     public static final RegistrySupplier<Block> FLOWER_BOX = registerB("flower_box", () -> new FlowerBoxBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
     public static final RegistrySupplier<Item>  FLOWER_BOX_ITEM = registerI("flower_box", () -> new BlockItem(FLOWER_BOX.get(), getSettings()));
@@ -267,20 +276,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  FLOWER_POT_ITEM = registerI("flower_pot", () -> new BlockItem(FLOWER_POT.get(), getSettings()));
     ///
 
-    public static final RegistrySupplier<Block> WINDOW = registerB("window", () -> new WindowBlock(BlockBehaviour.Properties.copy(Blocks.GLASS_PANE)));
-    public static final RegistrySupplier<Item>  WINDOW_ITEM = registerI("window", () -> new BlockItem(WINDOW.get(), getSettings()));
-    public static final RegistrySupplier<Block> LOAM = registerB("loam", () -> new Block(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 3.0F).sound(SoundType.MUD)));
-    public static final RegistrySupplier<Item>  LOAM_ITEM = registerI("loam", () -> new BlockItem(LOAM.get(), getSettings()));
-    public static final RegistrySupplier<Block> LOAM_STAIRS = registerB("loam_stairs", () -> new StairBlock(LOAM.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 3.0F).sound(SoundType.MUD)));
-    public static final RegistrySupplier<Item>  LOAM_STAIRS_ITEM = registerI("loam_stairs", () -> new BlockItem(LOAM_STAIRS.get(), getSettings()));
-    public static final RegistrySupplier<Block> LOAM_SLAB = registerB("loam_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 3.0F).sound(SoundType.MUD)));
-    public static final RegistrySupplier<Item>  LOAM_SLAB_ITEM = registerI("loam_slab", () -> new BlockItem(LOAM_SLAB.get(), getSettings()));
-    public static final RegistrySupplier<Block> COARSE_DIRT_SLAB = registerB("coarse_dirt_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.COARSE_DIRT)));
-    public static final RegistrySupplier<Item>  COARSE_DIRT_SLAB_ITEM = registerI("coarse_dirt_slab", () -> new BlockItem(COARSE_DIRT_SLAB.get(), getSettings()));
-    public static final RegistrySupplier<Block> DIRT_SLAB = registerB("dirt_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DIRT)));
-    public static final RegistrySupplier<Item>  DIRT_SLAB_ITEM = registerI("dirt_slab", () -> new BlockItem(DIRT_SLAB.get(), getSettings()));
-    public static final RegistrySupplier<Block> GRASS_SLAB = registerB("grass_slab", () -> new SnowyVariantSlabBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
-    public static final RegistrySupplier<Item>  GRASS_SLAB_ITEM = registerI("grass_slab", () -> new BlockItem(GRASS_SLAB.get(), getSettings()));
     public static final RegistrySupplier<Block> CHERRY_JAR = registerB("cherry_jar", () -> new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion()));
     public static final RegistrySupplier<Item>  CHERRY_JAR_ITEM= registerI("cherry_jar", () -> new BlockItem(CHERRY_JAR.get(), getSettings()));
     public static final RegistrySupplier<Block> CHERRY_JAM = registerB("cherry_jam", () -> new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion()));
