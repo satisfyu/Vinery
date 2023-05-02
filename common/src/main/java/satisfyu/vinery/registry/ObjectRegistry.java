@@ -366,7 +366,7 @@ public class ObjectRegistry {
 
 
     private static Item.Properties getSettings(Consumer<Item.Properties> consumer) {
-        Item.Properties settings = new Item.Properties();
+        Item.Properties settings = new Item.Properties().tab(Vinery.VINERY_TAB);
         consumer.accept(settings);
         return settings;
     }
