@@ -357,7 +357,8 @@ public class ObjectRegistry {
 
 
     public static void init() {
-
+        ITEMS.register();
+        BLOCKS.register();
     }
 
      
