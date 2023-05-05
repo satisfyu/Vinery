@@ -2,6 +2,7 @@ package satisfyu.vinery.mixin;
 
 import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
@@ -95,9 +96,18 @@ public abstract class LivingEntityMixin extends Entity {
 		}
 	}
 
-	@Redirect(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hasEffect(Lnet/minecraft/world/effect/MobEffect;)Z", ordinal = 1))
-	public boolean improvedWaterBreathingSpeed(LivingEntity livingEntity, MobEffect effect) {
-		return livingEntity.hasEffect(MobEffects.DOLPHINS_GRACE) || livingEntity.hasEffect(VineryEffects.IMPROVED_WATER_BREATHING.get());
+
+	@ModifyVariable(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hasEffect(Lnet/minecraft/world/effect/MobEffect;)Z", ordinal = 1), ordinal = 0)
+	public float applyWaterCreatureSwimSpeedBoost(float j) {
+		if ((Object) this instanceof LivingEntity entity) {
+
+			// Apply 'Dolphin's Grace' status effect benefits if the player's Identity is a water creature
+			if (entity.hasEffect(VineryEffects.IMPROVED_WATER_BREATHING.get())) {
+				return .96f;
+			}
+		}
+
+		return j;
 	}
 
 	/*
