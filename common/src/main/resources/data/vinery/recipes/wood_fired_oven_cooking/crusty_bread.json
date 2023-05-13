@@ -2,10 +2,10 @@
   "type": "vinery:wood_fired_oven_cooking",
   "ingredients": [
     {
-      "tag": "minecraft:dough"
+      "item": "vinery:dough"
     },
     {
-      "tag": "minecraft:dough"
+      "item": "vinery:dough"
     },
     {
       "item": "minecraft:water_bucket"

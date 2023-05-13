@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "vinery:red_grape"
+    }
+  ],
+  "result": {
+    "item": "vinery:red_grape_seeds",
+    "count": 1
+  }
+}

@@ -5,10 +5,10 @@
       "item": "vinery:apple_mash"
     },
     {
-      "tag": "minecraft:dough"
+      "item": "vinery:dough"
     },
     {
-      "tag": "minecraft:milk"
+      "item": "minecraft:milk_bucket"
     }
   ],
   "item": "vinery:apple_pie",
