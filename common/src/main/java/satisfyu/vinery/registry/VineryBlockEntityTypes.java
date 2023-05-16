@@ -39,14 +39,6 @@ public class VineryBlockEntityTypes {
 
 
 
-    public static final RegistrySupplier<BlockEntityType<StorageBlockEntity>> STORAGE_ENTITY = create("storage", () -> BlockEntityType.Builder.of(
-            StorageBlockEntity::new, VineryExpectPlatform.getBlocksForStorage()).build(null));
-
-
-
-
-
-
 
     private static <T extends BlockEntityType<?>> RegistrySupplier<T> create(final String path, final Supplier<T> type) {
         return BLOCK_ENTITY_TYPES.register(new VineryIdentifier(path), type);

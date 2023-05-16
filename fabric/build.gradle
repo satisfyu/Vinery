@@ -19,6 +19,14 @@ configurations {
     developmentFabric.extendsFrom common
 }
 
+repositories {
+    maven {
+        name "terraform wood api, trinkets"
+        url "https://maven.terraformersmc.com"
+    }
+}
+
+
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
 
@@ -30,6 +38,9 @@ dependencies {
 
     modRuntimeOnly( "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+
+    include modApi("de:doapi:${project.doapi_version}")
+    modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }

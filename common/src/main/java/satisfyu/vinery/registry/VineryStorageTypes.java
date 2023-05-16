@@ -1,11 +1,12 @@
 package satisfyu.vinery.registry;
 
+import de.cristelknight.doapi.client.render.block.storage.StorageBlockEntityRenderer;
+import de.cristelknight.doapi.client.render.block.storage.StorageTypeRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.block.storage.api.StorageBlock;
+
 import satisfyu.vinery.client.render.block.storage.*;
-import satisfyu.vinery.client.render.block.storage.api.StorageTypeRenderer;
 
 import java.util.Set;
 
@@ -23,7 +24,7 @@ public class VineryStorageTypes {
 
 
     public static ResourceLocation registerStorageType(String string, StorageTypeRenderer renderer){
-        return StorageBlock.registerStorageType(new VineryIdentifier(string), renderer);
+        return StorageBlockEntityRenderer.registerStorageType(new VineryIdentifier(string), renderer);
     }
 
     public static void init(){

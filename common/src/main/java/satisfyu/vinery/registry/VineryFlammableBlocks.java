@@ -1,7 +1,7 @@
 package satisfyu.vinery.registry;
 
+import de.cristelknight.doapi.DoApiExpectPlatform;
 import net.minecraft.world.level.block.Block;
-import satisfyu.vinery.VineryExpectPlatform;
 
 public class VineryFlammableBlocks {
 
@@ -16,7 +16,7 @@ public class VineryFlammableBlocks {
     }
 
     private static void add(int burnOdd, int igniteOdd, Block... blocks){
-        VineryExpectPlatform.addFlammable(burnOdd, igniteOdd, blocks);
+        DoApiExpectPlatform.addFlammable(burnOdd, igniteOdd, blocks);
     }
 
 }

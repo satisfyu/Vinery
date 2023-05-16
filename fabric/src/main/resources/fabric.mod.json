@@ -24,8 +24,8 @@
     "rei_client": [
       "satisfyu.vinery.compat.rei.VineryReiClientPlugin"
     ],
-    "vinery": [
-      "satisfyu.vinery.util.api.VineryDefaultAPI"
+    "doapi": [
+      "satisfyu.vinery.util.api.VineryDoApi"
     ]
   },
   "custom": {

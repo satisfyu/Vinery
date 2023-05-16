@@ -1,5 +1,7 @@
 package satisfyu.vinery.util.api;
 
+import de.cristelknight.doapi.api.DoApiAPI;
+import de.cristelknight.doapi.api.DoApiPlugin;
 import satisfyu.vinery.registry.CustomArmorRegistry;
 import satisfyu.vinery.registry.VineryStorageTypes;
 
@@ -11,8 +13,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
-@VineryPlugin
-public class VineryDefaultAPI implements VineryApi {
+@DoApiPlugin
+public class VineryDoApi implements DoApiAPI {
 
     @Override
     public void registerBlocks(Set<Block> blocks) {

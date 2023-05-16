@@ -1,5 +1,6 @@
 package satisfyu.vinery.registry;
 
+import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -13,8 +14,8 @@ import java.util.function.Supplier;
 
 public class CustomArmorRegistry {
 
-    public static void registerArmorModelLayers(Map<ModelLayerLocation, Supplier<LayerDefinition>> map){
-        map.put(StrawHatModel.LAYER_LOCATION, StrawHatModel::getTexturedModelData);
+    public static void registerArmorModelLayers(){
+        EntityModelLayerRegistry.register(StrawHatModel.LAYER_LOCATION, StrawHatModel::getTexturedModelData);
     }
 
     public static  <T extends LivingEntity> void registerArmorModels(Map<Item, EntityModel<T>> models, EntityModelSet modelLoader) {

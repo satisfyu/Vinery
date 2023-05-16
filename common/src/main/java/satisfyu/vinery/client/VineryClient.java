@@ -1,6 +1,6 @@
 package satisfyu.vinery.client;
 
-import dev.architectury.platform.Platform;
+import de.cristelknight.doapi.terraform.TerraformSignHelper;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
@@ -10,18 +10,10 @@ import dev.architectury.registry.menu.MenuRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.Sheets;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.resources.model.Material;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GrassColor;
-import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.entity.chair.ChairRenderer;
 import satisfyu.vinery.client.gui.CookingPotGui;
 import satisfyu.vinery.client.gui.FermentationBarrelGui;
@@ -29,18 +21,13 @@ import satisfyu.vinery.client.gui.StoveGui;
 import satisfyu.vinery.client.gui.WinePressGui;
 import satisfyu.vinery.client.model.MuleModel;
 import satisfyu.vinery.client.render.block.FlowerPotBlockEntityRenderer;
-import satisfyu.vinery.client.render.block.storage.api.StorageBlockEntityRenderer;
 import satisfyu.vinery.client.render.block.WineBottleRenderer;
 import satisfyu.vinery.client.render.entity.MuleRenderer;
 import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
-import satisfyu.vinery.registry.*;
-import satisfyu.vinery.util.boat.api.client.TerraformBoatClientHelper;
-import satisfyu.vinery.util.boat.impl.client.TerraformBoatClientInitializer;
-import satisfyu.vinery.util.networking.VineryMessages;
-import satisfyu.vinery.util.sign.SpriteIdentifierRegistry;
-
-import java.util.Map;
-import java.util.function.Supplier;
+import satisfyu.vinery.registry.CustomArmorRegistry;
+import satisfyu.vinery.registry.VineryBlockEntityTypes;
+import satisfyu.vinery.registry.VineryEntites;
+import satisfyu.vinery.registry.VineryScreenHandlerTypes;
 
 import static satisfyu.vinery.registry.ObjectRegistry.*;
 
@@ -53,11 +40,8 @@ public class VineryClient {
 
 
     public static void onInitializeClient() {
-        VineryMessages.registerS2CPackets();
 
 
-
-        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new Material(Sheets.SIGN_SHEET, CHERRY_SIGN.get().getTexture()));
         RenderTypeRegistry.register(RenderType.cutout(),
                 RED_GRAPE_BUSH.get(), WHITE_GRAPE_BUSH.get(), CHERRY_DOOR.get(), COOKING_POT.get(),
                 SWEETBERRY_JAM.get(), CHERRY_JAM.get(), CHERRY_JAR.get(), FERMENTATION_BARREL.get(),
@@ -99,27 +83,23 @@ public class VineryClient {
 
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_POT_ENTITY.get(), FlowerPotBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.WINE_BOTTLE_ENTITY.get(), WineBottleRenderer::new);
-        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.STORAGE_ENTITY.get(), StorageBlockEntityRenderer::new);
     }
 
 
+    public static void preInitClient(){
+        //sign
+        TerraformSignHelper.regsterSignSprite(CHERRY_SIGN_TEXTURE);
 
-    public static void getEntityModelLayers(Map<ModelLayerLocation, Supplier<LayerDefinition>> map){
-        map.put(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);
-        TerraformBoatClientHelper.registerModelLayers(map, new VineryIdentifier("cherry"));
+        //Entity Model Layers
+        EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);
+        CustomArmorRegistry.registerArmorModelLayers();
 
-        //"API"
-        CustomArmorRegistry.registerArmorModelLayers(map);
+        //Entity Renderers
+        EntityRendererRegistry.register(VineryEntites.MULE, MuleRenderer::new);
+        EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
+        EntityRendererRegistry.register(VineryEntites.CHAIR, ChairRenderer::new);
     }
 
-    public static void getEntityEntityRenderers(Map<Supplier<EntityType<?>>, EntityRendererProvider<?>> map){
-        registerEntityRenderer(map, VineryEntites.MULE, MuleRenderer::new);
-        registerEntityRenderer(map, VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
-        registerEntityRenderer(map, VineryEntites.CHAIR, ChairRenderer::new);
-
-        //"API"
-        TerraformBoatClientInitializer.init(map);
-    }
 
 
 
@@ -127,9 +107,4 @@ public class VineryClient {
     public static Player getClientPlayer() {
         return Minecraft.getInstance().player;
     }
-
-    public static <T extends Entity> void registerEntityRenderer(Map<Supplier<EntityType<?>>, EntityRendererProvider<?>> map, Supplier<? extends EntityType<? extends T>> type, EntityRendererProvider<T> factory) {
-        map.put((Supplier<EntityType<?>>) (Supplier<? extends EntityType<?>>) type, factory);
-    }
-    
 }

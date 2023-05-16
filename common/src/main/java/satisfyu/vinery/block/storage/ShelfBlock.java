@@ -1,6 +1,6 @@
 package satisfyu.vinery.block.storage;
 
-import satisfyu.vinery.block.storage.api.StorageBlock;
+import de.cristelknight.doapi.block.StorageBlock;
 import satisfyu.vinery.registry.VineryStorageTypes;
 import satisfyu.vinery.util.VineryTags;
 import satisfyu.vinery.util.VineryUtils;

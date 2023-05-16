@@ -20,6 +20,8 @@ dependencies {
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
     modCompileOnly ("me.shedaniel:RoughlyEnoughItems-default-plugin:$rei_version")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+
+    modApi "de:doapi:${project.doapi_version}"
 }
 
 publishing {

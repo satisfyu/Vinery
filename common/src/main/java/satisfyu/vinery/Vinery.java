@@ -8,8 +8,6 @@ import net.minecraft.world.item.ItemStack;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import satisfyu.vinery.registry.*;
-import satisfyu.vinery.util.boat.impl.TerraformBoatInitializer;
-import satisfyu.vinery.util.boat.impl.TerraformBoatTrackedData;
 import satisfyu.vinery.world.VineryFeatures;
 
 public class Vinery {
@@ -21,11 +19,8 @@ public class Vinery {
             new ItemStack(ObjectRegistry.RED_GRAPE.get()));
     
     public static void init() {
-        TerraformBoatTrackedData.register();
         VineryEffects.init();
-        TerraformBoatInitializer.init();
         ObjectRegistry.init();
-        VineryBoatTypes.init();
         VineryBlockEntityTypes.init();
         VineryStorageTypes.init();
         VineryScreenHandlerTypes.init();
@@ -38,7 +33,6 @@ public class Vinery {
     public static void commonSetup(){
         VineryCompostableItems.init();
         VineryFlammableBlocks.init();
-        //VineryBoatTypes.init();
 
         FuelRegistry.register(300, ObjectRegistry.CHERRY_FENCE.get(), ObjectRegistry.CHERRY_FENCE_GATE.get(), ObjectRegistry.STACKABLE_LOG.get(), ObjectRegistry.FERMENTATION_BARREL.get());
 

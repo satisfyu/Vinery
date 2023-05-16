@@ -1,6 +1,6 @@
 package satisfyu.vinery.block.storage;
 
-import satisfyu.vinery.block.storage.api.StorageBlock;
+import de.cristelknight.doapi.block.StorageBlock;
 import satisfyu.vinery.item.DrinkBlockSmallItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;

@@ -1,5 +1,6 @@
 package satisfyu.vinery.registry;
 
+import de.cristelknight.doapi.terraform.TerraformSignHelper;
 import dev.architectury.core.item.ArchitecturySpawnEggItem;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
@@ -39,8 +40,7 @@ import satisfyu.vinery.item.*;
 import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.util.GrapevineType;
 import satisfyu.vinery.util.generators.ConfiguredFeatureSaplingGenerator;
-import satisfyu.vinery.util.sign.block.TerraformSignBlock;
-import satisfyu.vinery.util.sign.block.TerraformWallSignBlock;
+
 import satisfyu.vinery.world.VineryConfiguredFeatures;
 
 import java.util.function.Consumer;
@@ -191,9 +191,9 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  CHERRY_TRAPDOOR_ITEM = registerI("cherry_trapdoor", () -> new BlockItem(CHERRY_TRAPDOOR.get(), getSettings()));
 
     //Signs
-    private static final ResourceLocation CHERRY_SIGN_TEXTURE = new ResourceLocation("entity/signs/cherry");
-    public static final RegistrySupplier<TerraformSignBlock> CHERRY_SIGN = registerB("cherry_sign", () -> new TerraformSignBlock(CHERRY_SIGN_TEXTURE, BlockBehaviour.Properties.copy(Blocks.OAK_SIGN)));
-    public static final RegistrySupplier<Block> CHERRY_WALL_SIGN = registerB("cherry_wall_sign", () -> new TerraformWallSignBlock(CHERRY_SIGN_TEXTURE, BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN)));
+    public static final ResourceLocation CHERRY_SIGN_TEXTURE = new ResourceLocation("entity/signs/cherry");
+    public static final RegistrySupplier<Block> CHERRY_SIGN = registerB("cherry_sign", () -> TerraformSignHelper.getSign(CHERRY_SIGN_TEXTURE));
+    public static final RegistrySupplier<Block> CHERRY_WALL_SIGN = registerB("cherry_wall_sign", () -> TerraformSignHelper.getWallSign(CHERRY_SIGN_TEXTURE));
     public static final RegistrySupplier<Item> CHERRY_SIGN_ITEM = registerI("cherry_sign", () -> new SignItem(getSettings().stacksTo(16), CHERRY_SIGN.get(), CHERRY_WALL_SIGN.get()));
     public static final RegistrySupplier<Block> WINDOW = registerB("window", () -> new WindowBlock(BlockBehaviour.Properties.copy(Blocks.GLASS_PANE)));
     public static final RegistrySupplier<Item>  WINDOW_ITEM = registerI("window", () -> new BlockItem(WINDOW.get(), getSettings()));
@@ -352,6 +352,7 @@ public class ObjectRegistry {
 
 
     public static void init() {
+        VineryBoatTypes.init();
         ITEMS.register();
         BLOCKS.register();
     }
