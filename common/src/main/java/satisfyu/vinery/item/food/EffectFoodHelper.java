@@ -54,8 +54,8 @@ public class EffectFoodHelper {
             return fromNbt(getEffectNbt(stack));
         }
         FoodProperties foodComponent = stack.getItem().getFoodProperties();
-        assert foodComponent != null;
-        return foodComponent.getEffects();
+        if(foodComponent != null) return foodComponent.getEffects();
+        return List.of();
     }
 
     public static List<Pair<MobEffectInstance, Float>> fromNbt(ListTag list) {
