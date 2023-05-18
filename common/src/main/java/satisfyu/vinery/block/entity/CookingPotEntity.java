@@ -88,7 +88,7 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		ContainerHelper.saveAllItems(nbt, this.inventory);
 		nbt.putInt("CookingTime", this.cookingTime);
 	}
-	
+
 	public boolean isBeingBurned() {
 		if (getLevel() == null)
 			throw new NullPointerException("Null world invoked");
@@ -97,11 +97,11 @@ public class CookingPotEntity extends BlockEntity implements BlockEntityTicker<C
 		final var entryList = optionalList.orElse(null);
 		if (entryList == null) {
 			return false;
-		} else if (!entryList.contains(belowState.getBlock().builtInRegistryHolder())) {
-			return false;
-		} else
-			return belowState.getValue(BlockStateProperties.LIT);
+		} else {
+			return entryList.contains(belowState.getBlock().builtInRegistryHolder());
+		}
 	}
+
 	
 	private boolean canCraft(Recipe<?> recipe) {
 		if (recipe == null || recipe.getResultItem().isEmpty()) {

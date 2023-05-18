@@ -121,13 +121,12 @@ public class CookingPotBlock extends BaseEntityBlock {
             super.onRemove(state, world, pos, newState, moved);
         }
     }
-
     @Override
     public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
         if (state.getValue(COOKING)) {
             double d = (double)pos.getX() + 0.5;
             double e = pos.getY() + 0.3;
-            double f = (double)pos.getZ() + 1.0;
+            double f = (double)pos.getZ() + 0.5; // Änderung: Verwende 0.5 für die Z-Koordinate
             if (random.nextDouble() < 0.3) {
                 world.playLocalSound(d, e, f, VinerySoundEvents.BLOCK_COOKING_POT_JUICE_BOILING.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
@@ -145,7 +144,7 @@ public class CookingPotBlock extends BaseEntityBlock {
         if (state.getValue(LIT)) {
             double d = (double)pos.getX() + 0.5;
             double e = pos.getY() + 0.3;
-            double f = (double)pos.getZ() + 1.0;
+            double f = (double)pos.getZ() + 0.5;
             if (random.nextDouble() < 0.3) {
                 world.playLocalSound(d, e, f, VinerySoundEvents.BLOCK_COOKING_POT_JUICE_BOILING.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
@@ -161,7 +160,10 @@ public class CookingPotBlock extends BaseEntityBlock {
             world.addParticle(ParticleTypes.BUBBLE_POP, d + i, e + j, f + k, 0.0, 0.0, 0.0);
         }
     }
-    
+
+
+
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, COOKING, LIT);

@@ -62,14 +62,6 @@ public class VineryClient {
 
         ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> BiomeColors.getAverageGrassColor(world, pos), GRASS_SLAB, TAIGA_WHITE_GRAPE_BUSH, TAIGA_RED_GRAPE_BUSH);
         ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> BiomeColors.getAverageFoliageColor(world, pos), SAVANNA_RED_GRAPE_BUSH, SAVANNA_WHITE_GRAPE_BUSH, JUNGLE_RED_GRAPE_BUSH, JUNGLE_WHITE_GRAPE_BUSH, GRAPEVINE_STEM, GRAPEVINE_LATTICE);
-        /*ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
-            if (world == null || pos == null) {
-                return -1;
-            }
-            return BiomeColors.getAverageWaterColor(world, pos);
-            }, KITCHEN_SINK);
-
-         */
         ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> GrassColor.get(0.5, 1.0), GRASS_SLAB);
 
 
