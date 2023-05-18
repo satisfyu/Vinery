@@ -25,7 +25,7 @@
               "distance": "7",
               "has_cherries": "false",
               "persistent": "false",
-              "waterlogged": "true"
+              "waterlogged": "false"
             }
           },
           "weight": 10
@@ -38,7 +38,7 @@
               "distance": "7",
               "has_cherries": "false",
               "persistent": "false",
-              "waterlogged": "true"
+              "waterlogged": "false"
             }
           },
           "weight": 4
@@ -51,7 +51,7 @@
               "distance": "7",
               "has_cherries": "true",
               "persistent": "false",
-              "waterlogged": "true"
+              "waterlogged": "false"
             }
           },
           "weight": 2
