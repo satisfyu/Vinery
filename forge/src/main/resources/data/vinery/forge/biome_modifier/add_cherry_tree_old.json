@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#vinery:spanws_cherry_tree",
+  "features": "vinery:tree_cherry_old",
+  "step": "vegetal_decoration"
+}

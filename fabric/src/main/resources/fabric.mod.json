@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "vinery",
+  "version": "${version}",
+  "name": "Vinery",
+  "description": "Vinery contains nearly everything needed for not only creating wine but also for building up your own vinery.",
+  "authors": [
+    "satisfy_u, Cristelknight, BaumeisterJO(weird name but a nice guy)"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine",
+    "sources": "https://github.com/satisfyu/Vinery-Fabric"
+  },
+  "license": "ARR",
+  "icon": "assets/vinery/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "satisfyu.vinery.fabric.VineryFabric"
+    ],
+    "client": [
+      "satisfyu.vinery.fabriclike.client.VineryClientFabricLike"
+    ],
+    "rei_client": [
+      "satisfyu.vinery.compat.rei.VineryReiClientPlugin"
+    ],
+    "vinery": [
+      "satisfyu.vinery.util.api.VineryDefaultAPI"
+    ]
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/Vqu6wYZwdZ"
+      }
+    }
+  },
+  "mixins": [
+    "vinery.mixins.json",
+    "vinery-common.mixins.json"
+  ],
+  "depends": {
+    "fabric-api": "*",
+    "minecraft": ">=1.19.2",
+    "architectury": ">=6.5.77"
+  }
+}

@@ -1,0 +1,39 @@
+{
+    "variants": {
+        "distance=1": [
+			{ "model": "vinery:block/grapevine_leaves" },
+			{ "model": "vinery:block/grapevine_leaves1" },
+			{ "model": "vinery:block/grapevine_leaves2" }
+				],
+        "distance=2": [
+			{ "model": "vinery:block/grapevine_leaves" },
+			{ "model": "vinery:block/grapevine_leaves1" },
+			{ "model": "vinery:block/grapevine_leaves2" }
+				],
+        "distance=3": [
+			{ "model": "vinery:block/grapevine_leaves" },
+			{ "model": "vinery:block/grapevine_leaves1" },
+			{ "model": "vinery:block/grapevine_leaves2" }
+				],
+        "distance=4": [
+			{ "model": "vinery:block/grapevine_leaves" },
+			{ "model": "vinery:block/grapevine_leaves1" },
+			{ "model": "vinery:block/grapevine_leaves2" }
+				],
+        "distance=5": [
+			{ "model": "vinery:block/grapevine_leaves" },
+			{ "model": "vinery:block/grapevine_leaves1" },
+			{ "model": "vinery:block/grapevine_leaves2" }
+				],
+        "distance=6": [
+			{ "model": "vinery:block/grapevine_leaves" },
+			{ "model": "vinery:block/grapevine_leaves1" },
+			{ "model": "vinery:block/grapevine_leaves2" }
+				],
+        "distance=7": [
+			{ "model": "vinery:block/grapevine_leaves" },
+			{ "model": "vinery:block/grapevine_leaves1" },
+			{ "model": "vinery:block/grapevine_leaves2" }
+				]
+    }
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "mixin": [
+    "vinery.mixins.json",
+    "vinery-common.mixins.json"
+  ],
+  "quilt_loader": {
+    "group": "${group}",
+    "id": "vinery",
+    "version": "${version}",
+    "metadata": {
+      "name": "Vinery",
+      "description": "Vinery contains nearly everything needed for not only creating wine but also for building up your own vinery.",
+      "contact": {
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine",
+        "sources": "https://github.com/satisfyu/Vinery-Fabric"
+      },
+      "contributors": {
+        "satisfy_u" : "Author",
+        "Cristelknight" : "Developer",
+        "BaumeisterJO" : "Developer"
+      },
+      "license": {
+        "name": "All Rights Reserved",
+        "id": "ARR",
+        "url": ""
+      },
+      "icon": "assets/vinery/icon.png"
+    },
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "entrypoints": {
+      "init": "satisfyu.vinery.quilt.VineryQuilt",
+      "client": "satisfyu.vinery.fabriclike.client.VineryClientFabricLike",
+      "vinery": "satisfyu.vinery.util.api.VineryDefaultAPI",
+      "rei_client": "satisfyu.vinery.compat.rei.VineryReiClientPlugin"
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "version": "*"
+      },
+      {
+        "id": "quilt_base",
+        "version": "*"
+      },
+      {
+        "id": "minecraft",
+        "version": ">=1.19.2"
+      },
+      {
+        "id": "architectury",
+        "version": ">=6.2.43"
+      }
+    ]
+  },
+  "minecraft": {
+    "environment": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/Vqu6wYZwdZ"
+      }
+    }
+  }
+}

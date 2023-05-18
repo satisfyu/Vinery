@@ -1,0 +1,17 @@
+{
+  "type": "vinery:jungle_grape_feature",
+  "config": {
+    "state": {
+      "Name": "vinery:jungle_grape_bush_white",
+      "Properties": {
+        "age": "0",
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "sterilized": "false",
+        "up": "false",
+        "west": "false"
+      }
+    }
+  }
+}

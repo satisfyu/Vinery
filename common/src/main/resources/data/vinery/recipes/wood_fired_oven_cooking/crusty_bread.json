@@ -1,0 +1,17 @@
+{
+  "type": "vinery:wood_fired_oven_cooking",
+  "ingredients": [
+    {
+      "item": "vinery:dough"
+    },
+    {
+      "item": "vinery:dough"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "item": "vinery:crusty_bread",
+  "count": 3,
+  "experience": 0.35
+}

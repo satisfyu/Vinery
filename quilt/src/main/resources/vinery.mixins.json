@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "satisfyu.vinery.quilt.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "LongToolTipsMixin"
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

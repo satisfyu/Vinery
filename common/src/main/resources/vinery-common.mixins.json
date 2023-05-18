@@ -1,0 +1,30 @@
+{
+  "required": true,
+  "package": "satisfyu.vinery.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "ArmorFeatureRendererMixin",
+    "ArmorStandRendererMixin",
+    "ClientPlayerEntityMixin",
+    "OrderedTextToolTipAccessor",
+    "PlayerEntityRendererMixin",
+    "sign.MixinSignBlockEntityRenderer",
+    "sign.MixinSignEditScreen",
+    "sign.MixinTexturedRenderLayers"
+  ],
+  "mixins": [
+    "BlockMixin",
+    "BoneMealItemMixin",
+    "FoxEntityEatSweetBerriesGoalMixin",
+    "LivingEntityMixin",
+    "MobEffectUtilMixin",
+    "StatusEffectUtilMixin",
+    "WanderingTraderManagerMixin",
+    "boat.MixinBoatEntity",
+    "boat.MixinShulkerEntity",
+    "sign.MixinBlockEntityType"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

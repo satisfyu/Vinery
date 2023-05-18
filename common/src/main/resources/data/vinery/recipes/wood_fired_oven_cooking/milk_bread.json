@@ -1,0 +1,17 @@
+{
+  "type": "vinery:wood_fired_oven_cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "vinery:dough"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "item": "vinery:milk_bread",
+  "count": 3,
+  "experience": 0.35
+}

@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#vinery:spanws_grape",
+  "features": "vinery:white_grape_bush_chance",
+  "step": "vegetal_decoration"
+}
