@@ -22,7 +22,6 @@ public class Vinery {
         VineryEffects.init();
         ObjectRegistry.init();
         VineryBlockEntityTypes.init();
-        VineryStorageTypes.init();
         VineryScreenHandlerTypes.init();
         VineryRecipeTypes.init();
         VineryEntites.init();

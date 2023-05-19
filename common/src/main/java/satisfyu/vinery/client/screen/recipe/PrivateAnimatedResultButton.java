@@ -3,6 +3,8 @@ package satisfyu.vinery.client.screen.recipe;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import satisfyu.vinery.client.recipebook.AbstractPrivateRecipeScreenHandler;
 
 import java.util.List;
@@ -17,7 +19,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
-
+@Environment(EnvType.CLIENT)
 public class PrivateAnimatedResultButton extends AbstractWidget {
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation("textures/gui/recipe_book.png");
     private AbstractPrivateRecipeScreenHandler craftingScreenHandler;

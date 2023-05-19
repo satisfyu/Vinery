@@ -56,6 +56,7 @@ public class VineryClient {
                 KITCHEN_SINK.get(), STACKABLE_LOG.get()
         );
 
+        ClientStorageTypes.init();
         RenderTypeRegistry.register(RenderType.translucent(), WINDOW.get());
 
 

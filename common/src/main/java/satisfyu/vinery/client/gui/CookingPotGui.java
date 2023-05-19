@@ -1,12 +1,15 @@
 package satisfyu.vinery.client.gui;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.gui.handler.CookingPotGuiHandler;
 import satisfyu.vinery.client.screen.recipe.custom.CookingPotRecipeBook;
 
+@Environment(EnvType.CLIENT)
 public class CookingPotGui extends AbstractRecipeBookGUIScreen<CookingPotGuiHandler> {
 
     public CookingPotGui(CookingPotGuiHandler handler, Inventory inventory, Component title) {

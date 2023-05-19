@@ -1,5 +1,6 @@
 package satisfyu.vinery.registry;
 
+import dev.architectury.platform.Platform;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
@@ -16,8 +17,8 @@ import java.util.function.Supplier;
 
 public class VineryEffects {
 
-    private static final Registrar<MobEffect> MOB_EFFECTS = DeferredRegister.create(Vinery.MODID, Registry.MOB_EFFECT_REGISTRY).getRegistrar();
-
+    private static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Vinery.MODID, Registry.MOB_EFFECT_REGISTRY);
+    private static final Registrar<MobEffect> MOB_EFFECTS_REGISTRAR = MOB_EFFECTS.getRegistrar();
 
     public static final RegistrySupplier<MobEffect> EMPTY;
     public static final RegistrySupplier<MobEffect> JELLIE;
@@ -37,11 +38,15 @@ public class VineryEffects {
 
 
     private static RegistrySupplier<MobEffect> registerEffect(String name, Supplier<MobEffect> effect){
-        return MOB_EFFECTS.register(new VineryIdentifier(name), effect);
+        if(Platform.isForge()){
+            return MOB_EFFECTS.register(name, effect);
+        }
+        return MOB_EFFECTS_REGISTRAR.register(new VineryIdentifier(name), effect);
     }
 
     public static void init(){
         Vinery.LOGGER.debug("Mob effects");
+        MOB_EFFECTS.register();
     }
 
     static {

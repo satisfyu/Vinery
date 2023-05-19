@@ -1,6 +1,8 @@
 package satisfyu.vinery.client.render.block;
 
 import com.mojang.math.Vector3f;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import satisfyu.vinery.block.WineBottleBlock;
 import satisfyu.vinery.block.entity.WineBottleBlockEntity;
 import satisfyu.vinery.registry.ObjectRegistry;
@@ -13,7 +15,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.level.block.state.BlockState;
-
+@Environment(EnvType.CLIENT)
 public class WineBottleRenderer implements BlockEntityRenderer<WineBottleBlockEntity> {
 
     public WineBottleRenderer(BlockEntityRendererProvider.Context ctx) {

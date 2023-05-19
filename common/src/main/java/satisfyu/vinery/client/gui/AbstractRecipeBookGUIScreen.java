@@ -2,6 +2,8 @@ package satisfyu.vinery.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -14,6 +16,7 @@ import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.recipebook.AbstractPrivateRecipeScreenHandler;
 import satisfyu.vinery.client.recipebook.PrivateRecipeBookWidget;
 
+@Environment(EnvType.CLIENT)
 public abstract class AbstractRecipeBookGUIScreen<T extends AbstractPrivateRecipeScreenHandler> extends AbstractContainerScreen<T> {
     private final ResourceLocation BACKGROUND;
     private static final ResourceLocation RECIPE_BUTTON_TEXTURE;

@@ -1,5 +1,7 @@
 package satisfyu.vinery.client.render.block;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import satisfyu.vinery.block.FlowerPotBlock;
 import satisfyu.vinery.block.entity.FlowerPotBlockEntity;
 
@@ -14,7 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-
+@Environment(EnvType.CLIENT)
 public class FlowerPotBlockEntityRenderer implements BlockEntityRenderer<FlowerPotBlockEntity> {
 
     public FlowerPotBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {

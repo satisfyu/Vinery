@@ -11,7 +11,7 @@ authors = "satisfy_u, Cristelknight, BaumeisterJO(weird name but a nice guy)"
 description = '''
 Vinery contains nearly everything needed for not only creating wine but also for building up your own vinery.
 '''
-logoFile = "assets/vinery/icon.png"
+#logoFile = "assets/vinery/icon.png"
 
 [[dependencies.vinery]]
 modId = "forge"

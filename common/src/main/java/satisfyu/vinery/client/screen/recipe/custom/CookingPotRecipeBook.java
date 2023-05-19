@@ -1,5 +1,7 @@
 package satisfyu.vinery.client.screen.recipe.custom;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.client.recipebook.PrivateRecipeBookWidget;
 import satisfyu.vinery.recipe.CookingPotRecipe;
@@ -16,7 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
-
+@Environment(EnvType.CLIENT)
 public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
     private static final Component TOGGLE_COOKABLE_TEXT;
 

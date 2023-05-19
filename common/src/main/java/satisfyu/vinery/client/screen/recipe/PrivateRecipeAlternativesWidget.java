@@ -23,7 +23,7 @@ import satisfyu.vinery.client.VineryClient;
 
 import java.util.Iterator;
 import java.util.List;
-
+@Environment(EnvType.CLIENT)
 public class PrivateRecipeAlternativesWidget extends GuiComponent implements Widget, GuiEventListener {
     static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation("textures/gui/recipe_book.png");
     private final List<CustomAlternativeButtonWidget> alternativeButtons = Lists.newArrayList();

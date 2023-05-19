@@ -2,6 +2,8 @@ package satisfyu.vinery.client.render.block.storage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
@@ -12,7 +14,7 @@ import satisfyu.vinery.block.WineBottleBlock;
 import de.cristelknight.doapi.block.entity.StorageBlockEntity;
 import de.cristelknight.doapi.client.render.block.storage.StorageTypeRenderer;
 import satisfyu.vinery.client.ClientUtil;
-
+@Environment(EnvType.CLIENT)
 public class WineBoxRenderer implements StorageTypeRenderer {
     @Override
     public void render(StorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> itemStacks) {
