@@ -6,13 +6,20 @@ loom {
     accessWidenerPath = file("src/main/resources/vinery.accesswidener")
 }
 
+repositories {
+    maven {
+        name 'Xander Maven'
+        url 'https://maven.isxander.dev/releases'
+    }
+}
+
 dependencies {
     // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
     // Do NOT use other classes from fabric loader
     modImplementation( "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
-            //{ exclude group: 'net.fabricmc', module: 'fabric-loader' }
+    //{ exclude group: 'net.fabricmc', module: 'fabric-loader' }
     // Remove the next line if you don't want to depend on the API
     modApi ("dev.architectury:architectury:${rootProject.architectury_version}")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }

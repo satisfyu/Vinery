@@ -20,6 +20,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.client.VineryClient;
+import satisfyu.vinery.config.VineryConfig;
 
 import java.util.Iterator;
 import java.util.List;
@@ -60,7 +61,7 @@ public class PrivateRecipeAlternativesWidget extends GuiComponent implements Wid
         this.client = client;
         this.recipe = recipe;
 
-        boolean bl = VineryClient.rememberedCraftableToggle;
+        boolean bl = VineryConfig.DEFAULT.getConfig().craftableToggle();
 
         int k = 4;
         int l = (int)Math.ceil(((float)1 / (float)k));

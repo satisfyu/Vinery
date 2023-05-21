@@ -30,6 +30,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.client.VineryClient;
 import satisfyu.vinery.client.screen.recipe.PrivateRecipeBookRecipeArea;
+import satisfyu.vinery.config.VineryConfig;
 
 import java.util.Iterator;
 import java.util.List;
@@ -90,9 +91,12 @@ public abstract class  PrivateRecipeBookWidget extends GuiComponent implements P
         if (opened) {
             this.reset();
         }
-
         this.open = opened;
-        VineryClient.rememberedRecipeBookOpen = opened;
+
+        VineryConfig c = VineryConfig.DEFAULT.getConfig();
+        c.setInstance(new VineryConfig(c.wineTraderChance(), c.yearLengthInDays(), c.enableWineMakerSetBonus(), c.bannedFDRecipes(), opened, c.craftableToggle()));
+        c.getConfig(true, true);
+
         if (!opened) {
             this.recipesArea.hideAlternates();
         }
@@ -101,7 +105,7 @@ public abstract class  PrivateRecipeBookWidget extends GuiComponent implements P
         return this.open;
     }
     private boolean isGuiOpen() {
-        return VineryClient.rememberedRecipeBookOpen;
+        return VineryConfig.DEFAULT.getConfig().recipeBookOpen();
     }
     public void toggleOpen() {
         this.setOpen(!this.isOpen());
@@ -110,8 +114,8 @@ public abstract class  PrivateRecipeBookWidget extends GuiComponent implements P
         this.client.keyboardHandler.setSendRepeatsToGui(false);
     }
     private boolean toggleFilteringCraftable() {
-        boolean bl = !VineryClient.rememberedCraftableToggle;
-        VineryClient.rememberedCraftableToggle = bl;
+        boolean bl = !VineryConfig.DEFAULT.getConfig().craftableToggle();
+        VineryClient.setCraftableToggle(bl);
         return bl;
     }
 
@@ -205,7 +209,7 @@ public abstract class  PrivateRecipeBookWidget extends GuiComponent implements P
             recipes.removeIf((recipe) -> !recipe.getResultItem().getHoverName().getString().toLowerCase(Locale.ROOT).contains(string.toLowerCase(Locale.ROOT)));
         }
 
-        if (VineryClient.rememberedCraftableToggle) {
+        if (VineryConfig.DEFAULT.getConfig().craftableToggle()) {
             recipes.removeIf((recipe) -> !screenHandler.hasIngredient(recipe));
         }
 
@@ -258,7 +262,7 @@ public abstract class  PrivateRecipeBookWidget extends GuiComponent implements P
         this.searchField.setTextColor(16777215);
         this.searchField.setValue(string);
         this.recipesArea.initialize(this.client, i, j, this.screenHandler);
-        this.toggleCraftableButton = new StateSwitchingButton(i + 110, j + 12, 26, 16, VineryClient.rememberedCraftableToggle);
+        this.toggleCraftableButton = new StateSwitchingButton(i + 110, j + 12, 26, 16, VineryConfig.DEFAULT.getConfig().craftableToggle());
         this.setCraftableButtonTexture();
         this.tabButtons.clear();
 
@@ -319,7 +323,7 @@ public abstract class  PrivateRecipeBookWidget extends GuiComponent implements P
                 } else if (this.toggleCraftableButton.mouseClicked(mouseX, mouseY, button)) {
                     boolean bl = this.toggleFilteringCraftable();
                     this.toggleCraftableButton.setStateTriggered(bl);
-                    VineryClient.rememberedCraftableToggle = bl;
+                    VineryClient.setCraftableToggle(bl);
                     this.refreshResults(false);
                     return true;
                 }

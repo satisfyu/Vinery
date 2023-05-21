@@ -37,6 +37,10 @@ public class GeneralUtil {
 		return tracking(world, new ChunkPos(pos));
 	}
 
+	public static float getInPercent(int i){
+		return (float) i / 100;
+	}
+
 	public static boolean isFullAndSolid(LevelReader levelReader, BlockPos blockPos){
 		return isFaceFull(levelReader, blockPos) && isSolid(levelReader, blockPos);
 	}

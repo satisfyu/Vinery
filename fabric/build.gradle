@@ -39,7 +39,7 @@ dependencies {
     modRuntimeOnly( "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
-    include modApi("de:doapi:${project.doapi_version}")
+    //include modApi("de:doapi:${project.doapi_version}")
     modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }

@@ -7,6 +7,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.registry.*;
 import satisfyu.vinery.world.VineryFeatures;
 
@@ -19,6 +20,8 @@ public class Vinery {
             new ItemStack(ObjectRegistry.RED_GRAPE.get()));
     
     public static void init() {
+        VineryConfig.DEFAULT.getConfig();
+
         VineryEffects.init();
         ObjectRegistry.init();
         VineryBlockEntityTypes.init();

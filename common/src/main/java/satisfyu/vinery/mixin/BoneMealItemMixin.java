@@ -1,5 +1,6 @@
 package satisfyu.vinery.mixin;
 
+import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.item.WineMakerArmorItem;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -17,7 +18,7 @@ public abstract class BoneMealItemMixin {
 	
 	@Inject(method = "useOn", at = @At("RETURN"))
 	public void useOnBlock(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
-		if (cir.getReturnValue() == InteractionResult.CONSUME) {
+		if (VineryConfig.DEFAULT.getConfig().enableWineMakerSetBonus() && cir.getReturnValue() == InteractionResult.CONSUME) {
 			Player player = context.getPlayer();
 			ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
 			ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);

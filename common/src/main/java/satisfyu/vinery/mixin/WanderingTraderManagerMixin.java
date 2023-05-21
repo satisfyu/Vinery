@@ -1,5 +1,6 @@
 package satisfyu.vinery.mixin;
 
+import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.entity.TraderMuleEntity;
 import satisfyu.vinery.registry.VineryEntites;
 import org.jetbrains.annotations.Nullable;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.CustomSpawner;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.storage.ServerLevelData;
+import satisfyu.vinery.util.GeneralUtil;
 
 @Mixin(WanderingTraderSpawner.class)
 public abstract class WanderingTraderManagerMixin implements CustomSpawner {
@@ -36,10 +38,10 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 	
 	@Inject(method = "spawn", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/world/entity/EntityType;spawn(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/MobSpawnType;ZZ)Lnet/minecraft/world/entity/Entity;"), cancellable = true)
 	private void trySpawn(ServerLevel world, CallbackInfoReturnable<Boolean> cir) {
-		if (world.random.nextBoolean()) {
+		VineryConfig config = VineryConfig.DEFAULT.getConfig();
+		if (world.random.nextFloat() < GeneralUtil.getInPercent(config.wineTraderChance())) {
 			ServerPlayer playerEntity = world.getRandomPlayer();
 			BlockPos blockPos = playerEntity.blockPosition();
-			int i = 48;
 			PoiManager pointOfInterestStorage = world.getPoiManager();
 			Optional<BlockPos> optional = pointOfInterestStorage.find(type -> type.is(PoiTypes.MEETING), pos -> true, blockPos, 48, PoiManager.Occupancy.ANY);
 			BlockPos blockPos2 = optional.orElse(blockPos);

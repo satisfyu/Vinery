@@ -24,6 +24,7 @@ import satisfyu.vinery.client.render.block.FlowerPotBlockEntityRenderer;
 import satisfyu.vinery.client.render.block.WineBottleRenderer;
 import satisfyu.vinery.client.render.entity.MuleRenderer;
 import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
+import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.registry.CustomArmorRegistry;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryEntites;
@@ -34,10 +35,13 @@ import static satisfyu.vinery.registry.ObjectRegistry.*;
 @Environment(EnvType.CLIENT)
 public class VineryClient {
 
-    public static boolean rememberedRecipeBookOpen = false;
     public static boolean rememberedCraftableToggle = true;
 
-
+    public static void setCraftableToggle(boolean bl){
+        VineryConfig c = VineryConfig.DEFAULT.getConfig();
+        c.setInstance(new VineryConfig(c.wineTraderChance(), c.yearLengthInDays(), c.enableWineMakerSetBonus(), c.bannedFDRecipes(), c.recipeBookOpen(), bl));
+        c.getConfig(true, true);
+    }
 
     public static void onInitializeClient() {
 

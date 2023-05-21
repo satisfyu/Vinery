@@ -17,7 +17,7 @@ import net.minecraft.world.phys.Vec3;
 public class TaigaGrapeBush extends GrapeBush {
 
     public TaigaGrapeBush(Properties settings, GrapevineType type) {
-        super(settings, type, 5);
+        super(settings, type);
     }
 
     @Override
