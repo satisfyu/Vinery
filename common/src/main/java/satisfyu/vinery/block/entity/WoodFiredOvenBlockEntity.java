@@ -1,16 +1,5 @@
 package satisfyu.vinery.block.entity;
 
-import satisfyu.vinery.block.WoodFiredOvenBlock;
-import satisfyu.vinery.client.gui.handler.StoveGuiHandler;
-import satisfyu.vinery.item.food.EffectFood;
-import satisfyu.vinery.item.food.EffectFoodHelper;
-import satisfyu.vinery.recipe.WoodFiredOvenRecipe;
-import satisfyu.vinery.registry.VineryBlockEntityTypes;
-import satisfyu.vinery.registry.VineryRecipeTypes;
-import org.jetbrains.annotations.Nullable;
-
-import static net.minecraft.world.item.ItemStack.isSameItemSameTags;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -35,6 +24,16 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.block.WoodFiredOvenBlock;
+import satisfyu.vinery.client.gui.handler.StoveGuiHandler;
+import satisfyu.vinery.item.food.EffectFood;
+import satisfyu.vinery.item.food.EffectFoodHelper;
+import satisfyu.vinery.recipe.WoodFiredOvenRecipe;
+import satisfyu.vinery.registry.VineryBlockEntityTypes;
+import satisfyu.vinery.registry.VineryRecipeTypes;
+
+import static net.minecraft.world.item.ItemStack.isSameItemSameTags;
 
 public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntityTicker<WoodFiredOvenBlockEntity>, Container, MenuProvider {
 
@@ -302,7 +301,15 @@ public class WoodFiredOvenBlockEntity extends BlockEntity implements BlockEntity
         if (stack.getCount() > this.getMaxStackSize()) {
             stack.setCount(this.getMaxStackSize());
         }
-        if (slot == INGREDIENT_SLOTS[0] || slot == INGREDIENT_SLOTS[1] || slot == INGREDIENT_SLOTS[2] && !dirty) {
+        // Check if there's a change in the ingredients and reset cooking process if necessary
+        boolean hasIngredientChange = false;
+        for (int ingredientSlot : INGREDIENT_SLOTS) {
+            if (!ItemStack.isSameItemSameTags(this.getItem(ingredientSlot), stackInSlot)) {
+                hasIngredientChange = true;
+                break;
+            }
+        }
+        if (hasIngredientChange && !dirty) {
             this.cookTimeTotal = TOTAL_COOKING_TIME;
             this.cookTime = 0;
             this.setChanged();
