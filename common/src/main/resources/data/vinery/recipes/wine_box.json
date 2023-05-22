@@ -10,7 +10,7 @@
       "tag": "minecraft:wooden_slabs"
     },
     "G": {
-      "item": "minecraft:glass"
+      "tag": "c:glass_panes"
     }
   },
   "result": {

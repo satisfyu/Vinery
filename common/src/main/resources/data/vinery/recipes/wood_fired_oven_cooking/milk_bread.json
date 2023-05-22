@@ -5,10 +5,10 @@
       "item": "minecraft:sugar"
     },
     {
-      "item": "vinery:dough"
+      "tag": "c:dough"
     },
     {
-      "item": "minecraft:milk_bucket"
+      "tag": "c:milk"
     }
   ],
   "item": "vinery:milk_bread",
