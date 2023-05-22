@@ -6,7 +6,6 @@ import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import satisfyu.vinery.Vinery;
-import satisfyu.vinery.compat.farmersdelight.FarmersCookingPot;
 import satisfyu.vinery.compat.rei.VineryReiClientPlugin;
 import satisfyu.vinery.recipe.CookingPotRecipe;
 import satisfyu.vinery.util.VineryUtils;
