@@ -76,7 +76,6 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, boolean e
 
     @Override
     public void setInstance(VineryConfig instance) {
-        Vinery.LOGGER.error(instance.toString());
         INSTANCE = instance;
     }
 }

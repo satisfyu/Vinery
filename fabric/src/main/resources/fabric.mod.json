@@ -26,6 +26,9 @@
     ],
     "doapi": [
       "satisfyu.vinery.util.api.VineryDoApi"
+    ],
+    "modmenu": [
+      "satisfyu.vinery.fabric.client.ModMenuConfig"
     ]
   },
   "custom": {

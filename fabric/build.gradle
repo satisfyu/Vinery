@@ -21,7 +21,7 @@ configurations {
 
 repositories {
     maven {
-        name "terraform wood api, trinkets"
+        name "TerraformersMC"
         url "https://maven.terraformersmc.com"
     }
 }
@@ -41,6 +41,9 @@ dependencies {
 
     //include modApi("de:doapi:${project.doapi_version}")
     modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
+    modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") {
+        exclude module: "fabric-api"
+    }
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
