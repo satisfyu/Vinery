@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GrassColor;
+import satisfyu.vinery.Vinery;
 import satisfyu.vinery.block.entity.chair.ChairRenderer;
 import satisfyu.vinery.client.gui.CookingPotGui;
 import satisfyu.vinery.client.gui.FermentationBarrelGui;
@@ -35,11 +36,15 @@ import static satisfyu.vinery.registry.ObjectRegistry.*;
 @Environment(EnvType.CLIENT)
 public class VineryClient {
 
-    public static boolean rememberedCraftableToggle = true;
-
     public static void setCraftableToggle(boolean bl){
         VineryConfig c = VineryConfig.DEFAULT.getConfig();
-        c.setInstance(new VineryConfig(c.wineTraderChance(), c.yearLengthInDays(), c.enableWineMakerSetBonus(), c.bannedFDRecipes(), c.recipeBookOpen(), bl));
+        c.setInstance(new VineryConfig(c.wineTraderChance(), c.yearLengthInDays(), c.enableWineMakerSetBonus(), c.recipeBookOpen(), bl));
+        c.getConfig(true, true);
+    }
+
+    public static void setRecipeBookOpenToggle(boolean bl){
+        VineryConfig c = VineryConfig.DEFAULT.getConfig();
+        c.setInstance(new VineryConfig(c.wineTraderChance(), c.yearLengthInDays(), c.enableWineMakerSetBonus(), bl, c.craftableToggle()));
         c.getConfig(true, true);
     }
 

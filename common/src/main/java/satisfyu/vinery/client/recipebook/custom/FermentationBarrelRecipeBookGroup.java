@@ -28,8 +28,10 @@ public enum FermentationBarrelRecipeBookGroup implements IRecipeBookGroup {
     }
 
     public boolean fitRecipe(Recipe<?> recipe) {
+        /*
         System.out.println("test");
         System.out.println(recipe instanceof FermentationBarrelRecipe fermentationBarrelRecipe);
+         */
         if (recipe instanceof FermentationBarrelRecipe fermentationBarrelRecipe) {
             switch (this) {
                 case SEARCH -> {

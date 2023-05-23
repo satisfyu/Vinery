@@ -93,9 +93,7 @@ public abstract class  PrivateRecipeBookWidget extends GuiComponent implements P
         }
         this.open = opened;
 
-        VineryConfig c = VineryConfig.DEFAULT.getConfig();
-        c.setInstance(new VineryConfig(c.wineTraderChance(), c.yearLengthInDays(), c.enableWineMakerSetBonus(), c.bannedFDRecipes(), opened, c.craftableToggle()));
-        c.getConfig(true, true);
+        VineryClient.setRecipeBookOpenToggle(opened);
 
         if (!opened) {
             this.recipesArea.hideAlternates();
