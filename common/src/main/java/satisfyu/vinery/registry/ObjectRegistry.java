@@ -94,7 +94,7 @@ public class ObjectRegistry {
 
     }, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static final RegistrySupplier<Item>  CHERRY_SAPLING_ITEM = registerI("cherry_sapling", () -> new BlockItem(CHERRY_SAPLING.get(), getSettings()));
-    public static final RegistrySupplier<Block> OLD_CHERRY_SAPLING = registerB("old_cherry_sapling", () -> new SaplingBlock(new ConfiguredFeatureSaplingGenerator() {
+    public static final RegistrySupplier<Block> APPLE_TREE_SAPLING = registerB("apple_tree_sapling", () -> new SaplingBlock(new ConfiguredFeatureSaplingGenerator() {
         @Override
         protected @NotNull ResourceKey<ConfiguredFeature<?, ?>> getTreeConfiguredFeature(RandomSource random, boolean bees) {
             if (random.nextBoolean()) {
@@ -106,7 +106,7 @@ public class ObjectRegistry {
             }
         }
     }, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static final RegistrySupplier<Item>  OLD_CHERRY_SAPLING_ITEM = registerI("old_cherry_sapling", () -> new BlockItem(OLD_CHERRY_SAPLING.get(), getSettings()));
+    public static final RegistrySupplier<Item>  APPLE_TREE_SAPLING_ITEM = registerI("apple_tree_sapling", () -> new BlockItem(APPLE_TREE_SAPLING.get(), getSettings()));
 
 
 
@@ -116,6 +116,8 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  GRAPEVINE_LEAVES_ITEM = registerI("grapevine_leaves", () -> new BlockItem(GRAPEVINE_LEAVES.get(), getSettings()));
     public static final RegistrySupplier<Block> CHERRY_LEAVES = registerB("cherry_leaves", () -> new CherryLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistrySupplier<Item>  CHERRY_LEAVES_ITEM = registerI("cherry_leaves", () -> new BlockItem(CHERRY_LEAVES.get(), getSettings()));
+    public static final RegistrySupplier<Block> APPLE_LEAVES = registerB("apple_leaves", () -> new AppleLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
+    public static final RegistrySupplier<Item>  APPLE_LEAVES_ITEM = registerI("apple_leaves", () -> new BlockItem(APPLE_LEAVES.get(), getSettings()));
     public static final RegistrySupplier<Block> WHITE_GRAPE_CRATE = registerB("white_grape_crate", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistrySupplier<Item>  WHITE_GRAPE_CRATE_ITEM = registerI("white_grape_crate", () -> new BlockItem(WHITE_GRAPE_CRATE.get(), getSettings()));
     public static final RegistrySupplier<Block> RED_GRAPE_CRATE = registerB("red_grape_crate", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -124,6 +126,8 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  CHERRY_CRATE_ITEM = registerI("cherry_crate", () -> new BlockItem(CHERRY_CRATE.get(), getSettings()));
     public static final RegistrySupplier<Block> APPLE_CRATE = registerB("apple_crate", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistrySupplier<Item>  APPLE_CRATE_ITEM = registerI("apple_crate", () -> new BlockItem(APPLE_CRATE.get(), getSettings()));
+    public static final RegistrySupplier<Block> GRAPEVINE_LATTICE = registerB("grapevine_lattice", () -> new LatticeStemBlock(getGrapevineSettings()));
+    public static final RegistrySupplier<Item>  GRAPEVINE_LATTICE_ITEM = registerI("grapevine_lattice", () -> new BlockItem(GRAPEVINE_LATTICE.get(), getSettings()));
     public static final RegistrySupplier<Block> GRAPEVINE_POT = registerB("grapevine_pot", () -> new GrapevinePotBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)));
     public static final RegistrySupplier<Item>  GRAPEVINE_POT_ITEM = registerI("grapevine_pot", () -> new BlockItem(GRAPEVINE_POT.get(), getSettings()));
     public static final RegistrySupplier<Block> FERMENTATION_BARREL = registerB("fermentation_barrel", () -> new FermentationBarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL).noOcclusion()));
@@ -150,6 +154,10 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  WINE_RACK_5_ITEM = registerI("wine_rack_5", () -> new BlockItem(WINE_RACK_5.get(), getSettings()));
     public static final RegistrySupplier<Block> BARREL = registerB("barrel", () -> new BarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)));
     public static final RegistrySupplier<Item>  BARREL_ITEM = registerI("barrel", () -> new BlockItem(BARREL.get(), getSettings()));
+    public static final RegistrySupplier<Block> APPLE_LOG = registerB("apple_log", GeneralUtil::logBlock);
+    public static final RegistrySupplier<Item>  APPLE_LOG_ITEM = registerI("apple_log", () -> new BlockItem(APPLE_LOG.get(), getSettings()));
+    public static final RegistrySupplier<Block> APPLE_WOOD = registerB("apple_wood", GeneralUtil::logBlock);
+    public static final RegistrySupplier<Item>  APPLE_ITEM = registerI("apple_wood", () -> new BlockItem(APPLE_WOOD.get(), getSettings()));
     public static final RegistrySupplier<Block> STRIPPED_CHERRY_LOG = registerB("stripped_cherry_log", GeneralUtil::logBlock);
     public static final RegistrySupplier<Item>  STRIPPED_CHERRY_LOG_ITEM = registerI("stripped_cherry_log", () -> new BlockItem(STRIPPED_CHERRY_LOG.get(), getSettings()));
     public static final RegistrySupplier<Block> CHERRY_LOG = registerB("cherry_log", GeneralUtil::logBlock);
@@ -158,14 +166,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  STRIPPED_CHERRY_WOOD_ITEM = registerI("stripped_cherry_wood", () -> new BlockItem(STRIPPED_CHERRY_WOOD.get(), getSettings()));
     public static final RegistrySupplier<Block> CHERRY_WOOD = registerB("cherry_wood", GeneralUtil::logBlock);
     public static final RegistrySupplier<Item>  CHERRY_WOOD_ITEM = registerI("cherry_wood", () -> new BlockItem(CHERRY_WOOD.get(), getSettings()));
-    public static final RegistrySupplier<Block> STRIPPED_OLD_CHERRY_LOG = registerB("stripped_old_cherry_log", GeneralUtil::logBlock);
-    public static final RegistrySupplier<Item>  STRIPPED_OLD_CHERRY_LOG_ITEM = registerI("stripped_old_cherry_log", () -> new BlockItem(STRIPPED_OLD_CHERRY_LOG.get(), getSettings()));
-    public static final RegistrySupplier<Block> OLD_CHERRY_LOG = registerB("old_cherry_log", GeneralUtil::logBlock);
-    public static final RegistrySupplier<Item>  OLD_CHERRY_LOG_ITEM = registerI("old_cherry_log", () -> new BlockItem(OLD_CHERRY_LOG.get(), getSettings()));
-    public static final RegistrySupplier<Block> STRIPPED_OLD_CHERRY_WOOD = registerB("stripped_old_cherry_wood", GeneralUtil::logBlock);
-    public static final RegistrySupplier<Item>  STRIPPED_OLD_CHERRY_WOOD_ITEM = registerI("stripped_old_cherry_wood", () -> new BlockItem(STRIPPED_OLD_CHERRY_WOOD.get(), getSettings()));
-    public static final RegistrySupplier<Block> OLD_CHERRY_WOOD = registerB("old_cherry_wood", GeneralUtil::logBlock);
-    public static final RegistrySupplier<Item>  OLD_CHERRY_WOOD_ITEM = registerI("old_cherry_wood", () -> new BlockItem(OLD_CHERRY_WOOD.get(), getSettings()));
     public static final RegistrySupplier<Block> CHERRY_BEAM = registerB("cherry_beam", GeneralUtil::logBlock);
     public static final RegistrySupplier<Item>  CHERRY_BEAM_ITEM = registerI("cherry_beam", () -> new BlockItem(CHERRY_BEAM.get(), getSettings()));
     public static final RegistrySupplier<Block> CHERRY_PLANKS = registerB("cherry_planks", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -208,9 +208,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  DIRT_SLAB_ITEM = registerI("dirt_slab", () -> new BlockItem(DIRT_SLAB.get(), getSettings()));
     public static final RegistrySupplier<Block> GRASS_SLAB = registerB("grass_slab", () -> new SnowyVariantSlabBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
     public static final RegistrySupplier<Item>  GRASS_SLAB_ITEM = registerI("grass_slab", () -> new BlockItem(GRASS_SLAB.get(), getSettings()));
-    public static final RegistrySupplier<Block> GRAPEVINE_LATTICE = registerB("grapevine_lattice", () -> new LatticeStemBlock(getGrapevineSettings()));
-    public static final RegistrySupplier<Item>  GRAPEVINE_LATTICE_ITEM = registerI("grapevine_lattice", () -> new BlockItem(GRAPEVINE_LATTICE.get(), getSettings()));
-
     //Wines
 
 

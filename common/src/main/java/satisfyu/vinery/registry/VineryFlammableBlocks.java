@@ -9,8 +9,8 @@ public class VineryFlammableBlocks {
         add(5, 20, ObjectRegistry.CHERRY_PLANKS.get(), ObjectRegistry.CHERRY_SLAB.get(), ObjectRegistry.CHERRY_STAIRS.get(), ObjectRegistry.CHERRY_FENCE.get(),
                 ObjectRegistry.CHERRY_FENCE_GATE.get());
 
-        add(5, 5, ObjectRegistry.STRIPPED_CHERRY_LOG.get(), ObjectRegistry.STRIPPED_OLD_CHERRY_LOG.get(), ObjectRegistry.CHERRY_LOG.get(), ObjectRegistry.OLD_CHERRY_LOG.get(),
-                ObjectRegistry.STRIPPED_CHERRY_WOOD.get(), ObjectRegistry.CHERRY_WOOD.get(), ObjectRegistry.OLD_CHERRY_WOOD.get(), ObjectRegistry.STRIPPED_OLD_CHERRY_WOOD.get());
+        add(5, 5, ObjectRegistry.STRIPPED_CHERRY_LOG.get(), ObjectRegistry.CHERRY_LOG.get(), ObjectRegistry.APPLE_LOG.get(),
+                ObjectRegistry.STRIPPED_CHERRY_WOOD.get(), ObjectRegistry.CHERRY_WOOD.get(), ObjectRegistry.APPLE_WOOD.get());
 
         add(30, 60, ObjectRegistry.CHERRY_LEAVES.get(), ObjectRegistry.GRAPEVINE_LEAVES.get());
     }

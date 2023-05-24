@@ -14,13 +14,12 @@
   "block.vinery.cherry_planks": "Kirschholzbretter",
   "block.vinery.stripped_cherry_log": "Entrindeter Kirschholzstamm",
   "block.vinery.cherry_log": "Kirschholzstamm",
-  "block.vinery.stripped_old_cherry_log": "Entrindeter Alter Kirschholzstamm",
-  "block.vinery.old_cherry_log": "Alter Kirschholzstamm",
+  "block.vinery.apple_log": "Apfelholzstamm",
   "block.vinery.cherry_wood": "Kirschholz",
   "block.vinery.barrel": "Weinfass",
+  "block.vinery.apple_leaves": "Apfelbaumlaub",
   "block.vinery.stripped_cherry_wood": "Entrindetes Kirschholz",
-  "block.vinery.old_cherry_wood": "Altes Kirschholz",
-  "block.vinery.stripped_old_cherry_wood": "Entrindetes altes Kirschholz",
+  "block.vinery.apple_wood": "Apfelholz",
   "block.vinery.cherry_slab": "Kirschholzstufe",
   "block.vinery.cherry_stairs": "Kirschholztreppe",
   "block.vinery.cherry_fence": "Kirschholzzaun",
@@ -72,7 +71,7 @@
   "block.vinery.grass_slab": "Grassstufe",
   "block.vinery.kitchen_sink": "Spüle",
   "block.vinery.cherry_sapling": "Kirschsetzling",
-  "block.vinery.old_cherry_sapling": "Alter Kirschsetzling",
+  "block.vinery.apple_tree_sapling": "Apfelsetzling",
   "block.vinery.crusty_bread": "Bauernbrot",
   "block.vinery.table": "Tisch",
   "block.vinery.chair": "Stuhl",
@@ -261,5 +260,11 @@
   "item.vinery.tomato": "Tomate",
   "item.vinery.tomato_seeds": "Tomatensamen",
   "item.vinery.grapeseed.tooltip.item.vinery.tomato_seeds": "Kann auf Ackerland oder Stämmen angebaut werden",
-  "item.vinery.juice.tooltip.item.vinery.tomato": "Handwerkszutat - Wilde Tomaten können in warmen Biomen gefunden werden"
+  "item.vinery.juice.tooltip.item.vinery.tomato": "Handwerkszutat - Wilde Tomaten können in warmen Biomen gefunden werden",
+  "vinery.config.title": "Vinery",
+  "vinery.config.entry.recipebookopen": "Recipe Book Open",
+  "vinery.config.entry.craftabletoggle": "Toggle Craftable",
+  "vinery.config.entry.winetraderchance": "Wandering Winemaker Spawnchance",
+  "vinery.config.entry.yearlengthindays": "Days per Year for Aging"
+
 }

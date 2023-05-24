@@ -1,0 +1,16 @@
+{
+    "variants": {
+		"can_have_apples=false,has_apples=false": {
+			"model": "vinery:block/apple_leaves"
+		},
+		"can_have_apples=false,has_apples=true": {
+			"model": "vinery:block/apple_leaves"
+		},
+		"can_have_apples=true,has_apples=false": {
+			"model": "vinery:block/apple_leaves_stage0"
+		},
+		"can_have_apples=true,has_apples=true": {
+			"model": "vinery:block/apple_leaves_stage1"
+		}
+	}
+}

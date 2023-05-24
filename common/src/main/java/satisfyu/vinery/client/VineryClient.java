@@ -13,8 +13,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
-import satisfyu.vinery.Vinery;
 import satisfyu.vinery.block.entity.chair.ChairRenderer;
 import satisfyu.vinery.client.gui.CookingPotGui;
 import satisfyu.vinery.client.gui.FermentationBarrelGui;
@@ -61,8 +61,8 @@ public class VineryClient {
                 CHORUS_WINE.get(), STAL_WINE.get(), MAGNETIC_WINE.get(), STRAD_WINE.get(), JUNGLE_WHITE_GRAPE_BUSH.get(),
                 JUNGLE_RED_GRAPE_BUSH.get(), TAIGA_RED_GRAPE_BUSH.get(), TAIGA_WHITE_GRAPE_BUSH.get(),
                 GRAPEVINE_STEM.get(), GRAPEVINE_LATTICE.get(), WINE_BOX.get(), FLOWER_POT.get(), CHAIR.get(),
-                WINE_PRESS.get(), GRASS_SLAB.get(), CHERRY_JAR.get(), CHERRY_SAPLING.get(), OLD_CHERRY_SAPLING.get(),
-                KITCHEN_SINK.get(), STACKABLE_LOG.get()
+                WINE_PRESS.get(), GRASS_SLAB.get(), CHERRY_JAR.get(), CHERRY_SAPLING.get(), APPLE_TREE_SAPLING.get(),
+                KITCHEN_SINK.get(), STACKABLE_LOG.get(), APPLE_LEAVES.get()
         );
 
         ClientStorageTypes.init();
@@ -71,8 +71,9 @@ public class VineryClient {
 
 
         ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> BiomeColors.getAverageGrassColor(world, pos), GRASS_SLAB, TAIGA_WHITE_GRAPE_BUSH, TAIGA_RED_GRAPE_BUSH);
-        ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> BiomeColors.getAverageFoliageColor(world, pos), SAVANNA_RED_GRAPE_BUSH, SAVANNA_WHITE_GRAPE_BUSH, JUNGLE_RED_GRAPE_BUSH, JUNGLE_WHITE_GRAPE_BUSH, GRAPEVINE_STEM, GRAPEVINE_LATTICE);
+        ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> BiomeColors.getAverageFoliageColor(world, pos), SAVANNA_RED_GRAPE_BUSH, SAVANNA_WHITE_GRAPE_BUSH, JUNGLE_RED_GRAPE_BUSH, JUNGLE_WHITE_GRAPE_BUSH, GRAPEVINE_STEM, GRAPEVINE_LATTICE, APPLE_LEAVES);
         ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> GrassColor.get(0.5, 1.0), GRASS_SLAB);
+        ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> FoliageColor.get(0.5, 1.0), APPLE_LEAVES_ITEM);
 
 
 

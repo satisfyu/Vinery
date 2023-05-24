@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/cube_column",
+	"textures": {
+		"end": "vinery:block/apple_log_top",
+		"side": "vinery:block/apple_log_side"
+	}
+}

@@ -1,7 +1,0 @@
-{
-	"parent": "minecraft:block/cube_column",
-	"textures": {
-		"end": "vinery:block/stripped_old_cherry_log_top",
-		"side": "vinery:block/stripped_old_cherry_log_side"
-	}
-}

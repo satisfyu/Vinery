@@ -2,16 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "group": "wood",
   "pattern": [
-    "#",
-    "#"
+    "##",
+    "##"
   ],
   "key": {
     "#": {
-      "item": "vinery:cherry_log"
+      "item": "vinery:apple_log"
     }
   },
   "result": {
-    "item": "vinery:cherry_beam",
+    "item": "vinery:apple_wood",
     "count": 3
   }
 }

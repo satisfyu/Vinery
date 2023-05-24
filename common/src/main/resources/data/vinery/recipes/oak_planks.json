@@ -3,11 +3,11 @@
   "group": "planks",
   "ingredients": [
     {
-      "item": "vinery:cherry_log"
+      "item": "vinery:apple_log"
     }
   ],
   "result": {
-    "item": "vinery:cherry_planks",
+    "item": "minecraft:oak_planks",
     "count": 4
   }
 }

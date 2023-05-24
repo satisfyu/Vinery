@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stripped_wood",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "vinery:stripped_apple_log"
+    }
+  },
+  "result": {
+    "item": "minecraft:stripped_oak_log",
+    "count": 3
+  }
+}
