@@ -6,7 +6,7 @@ import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 
 public interface TerraformBoatHolder {
-	static final String BOAT_KEY = "TerraformBoat";
+	String BOAT_KEY = "TerraformBoat";
 
 	TerraformBoatType getTerraformBoat();
 

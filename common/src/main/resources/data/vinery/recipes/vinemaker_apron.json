@@ -11,8 +11,8 @@
       "item": "minecraft:red_wool"
     },
     "W": {
-       "item": "vinery:gloves"
-  }
+      "item": "vinery:gloves"
+    }
   },
   "result": {
     "item": "vinery:vinemaker_apron"

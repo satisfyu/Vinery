@@ -1,6 +1,5 @@
 package satisfyu.vinery.mixin;
 
-import satisfyu.vinery.item.WineMakerArmorItem;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -11,10 +10,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import satisfyu.vinery.item.WineMakerArmorItem;
 
 @Mixin(BoneMealItem.class)
 public abstract class BoneMealItemMixin {
-	
 	@Inject(method = "useOn", at = @At("RETURN"))
 	public void useOnBlock(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
 		if (cir.getReturnValue() == InteractionResult.CONSUME) {
@@ -23,10 +22,10 @@ public abstract class BoneMealItemMixin {
 			ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
 			ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
 			ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
-			if (helmet != null && helmet.getItem() instanceof WineMakerArmorItem &&
-					chestplate != null && chestplate.getItem() instanceof WineMakerArmorItem &&
-					leggings != null && leggings.getItem() instanceof WineMakerArmorItem &&
-					boots != null && boots.getItem() instanceof WineMakerArmorItem) {
+			if (helmet != null && helmet.getItem() instanceof WineMakerArmorItem && chestplate != null
+					&& chestplate.getItem() instanceof WineMakerArmorItem && leggings != null
+					&& leggings.getItem() instanceof WineMakerArmorItem && boots != null
+					&& boots.getItem() instanceof WineMakerArmorItem) {
 				context.getItemInHand().grow(1);
 			}
 		}

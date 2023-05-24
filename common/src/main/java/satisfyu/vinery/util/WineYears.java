@@ -6,8 +6,11 @@ import net.minecraft.world.level.Level;
 
 public class WineYears {
 	public static final int DAYS_PER_YEAR = 16;
+
 	public static final int YEARS_START = 0;
+
 	public static final int YEARS_PER_EFFECT_LEVEL = 4;
+
 	public static final int MAX_LEVEL = 5;
 
 	public static int getYear(Level world) {
@@ -28,7 +31,7 @@ public class WineYears {
 
 	public static int getWineYear(ItemStack wine, Level world) {
 		CompoundTag nbt = wine.getOrCreateTag();
-		if (!nbt.contains("Year")) setWineYear(wine, world);
+		if (!nbt.contains("Year")) { setWineYear(wine, world); }
 		return nbt.getInt("Year");
 	}
 }

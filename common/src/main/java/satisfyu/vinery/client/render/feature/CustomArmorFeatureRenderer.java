@@ -1,6 +1,5 @@
 package satisfyu.vinery.client.render.feature;
 
-
 import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -23,12 +22,12 @@ import satisfyu.vinery.item.CustomModelArmorItem;
 
 import java.util.Map;
 
-public class CustomArmorFeatureRenderer<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
+public class CustomArmorFeatureRenderer <T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
+	private final EntityModelSet modelLoader;
+
+	private final float yOffset;
 
 	public Map<Item, EntityModel<T>> MODELS = Maps.newHashMap();
-
-	private final EntityModelSet modelLoader;
-	private final float yOffset;
 
 	public CustomArmorFeatureRenderer(RenderLayerParent<T, M> context, EntityModelSet modelSet) {
 		this(context, modelSet, 0);
@@ -42,8 +41,8 @@ public class CustomArmorFeatureRenderer<T extends LivingEntity, M extends Entity
 
 	public EntityModel<T> getHatModel(T entity, EquipmentSlot slot) {
 		Item hatItem = getHatItem(entity, slot);
-		if(hatItem != null) {
-			if(MODELS.isEmpty()) {
+		if (hatItem != null) {
+			if (MODELS.isEmpty()) {
 				VineryExpectPlatform.registerArmor(MODELS, modelLoader);
 			}
 			return MODELS.get(hatItem);
@@ -51,28 +50,23 @@ public class CustomArmorFeatureRenderer<T extends LivingEntity, M extends Entity
 		return null;
 	}
 
-	public CustomModelArmorItem getHatItem(T entity, EquipmentSlot slot)
-	{
+	public CustomModelArmorItem getHatItem(T entity, EquipmentSlot slot) {
 		ItemStack headSlot = entity.getItemBySlot(slot);
-		if(headSlot.getItem() instanceof CustomModelArmorItem hat && !headSlot.isEmpty())
-			return hat;
+		if (headSlot.getItem() instanceof CustomModelArmorItem hat && !headSlot.isEmpty()) { return hat; }
 		return null;
 	}
 
-
-
 	@Override
 	public void render(PoseStack matrices, MultiBufferSource vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-		EquipmentSlot[] slots = {EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
-		for(EquipmentSlot slot : slots){
+		EquipmentSlot[] slots = { EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET };
+		for (EquipmentSlot slot : slots) {
 			EntityModel<T> headModel = getHatModel(entity, slot);
 			ItemStack headSlot = entity.getItemBySlot(slot);
-			if(headModel != null && headSlot.getItem() instanceof CustomModelArmorItem armorItem){
-
+			if (headModel != null && headSlot.getItem() instanceof CustomModelArmorItem armorItem) {
 				matrices.pushPose();
 				setupHat(matrices, slot, armorItem.getOffset());
-
-				VertexConsumer vertexConsumer = ItemRenderer.getArmorFoilBuffer(vertexConsumers, RenderType.armorCutoutNoCull(this.getTexture(entity, slot)), false, headSlot.hasFoil());
+				VertexConsumer vertexConsumer = ItemRenderer.getArmorFoilBuffer(vertexConsumers,
+						RenderType.armorCutoutNoCull(this.getTexture(entity, slot)), false, headSlot.hasFoil());
 				headModel.renderToBuffer(matrices, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1F, 1F, 1F, 1F);
 				matrices.popPose();
 			}
@@ -80,17 +74,16 @@ public class CustomArmorFeatureRenderer<T extends LivingEntity, M extends Entity
 	}
 
 	public void setupHat(PoseStack matrices, EquipmentSlot slot, float extraYOffset) {
-		if(slot.equals(EquipmentSlot.HEAD)){
+		if (slot.equals(EquipmentSlot.HEAD)) {
 			((HeadedModel) this.getParentModel()).getHead().translateAndRotate(matrices);
 		}
-		matrices.scale(1F,1F,1F);
+		matrices.scale(1F, 1F, 1F);
 		matrices.translate(0, yOffset + extraYOffset, 0);
 	}
 
-
 	protected ResourceLocation getTexture(T entity, EquipmentSlot slot) {
 		CustomModelArmorItem customItem = getHatItem(entity, slot);
-		if(customItem != null) return customItem.getTexture();
+		if (customItem != null) { return customItem.getTexture(); }
 		return super.getTextureLocation(entity);
 	}
 }

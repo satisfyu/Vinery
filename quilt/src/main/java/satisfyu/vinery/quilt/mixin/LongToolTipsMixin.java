@@ -17,23 +17,24 @@ import java.util.List;
 
 @Mixin(Screen.class)
 public abstract class LongToolTipsMixin {
-    @Shadow
-    protected Font font;
-    @Shadow
-    public int width;
+	@Shadow public int width;
 
-    @ModifyVariable(method = "renderTooltipInternal", at = @At(value = "HEAD"), index = 2, argsOnly = true)
-    public List<ClientTooltipComponent> makeListMutable(List<ClientTooltipComponent> value) {
-        return new ArrayList<>(value);
-    }
+	@Shadow protected Font font;
 
-    @Inject(method = "renderTooltipInternal", at = @At(value = "INVOKE", target = "Ljava/util/List;size()I", ordinal = 0))
-    public void fix(PoseStack poseStack, List<ClientTooltipComponent> list, int x, int y, CallbackInfo ci) {
-        TooltipHelper.newFix(list, font, x, width);
-    }
+	@ModifyVariable(method = "renderTooltipInternal", at = @At(value = "HEAD"), index = 2, argsOnly = true)
+	public List<ClientTooltipComponent> makeListMutable(List<ClientTooltipComponent> value) {
+		return new ArrayList<>(value);
+	}
 
-    @ModifyVariable(method = "renderTooltipInternal", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V"), index = 7)
-    public int modifyRenderX(int value, PoseStack matrices, List<ClientTooltipComponent> components, int x, int y) {
-        return TooltipHelper.shouldFlip(components, font, x);
-    }
+	@Inject(method = "renderTooltipInternal",
+			at = @At(value = "INVOKE", target = "Ljava/util/List;size()I", ordinal = 0))
+	public void fix(PoseStack poseStack, List<ClientTooltipComponent> list, int x, int y, CallbackInfo ci) {
+		TooltipHelper.newFix(list, font, x, width);
+	}
+
+	@ModifyVariable(method = "renderTooltipInternal",
+			at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V"), index = 7)
+	public int modifyRenderX(int value, PoseStack matrices, List<ClientTooltipComponent> components, int x, int y) {
+		return TooltipHelper.shouldFlip(components, font, x);
+	}
 }

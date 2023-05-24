@@ -1,15 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "#"
-    ],
-    "key": {
-        "#": {
-            "item": "vinery:cherry_crate"
-        }
-    },
-    "result": {
-        "item": "vinery:cherry",
-        "count": 9
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "vinery:cherry_crate"
     }
+  },
+  "result": {
+    "item": "vinery:cherry",
+    "count": 9
+  }
 }

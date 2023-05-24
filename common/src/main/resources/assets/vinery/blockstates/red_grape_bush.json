@@ -1,6 +1,6 @@
 {
   "variants": {
-   "age=0": {
+    "age=0": {
       "model": "vinery:block/grape_bush_stage1"
     },
     "age=1": {

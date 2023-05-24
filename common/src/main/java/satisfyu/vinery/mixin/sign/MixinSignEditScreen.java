@@ -16,11 +16,10 @@ import satisfyu.vinery.util.sign.TerraformSign;
 @Mixin(SignEditScreen.class)
 @Environment(EnvType.CLIENT)
 public class MixinSignEditScreen {
-	@Shadow
-	@Final
-	private SignBlockEntity sign;
-	
-	@ModifyVariable(method = "render", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/renderer/Sheets;getSignMaterial(Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/client/resources/model/Material;"))
+	@Shadow @Final private SignBlockEntity sign;
+
+	@ModifyVariable(method = "render", at = @At(value = "INVOKE_ASSIGN",
+			target = "Lnet/minecraft/client/renderer/Sheets;getSignMaterial(Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/client/resources/model/Material;"))
 	private Material getSignTextureId(Material spriteIdentifier) {
 		if (sign.getBlockState().getBlock() instanceof TerraformSign) {
 			return new Material(Sheets.SIGN_SHEET, ((TerraformSign) sign.getBlockState().getBlock()).getTexture());

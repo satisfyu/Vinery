@@ -20,27 +20,24 @@ import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = Vinery.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class VineryClientForge {
+	@SubscribeEvent
+	public static void onClientSetup(FMLClientSetupEvent event) {
+		VineryClient.onInitializeClient();
+	}
 
-    @SubscribeEvent
-    public static void onClientSetup(FMLClientSetupEvent event) {
-        VineryClient.onInitializeClient();
-    }
+	@SubscribeEvent
+	public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+		Map<Supplier<EntityType<?>>, EntityRendererProvider<?>> entityRenderers = new ConcurrentHashMap<>();
+		VineryClient.getEntityEntityRenderers(entityRenderers);
+		for (Map.Entry<Supplier<EntityType<?>>, EntityRendererProvider<?>> entry : entityRenderers.entrySet()) {
+			event.registerEntityRenderer(entry.getKey().get(), (EntityRendererProvider<Entity>) entry.getValue());
+		}
+	}
 
-    @SubscribeEvent
-    public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event){
-        Map<Supplier<EntityType<?>>, EntityRendererProvider<?>> entityRenderers = new ConcurrentHashMap<>();
-        VineryClient.getEntityEntityRenderers(entityRenderers);
-
-        for (Map.Entry<Supplier<EntityType<?>>, EntityRendererProvider<?>> entry : entityRenderers.entrySet()) {
-            event.registerEntityRenderer(entry.getKey().get(), (EntityRendererProvider<Entity>) entry.getValue());
-        }
-
-    }
-
-    @SubscribeEvent
-    public static void onEntityRenderers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        Map<ModelLayerLocation, Supplier<LayerDefinition>> modelLayers = new HashMap<>();
-        VineryClient.getEntityModelLayers(modelLayers);
-        modelLayers.forEach(event::registerLayerDefinition);
-    }
+	@SubscribeEvent
+	public static void onEntityRenderers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+		Map<ModelLayerLocation, Supplier<LayerDefinition>> modelLayers = new HashMap<>();
+		VineryClient.getEntityModelLayers(modelLayers);
+		modelLayers.forEach(event::registerLayerDefinition);
+	}
 }

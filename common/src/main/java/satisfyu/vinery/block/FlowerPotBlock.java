@@ -3,6 +3,7 @@ package satisfyu.vinery.block;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -35,18 +36,26 @@ public class FlowerPotBlock extends Block implements EntityBlock {
 
 	private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
 		VoxelShape shape = Shapes.empty();
-		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.78125, 0.421875, 0.21875, 0.875, 0.609375, 0.78125), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.78125, 0.421875, 0.21875, 0.875, 0.609375, 0.78125),
+				BooleanOp.OR);
 		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.21875, 0, 0.21875, 0.78125, 0.46875, 0.78125), BooleanOp.OR);
-		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.125, 0.421875, 0.125, 0.875, 0.609375, 0.21875), BooleanOp.OR);
-		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.125, 0.421875, 0.78125, 0.875, 0.609375, 0.875), BooleanOp.OR);
-		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.125, 0.421875, 0.21875, 0.21875, 0.609375, 0.78125), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.125, 0.421875, 0.125, 0.875, 0.609375, 0.21875),
+				BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.125, 0.421875, 0.78125, 0.875, 0.609375, 0.875),
+				BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.125, 0.421875, 0.21875, 0.21875, 0.609375, 0.78125),
+				BooleanOp.OR);
 		return shape;
 	};
-	
+
+	static {
+		SHAPE = voxelShapeSupplier.get();
+	}
+
 	public FlowerPotBlock(Properties settings) {
 		super(settings);
 	}
-	
+
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE;
@@ -54,23 +63,22 @@ public class FlowerPotBlock extends Block implements EntityBlock {
 
 	@Override
 	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (hand == InteractionHand.OFF_HAND) return InteractionResult.PASS;
-		FlowerPotBlockEntity be = (FlowerPotBlockEntity)world.getBlockEntity(pos);
-		if (be == null || player.isShiftKeyDown()) return InteractionResult.PASS;
-
+		if (hand == InteractionHand.OFF_HAND) { return InteractionResult.PASS; }
+		FlowerPotBlockEntity be = (FlowerPotBlockEntity) world.getBlockEntity(pos);
+		if (be == null || player.isShiftKeyDown()) { return InteractionResult.PASS; }
 		ItemStack handStack = player.getItemInHand(hand);
 		Item flower = be.getFlower();
-
 		if (handStack.isEmpty()) {
 			if (flower != null) {
-				if(!world.isClientSide){
+				if (!world.isClientSide) {
 					player.addItem(flower.getDefaultInstance());
 					be.setFlower(null);
 				}
 				return InteractionResult.sidedSuccess(world.isClientSide);
 			}
-		} else if (fitInPot(handStack) && flower == null) {
-			if(!world.isClientSide){
+		}
+		else if (fitInPot(handStack) && flower == null) {
+			if (!world.isClientSide) {
 				be.setFlower(handStack.getItem());
 				if (!player.isCreative()) {
 					handStack.shrink(1);
@@ -94,7 +102,7 @@ public class FlowerPotBlock extends Block implements EntityBlock {
 				if (flower != null) {
 					Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(), flower.getDefaultInstance());
 				}
-				world.updateNeighbourForOutputSignal(pos,this);
+				world.updateNeighbourForOutputSignal(pos, this);
 			}
 			super.onRemove(state, world, pos, newState, moved);
 		}
@@ -118,10 +126,7 @@ public class FlowerPotBlock extends Block implements EntityBlock {
 
 	@Override
 	public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-		tooltip.add(Component.translatable("block.vinery.canbeplaced.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-	}
-
-	static {
-		SHAPE = voxelShapeSupplier.get();
+		tooltip.add(new TranslatableComponent("block.vinery.canbeplaced.tooltip").withStyle(ChatFormatting.ITALIC,
+				ChatFormatting.GRAY));
 	}
 }

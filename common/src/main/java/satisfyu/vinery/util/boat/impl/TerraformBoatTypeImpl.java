@@ -7,11 +7,11 @@ import satisfyu.vinery.util.boat.api.TerraformBoatType;
 
 public class TerraformBoatTypeImpl implements TerraformBoatType {
 	private final RegistrySupplier<Item> item;
-	private final RegistrySupplier<Item> chestItem;
 
-	public TerraformBoatTypeImpl(RegistrySupplier<Item> item, RegistrySupplier<Item> chestItem) {
+	private RegistrySupplier<Item> chestItem;
+
+	public TerraformBoatTypeImpl(RegistrySupplier<Item> item) {
 		this.item = item;
-		this.chestItem = chestItem;
 	}
 
 	@Override

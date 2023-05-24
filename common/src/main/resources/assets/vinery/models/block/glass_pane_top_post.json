@@ -1,18 +1,42 @@
 {
-	"credit": "Made by Satisfy",
-	"ambientocclusion": false,
-	"textures": {
-		"particle": "vinery:block/window_top",
-		"edge": "vinery:block/window_pane_top"
-	},
-	"elements": [
-		{
-			"from": [7, 0, 7],
-			"to": [9, 16, 9],
-			"faces": {
-				"up": {"uv": [7, 7, 9, 9], "texture": "#edge"},
-				"down": {"uv": [7, 7, 9, 9], "texture": "#edge"}
-			}
-		}
-	]
+  "credit": "Made by Satisfy",
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "vinery:block/window_top",
+    "edge": "vinery:block/window_pane_top"
+  },
+  "elements": [
+    {
+      "from": [
+        7,
+        0,
+        7
+      ],
+      "to": [
+        9,
+        16,
+        9
+      ],
+      "faces": {
+        "up": {
+          "uv": [
+            7,
+            7,
+            9,
+            9
+          ],
+          "texture": "#edge"
+        },
+        "down": {
+          "uv": [
+            7,
+            7,
+            9,
+            9
+          ],
+          "texture": "#edge"
+        }
+      }
+    }
+  ]
 }

@@ -118,7 +118,7 @@
   "vinery.tooltip.winemaker_armor3": "Костная мука больше не будет потребляться",
   "item.vinery.gloves": "Перчатки",
   "item.vinery.faucet.tooltip.main": "Можно установить на кухонную раковину",
-  "item.vinery.faucet.tooltip.shift":"Какой-то бесконечный источник воды",
+  "item.vinery.faucet.tooltip.shift": "Какой-то бесконечный источник воды",
   "item.vinery.faucet.tooltip": "Нажмите §eSHIFT§r для получения дополнительной информации",
   "block.vinery.grapevinepotblock.tooltip": "Используется для превращения винограда в виноградный сок",
   "block.vinery.fermentationbarrelblock.tooltip": "Используется для ферментации виноградного сока в вино",
@@ -126,14 +126,14 @@
   "block.vinery.breadblock.tooltip": "Можно разместить",
   "block.vinery.breadblock.tooltip.shift_1": "Может быть вкуснее, если",
   "block.vinery.breadblock.tooltip.shift_2": "вы положили на него вишневое варенье ..?",
-  "block.vinery.breadblock.tooltip.tooltip_shift":"Нажмите §eSHIFT§r для получения дополнительной информации",
+  "block.vinery.breadblock.tooltip.tooltip_shift": "Нажмите §eSHIFT§r для получения дополнительной информации",
   "block.vinery.basket.tooltip": "Можно разместить",
   "block.vinery.canbeplaced.tooltip": "Можно разместить",
   "block.vinery.storage.tooltip.shift": "Посвящается MissLilitu",
   "block.vinery.log.tooltip": "Слегка улучшенный костер",
   "block.vinery.log.tooltip.shift_1": "Можно поджечь",
   "block.vinery.log.tooltip.shift_2": "создать §lбольшой§l костер",
-  "block.vinery.log.tooltip.tooltip_shift":"Нажмите §eSHIFT§r для получения дополнительной информации",
+  "block.vinery.log.tooltip.tooltip_shift": "Нажмите §eSHIFT§r для получения дополнительной информации",
   "item.vinery.gloves.tooltip": "Редко встречающийся ингредиент для крафта",
   "item.vinery.grapevine.tooltip": "Ингредиент для крафта",
   "item.vinery.cherry.tooltip": "Ингредиент для крафта",
@@ -172,5 +172,4 @@
   "effect.vinery.empty": "Нет эффектов",
   "item.vinery.dough": "Тесто",
   "item.vinery.bread_slice": "Кусок хлеба"
-
 }

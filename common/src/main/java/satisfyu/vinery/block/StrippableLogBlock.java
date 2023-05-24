@@ -8,11 +8,10 @@ import net.minecraft.world.level.material.MaterialColor;
 import java.util.function.Supplier;
 
 public class StrippableLogBlock extends RotatedPillarBlock {
-    public StrippableLogBlock(Properties properties, Supplier<Block> stripped, MaterialColor wood, MaterialColor bark) {
-        super(properties);
-
-        if (stripped != null) {
-            AxeItemHooks.addStrippable(this, stripped.get());
-        }
-    }
+	public StrippableLogBlock(Properties properties, Supplier<Block> stripped, MaterialColor wood, MaterialColor bark) {
+		super(properties);
+		if (stripped != null) {
+			AxeItemHooks.addStrippable(this, stripped.get());
+		}
+	}
 }

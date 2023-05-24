@@ -11,22 +11,20 @@ import satisfyu.vinery.forge.registry.BurningBlockRegistry;
 
 @Mixin(FireBlock.class)
 public class FireBlockMixin {
+	@Inject(method = "getBurnOdd", at = @At("HEAD"), cancellable = true)
+	private void getBurnOdd(BlockState blockState, CallbackInfoReturnable<Integer> cir) {
+		Block block = blockState.getBlock();
+		if (BurningBlockRegistry.getInstance().containsKey(block)) {
+			cir.setReturnValue(BurningBlockRegistry.getBurnOdd(block));
+		}
+	}
 
-
-    @Inject(method = "getBurnOdds", at = @At("HEAD"), cancellable = true)
-    private void getBurnOdds(BlockState blockState, CallbackInfoReturnable<Integer> cir) {
-        Block block = blockState.getBlock();
-        if(BurningBlockRegistry.getInstance().containsKey(block)){
-            cir.setReturnValue(BurningBlockRegistry.getBurnOdd(block));
-        }
-    }
-
-    @Inject(method = "getIgniteOdds(Lnet/minecraft/world/level/block/state/BlockState;)I", at = @At("HEAD"), cancellable = true)
-    private void getIgniteOdds(BlockState blockState, CallbackInfoReturnable<Integer> cir) {
-        Block block = blockState.getBlock();
-        if(BurningBlockRegistry.getInstance().containsKey(block)){
-            cir.setReturnValue(BurningBlockRegistry.getIgniteOdd(block));
-        }
-    }
-
+	@Inject(method = "getFlameOdds(Lnet/minecraft/world/level/block/state/BlockState;)I", at = @At("HEAD"),
+			cancellable = true)
+	private void getFlameOdds(BlockState blockState, CallbackInfoReturnable<Integer> cir) {
+		Block block = blockState.getBlock();
+		if (BurningBlockRegistry.getInstance().containsKey(block)) {
+			cir.setReturnValue(BurningBlockRegistry.getIgniteOdd(block));
+		}
+	}
 }

@@ -11,41 +11,39 @@ import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.gui.handler.WinePressGuiHandler;
 
 public class WinePressGui extends AbstractContainerScreen<WinePressGuiHandler> {
-    private static final ResourceLocation TEXTURE =
-            new VineryIdentifier("textures/gui/wine_press.png");
+	private static final ResourceLocation TEXTURE = new VineryIdentifier("textures/gui/wine_press.png");
 
-    public WinePressGui(WinePressGuiHandler handler, Inventory inventory, Component title) {
-        super(handler, inventory, title);
-    }
+	public WinePressGui(WinePressGuiHandler handler, Inventory inventory, Component title) {
+		super(handler, inventory, title);
+	}
 
-    @Override
-    protected void init() {
-        super.init();
-        titleLabelX = (imageWidth - font.width(title)) / 2;
-    }
+	@Override
+	protected void init() {
+		super.init();
+		titleLabelX = (imageWidth - font.width(title)) / 2;
+	}
 
-    @Override
-    protected void renderBg(PoseStack matrices, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) / 2;
-        blit(matrices, x, y, 0, 0, imageWidth, imageHeight);
+	@Override
+	protected void renderBg(PoseStack matrices, float delta, int mouseX, int mouseY) {
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+		RenderSystem.setShaderTexture(0, TEXTURE);
+		int x = (width - imageWidth) / 2;
+		int y = (height - imageHeight) / 2;
+		blit(matrices, x, y, 0, 0, imageWidth, imageHeight);
+		renderProgressArrow(matrices, x, y);
+	}
 
-        renderProgressArrow(matrices, x, y);
-    }
+	private void renderProgressArrow(PoseStack matrices, int x, int y) {
+		if (menu.isCrafting()) {
+			blit(matrices, x + 78, y + 35, 176, 0, menu.getScaledProgress(), 20);
+		}
+	}
 
-    private void renderProgressArrow(PoseStack matrices, int x, int y) {
-        if(menu.isCrafting()) {
-            blit(matrices, x + 78, y + 35, 176, 0, menu.getScaledProgress(), 20);
-        }
-    }
-
-    @Override
-    public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
-        renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        renderTooltip(matrices, mouseX, mouseY);
-    }
+	@Override
+	public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
+		renderBackground(matrices);
+		super.render(matrices, mouseX, mouseY, delta);
+		renderTooltip(matrices, mouseX, mouseY);
+	}
 }

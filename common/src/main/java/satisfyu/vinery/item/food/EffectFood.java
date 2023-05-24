@@ -1,5 +1,3 @@
 package satisfyu.vinery.item.food;
 
-public interface EffectFood {
-
-}
+public interface EffectFood { }

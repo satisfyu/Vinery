@@ -12,12 +12,12 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class CustomArmorRegistry {
+	public static void registerArmorModelLayers(Map<ModelLayerLocation, Supplier<LayerDefinition>> map) {
+		map.put(StrawHatModel.LAYER_LOCATION, StrawHatModel::getTexturedModelData);
+	}
 
-    public static void registerArmorModelLayers(Map<ModelLayerLocation, Supplier<LayerDefinition>> map){
-        map.put(StrawHatModel.LAYER_LOCATION, StrawHatModel::getTexturedModelData);
-    }
-
-    public static  <T extends LivingEntity> void registerArmorModels(Map<Item, EntityModel<T>> models, EntityModelSet modelLoader) {
-        models.put(ObjectRegistry.STRAW_HAT.get(), new StrawHatModel<>(modelLoader.bakeLayer(StrawHatModel.LAYER_LOCATION)));
-    }
+	public static <T extends LivingEntity> void registerArmorModels(Map<Item, EntityModel<T>> models, EntityModelSet modelLoader) {
+		models.put(ItemRegistry.STRAW_HAT.get(),
+				new StrawHatModel<>(modelLoader.bakeLayer(StrawHatModel.LAYER_LOCATION)));
+	}
 }

@@ -10,7 +10,8 @@ import satisfyu.vinery.util.boat.impl.TerraformBoatInitializer;
 
 @Mixin(Shulker.class)
 public class MixinShulkerEntity {
-	@Redirect(method = "getMyRidingOffset", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;getType()Lnet/minecraft/world/entity/EntityType;"))
+	@Redirect(method = "getMyRidingOffset", at = @At(value = "INVOKE",
+			target = "Lnet/minecraft/world/entity/Entity;getType()Lnet/minecraft/world/entity/EntityType;"))
 	private EntityType<?> fixTerraformBoatHeightOffset(Entity entity) {
 		if (entity.getType() == TerraformBoatInitializer.BOAT.get()) {
 			return EntityType.BOAT;

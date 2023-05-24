@@ -10,25 +10,16 @@ import satisfyu.vinery.forge.registry.VineryForgeVillagers;
 
 @Mod(Vinery.MODID)
 public class VineryForge {
+	public VineryForge() {
+		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		EventBuses.registerModEventBus(Vinery.MODID, modEventBus);
+		modEventBus.addListener(this::commonSetup);
+		Vinery.initForge();
+		VineryForgeVillagers.register(modEventBus);
+	}
 
-    public VineryForge() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        EventBuses.registerModEventBus(Vinery.MODID, modEventBus);
-
-        Vinery.init();
-        VineryForgeVillagers.register(modEventBus);
-
-
-
-
-        modEventBus.addListener(this::commonSetup);
-    }
-
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(VineryForgeVillagers::registerPOIs);
-        Vinery.commonSetup();
-    }
-
-
-
+	private void commonSetup(final FMLCommonSetupEvent event) {
+		Vinery.commonForge();
+		event.enqueueWork(VineryForgeVillagers::registerPOIs);
+	}
 }

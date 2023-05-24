@@ -1,8 +1,8 @@
 {
   "variants": {
     "facing=east,count=0": {
-    "y": 180,
-    "model": "vinery:block/noir_wine"
+      "y": 180,
+      "model": "vinery:block/noir_wine"
     },
     "facing=east,count=1": {
       "y": 180,

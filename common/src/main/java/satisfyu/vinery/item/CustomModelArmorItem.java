@@ -6,11 +6,11 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 
 public abstract class CustomModelArmorItem extends ArmorItem {
-    public CustomModelArmorItem(ArmorMaterial material, EquipmentSlot type, Properties settings) {
-        super(material, type, settings);
-    }
+	public CustomModelArmorItem(ArmorMaterial material, EquipmentSlot type, Properties settings) {
+		super(material, type, settings);
+	}
 
-    public abstract ResourceLocation getTexture();
+	public abstract ResourceLocation getTexture();
 
-    public abstract Float getOffset();
+	public abstract Float getOffset();
 }

@@ -28,27 +28,31 @@ import satisfyu.vinery.block.entity.WineRackStorageBlockEntity;
 
 public class WineRackStorageBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+
 	public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
+
 	private final SoundEvent openSound;
+
 	private final SoundEvent closeSound;
 
 	public WineRackStorageBlock(BlockBehaviour.Properties settings, SoundEvent openSound, SoundEvent closeSound) {
 		super(settings);
 		this.openSound = openSound;
 		this.closeSound = closeSound;
-		this.registerDefaultState(((this.stateDefinition.any()).setValue(FACING, Direction.NORTH)).setValue(OPEN, false));
+		this.registerDefaultState(
+				((this.stateDefinition.any()).setValue(FACING, Direction.NORTH)).setValue(OPEN, false));
 	}
 
 	@Override
 	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		if (world.isClientSide) {
 			return InteractionResult.SUCCESS;
-		} else {
+		}
+		else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof WineRackStorageBlockEntity blockEntity1) {
 				player.openMenu(blockEntity1);
 			}
-
 			return InteractionResult.CONSUME;
 		}
 	}
@@ -58,10 +62,9 @@ public class WineRackStorageBlock extends BaseEntityBlock {
 		if (!state.is(newState.getBlock())) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof Container) {
-				Containers.dropContents(world, pos, (Container)blockEntity);
+				Containers.dropContents(world, pos, (Container) blockEntity);
 				world.updateNeighbourForOutputSignal(pos, this);
 			}
-
 			super.onRemove(state, world, pos, newState, moved);
 		}
 	}

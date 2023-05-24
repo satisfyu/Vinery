@@ -2,7 +2,6 @@ package satisfyu.vinery.util.boat.impl.entity;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.EntityType;
@@ -13,21 +12,16 @@ import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.impl.TerraformBoatInitializer;
 import satisfyu.vinery.util.boat.impl.TerraformBoatTrackedData;
 
-
 public class TerraformBoatEntity extends Boat implements TerraformBoatHolder {
-	private static final EntityDataAccessor<TerraformBoatType> TERRAFORM_BOAT = SynchedEntityData.defineId(TerraformBoatEntity.class, TerraformBoatTrackedData.HANDLER);
+	private static final EntityDataAccessor<TerraformBoatType> TERRAFORM_BOAT = SynchedEntityData.defineId(
+			TerraformBoatEntity.class, TerraformBoatTrackedData.HANDLER);
 
 	public TerraformBoatEntity(EntityType<? extends TerraformBoatEntity> type, Level world) {
 		super(type, world);
 	}
 
-	public TerraformBoatEntity(Level world) {
-		this(TerraformBoatInitializer.BOAT.get(), world);
-	}
-
 	public TerraformBoatEntity(Level world, double x, double y, double z) {
 		this(TerraformBoatInitializer.BOAT.get(), world);
-
 		this.setPos(x, y, z);
 		this.xo = x;
 		this.yo = y;
@@ -63,14 +57,10 @@ public class TerraformBoatEntity extends Boat implements TerraformBoatHolder {
 	public void tick() {
 		if (this.hasValidTerraformBoat()) {
 			super.tick();
-		} else {
+		}
+		else {
 			this.discard();
 		}
-	}
-
-	@Override
-	public void setType(Type type) {
-		return;
 	}
 
 	@Override
@@ -89,7 +79,6 @@ public class TerraformBoatEntity extends Boat implements TerraformBoatHolder {
 	protected void readAdditionalSaveData(CompoundTag nbt) {
 		super.readAdditionalSaveData(nbt);
 		this.readTerraformBoatFromNbt(nbt);
-
 		if (!this.hasValidTerraformBoat()) {
 			this.discard();
 		}

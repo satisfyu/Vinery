@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FlowerBoxBlockEntity extends BlockEntity {
-
 	private NonNullList<ItemStack> flowers;
 
 	public FlowerBoxBlockEntity(BlockPos pos, BlockState state) {
@@ -41,12 +40,12 @@ public class FlowerBoxBlockEntity extends BlockEntity {
 		ContainerHelper.loadAllItems(nbt, this.flowers);
 	}
 
-	public void addFlower(ItemStack stack, int slot){
+	public void addFlower(ItemStack stack, int slot) {
 		flowers.set(slot, stack);
 		setChanged();
 	}
 
-	public ItemStack removeFlower(int slot){
+	public ItemStack removeFlower(int slot) {
 		ItemStack stack = flowers.set(slot, ItemStack.EMPTY);
 		setChanged();
 		return stack;
@@ -80,13 +79,10 @@ public class FlowerBoxBlockEntity extends BlockEntity {
 		return this.saveWithoutMetadata();
 	}
 
-
-
 	@Override
 	public void setChanged() {
-		if(level != null && !level.isClientSide()) {
+		if (level != null && !level.isClientSide()) {
 			Packet<ClientGamePacketListener> updatePacket = getUpdatePacket();
-
 			for (ServerPlayer player : GeneralUtil.tracking((ServerLevel) level, getBlockPos())) {
 				player.connection.send(updatePacket);
 			}

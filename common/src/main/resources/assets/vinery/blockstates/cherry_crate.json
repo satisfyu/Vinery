@@ -1,6 +1,8 @@
 {
   "variants": {
-    "": { "model": "vinery:block/cherry_crate" }
+    "": {
+      "model": "vinery:block/cherry_crate"
+    }
   }
 }
 

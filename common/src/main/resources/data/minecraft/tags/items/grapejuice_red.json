@@ -1,9 +1,21 @@
 {
   "replace": false,
   "values": [
-    {"id":"vinery:red_grapejuice_wine_bottle","required":false},
-    {"id":"vinery:savanna_red_grapejuice_bottle","required":false},
-    {"id":"vinery:taiga_red_grapejuice_bottle","required":false},
-    {"id":"vinery:jungle_red_grapejuice_bottle","required":false}
+    {
+      "id": "vinery:red_grapejuice_wine_bottle",
+      "required": false
+    },
+    {
+      "id": "vinery:savanna_red_grapejuice_bottle",
+      "required": false
+    },
+    {
+      "id": "vinery:taiga_red_grapejuice_bottle",
+      "required": false
+    },
+    {
+      "id": "vinery:jungle_red_grapejuice_bottle",
+      "required": false
+    }
   ]
 }

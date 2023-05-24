@@ -15,7 +15,6 @@
       "model": "vinery:block/cooking_pot",
       "y": 270
     },
-
     "facing=east,lit=true,cooking=false": {
       "model": "vinery:block/cooking_pot_boiling",
       "y": 90
@@ -31,7 +30,6 @@
       "model": "vinery:block/cooking_pot_boiling",
       "y": 270
     },
-
     "facing=east,lit=false,cooking=true": {
       "model": "vinery:block/cooking_pot_cooking",
       "y": 90
@@ -47,7 +45,6 @@
       "model": "vinery:block/cooking_pot_cooking",
       "y": 270
     },
-
     "facing=east,lit=true,cooking=true": {
       "model": "vinery:block/cooking_pot_cooking",
       "y": 90

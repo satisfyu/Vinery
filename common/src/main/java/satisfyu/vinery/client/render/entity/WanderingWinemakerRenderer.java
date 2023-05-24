@@ -8,11 +8,11 @@ import satisfyu.vinery.VineryIdentifier;
 
 public class WanderingWinemakerRenderer extends WanderingTraderRenderer {
 	private static final ResourceLocation TEXTURE = new VineryIdentifier("textures/entity/wandering_winemaker.png");
-	
+
 	public WanderingWinemakerRenderer(EntityRendererProvider.Context context) {
 		super(context);
 	}
-	
+
 	@Override
 	public ResourceLocation getTextureLocation(WanderingTrader entity) {
 		return TEXTURE;

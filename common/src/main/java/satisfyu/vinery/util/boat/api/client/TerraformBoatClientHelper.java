@@ -16,17 +16,12 @@ public final class TerraformBoatClientHelper {
 		return;
 	}
 
-	private static ResourceLocation getLayerId(ResourceLocation boatId, boolean chest) {
-		String prefix = chest ? "chest_boat/" : "boat/";
-		return new ResourceLocation(boatId.getNamespace(), prefix + boatId.getPath());
-	}
-
-	public static ModelLayerLocation getLayer(ResourceLocation boatId, boolean chest) {
-		return new ModelLayerLocation(getLayerId(boatId, chest), "main");
+	public static ModelLayerLocation getLayer(ResourceLocation id) {
+		return new ModelLayerLocation(new ResourceLocation(id.getNamespace(), "boat/" + id.getPath()), "main");
 	}
 
 	private static void registerModelLayer(Map<ModelLayerLocation, Supplier<LayerDefinition>> map, ResourceLocation boatId, boolean chest) {
-		map.put(getLayer(boatId, chest), () -> BoatModel.createBodyModel(chest));
+		map.put(getLayer(boatId), BoatModel::createBodyModel);
 	}
 
 	public static void registerModelLayers(Map<ModelLayerLocation, Supplier<LayerDefinition>> map, ResourceLocation boatId) {

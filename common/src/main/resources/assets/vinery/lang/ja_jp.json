@@ -111,7 +111,7 @@
   "vinery.tooltip.winemaker_armor3": "骨粉が消費されなくなる",
   "item.vinery.gloves": "手袋",
   "item.vinery.faucet.tooltip.main": "キッチンシンクに取付可能",
-  "item.vinery.faucet.tooltip.shift":"ある種の無限水源",
+  "item.vinery.faucet.tooltip.shift": "ある種の無限水源",
   "item.vinery.faucet.tooltip": "§eSHIFT§r を押して詳細",
   "block.vinery.grapevinepotblock.tooltip": "ブドウから果汁を絞るために使われる",
   "block.vinery.fermentationbarrelblock.tooltip": "ブドウ果汁をワインに熟成させるために使われる",
@@ -119,14 +119,14 @@
   "block.vinery.breadblock.tooltip": "設置可能",
   "block.vinery.breadblock.tooltip.shift_1": "サクランボのジャムを塗れば",
   "block.vinery.breadblock.tooltip.shift_2": "もう少し美味しくなるかも...？",
-  "block.vinery.breadblock.tooltip.tooltip_shift":"§eSHIFT§r を押して詳細",
+  "block.vinery.breadblock.tooltip.tooltip_shift": "§eSHIFT§r を押して詳細",
   "block.vinery.basket.tooltip": "設置可能",
   "block.vinery.canbeplaced.tooltip": "設置可能",
   "block.vinery.storage.tooltip.shift": "ミス・リリタスに捧ぐ",
   "block.vinery.log.tooltip": "少し手を加えた焚き火",
   "block.vinery.log.tooltip.shift_1": "火を付けると §l大きな§l キャンプファイア",
   "block.vinery.log.tooltip.shift_2": "を灯すことができる",
-  "block.vinery.log.tooltip.tooltip_shift":"§eSHIFT§r を押して詳細",
+  "block.vinery.log.tooltip.tooltip_shift": "§eSHIFT§r を押して詳細",
   "item.vinery.gloves.tooltip": "めったに手に入らない。工芸品の材料",
   "item.vinery.cherry.tooltip": "クラフト材料",
   "item.vinery.ingredient.tooltip": "§eSHIFT§r を押して必要な材料を表示",
@@ -179,5 +179,4 @@
   "block.vinery.aegis_wine": "イージスワイン",
   "block.vinery.big_bowl": "ボウル",
   "block.vinery.kelp_cider": "コンブ酒"
-
 }

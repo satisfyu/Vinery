@@ -14,12 +14,13 @@ import net.minecraft.world.level.block.state.properties.SlabType;
 
 public class SnowyVariantSlabBlock extends SlabBlock {
 	public static final BooleanProperty SNOWY = BlockStateProperties.SNOWY;
-	
+
 	public SnowyVariantSlabBlock(Properties settings) {
 		super(settings);
-		this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(WATERLOGGED, false).setValue(SNOWY, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(WATERLOGGED, false)
+				.setValue(SNOWY, false));
 	}
-	
+
 	@Override
 	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
 		if (direction == Direction.UP) {
@@ -27,6 +28,7 @@ public class SnowyVariantSlabBlock extends SlabBlock {
 		}
 		return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
 	}
+
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);

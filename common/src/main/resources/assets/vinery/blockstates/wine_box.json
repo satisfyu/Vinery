@@ -15,7 +15,6 @@
       "model": "vinery:block/wine_box_empty_closed",
       "y": 270
     },
-
     "facing=east,open=true": {
       "model": "vinery:block/wine_box_empty_open",
       "y": 90

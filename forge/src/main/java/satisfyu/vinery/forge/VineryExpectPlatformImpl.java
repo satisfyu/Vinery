@@ -10,30 +10,31 @@ import satisfyu.vinery.forge.extraapiutil.APIFinder;
 import satisfyu.vinery.forge.registry.BurningBlockRegistry;
 import satisfyu.vinery.util.api.VineryApi;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class VineryExpectPlatformImpl {
+	public static Block[] getBlocksForStorage() {
+		Set<Block> set = new HashSet<>();
+		List<Pair<List<String>, VineryApi>> apis = APIFinder.scanForAPIs();
+		for (Pair<List<String>, VineryApi> apiPair : apis) {
+			VineryApi api = apiPair.getSecond();
+			api.registerBlocks(set);
+		}
+		return set.toArray(new Block[0]);
+	}
 
+	public static <T extends LivingEntity> void registerArmor(Map<Item, EntityModel<T>> models, EntityModelSet modelLoader) {
+		List<Pair<List<String>, VineryApi>> apis = APIFinder.scanForAPIs();
+		for (Pair<List<String>, VineryApi> apiPair : apis) {
+			VineryApi api = apiPair.getSecond();
+			api.registerArmor(models, modelLoader);
+		}
+	}
 
-    public static Block[] getBlocksForStorage() {
-        Set<Block> set = new HashSet<>();
-        List<Pair<List<String>, VineryApi>> apis = APIFinder.scanForAPIs();
-        for(Pair<List<String>, VineryApi> apiPair : apis){
-            VineryApi api = apiPair.getSecond();
-            api.registerBlocks(set);
-        }
-        return set.toArray(new Block[0]);
-    }
-
-    public static <T extends LivingEntity> void registerArmor(Map<Item, EntityModel<T>> models, EntityModelSet modelLoader) {
-        List<Pair<List<String>, VineryApi>> apis = APIFinder.scanForAPIs();
-        for(Pair<List<String>, VineryApi> apiPair : apis){
-            VineryApi api = apiPair.getSecond();
-            api.registerArmor(models, modelLoader);
-        }
-    }
-
-    public static void addFlammable(int burnOdd, int igniteOdd, Block... blocks) {
-        BurningBlockRegistry.add(burnOdd, igniteOdd, blocks);
-    }
+	public static void addFlammable(int burnOdd, int igniteOdd, Block... blocks) {
+		BurningBlockRegistry.add(burnOdd, igniteOdd, blocks);
+	}
 }

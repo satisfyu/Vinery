@@ -16,9 +16,9 @@
         "sources": "https://github.com/satisfyu/Vinery-Fabric"
       },
       "contributors": {
-        "satisfy_u" : "Author",
-        "Cristelknight" : "Developer",
-        "BaumeisterJO" : "Developer"
+        "satisfy_u": "Author",
+        "Cristelknight": "Developer",
+        "BaumeisterJO": "Developer"
       },
       "license": {
         "name": "All Rights Reserved",
@@ -45,11 +45,11 @@
       },
       {
         "id": "minecraft",
-        "version": ">=1.19.2"
+        "version": ">=1.18.2"
       },
       {
         "id": "architectury",
-        "version": ">=6.2.43"
+        "version": ">=4.11.93"
       }
     ]
   },

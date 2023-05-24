@@ -1,12 +1,9 @@
 package satisfyu.vinery.util.boat.impl.client;
 
-import java.util.Map;
-
 import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
-
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
 import net.fabricmc.api.EnvType;
@@ -26,38 +23,38 @@ import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 import satisfyu.vinery.util.boat.api.client.TerraformBoatClientHelper;
 import satisfyu.vinery.util.boat.impl.entity.TerraformBoatHolder;
 
+import java.util.Map;
+
 @Environment(EnvType.CLIENT)
 public class TerraformBoatEntityRenderer extends BoatRenderer {
 	private final Map<TerraformBoatType, Pair<ResourceLocation, BoatModel>> texturesAndModels;
 
-	public TerraformBoatEntityRenderer(EntityRendererProvider.Context context, boolean chest) {
-		super(context, chest);
-
-		String prefix = chest ? "chest_boat/" : "boat/";
-		this.texturesAndModels = TerraformBoatTypeRegistry.entrySet().stream().collect(ImmutableMap.toImmutableMap(Map.Entry::getValue, entry -> {
-			ResourceLocation id = entry.getKey();
-			ResourceLocation textureId = new ResourceLocation(id.getNamespace(), "textures/entity/" + prefix + id.getPath() + ".png");
-
-			ModelLayerLocation layer = TerraformBoatClientHelper.getLayer(id, chest);
-			BoatModel model = new BoatModel(context.bakeLayer(layer), chest);
-
-			return new Pair<>(textureId, model);
-		}));
+	public TerraformBoatEntityRenderer(EntityRendererProvider.Context context) {
+		super(context);
+		this.texturesAndModels = TerraformBoatTypeRegistry.entrySet().stream().collect(
+				ImmutableMap.toImmutableMap(Map.Entry::getValue, entry -> {
+					ResourceLocation id = entry.getKey();
+					ResourceLocation textureId = new ResourceLocation(id.getNamespace(),
+							"textures/entity/boat/" + id.getPath() + ".png");
+					ModelLayerLocation layer = TerraformBoatClientHelper.getLayer(id);
+					BoatModel model = new BoatModel(context.bakeLayer(layer));
+					return new Pair<>(textureId, model);
+				}));
 	}
 
 	@Override
 	public void render(Boat boat, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int i) {
-		if(boat instanceof TerraformBoatHolder holder){
+		if (boat instanceof TerraformBoatHolder holder) {
 			poseStack.pushPose();
 			poseStack.translate(0.0, 0.375, 0.0);
 			poseStack.mulPose(Vector3f.YP.rotationDegrees(180.0f - f));
-			float h = (float)boat.getHurtTime() - g;
+			float h = (float) boat.getHurtTime() - g;
 			float j = boat.getDamage() - g;
 			if (j < 0.0f) {
 				j = 0.0f;
 			}
 			if (h > 0.0f) {
-				poseStack.mulPose(Vector3f.XP.rotationDegrees(Mth.sin(h) * h * j / 10.0f * (float)boat.getHurtDir()));
+				poseStack.mulPose(Vector3f.XP.rotationDegrees(Mth.sin(h) * h * j / 10.0f * (float) boat.getHurtDir()));
 			}
 			if (!Mth.equal(boat.getBubbleAngle(g), 0.0f)) {
 				poseStack.mulPose(new Quaternion(new Vector3f(1.0f, 0.0f, 1.0f), boat.getBubbleAngle(g), true));
@@ -76,7 +73,7 @@ public class TerraformBoatEntityRenderer extends BoatRenderer {
 			}
 			poseStack.popPose();
 		}
-		else super.render(boat, f, g, poseStack, multiBufferSource, i);
+		else { super.render(boat, f, g, poseStack, multiBufferSource, i); }
 	}
 
 	@Override

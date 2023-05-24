@@ -1,8 +1,17 @@
 {
   "replace": false,
   "values": [
-    {"id":"vinery:dough","required":false},
-    {"id":"create:dough","required":false},
-    {"id":"farmersdelight:wheat_dough","required":false}
+    {
+      "id": "vinery:dough",
+      "required": false
+    },
+    {
+      "id": "create:dough",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:wheat_dough",
+      "required": false
+    }
   ]
 }

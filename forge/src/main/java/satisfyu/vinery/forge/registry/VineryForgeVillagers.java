@@ -10,34 +10,37 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import satisfyu.vinery.Vinery;
-import satisfyu.vinery.registry.ObjectRegistry;
+import satisfyu.vinery.registry.BlockRegistry;
 
 import java.lang.reflect.InvocationTargetException;
 
 public class VineryForgeVillagers {
-    public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES, Vinery.MODID);
+	public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES,
+			Vinery.MODID);
 
-    public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS = DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS, Vinery.MODID);
+	public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS = DeferredRegister.create(
+			ForgeRegistries.PROFESSIONS, Vinery.MODID);
 
-    public static final RegistryObject<PoiType> WINEMAKER_POI = POI_TYPES.register("winemaker_poi", () ->
-            new PoiType(ImmutableSet.copyOf(ObjectRegistry.WINE_PRESS.get().getStateDefinition().getPossibleStates()), 1, 1));
+	public static final RegistryObject<PoiType> WINEMAKER_POI = POI_TYPES.register("winemaker_poi",
+			() -> new PoiType("winemaker_poi",
+					ImmutableSet.copyOf(BlockRegistry.WINE_PRESS.get().getStateDefinition().getPossibleStates()), 1,
+					1));
 
-    public static final RegistryObject<VillagerProfession> WINEMAKER = VILLAGER_PROFESSIONS.register("winemaker", () ->
-            new VillagerProfession("winemaker", x -> x.get() == WINEMAKER_POI.get(), x -> x.get() == WINEMAKER_POI.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_FARMER));
+	public static final RegistryObject<VillagerProfession> WINEMAKER = VILLAGER_PROFESSIONS.register("winemaker",
+			() -> new VillagerProfession("winemaker", WINEMAKER_POI.get(), ImmutableSet.of(), ImmutableSet.of(),
+					SoundEvents.VILLAGER_WORK_FARMER));
 
+	public static void registerPOIs() {
+		try {
+			ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null,
+					WINEMAKER_POI.get());
+		} catch (InvocationTargetException | IllegalAccessException exception) {
+			exception.printStackTrace();
+		}
+	}
 
-    public static void registerPOIs(){
-        try {
-            ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, WINEMAKER_POI.get());
-        } catch (InvocationTargetException | IllegalAccessException exception){
-            exception.printStackTrace();
-        }
-    }
-
-    public static void register(IEventBus eventBus) {
-        POI_TYPES.register(eventBus);
-        VILLAGER_PROFESSIONS.register(eventBus);
-    }
-
-
+	public static void register(IEventBus eventBus) {
+		POI_TYPES.register(eventBus);
+		VILLAGER_PROFESSIONS.register(eventBus);
+	}
 }

@@ -14,15 +14,17 @@ import satisfyu.vinery.feature.JungleGrapeFeature;
 import java.util.function.Supplier;
 
 public class VineryFeatures {
+	private static final Registrar<Feature<?>> FEATURES = DeferredRegister.create(Vinery.MODID,
+			Registry.FEATURE_REGISTRY).getRegistrar();
 
-    private static final Registrar<Feature<?>> FEATURES = DeferredRegister.create(Vinery.MODID, Registry.FEATURE_REGISTRY).getRegistrar();
-    public static final RegistrySupplier<Feature<BlockStateConfiguration>> JUNGLE_GRAPE_FEATURE = register("jungle_grape_feature", () -> new JungleGrapeFeature(BlockStateConfiguration.CODEC));
-    public static void init(){
-        Vinery.LOGGER.debug("Registering Features!");
-    }
+	public static final RegistrySupplier<Feature<BlockStateConfiguration>> JUNGLE_GRAPE_FEATURE = register(
+			"jungle_grape_feature", () -> new JungleGrapeFeature(BlockStateConfiguration.CODEC));
 
-    private static <C extends FeatureConfiguration, F extends Feature<C>> RegistrySupplier<F> register(String name, Supplier<F> feature) {
-        return FEATURES.register(new VineryIdentifier(name), feature);
-    }
+	public static void init() {
+		Vinery.LOGGER.debug("Registering Features!");
+	}
 
+	private static <C extends FeatureConfiguration, F extends Feature<C>> RegistrySupplier<F> register(String name, Supplier<F> feature) {
+		return FEATURES.register(new VineryIdentifier(name), feature);
+	}
 }

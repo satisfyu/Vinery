@@ -11,7 +11,6 @@ import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
-import satisfyu.vinery.compat.farmersdelight.FarmersCookingPot;
 import satisfyu.vinery.compat.rei.cooking.CookingPotCategory;
 import satisfyu.vinery.compat.rei.cooking.CookingPotDisplay;
 import satisfyu.vinery.compat.rei.press.WinePressCategory;
@@ -23,49 +22,51 @@ import satisfyu.vinery.compat.rei.wine.FermentationBarrelDisplay;
 import satisfyu.vinery.recipe.CookingPotRecipe;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.recipe.WoodFiredOvenRecipe;
-import satisfyu.vinery.registry.ObjectRegistry;
+import satisfyu.vinery.registry.BlockRegistry;
 import satisfyu.vinery.util.VineryUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class VineryReiClientPlugin implements REIClientPlugin {
+	public static List<Ingredient> ingredients(Recipe<Container> recipe, ItemStack stack) {
+		List<Ingredient> l = new ArrayList<>(recipe.getIngredients());
+		l.add(0, Ingredient.of(stack.getItem()));
+		return l;
+	}
 
-    @Override
-    public void registerCategories(CategoryRegistry registry) {
-        registry.add(new CookingPotCategory());
-        registry.add(new WoodFiredOvenCategory());
-        registry.add(new FermentationBarrelCategory());
-        registry.add(new WinePressCategory());
+	@Override
+	public void registerCategories(CategoryRegistry registry) {
+		registry.add(new CookingPotCategory());
+		registry.add(new WoodFiredOvenCategory());
+		registry.add(new FermentationBarrelCategory());
+		registry.add(new WinePressCategory());
+		registry.addWorkstations(CookingPotDisplay.COOKING_POT_DISPLAY,
+				EntryStacks.of(BlockRegistry.COOKING_POT.get()));
+		registry.addWorkstations(WoodFiredOvenDisplay.WOOD_FIRED_OVEN_DISPLAY,
+				EntryStacks.of(BlockRegistry.WOOD_FIRED_OVEN.get()));
+		registry.addWorkstations(FermentationBarrelDisplay.FERMENTATION_BARREL_DISPLAY,
+				EntryStacks.of(BlockRegistry.FERMENTATION_BARREL.get()));
+		registry.addWorkstations(WinePressDisplay.WINE_PRESS_DISPLAY, EntryStacks.of(BlockRegistry.WINE_PRESS.get()));
+		if (VineryUtils.isFDLoaded()) {
+			registry.addWorkstations(CategoryIdentifier.of("farmersdelight", "cooking"),
+					EntryStacks.of(BlockRegistry.COOKING_POT.get()));
+		}
+		registry.addWorkstations(BuiltinPlugin.FUEL, EntryStacks.of(BlockRegistry.WOOD_FIRED_OVEN.get()));
+	}
 
-        registry.addWorkstations(CookingPotDisplay.COOKING_POT_DISPLAY, EntryStacks.of(ObjectRegistry.COOKING_POT.get()));
-        registry.addWorkstations(WoodFiredOvenDisplay.WOOD_FIRED_OVEN_DISPLAY, EntryStacks.of(ObjectRegistry.WOOD_FIRED_OVEN.get()));
-        registry.addWorkstations(FermentationBarrelDisplay.FERMENTATION_BARREL_DISPLAY, EntryStacks.of(ObjectRegistry.FERMENTATION_BARREL.get()));
-        registry.addWorkstations(WinePressDisplay.WINE_PRESS_DISPLAY, EntryStacks.of(ObjectRegistry.WINE_PRESS.get()));
-        if(VineryUtils.isFDLoaded()) registry.addWorkstations(CategoryIdentifier.of("farmersdelight", "cooking"), EntryStacks.of(ObjectRegistry.COOKING_POT.get()));
+	@Override
+	public void registerDisplays(DisplayRegistry registry) {
+		registry.registerFiller(CookingPotRecipe.class, CookingPotDisplay::new);
+		//if(VineryUtils.isFDLoaded()) registry.registerFiller(FarmersCookingPot.getRecipeClass(), CookingPotDisplay::new);
+		registry.registerFiller(WoodFiredOvenRecipe.class, WoodFiredOvenDisplay::new);
+		registry.registerFiller(FermentationBarrelRecipe.class, FermentationBarrelDisplay::new);
+		registry.add(new WinePressDisplay());
+	}
 
-        registry.addWorkstations(BuiltinPlugin.FUEL, EntryStacks.of(ObjectRegistry.WOOD_FIRED_OVEN.get()));
-    }
-
-    @Override
-    public void registerDisplays(DisplayRegistry registry) {
-        registry.registerFiller(CookingPotRecipe.class, CookingPotDisplay::new);
-        //if(VineryUtils.isFDLoaded()) registry.registerFiller(FarmersCookingPot.getRecipeClass(), CookingPotDisplay::new);
-        registry.registerFiller(WoodFiredOvenRecipe.class, WoodFiredOvenDisplay::new);
-        registry.registerFiller(FermentationBarrelRecipe.class, FermentationBarrelDisplay::new);
-        registry.add(new WinePressDisplay());
-    }
-
-    @Override
-    public void registerDisplaySerializer(DisplaySerializerRegistry registry) {
-        registry.register(WoodFiredOvenDisplay.WOOD_FIRED_OVEN_DISPLAY, WoodFiredOvenDisplay.serializer(WoodFiredOvenDisplay::new));
-    }
-
-    public static List<Ingredient> ingredients(Recipe<Container> recipe, ItemStack stack){
-        List<Ingredient> l = new ArrayList<>(recipe.getIngredients());
-        l.add(0, Ingredient.of(stack.getItem()));
-        return l;
-    }
-
+	@Override
+	public void registerDisplaySerializer(DisplaySerializerRegistry registry) {
+		registry.register(WoodFiredOvenDisplay.WOOD_FIRED_OVEN_DISPLAY,
+				WoodFiredOvenDisplay.serializer(WoodFiredOvenDisplay::new));
+	}
 }

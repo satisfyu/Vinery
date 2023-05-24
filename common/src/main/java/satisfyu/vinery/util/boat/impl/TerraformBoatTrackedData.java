@@ -7,10 +7,6 @@ import satisfyu.vinery.util.boat.api.TerraformBoatType;
 import satisfyu.vinery.util.boat.api.TerraformBoatTypeRegistry;
 
 public final class TerraformBoatTrackedData {
-	private TerraformBoatTrackedData() {
-		return;
-	}
-
 	public static final EntityDataSerializer<TerraformBoatType> HANDLER = new EntityDataSerializer<>() {
 		public void write(FriendlyByteBuf buf, TerraformBoatType boat) {
 			buf.writeResourceLocation(TerraformBoatTypeRegistry.getId(boat));
@@ -24,6 +20,10 @@ public final class TerraformBoatTrackedData {
 			return boat;
 		}
 	};
+
+	private TerraformBoatTrackedData() {
+		return;
+	}
 
 	public static void register() {
 		EntityDataSerializers.registerSerializer(HANDLER);

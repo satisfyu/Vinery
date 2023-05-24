@@ -5,8 +5,8 @@ import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 import satisfyu.vinery.fabriclike.VineryFabricLike;
 
 public class VineryQuilt implements ModInitializer {
-    @Override
-    public void onInitialize(ModContainer mod) {
-        VineryFabricLike.init();
-    }
+	@Override
+	public void onInitialize(ModContainer mod) {
+		VineryFabricLike.init();
+	}
 }

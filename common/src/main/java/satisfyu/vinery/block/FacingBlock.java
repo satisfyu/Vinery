@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import org.jetbrains.annotations.Nullable;
 
 public class FacingBlock extends HorizontalDirectionalBlock {
-
 	public FacingBlock(Properties settings) {
 		super(settings);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));

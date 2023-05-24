@@ -22,13 +22,13 @@ configurations {
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
 
-    modApi( "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}")
+    modApi("net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
     // Remove the next line if you don't want to depend on the API
-    modApi( "dev.architectury:architectury-fabric:${rootProject.architectury_version}")
+    modApi("dev.architectury:architectury-fabric:${rootProject.architectury_version}")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
-    modRuntimeOnly( "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version")
+    modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
