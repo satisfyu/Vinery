@@ -63,9 +63,7 @@ public class ClothConfigScreen {
             wineTraderChance = createIntField("wineTraderChance", config.wineTraderChance(), VineryConfig.DEFAULT.wineTraderChance());
             yearLengthInDays = createIntField("yearLengthInDays", config.yearLengthInDays(), VineryConfig.DEFAULT.yearLengthInDays());
 
-            CCUtil.linkButtons(Vinery.MODID, category, builder, "https://discord.gg/Vqu6wYZwdZ", "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine", () -> create(lastScreen));
-
-
+            //CCUtil.linkButtons(Vinery.MODID, category, builder, "https://discord.gg/Vqu6wYZwdZ", "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine", () -> create(lastScreen));
         }
 
 
