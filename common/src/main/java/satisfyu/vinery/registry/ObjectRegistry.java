@@ -214,14 +214,14 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  WINE_BOTTLE = registerI("wine_bottle", () -> new Item(getSettings()));
     public static final RegistrySupplier<Item>  APPLE_JUICE = registerI("apple_juice", () -> new Item(getSettings()));
 
-    public static final RegistrySupplier<Item> RED_GRAPEJUICE_WINE_BOTTLE = registerI("red_grapejuice_wine_bottle", () -> new JuiceItem(getSettings()));
-    public static final RegistrySupplier<Item> WHITE_GRAPEJUICE_WINE_BOTTLE = registerI("white_grapejuice_wine_bottle", () -> new JuiceItem(getSettings()));
-    public static final RegistrySupplier<Item> SAVANNA_RED_GRAPEJUICE_BOTTLE = registerI("savanna_red_grapejuice_bottle",  () -> new JuiceItem(getSettings()));
-    public static final RegistrySupplier<Item> SAVANNA_WHITE_GRAPEJUICE_BOTTLE = registerI("savanna_white_grapejuice_bottle",  () -> new JuiceItem(getSettings()));
-    public static final RegistrySupplier<Item> TAIGA_RED_GRAPEJUICE_BOTTLE = registerI("taiga_red_grapejuice_bottle",  () -> new JuiceItem(getSettings()));
-    public static final RegistrySupplier<Item> TAIGA_WHITE_GRAPEJUICE_BOTTLE = registerI("taiga_white_grapejuice_bottle", () -> new JuiceItem(getSettings()));
-    public static final RegistrySupplier<Item> JUNGLE_RED_GRAPEJUICE_BOTTLE = registerI("jungle_red_grapejuice_bottle",  () -> new JuiceItem(getSettings()));
-    public static final RegistrySupplier<Item> JUNGLE_WHITE_GRAPEJUICE_BOTTLE = registerI("jungle_white_grapejuice_bottle",  () -> new JuiceItem(getSettings()));
+    public static final RegistrySupplier<Item> RED_GRAPEJUICE_WINE_BOTTLE = registerI("red_grapejuice_wine_bottle", () -> new Item(getSettings()));
+    public static final RegistrySupplier<Item> WHITE_GRAPEJUICE_WINE_BOTTLE = registerI("white_grapejuice_wine_bottle", () -> new Item(getSettings()));
+    public static final RegistrySupplier<Item> SAVANNA_RED_GRAPEJUICE_BOTTLE = registerI("savanna_red_grapejuice_bottle",  () -> new Item(getSettings()));
+    public static final RegistrySupplier<Item> SAVANNA_WHITE_GRAPEJUICE_BOTTLE = registerI("savanna_white_grapejuice_bottle",  () -> new Item(getSettings()));
+    public static final RegistrySupplier<Item> TAIGA_RED_GRAPEJUICE_BOTTLE = registerI("taiga_red_grapejuice_bottle",  () -> new Item(getSettings()));
+    public static final RegistrySupplier<Item> TAIGA_WHITE_GRAPEJUICE_BOTTLE = registerI("taiga_white_grapejuice_bottle", () -> new Item(getSettings()));
+    public static final RegistrySupplier<Item> JUNGLE_RED_GRAPEJUICE_BOTTLE = registerI("jungle_red_grapejuice_bottle",  () -> new Item(getSettings()));
+    public static final RegistrySupplier<Item> JUNGLE_WHITE_GRAPEJUICE_BOTTLE = registerI("jungle_white_grapejuice_bottle",  () -> new Item(getSettings()));
 
     public static final RegistrySupplier<Block> STAL_WINE = registerB("stal_wine", () -> new WineBottleBlock(getWineSettings(), 3));
     public static final RegistrySupplier<Item>  STAL_WINE_ITEM = registerI("stal_wine", () -> new DrinkBlockSmallItem(STAL_WINE.get(), getWineItemSettings(VineryEffects.IMPROVED_REGENERATION.get())));
@@ -284,11 +284,13 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  SWEETBERRY_JAM_ITEM = registerI("sweetberry_jam", () -> new BlockItem(SWEETBERRY_JAM.get(), getSettings()));
     public static final RegistrySupplier<Block> GRAPE_JAM = registerB("grape_jam", () -> new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion().sound(SoundType.GLASS)));
     public static final RegistrySupplier<Item>  GRAPE_JAM_ITEM = registerI("grape_jam", () -> new BlockItem(GRAPE_JAM.get(), getSettings()));
+    public static final RegistrySupplier<Block> APPLE_JAM = registerB("apple_jam", () -> new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion()));
+    public static final RegistrySupplier<Item>  APPLE_JAM_ITEM = registerI("apple_jam", () -> new BlockItem(APPLE_JAM.get(), getSettings()));
 
 
     public static final RegistrySupplier<Block> WINE_BOX = registerB("wine_box", () -> new WineBox(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).noOcclusion()));
     public static final RegistrySupplier<Item>  WINE_BOX_ITEM = registerI("wine_box", () -> new BlockItem(WINE_BOX.get(), getSettings()));
-    public static final RegistrySupplier<Block> BIG_TABLE = registerB("big_table", () -> new BigTableBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 2.0F)));
+    public static final RegistrySupplier<Block> BIG_TABLE = registerB("big_table", () -> new BigTableBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2.0F, 2.0F)));
     public static final RegistrySupplier<Item>  BIG_TABLE_ITEM = registerI("big_table", () -> new BlockItem(BIG_TABLE.get(), getSettings()));
     public static final RegistrySupplier<Block> SHELF = registerB("shelf", () -> new ShelfBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistrySupplier<Item>  SHELF_ITEM = registerI("shelf", () -> new BlockItem(SHELF.get(), getSettings()));
@@ -312,10 +314,8 @@ public class ObjectRegistry {
 
     public static final RegistrySupplier<Item> APPLE_PIE_SLICE = registerI("apple_pie_slice", () -> new Item(getSettings().food(Foods.COOKED_BEEF)));
 
-    public static final RegistrySupplier<Block> APPLE_JAM = registerB("apple_jam", () -> new StackableBlock(BlockBehaviour.Properties.of(Material.GLASS).instabreak().noOcclusion()));
 
     public static final RegistrySupplier<Item> APPLE_CUPCAKE = registerI("apple_cupcake", () -> new CupcakeItem(getSettings().food(Foods.GOLDEN_CARROT)));
-    public static final RegistrySupplier<Item>  APPLE_JAM_ITEM = registerI("apple_jam", () -> new BlockItem(APPLE_JAM.get(), getSettings()));
     public static final RegistrySupplier<Block> APPLE_PIE = registerB("apple_pie", () -> new PieBlock(BlockBehaviour.Properties.copy(Blocks.CAKE), APPLE_PIE_SLICE));
     public static final RegistrySupplier<Item>  APPLE_PIE_ITEM = registerI("apple_pie", () -> new BlockItem(APPLE_PIE.get(), getSettings()));
 

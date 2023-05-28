@@ -2,11 +2,6 @@ package satisfyu.vinery.client.screen.recipe.custom;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.client.recipebook.PrivateRecipeBookWidget;
-import satisfyu.vinery.registry.VineryRecipeTypes;
-
-import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
@@ -17,6 +12,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
+import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.client.recipebook.PrivateRecipeBookWidget;
+import satisfyu.vinery.registry.VineryRecipeTypes;
+
+import java.util.List;
 @Environment(EnvType.CLIENT)
 public class WoodFiredOvenRecipeBook extends PrivateRecipeBookWidget {
     private static final Component TOGGLE_COOKABLE_TEXT;
@@ -35,10 +35,13 @@ public class WoodFiredOvenRecipeBook extends PrivateRecipeBookWidget {
         int j = 0;
         for (Ingredient ingredient : recipe.getIngredients()) {
             ItemStack[] inputStacks = ingredient.getItems();
-            ItemStack inputStack = inputStacks[RandomSource.create().nextIntBetweenInclusive(0, inputStacks.length - 1)];
-            this.ghostSlots.addSlot(inputStack, slots.get(j).x, slots.get(j++).y);
+            if (inputStacks.length > 0) {
+                ItemStack inputStack = inputStacks[RandomSource.create().nextInt(0, inputStacks.length)];
+                this.ghostSlots.addSlot(inputStack, slots.get(j).x, slots.get(j++).y);
+            }
         }
     }
+
 
     @Override
     public void insertRecipe(Recipe<?> recipe) {

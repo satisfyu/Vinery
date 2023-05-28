@@ -9,7 +9,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfi
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.feature.JungleGrapeFeature;
 
 import java.util.function.Supplier;
 

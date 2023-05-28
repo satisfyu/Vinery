@@ -32,8 +32,6 @@ public class VineryCompostableItems {
         registerCompostableItem(ObjectRegistry.SAVANNA_RED_GRAPE.get(), 0.4F);
         registerCompostableItem(ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS.get(), 0.4F);
         registerCompostableItem(ObjectRegistry.SAVANNA_WHITE_GRAPE.get(), 0.4F);
-
-
     }
 
     public static void registerCompostableItem(ItemLike item, float chance) {

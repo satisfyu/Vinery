@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "vinery:stripped_apple_log"
+      "item": "minecraft:stripped_oak_log"
     }
   },
   "result": {
-    "item": "minecraft:stripped_oak_log",
+    "item": "minecraft:stripped_oak_wood",
     "count": 3
   }
 }
