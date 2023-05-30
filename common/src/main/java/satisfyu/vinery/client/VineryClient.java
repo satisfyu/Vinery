@@ -62,7 +62,8 @@ public class VineryClient {
                 JUNGLE_RED_GRAPE_BUSH.get(), TAIGA_RED_GRAPE_BUSH.get(), TAIGA_WHITE_GRAPE_BUSH.get(),
                 GRAPEVINE_STEM.get(), GRAPEVINE_LATTICE.get(), WINE_BOX.get(), FLOWER_POT.get(), CHAIR.get(),
                 WINE_PRESS.get(), GRASS_SLAB.get(), CHERRY_JAR.get(), CHERRY_SAPLING.get(), APPLE_TREE_SAPLING.get(),
-                KITCHEN_SINK.get(), STACKABLE_LOG.get(), APPLE_LEAVES.get()
+                KITCHEN_SINK.get(), STACKABLE_LOG.get(), APPLE_LEAVES.get(), POTTED_APPLE_TREE_SAPLING.get(),
+                POTTED_CHERRY_TREE_SAPLING.get()
         );
 
         ClientStorageTypes.init();
