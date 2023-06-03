@@ -1,8 +1,5 @@
 package satisfyu.vinery.compat.farmersdelight;
 
-import satisfyu.vinery.block.entity.CookingPotEntity;
-import java.util.stream.Stream;
-
 public class FarmersCookingPot {
     /*
     public static Recipe<?> getRecipe(World world, Inventory inventory){
