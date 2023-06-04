@@ -1,8 +1,6 @@
 package satisfyu.vinery.block.entity;
 
 import satisfyu.vinery.client.gui.handler.FermentationBarrelGuiHandler;
-import satisfyu.vinery.item.food.EffectFood;
-import satisfyu.vinery.item.food.EffectFoodHelper;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryRecipeTypes;
@@ -135,7 +133,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Contai
         if (!canCraft(recipe)) {
             return;
         }
-        final ItemStack recipeOutput = generateOutputItem(recipe);
+        final ItemStack recipeOutput = recipe.getResultItem();
         final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
             ItemStack output = recipeOutput.copy();
@@ -165,25 +163,6 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Contai
                 removeItem(4, 1);
             }
         }
-    }
-
-    private ItemStack generateOutputItem(Recipe<?> recipe) {
-        ItemStack outputStack = recipe.getResultItem();
-
-        if (!(outputStack.getItem() instanceof EffectFood)) {
-            return outputStack;
-        }
-
-        for (Ingredient ingredient : recipe.getIngredients()) {
-            for (int j = 0; j < 5; j++) {
-                ItemStack stack = this.getItem(j);
-                if (ingredient.test(stack)) {
-                    EffectFoodHelper.getEffects(stack).forEach(effect -> EffectFoodHelper.addEffect(outputStack, effect));
-                    break;
-                }
-            }
-        }
-        return outputStack;
     }
 
 

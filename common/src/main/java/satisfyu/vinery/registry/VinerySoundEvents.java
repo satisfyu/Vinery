@@ -10,8 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 
 public class VinerySoundEvents {
-    
-
     private static final Registrar<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Vinery.MODID, Registry.SOUND_EVENT_REGISTRY).getRegistrar();
 
     public static final RegistrySupplier<SoundEvent> BLOCK_GRAPEVINE_POT_SQUEEZE = create("block.grapevine_pot.squeeze");

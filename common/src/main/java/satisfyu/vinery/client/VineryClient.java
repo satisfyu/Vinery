@@ -60,12 +60,27 @@ public class VineryClient {
                 GRAPEVINE_STEM.get(), GRAPEVINE_LATTICE.get(), WINE_BOX.get(), FLOWER_POT.get(), CHAIR.get(),
                 WINE_PRESS.get(), GRASS_SLAB.get(), CHERRY_SAPLING.get(), APPLE_TREE_SAPLING.get(),
                 KITCHEN_SINK.get(), STACKABLE_LOG.get(), APPLE_LEAVES.get(), POTTED_APPLE_TREE_SAPLING.get(),
-                POTTED_CHERRY_TREE_SAPLING.get(), RED_WINE.get(), PRAETORIAN_WINE.get()
-        );
+                POTTED_CHERRY_TREE_SAPLING.get(), RED_WINE.get(), PRAETORIAN_WINE.get(),
+                OAK_CHAIR.get(), DARK_OAK_CHAIR.get(), SPRUCE_CHAIR.get(), WARPED_CHAIR.get(),
+                BIRCH_CHAIR.get(), MANGROVE_CHAIR.get(), ACACIA_CHAIR.get(), CRIMSON_CHAIR.get(),
+                JUNGLE_CHAIR.get(), OAK_TABLE.get(), ACACIA_TABLE.get(), DARK_OAK_TABLE.get(),
+                BIRCH_TABLE.get(), SPRUCE_TABLE.get(), JUNGLE_TABLE.get(), MANGROVE_TABLE.get(),
+                WARPED_TABLE.get(), CRIMSON_TABLE.get(), CHAIR.get(),
+                TABLE.get()
+                );
 
         ClientStorageTypes.init();
         RenderTypeRegistry.register(RenderType.translucent(), WINDOW.get());
 
+
+        ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
+                    if (world == null || pos == null) {
+                        return -1;
+                    }
+                    return BiomeColors.getAverageWaterColor(world, pos);
+                }, MUD_KITCHEN_SINK, SANDSTONE_KITCHEN_SINK, DEEPSLATE_KITCHEN_SINK, END_KITCHEN_SINK,
+                STONE_BRICKS_KITCHEN_SINK, COBBLESTONE_KITCHEN_SINK, GRANITE_KITCHEN_SINK,
+                QUARTZ_KITCHEN_SINK, RED_NETHER_BRICKS_KITCHEN_SINK);
 
 
         ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> BiomeColors.getAverageGrassColor(world, pos), GRASS_SLAB, TAIGA_WHITE_GRAPE_BUSH, TAIGA_RED_GRAPE_BUSH);
@@ -99,10 +114,6 @@ public class VineryClient {
         EntityRendererRegistry.register(VineryEntites.CHAIR, ChairRenderer::new);
     }
 
-
-
-
-    
     public static Player getClientPlayer() {
         return Minecraft.getInstance().player;
     }
