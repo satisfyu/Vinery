@@ -4,6 +4,7 @@
 		"0": "vinery:block/cooking_pot_side",
 		"1": "vinery:block/cooking_pot_inside",
 		"2": "vinery:block/cooking_pot_side_cherries",
+		"3": "vinery:block/cooking_pot_top",
 		"particle": "vinery:block/cooking_pot_side_cherries"
 	},
 	"elements": [
@@ -236,10 +237,10 @@
 			"faces": {
 				"north": {"uv": [12, 12, 3, 13], "texture": "#0"},
 				"east": {"uv": [13, 14, 4, 15], "texture": "#0"},
-				"south": {"uv": [12, 9, 3, 10], "texture": "#0"},
-				"west": {"uv": [13, 12, 4, 13], "texture": "#0"},
-				"up": {"uv": [12, 3, 3, 12], "rotation": 180, "texture": "#0"},
-				"down": {"uv": [13, 3, 4, 12], "rotation": 180, "texture": "#0"}
+				"south": {"uv": [12, 12, 3, 13], "texture": "#3"},
+				"west": {"uv": [12, 12, 3, 13], "texture": "#3"},
+				"up": {"uv": [12, 3, 3, 12], "rotation": 180, "texture": "#3"},
+				"down": {"uv": [13, 3, 4, 12], "rotation": 180, "texture": "#3"}
 			}
 		},
 		{

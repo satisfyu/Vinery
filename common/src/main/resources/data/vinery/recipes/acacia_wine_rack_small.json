@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "acacia_rack",
+  "pattern": [
+    "# #",
+    " _ ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:acacia_planks"
+    },
+    "_": {
+      "item": "minecraft:acacia_slab"
+    }
+  },
+  "result": {
+    "item": "candlelight:acacia_wine_rack_small"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "candlelight:acacia_wine_rack_big"
+    ]
+  },
+  "criteria": {
+    "has_acacia_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:acacia_planks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "candlelight:acacia_wine_rack_big"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_acacia_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

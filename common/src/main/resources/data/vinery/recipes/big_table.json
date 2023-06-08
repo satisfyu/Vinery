@@ -10,7 +10,7 @@
       "item": "minecraft:iron_ingot"
     },
     "S": {
-      "tag": "minecraft:planks"
+      "item": "vinery:cherry_planks"
     }
   },
   "result": {

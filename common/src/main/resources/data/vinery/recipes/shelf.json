@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "wine_rack",
+  "group": "shelf",
   "pattern": [
     "###",
     "_ _",
@@ -8,7 +8,7 @@
   ],
   "key": {
     "#": {
-      "tag": "minecraft:wooden_slabs"
+      "item": "candlelight:cherry_slab"
     },
     "_": {
       "item": "minecraft:iron_nugget"

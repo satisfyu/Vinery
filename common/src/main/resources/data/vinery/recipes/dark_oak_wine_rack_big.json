@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "dark_oak_rack",
+  "pattern": [
+    "#_#",
+    "___",
+    "#_#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:dark_oak_planks"
+    },
+    "_": {
+      "item": "minecraft:dark_oak_slab"
+    }
+  },
+  "result": {
+    "item": "candlelight:dark_oak_wine_rack_big"
+  }
+}

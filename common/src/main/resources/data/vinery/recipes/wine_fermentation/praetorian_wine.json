@@ -1,0 +1,17 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    {
+      "tag": "minecraft:grapejuice_white"
+    },
+    {
+      "item": "candlelight:strawberry"
+    },
+    {
+      "item": "candlelight:rose"
+    }
+  ],
+  "result": {
+    "item": "candlelight:praetorian_wine"
+  }
+}
