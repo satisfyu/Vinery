@@ -2,6 +2,7 @@ package satisfyu.vinery.block;
 
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VinerySoundEvents;
+import satisfyu.vinery.util.VineryTags;
 import satisfyu.vinery.util.VineryUtils;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -54,7 +55,7 @@ public class KitchenSinkBlock extends Block {
 		if (world.isClientSide) return InteractionResult.SUCCESS;
 		ItemStack itemStack = player.getItemInHand(hand);
 		Item item = itemStack.getItem();
-		if (item == ObjectRegistry.FAUCET.get() && !state.getValue(HAS_FAUCET)) {
+		if (itemStack.is(VineryTags.FAUCET) && !state.getValue(HAS_FAUCET)) {
 			world.setBlock(pos, state.setValue(HAS_FAUCET, true), Block.UPDATE_ALL);
 			if (!player.isCreative())
 				itemStack.shrink(1);
