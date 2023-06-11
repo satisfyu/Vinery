@@ -2,6 +2,8 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"0": "vinery:block/big_table",
+		"1": "vinery:block/big_table_side",
+		"2": "vinery:block/stripped_cherry_log_side",
 		"particle": "vinery:block/big_table"
 	},
 	"elements": [
@@ -9,11 +11,11 @@
 			"from": [1, 0, 1],
 			"to": [16, 14, 15],
 			"faces": {
-				"north": {"uv": [0, 8, 8, 16], "texture": "#0"},
+				"north": {"uv": [8, 8, 16, 16], "texture": "#0"},
 				"east": {"uv": [0, 0, 0, 0], "texture": "#0"},
 				"south": {"uv": [0, 8, 8, 16], "texture": "#0"},
-				"west": {"uv": [0, 8, 8, 16], "texture": "#0"},
-				"down": {"uv": [0, 0, 16, 8], "texture": "#0"}
+				"west": {"uv": [1, 0, 15, 16], "texture": "#1"},
+				"down": {"uv": [0, 1, 16, 15], "texture": "#2"}
 			}
 		},
 		{

@@ -7,10 +7,10 @@
   ],
   "key": {
     "S": {
-      "tag": "minecraft:wooden_slabs"
+      "item": "vinery:cherry_slab"
     },
     "X": {
-      "tag": "minecraft:planks"
+      "item": "vinery:cherry_planks"
     },
     "B": {
       "item": "minecraft:stick"

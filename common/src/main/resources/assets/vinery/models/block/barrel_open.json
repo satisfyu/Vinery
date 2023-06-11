@@ -1,10 +1,11 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"1": "vinery:block/barrel_bottom",
-		"2": "vinery:block/barrel_side_storage",
+		"1": "vinery:block/drawer_top",
+		"2": "vinery:block/cabinet_side",
 		"3": "vinery:block/barrel_top_open",
-		"particle": "vinery:block/barrel_side_storage"
+		"4": "vinery:block/drawer_side",
+		"particle": "vinery:block/cabinet_side"
 	},
 	"elements": [
 		{
@@ -12,9 +13,9 @@
 			"to": [16, 16, 16],
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"east": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#4"},
 				"south": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#4"},
 				"up": {"uv": [0, 0, 16, 16], "texture": "#3"},
 				"down": {"uv": [0, 0, 16, 16], "texture": "#1"}
 			}

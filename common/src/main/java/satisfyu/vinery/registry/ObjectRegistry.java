@@ -194,7 +194,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  DIRT_SLAB_ITEM = registerI("dirt_slab", () -> new BlockItem(DIRT_SLAB.get(), getSettings()));
     public static final RegistrySupplier<Block> GRASS_SLAB = registerB("grass_slab", () -> new SnowyVariantSlabBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
     public static final RegistrySupplier<Item>  GRASS_SLAB_ITEM = registerI("grass_slab", () -> new BlockItem(GRASS_SLAB.get(), getSettings()));
-    //Wines
     public static final RegistrySupplier<Item>  WINE_BOTTLE = registerI("wine_bottle", () -> new Item(getSettings()));
     public static final RegistrySupplier<Item>  APPLE_JUICE = registerI("apple_juice", () -> new Item(getSettings()));
     public static final RegistrySupplier<Item> RED_GRAPEJUICE_WINE_BOTTLE = registerI("red_grapejuice_wine_bottle", () -> new Item(getSettings()));

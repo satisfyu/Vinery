@@ -1,10 +1,10 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"3": "vinery:block/wine_rack_side",
-		"4": "vinery:block/wine_rack_top",
-		"5": "vinery:block/wine_rack_cabinet_open",
-		"particle": "vinery:block/wine_rack_top"
+		"3": "vinery:block/cabinet_side",
+		"4": "vinery:block/cabinet_top",
+		"5": "vinery:block/cabinet_front_open",
+		"particle": "vinery:block/cabinet_top"
 	},
 	"elements": [
 		{

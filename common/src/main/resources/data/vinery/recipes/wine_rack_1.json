@@ -8,13 +8,13 @@
   ],
   "key": {
     "#": {
-      "tag": "minecraft:planks"
+      "item": "vinery:cherry_planks"
     },
     "_": {
-      "tag": "minecraft:wooden_slabs"
+      "item": "vinery:cherry_slab"
     },
     "O": {
-      "item": "minecraft:oak_trapdoor"
+      "item": "vinery:cherry_trapdoor"
     }
   },
   "result": {

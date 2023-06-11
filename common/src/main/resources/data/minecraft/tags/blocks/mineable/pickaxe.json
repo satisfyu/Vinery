@@ -5,7 +5,6 @@
     "vinery:stove",
     "vinery:big_table",
     "vinery:kitchen_sink",
-    "vinery:flower_pot",
-    "vinery:cooking_pot"
+    "vinery:flower_pot"
   ]
 }
