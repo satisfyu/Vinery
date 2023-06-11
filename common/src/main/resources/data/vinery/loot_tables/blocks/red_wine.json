@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "candlelight:red_wine"
+          "name": "vinery:red_wine"
         }
       ],
       "rolls": 1.0

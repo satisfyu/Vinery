@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "candlelight:praetorian_wine"
+          "name": "vinery:praetorian_wine"
         }
       ],
       "rolls": 1.0

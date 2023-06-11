@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "candlelight:birch_wine_rack_big"
+          "name": "vinery:birch_wine_rack_big"
         }
       ],
       "rolls": 1.0

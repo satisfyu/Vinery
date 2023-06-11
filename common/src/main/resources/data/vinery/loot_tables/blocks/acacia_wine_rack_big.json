@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "candlelight:acacia_wine_rack_big"
+          "name": "vinery:acacia_wine_rack_big"
         }
       ],
       "rolls": 1.0

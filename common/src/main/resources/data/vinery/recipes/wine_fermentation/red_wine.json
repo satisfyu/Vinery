@@ -6,12 +6,9 @@
     },
     {
       "item": "minecraft:sugar"
-    },
-    {
-      "item": "candlelight:rose"
     }
   ],
   "result": {
-    "item": "candlelight:red_wine"
+    "item": "vinery:red_wine"
   }
 }

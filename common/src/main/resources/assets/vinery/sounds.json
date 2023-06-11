@@ -1,10 +1,4 @@
 {
-  "block.cooking_pot.juice_boiling": {
-    "subtitle": "subtitles.vinery.juice_boiling",
-    "sounds": [
-      "vinery:block/cooking_pot/juice_boiling"
-    ]
-  },
   "block.kitchen_sink.faucet": {
     "subtitle": "subtitles.vinery.faucet",
     "sounds": [
@@ -44,12 +38,6 @@
     "subtitle": "subtitles.vinery.rack",
     "sounds": [
       "vinery:block/wine_rack/wine_rack_5_close"
-    ]
-  },
-  "block.cooking_pan.pan_frying": {
-    "subtitle": "subtitles.vinery.pan_frying",
-    "sounds": [
-      "vinery:block/cooking_pan/pan_frying"
     ]
   }
 }

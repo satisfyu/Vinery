@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "candlelight:jungle_wine_rack_small"
+      "vinery:jungle_wine_rack_small"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "candlelight:jungle_wine_rack_small"
+        "recipe": "vinery:jungle_wine_rack_small"
       }
     }
   },

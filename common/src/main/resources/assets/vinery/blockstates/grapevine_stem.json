@@ -111,18 +111,6 @@
     },
     "age=4,grape=jungle_white": {
       "model": "vinery:block/grapevine_stem"
-    },
-    "age=4,grape=tomato": {
-      "model": "vinery:block/tomato_stem_stage4"
-    },
-    "age=3,grape=tomato": {
-      "model": "vinery:block/tomato_stem_stage3"
-    },
-    "age=2,grape=tomato": {
-      "model": "vinery:block/tomato_stem_stage2"
-    },
-    "age=1,grape=tomato": {
-      "model": "vinery:block/tomato_stem_stage1"
     }
   }
 }

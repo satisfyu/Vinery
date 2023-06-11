@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "vinery:block/dark_oak_wine_rack_1",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "vinery:block/dark_oak_wine_rack_1"
+    },
+    "facing=south": {
+      "model": "vinery:block/dark_oak_wine_rack_1",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "vinery:block/dark_oak_wine_rack_1",
+      "y": 270
+    }
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    {"id":"vinery:toast","required":false},
-    {"id":"vinery:milk_bread","required":false},
-    {"id":"vinery:crusty_bread","required":false}
-  ]
-}

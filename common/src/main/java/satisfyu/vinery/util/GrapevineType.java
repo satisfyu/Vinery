@@ -13,8 +13,7 @@ public enum GrapevineType implements IGrapevineType, StringRepresentable {
     TAIGA_RED,
     TAIGA_WHITE,
     SAVANNA_RED,
-    SAVANNA_WHITE,
-    TOMATO;
+    SAVANNA_WHITE;
 
     public boolean isPaleType() {
         return !(this == JUNGLE_RED || this == JUNGLE_WHITE);
@@ -36,7 +35,6 @@ public enum GrapevineType implements IGrapevineType, StringRepresentable {
             case TAIGA_WHITE -> "taiga_white";
             case SAVANNA_RED -> "savanna_red";
             case SAVANNA_WHITE -> "savanna_white";
-            case TOMATO -> "tomato";
         };
     }
 

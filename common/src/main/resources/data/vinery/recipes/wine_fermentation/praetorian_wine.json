@@ -5,13 +5,13 @@
       "tag": "minecraft:grapejuice_white"
     },
     {
-      "item": "candlelight:strawberry"
+      "item": "minecraft:glow_berries"
     },
     {
-      "item": "candlelight:rose"
+      "item": "minecraft:sugar"
     }
   ],
   "result": {
-    "item": "candlelight:praetorian_wine"
+    "item": "vinery:praetorian_wine"
   }
 }

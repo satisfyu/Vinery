@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "candlelight:spruce_wine_rack_big"
+          "name": "vinery:spruce_wine_rack_big"
         }
       ],
       "rolls": 1.0

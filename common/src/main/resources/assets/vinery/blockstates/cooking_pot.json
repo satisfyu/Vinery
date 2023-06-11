@@ -1,66 +1,18 @@
 {
   "variants": {
-    "facing=east,lit=false,cooking=false": {
+    "facing=east": {
       "model": "vinery:block/cooking_pot",
       "y": 90
     },
-    "facing=north,lit=false,cooking=false": {
+    "facing=north": {
       "model": "vinery:block/cooking_pot"
     },
-    "facing=south,lit=false,cooking=false": {
+    "facing=south": {
       "model": "vinery:block/cooking_pot",
       "y": 180
     },
-    "facing=west,lit=false,cooking=false": {
+    "facing=west": {
       "model": "vinery:block/cooking_pot",
-      "y": 270
-    },
-
-    "facing=east,lit=true,cooking=false": {
-      "model": "vinery:block/cooking_pot_boiling",
-      "y": 90
-    },
-    "facing=north,lit=true,cooking=false": {
-      "model": "vinery:block/cooking_pot_boiling"
-    },
-    "facing=south,lit=true,cooking=false": {
-      "model": "vinery:block/cooking_pot_boiling",
-      "y": 180
-    },
-    "facing=west,lit=true,cooking=false": {
-      "model": "vinery:block/cooking_pot_boiling",
-      "y": 270
-    },
-
-    "facing=east,lit=false,cooking=true": {
-      "model": "vinery:block/cooking_pot_cooking",
-      "y": 90
-    },
-    "facing=north,lit=false,cooking=true": {
-      "model": "vinery:block/cooking_pot_cooking"
-    },
-    "facing=south,lit=false,cooking=true": {
-      "model": "vinery:block/cooking_pot_cooking",
-      "y": 180
-    },
-    "facing=west,lit=false,cooking=true": {
-      "model": "vinery:block/cooking_pot_cooking",
-      "y": 270
-    },
-
-    "facing=east,lit=true,cooking=true": {
-      "model": "vinery:block/cooking_pot_cooking",
-      "y": 90
-    },
-    "facing=north,lit=true,cooking=true": {
-      "model": "vinery:block/cooking_pot_cooking"
-    },
-    "facing=south,lit=true,cooking=true": {
-      "model": "vinery:block/cooking_pot_cooking",
-      "y": 180
-    },
-    "facing=west,lit=true,cooking=true": {
-      "model": "vinery:block/cooking_pot_cooking",
       "y": 270
     }
   }

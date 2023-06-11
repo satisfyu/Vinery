@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "candlelight:dark_oak_wine_rack_small"
+      "vinery:dark_oak_wine_rack_small"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "candlelight:dark_oak_wine_rack_small"
+        "recipe": "vinery:dark_oak_wine_rack_small"
       }
     }
   },
