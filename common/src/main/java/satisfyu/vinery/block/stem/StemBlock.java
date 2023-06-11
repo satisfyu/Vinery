@@ -50,7 +50,6 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         final int age = state.getValue(AGE);
-        final ItemStack stack = player.getItemInHand(hand);
         if (age > 3) {
             dropGrapes(world, state, pos);
             world.setBlock(pos, state.setValue(AGE, 2), 2);
@@ -85,8 +84,6 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
     public BlockState withAge(BlockState state, int age, GrapevineType type) {
         return state.setValue(AGE, age).setValue(GRAPE, type);
     }
-
-
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

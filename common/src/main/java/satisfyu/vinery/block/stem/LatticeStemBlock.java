@@ -1,5 +1,6 @@
 package satisfyu.vinery.block.stem;
 
+import net.minecraft.world.level.LevelAccessor;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.item.GrapeBushSeedItem;
 import satisfyu.vinery.util.GrapevineType;
@@ -65,7 +66,6 @@ public class LatticeStemBlock extends StemBlock {
         } else {
             blockState = this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
         }
-
 
         if (blockState.canSurvive(ctx.getLevel(), ctx.getClickedPos())) {
             return blockState;
@@ -133,12 +133,36 @@ public class LatticeStemBlock extends StemBlock {
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        return switch (state.getValue(FACING).getOpposite()) {
-            case EAST -> world.getBlockState(pos.east()).isRedstoneConductor(world, pos);
-            case SOUTH -> world.getBlockState(pos.south()).isRedstoneConductor(world, pos);
-            case WEST -> world.getBlockState(pos.west()).isRedstoneConductor(world, pos);
-            default -> world.getBlockState(pos.north()).isRedstoneConductor(world, pos);
-        };
+        VoxelShape shape;
+        Direction direction;
+        switch (state.getValue(FACING).getOpposite()) {
+            case EAST -> {
+                shape = world.getBlockState(pos.east()).getShape(world, pos.east());
+                direction = Direction.WEST;
+            }
+
+            case SOUTH -> {
+                shape = world.getBlockState(pos.south()).getShape(world, pos.south());
+                direction = Direction.NORTH;
+            }
+            case WEST -> {
+                shape = world.getBlockState(pos.west()).getShape(world, pos.west());
+                direction = Direction.EAST;
+            }
+            default -> {
+                shape = world.getBlockState(pos.north()).getShape(world, pos.north());
+                direction = Direction.SOUTH;
+            }
+        }
+        return Block.isFaceFull(shape, direction);
+    }
+
+    @Override
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+        if (!state.canSurvive(world, pos)) {
+            world.scheduleTick(pos, this, 1);
+        }
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override
