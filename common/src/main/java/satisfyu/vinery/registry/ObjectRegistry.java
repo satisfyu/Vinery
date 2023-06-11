@@ -1,7 +1,6 @@
 package satisfyu.vinery.registry;
 
 import de.cristelknight.doapi.Util;
-import de.cristelknight.doapi.block.FacingBlock;
 import de.cristelknight.doapi.terraform.TerraformSignHelper;
 import dev.architectury.core.item.ArchitecturySpawnEggItem;
 import dev.architectury.registry.registries.DeferredRegister;
@@ -260,7 +259,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  SHELF_ITEM = registerI("shelf", () -> new BlockItem(SHELF.get(), getSettings()));
     public static final RegistrySupplier<Block> BASKET = registerB("basket", () -> new BasketBlock(BlockBehaviour.Properties.of(Material.DECORATION).instabreak().noOcclusion(), 1));
     public static final RegistrySupplier<Item>  BASKET_ITEM = registerI("basket", () -> new BlockItem(BASKET.get(), getSettings()));
-    public static final RegistrySupplier<Block> COOKING_POT = registerB("cooking_pot", () -> new FacingBlock(BlockBehaviour.Properties.of(Material.STONE)));
     public static final RegistrySupplier<Block> STACKABLE_LOG = registerB("stackable_log", () -> new StackableLogBlock(getLogBlockSettings().noOcclusion().lightLevel(state -> state.getValue(StackableLogBlock.FIRED) ? 13 : 0)));
     public static final RegistrySupplier<Item>  STACKABLE_LOG_ITEM = registerI("stackable_log", () -> new BlockItem(STACKABLE_LOG.get(), getSettings()));
     public static final RegistrySupplier<Item> FAUCET = registerI("faucet", () -> new FaucetItem(getSettings()));
