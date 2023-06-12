@@ -1,33 +1,18 @@
 {
   "variants": {
-    "facing=east,lit=false": {
+    "facing=east": {
       "model": "vinery:block/wood_fired_oven",
       "y": 90
     },
-    "facing=east,lit=true": {
-      "model": "vinery:block/wood_fired_oven_on",
-      "y": 90
-    },
-    "facing=north,lit=false": {
+    "facing=north": {
       "model": "vinery:block/wood_fired_oven"
     },
-    "facing=north,lit=true": {
-      "model": "vinery:block/wood_fired_oven_on"
-    },
-    "facing=south,lit=false": {
+    "facing=south": {
       "model": "vinery:block/wood_fired_oven",
       "y": 180
     },
-    "facing=south,lit=true": {
-      "model": "vinery:block/wood_fired_oven_on",
-      "y": 180
-    },
-    "facing=west,lit=false": {
+    "facing=west": {
       "model": "vinery:block/wood_fired_oven",
-      "y": 270
-    },
-    "facing=west,lit=true": {
-      "model": "vinery:block/wood_fired_oven_on",
       "y": 270
     }
   }

@@ -16,7 +16,7 @@
   "block.vinery.cherry_log": "Kirschholzstamm",
   "block.vinery.apple_log": "Apfelholzstamm",
   "block.vinery.cherry_wood": "Kirschholz",
-  "block.vinery.barrel": "Weinfass",
+  "block.vinery.barrel": "Verziertes Weinfass",
   "block.vinery.apple_leaves": "Apfelbaumlaub",
   "block.vinery.stripped_cherry_wood": "Entrindetes Kirschholz",
   "block.vinery.apple_wood": "Apfelholz",
@@ -222,7 +222,7 @@
   "block.vinery.birch_wine_rack_big": "Grosses Birkenholzflaschenregal",
   "block.vinery.birch_wine_rack_small": "Kleines Birkenholzflaschenregal",
   "block.vinery.dark_oak_wine_rack_big": "Grosses Schwarzeichenholzflaschenregal",
-  "block.vinery.dark_oak_wine_rack_small": "Kleines Schwarzeichenholzflaschenregal",,
+  "block.vinery.dark_oak_wine_rack_small": "Kleines Schwarzeichenholzflaschenregal",
   "block.vinery.jungle_grape_bush_red": "Red Jungle Grape Bush",
   "block.vinery.jungle_grape_bush_white": "White Jungle Grape Bush",
   "block.vinery.jungle_wine_rack_big": "Grosses Tropenholzflaschenregal",
@@ -241,6 +241,6 @@
   "block.vinery.taiga_grape_bush_red": "Red Taiga Grape Bush",
   "block.vinery.taiga_grape_bush_white": "White Taiga Grape Bush",
   "gui.vinery.recipebook.toggleRecipes.cookable": "Showing Cookable",
-  "gui.vinery.recipebook.toggleRecipes.fermentable": "Showing Fermentable"
-
+  "gui.vinery.recipebook.toggleRecipes.fermentable": "Showing Fermentable",
+  "block.vinery.stove.tooltip": "Die Flamme dieses Ofens ist für immer erloschen..."
 }

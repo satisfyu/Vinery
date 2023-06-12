@@ -126,9 +126,9 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  CHAIR_ITEM = registerI("chair", () -> new BlockItem(CHAIR.get(), getSettings()));
     public static final RegistrySupplier<Block> TABLE = registerB("table", () -> new TableBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistrySupplier<Item>  TABLE_ITEM = registerI("table", () -> new BlockItem(TABLE.get(), getSettings()));
-    public static final RegistrySupplier<Block> WOOD_FIRED_OVEN = registerB("wood_fired_oven", () -> new SmokerBlock(BlockBehaviour.Properties.copy(Blocks.SMOKER).lightLevel(state -> state.getValue(SmokerBlock.LIT) ? 13 : 0)));
+    public static final RegistrySupplier<Block> WOOD_FIRED_OVEN = registerB("wood_fired_oven", () -> new StoveBlock(BlockBehaviour.Properties.of(Material.STONE)));
     public static final RegistrySupplier<Item>  WOOD_FIRED_OVEN_ITEM = registerI("wood_fired_oven", () -> new BlockItem(WOOD_FIRED_OVEN.get(), getSettings()));
-    public static final RegistrySupplier<Block> STOVE = registerB("stove", () -> new SmokerBlock(BlockBehaviour.Properties.copy(Blocks.SMOKER).lightLevel(block -> 12)));
+    public static final RegistrySupplier<Block> STOVE = registerB("stove", () -> new StoveBlock(BlockBehaviour.Properties.of(Material.STONE)));
     public static final RegistrySupplier<Item>  STOVE_ITEM = registerI("stove", () -> new BlockItem(STOVE.get(), getSettings()));
     public static final RegistrySupplier<Block> KITCHEN_SINK = registerB("kitchen_sink", () -> new KitchenSinkBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
     public static final RegistrySupplier<Item>  KITCHEN_SINK_ITEM = registerI("kitchen_sink", () -> new BlockItem(KITCHEN_SINK.get(), getSettings()));
