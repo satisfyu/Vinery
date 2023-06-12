@@ -50,13 +50,11 @@ public class TableBlock extends VineryLineConnectingBlock implements SimpleWater
         if((direction == Direction.NORTH && type == VineryLineConnectingType.LEFT) || (direction == Direction.SOUTH && type == VineryLineConnectingType.RIGHT)){
             return Shapes.or(TOP_SHAPE, LEG_SHAPES[0], LEG_SHAPES[3]);
         }
-        else if((direction == Direction.NORTH && type == VineryLineConnectingType.RIGHT) || (direction == Direction.SOUTH && type == VineryLineConnectingType.LEFT)){
+        else if ((direction == Direction.NORTH && type == VineryLineConnectingType.RIGHT) || (direction == Direction.SOUTH && type == VineryLineConnectingType.LEFT)) {
             return Shapes.or(TOP_SHAPE, LEG_SHAPES[1], LEG_SHAPES[2]);
-        }
-        else if((direction == Direction.EAST && type == VineryLineConnectingType.LEFT) || (direction == Direction.WEST && type == VineryLineConnectingType.RIGHT)){
+        } else if ((direction == Direction.EAST && type == VineryLineConnectingType.LEFT) || (direction == Direction.WEST && type == VineryLineConnectingType.RIGHT)) {
             return Shapes.or(TOP_SHAPE, LEG_SHAPES[0], LEG_SHAPES[1]);
-        }
-        else if((direction == Direction.EAST && type == VineryLineConnectingType.LEFT.RIGHT) || (direction == Direction.WEST && type == VineryLineConnectingType.LEFT)){
+        } else if ((direction == Direction.EAST && type == VineryLineConnectingType.RIGHT) || (direction == Direction.WEST && type == VineryLineConnectingType.LEFT)) {
             return Shapes.or(TOP_SHAPE, LEG_SHAPES[2], LEG_SHAPES[3]);
         }
         return Shapes.or(TOP_SHAPE, LEG_SHAPES);

@@ -1,10 +1,5 @@
 package satisfyu.vinery.block.entity;
 
-import satisfyu.vinery.client.gui.handler.FermentationBarrelGuiHandler;
-import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.registry.VineryBlockEntityTypes;
-import satisfyu.vinery.registry.VineryRecipeTypes;
-import satisfyu.vinery.util.WineYears;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -25,9 +20,13 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.client.gui.handler.FermentationBarrelGuiHandler;
+import satisfyu.vinery.registry.ObjectRegistry;
+import satisfyu.vinery.registry.VineryBlockEntityTypes;
+import satisfyu.vinery.registry.VineryRecipeTypes;
+import satisfyu.vinery.util.WineYears;
 
 public class FermentationBarrelBlockEntity extends BlockEntity implements Container, BlockEntityTicker<FermentationBarrelBlockEntity>, MenuProvider {
-
     private NonNullList<ItemStack> inventory;
     public static final int CAPACITY = 6;
     public static final int COOKING_TIME_IN_TICKS = 1800; // 90s or 3 minutes
