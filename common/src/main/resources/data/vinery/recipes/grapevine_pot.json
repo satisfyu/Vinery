@@ -7,10 +7,10 @@
   ],
   "key": {
     "_": {
-      "item": "minecraft:spruce_slab"
+      "tag": "minecraft:wooden_slabs"
     },
     "S": {
-      "item": "minecraft:spruce_planks"
+      "tag": "minecraft:planks"
     }
   },
   "result": {

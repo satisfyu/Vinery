@@ -89,11 +89,11 @@ public class ObjectRegistry {
         @Override
         protected @NotNull ResourceKey<ConfiguredFeature<?, ?>> getTreeConfiguredFeature(RandomSource random, boolean bees) {
             if (random.nextBoolean()) {
-                if (bees) return VineryConfiguredFeatures.OLD_CHERRY_BEE_KEY;
-                return VineryConfiguredFeatures.OLD_CHERRY_KEY;
+                if (bees) return VineryConfiguredFeatures.APPLE_BEE_KEY;
+                return VineryConfiguredFeatures.APPLE_KEY;
             } else {
-                if (bees) return VineryConfiguredFeatures.OLD_CHERRY_VARIANT_WITH_BEE_KEY;
-                return VineryConfiguredFeatures.OLD_CHERRY_VARIANT_KEY;
+                if (bees) return VineryConfiguredFeatures.APPLE_VARIANT_WITH_BEE_KEY;
+                return VineryConfiguredFeatures.APPLE_VARIANT_KEY;
             }
         }
     }, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));

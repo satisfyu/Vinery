@@ -36,7 +36,7 @@ public class VineryBiomeModification {
         world.add(ModificationPhase.ADDITIONS, jungleBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VineryPlacedFeatures.JUNGLE_WHITE_GRAPE_PATCH_CHANCE_KEY));
 
         world.add(ModificationPhase.ADDITIONS, treeBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VineryPlacedFeatures.TREE_CHERRY_PLACED_KEY));
-        world.add(ModificationPhase.ADDITIONS, treeBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VineryPlacedFeatures.TREE_CHERRY_OLD_PLACED_KEY));
+        world.add(ModificationPhase.ADDITIONS, treeBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VineryPlacedFeatures.TREE_APPLE_PLACED_KEY));
     }
 
     private static Predicate<BiomeSelectionContext> getVinerySelector(String path) {

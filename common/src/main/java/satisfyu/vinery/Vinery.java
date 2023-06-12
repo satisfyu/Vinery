@@ -18,7 +18,7 @@ public class Vinery {
     public static final Logger LOGGER = LogManager.getLogger(MODID);
 
     public static final CreativeModeTab VINERY_TAB = CreativeTabRegistry.create(new VineryIdentifier("vinery_tab"), () ->
-            new ItemStack(ObjectRegistry.RED_GRAPE.get()));
+            new ItemStack(ObjectRegistry.JUNGLE_RED_GRAPE.get()));
     
     public static void init() {
         VineryConfig.DEFAULT.getConfig();
