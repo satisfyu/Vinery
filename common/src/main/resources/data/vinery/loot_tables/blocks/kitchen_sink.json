@@ -2,19 +2,43 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:item",
           "name": "vinery:kitchen_sink"
         }
       ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
       "conditions": [
         {
-          "condition": "minecraft:survives_explosion"
+          "condition": "minecraft:alternative",
+          "terms": [
+            {
+              "block": "vinery:kitchen_sink",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "has_faucet": true
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "vinery:faucet"
+        }
+      ],
+      "rolls": 1.0
     }
   ]
 }

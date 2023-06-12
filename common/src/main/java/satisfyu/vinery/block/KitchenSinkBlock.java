@@ -31,8 +31,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.registry.VinerySoundEvents;
+import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.util.VineryTags;
-import satisfyu.vinery.util.VineryUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -109,23 +109,50 @@ public class KitchenSinkBlock extends Block {
 		return shape;
 	};
 
+	private static final Supplier<VoxelShape> voxelShapeWithFaucetSupplier = () -> {
+		VoxelShape shape = Shapes.empty();
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0, 0.125, 1, 0.75, 1), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.3984375, 1.171875, 0.84375, 0.4296875, 1.234375, 0.90625), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.4296875, 1.375, 0.625, 0.5546875, 1.5, 0.9375), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.4296875, 1.3125, 0.5, 0.5546875, 1.5, 0.625), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.4296875, 1.0625, 0.8125, 0.5546875, 1.375, 0.9375), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.3828125, 1.25, 0.453125, 0.6015625, 1.3125, 0.671875), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.3671875, 1, 0.75, 0.6171875, 1.0625, 1), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.3671875, 1.125, 0.78125, 0.3984375, 1.3125, 0.96875), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0, 1, 1, 0.1875), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.75, 1, 1, 1), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.1875, 0.1859375, 1, 0.75), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.8125, 0.75, 0.1875, 1, 1, 0.75), BooleanOp.OR);
+		return shape;
+	};
+
+
 	public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
 		for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-			map.put(direction, VineryUtils.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+			map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+		}
+	});
+
+	public static final Map<Direction, VoxelShape> SHAPE_WITH_FAUCET = Util.make(new HashMap<>(), map -> {
+		for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
+			map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeWithFaucetSupplier.get()));
 		}
 	});
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		return SHAPE.get(state.getValue(FACING));
+		if (state.getValue(HAS_FAUCET)) {
+			return SHAPE_WITH_FAUCET.get(state.getValue(FACING));
+		} else {
+			return SHAPE.get(state.getValue(FACING));
+		}
 	}
-
-
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING, FILLED, HAS_FAUCET);
 	}
+
 	@Override
 	public BlockState rotate(BlockState state, Rotation rotation) {
 		return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
