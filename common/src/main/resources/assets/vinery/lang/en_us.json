@@ -10,7 +10,7 @@
   "block.vinery.apple_tree_sapling": "Apple Tree Sapling",
   "block.vinery.apple_wine": "Apple Wine",
   "block.vinery.apple_wood": "Apple Wood",
-  "block.vinery.barrel": "Wine Barrel",
+  "block.vinery.barrel": "Crested Barrel",
   "block.vinery.basket": "Basket",
   "block.vinery.basket.tooltip": "Can be placed",
   "block.vinery.big_table": "Big Cherry Table",
@@ -242,5 +242,6 @@
   "vinery.config.entry.recipebookopen": "Recipe Book Open",
   "vinery.config.entry.craftabletoggle": "Toggle Craftable",
   "vinery.config.entry.winetraderchance": "Wandering Winemaker Spawnchance",
-  "vinery.config.entry.yearlengthindays": "Days per Year for Aging"
+  "vinery.config.entry.yearlengthindays": "Days per Year for Aging",
+  "block.vinery.stove.tooltip": "The flame of this stove has been extinguished forever..."
 }

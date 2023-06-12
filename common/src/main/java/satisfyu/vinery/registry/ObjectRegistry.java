@@ -116,31 +116,31 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> APPLE_CRATE = registerB("apple_crate", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistrySupplier<Item>  APPLE_CRATE_ITEM = registerI("apple_crate", () -> new BlockItem(APPLE_CRATE.get(), getSettings()));
     public static final RegistrySupplier<Block> GRAPEVINE_LATTICE = registerB("grapevine_lattice", () -> new LatticeStemBlock(getGrapevineSettings()));
-    public static final RegistrySupplier<Item> GRAPEVINE_LATTICE_ITEM = registerI("grapevine_lattice", () -> new BlockItem(GRAPEVINE_LATTICE.get(), getSettings()));
+    public static final RegistrySupplier<Item>  GRAPEVINE_LATTICE_ITEM = registerI("grapevine_lattice", () -> new BlockItem(GRAPEVINE_LATTICE.get(), getSettings()));
     public static final RegistrySupplier<Block> GRAPEVINE_POT = registerB("grapevine_pot", () -> new GrapevinePotBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)));
-    public static final RegistrySupplier<Item> GRAPEVINE_POT_ITEM = registerI("grapevine_pot", () -> new BlockItem(GRAPEVINE_POT.get(), getSettings()));
+    public static final RegistrySupplier<Item>  GRAPEVINE_POT_ITEM = registerI("grapevine_pot", () -> new BlockItem(GRAPEVINE_POT.get(), getSettings()));
     public static final RegistrySupplier<Block> FERMENTATION_BARREL = registerB("fermentation_barrel", () -> new FermentationBarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL).noOcclusion()));
-    public static final RegistrySupplier<Item> FERMENTATION_BARREL_ITEM = registerI("fermentation_barrel", () -> new BlockItem(FERMENTATION_BARREL.get(), getSettings()));
+    public static final RegistrySupplier<Item>  FERMENTATION_BARREL_ITEM = registerI("fermentation_barrel", () -> new BlockItem(FERMENTATION_BARREL.get(), getSettings()));
     public static final RegistrySupplier<Block> WINE_PRESS = registerB("wine_press", () -> new WinePressBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Item> WINE_PRESS_ITEM = registerI("wine_press", () -> new BlockItem(WINE_PRESS.get(), getSettings()));
+    public static final RegistrySupplier<Item>  WINE_PRESS_ITEM = registerI("wine_press", () -> new BlockItem(WINE_PRESS.get(), getSettings()));
     public static final RegistrySupplier<Block> CHAIR = registerB("chair", () -> new ChairBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0f, 3.0f).sound(SoundType.WOOD)));
-    public static final RegistrySupplier<Item> CHAIR_ITEM = registerI("chair", () -> new BlockItem(CHAIR.get(), getSettings()));
+    public static final RegistrySupplier<Item>  CHAIR_ITEM = registerI("chair", () -> new BlockItem(CHAIR.get(), getSettings()));
     public static final RegistrySupplier<Block> TABLE = registerB("table", () -> new TableBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
-    public static final RegistrySupplier<Item> TABLE_ITEM = registerI("table", () -> new BlockItem(TABLE.get(), getSettings()));
+    public static final RegistrySupplier<Item>  TABLE_ITEM = registerI("table", () -> new BlockItem(TABLE.get(), getSettings()));
     public static final RegistrySupplier<Block> WOOD_FIRED_OVEN = registerB("wood_fired_oven", () -> new FacingBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
-    public static final RegistrySupplier<Item> WOOD_FIRED_OVEN_ITEM = registerI("wood_fired_oven", () -> new BlockItem(WOOD_FIRED_OVEN.get(), getSettings()));
+    public static final RegistrySupplier<Item>  WOOD_FIRED_OVEN_ITEM = registerI("wood_fired_oven", () -> new BlockItem(WOOD_FIRED_OVEN.get(), getSettings()));
     public static final RegistrySupplier<Block> STOVE = registerB("stove", () -> new FacingBlock(BlockBehaviour.Properties.copy(Blocks.STONE).lightLevel(block -> 12)));
-    public static final RegistrySupplier<Item> STOVE_ITEM = registerI("stove", () -> new BlockItem(STOVE.get(), getSettings()));
+    public static final RegistrySupplier<Item>  STOVE_ITEM = registerI("stove", () -> new BlockItem(STOVE.get(), getSettings()));
     public static final RegistrySupplier<Block> KITCHEN_SINK = registerB("kitchen_sink", () -> new KitchenSinkBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
-    public static final RegistrySupplier<Item> KITCHEN_SINK_ITEM = registerI("kitchen_sink", () -> new BlockItem(KITCHEN_SINK.get(), getSettings()));
+    public static final RegistrySupplier<Item>  KITCHEN_SINK_ITEM = registerI("kitchen_sink", () -> new BlockItem(KITCHEN_SINK.get(), getSettings()));
     public static final RegistrySupplier<Block> WINE_RACK_1 = registerB("wine_rack_1", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Item> WINE_RACK_1_ITEM = registerI("wine_rack_1", () -> new BlockItem(WINE_RACK_1.get(), getSettings()));
+    public static final RegistrySupplier<Item>  WINE_RACK_1_ITEM = registerI("wine_rack_1", () -> new BlockItem(WINE_RACK_1.get(), getSettings()));
     public static final RegistrySupplier<Block> WINE_RACK_2 = registerB("wine_rack_2", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Item> WINE_RACK_2_ITEM = registerI("wine_rack_2", () -> new BlockItem(WINE_RACK_2.get(), getSettings()));
+    public static final RegistrySupplier<Item>  WINE_RACK_2_ITEM = registerI("wine_rack_2", () -> new BlockItem(WINE_RACK_2.get(), getSettings()));
     public static final RegistrySupplier<Block> WINE_RACK_3 = registerB("wine_rack_3", () -> new WineRackStorageBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD), VinerySoundEvents.WINE_RACK_3_OPEN.get(), VinerySoundEvents.WINE_RACK_3_CLOSE.get()));
-    public static final RegistrySupplier<Item> WINE_RACK_3_ITEM = registerI("wine_rack_3", () -> new BlockItem(WINE_RACK_3.get(), getSettings()));
+    public static final RegistrySupplier<Item>  WINE_RACK_3_ITEM = registerI("wine_rack_3", () -> new BlockItem(WINE_RACK_3.get(), getSettings()));
     public static final RegistrySupplier<Block> WINE_RACK_5 = registerB("wine_rack_5", () -> new WineRackStorageBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD), VinerySoundEvents.WINE_RACK_5_OPEN.get(), VinerySoundEvents.WINE_RACK_5_CLOSE.get()));
-    public static final RegistrySupplier<Item> WINE_RACK_5_ITEM = registerI("wine_rack_5", () -> new BlockItem(WINE_RACK_5.get(), getSettings()));
+    public static final RegistrySupplier<Item>  WINE_RACK_5_ITEM = registerI("wine_rack_5", () -> new BlockItem(WINE_RACK_5.get(), getSettings()));
     public static final RegistrySupplier<Block> BARREL = registerB("barrel", () -> new BarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)));
     public static final RegistrySupplier<Item>  BARREL_ITEM = registerI("barrel", () -> new BlockItem(BARREL.get(), getSettings()));
     public static final RegistrySupplier<Block> APPLE_LOG = registerB("apple_log", GeneralUtil::logBlock);
@@ -306,8 +306,7 @@ public class ObjectRegistry {
         ITEMS.register();
         BLOCKS.register();
     }
-
-
+    
     private static Item.Properties getSettings(Consumer<Item.Properties> consumer) {
         Item.Properties settings = new Item.Properties().tab(Vinery.VINERY_TAB);
         consumer.accept(settings);
