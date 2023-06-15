@@ -22,7 +22,6 @@ public class Vinery {
     
     public static void init() {
         VineryConfig.DEFAULT.getConfig();
-
         VineryEffects.init();
         ObjectRegistry.init();
         VineryBlockEntityTypes.init();

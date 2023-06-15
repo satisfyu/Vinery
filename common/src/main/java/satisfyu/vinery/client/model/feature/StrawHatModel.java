@@ -28,8 +28,8 @@ public class StrawHatModel<T extends Entity> extends EntityModel<T> {
 	public static LayerDefinition getTexturedModelData() {
 		MeshDefinition modelData = new MeshDefinition();
 		PartDefinition modelPartData = modelData.getRoot();
-		PartDefinition top_part = modelPartData.addOrReplaceChild("top_part", CubeListBuilder.create().texOffs(0, 1).addBox(-4.0F, -4.01F, -4.0F, 8.0F, 4.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
-		PartDefinition lower_part = top_part.addOrReplaceChild("lower_part", CubeListBuilder.create().texOffs(0, 13).addBox(-8.0F, 0.0F, -8.0F, 16.0F, 1.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition top_part = modelPartData.addOrReplaceChild("top_part", CubeListBuilder.create().texOffs(0, 0).addBox(-4.5F, -4.01F, -4.5F, 9.0F, 4.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+		PartDefinition lower_part = top_part.addOrReplaceChild("lower_part", CubeListBuilder.create().texOffs(-17, 13).addBox(-8.5F, 0.0F, -8.5F, 17.0F, 0.0F, 17.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 		return LayerDefinition.create(modelData, 64, 64);
 	}
 	@Override

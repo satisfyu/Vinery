@@ -26,6 +26,19 @@ public class VineryStorageTypes {
         blocks.add(ObjectRegistry.SHELF.get());
         blocks.add(ObjectRegistry.WINE_BOX.get());
         blocks.add(ObjectRegistry.FLOWER_BOX.get());
+        blocks.add(ObjectRegistry.OAK_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.OAK_WINE_RACK_SMALL.get());
+        blocks.add(ObjectRegistry.BIRCH_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.BIRCH_WINE_RACK_SMALL.get());
+        blocks.add(ObjectRegistry.SPRUCE_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.SPRUCE_WINE_RACK_SMALL.get());
+        blocks.add(ObjectRegistry.DARK_OAK_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.DARK_OAK_WINE_RACK_SMALL.get());
+        blocks.add(ObjectRegistry.JUNGLE_WINE_RACK_SMALL.get());
+        blocks.add(ObjectRegistry.JUNGLE_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.MANGROVE_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.MANGROVE_WINE_RACK_SMALL.get());
+        blocks.add(ObjectRegistry.ACACIA_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.ACACIA_WINE_RACK_SMALL.get());
     }
-
 }
