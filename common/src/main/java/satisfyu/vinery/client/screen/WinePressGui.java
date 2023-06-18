@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.gui;
+package satisfyu.vinery.client.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;

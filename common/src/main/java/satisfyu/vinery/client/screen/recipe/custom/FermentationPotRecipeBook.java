@@ -1,5 +1,6 @@
 package satisfyu.vinery.client.screen.recipe.custom;
 
+import de.cristelknight.doapi.client.recipebook.screen.widgets.PrivateRecipeBookWidget;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -12,8 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
-import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.client.recipebook.PrivateRecipeBookWidget;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VineryRecipeTypes;
@@ -38,11 +37,17 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
         }
     }
 
+
     @Override
-    public void insertRecipe(Recipe<?> recipe) {
+    protected RecipeType<? extends Recipe<Container>> getRecipeType() {
+        return VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get();
+    }
+
+    @Override
+    public void insertRecipe(Recipe<?> recipe, List<Slot> slots) {
         if (recipe instanceof FermentationBarrelRecipe) {
             int slotIndex = 0;
-            for (Slot slot : screenHandler.slots) {
+            for (Slot slot : slots) {
                 if (slot.getItem().getItem() == ObjectRegistry.WINE_BOTTLE.get().asItem()) {
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, slotIndex, 0, ClickType.PICKUP, Minecraft.getInstance().player);
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, 0, 0, ClickType.PICKUP, Minecraft.getInstance().player);
@@ -54,7 +59,7 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
         int usedInputSlots = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {
             int slotIndex = 0;
-            for (Slot slot : screenHandler.slots) {
+            for (Slot slot : slots) {
                 ItemStack itemStack = slot.getItem();
 
                 if (ingredient.test(itemStack) && usedInputSlots < 5) {
@@ -66,19 +71,6 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
                 ++slotIndex;
             }
         }
-    }
-
-    @Override
-    public void slotClicked(@Nullable Slot slot) {
-        super.slotClicked(slot);
-        if (slot != null && slot.index < this.screenHandler.getCraftingSlotCount()) {
-            this.ghostSlots.reset();
-        }
-    }
-
-    @Override
-    protected RecipeType<? extends Recipe<Container>> getRecipeType() {
-        return VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get();
     }
 
     @Override

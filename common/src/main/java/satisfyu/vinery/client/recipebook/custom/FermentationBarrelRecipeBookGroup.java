@@ -1,12 +1,12 @@
 package satisfyu.vinery.client.recipebook.custom;
 
 import com.google.common.collect.ImmutableList;
+import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
-import satisfyu.vinery.client.recipebook.IRecipeBookGroup;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.VineryTags;
@@ -28,10 +28,6 @@ public enum FermentationBarrelRecipeBookGroup implements IRecipeBookGroup {
     }
 
     public boolean fitRecipe(Recipe<?> recipe) {
-        /*
-        System.out.println("test");
-        System.out.println(recipe instanceof FermentationBarrelRecipe fermentationBarrelRecipe);
-         */
         if (recipe instanceof FermentationBarrelRecipe fermentationBarrelRecipe) {
             switch (this) {
                 case SEARCH -> {

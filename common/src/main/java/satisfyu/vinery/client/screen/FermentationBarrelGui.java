@@ -1,6 +1,7 @@
-package satisfyu.vinery.client.gui;
+package satisfyu.vinery.client.screen;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import de.cristelknight.doapi.client.recipebook.screen.AbstractRecipeBookGUIScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.network.chat.Component;

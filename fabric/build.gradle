@@ -40,6 +40,7 @@ dependencies {
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
     include modApi("de:doapi:${project.doapi_version}")
+
     modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
     modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") {
         exclude module: "fabric-api"

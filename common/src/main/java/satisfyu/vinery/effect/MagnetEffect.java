@@ -1,12 +1,16 @@
 package satisfyu.vinery.effect;
 
 import java.util.List;
+import java.util.Random;
+
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
+import satisfyu.vinery.Vinery;
 
 public class MagnetEffect extends MobEffect {
     public MagnetEffect() {
@@ -15,12 +19,22 @@ public class MagnetEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        if (entity instanceof Player player) {
-            List<Entity> entities = player.getCommandSenderWorld().getEntities(player, player.getBoundingBox().inflate(5 + amplifier));
+        if (entity instanceof Player player && !player.isShiftKeyDown()) {
+            List<Entity> entities = player.getCommandSenderWorld().getEntities(player, player.getBoundingBox().inflate(5 + amplifier), p -> p instanceof ItemEntity);
             for (Entity entityNearby : entities) {
-                if (entityNearby instanceof ItemEntity && !player.isShiftKeyDown()) {
+
+                if(player.getInventory().getFreeSlot() == -1){
+                    Vec3 vec3 = entity.getEyePosition().subtract(entityNearby.position());
+                    entityNearby.setPosRaw(entityNearby.getX(), entityNearby.getY() + vec3.y * 0.015 * Math.min(amplifier, 3), entityNearby.getZ());
+                    if (entity.level.isClientSide) {
+                        entityNearby.yOld = entityNearby.getY();
+                    }
+                    entityNearby.setDeltaMovement(entityNearby.getDeltaMovement().scale(0.95).add(vec3.normalize().yRot(0.2f).scale(0.10 * (double)amplifier)));
+                }
+                else {
                     entityNearby.playerTouch(player);
                 }
+
             }
         }
         super.applyEffectTick(entity, amplifier);
