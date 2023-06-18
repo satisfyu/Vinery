@@ -34,18 +34,6 @@ import static satisfyu.vinery.registry.ObjectRegistry.*;
 @Environment(EnvType.CLIENT)
 public class VineryClient {
 
-    public static void setCraftableToggle(boolean bl){
-        VineryConfig c = VineryConfig.DEFAULT.getConfig();
-        c.setInstance(new VineryConfig(c.wineTraderChance(), c.yearLengthInDays(), c.enableWineMakerSetBonus(), c.recipeBookOpen(), bl));
-        c.getConfig(true, true);
-    }
-
-    public static void setRecipeBookOpenToggle(boolean bl){
-        VineryConfig c = VineryConfig.DEFAULT.getConfig();
-        c.setInstance(new VineryConfig(c.wineTraderChance(), c.yearLengthInDays(), c.enableWineMakerSetBonus(), bl, c.craftableToggle()));
-        c.getConfig(true, true);
-    }
-
     public static void onInitializeClient() {
 
 

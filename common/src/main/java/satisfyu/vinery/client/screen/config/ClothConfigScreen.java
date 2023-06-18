@@ -1,17 +1,25 @@
 package satisfyu.vinery.client.screen.config;
 
+import de.cristelknight.doapi.DoApiRL;
 import de.cristelknight.doapi.config.cloth.CCUtil;
+import de.cristelknight.doapi.config.cloth.LinkEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
 import me.shedaniel.clothconfig2.gui.entries.IntegerListEntry;
+import me.shedaniel.clothconfig2.gui.entries.TextListEntry;
 import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.config.VineryConfig;
+
+import java.util.function.Supplier;
 
 public class ClothConfigScreen {
 
@@ -45,7 +53,7 @@ public class ClothConfigScreen {
     private static class ConfigEntries {
         private final ConfigEntryBuilder builder;
         private final ConfigCategory category;
-        private final BooleanListEntry enableWineMakerSetBonus, recipeBookOpen, craftableToggle;
+        private final BooleanListEntry enableWineMakerSetBonus;
         private final IntegerListEntry wineTraderChance, yearLengthInDays;
 
 
@@ -56,19 +64,16 @@ public class ClothConfigScreen {
 
             enableWineMakerSetBonus = createBooleanField("enableWineMakerSetBonus", config.enableWineMakerSetBonus(), VineryConfig.DEFAULT.enableWineMakerSetBonus());
 
-            recipeBookOpen = createBooleanField("recipeBookOpen", config.recipeBookOpen(), VineryConfig.DEFAULT.recipeBookOpen());
-            craftableToggle = createBooleanField("craftableToggle", config.craftableToggle(), VineryConfig.DEFAULT.craftableToggle());
-
 
             wineTraderChance = createIntField("wineTraderChance", config.wineTraderChance(), VineryConfig.DEFAULT.wineTraderChance());
             yearLengthInDays = createIntField("yearLengthInDays", config.yearLengthInDays(), VineryConfig.DEFAULT.yearLengthInDays());
 
-            //CCUtil.linkButtons(Vinery.MODID, category, builder, "https://discord.gg/Vqu6wYZwdZ", "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine", () -> create(lastScreen));
+            linkButtons(Vinery.MODID, category, builder, "https://discord.gg/Vqu6wYZwdZ", "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine");
         }
 
 
         public VineryConfig createConfig() {
-            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), enableWineMakerSetBonus.getValue(), recipeBookOpen.getValue(), craftableToggle.getValue());
+            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), enableWineMakerSetBonus.getValue());
         }
 
 
@@ -83,5 +88,23 @@ public class ClothConfigScreen {
             category.addEntry(e);
             return e;
         }
+    }
+
+    public static void linkButtons(String modid, ConfigCategory category, ConfigEntryBuilder builder, String dcLink, String cfLink){
+        if(lastScreen == null) lastScreen = Minecraft.getInstance().screen;
+
+        TextListEntry tle = builder.startTextDescription(Component.literal(" ")).build();
+        category.addEntry(tle);
+        category.addEntry(new LinkEntry(CCUtil.entryName(modid,"dc"), buttonWidget -> Minecraft.getInstance().setScreen(new ConfirmLinkScreen(confirmed -> {
+            if (confirmed) {
+                Util.getPlatform().openUri(dcLink);
+            }
+            Minecraft.getInstance().setScreen(create(lastScreen)); }, dcLink, true)), new DoApiRL("textures/gui/dc.png"), 3));
+        category.addEntry(tle);
+        category.addEntry(new LinkEntry(CCUtil.entryName(modid,"h"), buttonWidget -> Minecraft.getInstance().setScreen(new ConfirmLinkScreen(confirmed -> {
+            if (confirmed) {
+                Util.getPlatform().openUri(cfLink);
+            }
+            Minecraft.getInstance().setScreen(create(lastScreen)); }, cfLink, true)), new DoApiRL("textures/gui/cf.png"), 10));
     }
 }
