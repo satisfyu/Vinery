@@ -19,7 +19,7 @@
       "satisfyu.vinery.fabric.VineryFabric"
     ],
     "client": [
-      "satisfyu.vinery.fabriclike.client.VineryClientFabricLike"
+      "satisfyu.vinery.fabric.client.VineryClientFabric"
     ],
     "rei_client": [
       "satisfyu.vinery.compat.rei.VineryReiClientPlugin"

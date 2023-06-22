@@ -1,9 +1,9 @@
-package satisfyu.vinery.fabriclike.client;
+package satisfyu.vinery.fabric.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import satisfyu.vinery.client.VineryClient;
 
-public class VineryClientFabricLike implements ClientModInitializer {
+public class VineryClientFabric implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         VineryClient.preInitClient();
