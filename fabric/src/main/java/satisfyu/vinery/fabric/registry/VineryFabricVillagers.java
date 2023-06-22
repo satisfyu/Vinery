@@ -1,4 +1,4 @@
-package satisfyu.vinery.fabriclike.registry;
+package satisfyu.vinery.fabric.registry;
 
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;

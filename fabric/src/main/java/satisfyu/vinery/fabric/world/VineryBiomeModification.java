@@ -1,4 +1,4 @@
-package satisfyu.vinery.fabriclike.world;
+package satisfyu.vinery.fabric.world;
 
 import net.fabricmc.fabric.api.biome.v1.*;
 import net.minecraft.core.Registry;
