@@ -15,11 +15,7 @@ loom {
         mixinConfig "vinery-common.mixins.json"
         mixinConfig "vinery.mixins.json"
     }
-
-
 }
-
-
 
 
 configurations {
@@ -34,8 +30,6 @@ dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
     // Remove the next line if you don't want to depend on the API
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
-    include(modApi("de:doapi:${project.doapi_version}"))
-    modImplementation("de:doapi:${project.doapi_version}")
 
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:$rei_version"
 

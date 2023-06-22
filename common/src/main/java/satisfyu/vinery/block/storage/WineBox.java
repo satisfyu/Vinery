@@ -40,7 +40,6 @@ public class WineBox extends StorageBlock {
 
     public WineBox(Properties settings) {
         super(settings);
-        //this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(OPEN, false));
     }
 
     @Override

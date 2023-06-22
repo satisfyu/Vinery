@@ -7,10 +7,6 @@ loom {
 }
 
 repositories {
-    maven {
-        name 'Xander Maven'
-        url 'https://maven.isxander.dev/releases'
-    }
 }
 
 dependencies {
@@ -27,7 +23,7 @@ dependencies {
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
     modCompileOnly ("me.shedaniel:RoughlyEnoughItems-default-plugin:$rei_version")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
-    include modApi("de:doapi:${project.doapi_version}")
+    modApi("de:doapi:${project.doapi_version}")
 }
 
 publishing {

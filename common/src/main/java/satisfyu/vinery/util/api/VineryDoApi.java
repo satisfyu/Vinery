@@ -1,7 +1,10 @@
 package satisfyu.vinery.util.api;
 
+import com.mojang.datafixers.util.Pair;
 import de.cristelknight.doapi.api.DoApiAPI;
 import de.cristelknight.doapi.api.DoApiPlugin;
+import de.cristelknight.doapi.client.render.feature.FullCustomArmor;
+import net.minecraft.client.model.HumanoidModel;
 import satisfyu.vinery.registry.CustomArmorRegistry;
 import satisfyu.vinery.registry.VineryStorageTypes;
 
@@ -22,7 +25,12 @@ public class VineryDoApi implements DoApiAPI {
     }
 
     @Override
-    public <T extends LivingEntity> void registerArmor(Map<Item, EntityModel<T>> models, EntityModelSet modelLoader) {
-        CustomArmorRegistry.registerArmorModels(models, modelLoader);
+    public <T extends LivingEntity> void registerHat(Map<Item, EntityModel<T>> map, EntityModelSet entityModelSet) {
+        CustomArmorRegistry.registerHatModels(map, entityModelSet);
+    }
+
+    @Override
+    public <T extends LivingEntity> void registerArmor(Map<FullCustomArmor, Pair<HumanoidModel<T>, HumanoidModel<T>>> models, EntityModelSet modelLoader) {
+
     }
 }

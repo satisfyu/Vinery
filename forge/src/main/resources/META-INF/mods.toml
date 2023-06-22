@@ -11,7 +11,7 @@ authors = "satisfy_u, Cristelknight, BaumeisterJO(weird name but a nice guy)"
 description = '''
 Vinery contains nearly everything needed for not only creating wine but also for building up your own vinery.
 '''
-#logoFile = "assets/vinery/icon.png"
+logoFile = "pack.png"
 
 [[dependencies.vinery]]
 modId = "forge"
@@ -24,6 +24,13 @@ side = "BOTH"
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.19.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.vinery]]
+modId = "doapi"
+mandatory = true
+versionRange = "[1.0.6,)"
 ordering = "NONE"
 side = "BOTH"
 

@@ -12,7 +12,7 @@
     "sources": "https://github.com/satisfyu/Vinery-Fabric"
   },
   "license": "ARR",
-  "icon": "assets/vinery/icon.png",
+  "icon": "pack.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -45,6 +45,7 @@
   "depends": {
     "fabric-api": "*",
     "minecraft": ">=1.19.2",
-    "architectury": ">=6.5.77"
+    "architectury": ">=6.5.77",
+    "doapi": ">=1.0.6"
   }
 }

@@ -1,5 +1,6 @@
 package satisfyu.vinery.item;
 
+import de.cristelknight.doapi.item.CustomHatItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -12,7 +13,7 @@ import satisfyu.vinery.registry.VineryMaterials;
 
 import java.util.List;
 
-public class StrawHatItem extends CustomModelArmorItem implements WineMakerArmorItem {
+public class StrawHatItem extends CustomHatItem implements WineMakerArmorItem {
 
 
     public StrawHatItem(Properties settings) {
