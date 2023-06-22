@@ -224,6 +224,7 @@
   "item.vinery.white_grape_seeds": "White Grape Seeds",
   "item.vinery.white_grapejuice_wine_bottle": "White Grape juice",
   "item.vinery.wine_bottle": "Wine Bottle",
+  "block.vinery.breadblock.tooltip.tooltip_shift":"Press §eSHIFT§r for more Information",
   "itemGroup.vinery.vinery_tab": "Vinery",
   "rei.vinery.cooking_pot_category": "Cooking Pot",
   "rei.vinery.fermentation_barrel_category": "Aging Barrel",
