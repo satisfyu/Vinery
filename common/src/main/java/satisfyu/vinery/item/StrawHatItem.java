@@ -1,6 +1,6 @@
 package satisfyu.vinery.item;
 
-import de.cristelknight.doapi.item.CustomHatItem;
+import de.cristelknight.doapi.common.item.CustomHatItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;

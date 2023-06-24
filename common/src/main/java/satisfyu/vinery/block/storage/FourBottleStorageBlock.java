@@ -1,9 +1,9 @@
 package satisfyu.vinery.block.storage;
 
+import de.cristelknight.doapi.common.block.StorageBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import de.cristelknight.doapi.block.StorageBlock;
 import satisfyu.vinery.item.DrinkBlockSmallItem;
 import satisfyu.vinery.registry.VineryStorageTypes;
 
