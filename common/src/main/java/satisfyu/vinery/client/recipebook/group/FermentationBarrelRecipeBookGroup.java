@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.recipebook.custom;
+package satisfyu.vinery.client.recipebook.group;
 
 import com.google.common.collect.ImmutableList;
 import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;

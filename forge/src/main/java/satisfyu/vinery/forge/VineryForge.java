@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import satisfyu.vinery.Vinery;
-import satisfyu.vinery.client.screen.config.ClothConfigScreen;
+import satisfyu.vinery.client.gui.config.ClothConfigScreen;
 import satisfyu.vinery.forge.registry.VineryForgeVillagers;
 
 @Mod(Vinery.MODID)

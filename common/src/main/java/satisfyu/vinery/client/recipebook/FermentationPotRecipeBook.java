@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.screen.recipe.custom;
+package satisfyu.vinery.client.recipebook;
 
 import de.cristelknight.doapi.client.recipebook.screen.widgets.PrivateRecipeBookWidget;
 import net.fabricmc.api.EnvType;

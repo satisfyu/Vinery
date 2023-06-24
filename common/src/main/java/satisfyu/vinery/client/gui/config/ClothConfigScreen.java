@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.screen.config;
+package satisfyu.vinery.client.gui.config;
 
 import de.cristelknight.doapi.DoApiRL;
 import de.cristelknight.doapi.config.cloth.CCUtil;
@@ -18,8 +18,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.config.VineryConfig;
-
-import java.util.function.Supplier;
 
 public class ClothConfigScreen {
 

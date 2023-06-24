@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.screen;
+package satisfyu.vinery.client.gui;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import de.cristelknight.doapi.client.recipebook.screen.AbstractRecipeBookGUIScreen;
@@ -8,7 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.gui.handler.FermentationBarrelGuiHandler;
-import satisfyu.vinery.client.screen.recipe.custom.FermentationPotRecipeBook;
+import satisfyu.vinery.client.recipebook.FermentationPotRecipeBook;
 
 @Environment(EnvType.CLIENT)
 public class FermentationBarrelGui extends AbstractRecipeBookGUIScreen<FermentationBarrelGuiHandler> {

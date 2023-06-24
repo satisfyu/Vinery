@@ -4,7 +4,7 @@ import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
 import de.cristelknight.doapi.client.recipebook.handler.AbstractRecipeBookGUIScreenHandler;
 import satisfyu.vinery.client.gui.handler.slot.ExtendedSlot;
 import satisfyu.vinery.client.gui.handler.slot.StoveOutputSlot;
-import satisfyu.vinery.client.recipebook.custom.FermentationBarrelRecipeBookGroup;
+import satisfyu.vinery.client.recipebook.group.FermentationBarrelRecipeBookGroup;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VineryRecipeTypes;
