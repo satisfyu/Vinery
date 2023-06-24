@@ -242,7 +242,8 @@
   "vinery.config.title": "Vinery",
   "vinery.config.entry.recipebookopen": "Recipe Book Open",
   "vinery.config.entry.craftabletoggle": "Toggle Craftable",
-  "vinery.config.entry.winetraderchance": "Wandering Winemaker Spawnchance",
-  "vinery.config.entry.yearlengthindays": "Days per Year for Aging",
+  "vinery.config.entry.enableWineMakerSetBonus": "Winemaker Set Bonus",
+  "vinery.config.entry.wineTraderChance": "Wandering Winemaker Spawnchance",
+  "vinery.config.entry.yearLengthInDays": "Days per Year for Aging",
   "block.vinery.stove.tooltip": "The flame of this stove has been extinguished forever..."
 }
