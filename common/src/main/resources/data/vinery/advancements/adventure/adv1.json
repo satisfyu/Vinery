@@ -1,0 +1,40 @@
+{
+    "display": {
+        "title": {
+            "text": "Crush your Grapes",
+            "color": "white"
+        },
+        "description": {
+            "text": "Craft a Pot, throw your Grapes inside of it and crush them!"
+        },
+        "icon": {
+            "item": "vinery:grapevine_pot"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "stomp": {
+            "trigger": "minecraft:enter_block",
+            "conditions": {
+                "block": "vinery:grapevine_pot"
+            }
+        },
+        "hasJuice": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "vinery:grapejuice"
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "experience": 5
+    },
+    "parent": "vinery:adventure/root"
+}

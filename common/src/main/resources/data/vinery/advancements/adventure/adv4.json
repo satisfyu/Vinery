@@ -1,0 +1,105 @@
+{
+    "display": {
+        "title": {
+            "text": "Rare Vintage"
+        },
+        "description": {
+            "text": "Drink every Wine of Vinery first Edition."
+        },
+        "icon": {
+            "item": "vinery:jellie_wine"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "getChenet": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "item": "vinery:chenet_wine"
+                }
+            }
+        },
+        "getMellohi": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "item": "vinery:mellohi_wine"
+                }
+            }
+        },
+        "getMiss": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "item": "vinery:king_danis_wine"
+                }
+            }
+        },
+        "getBolvar": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "item": "vinery:bolvar_wine"
+                }
+            }
+        },
+        "getStal": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "item": "vinery:stal_wine"
+                }
+            }
+        },
+        "getClark": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "item": "vinery:clark_wine"
+                }
+            }
+        },
+        "getStrad": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "item": "vinery:strad_wine"
+                }
+            }
+        }
+    },
+    "requirements": [
+        [
+            "getChenet"
+        ],
+        [
+            "getMellohi"
+        ],
+        [
+            "getMiss"
+        ],
+        [
+            "getBolvar"
+        ],
+        [
+            "getStal"
+        ],
+        [
+            "getClark"
+        ],
+        [
+            "getStrad"
+        ]
+    ],
+    "rewards": {
+        "loot": [
+            "vinery:jellie_wine"
+        ],
+        "experience": 250
+    },
+    "parent": "vinery:adventure/root"
+}

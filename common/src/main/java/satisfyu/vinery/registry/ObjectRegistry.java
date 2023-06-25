@@ -234,7 +234,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> APPLE_WINE = registerB("apple_wine", () -> new WineBottleBlock(getWineSettings(), 3));
     public static final RegistrySupplier<Item>  APPLE_WINE_ITEM = registerI("apple_wine", () -> new DrinkBlockBigItem(APPLE_WINE.get(), getWineItemSettings(VineryEffects.IMPROVED_INSTANT_HEALTH.get())));
     public static final RegistrySupplier<Block> RED_WINE = registerB("red_wine", () -> new WineBottleBlock(getWineSettings(), 3));
-    public static final RegistrySupplier<Item>  RED_WINE_ITEM = registerI("red_wine", () -> new DrinkBlockBigItem(RED_WINE.get(), getWineItemSettings(VineryEffects.IMPROVED_FIRE_RESISTANCE.get())));
+    public static final RegistrySupplier<Item>  RED_WINE_ITEM = registerI("red_wine", () -> new DrinkBlockSmallItem(RED_WINE.get(), getWineItemSettings(VineryEffects.IMPROVED_FIRE_RESISTANCE.get())));
     public static final RegistrySupplier<Block> PRAETORIAN_WINE = registerB("praetorian_wine", () -> new WineBottleBlock(getWineSettings(), 2));
     public static final RegistrySupplier<Item>  PRAETORIAN_WINE_ITEM = registerI("praetorian_wine", () -> new DrinkBlockBigItem(PRAETORIAN_WINE.get(), getWineItemSettings(VineryEffects.IMPROVED_SPEED.get())));
     public static final RegistrySupplier<Block> CHENET_WINE = registerB("chenet_wine", () -> new WineBottleBlock(getWineSettings(), 2));

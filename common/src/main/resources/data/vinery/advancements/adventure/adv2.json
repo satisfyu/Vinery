@@ -1,0 +1,41 @@
+{
+    "display": {
+        "title": {
+            "text": "Your first Wine"
+        },
+        "description": {
+            "text": "Craft your first Wine by using a Fermentation Barrel"
+        },
+        "icon": {
+            "item": "vinery:wine_bottle"
+        },
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "getWine": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "vinery:red_wine"
+                    },
+                    {
+                        "tag": "vinery:white_wine"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "getWine"
+        ]
+    ],
+    "rewards": {
+        "experience": 10
+    },
+    "parent": "vinery:adventure/adv1"
+}
