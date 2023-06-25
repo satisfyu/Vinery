@@ -40,9 +40,11 @@ dependencies {
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
     modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${rootProject.terraform_wood_api_version}"
+
     modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}") {
         exclude module: "fabric-api"
     }
+
     modImplementation "de:doapi:${rootProject.doapi_version}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }

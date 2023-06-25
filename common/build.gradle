@@ -19,10 +19,13 @@ dependencies {
     // Remove the next line if you don't want to depend on the API
     modApi ("dev.architectury:architectury:${rootProject.architectury_version}")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+
     modCompileOnly ("me.shedaniel:RoughlyEnoughItems-api:$rei_version")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+
     modCompileOnly ("me.shedaniel:RoughlyEnoughItems-default-plugin:$rei_version")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+
     modImplementation "de:doapi:${project.doapi_version}"
 }
 
