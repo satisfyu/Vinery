@@ -2,8 +2,8 @@ package satisfyu.vinery.client.render.block.storage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import de.cristelknight.doapi.block.entity.StorageBlockEntity;
 import de.cristelknight.doapi.client.render.block.storage.StorageTypeRenderer;
+import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;

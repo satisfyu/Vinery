@@ -1,6 +1,6 @@
 package satisfyu.vinery.block;
 
-import de.cristelknight.doapi.block.FacingBlock;
+import de.cristelknight.doapi.common.block.FacingBlock;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;

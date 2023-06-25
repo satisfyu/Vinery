@@ -1,6 +1,6 @@
 package satisfyu.vinery.block.storage;
 
-import de.cristelknight.doapi.block.StorageBlock;
+import de.cristelknight.doapi.common.block.StorageBlock;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
