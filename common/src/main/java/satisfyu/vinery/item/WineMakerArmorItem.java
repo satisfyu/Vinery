@@ -1,6 +1,7 @@
 package satisfyu.vinery.item;
 
 import satisfyu.vinery.client.VineryClient;
+import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.registry.ObjectRegistry;
 import java.util.List;
 import net.minecraft.ChatFormatting;
@@ -13,16 +14,17 @@ import net.minecraft.world.item.ItemStack;
 public interface WineMakerArmorItem {
 
     default void tooltip(List<Component> tooltip){
+        if(!VineryConfig.DEFAULT.getConfig().enableWineMakerSetBonus()) return;
         Player player = VineryClient.getClientPlayer();
         if (player == null) return;
         ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
         ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
         ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
         ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
-        boolean helmetB = helmet != null && helmet.getItem() instanceof WineMakerArmorItem;
-        boolean chestplateB = chestplate != null && chestplate.getItem() instanceof WineMakerArmorItem;
-        boolean leggingsB = leggings != null && leggings.getItem() instanceof WineMakerArmorItem;
-        boolean bootsB = boots != null && boots.getItem() instanceof WineMakerArmorItem;
+        boolean helmetB = helmet.getItem() instanceof WineMakerArmorItem;
+        boolean chestplateB = chestplate.getItem() instanceof WineMakerArmorItem;
+        boolean leggingsB = leggings.getItem() instanceof WineMakerArmorItem;
+        boolean bootsB = boots.getItem() instanceof WineMakerArmorItem;
 
         tooltip.add(Component.nullToEmpty(""));
         tooltip.add(Component.nullToEmpty(ChatFormatting.AQUA + I18n.get("vinery.tooltip.winemaker_armor")));
