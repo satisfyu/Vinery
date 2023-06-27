@@ -26,7 +26,7 @@ dependencies {
     modCompileOnly ("me.shedaniel:RoughlyEnoughItems-default-plugin:$rei_version")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
-    modImplementation "de:doapi:${project.doapi_version}"
+    modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
 }
 
 publishing {
