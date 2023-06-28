@@ -4,7 +4,9 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
     "ClientPlayerEntityMixin",
-    "OrderedTextToolTipAccessor"
+    "GameRendererMixin",
+    "OrderedTextToolTipAccessor",
+    "WindowMixin"
   ],
   "mixins": [
     "BlockMixin",
