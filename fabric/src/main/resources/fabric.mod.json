@@ -22,7 +22,7 @@
       "satisfyu.vinery.fabric.client.VineryClientFabric"
     ],
     "rei_client": [
-      "satisfyu.vinery.compat.rei.VineryReiClientPlugin"
+      "satisfyu.vinery.fabric.rei.VineryReiClientPluginFabric"
     ],
     "doapi": [
       "satisfyu.vinery.util.api.VineryDoApi"

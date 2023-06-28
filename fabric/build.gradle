@@ -29,17 +29,14 @@ repositories {
 
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
-    modApi( "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}")
-            { exclude group: 'net.fabricmc', module: 'fabric-loader' }
-    modApi( "dev.architectury:architectury-fabric:${rootProject.architectury_version}")
-            { exclude group: 'net.fabricmc', module: 'fabric-loader' }
-    modRuntimeOnly( "me.shedaniel:RoughlyEnoughItems-fabric:$rootProject.rei_version")
-            { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+    modApi( "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+    modApi( "dev.architectury:architectury-fabric:${rootProject.architectury_version}") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+    modImplementation("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+
     modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${rootProject.terraform_wood_api_version}"
     modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}") {
         exclude module: "fabric-api"
     }
-
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }

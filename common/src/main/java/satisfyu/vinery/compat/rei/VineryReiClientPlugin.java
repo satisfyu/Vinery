@@ -1,9 +1,7 @@
 package satisfyu.vinery.compat.rei;
 
-import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
-import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
@@ -20,10 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class VineryReiClientPlugin implements REIClientPlugin {
-
-    @Override
-    public void registerCategories(CategoryRegistry registry) {
+public class VineryReiClientPlugin {
+    public static void registerCategories(CategoryRegistry registry) {
         registry.add(new FermentationBarrelCategory());
         registry.add(new WinePressCategory());
 
@@ -31,14 +27,9 @@ public class VineryReiClientPlugin implements REIClientPlugin {
         registry.addWorkstations(WinePressDisplay.WINE_PRESS_DISPLAY, EntryStacks.of(ObjectRegistry.WINE_PRESS.get()));
     }
 
-    @Override
-    public void registerDisplays(DisplayRegistry registry) {
+    public static void registerDisplays(DisplayRegistry registry) {
         registry.registerFiller(FermentationBarrelRecipe.class, FermentationBarrelDisplay::new);
         registry.add(new WinePressDisplay());
-    }
-
-    @Override
-    public void registerDisplaySerializer(DisplaySerializerRegistry registry) {
     }
 
     public static List<Ingredient> ingredients(Recipe<Container> recipe, ItemStack stack){

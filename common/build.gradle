@@ -20,11 +20,8 @@ dependencies {
     modApi ("dev.architectury:architectury:${rootProject.architectury_version}")
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
-    modCompileOnly ("me.shedaniel:RoughlyEnoughItems-api:$rei_version")
-            { exclude group: 'net.fabricmc', module: 'fabric-loader' }
-
-    modCompileOnly ("me.shedaniel:RoughlyEnoughItems-default-plugin:$rei_version")
-            { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+    modCompileOnly ("me.shedaniel:RoughlyEnoughItems-api:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+    modCompileOnly ("me.shedaniel:RoughlyEnoughItems-default-plugin:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
 }
