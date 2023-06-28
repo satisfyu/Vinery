@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import net.minecraft.world.level.storage.loot.LootParams;
 import satisfyu.vinery.registry.ObjectRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -107,7 +108,7 @@ public class BasketBlock extends Block {
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
         List<ItemStack> list = new ArrayList<>();
         list.add(new ItemStack(this.asItem()));
 

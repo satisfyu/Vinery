@@ -2,6 +2,7 @@ package satisfyu.vinery.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
@@ -88,12 +89,13 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Contai
         if (world.isClientSide) return;
         boolean dirty = false;
         Recipe<?> recipe = world.getRecipeManager().getRecipeFor(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get(), this, world).orElse(null);
-        if (canCraft(recipe)) {
+        RegistryAccess access = level.registryAccess();
+        if (canCraft(recipe, access)) {
             this.fermentationTime++;
 
             if (this.fermentationTime >= this.totalFermentationTime) {
                 this.fermentationTime = 0;
-                craft(recipe);
+                craft(recipe, access);
                 dirty = true;
             }
         } else {
@@ -105,8 +107,8 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Contai
 
     }
 
-    private boolean canCraft(Recipe<?> recipe) {
-        if (recipe == null || recipe.getResultItem().isEmpty()) {
+    private boolean canCraft(Recipe<?> recipe, RegistryAccess access) {
+        if (recipe == null || recipe.getResultItem(access).isEmpty()) {
             return false;
         } else if (areInputsEmpty()) {
             return false;
@@ -128,11 +130,11 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Contai
         }
         return emptyStacks == 4;
     }
-    private void craft(Recipe<?> recipe) {
-        if (!canCraft(recipe)) {
+    private void craft(Recipe<?> recipe, RegistryAccess access) {
+        if (!canCraft(recipe, access)) {
             return;
         }
-        final ItemStack recipeOutput = recipe.getResultItem();
+        final ItemStack recipeOutput = recipe.getResultItem(access);
         final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
             ItemStack output = recipeOutput.copy();
@@ -193,7 +195,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Contai
     @Override
     public void setItem(int slot, ItemStack stack) {
         final ItemStack stackInSlot = this.inventory.get(slot);
-        boolean dirty = !stack.isEmpty() && stack.sameItem(stackInSlot) && ItemStack.tagMatches(stack, stackInSlot);
+        boolean dirty = !stack.isEmpty() && ItemStack.isSameItem(stack, stackInSlot) && ItemStack.matches(stack, stackInSlot);
         this.inventory.set(slot, stack);
         if (stack.getCount() > this.getMaxStackSize()) {
             stack.setCount(this.getMaxStackSize());

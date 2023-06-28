@@ -1,7 +1,7 @@
 package satisfyu.vinery.client.render.block.storage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import de.cristelknight.doapi.client.render.block.storage.StorageTypeRenderer;
 import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
 import net.fabricmc.api.EnvType;
@@ -20,9 +20,9 @@ public class WineBoxRenderer implements StorageTypeRenderer {
         matrices.scale(0.7f, 0.7f, 0.7f);
         ItemStack stack = itemStacks.get(0);
         if (!stack.isEmpty() && stack.getItem() instanceof BlockItem blockItem) {
-            matrices.mulPose(Vector3f.ZP.rotationDegrees(90f));
+            matrices.mulPose(Axis.ZP.rotationDegrees(90f));
 
-            matrices.mulPose(Vector3f.YN.rotationDegrees(90f));
+            matrices.mulPose(Axis.YN.rotationDegrees(90f));
 
             ClientUtil.renderBlock(blockItem.getBlock().defaultBlockState().setValue(WineBottleBlock.COUNT, 0), matrices, vertexConsumers, entity);
         }

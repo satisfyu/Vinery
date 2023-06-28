@@ -74,8 +74,8 @@ public class ChairUtil {
         return null;
     }
     public static BlockPos getPreviousPlayerPosition(Player player, ChairEntity chairEntity) {
-        if(!player.level.isClientSide) {
-            ResourceLocation id = getDimensionTypeId(player.level);
+        if(!player.level().isClientSide) {
+            ResourceLocation id = getDimensionTypeId(player.level());
             if(CHAIRS.containsKey(id)) {
                 for(Pair<ChairEntity,BlockPos> pair : CHAIRS.get(id).values()) {
                     if(pair.getFirst() == chairEntity)

@@ -7,13 +7,16 @@ import java.util.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.Container;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -21,9 +24,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -51,7 +51,7 @@ public class GeneralUtil {
 	}
 
 	public static boolean isSolid(LevelReader levelReader, BlockPos blockPos){
-		return levelReader.getBlockState(blockPos.below()).getMaterial().isSolid();
+		return levelReader.getBlockState(blockPos.below()).isSolid();
 	}
 
 
@@ -62,17 +62,19 @@ public class GeneralUtil {
 		return world.getChunkSource().chunkMap.getPlayers(pos, false);
 	}
 
-	public static RotatedPillarBlock logBlock(MaterialColor wood, MaterialColor bark) {
-		return new RotatedPillarBlock(
-				BlockBehaviour.Properties.of(
-						Material.WOOD,
-						(state) -> Direction.Axis.Y.equals(state.getValue(RotatedPillarBlock.AXIS)) ? wood : bark
-				).strength(2.0F).sound(SoundType.WOOD)
-		);
-	}
-
 	public static RotatedPillarBlock logBlock() {
 		return new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG));
+	}
+
+	public static boolean isDamageType(DamageSource source, List<ResourceKey<DamageType>> damageTypes){
+		for(ResourceKey<DamageType> key : damageTypes){
+			if(source.is(key)) return true;
+		}
+		return false;
+	}
+
+	public static boolean isFire(DamageSource source){
+		return isDamageType(source, List.of(DamageTypes.ON_FIRE, DamageTypes.IN_FIRE, DamageTypes.FIREBALL, DamageTypes.FIREWORKS, DamageTypes.UNATTRIBUTED_FIREBALL));
 	}
 
 	public static boolean matchesRecipe(Container inventory, NonNullList<Ingredient> recipe, int startIndex, int endIndex) {

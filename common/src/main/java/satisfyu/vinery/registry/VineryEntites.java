@@ -5,6 +5,7 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -20,7 +21,7 @@ import java.util.function.Supplier;
 
 public class VineryEntites {
 
-	private static final Registrar<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Vinery.MODID, Registry.ENTITY_TYPE_REGISTRY).getRegistrar();
+	private static final Registrar<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Vinery.MODID, Registries.ENTITY_TYPE).getRegistrar();
 	
 	public static final RegistrySupplier<EntityType<TraderMuleEntity>> MULE = create("mule",
 			() -> EntityType.Builder.of(TraderMuleEntity::new, MobCategory.CREATURE).sized(0.9f, 1.87f).clientTrackingRange(10).build(new VineryIdentifier("mule").toString())

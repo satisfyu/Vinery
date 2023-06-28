@@ -16,9 +16,9 @@ public class VineryBoatTypes {
 
 
     public static void init() {
-        RegistrySupplier<Item> cherryBoat = TerraformBoatItemHelper.registerBoatItem(ObjectRegistry.ITEMS, "cherry_boat", CHERRY_BOAT_TYPE, false, Vinery.VINERY_TAB);
-        RegistrySupplier<Item> cherryChestBoat = TerraformBoatItemHelper.registerBoatItem(ObjectRegistry.ITEMS, "cherry_chest_boat", CHERRY_BOAT_TYPE, true, Vinery.VINERY_TAB);
+        RegistrySupplier<Item> cherryBoat = TerraformBoatItemHelper.registerBoatItem(ObjectRegistry.ITEMS, "cherry_boat", CHERRY_BOAT_TYPE, false);
+        RegistrySupplier<Item> cherryChestBoat = TerraformBoatItemHelper.registerBoatItem(ObjectRegistry.ITEMS, "cherry_chest_boat", CHERRY_BOAT_TYPE, true);
 
-        DoApiExpectPlatform.registerBoatType(CHERRY_BOAT_TYPE, TerraformBoatType.builder().item(cherryBoat).chestItem(cherryChestBoat).build());
+        DoApiExpectPlatform.registerBoatType(CHERRY_BOAT_TYPE, new TerraformBoatType.Builder().item(cherryBoat).chestItem(cherryChestBoat).build());
     }
 }

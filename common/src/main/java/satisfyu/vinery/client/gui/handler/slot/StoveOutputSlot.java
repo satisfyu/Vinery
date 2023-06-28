@@ -45,8 +45,8 @@ public class StoveOutputSlot extends Slot {
 
     @Override
     protected void checkTakeAchievements(ItemStack stack) {
-        stack.onCraftedBy(this.player.level, this.player, this.amount);
-        if (this.player instanceof ServerPlayer && this.container instanceof FermentationBarrelBlockEntity && player.level instanceof ServerLevel)
+        stack.onCraftedBy(this.player.level(), this.player, this.amount);
+        if (this.player instanceof ServerPlayer && this.container instanceof FermentationBarrelBlockEntity && player.level() instanceof ServerLevel)
         this.amount = 0;
     }
 }

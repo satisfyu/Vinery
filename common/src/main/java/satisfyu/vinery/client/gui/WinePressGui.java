@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -27,7 +28,7 @@ public class WinePressGui extends AbstractContainerScreen<WinePressGuiHandler> {
     }
 
     @Override
-    protected void renderBg(PoseStack matrices, float delta, int mouseX, int mouseY) {
+    protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
@@ -37,6 +38,7 @@ public class WinePressGui extends AbstractContainerScreen<WinePressGuiHandler> {
 
         renderProgressArrow(matrices, x, y);
     }
+
 
     private void renderProgressArrow(PoseStack matrices, int x, int y) {
         if(menu.isCrafting()) {

@@ -105,10 +105,6 @@ public class FlowerPotBlock extends Block implements EntityBlock {
 		return false;
 	}
 
-	@Override
-	public PushReaction getPistonPushReaction(BlockState state) {
-		return PushReaction.IGNORE;
-	}
 
 	@Nullable
 	@Override

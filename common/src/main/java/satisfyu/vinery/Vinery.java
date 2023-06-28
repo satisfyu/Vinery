@@ -3,6 +3,7 @@ package satisfyu.vinery;
 import dev.architectury.hooks.item.tool.AxeItemHooks;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.fuel.FuelRegistry;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
@@ -17,7 +18,7 @@ public class Vinery {
     public static final String MODID = "vinery";
     public static final Logger LOGGER = LogManager.getLogger(MODID);
 
-    public static final CreativeModeTab VINERY_TAB = CreativeTabRegistry.create(new VineryIdentifier("vinery_tab"), () ->
+    public static final CreativeModeTab VINERY_TAB = CreativeTabRegistry.create(Component.translatable("creative"), () ->
             new ItemStack(ObjectRegistry.JUNGLE_RED_GRAPE.get()));
     
     public static void init() {

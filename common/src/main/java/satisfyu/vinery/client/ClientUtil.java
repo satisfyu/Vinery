@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
@@ -24,7 +25,9 @@ public class ClientUtil {
     }
 
     public static <T extends BlockEntity> void renderBlock(BlockState state, PoseStack matrices, MultiBufferSource vertexConsumers, T entity){
-        Minecraft.getInstance().getBlockRenderer().renderSingleBlock(state, matrices, vertexConsumers, ClientUtil.getLightLevel(entity.getLevel(), entity.getBlockPos()), OverlayTexture.NO_OVERLAY);
+        Level level = entity.getLevel();
+        if(level == null) return;
+        Minecraft.getInstance().getBlockRenderer().renderSingleBlock(state, matrices, vertexConsumers, ClientUtil.getLightLevel(level, entity.getBlockPos()), OverlayTexture.NO_OVERLAY);
     }
 
     public static <T extends BlockEntity> void renderBlockFromItem(BlockItem item, PoseStack matrices, MultiBufferSource vertexConsumers, T entity){
@@ -32,13 +35,15 @@ public class ClientUtil {
     }
 
     public static <T extends BlockEntity> void renderItem(ItemStack stack, PoseStack matrices, MultiBufferSource vertexConsumers, T entity){
-        Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.GUI, ClientUtil.getLightLevel(entity.getLevel(), entity.getBlockPos()),
-                OverlayTexture.NO_OVERLAY, matrices, vertexConsumers, 1);
+        Level level = entity.getLevel();
+        if(level == null) return;
+        Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemDisplayContext.GUI, ClientUtil.getLightLevel(level, entity.getBlockPos()),
+                OverlayTexture.NO_OVERLAY, matrices, vertexConsumers, level, 1);
     }
 
     public static <T extends Button> void setButtonPosition(T button, int x, int y){
-        button.x = x;
-        button.y = y;
+        button.setX(x);
+        button.setY(y);
     }
 
 }

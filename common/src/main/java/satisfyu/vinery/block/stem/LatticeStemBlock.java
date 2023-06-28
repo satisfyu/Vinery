@@ -166,11 +166,6 @@ public class LatticeStemBlock extends StemBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(BlockGetter world, BlockPos pos, BlockState state, boolean isClient) {
-        return !isMature(state) && state.getValue(AGE) > 0;
-    }
-
-    @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
         tooltip.add(Component.translatable("block.vinery.lattice.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
         if (Screen.hasShiftDown()) {
@@ -188,5 +183,10 @@ public class LatticeStemBlock extends StemBlock {
 
     static {
         FACING = BlockStateProperties.HORIZONTAL_FACING;
+    }
+
+    @Override
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean bl) {
+        return !isMature(blockState) && blockState.getValue(AGE) > 0;
     }
 }

@@ -81,10 +81,9 @@ public class GrapeVineBlock extends VineBlock implements BonemealableBlock {
         return !state.getValue(STERILIZED);
     }
 
-
     @Override
-    public boolean isValidBonemealTarget(BlockGetter blockGetter, BlockPos blockPos, BlockState state, boolean bl) {
-        return state.getValue(AGE) < 3;
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean bl) {
+        return blockState.getValue(AGE) < 3;
     }
 
     @Override

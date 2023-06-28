@@ -15,7 +15,7 @@ public class ImprovedInstantHealth extends InstantenousMobEffect {
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity.isInvertedHealAndHarm()) {
-            entity.hurt(DamageSource.MAGIC, (float)(6 << amplifier));
+            entity.hurt(entity.damageSources().magic(), (float)(6 << amplifier));
         } else {
             entity.heal((float)Math.max(6 << amplifier, 0));
         }

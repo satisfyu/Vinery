@@ -44,10 +44,10 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
     }
 
     @Override
-    public void insertRecipe(Recipe<?> recipe, List<Slot> slots) {
+    public void insertRecipe(Recipe<?> recipe) {
         if (recipe instanceof FermentationBarrelRecipe) {
             int slotIndex = 0;
-            for (Slot slot : slots) {
+            for (Slot slot : this.screenHandler.slots) {
                 if (slot.getItem().getItem() == ObjectRegistry.WINE_BOTTLE.get().asItem()) {
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, slotIndex, 0, ClickType.PICKUP, Minecraft.getInstance().player);
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, 0, 0, ClickType.PICKUP, Minecraft.getInstance().player);
@@ -59,7 +59,7 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
         int usedInputSlots = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {
             int slotIndex = 0;
-            for (Slot slot : slots) {
+            for (Slot slot : this.screenHandler.slots) {
                 ItemStack itemStack = slot.getItem();
 
                 if (ingredient.test(itemStack) && usedInputSlots < 5) {
@@ -80,5 +80,15 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
 
     static {
         TOGGLE_FERMENTABLE_TEXT = Component.translatable("gui.vinery.recipebook.toggleRecipes.fermentable");
+    }
+
+    @Override
+    public void setFocused(boolean bl) {
+
+    }
+
+    @Override
+    public boolean isFocused() {
+        return false;
     }
 }

@@ -38,7 +38,7 @@ public class ChairEntity extends Entity {
     @Override
     public void remove(RemovalReason reason) {
         super.remove(reason);
-        ChairUtil.removeChairEntity(level, blockPosition());
+        ChairUtil.removeChairEntity(level(), blockPosition());
     }
 
     @Override
