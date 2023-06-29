@@ -2,6 +2,7 @@ package satisfyu.vinery.util;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.PostChain;
+import net.minecraft.util.RandomSource;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.client.shader.Shader;
 
@@ -13,7 +14,6 @@ public class ShaderUtils {
     public static boolean enabled = false;
 
     public static void load(@Nullable PostChain postChain) {
-        System.out.println(postChain);
         if (shader != null)
             shader.close();
         shader = postChain;
@@ -34,6 +34,15 @@ public class ShaderUtils {
             } catch (IOException e) {
                 return null;
             }
+        }
+    }
+
+    public static PostChain getRandomShader() {
+        Shader shader = Shader.values()[RandomSource.create().nextInt(Shader.values().length)];
+        try {
+            return new PostChain(client.getTextureManager(), client.getResourceManager(), client.getMainRenderTarget(), shader.getResource());
+        } catch (IOException e) {
+            return null;
         }
     }
 }
