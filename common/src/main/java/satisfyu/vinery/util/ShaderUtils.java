@@ -32,7 +32,6 @@ public class ShaderUtils {
             try {
                 return new PostChain(client.getTextureManager(), client.getResourceManager(), client.getMainRenderTarget(), shader.getResource());
             } catch (IOException e) {
-                System.out.println(e);
                 return null;
             }
         }

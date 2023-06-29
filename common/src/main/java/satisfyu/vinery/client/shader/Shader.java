@@ -3,9 +3,6 @@ package satisfyu.vinery.client.shader;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.Arrays;
-import java.util.Comparator;
-
 public enum Shader {
         NONE(-1, "none"),
         NOTCH(0, "notch"),
