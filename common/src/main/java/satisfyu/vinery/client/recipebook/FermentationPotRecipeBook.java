@@ -4,6 +4,7 @@ import de.cristelknight.doapi.client.recipebook.screen.widgets.PrivateRecipeBook
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
@@ -27,7 +28,8 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots) {
-        this.ghostSlots.addSlot(recipe.getResultItem(), slots.get(5).x, slots.get(5).y);
+        RegistryAccess access = this.client.getConnection().registryAccess();
+        this.ghostSlots.addSlot(recipe.getResultItem(access), slots.get(5).x, slots.get(5).y);
         this.ghostSlots.addSlot(ObjectRegistry.WINE_BOTTLE.get().asItem().getDefaultInstance(), slots.get(0).x, slots.get(0).y);
         int j = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {

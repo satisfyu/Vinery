@@ -267,9 +267,9 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  STACKABLE_LOG_ITEM = registerI("stackable_log", () -> new BlockItem(STACKABLE_LOG.get(), getSettings()));
     public static final RegistrySupplier<Item> FAUCET = registerI("faucet", () -> new FaucetItem(getSettings()));
     public static final RegistrySupplier<Item> STRAW_HAT = registerI("straw_hat", () -> new StrawHatItem(getSettings().rarity(Rarity.RARE)));
-    public static final RegistrySupplier<Item> VINEMAKER_APRON = registerI("vinemaker_apron", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.CHEST, getSettings().rarity(Rarity.EPIC)));
-    public static final RegistrySupplier<Item> VINEMAKER_LEGGINGS = registerI("vinemaker_leggings", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings().rarity(Rarity.RARE)));
-    public static final RegistrySupplier<Item> VINEMAKER_BOOTS = registerI("vinemaker_boots", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> VINEMAKER_APRON = registerI("vinemaker_apron", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.CHESTPLATE, getSettings().rarity(Rarity.EPIC)));
+    public static final RegistrySupplier<Item> VINEMAKER_LEGGINGS = registerI("vinemaker_leggings", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.LEGGINGS, getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> VINEMAKER_BOOTS = registerI("vinemaker_boots", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.BOOTS, getSettings().rarity(Rarity.RARE)));
     public static final RegistrySupplier<Item> GLOVES = registerI("gloves", () -> new GlovesItem(getSettings().rarity(Rarity.RARE)));
     public static final RegistrySupplier<Item> APPLE_MASH = registerI("apple_mash", () -> new CherryItem(getSettings().food(Foods.APPLE)));
     public static final RegistrySupplier<Item> MULE_SPAWN_EGG = registerI("mule_spawn_egg", () -> new ArchitecturySpawnEggItem(VineryEntites.MULE, -1, -1, getSettings()));

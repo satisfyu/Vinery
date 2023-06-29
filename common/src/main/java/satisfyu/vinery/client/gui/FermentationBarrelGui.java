@@ -4,6 +4,7 @@ import de.cristelknight.doapi.client.recipebook.screen.AbstractRecipeBookGUIScre
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import satisfyu.vinery.VineryIdentifier;
@@ -26,8 +27,7 @@ public class FermentationBarrelGui extends AbstractRecipeBookGUIScreen<Fermentat
     @Override
     protected void renderProgressArrow(GuiGraphics guiGraphics) {
         int progress = this.menu.getScaledProgress(23);
-        this.blit(matrices, leftPos + 94, topPos + 37, 177, 17, progress, 10); //Position Arrow
-
+        guiGraphics.fill(leftPos + 94, topPos + 37, 177, 17, progress, 10); //Position Arrow
     }
 
 }

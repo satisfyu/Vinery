@@ -34,22 +34,22 @@ public class WinePressGui extends AbstractContainerScreen<WinePressGuiHandler> {
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        blit(matrices, x, y, 0, 0, imageWidth, imageHeight);
+        guiGraphics.fill(x, y, 0, 0, imageWidth, imageHeight);
 
-        renderProgressArrow(matrices, x, y);
+        renderProgressArrow(guiGraphics, x, y);
     }
 
 
-    private void renderProgressArrow(PoseStack matrices, int x, int y) {
+    private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isCrafting()) {
-            blit(matrices, x + 78, y + 35, 176, 0, menu.getScaledProgress(), 20);
+             guiGraphics.fill(x + 78, y + 35, 176, 0, menu.getScaledProgress(), 20);
         }
     }
 
     @Override
-    public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
-        renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        renderTooltip(matrices, mouseX, mouseY);
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+        renderBackground(guiGraphics);
+        super.render(guiGraphics, mouseX, mouseY, delta);
+        renderTooltip(guiGraphics, mouseX, mouseY);
     }
 }

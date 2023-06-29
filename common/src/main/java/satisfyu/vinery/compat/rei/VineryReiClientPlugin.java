@@ -22,7 +22,6 @@ public class VineryReiClientPlugin {
     public static void registerCategories(CategoryRegistry registry) {
         registry.add(new FermentationBarrelCategory());
         registry.add(new WinePressCategory());
-
         registry.addWorkstations(FermentationBarrelDisplay.FERMENTATION_BARREL_DISPLAY, EntryStacks.of(ObjectRegistry.FERMENTATION_BARREL.get()));
         registry.addWorkstations(WinePressDisplay.WINE_PRESS_DISPLAY, EntryStacks.of(ObjectRegistry.WINE_PRESS.get()));
     }
