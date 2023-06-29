@@ -23,6 +23,7 @@ import satisfyu.vinery.client.render.block.FlowerPotBlockEntityRenderer;
 import satisfyu.vinery.client.render.block.WineBottleRenderer;
 import satisfyu.vinery.client.render.entity.MuleRenderer;
 import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
+import satisfyu.vinery.event.KeyInputHandler;
 import satisfyu.vinery.registry.CustomArmorRegistry;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryEntites;
@@ -34,7 +35,7 @@ import static satisfyu.vinery.registry.ObjectRegistry.*;
 public class VineryClient {
 
     public static void onInitializeClient() {
-
+        KeyInputHandler.register();
 
         RenderTypeRegistry.register(RenderType.cutout(),
                 RED_GRAPE_BUSH.get(), WHITE_GRAPE_BUSH.get(), CHERRY_DOOR.get(), FERMENTATION_BARREL.get(),
