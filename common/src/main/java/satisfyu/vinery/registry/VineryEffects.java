@@ -20,6 +20,7 @@ public class VineryEffects {
     private static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Vinery.MODID, Registry.MOB_EFFECT_REGISTRY);
     private static final Registrar<MobEffect> MOB_EFFECTS_REGISTRAR = MOB_EFFECTS.getRegistrar();
 
+    public static final RegistrySupplier<MobEffect> TRIPPY;
     public static final RegistrySupplier<MobEffect> JELLIE;
     public static final RegistrySupplier<MobEffect> MAGNET;
     public static final RegistrySupplier<MobEffect> TELEPORT;
@@ -49,6 +50,8 @@ public class VineryEffects {
     }
 
     static {
+
+        TRIPPY = registerEffect("trippy", TrippyEffect::new);
         JELLIE = registerEffect("jellie", JellieEffect::new);
         MAGNET = registerEffect("magnet", MagnetEffect::new);
         TELEPORT = registerEffect("teleport", TeleportEffect::new);
