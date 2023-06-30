@@ -3,10 +3,7 @@ package satisfyu.vinery.client.shader;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.Arrays;
-import java.util.Comparator;
-
-public enum ShaderList {
+public enum Shader {
         NONE(-1, "none"),
         NOTCH(0, "notch"),
         FXAA(1, "fxaa"),
@@ -33,35 +30,18 @@ public enum ShaderList {
         CREEPER(22, "creeper"),
         SPIDER(23, "spider");
 
-        public static final ShaderList[] shaders = Arrays.stream(ShaderList.values()).sorted(Comparator.comparingInt(ShaderList::getId)).toArray(ShaderList[]::new);
-        public static ShaderList current = NONE;
         private final int id;
         private final String name;
 
-        ShaderList(int id, String name) {
+        Shader(int id, String name) {
             this.id = id;
             this.name = name;
-        }
-
-        public static ShaderList next() {
-            int j = current.getId() + 1;
-            if (j > 23)
-                j = -1;
-            current = shaders[j + 1];
-            return current;
         }
 
         public int getId() {
             return this.id;
         }
 
-        public static ShaderList previous() {
-            int j = current.getId() - 1;
-            if (j < -1)
-                j = 23;
-            current = shaders[j + 1];
-            return current;
-        }
 
         public Component getName() {
             return Component.translatable("vinery.shader." + this.name);

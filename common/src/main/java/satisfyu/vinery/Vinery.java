@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Blocks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import satisfyu.vinery.config.VineryConfig;
+import satisfyu.vinery.network.VineryNetwork;
 import satisfyu.vinery.registry.*;
 import satisfyu.vinery.world.VineryFeatures;
 
@@ -30,6 +31,7 @@ public class Vinery {
         VineryEntites.init();
         VineryFeatures.init();
         VinerySoundEvents.init();
+        VineryNetwork.registerS2CPackets();
     }
 
     public static void commonSetup(){

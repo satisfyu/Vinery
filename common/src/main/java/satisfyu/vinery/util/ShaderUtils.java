@@ -2,7 +2,9 @@ package satisfyu.vinery.util;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.PostChain;
-import satisfyu.vinery.client.shader.ShaderList;
+import net.minecraft.util.RandomSource;
+import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.client.shader.Shader;
 
 import java.io.IOException;
 
@@ -11,11 +13,11 @@ public class ShaderUtils {
     public static PostChain shader;
     public static boolean enabled = false;
 
-    public static void load(boolean d) {
-        if(shader != null)
+    public static void load(@Nullable PostChain postChain) {
+        if (shader != null)
             shader.close();
-        shader = getCurrent(d);
-        if(shader != null) {
+        shader = postChain;
+        if (shader != null) {
             shader.resize(client.getWindow().getWidth(), client.getWindow().getHeight());
             enabled = true;
             return;
@@ -23,20 +25,24 @@ public class ShaderUtils {
         enabled = false;
     }
 
-    private static PostChain getCurrent(boolean d) {
-        ShaderList s;
-        if(d)
-            s = ShaderList.next();
-        else
-            s = ShaderList.previous();
-        if(s.getId() == -1)
+    public static PostChain getShader(Shader shader) {
+        if (shader.getId() == -1)
             return null;
         else {
             try {
-                return new PostChain(client.getTextureManager(), client.getResourceManager(), client.getMainRenderTarget(), s.getResource());
+                return new PostChain(client.getTextureManager(), client.getResourceManager(), client.getMainRenderTarget(), shader.getResource());
             } catch (IOException e) {
                 return null;
             }
+        }
+    }
+
+    public static PostChain getRandomShader() {
+        Shader shader = Shader.values()[RandomSource.create().nextInt(Shader.values().length)];
+        try {
+            return new PostChain(client.getTextureManager(), client.getResourceManager(), client.getMainRenderTarget(), shader.getResource());
+        } catch (IOException e) {
+            return null;
         }
     }
 }
