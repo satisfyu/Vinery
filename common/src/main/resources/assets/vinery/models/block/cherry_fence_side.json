@@ -1,8 +1,8 @@
 {
   "credit": "Made by Satisfy",
   "textures": {
-    "particle": "vinery:block/cherry_planks0",
-    "texture": "vinery:block/cherry_planks0"
+    "particle": "vinery:block/cherry_planks",
+    "texture": "vinery:block/cherry_planks"
   },
   "elements": [
     {
