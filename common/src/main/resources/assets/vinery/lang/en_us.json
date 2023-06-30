@@ -266,16 +266,18 @@
   "item.vinery.wine.block.vinery.king_danis_wine": "A special Wine for a special Person: Offers both health regeneration and instant healing",
   "item.vinery.wine.block.vinery.mellohi_wine": "Blazing Essence: Provides fire resistance and absorption effects",
   "item.vinery.wine.block.vinery.jo_special_mixture": "Jo's Mysterious Vintage: Concocts a special mixture with unexpected and unpredictable effects, bringing forth unforeseen outcomes.",
-  "item.vinery.wine.block.vinery.experience_effect": "Amplifies experience acquisition",
+  "item.vinery.wine.block.vinery.cristel_wine": "Amplifies experience acquisition",
   "item.vinery.wine.block.vinery.glowing_wine": "Luminous Aura: Surrounds the player with a radiant glow, improving visibility",
   "item.vinery.wine.block.vinery.creepers_crush": "Explosive Vintage: Imbibing this volatile red wine triggers a cataclysmic explosion, leading to a fiery demise",
   "item.vinery.wine.block.vinery.bottle_mojang_noir": "Potency Surge: Amplifies attack damage",
   "item.vinery.wine.block.vinery.villagers_fright": "Bad Omen: Inflicts a sense of dread upon villagers, provoking illagers into aggressive actions",
   "item.vinery.wine.block.vinery.mead": "Sustenance Boost: Provides immediate saturation, satisfying hunger and preventing it from depleting",
   "item.vinery.wine.block.vinery.eiswein": "Healing Surge: Restores health instantaneously",
-  "item.vinery.wine.block.vinery.noir_wine": "Healing Surge: Restores health instantaneously"
-
-
-
-
+  "item.vinery.wine.block.vinery.noir_wine": "Healing Surge: Restores health instantaneously",
+  "block.vinery.cristel_wine": "Cristel Wine",
+  "block.vinery.villagers_fright": "A Bottle of 'Villagers Fright'",
+  "block.vinery.eiswein": "Eiswein",
+  "effect.vinery.experience_effect": "Experience Effect",
+  "block.vinery.creepers_crush": "A Bottle of 'Creepers Crush'",
+  "effect.vinery.creeper_effect": "Explosion"
 }

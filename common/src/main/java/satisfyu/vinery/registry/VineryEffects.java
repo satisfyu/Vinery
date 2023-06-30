@@ -24,7 +24,6 @@ public class VineryEffects {
     public static final RegistrySupplier<MobEffect> JELLIE;
     public static final RegistrySupplier<MobEffect> MAGNET;
     public static final RegistrySupplier<MobEffect> TELEPORT;
-    public static final RegistrySupplier<MobEffect> JO_EFFECT;
     public static final RegistrySupplier<MobEffect> IMPROVED_SPEED;
     public static final RegistrySupplier<MobEffect> IMPROVED_ABSORBTION;
     public static final RegistrySupplier<MobEffect> IMPROVED_JUMP_BOOST;
@@ -35,7 +34,7 @@ public class VineryEffects {
     public static final RegistrySupplier<MobEffect> IMPROVED_WATER_BREATHING;
     public static final RegistrySupplier<MobEffect> IMPROVED_NIGHT_VISION;
     public static final RegistrySupplier<MobEffect> IMPROVED_HASTE;
-    public static final RegistrySupplier<MobEffect> CRISTEL_EFFECT;
+    public static final RegistrySupplier<MobEffect> CREEPER_EFFECT;
     public static final RegistrySupplier<MobEffect> EXPERIENCE_EFFECT;
 
 
@@ -58,8 +57,7 @@ public class VineryEffects {
         MAGNET = registerEffect("magnet", MagnetEffect::new);
         TELEPORT = registerEffect("teleport", TeleportEffect::new);
         IMPROVED_ABSORBTION = registerEffect("improved_absorbtion", ImprovedAbsorbtion::new);
-        JO_EFFECT = registerEffect("jo_effect", JoEffect::new);
-        CRISTEL_EFFECT = registerEffect("cristel_effect", CristelEffect::new);
+        CREEPER_EFFECT = registerEffect("creeper_effect", CreeperEffect::new);
         IMPROVED_SPEED = registerEffect("improved_speed", () -> new ImprovedEffect(MobEffectCategory.BENEFICIAL, 0x5783B3)
                 .addAttributeModifier(Attributes.MOVEMENT_SPEED, "8614E716-3E4B-D398-9CA2-2F9368FF8635", 0.20000000298023224, AttributeModifier.Operation.MULTIPLY_TOTAL));
         IMPROVED_JUMP_BOOST = registerEffect("improved_jump_boost", () -> new ImprovedEffect(MobEffectCategory.BENEFICIAL, 0x90F891));

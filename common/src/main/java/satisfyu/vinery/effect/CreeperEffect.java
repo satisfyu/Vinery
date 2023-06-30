@@ -10,8 +10,8 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 
-public class CristelEffect extends MobEffect {
-    public CristelEffect() {
+public class CreeperEffect extends MobEffect {
+    public CreeperEffect() {
         super(MobEffectCategory.HARMFUL, 0xFF0000);
     }
 

@@ -49,7 +49,7 @@ public class VineryClient {
                 WINE_PRESS.get(), GRASS_SLAB.get(), CHERRY_SAPLING.get(), APPLE_TREE_SAPLING.get(),
                 KITCHEN_SINK.get(), STACKABLE_LOG.get(), APPLE_LEAVES.get(), POTTED_APPLE_TREE_SAPLING.get(),
                 POTTED_CHERRY_TREE_SAPLING.get(), RED_WINE.get(), PRAETORIAN_WINE.get(),
-              CHAIR.get(),
+                CHAIR.get(), CRISTEL_WINE.get(), VILLAGERS_FRIGHT.get(), EISWEIN.get(), CREEPERS_CRUSH.get(),
                 TABLE.get()
                 );
 

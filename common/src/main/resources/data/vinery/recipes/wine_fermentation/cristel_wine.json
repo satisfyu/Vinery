@@ -1,0 +1,20 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    {
+      "tag": "vinery:grapejuice"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:feather"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    }
+  ],
+  "result": {
+    "item": "vinery:cristel_wine"
+  }
+}

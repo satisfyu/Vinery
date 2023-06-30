@@ -270,5 +270,11 @@
   "item.vinery.wine.block.vinery.villagers_fright": "Böses Omen: Verängstigt Dorfbewohner und provoziert Pillager",
   "item.vinery.wine.block.vinery.mead": "Energieboost: Bietet sofortige Sättigung, stillt den Hunger und verhindert, dass er sich erschöpft",
   "item.vinery.wine.block.vinery.eiswein": "Heilungsrausch: Stellt Gesundheit sofort wieder her",
-  "item.vinery.wine.block.vinery.noir_wine": "Heilungsrausch: Stellt Gesundheit sofort wieder her"
+  "item.vinery.wine.block.vinery.noir_wine": "Heilungsrausch: Stellt Gesundheit sofort wieder her",
+  "block.vinery.cristel_wine": "Cristel Wein",
+  "block.vinery.villager_fright": "Eine Flasche voller 'Furcht des Dorfbewohners'",
+  "block.vinery.eiswein": "Eiswein",
+  "effect.vinery.experience_effect": "Erhöhte Erfahrung",
+  "block.vinery.creeper_crush": "Eine Flasche voller 'Creepers Crush'",
+  "effect.vinery.creeper_effect": "Explosionen!"
 }
