@@ -18,6 +18,7 @@ public class ClientStorageTypes {
         registerStorageType(VineryStorageTypes.SHELF, new ShelfRenderer());
         registerStorageType(VineryStorageTypes.WINE_BOX, new WineBoxRenderer());
         registerStorageType(VineryStorageTypes.FLOWER_BOX, new FlowerBoxRenderer());
+        registerStorageType(VineryStorageTypes.WINE_BOTTLE, new WineBottleRenderer());
     }
 
 }

@@ -2,7 +2,9 @@ package satisfyu.vinery.item;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
+import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -46,8 +48,17 @@ public class DrinkBlockItem extends BlockItem {
         if (!context.getPlayer().isCrouching()) {
             return null;
         }
+
         BlockState blockState = this.getBlock().getStateForPlacement(context);
         return blockState != null && this.canPlace(context, blockState) ? blockState : null;
+    }
+
+    @Override
+    protected boolean updateCustomBlockEntityTag(BlockPos blockPos, Level level, @Nullable Player player, ItemStack itemStack, BlockState blockState) {
+        if(level.getBlockEntity(blockPos) instanceof StorageBlockEntity wineEntity){
+            wineEntity.setStack(0, itemStack.copyWithCount(1));
+        }
+        return super.updateCustomBlockEntityTag(blockPos, level, player, itemStack, blockState);
     }
 
     @Override
