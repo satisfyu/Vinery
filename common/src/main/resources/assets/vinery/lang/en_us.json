@@ -279,5 +279,11 @@
   "block.vinery.eiswein": "Eiswein",
   "effect.vinery.experience_effect": "Experience Effect",
   "block.vinery.creepers_crush": "A Bottle of 'Creepers Crush'",
-  "effect.vinery.creeper_effect": "Explosion"
+  "effect.vinery.creeper_effect": "Explosion",
+  "effect.vinery.trippy": "Sensory Perception",
+  "block.vinery.jo_special_mixture": "Jo's Special Mixture",
+  "block.vinery.glowing_wine": "Sunkissed Wine",
+  "block.vinery.mead": "Mead",
+  "block.vinery.bottle_mojang_noir": "A Bottle of 'Mojang Noir'"
+
 }

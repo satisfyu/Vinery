@@ -1,0 +1,94 @@
+{
+	"credit": "Made by Satisfy",
+	"texture_size": [64, 64],
+	"textures": {
+		"6": "vinery:block/wine/mojang_noir",
+		"particle": "vinery:block/wine/mojang_noir"
+	},
+	"elements": [
+		{
+			"from": [7, 11, 7],
+			"to": [9, 15, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 12, 8]},
+			"faces": {
+				"north": {"uv": [0, 1, 2, 5], "texture": "#6"},
+				"east": {"uv": [0, 1, 2, 5], "texture": "#6"},
+				"south": {"uv": [0, 1, 2, 5], "texture": "#6"},
+				"west": {"uv": [0, 1, 2, 5], "texture": "#6"},
+				"up": {"uv": [3, 0, 5, 2], "texture": "#6"},
+				"down": {"uv": [3, 0, 6, 3], "texture": "#6"}
+			}
+		},
+		{
+			"from": [6, 0, 6],
+			"to": [10, 11, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8.5, 8]},
+			"faces": {
+				"north": {"uv": [12, 6, 16, 16], "texture": "#6"},
+				"east": {"uv": [8, 6, 12, 16], "texture": "#6"},
+				"south": {"uv": [8, 6, 12, 16], "texture": "#6"},
+				"west": {"uv": [8, 6, 12, 16], "texture": "#6"},
+				"up": {"uv": [12, 2, 16, 6], "texture": "#6"},
+				"down": {"uv": [8, 2, 12, 6], "texture": "#6"}
+			}
+		},
+		{
+			"from": [6.2, 0.2, 6.2],
+			"to": [9.8, 10.2, 9.8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8.5, 8]},
+			"faces": {
+				"north": {"uv": [0, 7, 3, 16], "texture": "#6", "tintindex": 0},
+				"east": {"uv": [0, 7, 3, 16], "texture": "#6", "tintindex": 0},
+				"south": {"uv": [0, 7, 3, 16], "texture": "#6", "tintindex": 0},
+				"west": {"uv": [0, 7, 3, 16], "texture": "#6", "tintindex": 0},
+				"up": {"uv": [3, 7, 6, 10], "texture": "#6", "tintindex": 0},
+				"down": {"uv": [3, 7, 6, 10], "texture": "#6", "tintindex": 0}
+			}
+		}
+	],
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 4, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 4, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"firstperson_righthand": {
+			"translation": [3.25, 3.75, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-180, -13.25, 180],
+			"translation": [3.25, 3.75, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"ground": {
+			"rotation": [-8.53, -1.45, 19.3],
+			"translation": [-2, 1, -1],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"gui": {
+			"rotation": [0, 113, 0],
+			"translation": [-0.25, 4.5, 0]
+		},
+		"head": {
+			"rotation": [0, 0, 90],
+			"translation": [-9.75, 0, 0]
+		},
+		"fixed": {
+			"rotation": [-90, -90, 0],
+			"translation": [10, 10, -12]
+		}
+	},
+	"groups": [
+		{
+			"name": "bolvar_wine",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [0, 1, 2]
+		}
+	]
+}
