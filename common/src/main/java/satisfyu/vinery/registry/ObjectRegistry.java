@@ -237,7 +237,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> MELLOHI_WINE = registerB("mellohi_wine", () -> new WineBottleBlock(getWineSettings(), 2));
     public static final RegistrySupplier<Item>  MELLOHI_WINE_ITEM = registerI("mellohi_wine", () -> new DrinkBlockBigItem(MELLOHI_WINE.get(), getWineItemSettings(VineryEffects.IMPROVED_FIRE_RESISTANCE.get())));
     public static final RegistrySupplier<Block> JO_SPECIAL_MIXTURE = registerB("jo_special_mixture", () -> new WineBottleBlock(getWineSettings(), 1));
-    public static final RegistrySupplier<Item>  JO_SPECIAL_MIXTURE_ITEM = registerI("jo_special_mixture", () -> new DrinkBlockBigItem(JO_SPECIAL_MIXTURE.get(), getWineItemSettings(VineryEffects.TRIPPY.get())));
+    public static final RegistrySupplier<Item>  JO_SPECIAL_MIXTURE_ITEM = registerI("jo_special_mixture", () -> new DrinkBlockBigItem(JO_SPECIAL_MIXTURE.get(), getWineItemSettings(MobEffects.BLINDNESS)));
     public static final RegistrySupplier<Block> CRISTEL_WINE = registerB("cristel_wine", () -> new WineBottleBlock(getWineSettings(), 1));
     public static final RegistrySupplier<Item>  CRISTEL_WINE_ITEM = registerI("cristel_wine", () -> new DrinkBlockBigItem(CRISTEL_WINE.get(), getWineItemSettings(VineryEffects.EXPERIENCE_EFFECT.get())));
     public static final RegistrySupplier<Block> GLOWING_WINE = registerB("glowing_wine", () -> new WineBottleBlock(getWineSettings(), 3));

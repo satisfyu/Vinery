@@ -1,11 +1,6 @@
 package satisfyu.vinery.network.packet;
 
-import dev.architectury.networking.NetworkManager;
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.FriendlyByteBuf;
-import satisfyu.vinery.client.shader.Shader;
-import satisfyu.vinery.util.ShaderUtils;
-
+/*
 public class ShaderS2CPacket implements NetworkManager.NetworkReceiver {
     @Override
     public void receive(FriendlyByteBuf buf, NetworkManager.PacketContext context) {
@@ -20,3 +15,4 @@ public class ShaderS2CPacket implements NetworkManager.NetworkReceiver {
         });
     }
 }
+*/
