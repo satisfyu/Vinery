@@ -1,0 +1,14 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    {
+      "tag": "minecraft:grapejuice_white"
+    },
+    {
+      "item": "minecraft:glow_berries"
+    }
+  ],
+  "result": {
+    "item": "vinery:glowing_wine"
+  }
+}

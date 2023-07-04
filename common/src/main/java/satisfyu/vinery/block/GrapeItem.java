@@ -1,23 +1,21 @@
 package satisfyu.vinery.block;
 
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.util.GrapevineType;
-import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.util.GrapevineType;
 
-/**
- * Namespace for grape items
- */
+import java.util.List;
+
+
 public class GrapeItem extends Item {
     private static final double CHANCE_OF_GETTING_SEEDS = 0.2;
     private final Item returnItem;

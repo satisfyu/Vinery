@@ -2,22 +2,6 @@ package satisfyu.vinery.mixin;
 
 import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.world.damagesource.DamageSources;
-import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.phys.Vec3;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.*;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import satisfyu.vinery.registry.VineryEffects;
-import satisfyu.vinery.util.GeneralUtil;
-import satisfyu.vinery.util.VineryFoodComponent;
-import satisfyu.vinery.util.WineYears;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.List;
-import java.util.Map;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -30,6 +14,22 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import satisfyu.vinery.registry.VineryEffects;
+import satisfyu.vinery.util.GeneralUtil;
+import satisfyu.vinery.util.VineryFoodComponent;
+import satisfyu.vinery.util.WineYears;
+
+import java.util.List;
+import java.util.Map;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
@@ -112,21 +112,6 @@ public abstract class LivingEntityMixin extends Entity {
 
 		return j;
 	}
-
-	/*
-	@ModifyConstant(method = "travel", constant = @Constant(floatValue = 0.96F))
-	public float improvedWaterBreathingSpeed(float constant) {
-		if (this.hasStatusEffect(VineryEffects.IMPROVED_WATER_BREATHING)) {
-			int amplifier = this.getStatusEffect(VineryEffects.IMPROVED_WATER_BREATHING).getAmplifier();
-			return 0.9F + (amplifier + 1f) / 10;
-		}
-		return 0.95F;
-	}
-
-	public StatusEffectInstance getStatusEffect(StatusEffect effect) {
-		return activeStatusEffects.get(effect);
-	}
-	 */
 
 	@Redirect(method = "updateInvisibilityStatus", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hasEffect(Lnet/minecraft/world/effect/MobEffect;)Z"))
 	public boolean improvedNightVision(LivingEntity livingEntity, MobEffect effect) {

@@ -6,7 +6,7 @@
 		"0": "vinery:block/stackable_log",
 		"1": "vinery:block/stackable_log_fire",
 		"2": "vinery:block/stackable_log_fire2",
-		"3": "vinery:block/campfire_log_lit",
+		"3": "minecraft:block/campfire_log_lit",
 		"particle": "vinery:block/stackable_log_fire"
 	},
 	"elements": [

@@ -31,6 +31,7 @@ public class Vinery {
         VineryEntites.init();
         VineryFeatures.init();
         VinerySoundEvents.init();
+      //  VineryNetwork.registerS2CPackets();
     }
 
     public static void commonSetup(){
