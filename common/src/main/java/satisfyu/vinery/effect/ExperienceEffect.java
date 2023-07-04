@@ -11,18 +11,6 @@ public class ExperienceEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
-        if (entity instanceof Player) {
-            Player player = (Player) entity;
-            float experienceMultiplier = 1.0f + (0.1f * amplifier);
-
-            int currentExperience = player.totalExperience;
-            int experienceIncrease = (int) (currentExperience * experienceMultiplier);
-            player.giveExperienceLevels(experienceIncrease);
-        }
-    }
-
-    @Override
     public boolean isDurationEffectTick(int duration, int amplifier) {
         return true;
     }
