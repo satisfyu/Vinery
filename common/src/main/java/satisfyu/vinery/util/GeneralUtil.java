@@ -4,9 +4,11 @@ import com.google.gson.JsonArray;
 
 import java.util.*;
 
+import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -128,6 +130,10 @@ public class GeneralUtil {
 			buffer[1] = Shapes.empty();
 		}
 		return buffer[0];
+	}
+
+	public static FriendlyByteBuf create() {
+		return new FriendlyByteBuf(Unpooled.buffer());
 	}
 	
 	public static Optional<Tuple<Float, Float>> getRelativeHitCoordinatesForBlockFace(BlockHitResult blockHitResult, Direction direction, Direction[] unAllowedDirections) {
