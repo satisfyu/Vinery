@@ -27,9 +27,8 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
     }
 
     @Override
-    public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots) {
-        RegistryAccess access = this.client.getConnection().registryAccess();
-        this.ghostSlots.addSlot(recipe.getResultItem(access), slots.get(5).x, slots.get(5).y);
+    public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots, RegistryAccess registryAccess) {
+        this.ghostSlots.addSlot(recipe.getResultItem(registryAccess), slots.get(5).x, slots.get(5).y);
         this.ghostSlots.addSlot(ObjectRegistry.WINE_BOTTLE.get().asItem().getDefaultInstance(), slots.get(0).x, slots.get(0).y);
         int j = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {
