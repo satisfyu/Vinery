@@ -1,9 +1,5 @@
 package satisfyu.vinery.block;
 
-import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.registry.VinerySoundEvents;
-import satisfyu.vinery.util.GrapevineType;
-import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -27,6 +23,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import satisfyu.vinery.registry.ObjectRegistry;
+import satisfyu.vinery.registry.VinerySoundEvents;
+import satisfyu.vinery.util.GrapevineType;
+
+import java.util.List;
 
 public class GrapevinePotBlock extends Block {
 
@@ -117,7 +118,7 @@ public class GrapevinePotBlock extends Block {
             }
             // Fill storage
             if (!isFilled(state)) {
-                final BlockState newState = world.getBlockState(pos); // Possibly new state
+                final BlockState newState = world.getBlockState(pos);
                 world.setBlock(pos, newState.setValue(STORAGE, storage + 1), Block.UPDATE_ALL);
                 playSound = true;
             }

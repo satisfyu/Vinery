@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/button",
   "textures": {
-    "texture": "vinery:block/cherry_planks0"
+    "texture": "vinery:block/cherry_planks"
   }
 }

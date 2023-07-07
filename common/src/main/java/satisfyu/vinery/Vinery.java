@@ -12,6 +12,9 @@ import satisfyu.vinery.world.VineryFeatures;
 
 public class Vinery {
 
+
+
+
     public static final String MODID = "vinery";
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     
@@ -26,6 +29,7 @@ public class Vinery {
         VineryEntites.init();
         VineryFeatures.init();
         VinerySoundEvents.init();
+      //  VineryNetwork.registerS2CPackets();
     }
 
     public static void commonSetup(){

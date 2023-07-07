@@ -22,10 +22,9 @@ import satisfyu.vinery.client.model.MuleModel;
 import satisfyu.vinery.client.render.block.FlowerPotBlockEntityRenderer;
 import satisfyu.vinery.client.render.entity.MuleRenderer;
 import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
-import satisfyu.vinery.registry.CustomArmorRegistry;
-import satisfyu.vinery.registry.VineryBlockEntityTypes;
-import satisfyu.vinery.registry.VineryEntites;
-import satisfyu.vinery.registry.VineryScreenHandlerTypes;
+import satisfyu.vinery.event.KeyInputHandler;
+import satisfyu.vinery.network.VineryNetwork;
+import satisfyu.vinery.registry.*;
 
 import static satisfyu.vinery.registry.ObjectRegistry.*;
 
@@ -33,7 +32,8 @@ import static satisfyu.vinery.registry.ObjectRegistry.*;
 public class VineryClient {
 
     public static void onInitializeClient() {
-
+        KeyInputHandler.register();
+        VineryNetwork.registerS2CPackets();
 
         RenderTypeRegistry.register(RenderType.cutout(),
                 RED_GRAPE_BUSH.get(), WHITE_GRAPE_BUSH.get(), CHERRY_DOOR.get(), FERMENTATION_BARREL.get(),
@@ -47,7 +47,8 @@ public class VineryClient {
                 WINE_PRESS.get(), GRASS_SLAB.get(), CHERRY_SAPLING.get(), APPLE_TREE_SAPLING.get(),
                 KITCHEN_SINK.get(), STACKABLE_LOG.get(), APPLE_LEAVES.get(), POTTED_APPLE_TREE_SAPLING.get(),
                 POTTED_CHERRY_TREE_SAPLING.get(), RED_WINE.get(), PRAETORIAN_WINE.get(),
-              CHAIR.get(),
+                CHAIR.get(), CRISTEL_WINE.get(), VILLAGERS_FRIGHT.get(), EISWEIN.get(), CREEPERS_CRUSH.get(),
+                GLOWING_WINE.get(), JO_SPECIAL_MIXTURE.get(), MEAD.get(), BOTTLE_MOJANG_NOIR.get(),
                 TABLE.get()
                 );
 
