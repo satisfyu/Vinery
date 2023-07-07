@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Blocks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import satisfyu.vinery.config.VineryConfig;
+import satisfyu.vinery.item.VineryTab;
 import satisfyu.vinery.registry.*;
 import satisfyu.vinery.world.VineryFeatures;
 
@@ -23,6 +24,7 @@ public class Vinery {
     
     public static void init() {
         VineryConfig.DEFAULT.getConfig();
+        VineryTab.init();
         VineryEffects.init();
         ObjectRegistry.init();
         VineryBlockEntityTypes.init();
