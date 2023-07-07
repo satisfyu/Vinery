@@ -26,13 +26,6 @@ public class VineryBlockEntityTypes {
 
     public static final RegistrySupplier<BlockEntityType<FlowerBoxBlockEntity>> FLOWER_BOX_ENTITY = create("flower_box", () -> BlockEntityType.Builder.of(FlowerBoxBlockEntity::new, ObjectRegistry.FLOWER_BOX.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<FlowerPotBlockEntity>> FLOWER_POT_ENTITY = create("flower_pot", () -> BlockEntityType.Builder.of(FlowerPotBlockEntity::new, ObjectRegistry.FLOWER_POT.get()).build(null));
-    public static final RegistrySupplier<BlockEntityType<WineBottleBlockEntity>> WINE_BOTTLE_ENTITY = create("wine_bottle", () -> BlockEntityType.Builder.of(WineBottleBlockEntity::new,
-            ObjectRegistry.NOIR_WINE.get(), ObjectRegistry.CLARK_WINE.get(), ObjectRegistry.BOLVAR_WINE.get(), ObjectRegistry.STAL_WINE.get(), ObjectRegistry.CHERRY_WINE.get(), ObjectRegistry.KELP_CIDER.get(),
-            ObjectRegistry.SOLARIS_WINE.get(), ObjectRegistry.APPLE_WINE.get(), ObjectRegistry.APPLE_CIDER.get(), ObjectRegistry.STRAD_WINE.get(), ObjectRegistry.CHENET_WINE.get(), ObjectRegistry.MELLOHI_WINE.get(),
-            ObjectRegistry.KING_DANIS_WINE.get(), ObjectRegistry.MAGNETIC_WINE.get(), ObjectRegistry.CHORUS_WINE.get(), ObjectRegistry.JELLIE_WINE.get(), ObjectRegistry.AEGIS_WINE.get(), ObjectRegistry.RED_WINE.get(),
-            ObjectRegistry.PRAETORIAN_WINE.get(), ObjectRegistry.CRISTEL_WINE.get(), ObjectRegistry.VILLAGERS_FRIGHT.get(), ObjectRegistry.EISWEIN.get(), ObjectRegistry.CREEPERS_CRUSH.get(), ObjectRegistry.JO_SPECIAL_MIXTURE.get(),
-            ObjectRegistry.MEAD.get(), ObjectRegistry.BOTTLE_MOJANG_NOIR.get()).build(null));
-
 
 
 

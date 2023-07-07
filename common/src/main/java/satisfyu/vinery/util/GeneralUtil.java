@@ -4,9 +4,11 @@ import com.google.gson.JsonArray;
 
 import java.util.*;
 
+import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Tuple;
@@ -45,6 +47,9 @@ public class GeneralUtil {
 		return isFaceFull(levelReader, blockPos) && isSolid(levelReader, blockPos);
 	}
 
+	public static FriendlyByteBuf create() {
+		return new FriendlyByteBuf(Unpooled.buffer());
+	}
 	public static boolean isFaceFull(LevelReader levelReader, BlockPos blockPos){
 		BlockPos belowPos = blockPos.below();
 		return Block.isFaceFull(levelReader.getBlockState(belowPos).getShape(levelReader, belowPos), Direction.UP);

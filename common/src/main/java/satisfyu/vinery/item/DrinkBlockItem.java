@@ -2,14 +2,24 @@ package satisfyu.vinery.item;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.ChatFormatting;
+import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.*;
+import satisfyu.vinery.registry.ObjectRegistry;
+import satisfyu.vinery.util.WineYears;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Map;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
@@ -17,17 +27,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.util.WineYears;
-
-import java.util.List;
-import java.util.Map;
 
 public class DrinkBlockItem extends BlockItem {
     public DrinkBlockItem(Block block, Properties settings) {
@@ -45,9 +48,19 @@ public class DrinkBlockItem extends BlockItem {
         if (!context.getPlayer().isCrouching()) {
             return null;
         }
+
         BlockState blockState = this.getBlock().getStateForPlacement(context);
         return blockState != null && this.canPlace(context, blockState) ? blockState : null;
     }
+
+    @Override
+    protected boolean updateCustomBlockEntityTag(BlockPos blockPos, Level level, @Nullable Player player, ItemStack itemStack, BlockState blockState) {
+        if(level.getBlockEntity(blockPos) instanceof StorageBlockEntity wineEntity){
+            wineEntity.setStack(0, itemStack.copy());
+        }
+        return super.updateCustomBlockEntityTag(blockPos, level, player, itemStack, blockState);
+    }
+
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
@@ -105,26 +118,25 @@ public class DrinkBlockItem extends BlockItem {
                 if (d > 0.0) {
                     tooltip.add(
                             Component.translatable(
-                                    "attribute.modifier.plus." + entityAttributeModifier3.getOperation().toValue(),
-                                    ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
+                                            "attribute.modifier.plus." + entityAttributeModifier3.getOperation().toValue(),
+                                            ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
                                     .withStyle(ChatFormatting.BLUE)
                     );
                 } else if (d < 0.0) {
                     e *= -1.0;
                     tooltip.add(
                             Component.translatable(
-                                    "attribute.modifier.take." + entityAttributeModifier3.getOperation().toValue(),
-                                    ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
+                                            "attribute.modifier.take." + entityAttributeModifier3.getOperation().toValue(),
+                                            ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
                                     .withStyle(ChatFormatting.RED)
                     );
                 }
             }
         }
-        
+
         tooltip.add(Component.empty());
-        tooltip.add(Component.translatable("block.vinery.canbeplaced.tooltip").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
-        tooltip.add(Component.translatable("item.vinery.wine." + this.getDescriptionId()).withStyle(ChatFormatting.WHITE));
-        tooltip.add(Component.translatable("tooltip.vinery.year").withStyle(ChatFormatting.WHITE).append(Component.nullToEmpty(" " + WineYears.getWineYear(stack, world))));
+        tooltip.add(Component.translatable("block.vinery.canbeplaced.tooltip").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.vinery.year").withStyle(ChatFormatting.GRAY).append(Component.nullToEmpty(" " + WineYears.getWineYear(stack, world))));
     }
 
     @Override

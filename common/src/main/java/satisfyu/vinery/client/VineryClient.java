@@ -20,10 +20,10 @@ import satisfyu.vinery.client.gui.FermentationBarrelGui;
 import satisfyu.vinery.client.gui.WinePressGui;
 import satisfyu.vinery.client.model.MuleModel;
 import satisfyu.vinery.client.render.block.FlowerPotBlockEntityRenderer;
-import satisfyu.vinery.client.render.block.WineBottleRenderer;
 import satisfyu.vinery.client.render.entity.MuleRenderer;
 import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
 import satisfyu.vinery.event.KeyInputHandler;
+import satisfyu.vinery.network.VineryNetwork;
 import satisfyu.vinery.registry.CustomArmorRegistry;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryEntites;
@@ -36,7 +36,7 @@ public class VineryClient {
 
     public static void onInitializeClient() {
         KeyInputHandler.register();
-
+        VineryNetwork.registerS2CPackets();
         RenderTypeRegistry.register(RenderType.cutout(),
                 RED_GRAPE_BUSH.get(), WHITE_GRAPE_BUSH.get(), CHERRY_DOOR.get(), FERMENTATION_BARREL.get(),
                 MELLOHI_WINE.get(), CLARK_WINE.get(), BOLVAR_WINE.get(), CHERRY_WINE.get(),
@@ -71,22 +71,16 @@ public class VineryClient {
         MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER.get(), FermentationBarrelGui::new);
         MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.WINE_PRESS_SCREEN_HANDLER.get(), WinePressGui::new);
 
-
-
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_POT_ENTITY.get(), FlowerPotBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.WINE_BOTTLE_ENTITY.get(), WineBottleRenderer::new);
     }
 
 
     public static void preInitClient(){
-        //sign
         TerraformSignHelper.regsterSignSprite(CHERRY_SIGN_TEXTURE);
 
-        //Entity Model Layers
         EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);
         CustomArmorRegistry.registerArmorModelLayers();
 
-        //Entity Renderers
         EntityRendererRegistry.register(VineryEntites.MULE, MuleRenderer::new);
         EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
         EntityRendererRegistry.register(VineryEntites.CHAIR, ChairRenderer::new);
