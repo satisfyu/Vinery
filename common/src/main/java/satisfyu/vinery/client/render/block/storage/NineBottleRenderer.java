@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import satisfyu.vinery.Vinery;
 import satisfyu.vinery.block.storage.WineBottleBlock;
 import satisfyu.vinery.client.ClientUtil;
 @Environment(EnvType.CLIENT)
@@ -18,6 +19,9 @@ public class NineBottleRenderer implements StorageTypeRenderer {
     public void render(StorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> itemStacks) {
         matrices.translate(-0.13, 0.335, 0.125);
         matrices.scale(0.9f, 0.9f, 0.9f);
+
+        Vinery.LOGGER.error("rendering 9 bottles");
+
         for (int i = 0; i < itemStacks.size(); i++) {
             ItemStack stack = itemStacks.get(i);
             if (!stack.isEmpty() && stack.getItem() instanceof BlockItem blockItem) {
@@ -40,7 +44,7 @@ public class NineBottleRenderer implements StorageTypeRenderer {
 
                 matrices.translate(x, y, 0f);
                 matrices.mulPose(Vector3f.XN.rotationDegrees(90));
-                ClientUtil.renderBlock(blockItem.getBlock().defaultBlockState().setValue(WineBottleBlock.FAKE_MODEL, true), matrices, vertexConsumers, entity);                matrices.popPose();
+                ClientUtil.renderBlock(blockItem.getBlock().defaultBlockState().setValue(WineBottleBlock.FAKE_MODEL, false), matrices, vertexConsumers, entity);                matrices.popPose();
             }
         }
     }

@@ -39,7 +39,8 @@ public class FourBottleRenderer implements StorageTypeRenderer {
                     continue;
                 }
                 matrices.mulPose(Vector3f.XN.rotationDegrees(90));
-                ClientUtil.renderBlock(blockItem.getBlock().defaultBlockState().setValue(WineBottleBlock.FAKE_MODEL, true), matrices, vertexConsumers, entity);                matrices.popPose();
+                ClientUtil.renderBlock(blockItem.getBlock().defaultBlockState().setValue(WineBottleBlock.FAKE_MODEL, false), matrices, vertexConsumers, entity);
+                matrices.popPose();
             }
         }
     }
