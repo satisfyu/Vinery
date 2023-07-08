@@ -46,6 +46,6 @@
     "fabric-api": "*",
     "minecraft": ">=1.20",
     "architectury": ">=9.0.8",
-    "doapi": ">=1.2.0"
+    "doapi": ">=1.2.1"
   }
 }
