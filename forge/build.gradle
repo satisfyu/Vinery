@@ -36,9 +36,6 @@ dependencies {
 
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-forge"
 
-    implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:${rootProject.mixin_extras_version}"))
-    implementation(include("com.github.llamalad7.mixinextras:mixinextras-forge:${rootProject.mixin_extras_version}"))
-
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 }
