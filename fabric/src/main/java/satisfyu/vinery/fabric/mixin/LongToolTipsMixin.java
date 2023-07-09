@@ -16,6 +16,7 @@ import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent
 
 @Mixin(Screen.class)
 public abstract class LongToolTipsMixin {
+    /*
     @Shadow
     protected Font font;
     @Shadow
@@ -35,4 +36,6 @@ public abstract class LongToolTipsMixin {
     public int modifyRenderX(int value, PoseStack matrices, List<ClientTooltipComponent> components, int x, int y) {
         return TooltipHelper.shouldFlip(components, font, x);
     }
+
+     */
 }

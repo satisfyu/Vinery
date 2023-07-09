@@ -173,7 +173,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  CHERRY_DOOR_ITEM = registerI("cherry_door", () -> new BlockItem(CHERRY_DOOR.get(), getSettings()));
     public static final RegistrySupplier<Block> CHERRY_TRAPDOOR = registerB("cherry_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR), BlockSetType.CHERRY));
     public static final RegistrySupplier<Item>  CHERRY_TRAPDOOR_ITEM = registerI("cherry_trapdoor", () -> new BlockItem(CHERRY_TRAPDOOR.get(), getSettings()));
-    public static final ResourceLocation CHERRY_SIGN_TEXTURE = new ResourceLocation("entity/signs/cherry");
+    public static final ResourceLocation CHERRY_SIGN_TEXTURE = new VineryIdentifier("entity/signs/cherry");
     public static final RegistrySupplier<Block> CHERRY_SIGN = registerB("cherry_sign", () -> TerraformSignHelper.getSign(CHERRY_SIGN_TEXTURE));
     public static final RegistrySupplier<Block> CHERRY_WALL_SIGN = registerB("cherry_wall_sign", () -> TerraformSignHelper.getWallSign(CHERRY_SIGN_TEXTURE));
     public static final RegistrySupplier<Item> CHERRY_SIGN_ITEM = registerI("cherry_sign", () -> new SignItem(getSettings().stacksTo(16), CHERRY_SIGN.get(), CHERRY_WALL_SIGN.get()));

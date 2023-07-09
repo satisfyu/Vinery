@@ -35,7 +35,7 @@ import static satisfyu.vinery.registry.ObjectRegistry.*;
 public class VineryClient {
 
     public static void onInitializeClient() {
-        KeyInputHandler.register();
+        //KeyInputHandler.register();
         VineryNetwork.registerS2CPackets();
 
         RenderTypeRegistry.register(RenderType.cutout(),
