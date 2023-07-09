@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import satisfyu.vinery.Vinery;
 import satisfyu.vinery.block.storage.WineBottleBlock;
 import satisfyu.vinery.item.DrinkBlockItem;
 import satisfyu.vinery.registry.ObjectRegistry;

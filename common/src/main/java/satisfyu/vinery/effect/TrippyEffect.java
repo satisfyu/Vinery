@@ -42,5 +42,3 @@ public class TrippyEffect extends MobEffect {
     }
 
 }
-
-

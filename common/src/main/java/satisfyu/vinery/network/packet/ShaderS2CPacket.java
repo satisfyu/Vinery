@@ -15,9 +15,10 @@ public class ShaderS2CPacket implements NetworkManager.NetworkReceiver {
         client.execute(() -> {
             ShaderUtils.enabled = activate;
             ShaderUtils.load(activate ? ShaderUtils.getRandomShader() : ShaderUtils.getShader(Shader.NONE));
-             if (ShaderUtils.shader != null) {
-                 ShaderUtils.shader.resize(client.getWindow().getWidth(), client.getWindow().getHeight());
-             }
+            if (ShaderUtils.shader != null) {
+                ShaderUtils.shader.resize(client.getWindow().getWidth(), client.getWindow().getHeight());
+            }
         });
     }
 }
+

@@ -3,9 +3,9 @@ package satisfyu.vinery.item;
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
+import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
@@ -59,7 +59,6 @@ public class DrinkBlockItem extends BlockItem {
         }
         return super.updateCustomBlockEntityTag(blockPos, level, player, itemStack, blockState);
     }
-
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
         List<Pair<MobEffectInstance, Float>> list2 = getFoodProperties() != null ? getFoodProperties().getEffects() : Lists.newArrayList();
@@ -116,26 +115,25 @@ public class DrinkBlockItem extends BlockItem {
                 if (d > 0.0) {
                     tooltip.add(
                             Component.translatable(
-                                    "attribute.modifier.plus." + entityAttributeModifier3.getOperation().toValue(),
-                                    ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
+                                            "attribute.modifier.plus." + entityAttributeModifier3.getOperation().toValue(),
+                                            ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
                                     .withStyle(ChatFormatting.BLUE)
                     );
                 } else if (d < 0.0) {
                     e *= -1.0;
                     tooltip.add(
                             Component.translatable(
-                                    "attribute.modifier.take." + entityAttributeModifier3.getOperation().toValue(),
-                                    ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
+                                            "attribute.modifier.take." + entityAttributeModifier3.getOperation().toValue(),
+                                            ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
                                     .withStyle(ChatFormatting.RED)
                     );
                 }
             }
         }
-        
+
         tooltip.add(Component.empty());
-        tooltip.add(Component.translatable("block.vinery.canbeplaced.tooltip").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
-        tooltip.add(Component.translatable("item.vinery.wine." + this.getDescriptionId()).withStyle(ChatFormatting.WHITE));
-        tooltip.add(Component.translatable("tooltip.vinery.year").withStyle(ChatFormatting.WHITE).append(Component.nullToEmpty(" " + WineYears.getWineYear(stack, world))));
+        tooltip.add(Component.translatable("block.vinery.canbeplaced.tooltip").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.vinery.year").withStyle(ChatFormatting.GRAY).append(Component.nullToEmpty(" " + WineYears.getWineYear(stack, world))));
     }
 
     @Override

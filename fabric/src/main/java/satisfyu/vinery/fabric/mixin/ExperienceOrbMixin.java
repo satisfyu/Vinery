@@ -1,10 +1,11 @@
-package satisfyu.vinery.mixin;
+package satisfyu.vinery.fabric.mixin;
 
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 import satisfyu.vinery.registry.VineryEffects;
 
@@ -19,10 +20,10 @@ public abstract class ExperienceOrbMixin {
             int amplifier = p.getEffect(VineryEffects.EXPERIENCE_EFFECT.get()).amplifier;
             int i = args.get(1);
 
-            int xp = (int) (i + (i * amplifier * 0.5));
+            int xp = (int) (i + (i * (1 + amplifier) * 0.5));
 
             args.set(1, xp);
         }
-
     }
+
 }

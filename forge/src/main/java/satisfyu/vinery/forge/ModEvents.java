@@ -1,13 +1,18 @@
 package satisfyu.vinery.forge;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
+import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.forge.registry.VineryForgeVillagers;
 import satisfyu.vinery.registry.ObjectRegistry;
+import satisfyu.vinery.registry.VineryEffects;
 import satisfyu.vinery.util.VineryVillagerUtil;
 
 import java.util.List;
@@ -47,5 +52,17 @@ public class ModEvents {
                 level5.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.GLOVES.get(), 12, 1, 15));
             }
         }
+
+        @SubscribeEvent
+        public static void experience(PlayerXpEvent.PickupXp event){
+            Player p = event.getEntity();
+            if(p.hasEffect(VineryEffects.EXPERIENCE_EFFECT.get())){
+                int amplifier = p.getEffect(VineryEffects.EXPERIENCE_EFFECT.get()).amplifier;
+                ExperienceOrb e = event.getOrb();
+                int i = e.value;
+                e.value = (int) (i + (i * (1 + amplifier) * 0.5));
+            }
+        }
+
     }
 }

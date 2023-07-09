@@ -4,20 +4,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import satisfyu.vinery.VineryIdentifier;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
 public class VineryStorageTypes {
 
     public static final ResourceLocation FOUR_BOTTLE = new VineryIdentifier("four_bottle");
-
     public static final ResourceLocation NINE_BOTTLE = new VineryIdentifier("nine_bottle");
-
     public static final ResourceLocation SHELF = new VineryIdentifier("shelf");
-
     public static final ResourceLocation WINE_BOX = new VineryIdentifier("wine_box");
-
     public static final ResourceLocation FLOWER_BOX = new VineryIdentifier("flower_box");
     public static final ResourceLocation WINE_BOTTLE = new VineryIdentifier("wine_bottle");
 
@@ -46,11 +41,12 @@ public class VineryStorageTypes {
 
 
         blocks.addAll(List.of(
-                ObjectRegistry.NOIR_WINE.get(), ObjectRegistry.CLARK_WINE.get(), ObjectRegistry.BOLVAR_WINE.get(), ObjectRegistry.STAL_WINE.get(), ObjectRegistry.CHERRY_WINE.get(), ObjectRegistry.KELP_CIDER.get(),
-                ObjectRegistry.SOLARIS_WINE.get(), ObjectRegistry.APPLE_WINE.get(), ObjectRegistry.APPLE_CIDER.get(), ObjectRegistry.STRAD_WINE.get(), ObjectRegistry.CHENET_WINE.get(), ObjectRegistry.MELLOHI_WINE.get(),
-                ObjectRegistry.KING_DANIS_WINE.get(), ObjectRegistry.MAGNETIC_WINE.get(), ObjectRegistry.CHORUS_WINE.get(), ObjectRegistry.JELLIE_WINE.get(), ObjectRegistry.AEGIS_WINE.get(), ObjectRegistry.RED_WINE.get(),
-                ObjectRegistry.PRAETORIAN_WINE.get(), ObjectRegistry.CRISTEL_WINE.get(), ObjectRegistry.VILLAGERS_FRIGHT.get(), ObjectRegistry.EISWEIN.get(), ObjectRegistry.CREEPERS_CRUSH.get(), ObjectRegistry.JO_SPECIAL_MIXTURE.get(),
-                ObjectRegistry.MEAD.get(), ObjectRegistry.BOTTLE_MOJANG_NOIR.get()
+                ObjectRegistry.NOIR_WINE.get(), ObjectRegistry.CLARK_WINE.get(), ObjectRegistry.BOLVAR_WINE.get(), ObjectRegistry.STAL_WINE.get(), ObjectRegistry.CHERRY_WINE.get(),
+                ObjectRegistry.KELP_CIDER.get(), ObjectRegistry.SOLARIS_WINE.get(), ObjectRegistry.APPLE_WINE.get(), ObjectRegistry.APPLE_CIDER.get(), ObjectRegistry.STRAD_WINE.get(),
+                ObjectRegistry.CHENET_WINE.get(), ObjectRegistry.MELLOHI_WINE.get(), ObjectRegistry.KING_DANIS_WINE.get(), ObjectRegistry.MAGNETIC_WINE.get(), ObjectRegistry.CHORUS_WINE.get(),
+                ObjectRegistry.JELLIE_WINE.get(), ObjectRegistry.AEGIS_WINE.get(), ObjectRegistry.RED_WINE.get(), ObjectRegistry.PRAETORIAN_WINE.get(), ObjectRegistry.CRISTEL_WINE.get(),
+                ObjectRegistry.VILLAGERS_FRIGHT.get(), ObjectRegistry.EISWEIN.get(), ObjectRegistry.CREEPERS_CRUSH.get(), ObjectRegistry.MEAD.get(), ObjectRegistry.BOTTLE_MOJANG_NOIR.get(),
+                ObjectRegistry.JO_SPECIAL_MIXTURE.get(), ObjectRegistry.GLOWING_WINE.get()
         ));
 
     }

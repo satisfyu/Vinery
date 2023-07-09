@@ -24,7 +24,10 @@ import satisfyu.vinery.client.render.entity.MuleRenderer;
 import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
 import satisfyu.vinery.event.KeyInputHandler;
 import satisfyu.vinery.network.VineryNetwork;
-import satisfyu.vinery.registry.*;
+import satisfyu.vinery.registry.CustomArmorRegistry;
+import satisfyu.vinery.registry.VineryBlockEntityTypes;
+import satisfyu.vinery.registry.VineryEntites;
+import satisfyu.vinery.registry.VineryScreenHandlerTypes;
 
 import static satisfyu.vinery.registry.ObjectRegistry.*;
 
@@ -68,19 +71,21 @@ public class VineryClient {
 
         MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER.get(), FermentationBarrelGui::new);
         MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.WINE_PRESS_SCREEN_HANDLER.get(), WinePressGui::new);
+
+
         BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_POT_ENTITY.get(), FlowerPotBlockEntityRenderer::new);
     }
 
 
     public static void preInitClient(){
-        //sign
+        // Sign
         TerraformSignHelper.regsterSignSprite(CHERRY_SIGN_TEXTURE);
 
-        //Entity Model Layers
+        // Entity Model Layers
         EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);
         CustomArmorRegistry.registerArmorModelLayers();
 
-        //Entity Renderers
+        // Entity Renderers
         EntityRendererRegistry.register(VineryEntites.MULE, MuleRenderer::new);
         EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
         EntityRendererRegistry.register(VineryEntites.CHAIR, ChairRenderer::new);
