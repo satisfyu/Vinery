@@ -24,6 +24,7 @@ public class WineBoxRenderer implements StorageTypeRenderer {
 
             matrices.mulPose(Vector3f.YN.rotationDegrees(90f));
 
-            ClientUtil.renderBlock(blockItem.getBlock().defaultBlockState().setValue(WineBottleBlock.FAKE_MODEL, false), matrices, vertexConsumers, entity);        }
+            ClientUtil.renderBlock(blockItem.getBlock().defaultBlockState().setValue(WineBottleBlock.FAKE_MODEL, false), matrices, vertexConsumers, entity);
+        }
     }
 }
