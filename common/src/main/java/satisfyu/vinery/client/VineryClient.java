@@ -22,12 +22,8 @@ import satisfyu.vinery.client.model.MuleModel;
 import satisfyu.vinery.client.render.block.FlowerPotBlockEntityRenderer;
 import satisfyu.vinery.client.render.entity.MuleRenderer;
 import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
-import satisfyu.vinery.event.KeyInputHandler;
 import satisfyu.vinery.network.VineryNetwork;
-import satisfyu.vinery.registry.CustomArmorRegistry;
-import satisfyu.vinery.registry.VineryBlockEntityTypes;
-import satisfyu.vinery.registry.VineryEntites;
-import satisfyu.vinery.registry.VineryScreenHandlerTypes;
+import satisfyu.vinery.registry.*;
 
 import static satisfyu.vinery.registry.ObjectRegistry.*;
 
@@ -79,7 +75,8 @@ public class VineryClient {
 
     public static void preInitClient(){
         // Sign
-        TerraformSignHelper.regsterSignSprite(CHERRY_SIGN_TEXTURE);
+        TerraformSignHelper.regsterSignSprite(VineryBoatsAndSigns.CHERRY_SIGN_TEXTURE);
+        TerraformSignHelper.regsterSignSprite(VineryBoatsAndSigns.CHERRY_HANGING_SIGN_TEXTURE);
 
         // Entity Model Layers
         EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);

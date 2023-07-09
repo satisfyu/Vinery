@@ -19,8 +19,8 @@ public class VineryStorageTypes {
 
 
     public static void registerBlocks(Set<Block> blocks) {
-        blocks.add(ObjectRegistry.WINE_RACK_2.get());
-        blocks.add(ObjectRegistry.WINE_RACK_1.get());
+        blocks.add(ObjectRegistry.CHERRY_WINE_RACK_SMALL.get());
+        blocks.add(ObjectRegistry.CHERRY_WINE_RACK_BIG.get());
         blocks.add(ObjectRegistry.SHELF.get());
         blocks.add(ObjectRegistry.WINE_BOX.get());
         blocks.add(ObjectRegistry.FLOWER_BOX.get());

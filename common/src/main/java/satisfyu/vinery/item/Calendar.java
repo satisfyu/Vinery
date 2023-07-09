@@ -1,0 +1,26 @@
+package satisfyu.vinery.item;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import satisfyu.vinery.config.VineryConfig;
+import satisfyu.vinery.util.WineYears;
+
+public class Calendar extends Item {
+    public Calendar(Properties properties) {
+        super(properties);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int i, boolean bl) {
+        if(level.isClientSide() && entity instanceof Player player && player.isHolding(this)){
+            long hour = (level.getDayTime() / 1000) % 24;
+            long day = (level.getDayTime() / 24000) % VineryConfig.DEFAULT.getConfig().yearLengthInDays();
+            player.displayClientMessage(Component.literal(hour + "h / " + day + "d / " + WineYears.getYear(level) + "y").withStyle(ChatFormatting.YELLOW), true);
+        }
+    }
+}
