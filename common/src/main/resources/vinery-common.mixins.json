@@ -2,6 +2,7 @@
   "required": true,
   "package": "satisfyu.vinery.mixin",
   "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
   "client": [
     "ClientPlayerEntityMixin",
     "GameRendererMixin",
@@ -11,7 +12,6 @@
   "mixins": [
     "BlockMixin",
     "BoneMealItemMixin",
-    "ExperienceOrbMixin",
     "FoxEntityEatSweetBerriesGoalMixin",
     "LivingEntityMixin",
     "MobEffectUtilMixin",

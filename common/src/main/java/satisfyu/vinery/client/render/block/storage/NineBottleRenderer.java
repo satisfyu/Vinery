@@ -19,9 +19,6 @@ public class NineBottleRenderer implements StorageTypeRenderer {
     public void render(StorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> itemStacks) {
         matrices.translate(-0.13, 0.335, 0.125);
         matrices.scale(0.9f, 0.9f, 0.9f);
-
-        Vinery.LOGGER.error("rendering 9 bottles");
-
         for (int i = 0; i < itemStacks.size(); i++) {
             ItemStack stack = itemStacks.get(i);
             if (!stack.isEmpty() && stack.getItem() instanceof BlockItem blockItem) {

@@ -6,6 +6,7 @@
     "LongToolTipsMixin"
   ],
   "mixins": [
+    "ExperienceOrbMixin"
   ],
   "injectors": {
     "defaultRequire": 1
