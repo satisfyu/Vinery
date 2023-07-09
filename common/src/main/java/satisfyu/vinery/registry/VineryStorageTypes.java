@@ -38,15 +38,12 @@ public class VineryStorageTypes {
         blocks.add(ObjectRegistry.MANGROVE_WINE_RACK_SMALL.get());
         blocks.add(ObjectRegistry.ACACIA_WINE_RACK_BIG.get());
         blocks.add(ObjectRegistry.ACACIA_WINE_RACK_SMALL.get());
-
-
         blocks.addAll(List.of(
-                ObjectRegistry.NOIR_WINE.get(), ObjectRegistry.CLARK_WINE.get(), ObjectRegistry.BOLVAR_WINE.get(), ObjectRegistry.STAL_WINE.get(), ObjectRegistry.CHERRY_WINE.get(),
-                ObjectRegistry.KELP_CIDER.get(), ObjectRegistry.SOLARIS_WINE.get(), ObjectRegistry.APPLE_WINE.get(), ObjectRegistry.APPLE_CIDER.get(), ObjectRegistry.STRAD_WINE.get(),
-                ObjectRegistry.CHENET_WINE.get(), ObjectRegistry.MELLOHI_WINE.get(), ObjectRegistry.KING_DANIS_WINE.get(), ObjectRegistry.MAGNETIC_WINE.get(), ObjectRegistry.CHORUS_WINE.get(),
-                ObjectRegistry.JELLIE_WINE.get(), ObjectRegistry.AEGIS_WINE.get(), ObjectRegistry.RED_WINE.get(), ObjectRegistry.PRAETORIAN_WINE.get(), ObjectRegistry.CRISTEL_WINE.get(),
-                ObjectRegistry.VILLAGERS_FRIGHT.get(), ObjectRegistry.EISWEIN.get(), ObjectRegistry.CREEPERS_CRUSH.get(), ObjectRegistry.MEAD.get(), ObjectRegistry.BOTTLE_MOJANG_NOIR.get(),
-                ObjectRegistry.JO_SPECIAL_MIXTURE.get(), ObjectRegistry.GLOWING_WINE.get()
+                ObjectRegistry.NOIR_WINE.get(), ObjectRegistry.CLARK_WINE.get(), ObjectRegistry.BOLVAR_WINE.get(), ObjectRegistry.STAL_WINE.get(), ObjectRegistry.CHERRY_WINE.get(), ObjectRegistry.KELP_CIDER.get(),
+                ObjectRegistry.SOLARIS_WINE.get(), ObjectRegistry.APPLE_WINE.get(), ObjectRegistry.APPLE_CIDER.get(), ObjectRegistry.STRAD_WINE.get(), ObjectRegistry.CHENET_WINE.get(), ObjectRegistry.MELLOHI_WINE.get(),
+                ObjectRegistry.KING_DANIS_WINE.get(), ObjectRegistry.MAGNETIC_WINE.get(), ObjectRegistry.CHORUS_WINE.get(), ObjectRegistry.JELLIE_WINE.get(), ObjectRegistry.AEGIS_WINE.get(), ObjectRegistry.RED_WINE.get(),
+                ObjectRegistry.PRAETORIAN_WINE.get(), ObjectRegistry.CRISTEL_WINE.get(), ObjectRegistry.JO_SPECIAL_MIXTURE.get(), ObjectRegistry.GLOWING_WINE.get(), ObjectRegistry.CREEPERS_CRUSH.get(),
+                ObjectRegistry.BOTTLE_MOJANG_NOIR.get(), ObjectRegistry.VILLAGERS_FRIGHT.get(), ObjectRegistry.MEAD.get(), ObjectRegistry.EISWEIN.get()
         ));
 
     }

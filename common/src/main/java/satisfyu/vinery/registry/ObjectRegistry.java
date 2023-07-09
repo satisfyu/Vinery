@@ -283,23 +283,34 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> WANDERING_WINEMAKER_SPAWN_EGG = registerI("wandering_winemaker_spawn_egg", () -> new ArchitecturySpawnEggItem(VineryEntites.WANDERING_WINEMAKER, -1, -1, getSettings()));
     public static final RegistrySupplier<Block> POTTED_APPLE_TREE_SAPLING = registerB("potted_apple_tree_sapling", () -> new net.minecraft.world.level.block.FlowerPotBlock(ObjectRegistry.APPLE_TREE_SAPLING.get(), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY)));
     public static final RegistrySupplier<Block> POTTED_CHERRY_TREE_SAPLING = registerB("potted_cherry_tree_sapling", () -> new net.minecraft.world.level.block.FlowerPotBlock(ObjectRegistry.CHERRY_SAPLING.get(), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY)));
-    
-    
-    // wine racks
-    public static final RegistrySupplier<Block> OAK_WINE_RACK_BIG = registerWithItem("oak_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> OAK_WINE_RACK_SMALL = registerWithItem("oak_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> BIRCH_WINE_RACK_BIG = registerWithItem("birch_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> BIRCH_WINE_RACK_SMALL = registerWithItem("birch_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> SPRUCE_WINE_RACK_BIG = registerWithItem("spruce_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> SPRUCE_WINE_RACK_SMALL = registerWithItem("spruce_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> DARK_OAK_WINE_RACK_BIG = registerWithItem("dark_oak_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> DARK_OAK_WINE_RACK_SMALL = registerWithItem("dark_oak_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> JUNGLE_WINE_RACK_BIG = registerWithItem("jungle_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> JUNGLE_WINE_RACK_SMALL = registerWithItem("jungle_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> ACACIA_WINE_RACK_BIG = registerWithItem("acacia_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> ACACIA_WINE_RACK_SMALL = registerWithItem("acacia_wine_rack_small", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> MANGROVE_WINE_RACK_BIG = registerWithItem("mangrove_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> MANGROVE_WINE_RACK_SMALL = registerWithItem("mangrove_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Block> OAK_WINE_RACK_BIG = registerB("oak_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> OAK_WINE_RACK_BIG_ITEM = registerI("oak_wine_rack_big", () -> new BlockItem(OAK_WINE_RACK_BIG.get(), getSettings()));
+    public static final RegistrySupplier<Block> OAK_WINE_RACK_SMALL = registerB("oak_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> OAK_WINE_RACK_SMALL_ITEM = registerI("oak_wine_rack_small", () -> new BlockItem(OAK_WINE_RACK_SMALL.get(), getSettings()));
+    public static final RegistrySupplier<Block> BIRCH_WINE_RACK_BIG = registerB("birch_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> BIRCH_WINE_RACK_BIG_ITEM = registerI("birch_wine_rack_big", () -> new BlockItem(BIRCH_WINE_RACK_BIG.get(), getSettings()));
+    public static final RegistrySupplier<Block> BIRCH_WINE_RACK_SMALL = registerB("birch_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> BIRCH_WINE_RACK_SMALL_ITEM = registerI("birch_wine_rack_small", () -> new BlockItem(BIRCH_WINE_RACK_SMALL.get(), getSettings()));
+    public static final RegistrySupplier<Block> SPRUCE_WINE_RACK_BIG = registerB("spruce_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> SPRUCE_WINE_RACK_BIG_ITEM = registerI("spruce_wine_rack_big", () -> new BlockItem(SPRUCE_WINE_RACK_BIG.get(), getSettings()));
+    public static final RegistrySupplier<Block> SPRUCE_WINE_RACK_SMALL = registerB("spruce_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> SPRUCE_WINE_RACK_SMALL_ITEM = registerI("spruce_wine_rack_small", () -> new BlockItem(SPRUCE_WINE_RACK_SMALL.get(), getSettings()));
+    public static final RegistrySupplier<Block> DARK_OAK_WINE_RACK_BIG = registerB("dark_oak_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> DARK_OAK_WINE_RACK_BIG_ITEM = registerI("dark_oak_wine_rack_big", () -> new BlockItem(DARK_OAK_WINE_RACK_BIG.get(), getSettings()));
+    public static final RegistrySupplier<Block> DARK_OAK_WINE_RACK_SMALL = registerB("dark_oak_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> DARK_OAK_WINE_RACK_SMALL_ITEM = registerI("dark_oak_wine_rack_small", () -> new BlockItem(DARK_OAK_WINE_RACK_SMALL.get(), getSettings()));
+    public static final RegistrySupplier<Block> JUNGLE_WINE_RACK_BIG = registerB("jungle_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> JUNGLE_WINE_RACK_BIG_ITEM = registerI("jungle_wine_rack_big", () -> new BlockItem(JUNGLE_WINE_RACK_BIG.get(), getSettings()));
+    public static final RegistrySupplier<Block> JUNGLE_WINE_RACK_SMALL = registerB("jungle_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> JUNGLE_WINE_RACK_SMALL_ITEM = registerI("jungle_wine_rack_small", () -> new BlockItem(JUNGLE_WINE_RACK_SMALL.get(), getSettings()));
+    public static final RegistrySupplier<Block> ACACIA_WINE_RACK_BIG = registerB("acacia_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> ACACIA_WINE_RACK_BIG_ITEM = registerI("acacia_wine_rack_big", () -> new BlockItem(ACACIA_WINE_RACK_BIG.get(), getSettings()));
+    public static final RegistrySupplier<Block> ACACIA_WINE_RACK_SMALL = registerB("acacia_wine_rack_small", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> ACACIA_WINE_RACK_SMALL_ITEM = registerI("acacia_wine_rack_small", () -> new BlockItem(ACACIA_WINE_RACK_SMALL.get(), getSettings()));
+    public static final RegistrySupplier<Block> MANGROVE_WINE_RACK_BIG = registerB("mangrove_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> MANGROVE_WINE_RACK_BIG_ITEM = registerI("mangrove_wine_rack_big", () -> new BlockItem(MANGROVE_WINE_RACK_BIG.get(), getSettings()));
+    public static final RegistrySupplier<Block> MANGROVE_WINE_RACK_SMALL = registerB("mangrove_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Item> MANGROVE_WINE_RACK_SMALL_ITEM = registerI("mangrove_wine_rack_small", () -> new BlockItem(MANGROVE_WINE_RACK_SMALL.get(), getSettings()));
 
     //deprecated items - not craftable, not visible in the creative inventory - just here so player won't lose their hardly crafted Blocks
     public static final RegistrySupplier<Block> WOOD_FIRED_OVEN = registerWithItem("wood_fired_oven", () -> new StoveBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
