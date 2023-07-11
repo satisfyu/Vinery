@@ -49,6 +49,8 @@ public class VineryTabs {
                 out.accept(ObjectRegistry.WINE_PRESS.get());
                 out.accept(ObjectRegistry.CHAIR.get());
                 out.accept(ObjectRegistry.TABLE.get());
+                out.accept(ObjectRegistry.CHERRY_WINE_RACK_SMALL.get());
+                out.accept(ObjectRegistry.CHERRY_WINE_RACK_BIG.get());
                 out.accept(ObjectRegistry.WINE_RACK_3.get());
                 out.accept(ObjectRegistry.WINE_RACK_5.get());
                 out.accept(ObjectRegistry.BARREL.get());
@@ -68,19 +70,16 @@ public class VineryTabs {
                 out.accept(ObjectRegistry.CHERRY_BUTTON.get());
                 out.accept(ObjectRegistry.CHERRY_PRESSURE_PLATE.get());
                 out.accept(ObjectRegistry.CHERRY_DOOR.get());
-                out.accept(ObjectRegistry.CHERRY_TRAPDOOR.get());
                 out.accept(VineryBoatsAndSigns.CHERRY_SIGN_ITEM.get());
-             //   out.accept(VineryBoatsAndSigns.CHERRY_HANGING_SIGN_ITEM.get());
-                out.accept(ObjectRegistry.GRAPEVINE_LATTICE.get());
+                out.accept(ObjectRegistry.CHERRY_TRAPDOOR.get());
                 out.accept(ObjectRegistry.WINDOW.get());
+                out.accept(ObjectRegistry.GRAPEVINE_LATTICE.get());
                 out.accept(ObjectRegistry.LOAM.get());
                 out.accept(ObjectRegistry.LOAM_STAIRS.get());
                 out.accept(ObjectRegistry.LOAM_SLAB.get());
                 out.accept(ObjectRegistry.COARSE_DIRT_SLAB.get());
                 out.accept(ObjectRegistry.DIRT_SLAB.get());
                 out.accept(ObjectRegistry.GRASS_SLAB.get());
-
-                out.accept(ObjectRegistry.WINE_BOTTLE.get());
                 out.accept(ObjectRegistry.APPLE_JUICE.get());
                 out.accept(ObjectRegistry.RED_GRAPEJUICE_WINE_BOTTLE.get());
                 out.accept(ObjectRegistry.WHITE_GRAPEJUICE_WINE_BOTTLE.get());
@@ -90,7 +89,6 @@ public class VineryTabs {
                 out.accept(ObjectRegistry.JUNGLE_WHITE_GRAPEJUICE_BOTTLE.get());
                 out.accept(ObjectRegistry.SAVANNA_RED_GRAPEJUICE_BOTTLE.get());
                 out.accept(ObjectRegistry.SAVANNA_WHITE_GRAPEJUICE_BOTTLE.get());
-
                 out.accept(ObjectRegistry.CHORUS_WINE.get());
                 out.accept(ObjectRegistry.CHERRY_WINE.get());
                 out.accept(ObjectRegistry.MAGNETIC_WINE.get());
@@ -118,9 +116,7 @@ public class VineryTabs {
                 out.accept(ObjectRegistry.MEAD.get());
                 out.accept(ObjectRegistry.BOTTLE_MOJANG_NOIR.get());
                 out.accept(ObjectRegistry.EISWEIN.get());
-
-
-
+                out.accept(ObjectRegistry.WINE_BOTTLE.get());
                 out.accept(ObjectRegistry.APPLE_MASH.get());
                 out.accept(ObjectRegistry.GRAPEVINE_STEM.get());
                 out.accept(ObjectRegistry.STORAGE_POT.get());
@@ -138,9 +134,6 @@ public class VineryTabs {
                 out.accept(ObjectRegistry.CALENDAR.get());
                 out.accept(ObjectRegistry.MULE_SPAWN_EGG.get());
                 out.accept(ObjectRegistry.WANDERING_WINEMAKER_SPAWN_EGG.get());
-
-                out.accept(ObjectRegistry.CHERRY_WINE_RACK_BIG.get());
-                out.accept(ObjectRegistry.CHERRY_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.OAK_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.OAK_WINE_RACK_BIG.get());
                 out.accept(ObjectRegistry.SPRUCE_WINE_RACK_SMALL.get());
@@ -155,9 +148,6 @@ public class VineryTabs {
                 out.accept(ObjectRegistry.DARK_OAK_WINE_RACK_BIG.get());
                 out.accept(ObjectRegistry.MANGROVE_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.MANGROVE_WINE_RACK_BIG.get());
-
-                out.accept(VineryBoatsAndSigns.CHERRY_BOAT.get());
-                out.accept(VineryBoatsAndSigns.CHERRY_CHEST_BOAT.get());
             })
             .build());
 

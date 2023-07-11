@@ -1,7 +1,6 @@
 package satisfyu.vinery.registry;
 
 import de.cristelknight.doapi.Util;
-import de.cristelknight.doapi.terraform.sign.TerraformSignHelper;
 import dev.architectury.core.item.ArchitecturySpawnEggItem;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
