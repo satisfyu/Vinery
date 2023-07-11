@@ -76,7 +76,7 @@ public class VineryClient {
     public static void preInitClient(){
         // Sign
         TerraformSignHelper.regsterSignSprite(VineryBoatsAndSigns.CHERRY_SIGN_TEXTURE);
-        TerraformSignHelper.regsterSignSprite(VineryBoatsAndSigns.CHERRY_HANGING_SIGN_TEXTURE);
+        //TerraformSignHelper.regsterSignSprite(VineryBoatsAndSigns.CHERRY_HANGING_SIGN_TEXTURE);
 
         // Entity Model Layers
         EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);

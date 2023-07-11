@@ -49,7 +49,7 @@ public class ModEvents {
                 List<VillagerTrades.ItemListing> level5 = trades.get(5);
                 level5.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.WINE_BOX.get(), 10, 1, 10));
                 level5.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.KING_DANIS_WINE.get(), 4, 1, 10));
-                level5.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.GLOVES.get(), 12, 1, 15));
+                level5.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.CALENDAR.get(), 2, 1, 15));
             }
         }
 

@@ -49,7 +49,7 @@ public class KitchenSinkBlock extends Block {
 
 	public KitchenSinkBlock(Properties settings) {
 		super(settings);
-		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(HAS_FAUCET, false).setValue(FILLED, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(HAS_FAUCET, true).setValue(FILLED, false));
 	}
 
 	@Override

@@ -47,7 +47,7 @@ public class VineryFabricVillagers {
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 5, factories -> {
             factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.WINE_BOX.get(), 10, 1, 10));
             factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.KING_DANIS_WINE.get(), 4, 1, 10));
-            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.GLOVES.get(), 12, 1, 15));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.CALENDAR.get(), 12, 1, 15));
 
 
         });

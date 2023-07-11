@@ -70,7 +70,7 @@ public class VineryTabs {
                 out.accept(ObjectRegistry.CHERRY_DOOR.get());
                 out.accept(ObjectRegistry.CHERRY_TRAPDOOR.get());
                 out.accept(VineryBoatsAndSigns.CHERRY_SIGN_ITEM.get());
-                out.accept(VineryBoatsAndSigns.CHERRY_HANGING_SIGN_ITEM.get());
+             //   out.accept(VineryBoatsAndSigns.CHERRY_HANGING_SIGN_ITEM.get());
                 out.accept(ObjectRegistry.GRAPEVINE_LATTICE.get());
                 out.accept(ObjectRegistry.WINDOW.get());
                 out.accept(ObjectRegistry.LOAM.get());
@@ -135,8 +135,7 @@ public class VineryTabs {
                 out.accept(ObjectRegistry.VINEMAKER_APRON.get());
                 out.accept(ObjectRegistry.VINEMAKER_LEGGINGS.get());
                 out.accept(ObjectRegistry.VINEMAKER_BOOTS.get());
-                out.accept(ObjectRegistry.GLOVES.get());
-                out.accept(ObjectRegistry.CALENDER.get());
+                out.accept(ObjectRegistry.CALENDAR.get());
                 out.accept(ObjectRegistry.MULE_SPAWN_EGG.get());
                 out.accept(ObjectRegistry.WANDERING_WINEMAKER_SPAWN_EGG.get());
 
