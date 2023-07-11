@@ -56,7 +56,9 @@ public class DrinkBlockItem extends BlockItem {
     @Override
     protected boolean updateCustomBlockEntityTag(BlockPos blockPos, Level level, @Nullable Player player, ItemStack itemStack, BlockState blockState) {
         if(level.getBlockEntity(blockPos) instanceof StorageBlockEntity wineEntity){
-            wineEntity.setStack(0, itemStack.copy());
+            ItemStack newStack = itemStack.copy();
+            newStack.setCount(1);
+            wineEntity.setStack(0, newStack);
         }
         return super.updateCustomBlockEntityTag(blockPos, level, player, itemStack, blockState);
     }
