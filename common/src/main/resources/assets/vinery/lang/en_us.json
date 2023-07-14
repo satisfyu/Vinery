@@ -285,6 +285,8 @@
   "block.vinery.jo_special_mixture": "Jo's Special Mixture",
   "block.vinery.glowing_wine": "Sunkissed Wine",
   "block.vinery.mead": "Mead",
-  "block.vinery.bottle_mojang_noir": "A Bottle of 'Mojang Noir'"
+  "block.vinery.bottle_mojang_noir": "A Bottle of 'Mojang Noir'",
+  "key.category.vinery": "Vinery",
+  "key.vinery.change_shader:": "Change Shader"
 
 }

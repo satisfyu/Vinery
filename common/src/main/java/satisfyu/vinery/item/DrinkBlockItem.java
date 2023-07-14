@@ -130,10 +130,9 @@ public class DrinkBlockItem extends BlockItem {
                 }
             }
         }
-
-        tooltip.add(Component.empty());
-        tooltip.add(Component.translatable("block.vinery.canbeplaced.tooltip").withStyle(ChatFormatting.GRAY));
-        tooltip.add(Component.translatable("tooltip.vinery.year").withStyle(ChatFormatting.GRAY).append(Component.nullToEmpty(" " + WineYears.getWineYear(stack, world))));
+        tooltip.add(Component.translatable("block.vinery.canbeplaced.tooltip").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+        tooltip.add(Component.translatable("item.vinery.wine." + this.getDescriptionId()).withStyle(ChatFormatting.WHITE));
+        tooltip.add(Component.translatable("tooltip.vinery.year").withStyle(ChatFormatting.WHITE).append(Component.nullToEmpty(" " + WineYears.getWineYear(stack, world))));
     }
 
     @Override
