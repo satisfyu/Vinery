@@ -63,6 +63,14 @@ public class VineryClient {
         ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> GrassColor.get(0.5, 1.0), GRASS_SLAB);
         ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> FoliageColor.get(0.5, 1.0), APPLE_LEAVES_ITEM);
 
+        ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
+                    if (world == null || pos == null) {
+                        return -1;
+                    }
+                    return BiomeColors.getAverageWaterColor(world, pos);
+                }, KITCHEN_SINK.get()
+        );
+
 
 
         MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER.get(), FermentationBarrelGui::new);
