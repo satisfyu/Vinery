@@ -26,6 +26,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.registry.ObjectRegistry;
+import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.util.WineYears;
 
 import java.util.List;
@@ -138,20 +139,7 @@ public class DrinkBlockItem extends BlockItem {
     @Override
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
         super.finishUsingItem(itemStack, level, livingEntity);
-        if (livingEntity instanceof ServerPlayer serverPlayer) {
-            CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, itemStack);
-            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
-        }
-        if (itemStack.isEmpty()) {
-            return new ItemStack(ObjectRegistry.WINE_BOTTLE.get());
-        }
-        if (livingEntity instanceof Player player && !((Player)livingEntity).getAbilities().instabuild) {
-            ItemStack itemStack2 = new ItemStack(ObjectRegistry.WINE_BOTTLE.get());
-            if (!player.getInventory().add(itemStack2)) {
-                player.drop(itemStack2, false);
-            }
-        }
-        return itemStack;
+        return GeneralUtil.convertStackAfterFinishUsing(livingEntity, itemStack, ObjectRegistry.WINE_BOTTLE.get(), this);
     }
 
 

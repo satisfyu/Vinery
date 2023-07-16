@@ -4,7 +4,7 @@
 		"1": "vinery:block/sink_side",
 		"2": "vinery:block/stove_bottom",
 		"3": "vinery:block/sink_bottom",
-		"4": "vinery:block/water_still",
+		"4": "block/water_still",
 		"5": "vinery:block/sink_top",
 		"6": "vinery:block/faucet",
 		"particle": "vinery:block/sink_side"
@@ -71,8 +71,8 @@
 			"to": [13, 15, 12],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 14.5, 7.99375]},
 			"faces": {
-				"up": {"uv": [0, 0, 10, 10], "texture": "#4"},
-				"down": {"uv": [0, 0, 4, 5], "texture": "#4"}
+				"up": {"uv": [0, 0, 10, 10], "texture": "#4", "tintindex": 0 },
+				"down": {"uv": [0, 0, 4, 5], "texture": "#4", "tintindex": 0 }
 			}
 		},
 		{
