@@ -1,4 +1,4 @@
-package satisfyu.vinery.item;
+package satisfyu.vinery.registry;
 
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
@@ -10,7 +10,7 @@ import satisfyu.vinery.Vinery;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VineryBoatsAndSigns;
 
-public class VineryTabs {
+public class VineryTabRegistry {
     public static final DeferredRegister<CreativeModeTab> VINERY_TABS = DeferredRegister.create(Vinery.MODID, Registries.CREATIVE_MODE_TAB);
 
     public static final RegistrySupplier<CreativeModeTab> VINERY_TAB = VINERY_TABS.register("vinery", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)

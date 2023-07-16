@@ -30,7 +30,7 @@ public class VineryForge {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        //event.enqueueWork(VineryForgeVillagers::registerPOIs);
+        event.enqueueWork(VineryForgeVillagers::registerPOIs);
         Vinery.commonSetup();
     }
     public static boolean isClothConfigLoaded(){
