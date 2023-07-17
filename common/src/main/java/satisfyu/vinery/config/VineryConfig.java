@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import de.cristelknight.doapi.config.jankson.config.CommentedConfig;
 import net.minecraft.Util;
-import satisfyu.vinery.Vinery;
 
 import java.util.HashMap;
 
@@ -53,7 +52,6 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, boolean e
 
     @Override
     public VineryConfig getInstance() {
-
         return INSTANCE;
     }
 
