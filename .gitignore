@@ -19,3 +19,4 @@ classes/
 .settings
 *.launch.DS_Store
 .DS_Store
+.architectury-transformer/
