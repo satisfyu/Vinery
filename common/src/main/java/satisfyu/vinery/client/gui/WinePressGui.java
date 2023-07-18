@@ -42,7 +42,7 @@ public class WinePressGui extends AbstractContainerScreen<WinePressGuiHandler> {
 
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isCrafting()) {
-             guiGraphics.fill(x + 78, y + 35, 176, 0, menu.getScaledProgress(), 20);
+             guiGraphics.blit(TEXTURE, + 78, y + 35, 176, 0, menu.getScaledProgress(), 20);
         }
     }
 
