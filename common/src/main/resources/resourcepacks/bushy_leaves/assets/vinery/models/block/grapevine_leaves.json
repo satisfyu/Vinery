@@ -1,9 +1,9 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"1": "vinery:grapevine_leaves_bushy",
-		"2": "vinery:grapevine_leaves",
-		"particle": "vinery:grapevine_leaves"
+		"1": "vinery:block/bushy_leaves/grapevine_leaves_bushy",
+		"2": "vinery:block/bushy_leaves/grapevine_leaves",
+		"particle": "vinery:block/bushy_leaves/grapevine_leaves"
 	},
 	"elements": [
 		{

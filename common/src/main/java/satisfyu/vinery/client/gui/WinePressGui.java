@@ -14,8 +14,10 @@ import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.gui.handler.WinePressGuiHandler;
 @Environment(EnvType.CLIENT)
 public class WinePressGui extends AbstractContainerScreen<WinePressGuiHandler> {
-    private static final ResourceLocation TEXTURE =
-            new VineryIdentifier("textures/gui/wine_press.png");
+
+
+    public static ResourceLocation BACKGROUND = new VineryIdentifier("textures/gui/barrel_gui.png");
+
 
     public WinePressGui(WinePressGuiHandler handler, Inventory inventory, Component title) {
         super(handler, inventory, title);
@@ -31,7 +33,7 @@ public class WinePressGui extends AbstractContainerScreen<WinePressGuiHandler> {
     protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
+        RenderSystem.setShaderTexture(0, BACKGROUND);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         guiGraphics.fill(x, y, 0, 0, imageWidth, imageHeight);
@@ -42,7 +44,7 @@ public class WinePressGui extends AbstractContainerScreen<WinePressGuiHandler> {
 
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isCrafting()) {
-             guiGraphics.blit(TEXTURE, + 78, y + 35, 176, 0, menu.getScaledProgress(), 20);
+             guiGraphics.blit(BACKGROUND, + 78, y + 35, 176, 0, menu.getScaledProgress(), 20);
         }
     }
 
