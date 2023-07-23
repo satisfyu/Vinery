@@ -1,5 +1,6 @@
 package satisfyu.vinery.block.entity;
 
+import net.minecraft.core.Direction;
 import satisfyu.vinery.client.gui.handler.WinePressGuiHandler;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
@@ -24,7 +25,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class WinePressBlockEntity extends BlockEntity implements MenuProvider, ImplementedInventory {
     private final NonNullList<ItemStack> inventory = NonNullList.withSize(2, ItemStack.EMPTY);
-
+    private static final int[] SLOTS_FOR_REST = new int[]{0};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{1};
     protected final ContainerData propertyDelegate;
     private int progress = 0;
     private int maxProgress = 72;
@@ -51,6 +53,14 @@ public class WinePressBlockEntity extends BlockEntity implements MenuProvider, I
                 return 2;
             }
         };
+    }
+
+    @Override
+    public int[] getSlotsForFace(Direction side) {
+        if(side.equals(Direction.DOWN)){
+            return SLOTS_FOR_DOWN;
+        }
+        return SLOTS_FOR_REST;
     }
 
     @Override
