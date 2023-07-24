@@ -1,6 +1,7 @@
 package satisfyu.vinery;
 
 import dev.architectury.hooks.item.tool.AxeItemHooks;
+import dev.architectury.hooks.item.tool.ShovelItemHooks;
 import dev.architectury.registry.fuel.FuelRegistry;
 import net.minecraft.world.level.block.Blocks;
 import org.apache.logging.log4j.LogManager;
@@ -37,5 +38,6 @@ public class Vinery {
         AxeItemHooks.addStrippable(ObjectRegistry.CHERRY_WOOD.get(), ObjectRegistry.STRIPPED_CHERRY_WOOD.get());
         AxeItemHooks.addStrippable(ObjectRegistry.APPLE_LOG.get(), Blocks.STRIPPED_OAK_LOG);
         AxeItemHooks.addStrippable(ObjectRegistry.APPLE_WOOD.get(), Blocks.STRIPPED_OAK_WOOD);
+        ShovelItemHooks.addFlattenable(ObjectRegistry.GRASS_SLAB.get(), Blocks.DIRT_PATH.defaultBlockState());
     }
 }
