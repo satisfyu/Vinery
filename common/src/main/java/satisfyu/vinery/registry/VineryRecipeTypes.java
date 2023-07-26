@@ -10,6 +10,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.recipe.ApplePressRecipe;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 
 import java.util.function.Supplier;
@@ -21,6 +22,9 @@ public class VineryRecipeTypes {
 
     public static final RegistrySupplier<RecipeType<FermentationBarrelRecipe>> FERMENTATION_BARREL_RECIPE_TYPE = create("wine_fermentation");
     public static final RegistrySupplier<RecipeSerializer<FermentationBarrelRecipe>> FERMENTATION_BARREL_RECIPE_SERIALIZER = create("wine_fermentation", FermentationBarrelRecipe.Serializer::new);
+
+    public static final RegistrySupplier<RecipeType<ApplePressRecipe>> APPLE_PRESS_RECIPE_TYPE = create("apple_mashing");
+    public static final RegistrySupplier<RecipeSerializer<ApplePressRecipe>> APPLE_PRESS_RECIPE_SERIALIZER = create("apple_mashing", ApplePressRecipe.Serializer::new);
 
     private static <T extends Recipe<?>> RegistrySupplier<RecipeSerializer<T>> create(String name, Supplier<RecipeSerializer<T>> serializer) {
         return RECIPE_SERIALIZERS.register(new VineryIdentifier(name), serializer);

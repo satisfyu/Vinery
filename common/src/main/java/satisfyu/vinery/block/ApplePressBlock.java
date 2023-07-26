@@ -4,7 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import satisfyu.vinery.block.entity.WinePressBlockEntity;
+import satisfyu.vinery.block.entity.ApplePressBlockEntity;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -38,11 +38,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 
-public class WinePressBlock extends BaseEntityBlock {
+public class ApplePressBlock extends BaseEntityBlock {
 
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-	public WinePressBlock(Properties settings) {
+	public ApplePressBlock(Properties settings) {
 		super(settings);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
 	}
@@ -51,8 +51,8 @@ public class WinePressBlock extends BaseEntityBlock {
 	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
 		if (state.getBlock() != newState.getBlock()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof WinePressBlockEntity) {
-				Containers.dropContents(world, pos, (WinePressBlockEntity)blockEntity);
+			if (blockEntity instanceof ApplePressBlockEntity) {
+				Containers.dropContents(world, pos, (ApplePressBlockEntity)blockEntity);
 				world.updateNeighbourForOutputSignal(pos,this);
 			}
 			super.onRemove(state, world, pos, newState, moved);
@@ -73,13 +73,13 @@ public class WinePressBlock extends BaseEntityBlock {
 	@Nullable
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new WinePressBlockEntity(pos, state);
+		return new ApplePressBlockEntity(pos, state);
 	}
 
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, VineryBlockEntityTypes.WINE_PRESS_BLOCK_ENTITY.get(), WinePressBlockEntity::tick);
+		return createTickerHelper(type, VineryBlockEntityTypes.APPLE_PRESS_BLOCK_ENTITY.get(), (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
 	}
 
 

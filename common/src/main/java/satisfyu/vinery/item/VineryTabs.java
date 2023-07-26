@@ -46,7 +46,7 @@ public class VineryTabs {
                 out.accept(ObjectRegistry.APPLE_CRATE.get());
                 out.accept(ObjectRegistry.GRAPEVINE_POT.get());
                 out.accept(ObjectRegistry.FERMENTATION_BARREL.get());
-                out.accept(ObjectRegistry.WINE_PRESS.get());
+                out.accept(ObjectRegistry.APPLE_PRESS.get());
                 out.accept(ObjectRegistry.CHAIR.get());
                 out.accept(ObjectRegistry.TABLE.get());
                 out.accept(ObjectRegistry.CHERRY_WINE_RACK_SMALL.get());

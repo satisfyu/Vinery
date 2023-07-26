@@ -13,16 +13,16 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.registry.VineryScreenHandlerTypes;
 
-public class WinePressGuiHandler extends AbstractContainerMenu {
+public class ApplePressGuiHandler extends AbstractContainerMenu {
     private final Container inventory;
     private final ContainerData propertyDelegate;
 
-    public WinePressGuiHandler(int syncId, Inventory inventory) {
+    public ApplePressGuiHandler(int syncId, Inventory inventory) {
         this(syncId, inventory, new SimpleContainer(2), new SimpleContainerData(2));
     }
 
-    public WinePressGuiHandler(int syncId, Inventory playerInventory, Container inventory, ContainerData delegate) {
-        super(VineryScreenHandlerTypes.WINE_PRESS_SCREEN_HANDLER.get(), syncId);
+    public ApplePressGuiHandler(int syncId, Inventory playerInventory, Container inventory, ContainerData delegate) {
+        super(VineryScreenHandlerTypes.APPLE_PRESS_GUI_HANDLER.get(), syncId);
         checkContainerSize(inventory, 2);
         this.inventory = inventory;
         inventory.startOpen(playerInventory.player);

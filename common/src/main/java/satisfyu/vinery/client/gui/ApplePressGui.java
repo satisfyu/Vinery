@@ -10,13 +10,16 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.client.gui.handler.WinePressGuiHandler;
+import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
 @Environment(EnvType.CLIENT)
-public class WinePressGui extends AbstractContainerScreen<WinePressGuiHandler> {
-    private static final ResourceLocation TEXTURE =
+public class ApplePressGui extends AbstractContainerScreen<ApplePressGuiHandler> {
+    public static final ResourceLocation TEXTURE =
             new VineryIdentifier("textures/gui/wine_press.png");
 
-    public WinePressGui(WinePressGuiHandler handler, Inventory inventory, Component title) {
+    public static final int ARROW_X = 78;
+    public static final int ARROW_Y = 35;
+
+    public ApplePressGui(ApplePressGuiHandler handler, Inventory inventory, Component title) {
         super(handler, inventory, title);
     }
 
@@ -41,7 +44,7 @@ public class WinePressGui extends AbstractContainerScreen<WinePressGuiHandler> {
 
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isCrafting()) {
-             guiGraphics.blit(TEXTURE, + 78, y + 35, 176, 0, menu.getScaledProgress(), 20);
+             guiGraphics.blit(TEXTURE, x + ARROW_X, y + ARROW_Y, 176, 0, menu.getScaledProgress(), 20);
         }
     }
 
