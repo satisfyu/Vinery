@@ -13,11 +13,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeManager;
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.client.gui.FermentationBarrelGui;
 import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
-import satisfyu.vinery.client.gui.handler.FermentationBarrelGuiHandler;
 import satisfyu.vinery.compat.jei.category.ApplePressCategory;
 import satisfyu.vinery.compat.jei.category.FermentationBarrelCategory;
+import satisfyu.vinery.compat.jei.transfer.FermentationTransferInfo;
 import satisfyu.vinery.recipe.ApplePressRecipe;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
@@ -58,8 +57,7 @@ public class VineryJEIPlugin implements IModPlugin {
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
         registration.addRecipeTransferHandler(ApplePressGuiHandler.class, VineryScreenHandlerTypes.APPLE_PRESS_GUI_HANDLER.get(), ApplePressCategory.APPLE_PRESS,
                 0, 1, 2, 36);
-        registration.addRecipeTransferHandler(FermentationBarrelGuiHandler.class, VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER.get(), FermentationBarrelCategory.FERMENTATION_BARREL,
-                0, 5, 6, 36);
+        registration.addRecipeTransferHandler(new FermentationTransferInfo());
     }
 
     @Override

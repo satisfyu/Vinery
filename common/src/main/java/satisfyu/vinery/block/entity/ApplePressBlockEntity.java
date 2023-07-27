@@ -114,6 +114,8 @@ public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, 
 
         Recipe<?> r = world.getRecipeManager().getRecipeFor(VineryRecipeTypes.APPLE_PRESS_RECIPE_TYPE.get(), this, world).orElse(null);
         if(!(r instanceof ApplePressRecipe recipe)){
+            entity.resetProgress();
+            setChanged(world, blockPos, state);
             return;
         }
 
