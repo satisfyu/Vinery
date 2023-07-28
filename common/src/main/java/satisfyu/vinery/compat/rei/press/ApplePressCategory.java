@@ -14,25 +14,25 @@ import me.shedaniel.rei.api.common.util.EntryStacks;
 
 import java.util.List;
 
-public class WinePressCategory implements DisplayCategory<WinePressDisplay> {
+public class ApplePressCategory implements DisplayCategory<ApplePressDisplay> {
 
     @Override
-    public CategoryIdentifier<WinePressDisplay> getCategoryIdentifier() {
-        return WinePressDisplay.WINE_PRESS_DISPLAY;
+    public CategoryIdentifier<ApplePressDisplay> getCategoryIdentifier() {
+        return ApplePressDisplay.APPLE_PRESS_DISPLAY;
     }
 
     @Override
     public Component getTitle() {
-        return Component.translatable("rei.vinery.wine_press_category");
+        return Component.translatable("rei.vinery.apple_press_category");
     }
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ObjectRegistry.WINE_PRESS.get());
+        return EntryStacks.of(ObjectRegistry.APPLE_PRESS.get());
     }
 
     @Override
-    public List<Widget> setupDisplay(WinePressDisplay display, Rectangle bounds) {
+    public List<Widget> setupDisplay(ApplePressDisplay display, Rectangle bounds) {
         Point startPoint = new Point(bounds.getCenterX() - 41, bounds.y + 18);
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));

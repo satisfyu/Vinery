@@ -17,6 +17,9 @@ public class FermentationBarrelGui extends AbstractRecipeBookGUIScreen<Fermentat
 
     public static ResourceLocation BACKGROUND = new VineryIdentifier("textures/gui/barrel_gui.png");
 
+    public static final int ARROW_X = 94;
+    public static final int ARROW_Y = 37;
+
     public FermentationBarrelGui(FermentationBarrelGuiHandler handler, Inventory inventory, Component title) {
         super(handler, inventory, title, new FermentationPotRecipeBook(), BACKGROUND);
     }
@@ -30,7 +33,7 @@ public class FermentationBarrelGui extends AbstractRecipeBookGUIScreen<Fermentat
     @Override
     protected void renderProgressArrow(GuiGraphics guiGraphics) {
         int progress = this.menu.getScaledProgress(23);
-        guiGraphics.blit(BACKGROUND, leftPos + 94, topPos + 37, 177, 17, progress, 10);
+        guiGraphics.blit(BACKGROUND, leftPos + ARROW_X, topPos + ARROW_Y, 177, 17, progress, 10);
     }
 
 }

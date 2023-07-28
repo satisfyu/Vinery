@@ -37,7 +37,7 @@ public class FermentationBarrelCategory implements DisplayCategory<FermentationB
         Point startPoint = new Point(bounds.getCenterX() - 55, bounds.getCenterY() - 13);
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
-        widgets.add(Widgets.createArrow(new Point(startPoint.x + 54, startPoint.y - 1)).animationDurationTicks(FermentationBarrelBlockEntity.COOKING_TIME_IN_TICKS));
+        widgets.add(Widgets.createArrow(new Point(startPoint.x + 54, startPoint.y - 1)).animationDurationTicks(50));
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 90, startPoint.y)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 90, startPoint.y)).entries(display.getOutputEntries().get(0)).disableBackground().markOutput());
         for(int i = 0; i < 4; i++){

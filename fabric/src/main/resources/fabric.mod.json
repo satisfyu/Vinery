@@ -24,6 +24,9 @@
     "rei_client": [
       "satisfyu.vinery.fabric.rei.VineryReiClientPluginFabric"
     ],
+    "jei_mod_plugin": [
+      "satisfyu.vinery.compat.jei.VineryJEIPlugin"
+    ],
     "doapi": [
       "satisfyu.vinery.util.api.VineryDoApi"
     ],

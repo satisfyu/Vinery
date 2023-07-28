@@ -1,7 +1,12 @@
 package satisfyu.vinery.block.entity;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.Direction;
-import satisfyu.vinery.client.gui.handler.WinePressGuiHandler;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import satisfyu.vinery.Vinery;
+import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
+import satisfyu.vinery.recipe.ApplePressRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import net.minecraft.core.BlockPos;
@@ -22,8 +27,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.registry.VineryRecipeTypes;
 
-public class WinePressBlockEntity extends BlockEntity implements MenuProvider, ImplementedInventory {
+import java.util.Arrays;
+
+public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, ImplementedInventory, BlockEntityTicker<ApplePressBlockEntity> {
     private final NonNullList<ItemStack> inventory = NonNullList.withSize(2, ItemStack.EMPTY);
     private static final int[] SLOTS_FOR_REST = new int[]{0};
     private static final int[] SLOTS_FOR_DOWN = new int[]{1};
@@ -31,21 +39,21 @@ public class WinePressBlockEntity extends BlockEntity implements MenuProvider, I
     private int progress = 0;
     private int maxProgress = 72;
 
-    public WinePressBlockEntity(BlockPos pos, BlockState state) {
-        super(VineryBlockEntityTypes.WINE_PRESS_BLOCK_ENTITY.get(), pos, state);
+    public ApplePressBlockEntity(BlockPos pos, BlockState state) {
+        super(VineryBlockEntityTypes.APPLE_PRESS_BLOCK_ENTITY.get(), pos, state);
         this.propertyDelegate = new ContainerData() {
             public int get(int index) {
                 return switch (index) {
-                    case 0 -> WinePressBlockEntity.this.progress;
-                    case 1 -> WinePressBlockEntity.this.maxProgress;
+                    case 0 -> ApplePressBlockEntity.this.progress;
+                    case 1 -> ApplePressBlockEntity.this.maxProgress;
                     default -> 0;
                 };
             }
 
             public void set(int index, int value) {
                 switch (index) {
-                    case 0 -> WinePressBlockEntity.this.progress = value;
-                    case 1 -> WinePressBlockEntity.this.maxProgress = value;
+                    case 0 -> ApplePressBlockEntity.this.progress = value;
+                    case 1 -> ApplePressBlockEntity.this.maxProgress = value;
                 }
             }
 
@@ -76,7 +84,7 @@ public class WinePressBlockEntity extends BlockEntity implements MenuProvider, I
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
-        return new WinePressGuiHandler(syncId, inv, this, this.propertyDelegate);
+        return new ApplePressGuiHandler(syncId, inv, this, this.propertyDelegate);
     }
 
     @Override
@@ -98,16 +106,24 @@ public class WinePressBlockEntity extends BlockEntity implements MenuProvider, I
         this.progress = 0;
     }
 
-    public static void tick(Level world, BlockPos blockPos, BlockState state, WinePressBlockEntity entity) {
-        if(world.isClientSide()) {
+
+
+    @Override
+    public void tick(Level world, BlockPos blockPos, BlockState state, ApplePressBlockEntity entity) {
+        if(world.isClientSide()) return;
+
+        Recipe<?> r = world.getRecipeManager().getRecipeFor(VineryRecipeTypes.APPLE_PRESS_RECIPE_TYPE.get(), this, world).orElse(null);
+        if(!(r instanceof ApplePressRecipe recipe)){
+            entity.resetProgress();
+            setChanged(world, blockPos, state);
             return;
         }
 
-        if(hasRecipe(entity)) {
+        if(hasRecipe(entity, recipe)) {
             entity.progress++;
             setChanged(world, blockPos, state);
             if(entity.progress >= entity.maxProgress) {
-                craftItem(entity);
+                craftItem(entity, recipe);
             }
         } else {
             entity.resetProgress();
@@ -115,39 +131,45 @@ public class WinePressBlockEntity extends BlockEntity implements MenuProvider, I
         }
     }
 
-    private static void craftItem(WinePressBlockEntity entity) {
+    private static void craftItem(ApplePressBlockEntity entity, ApplePressRecipe recipe) {
         SimpleContainer inventory = new SimpleContainer(entity.getContainerSize());
         for (int i = 0; i < entity.getContainerSize(); i++) {
             inventory.setItem(i, entity.getItem(i));
         }
 
-        if(hasRecipe(entity)) {
-            entity.removeItem(0, 1);
 
-            entity.setItem(1, new ItemStack(ObjectRegistry.APPLE_MASH.get(),
-                    entity.getItem(1).getCount() + 1));
 
-            entity.resetProgress();
-        }
+        entity.removeItem(0, 1);
+
+        ItemStack stack = recipe.assemble();
+        stack.setCount(entity.getItem(1).getCount() + 1);
+        entity.setItem(1, stack);
+
+        entity.resetProgress();
     }
 
-    private static boolean hasRecipe(WinePressBlockEntity entity) {
+    private static boolean hasRecipe(ApplePressBlockEntity entity, ApplePressRecipe recipe) {
         SimpleContainer inventory = new SimpleContainer(entity.getContainerSize());
         for (int i = 0; i < entity.getContainerSize(); i++) {
             inventory.setItem(i, entity.getItem(i));
         }
 
-        boolean hasAppleInFirstSlot = entity.getItem(0).getItem() == Items.APPLE;
+        // Actually unnecessary because of the matches check in the recipe class
+        //boolean hasAppleInFirstSlot = recipe.input.test(entity.getItem(0));
 
-        return hasAppleInFirstSlot && canInsertAmountIntoOutputSlot(inventory)
-                && canInsertItemIntoOutputSlot(inventory, ObjectRegistry.APPLE_MASH.get());
+        ItemStack result = recipe.getResultItem();
+
+        boolean r2 = canInsertAmountIntoOutputSlot(inventory, result.getCount());
+        boolean r3 = canInsertItemIntoOutputSlot(inventory, result.getItem());
+
+        return /*hasAppleInFirstSlot && */r2 && r3;
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, Item output) {
         return inventory.getItem(1).getItem() == output || inventory.getItem(1).isEmpty();
     }
 
-    private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
-        return inventory.getItem(1).getMaxStackSize() > inventory.getItem(1).getCount();
+    private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory, int additionalAmount) {
+        return inventory.getItem(1).getMaxStackSize() >= inventory.getItem(1).getCount() + additionalAmount;
     }
 }

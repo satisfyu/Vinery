@@ -27,11 +27,11 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, boolean e
     public HashMap<String, String> getComments() {
         return Util.make(new HashMap<>(), map -> {
             map.put("wine_trader_chance", """
-                    Chance
-                    idk
-                    help.""");
+                    How many % of the normal wandering traders should be an wandering wine trader?""");
             map.put("year_length_in_days", """
-                    How long should a year be (in days).""");
+                    Length of a year (in days).""");
+            map.put("enable_wine_maker_set_bonus", """
+                    Whether or not the wine maker armor should give a set bonus, which makes your bone meal infinite.""");
                 }
         );
     }
@@ -40,9 +40,12 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, boolean e
     public String getHeader() {
         return """
                Vinery Config
-               With links:
-               dc:
-               cf:""";
+               
+               
+               ===========
+               Discord: https://discord.gg/Vqu6wYZwdZ
+               CurseForge: https://www.curseforge.com/minecraft/mc-mods/lets-do-wine
+               Modrinth: https://modrinth.com/mod/vinery""";
     }
 
     @Override
