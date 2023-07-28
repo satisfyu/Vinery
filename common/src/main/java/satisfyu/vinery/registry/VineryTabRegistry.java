@@ -51,9 +51,9 @@ public class VineryTabRegistry {
                 out.accept(ObjectRegistry.TABLE.get());
                 out.accept(ObjectRegistry.CHERRY_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.CHERRY_WINE_RACK_BIG.get());
+                out.accept(ObjectRegistry.CHERRY_WINE_RACK_MID.get());
                 out.accept(ObjectRegistry.WINE_RACK_3.get());
                 out.accept(ObjectRegistry.WINE_RACK_5.get());
-                out.accept(ObjectRegistry.BARREL.get());
                 out.accept(ObjectRegistry.STRIPPED_CHERRY_LOG.get());
                 out.accept(ObjectRegistry.CHERRY_LOG.get());
                 out.accept(ObjectRegistry.STRIPPED_CHERRY_WOOD.get());
@@ -136,18 +136,32 @@ public class VineryTabRegistry {
                 out.accept(ObjectRegistry.WANDERING_WINEMAKER_SPAWN_EGG.get());
                 out.accept(ObjectRegistry.OAK_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.OAK_WINE_RACK_BIG.get());
+                out.accept(ObjectRegistry.OAK_WINE_RACK_MID.get());
                 out.accept(ObjectRegistry.SPRUCE_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.SPRUCE_WINE_RACK_BIG.get());
+                out.accept(ObjectRegistry.SPRUCE_WINE_RACK_MID.get());
                 out.accept(ObjectRegistry.BIRCH_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.BIRCH_WINE_RACK_BIG.get());
+                out.accept(ObjectRegistry.BIRCH_WINE_RACK_MID.get());
                 out.accept(ObjectRegistry.JUNGLE_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.JUNGLE_WINE_RACK_BIG.get());
+                out.accept(ObjectRegistry.JUNGLE_WINE_RACK_MID.get());
                 out.accept(ObjectRegistry.ACACIA_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.ACACIA_WINE_RACK_BIG.get());
+                out.accept(ObjectRegistry.ACACIA_WINE_RACK_MID.get());
                 out.accept(ObjectRegistry.DARK_OAK_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.DARK_OAK_WINE_RACK_BIG.get());
+                out.accept(ObjectRegistry.DARK_OAK_WINE_RACK_MID.get());
                 out.accept(ObjectRegistry.MANGROVE_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.MANGROVE_WINE_RACK_BIG.get());
+                out.accept(ObjectRegistry.MANGROVE_WINE_RACK_MID.get());
+                out.accept(ObjectRegistry.BAMBOO_WINE_RACK_SMALL.get());
+                out.accept(ObjectRegistry.BAMBOO_WINE_RACK_BIG.get());
+                out.accept(ObjectRegistry.BAMBOO_WINE_RACK_MID.get());
+                out.accept(ObjectRegistry.MCCHERRY_WINE_RACK_SMALL.get());
+                out.accept(ObjectRegistry.MCCHERRY_WINE_RACK_BIG.get());
+                out.accept(ObjectRegistry.MCCHERRY_WINE_RACK_MID.get());
+
             })
             .build());
 

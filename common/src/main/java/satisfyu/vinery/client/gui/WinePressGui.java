@@ -35,7 +35,7 @@ public class WinePressGui extends AbstractContainerScreen<WinePressGuiHandler> {
         RenderSystem.setShaderTexture(0, BACKGROUND);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+        guiGraphics.blit(BACKGROUND, x, y, 0, 0, imageWidth, imageHeight);
 
         renderProgressArrow(guiGraphics, x, y);
     }
