@@ -3,10 +3,10 @@
   "type": "vinery:wine_fermentation",
   "ingredients": [
     {
-      "item": "vinery:noir_wine"
+      "tag": "minecraft:grapejuice_white"
     },
     {
-      "item": "vinery:red_wine"
+      "item": "minecraft:beetroot"
     }
   ],
   "result": {

@@ -12,17 +12,9 @@ import net.minecraft.world.entity.player.Inventory;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
 @Environment(EnvType.CLIENT)
-<<<<<<< HEAD:common/src/main/java/satisfyu/vinery/client/gui/WinePressGui.java
-public class WinePressGui extends AbstractContainerScreen<WinePressGuiHandler> {
-
-
-    public static ResourceLocation BACKGROUND = new VineryIdentifier("textures/gui/barrel_gui.png");
-
-=======
 public class ApplePressGui extends AbstractContainerScreen<ApplePressGuiHandler> {
     public static final ResourceLocation TEXTURE =
-            new VineryIdentifier("textures/gui/wine_press.png");
->>>>>>> 4dbba8565e8918b5487e4c689fd77b26079a74bf:common/src/main/java/satisfyu/vinery/client/gui/ApplePressGui.java
+            new VineryIdentifier("textures/gui/apple_press_gui.png");
 
     public static final int ARROW_X = 78;
     public static final int ARROW_Y = 35;
@@ -41,10 +33,10 @@ public class ApplePressGui extends AbstractContainerScreen<ApplePressGuiHandler>
     protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, BACKGROUND);
+        RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        guiGraphics.blit(BACKGROUND, x, y, 0, 0, imageWidth, imageHeight);
+        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
         renderProgressArrow(guiGraphics, x, y);
     }
@@ -52,11 +44,7 @@ public class ApplePressGui extends AbstractContainerScreen<ApplePressGuiHandler>
 
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isCrafting()) {
-<<<<<<< HEAD:common/src/main/java/satisfyu/vinery/client/gui/WinePressGui.java
-             guiGraphics.blit(BACKGROUND, + 78, y + 35, 176, 0, menu.getScaledProgress(), 20);
-=======
-             guiGraphics.blit(TEXTURE, x + ARROW_X, y + ARROW_Y, 176, 0, menu.getScaledProgress(), 20);
->>>>>>> 4dbba8565e8918b5487e4c689fd77b26079a74bf:common/src/main/java/satisfyu/vinery/client/gui/ApplePressGui.java
+            guiGraphics.blit(TEXTURE, x + ARROW_X, y + ARROW_Y, 176, 0, menu.getScaledProgress(), 20);
         }
     }
 
