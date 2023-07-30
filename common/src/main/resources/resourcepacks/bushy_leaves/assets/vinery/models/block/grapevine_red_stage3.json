@@ -1,9 +1,9 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"2": "vinery:block/grapevine_leaves",
-		"3": "vinery:block/grapevine_leaves_red_stage1",
-		"4": "vinery:grapevine_leaves_bushy",
+		"2": "vinery:block/bushy_leaves/grapevine_leaves",
+		"3": "vinery:block/bushy_leaves/grapevine_leaves_red_stage1",
+		"4": "vinery:block/bushy_leaves/grapevine_leaves_bushy",
 		"6": "vinery:block/grapevine_stem",
 		"particle": "vinery:block/grapevine_stem"
 	},

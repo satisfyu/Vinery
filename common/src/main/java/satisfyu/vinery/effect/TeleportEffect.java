@@ -33,7 +33,7 @@ public class TeleportEffect extends InstantenousMobEffect {
     }
 
     private void teleport(Player player , int amplifier) {
-        Level world = player.getLevel();
+        Level world = player.level();
         Vec3 targetVec = player.position();
         Vec3 lookVec = player.getLookAngle();
         BlockPos target = null;
@@ -47,7 +47,7 @@ public class TeleportEffect extends InstantenousMobEffect {
             }
         }
         if (target != null) {
-            if (!player.getLevel().isClientSide) {
+            if (!player.level().isClientSide) {
                 Vec3 teleportVec = new Vec3(target.getX(), target.getY(), target.getZ());
                 player.teleportToWithTicket(teleportVec.x + 0.5, teleportVec.y, teleportVec.z + 0.5);
             }

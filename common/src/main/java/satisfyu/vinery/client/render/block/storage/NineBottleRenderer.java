@@ -1,7 +1,7 @@
 package satisfyu.vinery.client.render.block.storage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import de.cristelknight.doapi.client.render.block.storage.StorageTypeRenderer;
 import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
 import net.fabricmc.api.EnvType;
@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
-import satisfyu.vinery.Vinery;
 import satisfyu.vinery.block.storage.WineBottleBlock;
 import satisfyu.vinery.client.ClientUtil;
 @Environment(EnvType.CLIENT)
@@ -40,7 +39,7 @@ public class NineBottleRenderer implements StorageTypeRenderer {
                 }
 
                 matrices.translate(x, y, 0f);
-                matrices.mulPose(Vector3f.XN.rotationDegrees(90));
+                matrices.mulPose(Axis.XN.rotationDegrees(90));
                 ClientUtil.renderBlock(blockItem.getBlock().defaultBlockState().setValue(WineBottleBlock.FAKE_MODEL, false), matrices, vertexConsumers, entity);
                 matrices.popPose();
             }

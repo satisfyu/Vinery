@@ -21,3 +21,4 @@ public class ShaderS2CPacket implements NetworkManager.NetworkReceiver {
         });
     }
 }
+

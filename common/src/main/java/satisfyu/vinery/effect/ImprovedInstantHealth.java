@@ -15,7 +15,7 @@ public class ImprovedInstantHealth extends InstantenousMobEffect {
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity.isInvertedHealAndHarm()) {
-            entity.hurt(DamageSource.MAGIC, (float)(6 << amplifier));
+            entity.hurt(entity.damageSources().magic(), (float)(6 << amplifier));
         } else {
             entity.heal((float)Math.max(6 << amplifier, 0));
         }
@@ -25,7 +25,7 @@ public class ImprovedInstantHealth extends InstantenousMobEffect {
     @Override
     public void applyInstantenousEffect(@Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
         if (target.isInvertedHealAndHarm()) {
-            target.hurt(DamageSource.MAGIC, (float)(6 << amplifier));
+            target.hurt(target.damageSources().magic(), (float)(6 << amplifier));
         } else {
             int i = (int)(proximity * (double)(4 << amplifier) + 0.5);
             target.heal((float) i);

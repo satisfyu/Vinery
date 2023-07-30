@@ -10,14 +10,15 @@ import net.minecraft.world.item.crafting.Ingredient;
 public class VineryMaterials {
 
     public static final ArmorMaterial VINEMAKER_ARMOR = new ArmorMaterial() {
+
         @Override
-        public int getDurabilityForSlot(EquipmentSlot slot) {
-            return ArmorMaterials.LEATHER.getDurabilityForSlot(slot);
+        public int getDurabilityForType(ArmorItem.Type type) {
+            return ArmorMaterials.LEATHER.getDurabilityForType(type);
         }
 
         @Override
-        public int getDefenseForSlot(EquipmentSlot slot) {
-            return ArmorMaterials.LEATHER.getDefenseForSlot(slot);
+        public int getDefenseForType(ArmorItem.Type type) {
+            return ArmorMaterials.LEATHER.getDefenseForType(type);
         }
 
         @Override

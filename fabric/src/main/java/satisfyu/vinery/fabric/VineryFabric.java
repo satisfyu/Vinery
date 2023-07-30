@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.network.FriendlyByteBuf;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.fabric.registry.VineryFabricVillagers;
@@ -16,6 +17,7 @@ public class VineryFabric implements ModInitializer {
         VineryFabricVillagers.init();
         VineryBiomeModification.init();
         Vinery.commonSetup();
+
 
         FabricLoader.getInstance().getModContainer(Vinery.MODID).ifPresent(container -> {
             ResourceManagerHelper.registerBuiltinResourcePack(new VineryIdentifier("bushy_leaves"), container, ResourcePackActivationType.NORMAL);

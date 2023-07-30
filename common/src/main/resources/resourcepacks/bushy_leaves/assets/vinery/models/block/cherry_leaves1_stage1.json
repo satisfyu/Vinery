@@ -2,9 +2,9 @@
 	"credit": "Made by Satisfy",
 	"parent": "block/block",
 	"textures": {
-		"1": "vinery:cherry_leaves_bushy",
-		"3": "vinery:cherry_leaves_stage1",
-		"particle": "vinery:cherry_leaves_stage1"
+		"1": "vinery:block/bushy_leaves/cherry_leaves_bushy",
+		"3": "vinery:block/bushy_leaves/cherry_leaves_stage1",
+		"particle": "vinery:block/bushy_leaves/cherry_leaves_stage1"
 	},
 	"elements": [
 		{

@@ -1,66 +1,34 @@
 {
   "variants": {
-    "facing=east,filled=false,has_faucet=false": {
-      "model": "vinery:block/kitchen_sink",
-      "y": 90
-    },
-    "facing=north,filled=false,has_faucet=false": {
-      "model": "vinery:block/kitchen_sink"
-    },
-    "facing=south,filled=false,has_faucet=false": {
-      "model": "vinery:block/kitchen_sink",
-      "y": 180
-    },
-    "facing=west,filled=false,has_faucet=false": {
-      "model": "vinery:block/kitchen_sink",
-      "y": 270
-    },
-
-    "facing=east,filled=false,has_faucet=true": {
+    "facing=east,filled=false": {
       "model": "vinery:block/kitchen_sink_faucet",
       "y": 90
     },
-    "facing=north,filled=false,has_faucet=true": {
+    "facing=north,filled=false": {
       "model": "vinery:block/kitchen_sink_faucet"
     },
-    "facing=south,filled=false,has_faucet=true": {
+    "facing=south,filled=false": {
       "model": "vinery:block/kitchen_sink_faucet",
       "y": 180
     },
-    "facing=west,filled=false,has_faucet=true": {
+    "facing=west,filled=false": {
       "model": "vinery:block/kitchen_sink_faucet",
       "y": 270
     },
 
-    "facing=east,filled=true,has_faucet=true": {
+    "facing=east,filled=true": {
       "model": "vinery:block/kitchen_sink_faucet_water",
       "y": 90
     },
-    "facing=north,filled=true,has_faucet=true": {
+    "facing=north,filled=true": {
       "model": "vinery:block/kitchen_sink_faucet_water"
     },
-    "facing=south,filled=true,has_faucet=true": {
+    "facing=south,filled=true": {
       "model": "vinery:block/kitchen_sink_faucet_water",
       "y": 180
     },
-    "facing=west,filled=true,has_faucet=true": {
+    "facing=west,filled=true": {
       "model": "vinery:block/kitchen_sink_faucet_water",
-      "y": 270
-    },
-
-    "facing=east,filled=true,has_faucet=false": {
-      "model": "vinery:block/kitchen_sink_water",
-      "y": 90
-    },
-    "facing=north,filled=true,has_faucet=false": {
-      "model": "vinery:block/kitchen_sink_water"
-    },
-    "facing=south,filled=true,has_faucet=false": {
-      "model": "vinery:block/kitchen_sink_water",
-      "y": 180
-    },
-    "facing=west,filled=true,has_faucet=false": {
-      "model": "vinery:block/kitchen_sink_water",
       "y": 270
     }
   }

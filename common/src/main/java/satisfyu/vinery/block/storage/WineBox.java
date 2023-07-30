@@ -71,6 +71,12 @@ public class WineBox extends StorageBlock {
     }
 
     @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(OPEN);
+    }
+
+    @Override
     public boolean canInsertStack(ItemStack stack) {
         return stack.getItem() instanceof DrinkBlockSmallItem;
     }
@@ -95,11 +101,7 @@ public class WineBox extends StorageBlock {
         return 0;
     }
 
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(OPEN);
-    }
+
 
     private static VoxelShape makeShapeS() {
         VoxelShape shape = Shapes.empty();

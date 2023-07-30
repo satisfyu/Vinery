@@ -3,23 +3,15 @@ package satisfyu.vinery.item;
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
+import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.*;
-import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.util.WineYears;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
-import java.util.Map;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
@@ -27,10 +19,18 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.registry.ObjectRegistry;
+import satisfyu.vinery.util.GeneralUtil;
+import satisfyu.vinery.util.WineYears;
+
+import java.util.List;
+import java.util.Map;
 
 public class DrinkBlockItem extends BlockItem {
     public DrinkBlockItem(Block block, Properties settings) {
@@ -56,14 +56,10 @@ public class DrinkBlockItem extends BlockItem {
     @Override
     protected boolean updateCustomBlockEntityTag(BlockPos blockPos, Level level, @Nullable Player player, ItemStack itemStack, BlockState blockState) {
         if(level.getBlockEntity(blockPos) instanceof StorageBlockEntity wineEntity){
-            ItemStack newStack = itemStack.copy();
-            newStack.setCount(1);
-            wineEntity.setStack(0, newStack);
+            wineEntity.setStack(0, itemStack.copyWithCount(1));
         }
         return super.updateCustomBlockEntityTag(blockPos, level, player, itemStack, blockState);
     }
-
-
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
         List<Pair<MobEffectInstance, Float>> list2 = getFoodProperties() != null ? getFoodProperties().getEffects() : Lists.newArrayList();
@@ -135,7 +131,6 @@ public class DrinkBlockItem extends BlockItem {
                 }
             }
         }
-        tooltip.add(Component.empty());
         tooltip.add(Component.translatable("block.vinery.canbeplaced.tooltip").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
         tooltip.add(Component.translatable("item.vinery.wine." + this.getDescriptionId()).withStyle(ChatFormatting.WHITE));
         tooltip.add(Component.translatable("tooltip.vinery.year").withStyle(ChatFormatting.WHITE).append(Component.nullToEmpty(" " + WineYears.getWineYear(stack, world))));
@@ -144,20 +139,7 @@ public class DrinkBlockItem extends BlockItem {
     @Override
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
         super.finishUsingItem(itemStack, level, livingEntity);
-        if (livingEntity instanceof ServerPlayer serverPlayer) {
-            CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, itemStack);
-            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
-        }
-        if (itemStack.isEmpty()) {
-            return new ItemStack(ObjectRegistry.WINE_BOTTLE.get());
-        }
-        if (livingEntity instanceof Player player && !((Player)livingEntity).getAbilities().instabuild) {
-            ItemStack itemStack2 = new ItemStack(ObjectRegistry.WINE_BOTTLE.get());
-            if (!player.getInventory().add(itemStack2)) {
-                player.drop(itemStack2, false);
-            }
-        }
-        return itemStack;
+        return GeneralUtil.convertStackAfterFinishUsing(livingEntity, itemStack, ObjectRegistry.WINE_BOTTLE.get(), this);
     }
 
 

@@ -15,6 +15,7 @@
     "FoxEntityEatSweetBerriesGoalMixin",
     "LivingEntityMixin",
     "MobEffectUtilMixin",
+    "ShovelItemMixin",
     "StatusEffectUtilMixin",
     "WanderingTraderManagerMixin"
   ],

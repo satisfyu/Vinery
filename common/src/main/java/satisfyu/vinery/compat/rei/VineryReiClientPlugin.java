@@ -7,10 +7,11 @@ import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
-import satisfyu.vinery.compat.rei.press.WinePressCategory;
-import satisfyu.vinery.compat.rei.press.WinePressDisplay;
+import satisfyu.vinery.compat.rei.press.ApplePressCategory;
+import satisfyu.vinery.compat.rei.press.ApplePressDisplay;
 import satisfyu.vinery.compat.rei.wine.FermentationBarrelCategory;
 import satisfyu.vinery.compat.rei.wine.FermentationBarrelDisplay;
+import satisfyu.vinery.recipe.ApplePressRecipe;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
 
@@ -21,15 +22,14 @@ import java.util.List;
 public class VineryReiClientPlugin {
     public static void registerCategories(CategoryRegistry registry) {
         registry.add(new FermentationBarrelCategory());
-        registry.add(new WinePressCategory());
-
+        registry.add(new ApplePressCategory());
         registry.addWorkstations(FermentationBarrelDisplay.FERMENTATION_BARREL_DISPLAY, EntryStacks.of(ObjectRegistry.FERMENTATION_BARREL.get()));
-        registry.addWorkstations(WinePressDisplay.WINE_PRESS_DISPLAY, EntryStacks.of(ObjectRegistry.WINE_PRESS.get()));
+        registry.addWorkstations(ApplePressDisplay.APPLE_PRESS_DISPLAY, EntryStacks.of(ObjectRegistry.APPLE_PRESS.get()));
     }
 
     public static void registerDisplays(DisplayRegistry registry) {
         registry.registerFiller(FermentationBarrelRecipe.class, FermentationBarrelDisplay::new);
-        registry.add(new WinePressDisplay());
+        registry.registerFiller(ApplePressRecipe.class, ApplePressDisplay::new);
     }
 
     public static List<Ingredient> ingredients(Recipe<Container> recipe, ItemStack stack){

@@ -1,5 +1,5 @@
 {
-  "itemGroup.vinery.vinery_tab": "Vinery",
+  "creativetab.vinery.tab": "Vinery",
   "block.vinery.red_grape_bush": "Roter Weintraubenbusch",
   "block.vinery.grapevine": "Weinrebe",
   "block.vinery.white_grape_bush": "Weisser Weintraubenbusch",
@@ -16,6 +16,7 @@
   "block.vinery.cherry_log": "Kirschholzstamm",
   "block.vinery.apple_log": "Apfelholzstamm",
   "block.vinery.cherry_wood": "Kirschholz",
+  "item.vinery.calendar": "Kalender",
   "block.vinery.barrel": "Verziertes Weinfass",
   "block.vinery.apple_leaves": "Apfelbaumlaub",
   "block.vinery.stripped_cherry_wood": "Entrindetes Kirschholz",
@@ -286,5 +287,21 @@
   "item.vinery.wine.block.vinery.cristel_wine": "Amplifies experience acquisition",
   "block.vinery.glowing_wine": "Sonnengeküsster Wein",
   "block.vinery.mead": "Met",
-  "block.vinery.bottle_mojang_noir": "Eine Flasche voller 'Mojang Noir'"
+  "block.vinery.bottle_mojang_noir": "Eine Flasche voller 'Mojang Noir'",
+  "block.vinery.acacia_wine_rack_mid": "Akazienholzflaschenregal",
+  "block.vinery.cherry_wine_rack_mid": "Kirschholzflaschenregal",
+  "block.vinery.dark_oak_wine_rack_mid": "Schwarzeichenholzflaschenregal",
+  "block.vinery.oak_wine_rack_mid": "Eichenholzflaschenregal",
+  "block.vinery.spruce_wine_rack_mid": "Fichtenholzflaschenregal",
+  "block.vinery.birch_wine_rack_mid": "Birkenholzflaschenregal",
+  "block.vinery.mangrove_wine_rack_mid": "Mangrovenholzflaschenregal",
+  "block.vinery.jungle_wine_rack_mid": "Tropenholzflaschenregal",
+  "block.vinery.winebox_big.tooltip.shift_1": "Lagermöglichkeit für grosse Weinflaschen",
+  "block.vinery.winebox_small.tooltip.shift_1": "Lagermöglichkeit für kleine Weinflaschen",
+  "block.vinery.bamboo_wine_rack_big": "Grosses Bambusholzflaschenregal",
+  "block.vinery.bamboo_wine_rack_small": "Kleines Bambusholzflaschenregal",
+  "block.vinery.bamboo_wine_rack_mid": "Bambusholzflaschenregal",
+  "block.vinery.mccherry_wine_rack_big": "Grosses Kirschholzflaschenregal",
+  "block.vinery.mccherry_wine_rack_small": "Kleines Kirschholzflaschenregal",
+  "block.vinery.mccherry_wine_rack_mid": "Kirschholzflaschenregal"
 }

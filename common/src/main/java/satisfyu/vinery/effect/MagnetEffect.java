@@ -29,7 +29,7 @@ public class MagnetEffect extends MobEffect {
                     int amp = amplifier + 1;
 
                     entityNearby.setPosRaw(entityNearby.getX(), entityNearby.getY() + vec3.y * 0.015 * Math.min(amp, 3), entityNearby.getZ());
-                    if (entity.level.isClientSide) {
+                    if (entity.level().isClientSide) {
                         entityNearby.yOld = entityNearby.getY();
                     }
                     entityNearby.setDeltaMovement(entityNearby.getDeltaMovement().scale(0.95).add(vec3.normalize().yRot(0.2f).scale(0.10 * (double)amp)));

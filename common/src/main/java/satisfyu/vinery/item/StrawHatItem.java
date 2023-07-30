@@ -17,7 +17,7 @@ public class StrawHatItem extends CustomHatItem implements WineMakerArmorItem {
 
 
     public StrawHatItem(Properties settings) {
-        super(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.HEAD, settings);
+        super(VineryMaterials.VINEMAKER_ARMOR, Type.HELMET, settings);
     }
 
     @Override

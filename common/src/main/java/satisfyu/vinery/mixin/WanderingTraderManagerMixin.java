@@ -31,17 +31,17 @@ import satisfyu.vinery.util.GeneralUtil;
 @Mixin(WanderingTraderSpawner.class)
 public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 	@Shadow @Nullable protected abstract BlockPos findSpawnPositionNear(LevelReader world, BlockPos pos, int range);
-	
+
 	@Shadow protected abstract boolean hasEnoughSpace(BlockGetter world, BlockPos pos);
-	
+
 	@Shadow @Final private ServerLevelData serverLevelData;
-	
-	@Inject(method = "spawn", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/world/entity/EntityType;spawn(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/MobSpawnType;ZZ)Lnet/minecraft/world/entity/Entity;"), cancellable = true)
+
+	@Inject(method = "spawn", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/world/entity/EntityType;spawn(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/MobSpawnType;)Lnet/minecraft/world/entity/Entity;"), cancellable = true)
 	private void trySpawn(ServerLevel world, CallbackInfoReturnable<Boolean> cir) {
-		VineryConfig config = VineryConfig.DEFAULT.getConfig();
-		if (world.random.nextFloat() < GeneralUtil.getInPercent(config.wineTraderChance())) {
+		if (world.random.nextBoolean()) {
 			ServerPlayer playerEntity = world.getRandomPlayer();
 			BlockPos blockPos = playerEntity.blockPosition();
+			int i = 48;
 			PoiManager pointOfInterestStorage = world.getPoiManager();
 			Optional<BlockPos> optional = pointOfInterestStorage.find(type -> type.is(PoiTypes.MEETING), pos -> true, blockPos, 48, PoiManager.Occupancy.ANY);
 			BlockPos blockPos2 = optional.orElse(blockPos);
@@ -50,15 +50,15 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 				if (world.getBiome(blockPos3).is(Biomes.THE_VOID)) {
 					return;
 				}
-				
-				WanderingTrader wanderingTraderEntity = VineryEntites.WANDERING_WINEMAKER.get().spawn(world, null, null, null, blockPos3, MobSpawnType.EVENT, false, false);
+
+				WanderingTrader wanderingTraderEntity = VineryEntites.WANDERING_WINEMAKER.get().spawn(world,  blockPos3, MobSpawnType.EVENT);
 				if (wanderingTraderEntity != null) {
 					for (int j = 0; j < 2; ++j) {
 						BlockPos blockPos4 = this.findSpawnPositionNear(world, wanderingTraderEntity.blockPosition(), 4);
 						if (blockPos4 == null) {
 							return;
 						}
-						TraderMuleEntity traderLlamaEntity = VineryEntites.MULE.get().spawn(world, null, null, null, blockPos4, MobSpawnType.EVENT, false, false);
+						TraderMuleEntity traderLlamaEntity = VineryEntites.MULE.get().spawn(world, blockPos4, MobSpawnType.EVENT);
 						if (traderLlamaEntity == null) {
 							return;
 						}

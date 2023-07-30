@@ -1,7 +1,7 @@
 package satisfyu.vinery.client.render.block.storage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import de.cristelknight.doapi.client.render.block.storage.StorageTypeRenderer;
 import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
 import net.fabricmc.api.EnvType;
@@ -55,7 +55,7 @@ public class WineBottleRenderer implements StorageTypeRenderer {
             renderBlock(getState(item1), matrices, vertexConsumers, entity);
         }
         matrices.translate(.1f, 0f, .8f);
-        matrices.mulPose(Vector3f.YP.rotationDegrees(30));
+        matrices.mulPose(Axis.YP.rotationDegrees(30));
         if(item2 != null){
             renderBlock(getState(item2), matrices, vertexConsumers, entity);
         }
@@ -76,12 +76,12 @@ public class WineBottleRenderer implements StorageTypeRenderer {
         if(item3 == null) return;
         if (item3.asItem().equals(ObjectRegistry.KELP_CIDER.get().asItem())) {
             matrices.translate(.35f, .7f, -.13f);
-            matrices.mulPose(Vector3f.XP.rotationDegrees(90));
+            matrices.mulPose(Axis.XP.rotationDegrees(90));
             renderBlock(getState(item3), matrices, vertexConsumers, entity);
             return;
         }
         matrices.translate(.1f, 0f, 0f);
-        matrices.mulPose(Vector3f.YP.rotationDegrees(30));
+        matrices.mulPose(Axis.YP.rotationDegrees(30));
         renderBlock(getState(item3), matrices, vertexConsumers, entity);
     }
 }

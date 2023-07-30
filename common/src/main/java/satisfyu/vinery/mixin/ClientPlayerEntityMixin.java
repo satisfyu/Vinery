@@ -25,15 +25,16 @@ public abstract class ClientPlayerEntityMixin extends AbstractClientPlayer {
     private int jumpCount = 0;
     private boolean jumpedLastTick = false;
 
-    public ClientPlayerEntityMixin(ClientLevel world, GameProfile profile, @Nullable ProfilePublicKey publicKey) {
-        super(world, profile, publicKey);
+    public ClientPlayerEntityMixin(ClientLevel clientLevel, GameProfile gameProfile) {
+        super(clientLevel, gameProfile);
     }
+
 
     @Inject(method = "aiStep", at = @At("HEAD"))
     private void tickMovement(CallbackInfo info) {
         if(this.hasEffect(VineryEffects.IMPROVED_JUMP_BOOST.get())) {
             LocalPlayer player = (LocalPlayer) (Object) this;
-            if (player.isOnGround() || player.onClimbable()) {
+            if (player.onGround() || player.onClimbable()) {
                 jumpCount = 1;
             } else if (!jumpedLastTick && jumpCount > 0 && player.getDeltaMovement().y < 0) {
                 if (player.input.jumping && !player.getAbilities().flying) {

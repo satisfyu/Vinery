@@ -24,6 +24,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import satisfyu.vinery.registry.VineryEffects;
+import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.util.VineryFoodComponent;
 import satisfyu.vinery.util.WineYears;
 
@@ -93,7 +94,7 @@ public abstract class LivingEntityMixin extends Entity {
 
 	@Inject(method = "hurt", at = @At(value = "HEAD"), cancellable = true)
 	private void hasImprovedFireResistance(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		if (source.isFire() && hasStatusEffect(VineryEffects.IMPROVED_FIRE_RESISTANCE.get())) {
+		if (GeneralUtil.isFire(source) && hasStatusEffect(VineryEffects.IMPROVED_FIRE_RESISTANCE.get())) {
 			cir.setReturnValue(false);
 		}
 	}

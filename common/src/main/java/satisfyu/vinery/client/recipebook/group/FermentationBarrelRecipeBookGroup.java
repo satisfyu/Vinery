@@ -4,6 +4,8 @@ import com.google.common.collect.ImmutableList;
 import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
@@ -27,19 +29,20 @@ public enum FermentationBarrelRecipeBookGroup implements IRecipeBookGroup {
         this.icons = ImmutableList.copyOf(entries);
     }
 
-    public boolean fitRecipe(Recipe<?> recipe) {
+    @Override
+    public boolean fitRecipe(Recipe<? extends Container> recipe, RegistryAccess registryAccess) {
         if (recipe instanceof FermentationBarrelRecipe fermentationBarrelRecipe) {
             switch (this) {
                 case SEARCH -> {
                     return true;
                 }
                 case WINE -> {
-                    if (fermentationBarrelRecipe.getResultItem().is(VineryTags.WINE)) {
+                    if (fermentationBarrelRecipe.getResultItem(registryAccess).is(VineryTags.WINE)) {
                         return true;
                     }
                 }
                 case MISC -> {
-                    if (!fermentationBarrelRecipe.getResultItem().is(VineryTags.WINE)) {
+                    if (!fermentationBarrelRecipe.getResultItem(registryAccess).is(VineryTags.WINE)) {
                         return true;
                     }
                 }

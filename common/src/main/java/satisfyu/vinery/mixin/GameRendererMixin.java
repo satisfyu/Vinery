@@ -16,9 +16,9 @@ public abstract class GameRendererMixin {
         if(ShaderUtils.enabled && ShaderUtils.shader != null) {
             RenderSystem.disableBlend();
             RenderSystem.disableDepthTest();
-            RenderSystem.enableTexture();
+            //RenderSystem.enableTexture();
             RenderSystem.resetTextureMatrix();
-            ShaderUtils.shader.process(ShaderUtils.client.getFrameTime());
+            ShaderUtils.shader.process(ShaderUtils.client.getFrameTime() - 10);
         }
     }
 }

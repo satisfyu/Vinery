@@ -4,8 +4,8 @@
 	"textures": {
 		"1": "vinery:block/apple_leaves_0",
 		"2": "vinery:block/apple_leaves_1",
-		"3": "vinery:apple_leaves_bushy1",
-		"4": "vinery:apple_leaves_bushy4",
+		"3": "vinery:block/bushy_leaves/apple_leaves_bushy1",
+		"4": "vinery:block/bushy_leaves/apple_leaves_bushy4",
 		"particle": "vinery:block/apple_leaves_1"
 	},
 	"elements": [
