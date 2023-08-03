@@ -1,7 +1,6 @@
 package satisfyu.vinery.client.render.entity;
 
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.client.VineryClient;
 import satisfyu.vinery.client.model.MuleModel;
 import satisfyu.vinery.entity.TraderMuleEntity;
 import net.fabricmc.api.EnvType;
