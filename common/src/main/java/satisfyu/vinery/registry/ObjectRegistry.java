@@ -268,7 +268,8 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> VINEMAKER_APRON = registerI("vinemaker_apron", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.CHESTPLATE, getSettings().rarity(Rarity.EPIC)));
     public static final RegistrySupplier<Item> VINEMAKER_LEGGINGS = registerI("vinemaker_leggings", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.LEGGINGS, getSettings().rarity(Rarity.RARE)));
     public static final RegistrySupplier<Item> VINEMAKER_BOOTS = registerI("vinemaker_boots", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, ArmorItem.Type.BOOTS, getSettings().rarity(Rarity.RARE)));
-    public static final RegistrySupplier<Item> CALENDAR = registerI("calendar", () -> new Calendar(getSettings()));
+    public static final RegistrySupplier<Block> CALENDAR = registerB("calendar", () -> new CalendarBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+    public static final RegistrySupplier<Item>  CALENDAR_ITEM = registerI("calendar", () -> new BlockItem(CALENDAR.get(), getSettings()));
     public static final RegistrySupplier<Item> MULE_SPAWN_EGG = registerI("mule_spawn_egg", () -> new ArchitecturySpawnEggItem(VineryEntites.MULE, -1, -1, getSettings()));
     public static final RegistrySupplier<Item> WANDERING_WINEMAKER_SPAWN_EGG = registerI("wandering_winemaker_spawn_egg", () -> new ArchitecturySpawnEggItem(VineryEntites.WANDERING_WINEMAKER, -1, -1, getSettings()));
     public static final RegistrySupplier<Block> POTTED_APPLE_TREE_SAPLING = registerB("potted_apple_tree_sapling", () -> new net.minecraft.world.level.block.FlowerPotBlock(ObjectRegistry.APPLE_TREE_SAPLING.get(), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY)));
@@ -308,7 +309,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> WOOD_FIRED_OVEN = registerWithItem("wood_fired_oven", () -> new StoveBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistrySupplier<Block> STOVE = registerWithItem("stove", () -> new StoveBlock(BlockBehaviour.Properties.copy(Blocks.STONE).lightLevel(block -> 12)));
     public static final RegistrySupplier<Block> KITCHEN_SINK = registerWithItem("kitchen_sink", () -> new KitchenSinkBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
-    public static final RegistrySupplier<Item> FAUCET = registerI("faucet", () -> new FaucetItem(getSettings()));
 
 
     static <T extends Item> RegistrySupplier<T> registerI(String path, Supplier<T> item) {
