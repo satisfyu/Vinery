@@ -85,9 +85,9 @@ public abstract class LivingEntityMixin extends Entity {
 	}
 
 	@Inject(method = "getJumpBoostPower", at = @At(value = "HEAD"), cancellable = true)
-	private void improvedJumpBoost(CallbackInfoReturnable<Float> cir) {
+	private void improvedJumpBoost(CallbackInfoReturnable<Double> cir) {
 		if (this.hasStatusEffect(VineryEffects.IMPROVED_JUMP_BOOST.get())) {
-			cir.setReturnValue((0.1F * (float)(this.activeEffects.get(VineryEffects.IMPROVED_JUMP_BOOST.get()).getAmplifier() + 1)));
+			cir.setReturnValue((double)(0.1F * (float)(this.activeEffects.get(VineryEffects.IMPROVED_JUMP_BOOST.get()).getAmplifier() + 1)));
 		}
 	}
 
