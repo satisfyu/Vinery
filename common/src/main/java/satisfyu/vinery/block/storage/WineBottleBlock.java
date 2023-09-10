@@ -1,5 +1,6 @@
 package satisfyu.vinery.block.storage;
 
+import com.mojang.datafixers.util.Pair;
 import de.cristelknight.doapi.common.block.StorageBlock;
 import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -140,15 +141,29 @@ public class WineBottleBlock extends StorageBlock {
     }
 
     public boolean willFitStack(ItemStack itemStack, NonNullList<ItemStack> inventory) {
-        return getCount(itemStack) > getFilledAmount(inventory);
+        Pair<Integer, Integer> p = getFilledAmountAndBiggest(inventory);
+        int biggest = p.getSecond();
+        if(biggest == Integer.MAX_VALUE) return true;
+
+        int space = biggest - p.getFirst();
+
+        int neededSpace = 4 - getCount(itemStack);
+
+        return space >= neededSpace;
     }
 
-    public static int getFilledAmount(NonNullList<ItemStack> inventory){
+    public static Pair<Integer, Integer> getFilledAmountAndBiggest(NonNullList<ItemStack> inventory){
         int count = 0;
+        int biggest = Integer.MAX_VALUE;
         for(ItemStack stack : inventory){
-            if(!stack.isEmpty()) count++;
+            if(!stack.isEmpty()){
+                count++;
+                if(stack.getItem() instanceof DrinkBlockItem item && item.getBlock() instanceof WineBottleBlock wine && wine.maxCount < biggest){
+                    biggest = wine.maxCount;
+                }
+            }
         }
-        return count;
+        return new Pair<>(count, biggest);
     }
 
     public static int getCount(ItemStack itemStack){
