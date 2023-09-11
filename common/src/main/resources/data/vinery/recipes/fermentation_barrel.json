@@ -7,7 +7,7 @@
   ],
   "key": {
     "B": {
-      "item": "minecraft:barrel"
+      "tag": "vinery:barrel"
     },
     "S": {
       "item": "minecraft:stick"
