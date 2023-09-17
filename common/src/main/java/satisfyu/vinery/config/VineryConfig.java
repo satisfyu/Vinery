@@ -46,8 +46,7 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
                     Length of a year (in days).""");
             map.put("years_per_effect_level", """
                     Years per effect level""");
-                }
-        );
+        });
     }
 
     @Override

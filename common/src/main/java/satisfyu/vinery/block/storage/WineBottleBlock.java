@@ -143,13 +143,11 @@ public class WineBottleBlock extends StorageBlock {
     public boolean willFitStack(ItemStack itemStack, NonNullList<ItemStack> inventory) {
         Pair<Integer, Integer> p = getFilledAmountAndBiggest(inventory);
         int biggest = p.getSecond();
+        int count = p.getFirst();
+        int stackCount = getCount(itemStack);
         if(biggest == Integer.MAX_VALUE) return true;
 
-        int space = biggest - p.getFirst();
-
-        int neededSpace = 4 - getCount(itemStack);
-
-        return space >= neededSpace;
+        return stackCount > count && count < biggest;
     }
 
     public static Pair<Integer, Integer> getFilledAmountAndBiggest(NonNullList<ItemStack> inventory){
