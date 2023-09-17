@@ -33,11 +33,14 @@ dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 
+    include(implementation("blue.endless:jankson:${jankson_version}"))
     //REI and JEI
     modImplementation "me.shedaniel:RoughlyEnoughItems-forge:$rei_version"
+    /*
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+     */
 
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-forge"
 
