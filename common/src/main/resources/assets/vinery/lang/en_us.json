@@ -238,12 +238,6 @@
   "vinery.tooltip.winemaker_armor": "Winemaker's Desire:",
   "vinery.tooltip.winemaker_armor2": "Full set bonus:",
   "vinery.tooltip.winemaker_armor3": "Bonemeal won't get consumed anymore",
-  "vinery.config.title": "Vinery",
-  "vinery.config.entry.recipebookopen": "Recipe Book Open",
-  "vinery.config.entry.craftabletoggle": "Toggle Craftable",
-  "vinery.config.entry.enableWineMakerSetBonus": "Winemaker Set Bonus",
-  "vinery.config.entry.wineTraderChance": "Wandering Winemaker Spawnchance",
-  "vinery.config.entry.yearLengthInDays": "Days per Year for Aging",
   "block.vinery.stove.tooltip": "The flame of this stove has been extinguished forever...",
   "block.vinery.deprecated.tooltip": "Deprecated. Can't be crafted anymore.",
   "item.vinery.wine.block.vinery.stal_wine": "Increases your maximum health",
@@ -301,6 +295,17 @@
   "block.vinery.mccherry_wine_rack_small": "Small Pink Cherry Wine Bottle Storage",
   "block.vinery.mccherry_wine_rack_mid": "Small Pink Cherry Wine Bottle Storage",
   "block.vinery.winebox_big.tooltip.shift_1": "Storage for Big Wine Bottles",
-  "block.vinery.winebox_small.tooltip.shift_1": "Storage for Small Wine Bottles"
+  "block.vinery.winebox_small.tooltip.shift_1": "Storage for Small Wine Bottles",
 
+  "vinery.config.title": "Vinery",
+  "vinery.config.subCategory.wineMaker": "Winemaker Set Bonus",
+
+  "vinery.config.entry.enableWineMakerSetBonus": "Enable Winemaker Set Bonus",
+  "vinery.config.entry.probabilityToKeepBoneMeal": "Probability for the set bonus to work (in %)",
+  "vinery.config.entry.probabilityForDamage": "Probability for damaging armor on use (in %)",
+  "vinery.config.entry.damagePerUse": "Amount of damage",
+
+  "vinery.config.entry.wineTraderChance": "Wandering Winemaker Spawnchance",
+  "vinery.config.entry.yearLengthInDays": "Days per Year",
+  "vinery.config.entry.yearsPerEffectLevel": "Years per effect level"
 }

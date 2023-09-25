@@ -1,5 +1,6 @@
 package satisfyu.vinery;
 
+import de.cristelknight.doapi.DoApiExpectPlatform;
 import dev.architectury.hooks.item.tool.AxeItemHooks;
 import dev.architectury.hooks.item.tool.ShovelItemHooks;
 import dev.architectury.registry.fuel.FuelRegistry;
@@ -26,6 +27,8 @@ public class Vinery {
         VineryEntites.init();
         VineryFeatures.init();
         VinerySoundEvents.init();
+
+        DoApiExpectPlatform.registerBuiltInPack(Vinery.MODID, new VineryIdentifier("bushy_leaves"), false);
     }
 
     public static void commonSetup(){

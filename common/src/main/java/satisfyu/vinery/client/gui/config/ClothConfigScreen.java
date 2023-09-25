@@ -9,6 +9,7 @@ import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
 import me.shedaniel.clothconfig2.gui.entries.IntegerListEntry;
 import me.shedaniel.clothconfig2.gui.entries.TextListEntry;
+import me.shedaniel.clothconfig2.impl.builders.SubCategoryBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
@@ -39,20 +40,12 @@ public class ClothConfigScreen {
         return builder.build();
     }
 
-    private static Component entryName(String id) {
-        return CCUtil.entryName(id, Vinery.MODID);
-    }
-
-    public static Component translatableText(String id) {
-        return CCUtil.translatableText(id, Vinery.MODID);
-    }
-
 
     private static class ConfigEntries {
         private final ConfigEntryBuilder builder;
         private final ConfigCategory category;
         private final BooleanListEntry enableWineMakerSetBonus;
-        private final IntegerListEntry wineTraderChance, yearLengthInDays;
+        private final IntegerListEntry wineTraderChance, yearLengthInDays, yearsPerEffectLevel, damagePerUse, probabilityForDamage, probabilityToKeepBoneMeal;
 
 
 
@@ -60,30 +53,43 @@ public class ClothConfigScreen {
             this.builder = builder;
             this.category = category;
 
-            enableWineMakerSetBonus = createBooleanField("enableWineMakerSetBonus", config.enableWineMakerSetBonus(), VineryConfig.DEFAULT.enableWineMakerSetBonus());
+            wineTraderChance = createIntField("wineTraderChance", config.wineTraderChance(), VineryConfig.DEFAULT.wineTraderChance(), null, 0, 100);
+            yearLengthInDays = createIntField("yearLengthInDays", config.yearLengthInDays(), VineryConfig.DEFAULT.yearLengthInDays(), null, 1, 100);
+            yearsPerEffectLevel = createIntField("yearsPerEffectLevel", config.yearsPerEffectLevel(), VineryConfig.DEFAULT.yearsPerEffectLevel(), null, 1, 100);
+
+            SubCategoryBuilder wineMaker = new SubCategoryBuilder(Component.empty(), Component.translatable("vinery.config.subCategory.wineMaker"));
+
+            enableWineMakerSetBonus = createBooleanField("enableWineMakerSetBonus", config.enableWineMakerSetBonus(), VineryConfig.DEFAULT.enableWineMakerSetBonus(), wineMaker);
+            probabilityToKeepBoneMeal = createIntField("probabilityToKeepBoneMeal", config.probabilityToKeepBoneMeal(), VineryConfig.DEFAULT.probabilityToKeepBoneMeal(), wineMaker, 1, 100);
+            probabilityForDamage = createIntField("probabilityForDamage", config.probabilityForDamage(), VineryConfig.DEFAULT.probabilityForDamage(), wineMaker, 0, 100);
+            damagePerUse = createIntField("damagePerUse", config.damagePerUse(), VineryConfig.DEFAULT.damagePerUse(), wineMaker, 1, 100);
 
 
-            wineTraderChance = createIntField("wineTraderChance", config.wineTraderChance(), VineryConfig.DEFAULT.wineTraderChance());
-            yearLengthInDays = createIntField("yearLengthInDays", config.yearLengthInDays(), VineryConfig.DEFAULT.yearLengthInDays());
-
+            category.addEntry(wineMaker.build());
             linkButtons(Vinery.MODID, category, builder, "https://discord.gg/Vqu6wYZwdZ", "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine", lastScreen);
         }
 
 
         public VineryConfig createConfig() {
-            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), enableWineMakerSetBonus.getValue());
+            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue());
         }
 
 
-        public BooleanListEntry createBooleanField(String id, boolean value, boolean defaultValue){
+        public BooleanListEntry createBooleanField(String id, boolean value, boolean defaultValue, SubCategoryBuilder subCategoryBuilder){
             BooleanListEntry e = CCUtil.createBooleanField(Vinery.MODID, id, value, defaultValue, builder);
-            category.addEntry(e);
+
+            if(subCategoryBuilder == null) category.addEntry(e);
+            else subCategoryBuilder.add(e);
+
             return e;
         }
 
-        public IntegerListEntry createIntField(String id, int value, int defaultValue){
-            IntegerListEntry e = CCUtil.createIntField(Vinery.MODID, id, value, defaultValue, builder);
-            category.addEntry(e);
+        public IntegerListEntry createIntField(String id, int value, int defaultValue, SubCategoryBuilder subCategoryBuilder, int min, int max){
+            IntegerListEntry e = CCUtil.createIntField(Vinery.MODID, id, value, defaultValue, builder).setMaximum(max).setMinimum(min);
+
+            if(subCategoryBuilder == null) category.addEntry(e);
+            else subCategoryBuilder.add(e);
+
             return e;
         }
     }

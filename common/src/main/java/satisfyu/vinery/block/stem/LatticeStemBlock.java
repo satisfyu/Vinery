@@ -40,7 +40,7 @@ public class LatticeStemBlock extends StemBlock {
     private static final VoxelShape LATTICE_SHAPE_E = Block.box(0, 0,0, 1.0,  16.0, 16.0);
     private static final VoxelShape LATTICE_SHAPE_S = Block.box(0, 0,0, 16.0,  16.0, 1.0);
     private static final VoxelShape LATTICE_SHAPE_W = Block.box(15.0, 0,0, 16.0,  16.0, 16.0);
-    public static final DirectionProperty FACING;
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;;
 
     public LatticeStemBlock(Properties settings) {
         super(settings);
@@ -79,29 +79,33 @@ public class LatticeStemBlock extends StemBlock {
             return super.use(state, world, pos, player, hand, hit);
         }
 
+        final  ItemStack stack = player.getItemInHand(hand);
         final int age = state.getValue(AGE);
-        if (age > 0 && player.getItemInHand(hand).getItem() == Items.SHEARS) {
+
+        if (age > 0 && stack.getItem() == Items.SHEARS) {
+            stack.hurtAndBreak(1, player, player2 -> player2.broadcastBreakEvent(player.getUsedItemHand()));
             if (age > 2) {
                 dropGrapes(world, state, pos);
             }
             dropGrapeSeeds(world, state, pos);
-            world.setBlock(pos, withAge(state,0, GrapevineType.NONE), 3);
+            world.setBlock(pos, state.setValue(AGE, 0), 3);
             world.playSound(player, pos, SoundEvents.SWEET_BERRY_BUSH_BREAK, SoundSource.AMBIENT, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
         }
-
-        final ItemStack stack = player.getItemInHand(hand);
-        if (stack.getItem() instanceof GrapeBushSeedItem seed) {
-            if (age == 0) {
-                if (!seed.getType().isPaleType()) {
-                    world.setBlock(pos, withAge(state,1, seed.getType()), 3);
-                    if (!player.isCreative()) {
-                        stack.shrink(1);
-                    }
-                    world.playSound(player, pos, SoundEvents.SWEET_BERRY_BUSH_PLACE, SoundSource.AMBIENT, 1.0F, 1.0F);
-                    return InteractionResult.SUCCESS;
-                }
+        else if (stack.getItem() instanceof GrapeBushSeedItem seed && !seed.getType().isPaleType() && age == 0) {
+            world.setBlock(pos, withAge(state,1, seed.getType()), 3);
+            if (!player.isCreative()) {
+                stack.shrink(1);
             }
+            world.playSound(player, pos, SoundEvents.SWEET_BERRY_BUSH_PLACE, SoundSource.AMBIENT, 1.0F, 1.0F);
+            return InteractionResult.SUCCESS;
+        }
+        else if (age > 2) {
+            stack.hurtAndBreak(1, player, player2 -> player2.broadcastBreakEvent(player.getUsedItemHand()));
+            dropGrapes(world, state, pos);
+            world.setBlock(pos, state.setValue(AGE, 1), 3);
+            world.playSound(player, pos, SoundEvents.SWEET_BERRY_BUSH_BREAK, SoundSource.AMBIENT, 1.0F, 1.0F);
+            return InteractionResult.SUCCESS;
         }
 
         return super.use(state, world, pos, player, hand, hit);
@@ -179,10 +183,6 @@ public class LatticeStemBlock extends StemBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(FACING);
-    }
-
-    static {
-        FACING = BlockStateProperties.HORIZONTAL_FACING;
     }
 
     @Override
