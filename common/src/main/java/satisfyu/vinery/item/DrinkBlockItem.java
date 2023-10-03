@@ -45,23 +45,25 @@ public class DrinkBlockItem extends BlockItem {
 
     @Override
     protected BlockState getPlacementState(BlockPlaceContext context) {
-        if (!context.getPlayer().isCrouching()) {
-            return null;
+        Player player = context.getPlayer();
+        if (player != null && !player.isCrouching()) {
+            BlockState blockState = this.getBlock().getStateForPlacement(context);
+            return blockState != null && this.canPlace(context, blockState) ? blockState : null;
         }
-
-        BlockState blockState = this.getBlock().getStateForPlacement(context);
-        return blockState != null && this.canPlace(context, blockState) ? blockState : null;
+        return null;
     }
+
 
     @Override
     protected boolean updateCustomBlockEntityTag(BlockPos blockPos, Level level, @Nullable Player player, ItemStack itemStack, BlockState blockState) {
-        if(level.getBlockEntity(blockPos) instanceof StorageBlockEntity wineEntity){
+        if (level != null && player != null && level.getBlockEntity(blockPos) instanceof StorageBlockEntity wineEntity) {
             ItemStack newStack = itemStack.copy();
             newStack.setCount(1);
             wineEntity.setStack(0, newStack);
         }
         return super.updateCustomBlockEntityTag(blockPos, level, player, itemStack, blockState);
     }
+
 
 
     @Override
