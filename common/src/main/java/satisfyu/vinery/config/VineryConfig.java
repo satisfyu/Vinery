@@ -19,10 +19,10 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
     public static final Codec<VineryConfig> CODEC = RecordCodecBuilder.create(builder ->
             builder.group(
                     Codec.intRange(0, 100).fieldOf("wine_trader_chance").orElse(DEFAULT.wineTraderChance).forGetter(c -> c.wineTraderChance),
-                    Codec.intRange(1, 100).fieldOf("year_length_in_days").orElse(DEFAULT.yearLengthInDays).forGetter(c -> c.yearLengthInDays),
-                    Codec.intRange(1, 100).fieldOf("years_per_effect_level").orElse(DEFAULT.yearsPerEffectLevel).forGetter(c -> c.yearsPerEffectLevel),
+                    Codec.intRange(1, 1000).fieldOf("year_length_in_days").orElse(DEFAULT.yearLengthInDays).forGetter(c -> c.yearLengthInDays),
+                    Codec.intRange(1, 1000).fieldOf("years_per_effect_level").orElse(DEFAULT.yearsPerEffectLevel).forGetter(c -> c.yearsPerEffectLevel),
                     Codec.BOOL.fieldOf("enable_wine_maker_set_bonus").orElse(DEFAULT.enableWineMakerSetBonus).forGetter(c -> c.enableWineMakerSetBonus),
-                    Codec.intRange(1, 100).fieldOf("damage_per_use").orElse(DEFAULT.damagePerUse).forGetter(c -> c.damagePerUse),
+                    Codec.intRange(1, 1000).fieldOf("damage_per_use").orElse(DEFAULT.damagePerUse).forGetter(c -> c.damagePerUse),
                     Codec.intRange(0, 100).fieldOf("probability_for_damage").orElse(DEFAULT.probabilityForDamage).forGetter(c -> c.probabilityForDamage),
                     Codec.intRange(1, 100).fieldOf("probability_to_keep_bone_meal").orElse(DEFAULT.probabilityToKeepBoneMeal).forGetter(c -> c.probabilityToKeepBoneMeal)
                     ).apply(builder, VineryConfig::new)

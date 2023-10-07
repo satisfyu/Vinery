@@ -54,15 +54,15 @@ public class ClothConfigScreen {
             this.category = category;
 
             wineTraderChance = createIntField("wineTraderChance", config.wineTraderChance(), VineryConfig.DEFAULT.wineTraderChance(), null, 0, 100);
-            yearLengthInDays = createIntField("yearLengthInDays", config.yearLengthInDays(), VineryConfig.DEFAULT.yearLengthInDays(), null, 1, 100);
-            yearsPerEffectLevel = createIntField("yearsPerEffectLevel", config.yearsPerEffectLevel(), VineryConfig.DEFAULT.yearsPerEffectLevel(), null, 1, 100);
+            yearLengthInDays = createIntField("yearLengthInDays", config.yearLengthInDays(), VineryConfig.DEFAULT.yearLengthInDays(), null, 1, 1000);
+            yearsPerEffectLevel = createIntField("yearsPerEffectLevel", config.yearsPerEffectLevel(), VineryConfig.DEFAULT.yearsPerEffectLevel(), null, 1, 1000);
 
             SubCategoryBuilder wineMaker = new SubCategoryBuilder(Component.empty(), Component.translatable("vinery.config.subCategory.wineMaker"));
 
             enableWineMakerSetBonus = createBooleanField("enableWineMakerSetBonus", config.enableWineMakerSetBonus(), VineryConfig.DEFAULT.enableWineMakerSetBonus(), wineMaker);
             probabilityToKeepBoneMeal = createIntField("probabilityToKeepBoneMeal", config.probabilityToKeepBoneMeal(), VineryConfig.DEFAULT.probabilityToKeepBoneMeal(), wineMaker, 1, 100);
             probabilityForDamage = createIntField("probabilityForDamage", config.probabilityForDamage(), VineryConfig.DEFAULT.probabilityForDamage(), wineMaker, 0, 100);
-            damagePerUse = createIntField("damagePerUse", config.damagePerUse(), VineryConfig.DEFAULT.damagePerUse(), wineMaker, 1, 100);
+            damagePerUse = createIntField("damagePerUse", config.damagePerUse(), VineryConfig.DEFAULT.damagePerUse(), wineMaker, 1, 1000);
 
 
             category.addEntry(wineMaker.build());
