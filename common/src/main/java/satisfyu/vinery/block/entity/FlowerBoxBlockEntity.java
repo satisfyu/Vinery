@@ -80,13 +80,10 @@ public class FlowerBoxBlockEntity extends BlockEntity {
 		return this.saveWithoutMetadata();
 	}
 
-
-
 	@Override
 	public void setChanged() {
 		if(level != null && !level.isClientSide()) {
 			Packet<ClientGamePacketListener> updatePacket = getUpdatePacket();
-
 			for (ServerPlayer player : GeneralUtil.tracking((ServerLevel) level, getBlockPos())) {
 				player.connection.send(updatePacket);
 			}
