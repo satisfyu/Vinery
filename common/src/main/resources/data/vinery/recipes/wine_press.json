@@ -14,7 +14,8 @@
       "item": "minecraft:stick"
     },
     "B": {
-      "tag": "vinery:wooden_barrels"    }
+      "tag": "vinery:wooden_barrels"
+    }
   },
   "result": {
     "item": "vinery:wine_press"

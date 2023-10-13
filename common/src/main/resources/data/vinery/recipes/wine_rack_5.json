@@ -14,7 +14,8 @@
       "item": "vinery:cherry_slab"
     },
     "B": {
-      "tag": "vinery:wooden_barrels"    }
+      "tag": "vinery:wooden_barrels"
+    }
   },
   "result": {
     "item": "vinery:wine_rack_5"

@@ -15,4 +15,6 @@ public class VineryTags {
     public static final TagKey<Item> SMALL_FLOWER = TagKey.create(Registry.ITEM.key(), new VineryIdentifier( "small_flower"));
     public static final TagKey<Item> BIG_FLOWER = TagKey.create(Registry.ITEM.key(), new VineryIdentifier("big_flower"));
     public static final TagKey<Item> WINE = TagKey.create(Registry.ITEM.key(), new VineryIdentifier("wine"));
+    public static final TagKey<Block> WOODEN_BARRELS = TagKey.create(Registry.BLOCK.key(), new VineryIdentifier("wooden_barrels"));
+
 }
