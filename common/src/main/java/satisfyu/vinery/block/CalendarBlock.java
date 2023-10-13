@@ -21,6 +21,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.config.VineryConfig;
+import satisfyu.vinery.item.CalendarItem;
 import satisfyu.vinery.util.WineYears;
 
 import java.util.List;
@@ -80,11 +81,8 @@ public class CalendarBlock extends FacingBlock {
     public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
         tooltip.add(Component.translatable("block.vinery.decoration.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
 
-        if (world instanceof Level) {
-            Level level = (Level) world;
-            long hour = (level.getDayTime() / 1000) % 24;
-            long day = (level.getDayTime() / 24000) % VineryConfig.DEFAULT.getConfig().yearLengthInDays();
-            tooltip.add(Component.literal(hour + "h / " + day + "d / " + WineYears.getYear(level) + "y").withStyle(ChatFormatting.YELLOW));
+        if (world instanceof Level level) {
+            tooltip.add(CalendarItem.getTime(level));
         }
     }
 }

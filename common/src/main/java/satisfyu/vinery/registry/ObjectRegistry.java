@@ -1,5 +1,7 @@
 package satisfyu.vinery.registry;
 
+import com.google.common.collect.Lists;
+import com.mojang.datafixers.util.Pair;
 import de.cristelknight.doapi.Util;
 import de.cristelknight.doapi.terraform.TerraformSignHelper;
 import dev.architectury.core.item.ArchitecturySpawnEggItem;
@@ -38,9 +40,11 @@ import satisfyu.vinery.block.storage.*;
 import satisfyu.vinery.item.*;
 import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.util.GrapevineType;
+import satisfyu.vinery.util.VineryFoodComponent;
 import satisfyu.vinery.util.generators.ConfiguredFeatureSaplingGenerator;
 import satisfyu.vinery.world.VineryConfiguredFeatures;
 
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -276,7 +280,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> VINEMAKER_LEGGINGS = registerI("vinemaker_leggings", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.LEGS, getSettings().rarity(Rarity.RARE)));
     public static final RegistrySupplier<Item> VINEMAKER_BOOTS = registerI("vinemaker_boots", () -> new WinemakerDefaultArmorItem(VineryMaterials.VINEMAKER_ARMOR, EquipmentSlot.FEET, getSettings().rarity(Rarity.RARE)));
     public static final RegistrySupplier<Block> CALENDAR = registerB("calendar", () -> new CalendarBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(2.0F, 2.0F)));
-    public static final RegistrySupplier<Item>  CALENDAR_ITEM = registerI("calendar", () -> new BlockItem(CALENDAR.get(), getSettings()));
+    public static final RegistrySupplier<Item>  CALENDAR_ITEM = registerI("calendar", () -> new CalendarItem(CALENDAR.get(), getSettings()));
     public static final RegistrySupplier<Item> MULE_SPAWN_EGG = registerI("mule_spawn_egg", () -> new ArchitecturySpawnEggItem(VineryEntites.MULE, -1, -1, getSettings()));
     public static final RegistrySupplier<Item> WANDERING_WINEMAKER_SPAWN_EGG = registerI("wandering_winemaker_spawn_egg", () -> new ArchitecturySpawnEggItem(VineryEntites.WANDERING_WINEMAKER, -1, -1, getSettings()));
     public static final RegistrySupplier<Block> POTTED_APPLE_TREE_SAPLING = registerB("potted_apple_tree_sapling", () -> new net.minecraft.world.level.block.FlowerPotBlock(ObjectRegistry.APPLE_TREE_SAPLING.get(), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY)));
@@ -362,9 +366,9 @@ public class ObjectRegistry {
     }
 
     private static FoodProperties wineFoodComponent(MobEffect effect, int duration) {
-        FoodProperties.Builder component = new FoodProperties.Builder().nutrition(1);
-        if (effect != null) component.effect(new MobEffectInstance(effect, duration), 1.0f);
-        return component.build();
+        List<Pair<MobEffectInstance, Float>> effects = Lists.newArrayList();
+        if (effect != null) effects.add(Pair.of(new MobEffectInstance(effect, duration), 1.0f));
+        return new VineryFoodComponent(effects);
     }
 
     private static BlockBehaviour.Properties getBushSettings() {

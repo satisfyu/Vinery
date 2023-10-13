@@ -15,8 +15,9 @@ public class WineYears {
 	}
 
 	public static int getEffectLevel(ItemStack wine, Level world) {
-		return Math.max(0, Math.min(MAX_LEVEL, getWineAge(wine, world) / YEARS_PER_EFFECT_LEVEL));
+		return Math.max(0, Math.min(MAX_LEVEL, getWineAge(wine, world) / VineryConfig.DEFAULT.getConfig().yearsPerEffectLevel()));
 	}
+
 
 	public static int getWineAge(ItemStack wine, Level world) {
 		return getYear(world) - getWineYear(wine, world);
