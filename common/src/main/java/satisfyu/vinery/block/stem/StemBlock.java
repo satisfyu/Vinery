@@ -19,18 +19,19 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import satisfyu.vinery.util.GrapevineType;
+import satisfyu.vinery.block.grape.GrapeProperty;
+import satisfyu.vinery.block.grape.GrapeType;
+import satisfyu.vinery.registry.GrapeTypes;
 
 public abstract class StemBlock extends Block implements BonemealableBlock {
-    public static final EnumProperty<GrapevineType> GRAPE;
+    public static final GrapeProperty GRAPE;
     public static final IntegerProperty AGE;
 
-    public StemBlock(Properties settings) {
-        super(settings);
-        this.registerDefaultState(this.defaultBlockState().setValue(GRAPE, GrapevineType.NONE).setValue(AGE, 0));
+    static {
+        GRAPE = GrapeProperty.create("grape");
+        AGE = BlockStateProperties.AGE_4;
     }
 
     public void dropGrapes(Level world, BlockState state, BlockPos pos) {
@@ -80,8 +81,9 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
         world.setBlock(pos, this.withAge(state, age, state.getValue(GRAPE)), Block.UPDATE_CLIENTS);
     }
 
-    public BlockState withAge(BlockState state, int age, GrapevineType type) {
-        return state.setValue(AGE, age).setValue(GRAPE, type);
+    public StemBlock(Properties settings) {
+        super(settings);
+        this.registerDefaultState(this.defaultBlockState().setValue(GRAPE, GrapeTypes.NONE).setValue(AGE, 0));
     }
 
     @Override
@@ -107,8 +109,7 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
         boneMealGrow(world, state, pos);
     }
 
-    static {
-        GRAPE = EnumProperty.create("grape", GrapevineType.class);
-        AGE = BlockStateProperties.AGE_4;
+    public BlockState withAge(BlockState state, int age, GrapeType type) {
+        return state.setValue(AGE, age).setValue(GRAPE, type);
     }
 }

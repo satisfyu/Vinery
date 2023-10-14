@@ -1,11 +1,5 @@
 package satisfyu.vinery.block.stem;
 
-import net.minecraft.world.level.LevelAccessor;
-import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.item.GrapeBushSeedItem;
-import satisfyu.vinery.util.GrapevineType;
-
-import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -24,6 +18,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -33,6 +28,10 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.item.GrapeBushSeedItem;
+
+import java.util.List;
 
 public class LatticeStemBlock extends StemBlock {
 
@@ -40,7 +39,7 @@ public class LatticeStemBlock extends StemBlock {
     private static final VoxelShape LATTICE_SHAPE_E = Block.box(0, 0,0, 1.0,  16.0, 16.0);
     private static final VoxelShape LATTICE_SHAPE_S = Block.box(0, 0,0, 16.0,  16.0, 1.0);
     private static final VoxelShape LATTICE_SHAPE_W = Block.box(15.0, 0,0, 16.0,  16.0, 16.0);
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;;
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public LatticeStemBlock(Properties settings) {
         super(settings);
@@ -92,7 +91,7 @@ public class LatticeStemBlock extends StemBlock {
             world.playSound(player, pos, SoundEvents.SWEET_BERRY_BUSH_BREAK, SoundSource.AMBIENT, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
         }
-        else if (stack.getItem() instanceof GrapeBushSeedItem seed && !seed.getType().isPaleType() && age == 0) {
+        else if (stack.getItem() instanceof GrapeBushSeedItem seed && seed.getType().isLattice() && age == 0) {
             world.setBlock(pos, withAge(state,1, seed.getType()), 3);
             if (!player.isCreative()) {
                 stack.shrink(1);

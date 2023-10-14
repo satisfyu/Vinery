@@ -1,10 +1,7 @@
 package satisfyu.vinery.block.grape;
 
-import net.minecraft.world.damagesource.DamageSource;
-import satisfyu.vinery.util.GrapevineType;
-
-import java.util.Iterator;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,9 +11,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.Iterator;
+
 public class TaigaGrapeBush extends GrapeBush {
 
-    public TaigaGrapeBush(Properties settings, GrapevineType type) {
+    public TaigaGrapeBush(Properties settings, GrapeType type) {
         super(settings, type);
     }
 

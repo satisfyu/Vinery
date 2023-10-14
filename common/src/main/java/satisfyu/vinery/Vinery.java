@@ -24,6 +24,7 @@ public class Vinery {
         VineryConfig.DEFAULT.getConfig();
         VineryEffects.init();
         ObjectRegistry.init();
+        GrapeTypes.addGrapeAttributes();
         VineryBlockEntityTypes.init();
         VineryScreenHandlerTypes.init();
         VineryRecipeTypes.init();

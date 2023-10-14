@@ -1,7 +1,5 @@
 package satisfyu.vinery.mixin;
 
-import satisfyu.vinery.block.grape.GrapeBush;
-import satisfyu.vinery.util.GrapevineType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -19,6 +17,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import satisfyu.vinery.block.grape.GrapeBush;
+import satisfyu.vinery.block.grape.GrapeType;
 
 @Mixin(Fox.FoxEatBerriesGoal.class)
 public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToBlockGoal {
@@ -46,7 +46,7 @@ public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToBlockGoal 
         }
     }
 
-    private void pickGrapes(BlockState state, GrapevineType type) {
+    private void pickGrapes(BlockState state, GrapeType type) {
         final int age = state.getValue(GrapeBush.AGE);
         state.setValue(GrapeBush.AGE, 1);
         int j = 1 + field_17975.level.random.nextInt(2) + (age == 3 ? 1 : 0);
@@ -63,7 +63,7 @@ public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToBlockGoal 
         field_17975.level.setBlock(this.blockPos, state.setValue(GrapeBush.AGE, 1), 2);
     }
 
-    private static ItemStack getGrapeFor(GrapevineType type) {
+    private static ItemStack getGrapeFor(GrapeType type) {
         return type.getFruit().getDefaultInstance();
     }
 }

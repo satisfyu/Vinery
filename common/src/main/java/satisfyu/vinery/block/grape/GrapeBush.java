@@ -24,7 +24,6 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import satisfyu.vinery.util.GrapevineType;
 
 public class GrapeBush extends BushBlock implements BonemealableBlock {
 
@@ -32,13 +31,13 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
     private static final VoxelShape SHAPE;
     private final int chance;
 
-    public final GrapevineType type;
+    public final GrapeType type;
 
-    public GrapeBush(Properties settings, GrapevineType type) {
+    public GrapeBush(Properties settings, GrapeType type) {
         this(settings, type, 5);
     }
 
-    public GrapeBush(Properties settings, GrapevineType type, int chance) {
+    public GrapeBush(Properties settings, GrapeType type, int chance) {
         super(settings);
         this.chance = chance;
         this.type = type;
@@ -49,8 +48,9 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
         return SHAPE;
     }
 
-    public GrapevineType getType() {
-        return type;
+    @Override
+    public ItemStack getCloneItemStack(BlockGetter world, BlockPos pos, BlockState state) {
+        return new ItemStack(this.getType().getSeeds());
     }
 
     @Override
@@ -110,13 +110,12 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
         return floor.isSolidRender(world, pos);
     }
 
-    @Override
-    public ItemStack getCloneItemStack(BlockGetter world, BlockPos pos, BlockState state) {
-        return new ItemStack(this.type.getSeeds());
+    public GrapeType getType() {
+        return this.type;
     }
 
     public ItemStack getGrapeType() {
-        return new ItemStack(this.type.getFruit());
+        return new ItemStack(this.getType().getFruit());
     }
 
 
