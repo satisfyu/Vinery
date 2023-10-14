@@ -39,7 +39,7 @@ public class ApplePressCategory implements IRecipeCategory<ApplePressRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, ApplePressRecipe recipe, IFocusGroup focuses) {
-        VineryJEIPlugin.addSlot(builder, 48 - WIDTH_OF, 34 - HEIGHT_OF, recipe.input);
+        VineryJEIPlugin.addSlot(builder, 48 - WIDTH_OF, 34 - HEIGHT_OF, recipe.ingredient);
 
         // Output
         builder.addSlot(RecipeIngredientRole.OUTPUT, 116 - WIDTH_OF,  35 - HEIGHT_OF).addItemStack(recipe.getResultItem());

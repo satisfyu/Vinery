@@ -11,6 +11,7 @@ import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
@@ -41,10 +42,10 @@ public class VineryJEIPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
 
-        List<FermentationBarrelRecipe> fermentationBarrelRecipes = rm.getAllRecipesFor(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get());
+        List<FermentationBarrelRecipe> fermentationBarrelRecipes = rm.getAllRecipesFor(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get()).stream().map(RecipeHolder::value).toList();
         registration.addRecipes(FermentationBarrelCategory.FERMENTATION_BARREL, fermentationBarrelRecipes);
 
-        List<ApplePressRecipe> applePressRecipes = rm.getAllRecipesFor(VineryRecipeTypes.APPLE_PRESS_RECIPE_TYPE.get());
+        List<ApplePressRecipe> applePressRecipes = rm.getAllRecipesFor(VineryRecipeTypes.APPLE_PRESS_RECIPE_TYPE.get()).stream().map(RecipeHolder::value).toList();
         registration.addRecipes(ApplePressCategory.APPLE_PRESS, applePressRecipes);
     }
 

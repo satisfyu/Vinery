@@ -6,7 +6,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -16,7 +15,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -92,14 +91,15 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
     public void tick(Level world, BlockPos pos, BlockState state, FermentationBarrelBlockEntity blockEntity) {
         if (world.isClientSide) return;
         boolean dirty = false;
-        Recipe<?> recipe = world.getRecipeManager().getRecipeFor(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get(), this, world).orElse(null);
+        RecipeHolder<?> recipeHolder = world.getRecipeManager().getRecipeFor(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get(), this, world).orElse(null);
         RegistryAccess access = level.registryAccess();
-        if (canCraft(recipe, access)) {
+        if (recipeHolder == null) return;
+        if (canCraft(recipeHolder, access)) {
             this.fermentationTime++;
 
             if (this.fermentationTime >= this.totalFermentationTime) {
                 this.fermentationTime = 0;
-                craft(recipe, access);
+                craft(recipeHolder, access);
                 dirty = true;
             }
         } else {
@@ -111,8 +111,8 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
 
     }
 
-    private boolean canCraft(Recipe<?> recipe, RegistryAccess access) {
-        if (recipe == null || recipe.getResultItem(access).isEmpty()) {
+    private boolean canCraft(RecipeHolder<?> recipe, RegistryAccess access) {
+        if (recipe == null || recipe.value().getResultItem(access).isEmpty()) {
             return false;
         } else if (areInputsEmpty()) {
             return false;
@@ -134,11 +134,12 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
         }
         return emptyStacks == 4;
     }
-    private void craft(Recipe<?> recipe, RegistryAccess access) {
+
+    private void craft(RecipeHolder<?> recipe, RegistryAccess access) {
         if (!canCraft(recipe, access)) {
             return;
         }
-        final ItemStack recipeOutput = recipe.getResultItem(access);
+        final ItemStack recipeOutput = recipe.value().getResultItem(access);
         final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
             ItemStack output = recipeOutput.copy();
@@ -154,7 +155,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
         }
 
         // Decrement ingredient
-        for (Ingredient entry : recipe.getIngredients()) {
+        for (Ingredient entry : recipe.value().getIngredients()) {
             if (entry.test(this.getItem(1))) {
                 removeItem(1, 1);
             }

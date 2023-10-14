@@ -2,14 +2,6 @@ package satisfyu.vinery.client.gui.handler;
 
 import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
 import de.cristelknight.doapi.client.recipebook.handler.AbstractRecipeBookGUIScreenHandler;
-import satisfyu.vinery.client.gui.handler.slot.ExtendedSlot;
-import satisfyu.vinery.client.gui.handler.slot.StoveOutputSlot;
-import satisfyu.vinery.client.recipebook.group.FermentationBarrelRecipeBookGroup;
-import satisfyu.vinery.recipe.FermentationBarrelRecipe;
-import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.registry.VineryRecipeTypes;
-import satisfyu.vinery.registry.VineryScreenHandlerTypes;
-import java.util.List;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -19,6 +11,15 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import satisfyu.vinery.client.gui.handler.slot.ExtendedSlot;
+import satisfyu.vinery.client.gui.handler.slot.StoveOutputSlot;
+import satisfyu.vinery.client.recipebook.group.FermentationBarrelRecipeBookGroup;
+import satisfyu.vinery.recipe.FermentationBarrelRecipe;
+import satisfyu.vinery.registry.ObjectRegistry;
+import satisfyu.vinery.registry.VineryRecipeTypes;
+import satisfyu.vinery.registry.VineryScreenHandlerTypes;
+
+import java.util.List;
 
 public class FermentationBarrelGuiHandler extends AbstractRecipeBookGUIScreenHandler {
 
@@ -56,7 +57,7 @@ public class FermentationBarrelGuiHandler extends AbstractRecipeBookGUIScreenHan
     }
 
     private boolean isIngredient(ItemStack stack) {
-        return this.world.getRecipeManager().getAllRecipesFor(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get()).stream().anyMatch(recipe -> recipe.getIngredients().stream().anyMatch(x -> x.test(stack)));
+        return this.world.getRecipeManager().getAllRecipesFor(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get()).stream().anyMatch(recipe -> recipe.value().getIngredients().stream().anyMatch(x -> x.test(stack)));
     }
 
     public int getScaledProgress(int arrowWidth) {

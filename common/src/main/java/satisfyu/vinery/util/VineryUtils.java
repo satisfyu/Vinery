@@ -1,13 +1,9 @@
 package satisfyu.vinery.util;
 
-import com.google.gson.JsonArray;
 import dev.architectury.platform.Platform;
-import io.netty.buffer.Unpooled;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
@@ -17,6 +13,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,19 +41,6 @@ public class VineryUtils {
             }
         }
         return true;
-    }
-
-
-
-    public static NonNullList<Ingredient> deserializeIngredients(JsonArray json) {
-        NonNullList<Ingredient> ingredients = NonNullList.create();
-        for (int i = 0; i < json.size(); i++) {
-            Ingredient ingredient = Ingredient.fromJson(json.get(i));
-            if (!ingredient.isEmpty()) {
-                ingredients.add(ingredient);
-            }
-        }
-        return ingredients;
     }
 
     public static boolean isIndexInRange(int index, int startInclusive, int endInclusive) {

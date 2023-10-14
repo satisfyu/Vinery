@@ -1,15 +1,7 @@
 package satisfyu.vinery.block.entity;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.Direction;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import satisfyu.vinery.Vinery;
-import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
-import satisfyu.vinery.recipe.ApplePressRecipe;
-import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -22,14 +14,16 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
+import satisfyu.vinery.recipe.ApplePressRecipe;
+import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryRecipeTypes;
-
-import java.util.Arrays;
 
 public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, ImplementedInventory, BlockEntityTicker<ApplePressBlockEntity> {
     private final NonNullList<ItemStack> inventory = NonNullList.withSize(2, ItemStack.EMPTY);
@@ -112,8 +106,9 @@ public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, 
     public void tick(Level world, BlockPos blockPos, BlockState state, ApplePressBlockEntity entity) {
         if(world.isClientSide()) return;
 
-        Recipe<?> r = world.getRecipeManager().getRecipeFor(VineryRecipeTypes.APPLE_PRESS_RECIPE_TYPE.get(), this, world).orElse(null);
-        if(!(r instanceof ApplePressRecipe recipe)){
+        RecipeHolder<?> recipeType = world.getRecipeManager().getRecipeFor(VineryRecipeTypes.APPLE_PRESS_RECIPE_TYPE.get(), this, world).orElse(null);
+        if (recipeType == null) return;
+        if(!(recipeType.value() instanceof ApplePressRecipe recipe)){
             entity.resetProgress();
             setChanged(world, blockPos, state);
             return;

@@ -1,39 +1,33 @@
 package satisfyu.vinery.recipe;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
-import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import satisfyu.vinery.registry.VineryRecipeTypes;
-import satisfyu.vinery.util.VineryUtils;
 
 public class ApplePressRecipe implements Recipe<Container> {
-    private final ResourceLocation identifier;
-    public final Ingredient input;
-    private final ItemStack output;
+    public final Ingredient ingredient;
+    private final ItemStack result;
 
-    public ApplePressRecipe(ResourceLocation identifier, Ingredient input, ItemStack output) {
-        this.identifier = identifier;
-        this.input = input;
-        this.output = output;
+    public ApplePressRecipe(ItemStack result, Ingredient ingredient) {
+        this.ingredient = ingredient;
+        this.result = result;
     }
 
     @Override
     public boolean matches(Container inventory, Level world) {
-        return input.test(inventory.getItem(0));
+        return ingredient.test(inventory.getItem(0));
     }
 
     @Override
     public ItemStack assemble(Container container, RegistryAccess registryAccess) {
-        return this.output.copy();
+        return this.result.copy();
     }
 
     public ItemStack assemble() {
@@ -45,10 +39,8 @@ public class ApplePressRecipe implements Recipe<Container> {
     }
 
     @Override
-    public NonNullList<Ingredient> getIngredients() {
-        NonNullList<Ingredient> list = NonNullList.create();
-        list.add(input);
-        return list;
+    public ItemStack getResultItem(RegistryAccess registryAccess) {
+        return this.result;
     }
 
 
@@ -58,13 +50,10 @@ public class ApplePressRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess registryAccess) {
-        return this.output;
-    }
-
-    @Override
-    public ResourceLocation getId() {
-        return this.identifier;
+    public NonNullList<Ingredient> getIngredients() {
+        NonNullList<Ingredient> list = NonNullList.create();
+        list.add(ingredient);
+        return list;
     }
 
     @Override
@@ -81,28 +70,26 @@ public class ApplePressRecipe implements Recipe<Container> {
     public boolean isSpecial() {
         return true;
     }
+
     public static class Serializer implements RecipeSerializer<ApplePressRecipe> {
-
+        private static final Codec<ApplePressRecipe> CODEC = RecordCodecBuilder.create(
+                (instance) -> instance.group(CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC.fieldOf("result").forGetter((shapelessRecipe) -> shapelessRecipe.result),
+                        Ingredient.CODEC_NONEMPTY.fieldOf("ingredients").forGetter((shapelessRecipe) -> shapelessRecipe.ingredient)
+                ).apply(instance, ApplePressRecipe::new));
         @Override
-        public ApplePressRecipe fromJson(ResourceLocation id, JsonObject json) {
-            final Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));;
-
-            if (ingredient.isEmpty()) {
-                throw new JsonParseException("No ingredients for recipe: " + id);
-            } else {
-                return new ApplePressRecipe(id, ingredient, ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output")));
-            }
+        public Codec<ApplePressRecipe> codec() {
+            return CODEC;
         }
 
         @Override
-        public ApplePressRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            return new ApplePressRecipe(id, Ingredient.fromNetwork(buf), buf.readItem());
+        public ApplePressRecipe fromNetwork(FriendlyByteBuf buf) {
+            return new ApplePressRecipe(buf.readItem(), Ingredient.fromNetwork(buf));
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, ApplePressRecipe recipe) {
-            recipe.input.toNetwork(buf);
-            buf.writeItem(recipe.output);
+            recipe.ingredient.toNetwork(buf);
+            buf.writeItem(recipe.result);
         }
     }
 }

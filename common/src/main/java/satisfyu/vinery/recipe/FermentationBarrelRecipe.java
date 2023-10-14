@@ -1,34 +1,25 @@
 package satisfyu.vinery.recipe;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import satisfyu.vinery.registry.VineryRecipeTypes;
-import satisfyu.vinery.util.VineryUtils;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import satisfyu.vinery.registry.VineryRecipeTypes;
 
 public class FermentationBarrelRecipe implements Recipe<Container> {
+    private final NonNullList<Ingredient> ingredients;
+    private final ItemStack result;
 
-    private final ResourceLocation identifier;
-    private final NonNullList<Ingredient> inputs;
-    private final ItemStack output;
-
-    public FermentationBarrelRecipe(ResourceLocation identifier, NonNullList<Ingredient> inputs, ItemStack output) {
-        this.identifier = identifier;
-        this.inputs = inputs;
-        this.output = output;
+    public FermentationBarrelRecipe(ItemStack result, NonNullList<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+        this.result = result;
     }
 
     @Override
@@ -44,7 +35,7 @@ public class FermentationBarrelRecipe implements Recipe<Container> {
             }
         }
 
-        return matchingStacks == this.inputs.size() && recipeMatcher.canCraft(this, null);
+        return matchingStacks == this.ingredients.size() && recipeMatcher.canCraft(this, null);
     }
 
     @Override
@@ -53,8 +44,8 @@ public class FermentationBarrelRecipe implements Recipe<Container> {
     }
 
     @Override
-    public NonNullList<Ingredient> getIngredients() {
-        return this.inputs;
+    public ItemStack getResultItem(RegistryAccess registryAccess) {
+        return this.result.copy();
     }
 
 
@@ -64,13 +55,8 @@ public class FermentationBarrelRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess registryAccess) {
-        return this.output.copy();
-    }
-
-    @Override
-    public ResourceLocation getId() {
-        return this.identifier;
+    public NonNullList<Ingredient> getIngredients() {
+        return this.ingredients;
     }
 
     @Override
@@ -87,35 +73,39 @@ public class FermentationBarrelRecipe implements Recipe<Container> {
     public boolean isSpecial() {
         return true;
     }
-    public static class Serializer implements RecipeSerializer<FermentationBarrelRecipe> {
 
+    public static class Serializer implements RecipeSerializer<FermentationBarrelRecipe> {
+        private static final Codec<FermentationBarrelRecipe> CODEC = RecordCodecBuilder.create(
+                (instance) -> instance.group(CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC.fieldOf("result").forGetter((shapelessRecipe) -> shapelessRecipe.result)
+                        , Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients").flatXmap((list) -> {
+                            Ingredient[] ingredients = list.stream().filter((ingredient) -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
+                            if (ingredients.length == 0) {
+                                return DataResult.error(() -> "No ingredients for vinery:wine_fermentation recipe");
+                            } else {
+                                return ingredients.length > 3 ? DataResult.error(() -> "Too many ingredients for vinery:wine_fermentation recipe") : DataResult.success(NonNullList.of(Ingredient.EMPTY, ingredients));
+                            }
+                        }, DataResult::success).forGetter((shapelessRecipe) -> shapelessRecipe.ingredients)
+                ).apply(instance, FermentationBarrelRecipe::new));
         @Override
-        public FermentationBarrelRecipe fromJson(ResourceLocation id, JsonObject json) {
-            final var ingredients = VineryUtils.deserializeIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
-            if (ingredients.isEmpty()) {
-                throw new JsonParseException("No ingredients for Fermentation Barrel");
-            } else if (ingredients.size() > 4) {
-                throw new JsonParseException("Too many ingredients for Fermentation Barrel");
-            } else {
-                return new FermentationBarrelRecipe(id, ingredients, ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result")));
-            }
+        public Codec<FermentationBarrelRecipe> codec() {
+            return CODEC;
         }
 
         @Override
-        public FermentationBarrelRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            final var ingredients  = NonNullList.withSize(buf.readVarInt(), Ingredient.EMPTY);
-            ingredients.replaceAll(ignored -> Ingredient.fromNetwork(buf));
-            return new FermentationBarrelRecipe(id, ingredients, buf.readItem());
+        public FermentationBarrelRecipe fromNetwork(FriendlyByteBuf friendlyByteBuf) {
+            final var ingredients  = NonNullList.withSize(friendlyByteBuf.readVarInt(), Ingredient.EMPTY);
+            ingredients.replaceAll(ignored -> Ingredient.fromNetwork(friendlyByteBuf));
+            return new FermentationBarrelRecipe(friendlyByteBuf.readItem(), ingredients);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, FermentationBarrelRecipe recipe) {
-            buf.writeVarInt(recipe.inputs.size());
-            for (Ingredient ingredient : recipe.inputs) {
+            buf.writeVarInt(recipe.ingredients.size());
+            for (Ingredient ingredient : recipe.ingredients) {
                 ingredient.toNetwork(buf);
             }
 
-            buf.writeItem(recipe.output);
+            buf.writeItem(recipe.result);
         }
     }
 }
