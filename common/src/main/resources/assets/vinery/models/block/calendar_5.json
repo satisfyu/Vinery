@@ -1,0 +1,22 @@
+{
+	"credit": "Made by Satisfy",
+	"textures": {
+		"0": "vinery:block/oak_cabinet_top",
+		"1": "vinery:block/calendar_5",
+		"particle": "vinery:block/oak_cabinet_top"
+	},
+	"elements": [
+		{
+			"from": [1, 1, 15],
+			"to": [15, 15, 16],
+			"faces": {
+				"north": {"uv": [1, 1, 15, 15], "texture": "#1"},
+				"east": {"uv": [14, 1, 15, 15], "texture": "#0"},
+				"south": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"west": {"uv": [1, 1, 2, 15], "texture": "#0"},
+				"up": {"uv": [1, 1, 15, 2], "texture": "#0"},
+				"down": {"uv": [1, 14, 15, 15], "texture": "#0"}
+			}
+		}
+	]
+}

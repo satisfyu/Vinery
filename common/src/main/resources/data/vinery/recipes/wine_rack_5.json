@@ -14,7 +14,7 @@
       "item": "vinery:cherry_slab"
     },
     "B": {
-      "item": "minecraft:barrel"
+      "tag": "vinery:wooden_barrels"
     }
   },
   "result": {

@@ -34,7 +34,6 @@ public class CherryLeaves extends LeavesBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        ItemStack stack = player.getItemInHand(hand);
         if (state.getValue(VARIANT) && state.getValue(HAS_CHERRIES)) {
             if (!world.isClientSide()) {
                 int dropCount = world.getRandom().nextBoolean() ? Mth.nextInt(world.getRandom(), 1, 3) : 1;
@@ -77,7 +76,7 @@ public class CherryLeaves extends LeavesBlock {
 
     @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-        if(state.getValue(VARIANT) && !state.getValue(HAS_CHERRIES)) world.setBlockAndUpdate(pos, state.setValue(HAS_CHERRIES, true));
+        if(state.getValue(VARIANT) && !state.getValue(HAS_CHERRIES) && world.getRandom().nextFloat() < 0.4f) world.setBlockAndUpdate(pos, state.setValue(HAS_CHERRIES, true));
         super.randomTick(state, world, pos, random);
     }
 }

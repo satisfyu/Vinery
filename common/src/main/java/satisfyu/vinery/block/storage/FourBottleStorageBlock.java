@@ -1,11 +1,17 @@
 package satisfyu.vinery.block.storage;
 
 import de.cristelknight.doapi.common.block.StorageBlock;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
 import satisfyu.vinery.item.DrinkBlockSmallItem;
 import satisfyu.vinery.registry.VineryStorageTypes;
+
+import java.util.List;
 
 public class FourBottleStorageBlock extends StorageBlock {
 
@@ -56,5 +62,10 @@ public class FourBottleStorageBlock extends StorageBlock {
         }
 
         return Integer.MIN_VALUE;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
+        tooltip.add(Component.translatable("block.vinery.winebox_small.tooltip.shift_1").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }

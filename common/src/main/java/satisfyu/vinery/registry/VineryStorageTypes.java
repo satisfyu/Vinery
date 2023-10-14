@@ -15,28 +15,37 @@ public class VineryStorageTypes {
     public static final ResourceLocation WINE_BOX = new VineryIdentifier("wine_box");
     public static final ResourceLocation FLOWER_BOX = new VineryIdentifier("flower_box");
     public static final ResourceLocation WINE_BOTTLE = new VineryIdentifier("wine_bottle");
+    public static final ResourceLocation BIG_BOTTLE = new VineryIdentifier("big_bottle");
 
 
 
     public static void registerBlocks(Set<Block> blocks) {
         blocks.add(ObjectRegistry.WINE_RACK_2.get());
         blocks.add(ObjectRegistry.WINE_RACK_1.get());
+        blocks.add(ObjectRegistry.CHERRY_WINE_RACK_MID.get());
         blocks.add(ObjectRegistry.SHELF.get());
         blocks.add(ObjectRegistry.WINE_BOX.get());
         blocks.add(ObjectRegistry.FLOWER_BOX.get());
         blocks.add(ObjectRegistry.OAK_WINE_RACK_BIG.get());
         blocks.add(ObjectRegistry.OAK_WINE_RACK_SMALL.get());
+        blocks.add(ObjectRegistry.OAK_WINE_RACK_MID.get());
         blocks.add(ObjectRegistry.BIRCH_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.BIRCH_WINE_RACK_MID.get());
         blocks.add(ObjectRegistry.BIRCH_WINE_RACK_SMALL.get());
         blocks.add(ObjectRegistry.SPRUCE_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.SPRUCE_WINE_RACK_MID.get());
         blocks.add(ObjectRegistry.SPRUCE_WINE_RACK_SMALL.get());
         blocks.add(ObjectRegistry.DARK_OAK_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.DARK_OAK_WINE_RACK_MID.get());
         blocks.add(ObjectRegistry.DARK_OAK_WINE_RACK_SMALL.get());
         blocks.add(ObjectRegistry.JUNGLE_WINE_RACK_SMALL.get());
+        blocks.add(ObjectRegistry.JUNGLE_WINE_RACK_MID.get());
         blocks.add(ObjectRegistry.JUNGLE_WINE_RACK_BIG.get());
         blocks.add(ObjectRegistry.MANGROVE_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.MANGROVE_WINE_RACK_MID.get());
         blocks.add(ObjectRegistry.MANGROVE_WINE_RACK_SMALL.get());
         blocks.add(ObjectRegistry.ACACIA_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.ACACIA_WINE_RACK_MID.get());
         blocks.add(ObjectRegistry.ACACIA_WINE_RACK_SMALL.get());
 
         blocks.addAll(List.of(

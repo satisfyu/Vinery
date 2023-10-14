@@ -3,6 +3,7 @@ package satisfyu.vinery.block;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -35,11 +36,11 @@ public class FlowerPotBlock extends Block implements EntityBlock {
 
 	private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
 		VoxelShape shape = Shapes.empty();
-		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.78125, 0.421875, 0.21875, 0.875, 0.609375, 0.78125), BooleanOp.OR);
-		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.21875, 0, 0.21875, 0.78125, 0.46875, 0.78125), BooleanOp.OR);
-		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.125, 0.421875, 0.125, 0.875, 0.609375, 0.21875), BooleanOp.OR);
-		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.125, 0.421875, 0.78125, 0.875, 0.609375, 0.875), BooleanOp.OR);
-		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.125, 0.421875, 0.21875, 0.21875, 0.609375, 0.78125), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.78125, 0.4375, 0.21875, 0.90625, 0.625, 0.78125), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.09375, 0.4375, 0.21875, 0.21875, 0.625, 0.78125), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.21875, 0, 0.21875, 0.78125, 0.4375, 0.78125), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.09375, 0.4375, 0.09375, 0.90625, 0.625, 0.21875), BooleanOp.OR);
+		shape = Shapes.joinUnoptimized(shape, Shapes.box(0.09375, 0.4375, 0.78125, 0.90625, 0.625, 0.90625), BooleanOp.OR);
 		return shape;
 	};
 	
@@ -82,7 +83,7 @@ public class FlowerPotBlock extends Block implements EntityBlock {
 	}
 
 	public boolean fitInPot(ItemStack item) {
-		return item.is(VineryTags.BIG_FLOWER);
+		return item.is(ItemTags.TALL_FLOWERS);
 	}
 
 	@Override
