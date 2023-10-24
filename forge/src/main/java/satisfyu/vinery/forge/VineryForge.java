@@ -11,6 +11,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.client.gui.config.ClothConfigScreen;
 import satisfyu.vinery.forge.registry.VineryForgeVillagers;
+import satisfyu.vinery.util.VineryPre;
 
 @Mod(Vinery.MODID)
 public class VineryForge {
@@ -19,10 +20,9 @@ public class VineryForge {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         EventBuses.registerModEventBus(Vinery.MODID, modEventBus);
 
+        VineryPre.preInit();
         Vinery.init();
         VineryForgeVillagers.register(modEventBus);
-
-
 
 
         modEventBus.addListener(this::commonSetup);
@@ -33,6 +33,7 @@ public class VineryForge {
         event.enqueueWork(VineryForgeVillagers::registerPOIs);
         Vinery.commonSetup();
     }
+
     public static boolean isClothConfigLoaded(){
         return ModList.get().isLoaded("cloth_config");
     }

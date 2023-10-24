@@ -21,6 +21,9 @@
     "client": [
       "satisfyu.vinery.fabric.client.VineryClientFabric"
     ],
+    "preLaunch": [
+      "satisfyu.vinery.fabric.VineryFabricPre"
+    ],
     "rei_client": [
       "satisfyu.vinery.fabric.rei.VineryReiClientPluginFabric"
     ],
