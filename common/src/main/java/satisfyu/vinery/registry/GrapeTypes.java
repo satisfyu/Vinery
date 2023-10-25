@@ -1,6 +1,5 @@
 package satisfyu.vinery.registry;
 
-import satisfyu.vinery.Vinery;
 import satisfyu.vinery.block.grape.GrapeType;
 
 import java.util.HashSet;
@@ -19,7 +18,7 @@ public class GrapeTypes {
     public static final GrapeType JUNGLE_WHITE = registerGrapeType("jungle_white", true);
 
     public static void register() { //add in pre init
-        Vinery.LOGGER.debug("Register GrapeTypes for: " + Vinery.MODID);
+
     }
 
     public static void addGrapeAttributes() { //add after ObjectRegistry init
