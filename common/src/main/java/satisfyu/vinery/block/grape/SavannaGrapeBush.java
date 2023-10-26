@@ -6,11 +6,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import satisfyu.vinery.util.GrapevineType;
 
 public class SavannaGrapeBush extends GrapeBush {
 
-    public SavannaGrapeBush(Properties settings, GrapevineType type) {
+    public SavannaGrapeBush(Properties settings, GrapeType type) {
         super(settings, type, 3);
     }
 

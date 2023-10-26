@@ -4,6 +4,7 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 import satisfyu.vinery.registry.ObjectRegistry;
 
+@Deprecated
 public enum GrapevineType implements IGrapevineType, StringRepresentable {
     NONE,
     RED,

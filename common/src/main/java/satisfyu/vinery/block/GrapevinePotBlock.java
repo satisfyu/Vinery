@@ -17,15 +17,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import satisfyu.vinery.block.grape.GrapeProperty;
+import satisfyu.vinery.registry.GrapeTypes;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VinerySoundEvents;
-import satisfyu.vinery.util.GrapevineType;
 
 import java.util.List;
 
@@ -42,8 +42,8 @@ public class GrapevinePotBlock extends Block {
             Block.box(0, 0, 0, 0, 5, 16),
             Block.box(1, 1, 1, 15, 1, 15)
     );
-    
-    
+
+
 
     private static final VoxelShape SMASHING_SHAPE = Shapes.or(
             FILLING_SHAPE,
@@ -54,11 +54,11 @@ public class GrapevinePotBlock extends Block {
     private static final IntegerProperty STAGE = IntegerProperty.create("stage", 0, MAX_STAGE);
     private static final IntegerProperty STORAGE = IntegerProperty.create("storage", 0, MAX_STORAGE);
     private static final int DECREMENT_PER_WINE_BOTTLE = 3;
-    private static final EnumProperty<GrapevineType> GRAPEVINE_TYPE = EnumProperty.create("type", GrapevineType.class);
+    private static final GrapeProperty GRAPEVINE_TYPE = GrapeProperty.create("type");
 
     public GrapevinePotBlock(Properties settings) {
         super(settings);
-        this.registerDefaultState(this.defaultBlockState().setValue(STAGE, 0).setValue(STORAGE, 0).setValue(GRAPEVINE_TYPE, GrapevineType.NONE));
+        this.registerDefaultState(this.defaultBlockState().setValue(STAGE, 0).setValue(STORAGE, 0).setValue(GRAPEVINE_TYPE, GrapeTypes.NONE));
     }
 
     @Override
@@ -139,17 +139,7 @@ public class GrapevinePotBlock extends Block {
             return InteractionResult.SUCCESS;
         } else if (stack.is(ObjectRegistry.WINE_BOTTLE.get().asItem())) {
             if (canTakeWine(state, stack)) {
-                final ItemStack output = switch (state.getValue(GRAPEVINE_TYPE)) {
-                    case RED -> new ItemStack(ObjectRegistry.RED_GRAPEJUICE_WINE_BOTTLE.get());
-                    case WHITE -> new ItemStack(ObjectRegistry.WHITE_GRAPEJUICE_WINE_BOTTLE.get());
-                    case SAVANNA_RED -> new ItemStack(ObjectRegistry.SAVANNA_RED_GRAPEJUICE_BOTTLE.get());
-                    case SAVANNA_WHITE -> new ItemStack(ObjectRegistry.SAVANNA_WHITE_GRAPEJUICE_BOTTLE.get());
-                    case TAIGA_RED -> new ItemStack(ObjectRegistry.TAIGA_RED_GRAPEJUICE_BOTTLE.get());
-                    case TAIGA_WHITE -> new ItemStack(ObjectRegistry.TAIGA_WHITE_GRAPEJUICE_BOTTLE.get());
-                    case JUNGLE_RED -> new ItemStack(ObjectRegistry.JUNGLE_RED_GRAPEJUICE_BOTTLE.get());
-                    case JUNGLE_WHITE -> new ItemStack(ObjectRegistry.JUNGLE_WHITE_GRAPEJUICE_BOTTLE.get());
-                    default -> new ItemStack(ObjectRegistry.RED_GRAPEJUICE_WINE_BOTTLE.get());
-                };
+                final ItemStack output = state.getValue(GRAPEVINE_TYPE).getBottle().getDefaultInstance();
                 int storage = state.getValue(STORAGE);
                 int newStorage = (storage - DECREMENT_PER_WINE_BOTTLE);
                 if (newStorage == 0) {
@@ -196,4 +186,3 @@ public class GrapevinePotBlock extends Block {
         tooltip.add(Component.translatable("block.vinery.grapevinepotblock.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }
-

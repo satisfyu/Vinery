@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.Blocks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import satisfyu.vinery.config.VineryConfig;
-import satisfyu.vinery.registry.VineryTabRegistry;
 import satisfyu.vinery.registry.*;
 import satisfyu.vinery.world.VineryFeatures;
 
@@ -27,6 +26,7 @@ public class Vinery {
         VineryEntites.init();
         VineryFeatures.init();
         VinerySoundEvents.init();
+        GrapeTypes.addGrapeAttributes();
 
         DoApiExpectPlatform.registerBuiltInPack(Vinery.MODID, new VineryIdentifier("bushy_leaves"), false);
     }

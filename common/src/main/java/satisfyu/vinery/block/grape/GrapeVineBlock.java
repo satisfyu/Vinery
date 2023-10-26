@@ -10,7 +10,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -23,8 +22,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
+import satisfyu.vinery.registry.GrapeTypes;
 import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.util.GrapevineType;
 
 public class GrapeVineBlock extends VineBlock implements BonemealableBlock {
 
@@ -32,9 +31,9 @@ public class GrapeVineBlock extends VineBlock implements BonemealableBlock {
     public static final IntegerProperty AGE;
     public static final BooleanProperty STERILIZED;
 
-    public final GrapevineType type;
+    public final GrapeType type;
 
-    public GrapeVineBlock(Properties settings, GrapevineType type) {
+    public GrapeVineBlock(Properties settings, GrapeType type) {
         super(settings);
         this.type = type;
         this.registerDefaultState(this.stateDefinition.any().setValue(STERILIZED, false).setValue(UP, false).setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false));
@@ -56,7 +55,7 @@ public class GrapeVineBlock extends VineBlock implements BonemealableBlock {
             return InteractionResult.PASS;
         } else if (i > 1) {
             int x = world.random.nextInt(2);
-            popResource(world, pos, new ItemStack(this.type == GrapevineType.JUNGLE_RED ? ObjectRegistry.JUNGLE_RED_GRAPE.get() : ObjectRegistry.JUNGLE_WHITE_GRAPE.get(), x + (bl ? 1 : 0)));
+            popResource(world, pos, new ItemStack(this.type == GrapeTypes.JUNGLE_RED ? ObjectRegistry.JUNGLE_RED_GRAPE.get() : ObjectRegistry.JUNGLE_WHITE_GRAPE.get(), x + (bl ? 1 : 0)));
             world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             world.setBlock(pos, state.setValue(AGE, 1), 2);
             return InteractionResult.sidedSuccess(world.isClientSide);
@@ -80,6 +79,7 @@ public class GrapeVineBlock extends VineBlock implements BonemealableBlock {
     public boolean isRandomlyTicking(BlockState state) {
         return !state.getValue(STERILIZED);
     }
+
 
     @Override
     public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean bl) {
@@ -107,4 +107,3 @@ public class GrapeVineBlock extends VineBlock implements BonemealableBlock {
         STERILIZED = BooleanProperty.create("sterilized");
     }
 }
-
