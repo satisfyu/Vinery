@@ -54,6 +54,13 @@ public class GeneralUtil {
 		return tracking(world, new ChunkPos(pos));
 	}
 
+	public static Collection<ServerPlayer> tracking(ServerLevel world, ChunkPos pos) {
+		Objects.requireNonNull(world, "The world cannot be null");
+		Objects.requireNonNull(pos, "The chunk pos cannot be null");
+
+		return world.getChunkSource().chunkMap.getPlayers(pos, false);
+	}
+
 	public static float getInPercent(int i){
 		return (float) i / 100;
 	}
@@ -115,12 +122,7 @@ public class GeneralUtil {
 	}
 
 
-	public static Collection<ServerPlayer> tracking(ServerLevel world, ChunkPos pos) {
-		Objects.requireNonNull(world, "The world cannot be null");
-		Objects.requireNonNull(pos, "The chunk pos cannot be null");
 
-		return world.getChunkSource().chunkMap.getPlayers(pos, false);
-	}
 
 	public static RotatedPillarBlock logBlock() {
 		return new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG));
