@@ -2,17 +2,20 @@ package satisfyu.vinery.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
 
-public class SnowyVariantSlabBlock extends SlabBlock {
+public class SnowyVariantSlabBlock extends SlabBlock implements BonemealableBlock {
 	public static final BooleanProperty SNOWY = BlockStateProperties.SNOWY;
 	
 	public SnowyVariantSlabBlock(Properties settings) {
@@ -31,5 +34,27 @@ public class SnowyVariantSlabBlock extends SlabBlock {
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(SNOWY);
+	}
+
+	@Override
+	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean bl) {
+		return blockState.getValue(SlabBlock.TYPE).equals(SlabType.DOUBLE) && levelReader.getBlockState(blockPos.above()).isAir();
+	}
+
+	@Override
+	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+		return true;
+	}
+
+	@Override
+	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+		GrassBlock block = (GrassBlock) Blocks.GRASS_BLOCK;
+		block.performBonemeal(serverLevel, randomSource, blockPos, blockState);
+	}
+
+	@Override
+	public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+		GrassBlock block = (GrassBlock) Blocks.GRASS_BLOCK;
+		block.randomTick(blockState, serverLevel, blockPos, randomSource);
 	}
 }
