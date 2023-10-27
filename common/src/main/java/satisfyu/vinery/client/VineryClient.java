@@ -73,8 +73,8 @@ public class VineryClient {
                     if(world== null || pos == null){
                         return -1;
                     }
-                    return BiomeColors.getAverageFoliageColor(world,pos);
-                }, GRASS_SLAB.get(), TAIGA_WHITE_GRAPE_BUSH.get(), TAIGA_RED_GRAPE_BUSH.get()
+                    return BiomeColors.getAverageGrassColor(world,pos);
+                },  TAIGA_WHITE_GRAPE_BUSH.get(), TAIGA_RED_GRAPE_BUSH.get(), GRASS_SLAB.get()
         );
 
         ColorHandlerRegistry.registerBlockColors((state,world,pos,tintIndex)->{
