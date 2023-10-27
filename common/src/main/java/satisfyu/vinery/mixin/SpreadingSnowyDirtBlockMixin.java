@@ -60,10 +60,7 @@ public class SpreadingSnowyDirtBlockMixin {
             if(i == 16 && blockState.is(ObjectRegistry.GRASS_SLAB.get()) && blockState2.getBlock() instanceof AirBlock && blockState.getValue(SlabBlock.TYPE).equals(SlabType.TOP)){
                 return true;
             }
-            boolean bl = i < levelReader.getMaxLightLevel();
-            if(!bl) Vinery.LOGGER.error(i + " " + blockState + " " + blockState2);
-
-            return bl;
+            return i < levelReader.getMaxLightLevel();
         }
     }
 
