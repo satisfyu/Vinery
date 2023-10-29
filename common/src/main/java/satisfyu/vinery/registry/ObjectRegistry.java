@@ -7,6 +7,7 @@ import dev.architectury.core.item.ArchitecturySpawnEggItem;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -19,14 +20,12 @@ import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.PushReaction;
@@ -331,8 +330,32 @@ public class ObjectRegistry {
         VineryBoatsAndSigns.init();
         ITEMS.register();
         BLOCKS.register();
+        createStandards();
     }
-    
+
+    public static final List<Supplier<Block>> STANDARD_BLOCKS = Lists.newArrayList();
+    public static final List<Supplier<Block>> STANDARD_WALL_BLOCKS = Lists.newArrayList();
+    public static final List<Supplier<Block>> STANDARD_FLOOR_BLOCKS = Lists.newArrayList();
+    public static Supplier<Block> VINERY_STANDARD;
+
+    private static void createStandards() {
+        VINERY_STANDARD = BLOCKS.register(Vinery.MODID("vinery_standard"), () -> new VineryStandardBlock(properties(1F).instrument(NoteBlockInstrument.BASS).noCollission().sound(SoundType.WOOD)));
+        Supplier<Block> adjWall = BLOCKS.register(Vinery.MODID("vinery_wall_standard"), () -> new VineryStandardWallBlock(properties(1F).instrument(NoteBlockInstrument.BASS).noCollission().sound(SoundType.WOOD).dropsLike(VINERY_STANDARD.get())));
+
+        ITEMS.register(Vinery.MODID("vinery_standard"), () -> new StandingAndWallBlockItem(VINERY_STANDARD.get(), adjWall.get(), new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON), Direction.DOWN));
+        STANDARD_BLOCKS.add(VINERY_STANDARD);
+        STANDARD_BLOCKS.add(adjWall);
+    }
+
+    public static BlockBehaviour.Properties properties(float strength) {
+        return properties(strength, strength);
+    }
+
+    public static BlockBehaviour.Properties properties(float breakSpeed, float explosionResist) {
+        return BlockBehaviour.Properties.of().strength(breakSpeed, explosionResist);
+    }
+
+
     private static Item.Properties getSettings(Consumer<Item.Properties> consumer) {
         Item.Properties settings = new Item.Properties();
         consumer.accept(settings);

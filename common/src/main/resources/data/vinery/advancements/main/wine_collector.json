@@ -1,0 +1,116 @@
+{
+  "parent": "vinery:main/get_wine",
+  "display": {
+    "icon": {
+      "item": "vinery:jellie_wine"
+    },
+    "title": {
+      "translate": "vinery.advancement.wine_collector"
+    },
+    "description": {
+      "translate": "vinery.advancement.wine_collector.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 800,
+    "loot": [
+      "vinery:advancements/completionist"
+    ]
+  },
+  "criteria": {
+    "get_wines": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["vinery:stal_wine"]
+          },
+          {
+            "items": ["vinery:kelp_cider"]
+          },
+          {
+            "items": ["vinery:strad_wine"]
+          },
+          {
+            "items": ["vinery:magnetic_wine"]
+          },
+          {
+            "items": ["vinery:chorus_wine"]
+          },
+          {
+            "items": ["vinery:aegis_wine"]
+          },
+          {
+            "items": ["vinery:solaris_wine"]
+          },
+          {
+            "items": ["vinery:noir_wine"]
+          },
+          {
+            "items": ["vinery:bolvar_wine"]
+          },
+          {
+            "items": ["vinery:cherry_wine"]
+          },
+          {
+            "items": ["vinery:clark_wine"]
+          },
+          {
+            "items": ["vinery:jellie_wine"]
+          },
+          {
+            "items": ["vinery:apple_cider"]
+          },
+          {
+            "items": ["vinery:red_wine"]
+          },
+          {
+            "items": ["vinery:praetorian_wine"]
+          },
+          {
+            "items": ["vinery:chenet_wine"]
+          },
+          {
+            "items": ["vinery:king_danis_wine"]
+          },
+          {
+            "items": ["vinery:mellohi_wine"]
+          },
+          {
+            "items": ["vinery:jo_special_mixture"]
+          },
+          {
+            "items": ["vinery:cristel_wine"]
+          },
+          {
+            "items": ["vinery:glowing_wine"]
+          },
+          {
+            "items": ["vinery:creepers_crush"]
+          },
+          {
+            "items": ["vinery:bottle_mojang_noir"]
+          },
+          {
+            "items": ["vinery:villagers_fright"]
+          },
+          {
+            "items": ["vinery:mead"]
+          },
+          {
+            "items": ["vinery:eiswein"]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_wines"
+    ]
+  ]
+}

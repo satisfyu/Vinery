@@ -15,12 +15,12 @@ public class VineryBiomeModification {
 
     public static void init() {
         BiomeModification world = BiomeModifications.create(new VineryIdentifier("world_features"));
-        Predicate<BiomeSelectionContext> plainsBiomes = getVinerySelector("spanws_grape");
-        Predicate<BiomeSelectionContext> savannaBiomes = getVinerySelector("spanws_savanna_grape");
-        Predicate<BiomeSelectionContext> taigaBiomes = getVinerySelector("spanws_taiga_grape");
-        Predicate<BiomeSelectionContext> jungleBiomes = getVinerySelector("spanws_jungle_grape");
+        Predicate<BiomeSelectionContext> plainsBiomes = getVinerySelector("spawns_grape");
+        Predicate<BiomeSelectionContext> savannaBiomes = getVinerySelector("spawns_savanna_grape");
+        Predicate<BiomeSelectionContext> taigaBiomes = getVinerySelector("spawns_taiga_grape");
+        Predicate<BiomeSelectionContext> jungleBiomes = getVinerySelector("spawns_jungle_grape");
 
-        Predicate<BiomeSelectionContext> treeBiomes = getVinerySelector("spanws_cherry_tree");
+        Predicate<BiomeSelectionContext> treeBiomes = getVinerySelector("spawns_cherry_tree");
 
 
         world.add(ModificationPhase.ADDITIONS, plainsBiomes, ctx -> ctx.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VineryPlacedFeatures.RED_GRAPE_PATCH_CHANCE_KEY));

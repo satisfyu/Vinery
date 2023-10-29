@@ -1,0 +1,59 @@
+{
+  "parent": "vinery:main/wild_crops",
+  "display": {
+    "icon": {
+      "item": "vinery:white_grape_crate"
+    },
+    "title": {
+      "translate": "vinery.advancement.crop_collector"
+    },
+    "description": {
+      "translate": "vinery.advancement.crop_collector.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 75
+  },
+  "criteria": {
+    "get_crops": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["vinery:red_grape_seeds"]
+          },
+          {
+            "items": ["vinery:white_grape_seeds"]
+          },
+          {
+            "items": ["vinery:savanna_grape_seeds_red"]
+          },
+          {
+            "items": ["vinery:savanna_grape_seeds_white"]
+          },
+          {
+            "items": ["vinery:taiga_grape_seeds_white"]
+          },
+          {
+            "items": ["vinery:taiga_grape_seeds_red"]
+          },
+          {
+            "items": ["vinery:jungle_grape_seeds_red"]
+          },
+          {
+            "items": ["vinery:jungle_grape_seeds_white"]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_crops"
+    ]
+  ]
+}

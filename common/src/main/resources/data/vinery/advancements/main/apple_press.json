@@ -1,0 +1,37 @@
+{
+  "parent": "vinery:main/get_apple",
+  "criteria": {
+    "wine_press": {
+      "conditions": {
+        "location": [
+          {
+            "block": "vinery:wine_press",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "vinery.advancement.wine_press.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "vinery:wine_press"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "vinery.advancement.wine_press"
+    }
+  },
+  "requirements": [
+    [
+      "wine_press"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

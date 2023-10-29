@@ -1,0 +1,362 @@
+{
+  "parent": "vinery:main/fermentation",
+  "display": {
+    "icon": {
+      "item": "vinery:king_danis_wine"
+    },
+    "title": {
+      "translate": "vinery.advancement.get_wine"
+    },
+    "description": {
+      "translate": "vinery.advancement.get_wine.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "stal_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:stal_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "kelp_cider": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:kelp_cider"
+            ]
+          }
+        ]
+      }
+    },
+    "strad_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:strad_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "magnetic_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:magnetic_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "chorus_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:chorus_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "aegis_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:aegis_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "solaris_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:solaris_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "noir_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:noir_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "bolvar_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:bolvar_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "cherry_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:cherry_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "clark_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:clark_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "jellie_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:jellie_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "apple_cider": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:apple_cider"
+            ]
+          }
+        ]
+      }
+    },
+    "red_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:red_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "praetorian_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:praetorian_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "chenet_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:chenet_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "king_danis_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:king_danis_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "mellohi_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:mellohi_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "jo_special_mixture": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:jo_special_mixture"
+            ]
+          }
+        ]
+      }
+    },
+    "cristel_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:cristel_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "glowing_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:glowing_wine"
+            ]
+          }
+        ]
+      }
+    },
+    "creepers_crush": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:creepers_crush"
+            ]
+          }
+        ]
+      }
+    },
+    "bottle_mojang_noir": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:bottle_mojang_noir"
+            ]
+          }
+        ]
+      }
+    },
+    "villagers_fright": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:villagers_fright"
+            ]
+          }
+        ]
+      }
+    },
+    "mead": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:mead"
+            ]
+          }
+        ]
+      }
+    },
+    "eiswein": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:eiswein"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+    "stal_wine",
+    "kelp_cider",
+    "strad_wine",
+    "magnetic_wine",
+    "chorus_wine",
+    "aegis_wine",
+    "solaris_wine",
+    "noir_wine",
+    "bolvar_wine",
+    "cherry_wine",
+    "clark_wine",
+    "jellie_wine",
+    "apple_cider",
+    "red_wine",
+    "praetorian_wine",
+    "chenet_wine",
+    "king_danis_wine",
+    "mellohi_wine",
+    "jo_special_mixture",
+    "cristel_wine",
+    "glowing_wine",
+    "creepers_crush",
+    "bottle_mojang_noir",
+    "villagers_fright",
+    "mead",
+    "eiswein"
+    ]
+  ]
+}

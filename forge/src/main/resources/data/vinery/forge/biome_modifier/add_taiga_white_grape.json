@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": "#vinery:spanws_taiga_grape",
+  "biomes": "#vinery:spawns_taiga_grape",
   "features": "vinery:taiga_white_grape_bush_chance",
   "step": "vegetal_decoration"
 }
