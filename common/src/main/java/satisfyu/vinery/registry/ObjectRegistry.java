@@ -58,7 +58,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> RED_GRAPE_BUSH = registerB("red_grape_bush", () -> new GrapeBush(getBushSettings(), GrapeTypes.RED));
     public static final RegistrySupplier<Item> RED_GRAPE_SEEDS = registerI("red_grape_seeds", () -> new GrapeBushSeedItem(RED_GRAPE_BUSH.get(), getSettings(), GrapeTypes.RED));
     public static final RegistrySupplier<Item> RED_GRAPE = registerI("red_grape", () -> new GrapeItem(getSettings().food(Foods.SWEET_BERRIES), GrapeTypes.RED, RED_GRAPE_SEEDS.get()));
-    public static final RegistrySupplier<Item> RED_GRAPEJUICE_WINE_BOTTLE = registerI("red_grapejuice_wine_bottle", () -> new Item(getSettings()));
     public static final RegistrySupplier<Block> WHITE_GRAPE_BUSH = registerB("white_grape_bush", () -> new GrapeBush(getBushSettings(), GrapeTypes.WHITE));
     public static final RegistrySupplier<Item> WHITE_GRAPE_SEEDS = registerI("white_grape_seeds", () -> new GrapeBushSeedItem(WHITE_GRAPE_BUSH.get(), getSettings(), GrapeTypes.WHITE));
     public static final RegistrySupplier<Item> WHITE_GRAPE = registerI("white_grape", () -> new GrapeItem(getSettings().food(Foods.SWEET_BERRIES), GrapeTypes.WHITE, WHITE_GRAPE_SEEDS.get()));
@@ -194,6 +193,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  GRASS_SLAB_ITEM = registerI("grass_slab", () -> new BlockItem(GRASS_SLAB.get(), getSettings()));
     public static final RegistrySupplier<Item>  APPLE_JUICE = registerI("apple_juice", () -> new Item(getSettings()));
     public static final RegistrySupplier<Item> WHITE_GRAPEJUICE_WINE_BOTTLE = registerI("white_grapejuice_wine_bottle", () -> new Item(getSettings()));
+    public static final RegistrySupplier<Item> RED_GRAPEJUICE_WINE_BOTTLE = registerI("red_grapejuice_wine_bottle", () -> new Item(getSettings()));
     public static final RegistrySupplier<Item> SAVANNA_RED_GRAPEJUICE_BOTTLE = registerI("savanna_red_grapejuice_bottle",  () -> new Item(getSettings()));
     public static final RegistrySupplier<Item> SAVANNA_WHITE_GRAPEJUICE_BOTTLE = registerI("savanna_white_grapejuice_bottle",  () -> new Item(getSettings()));
     public static final RegistrySupplier<Item> TAIGA_RED_GRAPEJUICE_BOTTLE = registerI("taiga_red_grapejuice_bottle",  () -> new Item(getSettings()));
@@ -331,6 +331,35 @@ public class ObjectRegistry {
         VineryBoatTypes.init();
         ITEMS.register();
         BLOCKS.register();
+        registerCompostable();
+    }
+
+    public static void registerCompostable() {
+        ComposterBlock.COMPOSTABLES.put(WHITE_GRAPE.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(WHITE_GRAPE_SEEDS.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(RED_GRAPE.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(RED_GRAPE_SEEDS.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(CHERRY_LEAVES.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(GRAPEVINE_LEAVES.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(CHERRY.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(ROTTEN_CHERRY.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(APPLE_TREE_SAPLING.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(APPLE_LEAVES.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(CHERRY_SAPLING.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(APPLE_MASH.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(STRAW_HAT.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(JUNGLE_RED_GRAPE_SEEDS.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(JUNGLE_RED_GRAPE.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(JUNGLE_WHITE_GRAPE_SEEDS.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(JUNGLE_WHITE_GRAPE.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(TAIGA_RED_GRAPE_SEEDS.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(TAIGA_RED_GRAPE.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(TAIGA_WHITE_GRAPE_SEEDS.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(TAIGA_WHITE_GRAPE.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(SAVANNA_RED_GRAPE_SEEDS.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(SAVANNA_RED_GRAPE.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(SAVANNA_WHITE_GRAPE_SEEDS.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(SAVANNA_WHITE_GRAPE.get(), 0.4F);
     }
     
     private static Item.Properties getSettings(Consumer<Item.Properties> consumer) {
@@ -403,7 +432,6 @@ public class ObjectRegistry {
         return new WoodButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON));
     }
 
-    //TODO DELETE and seperate Block Item whyever
     public static <T extends Block> RegistrySupplier<T> registerWithItem(String name, Supplier<T> block) {
         return registerWithItem(name, block, Vinery.VINERY_TAB);
     }

@@ -31,11 +31,9 @@ public class Vinery {
         VineryEntites.init();
         VineryFeatures.init();
         VinerySoundEvents.init();
-      //  VineryNetwork.registerS2CPackets();
     }
 
     public static void commonSetup(){
-        VineryCompostableItems.init();
         VineryFlammableBlocks.init();
 
         FuelRegistry.register(300, ObjectRegistry.CHERRY_FENCE.get(), ObjectRegistry.CHERRY_FENCE_GATE.get(), ObjectRegistry.STACKABLE_LOG.get(), ObjectRegistry.FERMENTATION_BARREL.get());

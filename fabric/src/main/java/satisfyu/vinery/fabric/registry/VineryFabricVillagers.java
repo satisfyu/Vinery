@@ -12,6 +12,7 @@ import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.VineryVillagerUtil;
 
+@SuppressWarnings("deprecated")
 public class VineryFabricVillagers {
 
     private static final VineryIdentifier WINEMAKER_POI_IDENTIFIER = new VineryIdentifier("winemaker_poi");
