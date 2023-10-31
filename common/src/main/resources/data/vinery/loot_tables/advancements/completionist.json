@@ -7,7 +7,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:dead_brain_coral_block",
+          "name": "vinery:vinery_standard",
           "functions": [
             {
               "function": "minecraft:set_count",
