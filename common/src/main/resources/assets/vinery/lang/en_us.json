@@ -291,10 +291,6 @@
   "subtitles.vinery.squeeze": "Grapes Squeezing",
   "tooltip.vinery.aging_barrel": "A different ingredient results in a different Wine",
   "tooltip.vinery.recipe_book": "Recipe Book",
-  "tooltip.vinery.thankyou_1": "A reward for crafting all Wine Variants",
-  "tooltip.vinery.thankyou_2": "When placed:",
-  "tooltip.vinery.thankyou_3": "Thank you for playing Vinery!",
-  "tooltip.vinery.thankyou_4": "Increases haste by 10% in a radius of 8 blocks",
   "tooltip.vinery.wine": "Wine",
   "tooltip.vinery.year": "Year of Production:",
 
@@ -334,5 +330,11 @@
   "vinery.config.title": "Vinery",
   "vinery.tooltip.winemaker_armor": "Winemaker's Desire:",
   "vinery.tooltip.winemaker_armor2": "Full set bonus:",
-  "vinery.tooltip.winemaker_armor3": "Bonemeal won't get consumed anymore"
+  "vinery.tooltip.winemaker_armor3": "Bonemeal won't get consumed anymore",
+  "tooltip.vinery.thankyou_1": "A reward for crafting all Wine Variants",
+  "tooltip.vinery.thankyou_2": "When placed:",
+  "tooltip.vinery.thankyou_3": "Thank you for playing Vinery!",
+  "tooltip.vinery.thankyou_4": "Increases regeneration by 10% in a radius of 8 blocks",
+  "block.vinery.vinery_standard": "Completionist Banner: §5Vinery"
+
 }

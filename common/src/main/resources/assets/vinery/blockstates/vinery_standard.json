@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "vinery:block/vinery_standard"
+    }
+  }
+}

@@ -16,6 +16,6 @@ public class StandardBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level world, BlockPos pos, BlockState state, BlockEntity blockEntity) {
-        world.getEntitiesOfClass(Player.class, new AABB(pos).inflate(8F), player -> true).forEach(player -> player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 200, 2, true, false, true)));
+        world.getEntitiesOfClass(Player.class, new AABB(pos).inflate(8F), player -> true).forEach(player -> player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200, 1, true, false, true)));
     }
 }
