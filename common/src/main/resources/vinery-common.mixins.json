@@ -16,7 +16,6 @@
     "LivingEntityMixin",
     "MobEffectUtilMixin",
     "ShovelItemMixin",
-    "SpreadingSnowyDirtBlockMixin",
     "StatusEffectUtilMixin",
     "WanderingTraderManagerMixin"
   ],

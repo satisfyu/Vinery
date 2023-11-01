@@ -98,7 +98,8 @@ public class StandardRenderer implements BlockEntityRenderer<StandardBlockEntity
         poseStack.popPose();
     }
 
-    public static void renderStandard(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j, ModelPart modelPart, StandardBlockEntity standard)
+    public static void renderStandard(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j, ModelPart modelPart, StandardBlockEntity
+            standard)
     {
         ResourceLocation location = ((AbstractStandardBlock)standard.getBlockState().getBlock()).getRenderTexture();
         VertexConsumer vc = multiBufferSource.getBuffer(RenderType.entitySolid(location));

@@ -16,15 +16,11 @@ import org.spongepowered.asm.mixin.Unique;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.registry.ObjectRegistry;
 
+
+/*
 @Mixin(SpreadingSnowyDirtBlock.class)
 public class SpreadingSnowyDirtBlockMixin {
 
-
-
-    /**
-     * @author Cristelknight
-     * @reason Grass spreading. And I'm too stupid to do it without this overwrite. This works somehow. don't touch
-     */
     @Overwrite
     public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
         if (!canBeGrass(blockState, serverLevel, blockPos)) {
@@ -110,5 +106,6 @@ public class SpreadingSnowyDirtBlockMixin {
 
         return level.setBlockAndUpdate(blockPos, state.setValue(SnowyDirtBlock.SNOWY, level.getBlockState(blockPos.above()).is(Blocks.SNOW)));
     }
-     */
-}
+       }
+ */
+
