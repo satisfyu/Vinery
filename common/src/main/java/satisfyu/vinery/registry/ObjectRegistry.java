@@ -312,8 +312,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> WOOD_FIRED_OVEN = registerWithItem("wood_fired_oven", () -> new StoveBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistrySupplier<Block> STOVE = registerWithItem("stove", () -> new StoveBlock(BlockBehaviour.Properties.copy(Blocks.STONE).lightLevel(block -> 12)));
     public static final RegistrySupplier<Block> KITCHEN_SINK = registerWithItem("kitchen_sink", () -> new KitchenSinkBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
-
-    public static final RegistrySupplier<Item>  VINERY_STANDARD2 = registerI("vinery_standardtwo", () -> new VineryStandardItem(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
     public static final RegistrySupplier<Item>  VINERY_STANDARD = registerI("vinery_standard", () -> new VineryStandardItem(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
 
 
