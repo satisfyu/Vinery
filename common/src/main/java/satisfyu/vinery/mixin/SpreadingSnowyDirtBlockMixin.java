@@ -13,77 +13,20 @@ import net.minecraft.world.level.lighting.LightEngine;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
-import satisfyu.vinery.Vinery;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import satisfyu.vinery.block.SnowyVariantSlabBlock;
 import satisfyu.vinery.registry.ObjectRegistry;
 
 
-/*
+
 @Mixin(SpreadingSnowyDirtBlock.class)
 public class SpreadingSnowyDirtBlockMixin {
 
-    @Overwrite
-    public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-        if (!canBeGrass(blockState, serverLevel, blockPos)) {
-            serverLevel.setBlockAndUpdate(blockPos, fromGrass(blockState));
-            return;
-        }
-        if (serverLevel.getMaxLocalRawBrightness(blockPos.above()) >= 9) {
-            for (int i = 0; i < 4; ++i) {
-                BlockPos blockPos2 = blockPos.offset(randomSource.nextInt(3) - 1, randomSource.nextInt(5) - 3, randomSource.nextInt(3) - 1);
-                BlockState toReplace = serverLevel.getBlockState(blockPos2);
-                if(!toReplace.is(Blocks.DIRT) && !toReplace.is(ObjectRegistry.DIRT_SLAB.get())) continue;
-                BlockState blockState2 = toGrass(toReplace);
-                if (!canPropagate(blockState2, serverLevel, blockPos2)) continue;
-                serverLevel.setBlockAndUpdate(blockPos2, blockState2.setValue(SpreadingSnowyDirtBlock.SNOWY, serverLevel.getBlockState(blockPos2.above()).is(Blocks.SNOW)));
-            }
-        }
-    }
-
-    @Unique
-    private static boolean canBeGrass(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
-        BlockPos blockPos2 = blockPos.above();
-        BlockState blockState2 = levelReader.getBlockState(blockPos2);
-        if (blockState2.is(Blocks.SNOW) && blockState2.getValue(SnowLayerBlock.LAYERS) == 1) {
-            return true;
-        } else if (blockState2.getFluidState().getAmount() == 8) {
-            return false;
-        } else {
-            int i = LightEngine.getLightBlockInto(
-                    levelReader, blockState, blockPos, blockState2, blockPos2, Direction.UP, blockState2.getLightBlock(levelReader, blockPos2)
-            );
-
-            //fix stupid bug ig
-            if(i == 16 && blockState.is(ObjectRegistry.GRASS_SLAB.get()) && blockState2.getBlock() instanceof AirBlock && blockState.getValue(SlabBlock.TYPE).equals(SlabType.TOP)){
-                return true;
-            }
-            return i < levelReader.getMaxLightLevel();
-        }
-    }
-
-    @Unique
-    private static boolean canPropagate(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
-        BlockPos blockPos2 = blockPos.above();
-        return canBeGrass(blockState, levelReader, blockPos) && !levelReader.getFluidState(blockPos2).is(FluidTags.WATER);
-    }
-
-    @Unique
-    private BlockState fromGrass(BlockState blockState){
-        BlockState state;
-        if(blockState.is(ObjectRegistry.GRASS_SLAB.get())){
-            state = ObjectRegistry.DIRT_SLAB.get().defaultBlockState().setValue(SlabBlock.TYPE, blockState.getValue(SlabBlock.TYPE));
-        }
-        else state = Blocks.DIRT.defaultBlockState();
-        return state;
-    }
-
-    @Unique
-    private BlockState toGrass(BlockState blockState){
-        BlockState state;
-        if(blockState.is(ObjectRegistry.DIRT_SLAB.get())){
-            state = ObjectRegistry.GRASS_SLAB.get().defaultBlockState().setValue(SlabBlock.TYPE, blockState.getValue(SlabBlock.TYPE));
-        }
-        else state = Blocks.GRASS_BLOCK.defaultBlockState();
-        return state;
+    @Inject(method = "randomTick", at = @At("HEAD"))
+    void vineryRandomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource random, CallbackInfo ci) {
+        SnowyVariantSlabBlock.spreadingTick((SpreadingSnowyDirtBlock) (Object) this, blockState, serverLevel, blockPos, random);
     }
 
     /*
@@ -106,6 +49,7 @@ public class SpreadingSnowyDirtBlockMixin {
 
         return level.setBlockAndUpdate(blockPos, state.setValue(SnowyDirtBlock.SNOWY, level.getBlockState(blockPos.above()).is(Blocks.SNOW)));
     }
-       }
- */
+     */
+}
+
 

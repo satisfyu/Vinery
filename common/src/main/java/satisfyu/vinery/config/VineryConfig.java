@@ -32,7 +32,7 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
     public HashMap<String, String> getComments() {
         return Util.make(new HashMap<>(), map -> {
             map.put("enable_wine_maker_set_bonus", """
-                    Whether the winemaker armor should give a set bonus, which can prevent your bone meal of being used""");
+                    Whether the winemaker armor should give a set bonus, which can prevent your bone meal from being used""");
             map.put("probability_to_keep_bone_meal", """
                     Probability for the set bonus to work (in %)""");
             map.put("probability_for_damage", """

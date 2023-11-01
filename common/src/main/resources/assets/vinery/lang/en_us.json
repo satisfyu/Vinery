@@ -335,6 +335,5 @@
   "tooltip.vinery.thankyou_2": "When placed:",
   "tooltip.vinery.thankyou_3": "Thank you for playing Vinery!",
   "tooltip.vinery.thankyou_4": "Increases regeneration by 10% in a radius of 8 blocks",
-  "block.vinery.vinery_standard": "Completionist Banner: §5Vinery"
-
+  "item.vinery.vinery_standard": "Completionist Banner: §5Vinery"
 }
