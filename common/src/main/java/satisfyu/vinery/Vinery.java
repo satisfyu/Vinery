@@ -35,6 +35,7 @@ public class Vinery {
 
     public static void commonSetup(){
         VineryFlammableBlocks.init();
+        ObjectRegistry.registerCompostable();
 
         FuelRegistry.register(300, ObjectRegistry.CHERRY_FENCE.get(), ObjectRegistry.CHERRY_FENCE_GATE.get(), ObjectRegistry.STACKABLE_LOG.get(), ObjectRegistry.FERMENTATION_BARREL.get());
 

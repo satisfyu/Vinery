@@ -331,7 +331,6 @@ public class ObjectRegistry {
         VineryBoatTypes.init();
         ITEMS.register();
         BLOCKS.register();
-        registerCompostable();
     }
 
     public static void registerCompostable() {
