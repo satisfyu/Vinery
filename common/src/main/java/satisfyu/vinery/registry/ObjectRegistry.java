@@ -3,6 +3,7 @@ package satisfyu.vinery.registry;
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import de.cristelknight.doapi.Util;
+import de.cristelknight.doapi.common.item.StandardItem;
 import dev.architectury.core.item.ArchitecturySpawnEggItem;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
@@ -308,10 +309,13 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> MCCHERRY_WINE_RACK_BIG = registerWithItem("mccherry_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistrySupplier<Block> MCCHERRY_WINE_RACK_SMALL = registerWithItem("mccherry_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistrySupplier<Block> MCCHERRY_WINE_RACK_MID = registerWithItem("mccherry_wine_rack_mid", () -> new BigBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-
     public static final RegistrySupplier<Block> WOOD_FIRED_OVEN = registerWithItem("wood_fired_oven", () -> new StoveBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistrySupplier<Block> STOVE = registerWithItem("stove", () -> new StoveBlock(BlockBehaviour.Properties.copy(Blocks.STONE).lightLevel(block -> 12)));
     public static final RegistrySupplier<Block> KITCHEN_SINK = registerWithItem("kitchen_sink", () -> new KitchenSinkBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+
+    public static final RegistrySupplier<Item>  VINERY_STANDARD2 = registerI("vinery_standardtwo", () -> new VineryStandardItem(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
+    public static final RegistrySupplier<Item>  VINERY_STANDARD = registerI("vinery_standard", () -> new VineryStandardItem(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
+
 
 
     static <T extends Item> RegistrySupplier<T> registerI(String path, Supplier<T> item) {
@@ -329,8 +333,6 @@ public class ObjectRegistry {
         VineryBoatsAndSigns.init();
         ITEMS.register();
         BLOCKS.register();
-        createStandards();
-        registerCompostable();
     }
 
     public static void registerCompostable() {
@@ -364,16 +366,6 @@ public class ObjectRegistry {
     public static final List<Supplier<Block>> STANDARD_BLOCKS = Lists.newArrayList();
     public static final List<Supplier<Block>> STANDARD_WALL_BLOCKS = Lists.newArrayList();
     public static final List<Supplier<Block>> STANDARD_FLOOR_BLOCKS = Lists.newArrayList();
-    public static Supplier<Block> VINERY_STANDARD;
-
-    private static void createStandards() {
-        VINERY_STANDARD = BLOCKS.register(Vinery.MODID("vinery_standard"), () -> new VineryStandardBlock(properties(1F).instrument(NoteBlockInstrument.BASS).noCollission().sound(SoundType.WOOD)));
-        Supplier<Block> adjWall = BLOCKS.register(Vinery.MODID("vinery_wall_standard"), () -> new VineryStandardWallBlock(properties(1F).instrument(NoteBlockInstrument.BASS).noCollission().sound(SoundType.WOOD).dropsLike(VINERY_STANDARD.get())));
-
-        ITEMS.register(Vinery.MODID("vinery_standard"), () -> new StandingAndWallBlockItem(VINERY_STANDARD.get(), adjWall.get(), new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON), Direction.DOWN));
-        STANDARD_BLOCKS.add(VINERY_STANDARD);
-        STANDARD_BLOCKS.add(adjWall);
-    }
 
     public static BlockBehaviour.Properties properties(float strength) {
         return properties(strength, strength);

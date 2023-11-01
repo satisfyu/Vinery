@@ -30,7 +30,7 @@ side = "BOTH"
 [[dependencies.vinery]]
 modId = "doapi"
 mandatory = true
-versionRange = "[1.2.7,)"
+versionRange = "[1.2.8,)"
 ordering = "NONE"
 side = "BOTH"
 

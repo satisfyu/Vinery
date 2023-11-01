@@ -41,7 +41,6 @@ public enum GrapevineType implements IGrapevineType, StringRepresentable {
 
     public Item getFruit() {
         return switch (this) {
-            case RED -> ObjectRegistry.RED_GRAPE.get();
             case WHITE -> ObjectRegistry.WHITE_GRAPE.get();
             case JUNGLE_RED -> ObjectRegistry.JUNGLE_RED_GRAPE.get();
             case JUNGLE_WHITE -> ObjectRegistry.JUNGLE_WHITE_GRAPE.get();
