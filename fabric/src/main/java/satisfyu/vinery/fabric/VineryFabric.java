@@ -9,11 +9,13 @@ import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.fabric.registry.VineryFabricVillagers;
 import satisfyu.vinery.fabric.world.VineryBiomeModification;
+import satisfyu.vinery.registry.VineryCompostables;
 
 public class VineryFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         Vinery.init();
+        VineryCompostables.registerCompostable();
         VineryFabricVillagers.init();
         VineryBiomeModification.init();
         Vinery.commonSetup();

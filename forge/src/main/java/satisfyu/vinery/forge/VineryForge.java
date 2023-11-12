@@ -11,6 +11,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.client.gui.config.ClothConfigScreen;
 import satisfyu.vinery.forge.registry.VineryForgeVillagers;
+import satisfyu.vinery.registry.VineryCompostables;
 import satisfyu.vinery.util.VineryPre;
 
 
@@ -32,6 +33,7 @@ public class VineryForge {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(VineryCompostables::registerCompostable);
         Vinery.commonSetup();
     }
     public static boolean isClothConfigLoaded(){

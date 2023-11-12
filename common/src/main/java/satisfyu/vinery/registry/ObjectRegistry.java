@@ -333,34 +333,6 @@ public class ObjectRegistry {
         BLOCKS.register();
     }
 
-    public static void registerCompostable() {
-        ComposterBlock.COMPOSTABLES.put(WHITE_GRAPE.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(WHITE_GRAPE_SEEDS.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(RED_GRAPE.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(RED_GRAPE_SEEDS.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(CHERRY_LEAVES.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(GRAPEVINE_LEAVES.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(CHERRY.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(ROTTEN_CHERRY.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(APPLE_TREE_SAPLING.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(APPLE_LEAVES.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(CHERRY_SAPLING.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(APPLE_MASH.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(STRAW_HAT.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(JUNGLE_RED_GRAPE_SEEDS.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(JUNGLE_RED_GRAPE.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(JUNGLE_WHITE_GRAPE_SEEDS.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(JUNGLE_WHITE_GRAPE.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(TAIGA_RED_GRAPE_SEEDS.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(TAIGA_RED_GRAPE.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(TAIGA_WHITE_GRAPE_SEEDS.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(TAIGA_WHITE_GRAPE.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(SAVANNA_RED_GRAPE_SEEDS.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(SAVANNA_RED_GRAPE.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(SAVANNA_WHITE_GRAPE_SEEDS.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(SAVANNA_WHITE_GRAPE.get(), 0.4F);
-    }
-
     public static final List<Supplier<Block>> STANDARD_BLOCKS = Lists.newArrayList();
     public static final List<Supplier<Block>> STANDARD_WALL_BLOCKS = Lists.newArrayList();
     public static final List<Supplier<Block>> STANDARD_FLOOR_BLOCKS = Lists.newArrayList();
