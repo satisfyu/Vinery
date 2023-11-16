@@ -15,6 +15,7 @@
     "FoxEntityEatSweetBerriesGoalMixin",
     "LivingEntityMixin",
     "MobEffectUtilMixin",
+    "PlantBlockMixin",
     "ShovelItemMixin",
     "SpreadingSnowyDirtBlockMixin",
     "StatusEffectUtilMixin",
