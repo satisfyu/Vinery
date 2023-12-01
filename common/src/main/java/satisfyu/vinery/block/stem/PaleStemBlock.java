@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -52,14 +53,26 @@ public class PaleStemBlock extends StemBlock {
         Level world = ctx.getLevel();
         BlockPos blockPos = ctx.getClickedPos();
         if (blockState.canSurvive(ctx.getLevel(), ctx.getClickedPos())) {
+            /*
             ItemStack placeStack = Objects.requireNonNull(ctx.getPlayer()).getItemInHand(ctx.getHand());
             if (placeStack != null && (ctx.getPlayer().isCreative() || placeStack.getCount() >= 2) && world.getBlockState(blockPos.below()).getBlock() != this && blockPos.getY() < world.getMaxBuildHeight() - 1 && world.getBlockState(blockPos.above()).canBeReplaced(ctx)) {
                 world.setBlock(blockPos.above(), this.defaultBlockState(), 3);
                 placeStack.shrink(1);
             }
+             */
             return blockState;
         }
         return null;
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos blockPos, BlockState blockState, @Nullable LivingEntity livingEntity, ItemStack itemStack) {
+        if(livingEntity instanceof Player player){
+            if (itemStack != null && (player.isCreative() || itemStack.getCount() >= 2) && level.getBlockState(blockPos.below()).getBlock() != this && blockPos.getY() < level.getMaxBuildHeight() - 1 && level.getBlockState(blockPos.above()).canBeReplaced()) {
+                level.setBlock(blockPos.above(), this.defaultBlockState(), 3);
+                itemStack.shrink(1);
+            }
+        }
     }
 
     @Override
