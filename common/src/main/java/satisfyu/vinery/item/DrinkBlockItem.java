@@ -4,12 +4,9 @@ import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
 import net.minecraft.ChatFormatting;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffect;
@@ -60,6 +57,7 @@ public class DrinkBlockItem extends BlockItem {
         }
         return super.updateCustomBlockEntityTag(blockPos, level, player, itemStack, blockState);
     }
+
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
         List<Pair<MobEffectInstance, Float>> list2 = getFoodProperties() != null ? getFoodProperties().getEffects() : Lists.newArrayList();

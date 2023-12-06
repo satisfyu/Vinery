@@ -2,14 +2,6 @@ package satisfyu.vinery.client.gui.handler;
 
 import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
 import de.cristelknight.doapi.client.recipebook.handler.AbstractRecipeBookGUIScreenHandler;
-import satisfyu.vinery.client.gui.handler.slot.ExtendedSlot;
-import satisfyu.vinery.client.gui.handler.slot.StoveOutputSlot;
-import satisfyu.vinery.client.recipebook.group.FermentationBarrelRecipeBookGroup;
-import satisfyu.vinery.recipe.FermentationBarrelRecipe;
-import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.registry.VineryRecipeTypes;
-import satisfyu.vinery.registry.VineryScreenHandlerTypes;
-import java.util.List;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -19,6 +11,15 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import satisfyu.vinery.client.gui.handler.slot.ExtendedSlot;
+import satisfyu.vinery.client.gui.handler.slot.StoveOutputSlot;
+import satisfyu.vinery.client.recipebook.group.FermentationBarrelRecipeBookGroup;
+import satisfyu.vinery.recipe.FermentationBarrelRecipe;
+import satisfyu.vinery.registry.ObjectRegistry;
+import satisfyu.vinery.registry.VineryRecipeTypes;
+import satisfyu.vinery.registry.VineryScreenHandlerTypes;
+
+import java.util.List;
 
 public class FermentationBarrelGuiHandler extends AbstractRecipeBookGUIScreenHandler {
 
@@ -31,15 +32,14 @@ public class FermentationBarrelGuiHandler extends AbstractRecipeBookGUIScreenHan
         buildPlayerContainer(playerInventory);
     }
 
+
     private void buildBlockEntityContainer(Inventory playerInventory, Container inventory) {
         // Wine input
         this.addSlot(new ExtendedSlot(inventory, 0, 79, 51, stack -> stack.is(ObjectRegistry.WINE_BOTTLE.get())));
-        // Inputs
         this.addSlot(new ExtendedSlot(inventory, 1, 33, 26, this::isIngredient));
         this.addSlot(new ExtendedSlot(inventory, 2, 51, 26, this::isIngredient));
         this.addSlot(new ExtendedSlot(inventory, 3, 33, 44, this::isIngredient));
         this.addSlot(new ExtendedSlot(inventory, 4, 51, 44, this::isIngredient));
-        // Output
         this.addSlot(new StoveOutputSlot(playerInventory.player, inventory, 5, 128,  35));
     }
 

@@ -1,0 +1,31 @@
+{
+  "type": "doapi:conditional",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "recipe": {
+    "type": "create:mixing",
+    "ingredients": [
+      {
+        "item": "vinery:jungle_red_grapejuice_bottle"
+      },
+      {
+        "item": "minecraft:cocoa_beans"
+      },
+      {
+        "item": "minecraft:sugar"
+      },
+      {
+        "item": "vinery:wine_bottle"
+      }
+    ],
+    "results": [
+      {
+        "item": "vinery:stal_wine"
+      }
+    ]
+  }
+}

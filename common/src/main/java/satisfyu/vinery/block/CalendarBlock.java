@@ -7,6 +7,11 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -17,10 +22,13 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.item.Calendar;
 
 import java.util.List;
@@ -34,8 +42,12 @@ public class CalendarBlock extends FacingBlock {
             Direction.EAST, Block.box(0.0, 1, 1, 1.0, 15, 15)
     ));
 
+    public static final IntegerProperty MONTH = IntegerProperty.create("month", 0, 11);
+
+
     public CalendarBlock(Properties settings) {
         super(settings);
+        this.registerDefaultState(this.stateDefinition.any().setValue(MONTH, 0));
     }
 
     @Override
@@ -66,6 +78,40 @@ public class CalendarBlock extends FacingBlock {
             return blockState;
         }
         return null;
+    }
+
+    @Override
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (player.isDiscrete()) return InteractionResult.PASS;
+        ItemStack itemStack = player.getItemInHand(hand);
+        if (world.isClientSide) {
+            if (switchPages(world, pos, state, player).consumesAction()) {
+                return InteractionResult.SUCCESS;
+            }
+        }
+        return switchPages(world, pos, state, player);
+    }
+
+
+    private InteractionResult switchPages(LevelAccessor world, BlockPos pos, BlockState state, Player player) {
+        world.playSound(null, pos, SoundEvents.BOOK_PAGE_TURN, SoundSource.PLAYERS, 0.5f, world.getRandom().nextFloat() * 0.1f + 0.9f);
+        player.getFoodData().eat(1, 0.4f);
+        int currentMonth = state.getValue(MONTH);
+        world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+
+        int newMonth = (currentMonth % 11) + 1;
+        world.setBlock(pos, state.setValue(MONTH, newMonth), Block.UPDATE_ALL);
+
+        return InteractionResult.SUCCESS;
+
+    }
+
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(MONTH);
+
     }
 
     @Override

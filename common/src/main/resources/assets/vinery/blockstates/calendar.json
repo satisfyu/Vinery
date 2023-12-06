@@ -1,34 +1,184 @@
-
 {
   "variants": {
-    "facing=east": [
-      { "model": "vinery:block/calendar_1", "weight":1, "y": 90},
-      { "model": "vinery:block/calendar_2", "weight":1, "y": 90},
-      { "model": "vinery:block/calendar_3", "weight":1, "y": 90},
-      { "model": "vinery:block/calendar_4", "weight":1, "y": 90},
-      { "model": "vinery:block/calendar_5", "weight":1, "y": 90}
-    ],
-    "facing=north": [
-      { "model": "vinery:block/calendar_1", "weight":1 },
-      { "model": "vinery:block/calendar_2", "weight":1 },
-      { "model": "vinery:block/calendar_3", "weight":1 },
-      { "model": "vinery:block/calendar_4", "weight":1 },
-      { "model": "vinery:block/calendar_5", "weight":1 }
-    ],
-    "facing=south": [
-      { "model": "vinery:block/calendar_1", "weight":1, "y": 180},
-      { "model": "vinery:block/calendar_2", "weight":1, "y": 180},
-      { "model": "vinery:block/calendar_3", "weight":1, "y": 180},
-      { "model": "vinery:block/calendar_4", "weight":1, "y": 180},
-      { "model": "vinery:block/calendar_5", "weight":1, "y": 180}
-    ],
-    "facing=west": [
-      { "model": "vinery:block/calendar_1", "weight":1, "y": 270},
-      { "model": "vinery:block/calendar_2", "weight":1, "y": 270},
-      { "model": "vinery:block/calendar_3", "weight":1, "y": 270},
-      { "model": "vinery:block/calendar_4", "weight":1, "y": 270},
-      { "model": "vinery:block/calendar_5", "weight":1, "y": 270}
-
-    ]
+    "facing=north,month=0": {
+      "model": "vinery:block/calendar_1"
+    },
+    "facing=south,month=0": {
+      "model": "vinery:block/calendar_1",
+      "y": 180
+    },
+    "facing=west,month=0": {
+      "model": "vinery:block/calendar_1",
+      "y": 270
+    },
+    "facing=east,month=0": {
+      "model": "vinery:block/calendar_1",
+      "y": 90
+    },
+    "facing=north,month=1": {
+      "model": "vinery:block/calendar_2"
+    },
+    "facing=south,month=1": {
+      "model": "vinery:block/calendar_2",
+      "y": 180
+    },
+    "facing=west,month=1": {
+      "model": "vinery:block/calendar_2",
+      "y": 270
+    },
+    "facing=east,month=1": {
+      "model": "vinery:block/calendar_2",
+      "y": 90
+    },
+    "facing=north,month=2": {
+      "model": "vinery:block/calendar_3"
+    },
+    "facing=south,month=2": {
+      "model": "vinery:block/calendar_3",
+      "y": 180
+    },
+    "facing=west,month=2": {
+      "model": "vinery:block/calendar_3",
+      "y": 270
+    },
+    "facing=east,month=2": {
+      "model": "vinery:block/calendar_3",
+      "y": 90
+    },
+    "facing=north,month=3": {
+      "model": "vinery:block/calendar_4"
+    },
+    "facing=south,month=3": {
+      "model": "vinery:block/calendar_4",
+      "y": 180
+    },
+    "facing=west,month=3": {
+      "model": "vinery:block/calendar_4",
+      "y": 270
+    },
+    "facing=east,month=3": {
+      "model": "vinery:block/calendar_4",
+      "y": 90
+    },
+    "facing=north,month=4": {
+      "model": "vinery:block/calendar_5"
+    },
+    "facing=south,month=4": {
+      "model": "vinery:block/calendar_5",
+      "y": 180
+    },
+    "facing=west,month=4": {
+      "model": "vinery:block/calendar_5",
+      "y": 270
+    },
+    "facing=east,month=4": {
+      "model": "vinery:block/calendar_5",
+      "y": 90
+    },
+    "facing=north,month=5": {
+      "model": "vinery:block/calendar_6"
+    },
+    "facing=south,month=5": {
+      "model": "vinery:block/calendar_6",
+      "y": 180
+    },
+    "facing=west,month=5": {
+      "model": "vinery:block/calendar_6",
+      "y": 270
+    },
+    "facing=east,month=5": {
+      "model": "vinery:block/calendar_6",
+      "y": 90
+    },
+    "facing=north,month=6": {
+      "model": "vinery:block/calendar_7"
+    },
+    "facing=south,month=6": {
+      "model": "vinery:block/calendar_7",
+      "y": 180
+    },
+    "facing=west,month=6": {
+      "model": "vinery:block/calendar_7",
+      "y": 270
+    },
+    "facing=east,month=6": {
+      "model": "vinery:block/calendar_7",
+      "y": 90
+    },
+    "facing=north,month=7": {
+      "model": "vinery:block/calendar_8"
+    },
+    "facing=south,month=7": {
+      "model": "vinery:block/calendar_8",
+      "y": 180
+    },
+    "facing=west,month=7": {
+      "model": "vinery:block/calendar_8",
+      "y": 270
+    },
+    "facing=east,month=7": {
+      "model": "vinery:block/calendar_8",
+      "y": 90
+    },
+    "facing=north,month=8": {
+      "model": "vinery:block/calendar_9"
+    },
+    "facing=south,month=8": {
+      "model": "vinery:block/calendar_9",
+      "y": 180
+    },
+    "facing=west,month=8": {
+      "model": "vinery:block/calendar_9",
+      "y": 270
+    },
+    "facing=east,month=8": {
+      "model": "vinery:block/calendar_9",
+      "y": 90
+    },
+    "facing=north,month=9": {
+      "model": "vinery:block/calendar_10"
+    },
+    "facing=south,month=9": {
+      "model": "vinery:block/calendar_10",
+      "y": 180
+    },
+    "facing=west,month=9": {
+      "model": "vinery:block/calendar_10",
+      "y": 270
+    },
+    "facing=east,month=9": {
+      "model": "vinery:block/calendar_10",
+      "y": 90
+    },
+    "facing=north,month=10": {
+      "model": "vinery:block/calendar_11"
+    },
+    "facing=south,month=10": {
+      "model": "vinery:block/calendar_11",
+      "y": 180
+    },
+    "facing=west,month=10": {
+      "model": "vinery:block/calendar_11",
+      "y": 270
+    },
+    "facing=east,month=10": {
+      "model": "vinery:block/calendar_11",
+      "y": 90
+    },
+    "facing=north,month=11": {
+      "model": "vinery:block/calendar_12"
+    },
+    "facing=south,month=11": {
+      "model": "vinery:block/calendar_12",
+      "y": 180
+    },
+    "facing=west,month=11": {
+      "model": "vinery:block/calendar_12",
+      "y": 270
+    },
+    "facing=east,month=11": {
+      "model": "vinery:block/calendar_12",
+      "y": 90
+    }
   }
 }

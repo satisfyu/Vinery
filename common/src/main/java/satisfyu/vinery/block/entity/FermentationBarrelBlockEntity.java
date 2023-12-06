@@ -6,7 +6,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -140,7 +139,10 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
         }
         final ItemStack recipeOutput = recipe.getResultItem(access);
         final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
+        /** check wine year, stack, other, c**/
+
         if (outputSlotStack.isEmpty()) {
+
             ItemStack output = recipeOutput.copy();
             WineYears.setWineYear(output, this.level);
             setItem(OUTPUT_SLOT, output);

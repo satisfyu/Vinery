@@ -1,0 +1,31 @@
+{
+  "type": "doapi:conditional",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "recipe": {
+    "type": "create:mixing",
+    "ingredients": [
+      {
+        "item": "vinery:savanna_white_grapejuice_bottle"
+      },
+      {
+        "item": "minecraft:sugar"
+      },
+      {
+        "item": "minecraft:honey_bottle"
+      },
+      {
+        "item": "vinery:wine_bottle"
+      }
+    ],
+    "results": [
+      {
+        "item": "vinery:chenet_wine"
+      }
+    ]
+  }
+}

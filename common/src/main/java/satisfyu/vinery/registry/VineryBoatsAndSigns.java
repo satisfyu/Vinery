@@ -7,7 +7,6 @@ import de.cristelknight.doapi.terraform.boat.item.TerraformBoatItemHelper;
 import de.cristelknight.doapi.terraform.sign.TerraformSignHelper;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.Block;

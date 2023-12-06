@@ -42,6 +42,8 @@ public class VineryFabricVillagers {
             factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.FLOWER_POT.get(), 5, 1, 10));
             factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.WINDOW.get(), 12, 1, 10));
             factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.CHERRY_BEAM.get(), 6, 1, 10));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.TAIGA_RED_GRAPE_SEEDS.get(), 2, 1, 5));
+            factories.add(new VineryVillagerUtil.SellItemFactory(ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS.get(), 2, 1, 5));
 
 
         });
