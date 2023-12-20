@@ -15,7 +15,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
-import satisfyu.vinery.block.entity.chair.ChairRenderer;
 import satisfyu.vinery.client.gui.ApplePressGui;
 import satisfyu.vinery.client.gui.FermentationBarrelGui;
 import satisfyu.vinery.client.model.MuleModel;
@@ -96,7 +95,6 @@ public class VineryClient {
     public static void registerEntityRenderers() {
         EntityRendererRegistry.register(VineryEntites.MULE, MuleRenderer::new);
         EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
-        EntityRendererRegistry.register(VineryEntites.CHAIR, ChairRenderer::new);
     }
 
 

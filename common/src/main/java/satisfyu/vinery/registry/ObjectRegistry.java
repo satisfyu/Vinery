@@ -3,6 +3,7 @@ package satisfyu.vinery.registry;
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import de.cristelknight.doapi.Util;
+import de.cristelknight.doapi.common.block.ChairBlock;
 import dev.architectury.core.item.ArchitecturySpawnEggItem;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
