@@ -85,10 +85,9 @@
   "item.vinery.cherry_sign": "Kirschholzschild",
   "item.vinery.cherry_boat": "Kirschholzboot",
   "item.vinery.cherry": "Kirsche",
-  "item.vinery.vinemaker_apron": "Schürze des Winzer",
-  "item.vinery.vinemaker_gloves": "Handschuhe des Winzer",
-  "item.vinery.vinemaker_leggings": "Hosen des Winzer",
-  "item.vinery.vinemaker_boots": "Schuhe des Winzer",
+  "item.vinery.winemaker_apron": "Schürze des Winzer",
+  "item.vinery.winemaker_leggings": "Hosen des Winzer",
+  "item.vinery.winemaker_boots": "Schuhe des Winzer",
   "item.vinery.straw_hat": "Strohhut",
   "item.vinery.mule_spawn_egg": "Lastesel-Spawn-Ei",
   "item.vinery.wandering_winemaker_spawn_egg": "Wandernder-Winzer-Spawn-Ei",
@@ -272,7 +271,6 @@
   "effect.vinery.trippy": "Erweitere Wahrnehmung",
   "block.vinery.jo_special_mixture": "Jo's spezielle Mixtur",
   "block.vinery.pink_cherry_leaves": "Pink Cherry Leaves",
-  "block.vinery.breadblock.tooltip.tooltip_shift": "Press §eSHIFT§r for more Information",
   "vinery.config.entry.enableWineMakerSetBonus": "Winemaker Set Bonus",
   "vinery.config.entry.wineTraderChance": "Wandering Winemaker Spawnchance",
   "vinery.config.entry.yearLengthInDays": "Days per Year for Aging",
@@ -333,5 +331,5 @@
   "vinery.config.entry.probabilityToKeepBoneMeal": "Wahrscheinlichkeit, dass der Set-Bonus funktioniert (in %)",
   "vinery.config.entry.yearsPerEffectLevel": "Jahre pro Effektstufe",
   "vinery.config.subCategory.wineMaker": "Set-Bonus für Winzer",
-  "block.vinery.vinery_standard": "Vervollständigungsbanner: §Vinery"
+  "block.vinery.cherry_hanging_sign": "Kirschholzhängeschild"
 }

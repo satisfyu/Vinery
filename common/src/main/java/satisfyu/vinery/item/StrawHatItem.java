@@ -17,12 +17,12 @@ public class StrawHatItem extends CustomHatItem implements WineMakerArmorItem {
 
 
     public StrawHatItem(Properties settings) {
-        super(VineryMaterials.VINEMAKER_ARMOR, Type.HELMET, settings);
+        super(VineryMaterials.WINEMAKER_ARMOR, Type.HELMET, settings);
     }
 
     @Override
     public ResourceLocation getTexture() {
-        return new VineryIdentifier("textures/item/straw_hat.png");
+        return new VineryIdentifier("textures/entity/straw_hat.png");
     }
 
     @Override

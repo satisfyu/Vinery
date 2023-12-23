@@ -3,7 +3,7 @@
   "type": "vinery:wine_fermentation",
   "ingredients": [
     {
-      "tag": "minecraft:grapejuice_red"
+      "tag": "vinery:grapejuice_red"
     },
     {
       "item": "minecraft:beetroot"

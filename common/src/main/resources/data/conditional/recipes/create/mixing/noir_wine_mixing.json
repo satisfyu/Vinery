@@ -10,7 +10,7 @@
     "type": "create:mixing",
     "ingredients": [
       {
-        "tag": "minecraft:grapejuice_red"
+        "tag": "vinery:grapejuice_red"
       },
       {
         "item": "vinery:wine_bottle"

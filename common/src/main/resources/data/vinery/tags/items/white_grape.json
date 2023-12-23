@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "vinery:white_grape",
-    "vinery:savanna_grapes_white",
-    "vinery:taiga_grapes_white",
-    "vinery:jungle_grapes_white"
+    {"id":"vinery:white_grape","required":false},
+    {"id":"vinery:savanna_white_grape","required":false},
+    {"id":"vinery:taiga_white_grape","required":false},
+    {"id":"vinery:jungle_white_grape","required":false}
   ]
 }

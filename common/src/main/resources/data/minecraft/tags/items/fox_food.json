@@ -1,7 +1,37 @@
 {
   "replace": false,
   "values": [
-    "vinery:red_grape",
-    "vinery:white_grape"
+    {
+      "id": "vinery:red_grape",
+      "required": false
+    },
+    {
+      "id": "vinery:savanna_red_grape",
+      "required": false
+    },
+    {
+      "id": "vinery:taiga_red_grape",
+      "required": false
+    },
+    {
+      "id": "vinery:jungle_red_grape",
+      "required": false
+    },
+    {
+      "id": "vinery:white_grape",
+      "required": false
+    },
+    {
+      "id": "vinery:savanna_white_grape",
+      "required": false
+    },
+    {
+      "id": "vinery:taiga_white_grape",
+      "required": false
+    },
+    {
+      "id": "vinery:jungle_white_grape",
+      "required": false
+    }
   ]
 }

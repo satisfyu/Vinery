@@ -20,8 +20,6 @@ public class CherryItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, TooltipFlag context) {
         tooltip.add(Component.translatable(  "item.vinery.cherry.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-
-
     }
 
 }

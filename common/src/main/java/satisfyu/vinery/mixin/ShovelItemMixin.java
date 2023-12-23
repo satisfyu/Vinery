@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ShovelItem.class)
 public class ShovelItemMixin {
-
     @Inject(method = "useOn", at = @At(value = "HEAD"), cancellable = true)
     public void canConvertSlab(UseOnContext useOnContext, CallbackInfoReturnable<InteractionResult> cir) {
         Level level = useOnContext.getLevel();

@@ -2,36 +2,13 @@
   "replace": false,
   "values": [
     "vinery:shelf",
-    "vinery:cherry_door",
-    "vinery:apple_juice",
-    "vinery:chenet_wine",
-    "vinery:king_danis_wine",
-    "vinery:noir_wine",
-    "vinery:clark_wine",
-    "vinery:mellohi_wine",
-    "vinery:bolvar_wine",
-    "vinery:cherry_wine",
-    "vinery:apple_cider",
-    "vinery:kelp_cider",
-    "vinery:solaris_wine",
-    "vinery:jellie_wine",
-    "vinery:aegis_wine",
-    "vinery:apple_wine",
     "vinery:wine_box",
     "vinery:big_table",
     "vinery:flower_box",
     "vinery:basket",
     "vinery:flower_pot",
     "vinery:stackable_log",
-    "vinery:straw_hat",
-    "vinery:vinemaker_apron",
-    "vinery:vinemaker_leggings",
-    "vinery:vinemaker_boots",
-    "vinery:chorus_wine",
-    "vinery:strad_wine",
-    "vinery:stal_wine",
-    "vinery:magnetic_wine",
-    "vinery:red_wine",
-    "vinery:praetorian_wine"
+    "#vinery:wine"
+
   ]
 }

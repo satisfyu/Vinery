@@ -9,7 +9,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 public class VineryMaterials {
 
-    public static final ArmorMaterial VINEMAKER_ARMOR = new ArmorMaterial() {
+    public static final ArmorMaterial WINEMAKER_ARMOR = new ArmorMaterial() {
 
         @Override
         public int getDurabilityForType(ArmorItem.Type type) {
@@ -38,7 +38,7 @@ public class VineryMaterials {
 
         @Override
         public String getName() {
-            return "vinemaker";
+            return "winemaker";
         }
 
         @Override

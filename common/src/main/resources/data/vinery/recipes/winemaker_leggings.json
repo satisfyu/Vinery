@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "vinemaker_leggings",
+  "group": "winemaker_set",
   "pattern": [
     "XUX",
     "I N",
@@ -21,6 +21,6 @@
     }
   },
   "result": {
-    "item": "vinery:vinemaker_leggings"
+    "item": "vinery:winemaker_leggings"
   }
 }

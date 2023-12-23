@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@SuppressWarnings("unchecked")
 public class FermentationBarrelBlock extends HorizontalDirectionalBlock implements EntityBlock {
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = Shapes.empty();

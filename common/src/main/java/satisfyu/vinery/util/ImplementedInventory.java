@@ -1,4 +1,4 @@
-package satisfyu.vinery.block.entity;
+package satisfyu.vinery.util;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
