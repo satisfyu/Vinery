@@ -9,12 +9,12 @@ import java.util.HashMap;
 
 
 public record VineryConfig(int wineTraderChance, int yearLengthInDays, int yearsPerEffectLevel,
-                           boolean enableWineMakerSetBonus, int damagePerUse, int probabilityForDamage, int probabilityToKeepBoneMeal)
+                           boolean enableWineMakerSetBonus, int damagePerUse, int probabilityForDamage, int probabilityToKeepBoneMeal, int fermentationBarrelTime)
         implements CommentedConfig<VineryConfig> {
 
     private static VineryConfig INSTANCE = null;
 
-    public static final VineryConfig DEFAULT = new VineryConfig(50, 16, 4, true, 1, 30, 100);
+    public static final VineryConfig DEFAULT = new VineryConfig(50, 16, 4, true, 1, 30, 100, 50);
 
     public static final Codec<VineryConfig> CODEC = RecordCodecBuilder.create(builder ->
             builder.group(
@@ -24,8 +24,9 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
                     Codec.BOOL.fieldOf("enable_wine_maker_set_bonus").orElse(DEFAULT.enableWineMakerSetBonus).forGetter(c -> c.enableWineMakerSetBonus),
                     Codec.intRange(1, 1000).fieldOf("damage_per_use").orElse(DEFAULT.damagePerUse).forGetter(c -> c.damagePerUse),
                     Codec.intRange(0, 100).fieldOf("probability_for_damage").orElse(DEFAULT.probabilityForDamage).forGetter(c -> c.probabilityForDamage),
-                    Codec.intRange(1, 100).fieldOf("probability_to_keep_bone_meal").orElse(DEFAULT.probabilityToKeepBoneMeal).forGetter(c -> c.probabilityToKeepBoneMeal)
-                    ).apply(builder, VineryConfig::new)
+                    Codec.intRange(1, 100).fieldOf("probability_to_keep_bone_meal").orElse(DEFAULT.probabilityToKeepBoneMeal).forGetter(c -> c.probabilityToKeepBoneMeal),
+                    Codec.intRange(1, 10000).fieldOf("fermentation_barrel_time").orElse(DEFAULT.fermentationBarrelTime).forGetter(c -> c.fermentationBarrelTime)
+            ).apply(builder, VineryConfig::new)
     );
 
     @Override
@@ -46,6 +47,8 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
                     Length of a year (in days).""");
             map.put("years_per_effect_level", """
                     Years per effect level""");
+            map.put("fermentation_barrel_time", """
+                    Ticks it takes to ferment a bottle""");
         });
     }
 
