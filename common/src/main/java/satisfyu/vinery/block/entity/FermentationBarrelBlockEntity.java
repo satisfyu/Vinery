@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.client.gui.handler.FermentationBarrelGuiHandler;
+import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.VineryBlockEntityTypes;
 import satisfyu.vinery.registry.VineryRecipeTypes;
@@ -197,7 +198,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
         }
         if (slot == BOTTLE_INPUT_SLOT || slot == 2 || slot == 3 || slot == 4|| slot == 5) {
             if (!dirty) {
-                this.totalFermentationTime = 50;
+                this.totalFermentationTime = VineryConfig.DEFAULT.getConfig().fermentationBarrelTime();
                 this.fermentationTime = 0;
                 setChanged();
             }
