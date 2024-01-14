@@ -2,7 +2,6 @@ package satisfyu.vinery.compat.rei.wine;
 
 import com.google.common.collect.Lists;
 import net.minecraft.network.chat.Component;
-import satisfyu.vinery.block.entity.FermentationBarrelBlockEntity;
 import satisfyu.vinery.registry.ObjectRegistry;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;

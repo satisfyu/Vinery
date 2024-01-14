@@ -4,7 +4,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.entity.TraderMuleEntity;
+import satisfyu.vinery.entity.mule.TraderMuleEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.*;

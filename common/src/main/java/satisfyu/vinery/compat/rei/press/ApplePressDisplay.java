@@ -21,7 +21,7 @@ import java.util.Optional;
 
 public class ApplePressDisplay extends BasicDisplay {
 
-    public static final CategoryIdentifier<ApplePressDisplay> APPLE_PRESS_DISPLAY = CategoryIdentifier.of(Vinery.MODID, "apple_press_display");
+    public static final CategoryIdentifier<ApplePressDisplay> APPLE_PRESS_DISPLAY = CategoryIdentifier.of(Vinery.MOD_ID, "apple_press_display");
 
     public ApplePressDisplay(ApplePressRecipe recipe) {
         this(Collections.singletonList(EntryIngredients.ofIngredient(recipe.input)), Collections.singletonList(EntryIngredients.of(recipe.getResultItem())), Optional.ofNullable(recipe.getId()));

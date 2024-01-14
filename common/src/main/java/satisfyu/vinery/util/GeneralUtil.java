@@ -6,8 +6,10 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -37,17 +39,24 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import satisfyu.vinery.Vinery;
 import satisfyu.vinery.registry.ObjectRegistry;
 
 import java.util.*;
 import java.util.function.Predicate;
 
 public class GeneralUtil {
+
+	public static ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureKey(String name) {
+		return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Vinery.MOD_ID, name));
+	}
+
 	public static Collection<ServerPlayer> tracking(ServerLevel world, BlockPos pos) {
 		Objects.requireNonNull(pos, "BlockPos cannot be null");
 

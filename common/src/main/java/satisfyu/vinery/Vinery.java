@@ -13,28 +13,28 @@ import satisfyu.vinery.registry.*;
 import satisfyu.vinery.world.VineryFeatures;
 
 public class Vinery {
-    public static final String MODID = "vinery";
-    public static final Logger LOGGER = LogManager.getLogger(MODID);
+    public static final String MOD_ID = "vinery";
+    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     
     public static void init() {
         VineryConfig.DEFAULT.getConfig();
-        VineryTabRegistry.init();
-        VineryEffects.init();
+        TabRegistry.init();
         ObjectRegistry.init();
-        VineryBlockEntityTypes.init();
-        VineryScreenHandlerTypes.init();
-        VineryRecipeTypes.init();
-        VineryEntites.init();
+        BoatAndSignRegistry.init();
+        BlockEntityTypeRegistry.init();
+        MobEffectRegistry.init();
+        ScreenhandlerTypeRegistry.init();
+        RecipeTypesRegistry.init();
+        EntityRegistry.init();
         VineryFeatures.init();
-        VinerySoundEvents.init();
+        SoundEventRegistry.init();
 
-
-        DoApiExpectPlatform.registerBuiltInPack(Vinery.MODID, new VineryIdentifier("bushy_leaves"), false);
+        DoApiExpectPlatform.registerBuiltInPack(Vinery.MOD_ID, new VineryIdentifier("bushy_leaves"), false);
     }
 
     public static void commonSetup(){
-        VineryFlammableBlocks.init();
-        GrapeTypes.addGrapeAttributes();
+        FlammableBlockRegistry.init();
+        GrapeTypeRegistry.addGrapeAttributes();
 
         FuelRegistry.register(300, ObjectRegistry.CHERRY_FENCE.get(), ObjectRegistry.CHERRY_FENCE_GATE.get(), ObjectRegistry.STACKABLE_LOG.get(), ObjectRegistry.FERMENTATION_BARREL.get());
 
@@ -45,8 +45,8 @@ public class Vinery {
         ShovelItemHooks.addFlattenable(ObjectRegistry.GRASS_SLAB.get(), Blocks.DIRT_PATH.defaultBlockState());
     }
 
-    public static ResourceLocation MODID(String path) {
-        return new ResourceLocation(Vinery.MODID, path);
+    public static ResourceLocation MOD_ID(String path) {
+        return new ResourceLocation(Vinery.MOD_ID, path);
     }
 }
 

@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
-import satisfyu.vinery.registry.GrapeTypes;
+import satisfyu.vinery.registry.GrapeTypeRegistry;
 import satisfyu.vinery.registry.ObjectRegistry;
 
 public class GrapeVineBlock extends VineBlock implements BonemealableBlock {
@@ -55,7 +55,7 @@ public class GrapeVineBlock extends VineBlock implements BonemealableBlock {
             return InteractionResult.PASS;
         } else if (i > 1) {
             int x = world.random.nextInt(2);
-            popResource(world, pos, new ItemStack(this.type == GrapeTypes.JUNGLE_RED ? ObjectRegistry.JUNGLE_RED_GRAPE.get() : ObjectRegistry.JUNGLE_WHITE_GRAPE.get(), x + (bl ? 1 : 0)));
+            popResource(world, pos, new ItemStack(this.type == GrapeTypeRegistry.JUNGLE_RED ? ObjectRegistry.JUNGLE_RED_GRAPE.get() : ObjectRegistry.JUNGLE_WHITE_GRAPE.get(), x + (bl ? 1 : 0)));
             world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             world.setBlock(pos, state.setValue(AGE, 1), 2);
             return InteractionResult.sidedSuccess(world.isClientSide);

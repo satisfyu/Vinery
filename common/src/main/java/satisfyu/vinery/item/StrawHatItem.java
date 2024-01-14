@@ -3,13 +3,12 @@ package satisfyu.vinery.item;
 import de.cristelknight.doapi.common.item.CustomHatItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.registry.VineryMaterials;
+import satisfyu.vinery.registry.ArmorMaterialRegistry;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class StrawHatItem extends CustomHatItem implements WineMakerArmorItem {
 
 
     public StrawHatItem(Properties settings) {
-        super(VineryMaterials.WINEMAKER_ARMOR, Type.HELMET, settings);
+        super(ArmorMaterialRegistry.WINEMAKER_ARMOR, Type.HELMET, settings);
     }
 
     @Override

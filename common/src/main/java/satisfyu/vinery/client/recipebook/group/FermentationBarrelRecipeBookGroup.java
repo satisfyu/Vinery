@@ -11,7 +11,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.util.VineryTags;
+import satisfyu.vinery.registry.TagRegistry;
 
 import java.util.List;
 
@@ -37,12 +37,12 @@ public enum FermentationBarrelRecipeBookGroup implements IRecipeBookGroup {
                     return true;
                 }
                 case WINE -> {
-                    if (fermentationBarrelRecipe.getResultItem(registryAccess).is(VineryTags.WINE)) {
+                    if (fermentationBarrelRecipe.getResultItem(registryAccess).is(TagRegistry.WINE)) {
                         return true;
                     }
                 }
                 case MISC -> {
-                    if (!fermentationBarrelRecipe.getResultItem(registryAccess).is(VineryTags.WINE)) {
+                    if (!fermentationBarrelRecipe.getResultItem(registryAccess).is(TagRegistry.WINE)) {
                         return true;
                     }
                 }

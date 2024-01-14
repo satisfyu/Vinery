@@ -8,12 +8,10 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
-import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import satisfyu.vinery.registry.VineryRecipeTypes;
-import satisfyu.vinery.util.VineryUtils;
+import satisfyu.vinery.registry.RecipeTypesRegistry;
 
 public class ApplePressRecipe implements Recipe<Container> {
     private final ResourceLocation identifier;
@@ -69,12 +67,12 @@ public class ApplePressRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return VineryRecipeTypes.APPLE_PRESS_RECIPE_SERIALIZER.get();
+        return RecipeTypesRegistry.APPLE_PRESS_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return VineryRecipeTypes.APPLE_PRESS_RECIPE_TYPE.get();
+        return RecipeTypesRegistry.APPLE_PRESS_RECIPE_TYPE.get();
     }
 
     @Override

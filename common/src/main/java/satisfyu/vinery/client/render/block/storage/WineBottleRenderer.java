@@ -14,7 +14,7 @@ import satisfyu.vinery.block.storage.WineBottleBlock;
 import satisfyu.vinery.item.DrinkBlockItem;
 import satisfyu.vinery.registry.ObjectRegistry;
 
-import static satisfyu.vinery.client.ClientUtil.renderBlock;
+import static satisfyu.vinery.util.ClientUtil.renderBlock;
 
 @Environment(EnvType.CLIENT)
 public class WineBottleRenderer implements StorageTypeRenderer {

@@ -1,8 +1,7 @@
 package satisfyu.vinery.mixin;
 
-import satisfyu.vinery.config.VineryConfig;
-import satisfyu.vinery.entity.TraderMuleEntity;
-import satisfyu.vinery.registry.VineryEntites;
+import satisfyu.vinery.entity.mule.TraderMuleEntity;
+import satisfyu.vinery.registry.EntityRegistry;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,7 +17,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
-import net.minecraft.world.entity.animal.horse.TraderLlama;
 import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.entity.npc.WanderingTraderSpawner;
 import net.minecraft.world.level.BlockGetter;
@@ -26,7 +24,6 @@ import net.minecraft.world.level.CustomSpawner;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.storage.ServerLevelData;
-import satisfyu.vinery.util.GeneralUtil;
 
 @Mixin(WanderingTraderSpawner.class)
 public abstract class WanderingTraderManagerMixin implements CustomSpawner {
@@ -51,14 +48,14 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 					return;
 				}
 
-				WanderingTrader wanderingTraderEntity = VineryEntites.WANDERING_WINEMAKER.get().spawn(world,  blockPos3, MobSpawnType.EVENT);
+				WanderingTrader wanderingTraderEntity = EntityRegistry.WANDERING_WINEMAKER.get().spawn(world,  blockPos3, MobSpawnType.EVENT);
 				if (wanderingTraderEntity != null) {
 					for (int j = 0; j < 2; ++j) {
 						BlockPos blockPos4 = this.findSpawnPositionNear(world, wanderingTraderEntity.blockPosition(), 4);
 						if (blockPos4 == null) {
 							return;
 						}
-						TraderMuleEntity traderLlamaEntity = VineryEntites.MULE.get().spawn(world, blockPos4, MobSpawnType.EVENT);
+						TraderMuleEntity traderLlamaEntity = EntityRegistry.MULE.get().spawn(world, blockPos4, MobSpawnType.EVENT);
 						if (traderLlamaEntity == null) {
 							return;
 						}

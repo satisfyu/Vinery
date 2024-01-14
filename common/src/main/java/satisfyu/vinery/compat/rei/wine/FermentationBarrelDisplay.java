@@ -18,7 +18,7 @@ import java.util.Optional;
 
 public class FermentationBarrelDisplay extends BasicDisplay {
 
-    public static final CategoryIdentifier<FermentationBarrelDisplay> FERMENTATION_BARREL_DISPLAY = CategoryIdentifier.of(Vinery.MODID, "fermentation_barrel_display");
+    public static final CategoryIdentifier<FermentationBarrelDisplay> FERMENTATION_BARREL_DISPLAY = CategoryIdentifier.of(Vinery.MOD_ID, "fermentation_barrel_display");
 
 
     public FermentationBarrelDisplay(FermentationBarrelRecipe recipe) {

@@ -30,9 +30,9 @@ public class ClothConfigScreen {
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
                 .setDefaultBackgroundTexture(new ResourceLocation("textures/block/dirt.png"))
-                .setTitle(Component.translatable(Vinery.MODID + ".config.title").withStyle(ChatFormatting.BOLD));
+                .setTitle(Component.translatable(Vinery.MOD_ID + ".config.title").withStyle(ChatFormatting.BOLD));
 
-        ConfigEntries entries = new ConfigEntries(builder.entryBuilder(), config, builder.getOrCreateCategory(CCUtil.categoryName("main", Vinery.MODID)));
+        ConfigEntries entries = new ConfigEntries(builder.entryBuilder(), config, builder.getOrCreateCategory(CCUtil.categoryName("main", Vinery.MOD_ID)));
         builder.setSavingRunnable(() -> {
             VineryConfig.DEFAULT.setInstance(entries.createConfig());
             VineryConfig.DEFAULT.getConfig(true, true);
@@ -67,7 +67,7 @@ public class ClothConfigScreen {
 
 
             category.addEntry(wineMaker.build());
-            linkButtons(Vinery.MODID, category, builder, "https://discord.gg/Vqu6wYZwdZ", "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine", lastScreen);
+            linkButtons(Vinery.MOD_ID, category, builder, "https://discord.gg/Vqu6wYZwdZ", "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine", lastScreen);
         }
 
 
@@ -77,7 +77,7 @@ public class ClothConfigScreen {
 
 
         public BooleanListEntry createBooleanField(String id, boolean value, boolean defaultValue, SubCategoryBuilder subCategoryBuilder){
-            BooleanListEntry e = CCUtil.createBooleanField(Vinery.MODID, id, value, defaultValue, builder);
+            BooleanListEntry e = CCUtil.createBooleanField(Vinery.MOD_ID, id, value, defaultValue, builder);
 
             if(subCategoryBuilder == null) category.addEntry(e);
             else subCategoryBuilder.add(e);
@@ -86,7 +86,7 @@ public class ClothConfigScreen {
         }
 
         public IntegerListEntry createIntField(String id, int value, int defaultValue, SubCategoryBuilder subCategoryBuilder, int min, int max){
-            IntegerListEntry e = CCUtil.createIntField(Vinery.MODID, id, value, defaultValue, builder).setMaximum(max).setMinimum(min);
+            IntegerListEntry e = CCUtil.createIntField(Vinery.MOD_ID, id, value, defaultValue, builder).setMaximum(max).setMinimum(min);
 
             if(subCategoryBuilder == null) category.addEntry(e);
             else subCategoryBuilder.add(e);
@@ -95,19 +95,19 @@ public class ClothConfigScreen {
         }
     }
 
-    public static void linkButtons(String modid, ConfigCategory category, ConfigEntryBuilder builder, String dcLink, String cfLink, Screen lastScreen){
+    public static void linkButtons(String MOD_ID, ConfigCategory category, ConfigEntryBuilder builder, String dcLink, String cfLink, Screen lastScreen){
         if(lastScreen == null) lastScreen = Minecraft.getInstance().screen;
 
         TextListEntry tle = builder.startTextDescription(Component.literal(" ")).build();
         category.addEntry(tle);
         Screen finalLastScreen = lastScreen;
-        category.addEntry(new LinkEntry(CCUtil.entryName(modid,"dc"), buttonWidget -> Minecraft.getInstance().setScreen(new ConfirmLinkScreen(confirmed -> {
+        category.addEntry(new LinkEntry(CCUtil.entryName(MOD_ID,"dc"), buttonWidget -> Minecraft.getInstance().setScreen(new ConfirmLinkScreen(confirmed -> {
             if (confirmed) {
                 Util.getPlatform().openUri(dcLink);
             }
             Minecraft.getInstance().setScreen(create(finalLastScreen)); }, dcLink, true)), new DoApiRL("textures/gui/dc.png"), 3));
         category.addEntry(tle);
-        category.addEntry(new LinkEntry(CCUtil.entryName(modid,"h"), buttonWidget -> Minecraft.getInstance().setScreen(new ConfirmLinkScreen(confirmed -> {
+        category.addEntry(new LinkEntry(CCUtil.entryName(MOD_ID,"h"), buttonWidget -> Minecraft.getInstance().setScreen(new ConfirmLinkScreen(confirmed -> {
             if (confirmed) {
                 Util.getPlatform().openUri(cfLink);
             }

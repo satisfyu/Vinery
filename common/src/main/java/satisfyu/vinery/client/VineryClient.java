@@ -58,7 +58,7 @@ public class VineryClient {
         RenderTypeRegistry.register(RenderType.translucent(), WINDOW.get());
 
         ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> GrassColor.get(0.5, 1.0), GRASS_SLAB);
-        ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> FoliageColor.get(0.5, 1.0), APPLE_LEAVES_ITEM);
+        ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> FoliageColor.get(0.5, 1.0), APPLE_LEAVES);
 
         ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
                     if (world == null || pos == null) {
@@ -85,22 +85,22 @@ public class VineryClient {
                 GRAPEVINE_STEM.get(), GRAPEVINE_LATTICE.get(),APPLE_LEAVES.get()
         );
 
-        MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER.get(), FermentationBarrelGui::new);
-        MenuRegistry.registerScreenFactory(VineryScreenHandlerTypes.APPLE_PRESS_GUI_HANDLER.get(), ApplePressGui::new);
+        MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.FERMENTATION_BARREL_GUI_HANDLER.get(), FermentationBarrelGui::new);
+        MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.APPLE_PRESS_GUI_HANDLER.get(), ApplePressGui::new);
 
-        BlockEntityRendererRegistry.register(VineryBlockEntityTypes.FLOWER_POT_ENTITY.get(), FlowerPotBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.FLOWER_POT_ENTITY.get(), FlowerPotBlockEntityRenderer::new);
     }
 
 
     public static void registerEntityRenderers() {
-        EntityRendererRegistry.register(VineryEntites.MULE, MuleRenderer::new);
-        EntityRendererRegistry.register(VineryEntites.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.MULE, MuleRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
     }
 
 
     public static void preInitClient(){
         registerEntityRenderers();
-        TerraformSignHelper.regsterSignSprite(VineryBoatsAndSigns.CHERRY_SIGN_TEXTURE);
+        TerraformSignHelper.regsterSignSprite(BoatAndSignRegistry.CHERRY_SIGN_TEXTURE);
         EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);
         CustomArmorRegistry.registerArmorModelLayers();
     }

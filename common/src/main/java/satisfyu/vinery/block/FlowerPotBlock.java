@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -25,8 +24,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.block.entity.FlowerPotBlockEntity;
-import satisfyu.vinery.util.VineryTags;
+import satisfyu.vinery.entity.blockentities.FlowerPotBlockEntity;
 
 import java.util.List;
 import java.util.function.Supplier;

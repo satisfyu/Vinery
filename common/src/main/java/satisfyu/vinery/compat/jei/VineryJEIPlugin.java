@@ -20,8 +20,8 @@ import satisfyu.vinery.compat.jei.transfer.FermentationTransferInfo;
 import satisfyu.vinery.recipe.ApplePressRecipe;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.registry.VineryRecipeTypes;
-import satisfyu.vinery.registry.VineryScreenHandlerTypes;
+import satisfyu.vinery.registry.RecipeTypesRegistry;
+import satisfyu.vinery.registry.ScreenhandlerTypeRegistry;
 
 import java.util.List;
 import java.util.Objects;
@@ -41,10 +41,10 @@ public class VineryJEIPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
 
-        List<FermentationBarrelRecipe> fermentationBarrelRecipes = rm.getAllRecipesFor(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get());
+        List<FermentationBarrelRecipe> fermentationBarrelRecipes = rm.getAllRecipesFor(RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get());
         registration.addRecipes(FermentationBarrelCategory.FERMENTATION_BARREL, fermentationBarrelRecipes);
 
-        List<ApplePressRecipe> applePressRecipes = rm.getAllRecipesFor(VineryRecipeTypes.APPLE_PRESS_RECIPE_TYPE.get());
+        List<ApplePressRecipe> applePressRecipes = rm.getAllRecipesFor(RecipeTypesRegistry.APPLE_PRESS_RECIPE_TYPE.get());
         registration.addRecipes(ApplePressCategory.APPLE_PRESS, applePressRecipes);
     }
 
@@ -55,7 +55,7 @@ public class VineryJEIPlugin implements IModPlugin {
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-        registration.addRecipeTransferHandler(ApplePressGuiHandler.class, VineryScreenHandlerTypes.APPLE_PRESS_GUI_HANDLER.get(), ApplePressCategory.APPLE_PRESS,
+        registration.addRecipeTransferHandler(ApplePressGuiHandler.class, ScreenhandlerTypeRegistry.APPLE_PRESS_GUI_HANDLER.get(), ApplePressCategory.APPLE_PRESS,
                 0, 1, 2, 36);
         registration.addRecipeTransferHandler(new FermentationTransferInfo());
     }

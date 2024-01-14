@@ -6,7 +6,6 @@
   "client": [
     "ClientPlayerEntityMixin",
     "GameRendererMixin",
-    "OrderedTextToolTipAccessor",
     "WindowMixin"
   ],
   "mixins": [

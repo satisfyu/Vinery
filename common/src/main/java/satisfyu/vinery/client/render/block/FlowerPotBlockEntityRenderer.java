@@ -3,9 +3,9 @@ package satisfyu.vinery.client.render.block;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import satisfyu.vinery.block.FlowerPotBlock;
-import satisfyu.vinery.block.entity.FlowerPotBlockEntity;
+import satisfyu.vinery.entity.blockentities.FlowerPotBlockEntity;
 
-import static satisfyu.vinery.client.ClientUtil.renderBlock;
+import static satisfyu.vinery.util.ClientUtil.renderBlock;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;

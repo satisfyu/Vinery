@@ -23,12 +23,12 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import satisfyu.vinery.util.VineryLineConnectingType;
+import satisfyu.vinery.util.LineConnectingType;
 
 import java.util.List;
 
 
-public class TableBlock extends VineryLineConnectingBlock implements SimpleWaterloggedBlock {
+public class TableBlock extends LineConnectingBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED;
     public static final VoxelShape TOP_SHAPE;
     public static final VoxelShape[] LEG_SHAPES;
@@ -41,20 +41,20 @@ public class TableBlock extends VineryLineConnectingBlock implements SimpleWater
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
-        VineryLineConnectingType type = state.getValue(TYPE);
+        LineConnectingType type = state.getValue(TYPE);
 
-        if (type == VineryLineConnectingType.MIDDLE) {
+        if (type == LineConnectingType.MIDDLE) {
             return TOP_SHAPE;
         }
 
-        if((direction == Direction.NORTH && type == VineryLineConnectingType.LEFT) || (direction == Direction.SOUTH && type == VineryLineConnectingType.RIGHT)){
+        if((direction == Direction.NORTH && type == LineConnectingType.LEFT) || (direction == Direction.SOUTH && type == LineConnectingType.RIGHT)){
             return Shapes.or(TOP_SHAPE, LEG_SHAPES[0], LEG_SHAPES[3]);
         }
-        else if ((direction == Direction.NORTH && type == VineryLineConnectingType.RIGHT) || (direction == Direction.SOUTH && type == VineryLineConnectingType.LEFT)) {
+        else if ((direction == Direction.NORTH && type == LineConnectingType.RIGHT) || (direction == Direction.SOUTH && type == LineConnectingType.LEFT)) {
             return Shapes.or(TOP_SHAPE, LEG_SHAPES[1], LEG_SHAPES[2]);
-        } else if ((direction == Direction.EAST && type == VineryLineConnectingType.LEFT) || (direction == Direction.WEST && type == VineryLineConnectingType.RIGHT)) {
+        } else if ((direction == Direction.EAST && type == LineConnectingType.LEFT) || (direction == Direction.WEST && type == LineConnectingType.RIGHT)) {
             return Shapes.or(TOP_SHAPE, LEG_SHAPES[0], LEG_SHAPES[1]);
-        } else if ((direction == Direction.EAST && type == VineryLineConnectingType.RIGHT) || (direction == Direction.WEST && type == VineryLineConnectingType.LEFT)) {
+        } else if ((direction == Direction.EAST && type == LineConnectingType.RIGHT) || (direction == Direction.WEST && type == LineConnectingType.LEFT)) {
             return Shapes.or(TOP_SHAPE, LEG_SHAPES[2], LEG_SHAPES[3]);
         }
         return Shapes.or(TOP_SHAPE, LEG_SHAPES);

@@ -5,7 +5,6 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -34,9 +33,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.registry.VinerySoundEvents;
+import satisfyu.vinery.registry.SoundEventRegistry;
 import satisfyu.vinery.util.GeneralUtil;
-import satisfyu.vinery.util.VineryTags;
 
 import java.util.HashMap;
 import java.util.List;
@@ -61,7 +59,7 @@ public class KitchenSinkBlock extends Block {
 		if (itemStack.isEmpty() && !state.getValue(FILLED)) {
 			if(!world.isClientSide()){
 				world.setBlock(pos, state.setValue(FILLED, true), Block.UPDATE_ALL);
-				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), VinerySoundEvents.BLOCK_FAUCET.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
+				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEventRegistry.BLOCK_FAUCET.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
 				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, 1.0f, 1.0f);
 			}
 			return InteractionResult.sidedSuccess(world.isClientSide());

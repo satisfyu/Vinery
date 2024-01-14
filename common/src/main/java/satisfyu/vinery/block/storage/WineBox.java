@@ -26,7 +26,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import satisfyu.vinery.item.DrinkBlockSmallItem;
-import satisfyu.vinery.registry.VineryStorageTypes;
+import satisfyu.vinery.registry.StorageTypeRegistry;
 
 import java.util.List;
 
@@ -93,7 +93,7 @@ public class WineBox extends StorageBlock {
 
     @Override
     public ResourceLocation type() {
-        return VineryStorageTypes.WINE_BOX;
+        return StorageTypeRegistry.WINE_BOX;
     }
 
     @Override

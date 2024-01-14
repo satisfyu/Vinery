@@ -1,9 +1,8 @@
 package satisfyu.vinery.client.render.entity;
 
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.client.VineryClient;
 import satisfyu.vinery.client.model.MuleModel;
-import satisfyu.vinery.entity.TraderMuleEntity;
+import satisfyu.vinery.entity.mule.TraderMuleEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

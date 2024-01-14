@@ -1,7 +1,6 @@
 package satisfyu.vinery.block.storage;
 
 import de.cristelknight.doapi.common.block.StorageBlock;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -20,9 +19,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.registry.VineryStorageTypes;
-import satisfyu.vinery.util.VineryTags;
-import satisfyu.vinery.util.VineryUtils;
+import satisfyu.vinery.registry.StorageTypeRegistry;
+import satisfyu.vinery.registry.TagRegistry;
+import satisfyu.vinery.util.Util;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,9 +40,9 @@ public class ShelfBlock extends StorageBlock {
         return shape;
     };
 
-    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+    public static final Map<Direction, VoxelShape> SHAPE = net.minecraft.Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL) {
-            map.put(direction, VineryUtils.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+            map.put(direction, Util.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
         }
     });
 
@@ -75,7 +74,7 @@ public class ShelfBlock extends StorageBlock {
 
     @Override
     public boolean canInsertStack(ItemStack stack) {
-        return !(stack.getItem() instanceof BlockItem) || stack.is(VineryTags.IGNORE_BLOCK_ITEM);
+        return !(stack.getItem() instanceof BlockItem) || stack.is(TagRegistry.IGNORE_BLOCK_ITEM);
     }
 
     @Override
@@ -90,7 +89,7 @@ public class ShelfBlock extends StorageBlock {
 
     @Override
     public ResourceLocation type() {
-        return VineryStorageTypes.SHELF;
+        return StorageTypeRegistry.SHELF;
     }
 
     @Override

@@ -21,9 +21,9 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import satisfyu.vinery.registry.VineryStorageTypes;
+import satisfyu.vinery.registry.StorageTypeRegistry;
 import satisfyu.vinery.util.GeneralUtil;
-import satisfyu.vinery.util.VineryTags;
+import satisfyu.vinery.registry.TagRegistry;
 
 import java.util.HashMap;
 import java.util.List;
@@ -73,7 +73,7 @@ public class FlowerBoxBlock extends StorageBlock {
 
 	@Override
 	public ResourceLocation type() {
-		return VineryStorageTypes.FLOWER_BOX;
+		return StorageTypeRegistry.FLOWER_BOX;
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class FlowerBoxBlock extends StorageBlock {
 
 	@Override
 	public boolean canInsertStack(ItemStack stack) {
-		return stack.is(VineryTags.SMALL_FLOWER);
+		return stack.is(TagRegistry.SMALL_FLOWER);
 	}
 
 

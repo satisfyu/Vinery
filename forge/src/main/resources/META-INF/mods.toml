@@ -4,38 +4,38 @@ loaderVersion = "[47,)"
 license = "ARR"
 
 [[mods]]
-modId = "vinery"
+MOD_ID = "vinery"
 version = "${version}"
 displayName = "Vinery"
-authors = "satisfy_u, Cristelknight, BaumeisterJO(weird name but a nice guy)"
+authors = "satisfy_u, Cristelknight, BaumeisterJO"
 description = '''
 Vinery contains nearly everything needed for not only creating wine but also for building up your own vinery.
 '''
 logoFile = "pack.png"
 
 [[dependencies.vinery]]
-modId = "forge"
+MOD_ID = "forge"
 mandatory = true
 versionRange = "[47,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.vinery]]
-modId = "minecraft"
+MOD_ID = "minecraft"
 mandatory = true
 versionRange = "[1.20,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.vinery]]
-modId = "doapi"
+MOD_ID = "doapi"
 mandatory = true
 versionRange = "[1.2.8,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.vinery]]
-modId = "architectury"
+MOD_ID = "architectury"
 mandatory = true
 versionRange = "[9.0.8,)"
 ordering = "AFTER"

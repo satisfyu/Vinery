@@ -19,7 +19,7 @@ import satisfyu.vinery.recipe.ApplePressRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
 
 public class ApplePressCategory implements IRecipeCategory<ApplePressRecipe> {
-    public static final RecipeType<ApplePressRecipe> APPLE_PRESS = RecipeType.create(Vinery.MODID, "apple_mashing", ApplePressRecipe.class);
+    public static final RecipeType<ApplePressRecipe> APPLE_PRESS = RecipeType.create(Vinery.MOD_ID, "apple_mashing", ApplePressRecipe.class);
     public static final int WIDTH = 124;
     public static final int HEIGHT = 60;
     public static final int WIDTH_OF = 26;

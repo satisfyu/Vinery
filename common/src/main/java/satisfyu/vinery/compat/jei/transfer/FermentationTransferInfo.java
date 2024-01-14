@@ -7,7 +7,7 @@ import net.minecraft.world.inventory.Slot;
 import satisfyu.vinery.client.gui.handler.FermentationBarrelGuiHandler;
 import satisfyu.vinery.compat.jei.category.FermentationBarrelCategory;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
-import satisfyu.vinery.registry.VineryScreenHandlerTypes;
+import satisfyu.vinery.registry.ScreenhandlerTypeRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class FermentationTransferInfo implements IRecipeTransferInfo<Fermentatio
 
     @Override
     public Optional<MenuType<FermentationBarrelGuiHandler>> getMenuType() {
-        return Optional.of(VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER.get());
+        return Optional.of(ScreenhandlerTypeRegistry.FERMENTATION_BARREL_GUI_HANDLER.get());
     }
 
     @Override

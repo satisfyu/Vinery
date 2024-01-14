@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import satisfyu.vinery.block.grape.GrapeProperty;
 import satisfyu.vinery.block.grape.GrapeType;
-import satisfyu.vinery.registry.GrapeTypes;
+import satisfyu.vinery.registry.GrapeTypeRegistry;
 
 public abstract class StemBlock extends Block implements BonemealableBlock {
     public static final GrapeProperty GRAPE;
@@ -83,7 +83,7 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
 
     public StemBlock(Properties settings) {
         super(settings);
-        this.registerDefaultState(this.defaultBlockState().setValue(GRAPE, GrapeTypes.NONE).setValue(AGE, 0));
+        this.registerDefaultState(this.defaultBlockState().setValue(GRAPE, GrapeTypeRegistry.NONE).setValue(AGE, 0));
     }
 
     @Override

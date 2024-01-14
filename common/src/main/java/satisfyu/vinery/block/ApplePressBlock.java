@@ -4,8 +4,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import satisfyu.vinery.block.entity.ApplePressBlockEntity;
-import satisfyu.vinery.registry.VineryBlockEntityTypes;
+import satisfyu.vinery.entity.blockentities.ApplePressBlockEntity;
+import satisfyu.vinery.registry.BlockEntityTypeRegistry;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -79,7 +79,7 @@ public class ApplePressBlock extends BaseEntityBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, VineryBlockEntityTypes.APPLE_PRESS_BLOCK_ENTITY.get(), (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
+		return createTickerHelper(type, BlockEntityTypeRegistry.APPLE_PRESS_BLOCK_ENTITY.get(), (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
 	}
 
 

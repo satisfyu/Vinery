@@ -1,8 +1,6 @@
 package satisfyu.vinery.block.storage;
 
 import de.cristelknight.doapi.common.block.StorageBlock;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -24,8 +22,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import satisfyu.vinery.item.DrinkBlockBigItem;
-import satisfyu.vinery.item.DrinkBlockSmallItem;
-import satisfyu.vinery.registry.VineryStorageTypes;
+import satisfyu.vinery.registry.StorageTypeRegistry;
 
 import java.util.List;
 
@@ -73,7 +70,7 @@ public class BigBottleStorageBlock extends StorageBlock {
 
     @Override
     public ResourceLocation type() {
-        return VineryStorageTypes.BIG_BOTTLE;
+        return StorageTypeRegistry.BIG_BOTTLE;
     }
 
     @Override

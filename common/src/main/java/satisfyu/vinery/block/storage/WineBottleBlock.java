@@ -28,7 +28,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import satisfyu.vinery.item.DrinkBlockItem;
-import satisfyu.vinery.registry.VineryStorageTypes;
+import satisfyu.vinery.registry.StorageTypeRegistry;
 import satisfyu.vinery.util.GeneralUtil;
 
 public class WineBottleBlock extends StorageBlock {
@@ -133,7 +133,7 @@ public class WineBottleBlock extends StorageBlock {
     }
     @Override
     public ResourceLocation type() {
-        return VineryStorageTypes.WINE_BOTTLE;
+        return StorageTypeRegistry.WINE_BOTTLE;
     }
     @Override
     public boolean canInsertStack(ItemStack itemStack) {

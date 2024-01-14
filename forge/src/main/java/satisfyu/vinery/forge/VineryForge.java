@@ -11,17 +11,17 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.client.gui.config.ClothConfigScreen;
 import satisfyu.vinery.forge.registry.VineryForgeVillagers;
-import satisfyu.vinery.registry.VineryCompostables;
-import satisfyu.vinery.util.VineryPre;
+import satisfyu.vinery.registry.CompostableRegistry;
+import satisfyu.vinery.util.PreInit;
 
 
-@Mod(Vinery.MODID)
+@Mod(Vinery.MOD_ID)
 public class VineryForge {
 
     public VineryForge() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        EventBuses.registerModEventBus(Vinery.MODID, modEventBus);
-        VineryPre.preInit();
+        EventBuses.registerModEventBus(Vinery.MOD_ID, modEventBus);
+        PreInit.preInit();
         Vinery.init();
         VineryForgeVillagers.register(modEventBus);
 
@@ -33,7 +33,7 @@ public class VineryForge {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(VineryCompostables::registerCompostable);
+        event.enqueueWork(CompostableRegistry::registerCompostable);
         Vinery.commonSetup();
     }
     public static boolean isClothConfigLoaded(){

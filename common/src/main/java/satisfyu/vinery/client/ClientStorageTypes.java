@@ -4,7 +4,7 @@ import de.cristelknight.doapi.client.render.block.storage.StorageBlockEntityRend
 import de.cristelknight.doapi.client.render.block.storage.StorageTypeRenderer;
 import net.minecraft.resources.ResourceLocation;
 import satisfyu.vinery.client.render.block.storage.*;
-import satisfyu.vinery.registry.VineryStorageTypes;
+import satisfyu.vinery.registry.StorageTypeRegistry;
 
 public class ClientStorageTypes {
 
@@ -13,13 +13,13 @@ public class ClientStorageTypes {
     }
 
     public static void init(){
-        registerStorageType(VineryStorageTypes.BIG_BOTTLE, new BigBottleRenderer());
-        registerStorageType(VineryStorageTypes.FOUR_BOTTLE, new FourBottleRenderer());
-        registerStorageType(VineryStorageTypes.NINE_BOTTLE, new NineBottleRenderer());
-        registerStorageType(VineryStorageTypes.SHELF, new ShelfRenderer());
-        registerStorageType(VineryStorageTypes.WINE_BOX, new WineBoxRenderer());
-        registerStorageType(VineryStorageTypes.FLOWER_BOX, new FlowerBoxRenderer());
-        registerStorageType(VineryStorageTypes.WINE_BOTTLE, new WineBottleRenderer());
+        registerStorageType(StorageTypeRegistry.BIG_BOTTLE, new BigBottleRenderer());
+        registerStorageType(StorageTypeRegistry.FOUR_BOTTLE, new FourBottleRenderer());
+        registerStorageType(StorageTypeRegistry.NINE_BOTTLE, new NineBottleRenderer());
+        registerStorageType(StorageTypeRegistry.SHELF, new ShelfRenderer());
+        registerStorageType(StorageTypeRegistry.WINE_BOX, new WineBoxRenderer());
+        registerStorageType(StorageTypeRegistry.FLOWER_BOX, new FlowerBoxRenderer());
+        registerStorageType(StorageTypeRegistry.WINE_BOTTLE, new WineBottleRenderer());
     }
 
 }

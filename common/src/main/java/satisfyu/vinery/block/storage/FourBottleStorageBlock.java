@@ -8,7 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import satisfyu.vinery.item.DrinkBlockSmallItem;
-import satisfyu.vinery.registry.VineryStorageTypes;
+import satisfyu.vinery.registry.StorageTypeRegistry;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class FourBottleStorageBlock extends StorageBlock {
 
     @Override
     public ResourceLocation type() {
-        return VineryStorageTypes.FOUR_BOTTLE;
+        return StorageTypeRegistry.FOUR_BOTTLE;
     }
 
     @Override

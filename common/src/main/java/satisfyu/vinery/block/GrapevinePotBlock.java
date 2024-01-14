@@ -23,9 +23,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import satisfyu.vinery.block.grape.GrapeProperty;
-import satisfyu.vinery.registry.GrapeTypes;
+import satisfyu.vinery.registry.GrapeTypeRegistry;
 import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.registry.VinerySoundEvents;
+import satisfyu.vinery.registry.SoundEventRegistry;
 
 import java.util.List;
 
@@ -58,7 +58,7 @@ public class GrapevinePotBlock extends Block {
 
     public GrapevinePotBlock(Properties settings) {
         super(settings);
-        this.registerDefaultState(this.defaultBlockState().setValue(STAGE, 0).setValue(STORAGE, 0).setValue(GRAPEVINE_TYPE, GrapeTypes.NONE));
+        this.registerDefaultState(this.defaultBlockState().setValue(STAGE, 0).setValue(STORAGE, 0).setValue(GRAPEVINE_TYPE, GrapeTypeRegistry.NONE));
     }
 
     @Override
@@ -78,7 +78,7 @@ public class GrapevinePotBlock extends Block {
                 if (activeStage < MAX_STAGE) {
                     world.setBlock(pos, state.setValue(STAGE, activeStage + 1), Block.UPDATE_ALL);
                 }
-                world.playSound(null, pos, VinerySoundEvents.BLOCK_GRAPEVINE_POT_SQUEEZE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                world.playSound(null, pos, SoundEventRegistry.BLOCK_GRAPEVINE_POT_SQUEEZE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             }
         }
     }

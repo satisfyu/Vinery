@@ -16,7 +16,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.registry.VineryRecipeTypes;
+import satisfyu.vinery.registry.RecipeTypesRegistry;
 
 import java.util.List;
 @Environment(EnvType.CLIENT)
@@ -41,7 +41,7 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     protected RecipeType<? extends Recipe<Container>> getRecipeType() {
-        return VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get();
+        return RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get();
     }
 
     @Override

@@ -11,7 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import satisfyu.vinery.registry.CustomArmorRegistry;
-import satisfyu.vinery.registry.VineryStorageTypes;
+import satisfyu.vinery.registry.StorageTypeRegistry;
 
 import java.util.Map;
 import java.util.Set;
@@ -21,7 +21,7 @@ public class VineryDoApi implements DoApiAPI {
 
     @Override
     public void registerBlocks(Set<Block> blocks) {
-        VineryStorageTypes.registerBlocks(blocks);
+        StorageTypeRegistry.registerBlocks(blocks);
     }
 
     @Override

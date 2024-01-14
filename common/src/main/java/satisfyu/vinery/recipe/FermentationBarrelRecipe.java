@@ -2,8 +2,8 @@ package satisfyu.vinery.recipe;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import satisfyu.vinery.registry.VineryRecipeTypes;
-import satisfyu.vinery.util.VineryUtils;
+import satisfyu.vinery.registry.RecipeTypesRegistry;
+import satisfyu.vinery.util.Util;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -75,12 +75,12 @@ public class FermentationBarrelRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_SERIALIZER.get();
+        return RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get();
+        return RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get();
     }
 
     @Override
@@ -91,7 +91,7 @@ public class FermentationBarrelRecipe implements Recipe<Container> {
 
         @Override
         public FermentationBarrelRecipe fromJson(ResourceLocation id, JsonObject json) {
-            final var ingredients = VineryUtils.deserializeIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
+            final var ingredients = Util.deserializeIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
             if (ingredients.isEmpty()) {
                 throw new JsonParseException("No ingredients for Fermentation Barrel");
             } else if (ingredients.size() > 4) {

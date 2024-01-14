@@ -22,7 +22,7 @@ import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
 
 public class FermentationBarrelCategory implements IRecipeCategory<FermentationBarrelRecipe> {
-    public static final RecipeType<FermentationBarrelRecipe> FERMENTATION_BARREL = RecipeType.create(Vinery.MODID, "wine_fermentation", FermentationBarrelRecipe.class);
+    public static final RecipeType<FermentationBarrelRecipe> FERMENTATION_BARREL = RecipeType.create(Vinery.MOD_ID, "wine_fermentation", FermentationBarrelRecipe.class);
     public static final int WIDTH = 124;
     public static final int HEIGHT = 60;
     public static final int WIDTH_OF = 26;

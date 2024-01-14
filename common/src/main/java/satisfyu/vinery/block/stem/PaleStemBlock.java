@@ -28,16 +28,15 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.item.GrapeBushSeedItem;
-import satisfyu.vinery.registry.GrapeTypes;
+import satisfyu.vinery.registry.GrapeTypeRegistry;
 
 import java.util.List;
-import java.util.Objects;
 
 public class PaleStemBlock extends StemBlock {
     private static final VoxelShape PALE_SHAPE = Block.box(6.0, 0,6.0, 10.0,  16.0, 10.0);
     public PaleStemBlock(Properties settings) {
         super(settings);
-        this.registerDefaultState(this.defaultBlockState().setValue(GRAPE, GrapeTypes.NONE).setValue(AGE, 0));
+        this.registerDefaultState(this.defaultBlockState().setValue(GRAPE, GrapeTypeRegistry.NONE).setValue(AGE, 0));
     }
 
     @Override
@@ -87,7 +86,7 @@ public class PaleStemBlock extends StemBlock {
                 dropGrapes(world, state, pos);
             }
             dropGrapeSeeds(world, state, pos);
-            world.setBlock(pos, withAge(state, 0, GrapeTypes.NONE), 3);
+            world.setBlock(pos, withAge(state, 0, GrapeTypeRegistry.NONE), 3);
             world.playSound(player, pos, SoundEvents.SWEET_BERRY_BUSH_BREAK, SoundSource.AMBIENT, 1.0F, 1.0F);
             return InteractionResult.sidedSuccess(world.isClientSide);
         }

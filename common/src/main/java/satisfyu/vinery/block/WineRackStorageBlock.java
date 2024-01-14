@@ -24,7 +24,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.block.entity.WineRackStorageBlockEntity;
+import satisfyu.vinery.entity.blockentities.WineRackStorageBlockEntity;
 
 public class WineRackStorageBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;

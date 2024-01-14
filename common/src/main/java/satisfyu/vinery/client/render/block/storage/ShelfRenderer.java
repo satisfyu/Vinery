@@ -9,7 +9,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
-import satisfyu.vinery.client.ClientUtil;
+import satisfyu.vinery.util.ClientUtil;
 @Environment(EnvType.CLIENT)
 public class ShelfRenderer implements StorageTypeRenderer {
     @Override

@@ -16,8 +16,8 @@ import satisfyu.vinery.client.gui.handler.slot.StoveOutputSlot;
 import satisfyu.vinery.client.recipebook.group.FermentationBarrelRecipeBookGroup;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.registry.VineryRecipeTypes;
-import satisfyu.vinery.registry.VineryScreenHandlerTypes;
+import satisfyu.vinery.registry.RecipeTypesRegistry;
+import satisfyu.vinery.registry.ScreenhandlerTypeRegistry;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class FermentationBarrelGuiHandler extends AbstractRecipeBookGUIScreenHan
         this(syncId, playerInventory, new SimpleContainer(6), new SimpleContainerData(2));
     }
     public FermentationBarrelGuiHandler(int syncId, Inventory playerInventory, Container inventory, ContainerData propertyDelegate) {
-        super(VineryScreenHandlerTypes.FERMENTATION_BARREL_GUI_HANDLER.get(), syncId, 5, playerInventory, inventory, propertyDelegate);
+        super(ScreenhandlerTypeRegistry.FERMENTATION_BARREL_GUI_HANDLER.get(), syncId, 5, playerInventory, inventory, propertyDelegate);
         buildBlockEntityContainer(playerInventory, inventory);
         buildPlayerContainer(playerInventory);
     }
@@ -56,7 +56,7 @@ public class FermentationBarrelGuiHandler extends AbstractRecipeBookGUIScreenHan
     }
 
     private boolean isIngredient(ItemStack stack) {
-        return this.world.getRecipeManager().getAllRecipesFor(VineryRecipeTypes.FERMENTATION_BARREL_RECIPE_TYPE.get()).stream().anyMatch(recipe -> recipe.getIngredients().stream().anyMatch(x -> x.test(stack)));
+        return this.world.getRecipeManager().getAllRecipesFor(RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get()).stream().anyMatch(recipe -> recipe.getIngredients().stream().anyMatch(x -> x.test(stack)));
     }
 
     public int getScaledProgress(int arrowWidth) {

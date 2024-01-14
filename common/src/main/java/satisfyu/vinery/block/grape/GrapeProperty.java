@@ -2,7 +2,7 @@ package satisfyu.vinery.block.grape;
 
 import net.minecraft.world.level.block.state.properties.Property;
 import org.jetbrains.annotations.NotNull;
-import satisfyu.vinery.registry.GrapeTypes;
+import satisfyu.vinery.registry.GrapeTypeRegistry;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -13,7 +13,7 @@ public class GrapeProperty extends Property<GrapeType> {
 
     protected GrapeProperty(String name) {
         super(name, GrapeType.class);
-        this.values = GrapeTypes.GRAPE_TYPE_TYPES;
+        this.values = GrapeTypeRegistry.GRAPE_TYPE_TYPES;
     }
 
     public static GrapeProperty create(String name) {

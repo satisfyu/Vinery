@@ -11,7 +11,7 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import satisfyu.vinery.registry.VineryScreenHandlerTypes;
+import satisfyu.vinery.registry.ScreenhandlerTypeRegistry;
 
 public class ApplePressGuiHandler extends AbstractContainerMenu {
     private final Container inventory;
@@ -22,7 +22,7 @@ public class ApplePressGuiHandler extends AbstractContainerMenu {
     }
 
     public ApplePressGuiHandler(int syncId, Inventory playerInventory, Container inventory, ContainerData delegate) {
-        super(VineryScreenHandlerTypes.APPLE_PRESS_GUI_HANDLER.get(), syncId);
+        super(ScreenhandlerTypeRegistry.APPLE_PRESS_GUI_HANDLER.get(), syncId);
         checkContainerSize(inventory, 2);
         this.inventory = inventory;
         inventory.startOpen(playerInventory.player);

@@ -1,8 +1,7 @@
 package satisfyu.vinery.block;
 
-import satisfyu.vinery.util.VineryUtils;
+import satisfyu.vinery.util.Util;
 import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -49,9 +48,9 @@ public class BigTableBlock extends HorizontalDirectionalBlock {
 		return shape;
 	};
 
-	public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+	public static final Map<Direction, VoxelShape> SHAPE = net.minecraft.Util.make(new HashMap<>(), map -> {
 		for (Direction direction : Direction.Plane.HORIZONTAL) {
-			map.put(direction, VineryUtils.rotateShape(Direction.EAST, direction, voxelShapeSupplier.get()));
+			map.put(direction, Util.rotateShape(Direction.EAST, direction, voxelShapeSupplier.get()));
 		}
 	});
 	
