@@ -49,8 +49,8 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.CHERRY_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.CHERRY_WINE_RACK_BIG.get());
                 out.accept(ObjectRegistry.CHERRY_WINE_RACK_MID.get());
-                out.accept(ObjectRegistry.WINE_RACK_3.get());
-                out.accept(ObjectRegistry.WINE_RACK_5.get());
+                out.accept(ObjectRegistry.CHERRY_DRAWER.get());
+                out.accept(ObjectRegistry.CHERRY_CABINET.get());
                 out.accept(ObjectRegistry.STRIPPED_CHERRY_LOG.get());
                 out.accept(ObjectRegistry.CHERRY_LOG.get());
                 out.accept(ObjectRegistry.STRIPPED_CHERRY_WOOD.get());

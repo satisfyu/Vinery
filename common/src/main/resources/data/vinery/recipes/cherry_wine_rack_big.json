@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "group": "wine_rack",
   "pattern": [
-    "###",
-    "_B_",
-    "#B#"
+    "#_#",
+    "#O#",
+    "#_#"
   ],
   "key": {
     "#": {
@@ -13,11 +13,11 @@
     "_": {
       "item": "vinery:cherry_slab"
     },
-    "B": {
-      "item": "minecraft:barrel"
+    "O": {
+      "item": "vinery:cherry_trapdoor"
     }
   },
   "result": {
-    "item": "vinery:wine_rack_5"
+    "item": "vinery:cherry_wine_rack_big"
   }
 }

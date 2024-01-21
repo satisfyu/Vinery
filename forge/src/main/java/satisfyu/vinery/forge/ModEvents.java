@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class ModEvents {
 
-    @Mod.EventBusSubscriber(MOD_ID = Vinery.MOD_ID)
+    @Mod.EventBusSubscriber(modid = Vinery.MOD_ID)
     public static class ForgeEvents {
         @SubscribeEvent
         public static void addCustomTrades(VillagerTradesEvent event) {

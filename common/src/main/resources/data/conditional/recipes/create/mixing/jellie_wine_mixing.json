@@ -3,7 +3,7 @@
   "conditions": [
     {
       "type": "forge:mod_loaded",
-      "MOD_ID": "create"
+      "modid": "create"
     }
   ],
   "recipe": {

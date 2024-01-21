@@ -7,6 +7,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.animal.horse.AbstractChestedHorse;
 import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -14,7 +15,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.registry.EntityRegistry;
 
-public class TraderMuleEntity extends Horse {
+public class TraderMuleEntity extends AbstractChestedHorse {
 
 	public TraderMuleEntity(EntityType<? extends TraderMuleEntity> entityType, Level world) {
 		super(entityType, world);
@@ -30,6 +31,8 @@ public class TraderMuleEntity extends Horse {
 		this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 	}
+
+
 
 	@Override
 	public TraderMuleEntity getBreedOffspring(ServerLevel serverWorld, AgeableMob passiveEntity) {

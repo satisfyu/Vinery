@@ -119,7 +119,6 @@ public class MuleModel<T extends TraderMuleEntity> extends EntityModel<T> {
 		if (g > 0.2f) {
 			m += Mth.cos(f * 0.4f) * 0.15f * g;
 		}
-		float n = entity.getEatAnim(h);
 		float o = entity.getStandAnim(h);
 		float p = 1.0f - o;
 		float q = entity.getMouthAnim(h);
@@ -131,11 +130,6 @@ public class MuleModel<T extends TraderMuleEntity> extends EntityModel<T> {
 		float s = entity.isInWater() ? 0.2f : 1.0f;
 		float t = Mth.cos(s * f * 0.6662f + (float)Math.PI);
 		float u = t * 0.8f * g;
-		float v = (1.0f - Math.max(o, n)) * (0.5235988f + m + q * Mth.sin(r) * 0.05f);
-		this.head.xRot = o * (0.2617994f + m) + n * (2.1816616f + Mth.sin(r) * 0.05f) + v;
-		this.head.yRot = o * l * ((float)Math.PI / 180) + (1.0f - Math.max(o, n)) * this.head.yRot;
-		this.head.y = o * -4.0f + n * 11.0f + (1.0f - Math.max(o, n)) * this.head.y;
-		this.head.z = o * -4.0f + n * -12.0f + (1.0f - Math.max(o, n)) * this.head.z;
 		this.body.xRot = o * -0.7853982f + p * this.body.xRot;
 		float w = 0.2617994f * o;
 		float x = Mth.cos(r * 0.6f + (float)Math.PI);

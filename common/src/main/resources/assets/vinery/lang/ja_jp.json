@@ -61,7 +61,7 @@
   "block.vinery.wine_rack_5": "木の引き出し",
   "block.vinery.flower_box": "フラワーボックス",
   "block.vinery.flower_pot": "大きな植木鉢",
-  "block.vinery.wine_press": "リンゴの圧搾機",
+  "block.vinery.apple_press": "リンゴの圧搾機",
   "block.vinery.loam": "ローム",
   "block.vinery.loam_stairs": "ロームの階段",
   "block.vinery.loam_slab": "ロームのハーフブロック",
@@ -178,6 +178,6 @@
   "block.vinery.grape_jam": "ブドウのジャム",
   "block.vinery.aegis_wine": "イージスワイン",
   "block.vinery.big_bowl": "ボウル",
-  "block.vinery.kelp_cider": "コンブ酒"
-
+  "block.vinery.kelp_cider": "コンブ酒",
+  "creativetab.vinery.tab": "[Let's Do] Vinery"
 }
