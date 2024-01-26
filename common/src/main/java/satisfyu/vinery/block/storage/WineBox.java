@@ -135,7 +135,7 @@ public class WineBox extends StorageBlock {
             tooltip.add(Component.translatable("block.vinery.winebox.tooltip.shift_3"));
 
         } else {
-            tooltip.add(Component.translatable("block.vinery.breadblock.tooltip.tooltip_shift"));
+            tooltip.add(Component.translatable("block.vinery.log.tooltip.tooltip_shift"));
         }
     }
 }

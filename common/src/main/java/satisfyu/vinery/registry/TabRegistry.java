@@ -91,7 +91,7 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.CHERRY_WINE.get());
                 out.accept(ObjectRegistry.MAGNETIC_WINE.get());
                 out.accept(ObjectRegistry.NOIR_WINE.get());
-                out.accept(ObjectRegistry.KING_DANIS_WINE.get());
+                out.accept(ObjectRegistry.LILITU_WINE.get());
                 out.accept(ObjectRegistry.MELLOHI_WINE.get());
                 out.accept(ObjectRegistry.STAL_WINE.get());
                 out.accept(ObjectRegistry.STRAD_WINE.get());

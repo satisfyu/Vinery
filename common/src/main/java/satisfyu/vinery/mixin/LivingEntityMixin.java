@@ -68,20 +68,6 @@ public abstract class LivingEntityMixin extends Entity {
 		}
 	}
 
-	@Inject(method = "canStandOnFluid", at = @At(value = "TAIL"), cancellable = true)
-	private void canWalkOnWater(FluidState state, CallbackInfoReturnable<Boolean> cir) {
-		if (state.getType() == Fluids.WATER && !this.isUnderWater() && !this.isSwimming() && !this.isVisuallySwimming()) {
-			cir.setReturnValue(this.hasStatusEffect(MobEffectRegistry.IMPROVED_SPEED.get()));
-		}
-	}
-
-	@Inject(method = "setLastHurtMob", at = @At(value = "HEAD"))
-	private void setTargetOnFire(Entity target, CallbackInfo ci) {
-		if (target instanceof LivingEntity targetEntity && hasStatusEffect(MobEffectRegistry.IMPROVED_FIRE_RESISTANCE.get())) {
-			targetEntity.setSecondsOnFire(5);
-		}
-	}
-
 	@Redirect(method = "calculateFallDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getEffect(Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;"))
 	public MobEffectInstance improvedJumpBoostFall(LivingEntity livingEntity, MobEffect effect) {
 		return livingEntity.hasEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST.get()) ? livingEntity.getEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST.get()) : livingEntity.getEffect(MobEffects.JUMP);
@@ -93,34 +79,4 @@ public abstract class LivingEntityMixin extends Entity {
 			cir.setReturnValue((0.1F * (float)(this.activeEffects.get(MobEffectRegistry.IMPROVED_JUMP_BOOST.get()).getAmplifier() + 1)));
 		}
 	}
-
-
-	@Inject(method = "hurt", at = @At(value = "HEAD"), cancellable = true)
-	private void hasImprovedFireResistance(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		if (GeneralUtil.isFire(source) && hasStatusEffect(MobEffectRegistry.IMPROVED_FIRE_RESISTANCE.get())) {
-			cir.setReturnValue(false);
-		}
-	}
-
-
-	@ModifyVariable(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hasEffect(Lnet/minecraft/world/effect/MobEffect;)Z", ordinal = 1), ordinal = 0)
-	public float applyWaterCreatureSwimSpeedBoost(float j) {
-		if ((Object) this instanceof LivingEntity entity) {
-
-			// Apply 'Dolphin's Grace' status effect benefits if the player's Identity is a water creature
-			if (entity.hasEffect(MobEffectRegistry.IMPROVED_WATER_BREATHING.get())) {
-				return .96f;
-			}
-		}
-
-		return j;
-	}
-
-	@Redirect(method = "updateInvisibilityStatus", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hasEffect(Lnet/minecraft/world/effect/MobEffect;)Z"))
-	public boolean improvedNightVision(LivingEntity livingEntity, MobEffect effect) {
-		return livingEntity.hasEffect(MobEffects.INVISIBILITY) || livingEntity.hasEffect(MobEffectRegistry.IMPROVED_NIGHT_VISION.get());
-	}
-
-
-
 }

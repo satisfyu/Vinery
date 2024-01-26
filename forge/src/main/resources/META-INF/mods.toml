@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
 #issueTrackerURL = ""
-license = "ARR"
+license = "Custom"
 
 [[mods]]
 modId = "vinery"

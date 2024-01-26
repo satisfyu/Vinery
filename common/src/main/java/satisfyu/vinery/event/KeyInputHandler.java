@@ -25,17 +25,6 @@ public class KeyInputHandler {
     }
 
     public static void registerKeyInputs() {
-        /*
-        ClientTickEvent.CLIENT_POST.register(client -> {
-            if (changeShader.consumeClick()) {
-                ShaderUtils.enabled ^= true;
-                ShaderUtils.load(true);
-                if (ShaderUtils.shader != null) {
-                    ShaderUtils.shader.resize(client.getWindow().getWidth(), client.getWindow().getHeight());
-                    client.player.sendSystemMessage(Component.translatable(ShaderUtils.shader.getName()));
-                }
-            }
-        });
-        */
+
     }
 }

@@ -1,6 +1,7 @@
 package satisfyu.vinery;
 
 import de.cristelknight.doapi.DoApiExpectPlatform;
+import dev.architectury.event.events.common.PlayerEvent;
 import dev.architectury.hooks.item.tool.AxeItemHooks;
 import dev.architectury.hooks.item.tool.ShovelItemHooks;
 import dev.architectury.registry.fuel.FuelRegistry;
@@ -9,6 +10,7 @@ import net.minecraft.world.level.block.Blocks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import satisfyu.vinery.config.VineryConfig;
+import satisfyu.vinery.event.ParticleSpawnEvent;
 import satisfyu.vinery.registry.*;
 import satisfyu.vinery.world.VineryFeatures;
 
@@ -28,7 +30,10 @@ public class Vinery {
         EntityRegistry.init();
         VineryFeatures.init();
         SoundEventRegistry.init();
-
+        ParticleSpawnEvent particleSpawnEvent = new ParticleSpawnEvent();
+        PlayerEvent.ATTACK_ENTITY.register(particleSpawnEvent);
+        HealingTouchEvent healingTouchEvent = new HealingTouchEvent();
+        PlayerEvent.ATTACK_ENTITY.register(healingTouchEvent);
         DoApiExpectPlatform.registerBuiltInPack(Vinery.MOD_ID, new VineryIdentifier("bushy_leaves"), false);
     }
 

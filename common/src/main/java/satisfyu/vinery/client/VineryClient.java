@@ -36,7 +36,7 @@ public class VineryClient {
         RenderTypeRegistry.register(RenderType.cutout(),
                 RED_GRAPE_BUSH.get(), WHITE_GRAPE_BUSH.get(), CHERRY_DOOR.get(), FERMENTATION_BARREL.get(),
                 MELLOHI_WINE.get(), CLARK_WINE.get(), BOLVAR_WINE.get(), CHERRY_WINE.get(),
-                KING_DANIS_WINE.get(), CHENET_WINE.get(), NOIR_WINE.get(), TABLE.get(), APPLE_CIDER.get(),
+                LILITU_WINE.get(), CHENET_WINE.get(), NOIR_WINE.get(), TABLE.get(), APPLE_CIDER.get(),
                 APPLE_WINE.get(), SOLARIS_WINE.get(), JELLIE_WINE.get(), AEGIS_WINE.get(), KELP_CIDER.get(),
                 SAVANNA_RED_GRAPE_BUSH.get(), SAVANNA_WHITE_GRAPE_BUSH.get(),
                 CHORUS_WINE.get(), STAL_WINE.get(), MAGNETIC_WINE.get(), STRAD_WINE.get(), JUNGLE_WHITE_GRAPE_BUSH.get(),

@@ -24,7 +24,14 @@ repositories {
         name "TerraformersMC"
         url "https://maven.terraformersmc.com"
     }
-}
+        maven {
+            name = "Modrinth"
+            url = "https://api.modrinth.com/maven"
+            content {
+                includeGroup "maven.modrinth"
+            }
+        }
+    }
 
 
 dependencies {
@@ -41,6 +48,9 @@ dependencies {
     modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${rootProject.terraform_wood_api_version}"
     modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
+
+    modImplementation "maven.modrinth:Wd844r7Q:1.20.1-01"
+    include("maven.modrinth:Wd844r7Q:1.20.1-01")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }

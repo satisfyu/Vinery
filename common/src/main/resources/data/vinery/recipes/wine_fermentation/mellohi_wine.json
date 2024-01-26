@@ -6,9 +6,13 @@
     },
     {
       "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:rabbit_foot"
     }
   ],
   "result": {
     "item": "vinery:mellohi_wine"
   }
 }
+

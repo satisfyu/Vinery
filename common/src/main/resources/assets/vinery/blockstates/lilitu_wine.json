@@ -1,7 +1,7 @@
 {
   "variants": {
     "fake_model=false": {
-      "model": "vinery:block/king_danis_wine"
+      "model": "vinery:block/lilitu_wine"
     },
     "fake_model=true": {
       "model": "vinery:block/transparent"

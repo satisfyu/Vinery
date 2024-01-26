@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "vinery:item/king_danis_wine"
+    "layer0": "vinery:item/lilitu_wine"
   }
 }

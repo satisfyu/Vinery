@@ -48,7 +48,7 @@ public class ModEvents {
 
                 List<VillagerTrades.ItemListing> level5 = trades.get(5);
                 level5.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WINE_BOX.get(), 10, 1, 10));
-                level5.add(new VillagerUtil.SellItemFactory(ObjectRegistry.KING_DANIS_WINE.get(), 4, 1, 10));
+                level5.add(new VillagerUtil.SellItemFactory(ObjectRegistry.LILITU_WINE.get(), 4, 1, 10));
                 level5.add(new VillagerUtil.SellItemFactory(ObjectRegistry.CALENDAR.get(), 2, 1, 15));
 
                 event.getTrades().clear();

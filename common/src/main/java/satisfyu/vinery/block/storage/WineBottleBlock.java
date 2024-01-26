@@ -176,7 +176,6 @@ public class WineBottleBlock extends StorageBlock {
         return RenderShape.MODEL;
     }
 
-    // Ignore
     @Override
     public int getSection(Float aFloat, Float aFloat1) {
         return 0;

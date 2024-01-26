@@ -29,10 +29,6 @@ public class GrapeItem extends Item {
         return this.type;
     }
 
-    public void appendHoverText(ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, TooltipFlag context) {
-        tooltip.add(Component.translatable("item.vinery.grape.tooltip." + this.getDescriptionId()).withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-    }
-
     @Override
     public @NotNull ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entityLiving) {
         if (!world.isClientSide() && entityLiving instanceof Player player) {
