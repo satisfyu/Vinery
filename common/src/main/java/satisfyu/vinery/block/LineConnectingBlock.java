@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.util.ConnectingProperties;
 import satisfyu.vinery.util.LineConnectingType;
 
 
@@ -102,7 +103,7 @@ public class LineConnectingBlock extends Block {
 
     static {
         FACING = BlockStateProperties.HORIZONTAL_FACING;
-        TYPE = satisfyu.vinery.util.Properties.VINERY_LINE_CONNECTING_TYPE;
+        TYPE = ConnectingProperties.VINERY_LINE_CONNECTING_TYPE;
     }
 
 }

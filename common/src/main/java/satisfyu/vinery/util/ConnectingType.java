@@ -6,6 +6,8 @@ public enum ConnectingType implements StringRepresentable {
     SINGLE("single"),
     BOTTOM("bottom"),
     MIDDLE("middle"),
+    LEFT("left"),
+    RIGHT("right"),
     TOP_LEFT("top_left"),
     TOP_RIGHT("top_right"),
     BOTTOM_LEFT("bottom_left"),

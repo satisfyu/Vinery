@@ -32,8 +32,6 @@ public class Vinery {
         SoundEventRegistry.init();
         ParticleSpawnEvent particleSpawnEvent = new ParticleSpawnEvent();
         PlayerEvent.ATTACK_ENTITY.register(particleSpawnEvent);
-        HealingTouchEvent healingTouchEvent = new HealingTouchEvent();
-        PlayerEvent.ATTACK_ENTITY.register(healingTouchEvent);
         DoApiExpectPlatform.registerBuiltInPack(Vinery.MOD_ID, new VineryIdentifier("bushy_leaves"), false);
     }
 

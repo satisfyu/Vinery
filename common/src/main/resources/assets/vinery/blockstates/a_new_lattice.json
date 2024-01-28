@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=north,type=single": {
+      "model": "vinery:block/oak_lattice"
+    },
+    "facing=east,type=single": {
+      "model": "vinery:block/oak_lattice",
+      "y": 90
+    },
+    "facing=south,type=single": {
+      "model": "vinery:block/oak_lattice",
+      "y": 180
+    },
+    "facing=west,type=single": {
+      "model": "vinery:block/oak_lattice",
+      "y": 270
+    },
+    "facing=north,type=left": {
+      "model": "vinery:block/oak_lattice_left"
+    },
+    "facing=east,type=left": {
+      "model": "vinery:block/oak_lattice_left",
+      "y": 90
+    },
+    "facing=south,type=left": {
+      "model": "vinery:block/oak_lattice_left",
+      "y": 180
+    },
+    "facing=west,type=left": {
+      "model": "vinery:block/oak_lattice_left",
+      "y": 270
+    },
+    "facing=north,type=middle": {
+      "model": "vinery:block/oak_lattice_middle"
+    },
+    "facing=east,type=middle": {
+      "model": "vinery:block/oak_lattice_middle",
+      "y": 90
+    },
+    "facing=south,type=middle": {
+      "model": "vinery:block/oak_lattice_middle",
+      "y": 180
+    },
+    "facing=west,type=middle": {
+      "model": "vinery:block/oak_lattice_middle",
+      "y": 270
+    },
+    "facing=north,type=right": {
+      "model": "vinery:block/oak_lattice_right"
+    },
+    "facing=east,type=right": {
+      "model": "vinery:block/oak_lattice_right",
+      "y": 90
+    },
+    "facing=south,type=right": {
+      "model": "vinery:block/oak_lattice_right",
+      "y": 180
+    },
+    "facing=west,type=right": {
+      "model": "vinery:block/oak_lattice_right",
+      "y": 270
+    }
+  }
+}

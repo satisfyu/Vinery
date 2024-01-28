@@ -37,6 +37,7 @@ import satisfyu.vinery.block.grape.GrapeVineBlock;
 import satisfyu.vinery.block.grape.SavannaGrapeBush;
 import satisfyu.vinery.block.grape.TaigaGrapeBush;
 import satisfyu.vinery.block.stem.LatticeStemBlock;
+import satisfyu.vinery.block.stem.NewLatticeBlock;
 import satisfyu.vinery.block.stem.PaleStemBlock;
 import satisfyu.vinery.block.storage.*;
 import satisfyu.vinery.item.*;
@@ -54,8 +55,6 @@ public class ObjectRegistry {
     public static final Registrar<Item> ITEM_REGISTRAR = ITEMS.getRegistrar();
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Vinery.MOD_ID, Registries.BLOCK);
     public static final Registrar<Block> BLOCK_REGISTRAR = BLOCKS.getRegistrar();
-
-    //Grapes
     public static final RegistrySupplier<Block> RED_GRAPE_BUSH = registerWithoutItem("red_grape_bush", () -> new GrapeBush(getBushSettings(), GrapeTypeRegistry.RED));
     public static final RegistrySupplier<Item> RED_GRAPE_SEEDS = registerItem("red_grape_seeds", () -> new GrapeBushSeedItem(RED_GRAPE_BUSH.get(), getSettings(), GrapeTypeRegistry.RED));
     public static final RegistrySupplier<Item> RED_GRAPE = registerItem("red_grape", () -> new GrapeItem(getSettings().food(Foods.SWEET_BERRIES), GrapeTypeRegistry.RED, RED_GRAPE_SEEDS.get()));
@@ -154,18 +153,12 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> TAIGA_WHITE_GRAPEJUICE_BOTTLE = registerItem("taiga_white_grapejuice_bottle", () -> new Item(getSettings()));
     public static final RegistrySupplier<Item> JUNGLE_RED_GRAPEJUICE_BOTTLE = registerItem("jungle_red_grapejuice_bottle",  () -> new Item(getSettings()));
     public static final RegistrySupplier<Item> JUNGLE_WHITE_GRAPEJUICE_BOTTLE = registerItem("jungle_white_grapejuice_bottle",  () -> new Item(getSettings()));
-
-    //reworked wines
-
-    //ALL GRAPES
     public static final RegistrySupplier<Block> CHORUS_WINE = registerWithoutItem("chorus_wine", () -> new WineBottleBlock(getWineSettings(), 1));
     public static final RegistrySupplier<Item>  CHORUS_WINE_ITEM = registerItem("chorus_wine", () -> new DrinkBlockBigItem(CHORUS_WINE.get(), getWineItemSettings(MobEffectRegistry.TELEPORT.get(), 1)));
     public static final RegistrySupplier<Block> CHERRY_WINE = registerWithoutItem("cherry_wine", () -> new WineBottleBlock(getWineSettings(), 3));
     public static final RegistrySupplier<Item>  CHERRY_WINE_ITEM = registerItem("cherry_wine", () -> new DrinkBlockSmallItem(CHERRY_WINE.get(), getWineItemSettings(MobEffects.REGENERATION)));
     public static final RegistrySupplier<Block> MAGNETIC_WINE = registerWithoutItem("magnetic_wine", () -> new WineBottleBlock(getWineSettings(), 1));
     public static final RegistrySupplier<Item>  MAGNETIC_WINE_ITEM = registerItem("magnetic_wine", () -> new DrinkBlockBigItem(MAGNETIC_WINE.get(), getWineItemSettings(MobEffectRegistry.MAGNET.get())));
-
-
     public static final RegistrySupplier<Block> JO_SPECIAL_MIXTURE = registerWithoutItem("jo_special_mixture", () -> new WineBottleBlock(getWineSettings(), 1));
     public static final RegistrySupplier<Item>  JO_SPECIAL_MIXTURE_ITEM = registerItem("jo_special_mixture", () -> new DrinkBlockBigItem(JO_SPECIAL_MIXTURE.get(), getWineItemSettings(MobEffectRegistry.TRIPPY.get())));
     public static final RegistrySupplier<Block> CRISTEL_WINE = registerWithoutItem("cristel_wine", () -> new WineBottleBlock(getWineSettings(), 1));
@@ -271,6 +264,8 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> WINE_RACK_5 = registerWithItem("wine_rack_5", () -> new WineRackStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundEventRegistry.WINE_RACK_5_OPEN.get(), SoundEventRegistry.WINE_RACK_5_CLOSE.get()));
     public static final RegistrySupplier<Item>  VINERY_STANDARD = registerItem("vinery_standard", () -> new StandardItem(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
 
+    //TODO LATTICE
+    public static final RegistrySupplier<Block> A_NEW_LATTICE = registerWithItem("a_new_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
 
     public static void init() {
         Vinery.LOGGER.debug("Registering Mod Block and Items for " + Vinery.MOD_ID);

@@ -2,7 +2,7 @@
   "parent": "vinery:main/fermentation",
   "display": {
     "icon": {
-      "item": "vinery:king_danis_wine"
+      "item": "vinery:lilitu_wine"
     },
     "title": {
       "translate": "vinery.advancement.get_wine"
@@ -208,13 +208,13 @@
         ]
       }
     },
-    "king_danis_wine": {
+    "lilitu_wine": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "vinery:king_danis_wine"
+              "vinery:lilitu_wine"
             ]
           }
         ]
@@ -347,7 +347,7 @@
     "red_wine",
     "praetorian_wine",
     "chenet_wine",
-    "king_danis_wine",
+    "lilitu_wine",
     "mellohi_wine",
     "jo_special_mixture",
     "cristel_wine",

@@ -43,7 +43,7 @@
   "item.vinery.wine_bottle": "Butelka wina",
 
   "block.vinery.chenet_wine": "Wino Chenet",
-  "block.vinery.king_danis_wine": "Wino Miss Lilitus",
+  "block.vinery.lilitu_wine": "Wino Miss Lilitus",
   "block.vinery.noir_wine": "Wino Noir",
   "block.vinery.clark_wine": "Wino Clark",
   "block.vinery.mellohi_wine": "Wino Mellohi",
@@ -62,7 +62,7 @@
   "block.vinery.wine_rack_5": "Szuflada",
   "block.vinery.flower_box": "Skrzynka na kwiaty",
   "block.vinery.flower_pot": "Doniczka na kwiaty",
-  "block.vinery.wine_press": "Jabłkowa prasa",
+  "block.vinery.apple_press": "Jabłkowa prasa",
   "block.vinery.loam": "Glina zwykła",
   "block.vinery.loam_stairs": "Gliniane schody",
   "block.vinery.loam_slab": "Gliniana płyta",

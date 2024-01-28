@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:wine_press"
+          "name": "vinery:apple_press"
         }
       ],
       "conditions": [

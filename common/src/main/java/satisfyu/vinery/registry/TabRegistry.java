@@ -159,6 +159,9 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.MCCHERRY_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.MCCHERRY_WINE_RACK_BIG.get());
                 out.accept(ObjectRegistry.MCCHERRY_WINE_RACK_MID.get());
+
+                out.accept(ObjectRegistry.A_NEW_LATTICE.get());
+
             })
             .build());
 
