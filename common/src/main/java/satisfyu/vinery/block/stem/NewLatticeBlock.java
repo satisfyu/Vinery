@@ -43,7 +43,7 @@ public class NewLatticeBlock extends Block implements SimpleWaterloggedBlock, Bo
     private static final float BREAK_SOUND_PITCH = 0.8F;
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final BooleanProperty SUPPORT = BooleanProperty.create("support");
+    public static final BooleanProperty SUPPORT = BooleanProperty.create("has_support");
     public static final GrapeProperty GRAPE = GrapeProperty.create("grape");
     public static final IntegerProperty AGE = BlockStateProperties.AGE_4;
     protected static final VoxelShape EAST = Block.box(0.0D, 0.0D, 0.0D, 2.0D, 16.0D, 16.0D);
@@ -70,7 +70,6 @@ public class NewLatticeBlock extends Block implements SimpleWaterloggedBlock, Bo
     }
 
     public boolean isMature(BlockState state) {
-        // do return state.getValue(AGE) >= MAX_AGE; only if it is not null
         return state.getValue(AGE) >= MAX_AGE;
     }
 
@@ -113,8 +112,7 @@ public class NewLatticeBlock extends Block implements SimpleWaterloggedBlock, Bo
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!world.isClientSide && player.getItemInHand(hand).getItem() instanceof AxeItem) {
             BlockState newState = state.setValue(SUPPORT, !state.getValue(SUPPORT));
-            BlockState updateState = getConnection(newState, world, pos);
-            world.setBlock(pos, updateState, 3);
+            world.setBlock(pos, newState, 3);
             return InteractionResult.SUCCESS;
         }
         final ItemStack stack = player.getItemInHand(hand);
@@ -199,8 +197,6 @@ public class NewLatticeBlock extends Block implements SimpleWaterloggedBlock, Bo
                 : (sideR ? LineConnectingType.LEFT
                 : (sideL ? LineConnectingType.RIGHT
                 : LineConnectingType.NONE));
-
-        if (!state.getValue(SUPPORT)) type = LineConnectingType.MIDDLE;
 
         return state.setValue(TYPE, type);
     }
