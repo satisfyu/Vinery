@@ -265,7 +265,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  VINERY_STANDARD = registerItem("vinery_standard", () -> new StandardItem(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
 
     //TODO LATTICE
-    public static final RegistrySupplier<Block> A_NEW_LATTICE = registerWithItem("a_new_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistrySupplier<Block> OAK_LATTICE = registerWithItem("oak_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
 
     public static void init() {
         Vinery.LOGGER.debug("Registering Mod Block and Items for " + Vinery.MOD_ID);
