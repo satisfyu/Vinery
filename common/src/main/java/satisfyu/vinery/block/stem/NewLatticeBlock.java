@@ -44,12 +44,16 @@ public class NewLatticeBlock extends Block implements SimpleWaterloggedBlock, Bo
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty SUPPORT = BooleanProperty.create("support");
+    public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
+
     public static final GrapeProperty GRAPE = GrapeProperty.create("grape");
     public static final IntegerProperty AGE = BlockStateProperties.AGE_4;
     protected static final VoxelShape EAST = Block.box(0.0D, 0.0D, 0.0D, 2.0D, 16.0D, 16.0D);
     protected static final VoxelShape WEST = Block.box(14.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
     protected static final VoxelShape SOUTH = Block.box(0.0D, 0.0D, 0.01D, 16.0D, 16.0D, 2.0D);
     protected static final VoxelShape NORTH = Block.box(0.0D, 0.0D, 14.0D, 16.0D, 16.0D, 16.0D);
+    protected static final VoxelShape FLOOR = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D);
+
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<LineConnectingType> TYPE = ConnectingProperties.VINERY_LINE_CONNECTING_TYPE;
@@ -66,6 +70,7 @@ public class NewLatticeBlock extends Block implements SimpleWaterloggedBlock, Bo
                 .setValue(SUPPORT, true)
                 .setValue(GRAPE, GrapeTypeRegistry.NONE)
                 .setValue(AGE, 0)
+                .setValue(BOTTOM, false)
                 .setValue(TYPE, LineConnectingType.NONE));
     }
 
@@ -92,13 +97,18 @@ public class NewLatticeBlock extends Block implements SimpleWaterloggedBlock, Bo
             Direction clickedFacingFace = clickedFacingState.getValue(FACING);
             if (clickedFacingFace != clickedFace && clickedFacingFace.getOpposite() != clickedFace) facing = clickedFacingFace;
         }
-        BlockState state = getConnection(this.defaultBlockState().setValue(FACING, facing), level, clickedPos);
+        boolean bottom = clickedFace == Direction.DOWN || clickedFace == Direction.UP;
+        BlockState state = this.defaultBlockState().setValue(FACING, facing).setValue(BOTTOM, bottom);
+        if (!bottom) {
+            state = getConnection(this.defaultBlockState().setValue(FACING, facing), level, clickedPos);
+        }
         return state.setValue(WATERLOGGED, level.getFluidState(clickedPos).getType() == Fluids.WATER);
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        if (Boolean.TRUE.equals(state.getValue(BOTTOM))) return FLOOR;
         return switch (state.getValue(FACING)) {
             case WEST -> WEST;
             case EAST -> EAST;
@@ -199,14 +209,12 @@ public class NewLatticeBlock extends Block implements SimpleWaterloggedBlock, Bo
                 : (sideL ? LineConnectingType.RIGHT
                 : LineConnectingType.NONE));
 
-        if (!state.getValue(SUPPORT)) type = LineConnectingType.MIDDLE;
-
         return state.setValue(TYPE, type);
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, TYPE, WATERLOGGED, SUPPORT, AGE, GRAPE);
+        builder.add(FACING, TYPE, WATERLOGGED, SUPPORT, AGE, GRAPE, BOTTOM);
     }
 
     @Override
