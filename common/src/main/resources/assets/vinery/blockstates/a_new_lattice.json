@@ -1,17 +1,17 @@
 {
   "variants": {
-    "facing=north,type=single": {
+    "facing=north,type=none": {
       "model": "vinery:block/oak_lattice"
     },
-    "facing=east,type=single": {
+    "facing=east,type=none": {
       "model": "vinery:block/oak_lattice",
       "y": 90
     },
-    "facing=south,type=single": {
+    "facing=south,type=none": {
       "model": "vinery:block/oak_lattice",
       "y": 180
     },
-    "facing=west,type=single": {
+    "facing=west,type=none": {
       "model": "vinery:block/oak_lattice",
       "y": 270
     },

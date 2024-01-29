@@ -69,9 +69,9 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.CHERRY_DOOR.get());
                 out.accept(BoatAndSignRegistry.CHERRY_SIGN_ITEM.get());
                 out.accept(BoatAndSignRegistry.CHERRY_HANGING_SIGN_ITEM.get());
+                out.accept(ObjectRegistry.BARREL.get());
                 out.accept(ObjectRegistry.CHERRY_TRAPDOOR.get());
                 out.accept(ObjectRegistry.WINDOW.get());
-                out.accept(ObjectRegistry.GRAPEVINE_LATTICE.get());
                 out.accept(ObjectRegistry.LOAM.get());
                 out.accept(ObjectRegistry.LOAM_STAIRS.get());
                 out.accept(ObjectRegistry.LOAM_SLAB.get());
