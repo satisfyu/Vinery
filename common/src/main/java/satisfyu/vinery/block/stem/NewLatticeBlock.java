@@ -250,7 +250,7 @@ public class NewLatticeBlock extends Block implements BonemealableBlock {
 
     @Override
     public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState state, boolean bl) {
-        return !isMature(state) && levelReader.getBlockState(blockPos.below()).getBlock() == this && state.getValue(AGE) > 0;
+        return !isMature(state) && state.getValue(AGE) > 0;
     }
 
     @Override
