@@ -38,7 +38,7 @@ import satisfyu.vinery.registry.GrapeTypeRegistry;
 import satisfyu.vinery.util.ConnectingProperties;
 import satisfyu.vinery.util.LineConnectingType;
 
-public class NewLatticeBlock extends Block implements BonemealableBlock {
+public class NewLatticeBlock extends StemBlock {
     private static final int MAX_AGE = 4;
     private static final float BREAK_SOUND_PITCH = 0.8F;
 
@@ -238,37 +238,5 @@ public class NewLatticeBlock extends Block implements BonemealableBlock {
     public void dropGrapeSeeds(Level world, BlockState state, BlockPos pos) {
         Item grape = state.getValue(GRAPE).getSeeds();
         popResource(world, pos, new ItemStack(grape));
-    }
-
-    @Override
-    public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
-        if (state.getValue(AGE) > 2) {
-            dropGrapes(world, state, pos);
-        }
-        super.playerWillDestroy(world, pos, state, player);
-    }
-
-    @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState state, boolean bl) {
-        return !isMature(state) && state.getValue(AGE) > 0;
-    }
-
-    @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
-        return true;
-    }
-
-    @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
-        boneMealGrow(world, state, pos);
-    }
-
-    private void boneMealGrow(Level world, BlockState state, BlockPos pos) {
-        int j;
-        int age = state.getValue(AGE) + Mth.nextInt(world.getRandom(), 1, 2);
-        if (age > (j = MAX_AGE)) {
-            age = j;
-        }
-        world.setBlock(pos, this.withAge(state, age, state.getValue(GRAPE)), Block.UPDATE_CLIENTS);
     }
 }
