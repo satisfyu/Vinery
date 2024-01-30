@@ -6,7 +6,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -20,21 +19,22 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.block.grape.GrapeProperty;
 import satisfyu.vinery.block.grape.GrapeType;
 import satisfyu.vinery.item.GrapeBushSeedItem;
-import satisfyu.vinery.registry.GrapeTypeRegistry;
 import satisfyu.vinery.util.ConnectingProperties;
 import satisfyu.vinery.util.LineConnectingType;
 
@@ -45,8 +45,7 @@ public class NewLatticeBlock extends StemBlock {
     public static final BooleanProperty SUPPORT = BooleanProperty.create("support");
     public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
 
-    public static final GrapeProperty GRAPE = GrapeProperty.create("grape");
-    public static final IntegerProperty AGE = BlockStateProperties.AGE_4;
+
     protected static final VoxelShape EAST = Block.box(0.0D, 0.0D, 0.0D, 2.0D, 16.0D, 16.0D);
     protected static final VoxelShape WEST = Block.box(14.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
     protected static final VoxelShape SOUTH = Block.box(0.0D, 0.0D, 0.01D, 16.0D, 16.0D, 2.0D);
@@ -63,11 +62,9 @@ public class NewLatticeBlock extends StemBlock {
 
     public NewLatticeBlock(Properties properties) {
         super(properties);
-        registerDefaultState(this.stateDefinition.any()
+        registerDefaultState(this.defaultBlockState()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(SUPPORT, true)
-                .setValue(GRAPE, GrapeTypeRegistry.NONE)
-                .setValue(AGE, 0)
                 .setValue(BOTTOM, false)
                 .setValue(TYPE, LineConnectingType.NONE));
     }
@@ -212,7 +209,13 @@ public class NewLatticeBlock extends StemBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, TYPE, SUPPORT, AGE, GRAPE, BOTTOM);
+        super.createBlockStateDefinition(builder);
+        builder.add(FACING, TYPE, SUPPORT, BOTTOM);
+    }
+
+    @Override
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState state, boolean bl) {
+        return !isMature(state) && state.getValue(AGE) > 0;
     }
 
     @Override
