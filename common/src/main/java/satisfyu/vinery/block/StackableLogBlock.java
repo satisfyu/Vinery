@@ -30,13 +30,22 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.util.Util;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class StackableLogBlock extends SlabBlock{
     public static final BooleanProperty FIRED = BooleanProperty.create("fired");
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+
 
     public StackableLogBlock(Properties settings) {
         super(settings);
@@ -134,4 +143,71 @@ public class StackableLogBlock extends SlabBlock{
 
         super.stepOn(world, pos, state, entity);
     }
+
+    @Override
+    public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
+        SlabType slabType = blockState.getValue(TYPE);
+        Direction facing = blockState.getValue(FACING);
+
+        VoxelShape SHAPE;
+
+        switch (slabType) {
+            case DOUBLE:
+                SHAPE = DOUBLE;
+                break;
+            case TOP:
+                SHAPE = TOP_AABB;
+                break;
+            default:
+                SHAPE = BOTTOM_AABB;
+                break;
+        }
+        return SHAPE;
+    }
+
+    private static final Supplier<VoxelShape> BOTTOM_AABB_SUPPLIER = () -> {
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.0625, 0, 0, 0.3125, 0.25, 1), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.25, 0.6875, 1, 0.5, 0.9375), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.6875, 0, 0, 0.9375, 0.25, 1), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.25, 0.0625, 1, 0.5, 0.3125), BooleanOp.OR);
+        return shape;
+    };
+
+    private static final Supplier<VoxelShape> TOP_AABB_SUPPLIER = () -> {
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.0625, 0.5, 0, 0.3125, 0.75, 1), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.6875, 1, 1, 0.9375), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.6875, 1, 1, 0.9375), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.0625, 1, 1, 0.3125), BooleanOp.OR);
+        return shape;
+    };
+
+    private static final Supplier<VoxelShape> DOUBLE_SUPPLIER = () -> {
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.0625, 0, 0, 0.3125, 0.25, 1), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.25, 0.6875, 1, 0.5, 0.9375), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.6875, 0, 0, 0.9375, 0.25, 1), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.25, 0.0625, 1, 0.5, 0.3125), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.0625, 0.5, 0, 0.3125, 0.75, 1), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.6875, 1, 1, 0.9375), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.6875, 1, 1, 0.9375), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.0625, 1, 1, 0.3125), BooleanOp.OR);
+        return shape;
+    };
+
+    protected static final VoxelShape BOTTOM_AABB = BOTTOM_AABB_SUPPLIER.get();
+    protected static final VoxelShape TOP_AABB = TOP_AABB_SUPPLIER.get();
+    protected static final VoxelShape DOUBLE = DOUBLE_SUPPLIER.get();
+
+    public static final Map<Direction, Map<SlabType, VoxelShape>> SHAPE = net.minecraft.Util.make(new HashMap<>(), map -> {
+        for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
+            map.put(direction, new HashMap<>());
+            map.get(direction).put(SlabType.DOUBLE, Util.rotateShape(Direction.NORTH, direction, DOUBLE_SUPPLIER.get()));
+            map.get(direction).put(SlabType.TOP, Util.rotateShape(Direction.NORTH, direction, TOP_AABB_SUPPLIER.get()));
+            map.get(direction).put(SlabType.BOTTOM, Util.rotateShape(Direction.NORTH, direction, BOTTOM_AABB_SUPPLIER.get()));
+        }
+    });
+
 }
+
