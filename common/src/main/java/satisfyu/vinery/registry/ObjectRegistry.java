@@ -36,7 +36,6 @@ import satisfyu.vinery.block.grape.GrapeBush;
 import satisfyu.vinery.block.grape.GrapeVineBlock;
 import satisfyu.vinery.block.grape.SavannaGrapeBush;
 import satisfyu.vinery.block.grape.TaigaGrapeBush;
-import satisfyu.vinery.block.stem.LatticeStemBlock;
 import satisfyu.vinery.block.stem.NewLatticeBlock;
 import satisfyu.vinery.block.stem.PaleStemBlock;
 import satisfyu.vinery.block.storage.*;
@@ -108,7 +107,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> RED_GRAPE_CRATE = registerWithItem("red_grape_crate", () -> new Block(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistrySupplier<Block> CHERRY_CRATE = registerWithItem("cherry_crate", () -> new Block(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistrySupplier<Block> APPLE_CRATE = registerWithItem("apple_crate", () -> new Block(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-    public static final RegistrySupplier<Block> GRAPEVINE_LATTICE = registerWithItem("grapevine_lattice", () -> new LatticeStemBlock(getGrapevineSettings()));
     public static final RegistrySupplier<Block> GRAPEVINE_POT = registerWithItem("grapevine_pot", () -> new GrapevinePotBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)));
     public static final RegistrySupplier<Block> FERMENTATION_BARREL = registerWithItem("fermentation_barrel", () -> new FermentationBarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL).noOcclusion()));
     public static final RegistrySupplier<Block> APPLE_PRESS = registerWithItem("apple_press", () -> new ApplePressBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
@@ -266,6 +264,8 @@ public class ObjectRegistry {
 
     //TODO LATTICE
     public static final RegistrySupplier<Block> OAK_LATTICE = registerWithItem("oak_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+
+    //public static final RegistrySupplier<Block> GRAPEVINE_LATTICE = registerWithItem("grapevine_lattice", () -> new LatticeStemBlock(getGrapevineSettings()));
 
     public static void init() {
         Vinery.LOGGER.debug("Registering Mod Block and Items for " + Vinery.MOD_ID);
