@@ -8,8 +8,10 @@ import dev.architectury.core.item.ArchitecturySpawnEggItem;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
+import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
@@ -36,6 +38,7 @@ import satisfyu.vinery.block.grape.GrapeBush;
 import satisfyu.vinery.block.grape.GrapeVineBlock;
 import satisfyu.vinery.block.grape.SavannaGrapeBush;
 import satisfyu.vinery.block.grape.TaigaGrapeBush;
+import satisfyu.vinery.block.lattice.DynamicHandler;
 import satisfyu.vinery.block.stem.NewLatticeBlock;
 import satisfyu.vinery.block.stem.PaleStemBlock;
 import satisfyu.vinery.block.storage.*;
@@ -44,7 +47,7 @@ import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.util.FoodComponent;
 import satisfyu.vinery.world.VineryConfiguredFeatures;
 
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -263,7 +266,9 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  VINERY_STANDARD = registerItem("vinery_standard", () -> new StandardItem(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
 
     //TODO LATTICE
-    public static final RegistrySupplier<Block> OAK_LATTICE = registerWithItem("oak_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
+
+    public static final Collection<RegistrySupplier<Block>> LATTICE_BLOCKS = new ArrayList<>();
+    //public static final RegistrySupplier<Block> OAK_LATTICE = registerWithItem("oak_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
 
     //public static final RegistrySupplier<Block> GRAPEVINE_LATTICE = registerWithItem("grapevine_lattice", () -> new LatticeStemBlock(getGrapevineSettings()));
 
@@ -271,6 +276,7 @@ public class ObjectRegistry {
         Vinery.LOGGER.debug("Registering Mod Block and Items for " + Vinery.MOD_ID);
         ITEMS.register();
         BLOCKS.register();
+        BlockSetAPI.addDynamicBlockRegistration(DynamicHandler::registerLatticeBlocks, DynamicHandler.woodTypeClass);
     }
 
     public static BlockBehaviour.Properties properties(float strength) {

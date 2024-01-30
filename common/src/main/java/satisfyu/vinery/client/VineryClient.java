@@ -7,6 +7,7 @@ import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import dev.architectury.registry.client.rendering.ColorHandlerRegistry;
 import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
+import dev.architectury.registry.registries.RegistrySupplier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -15,6 +16,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
+import net.minecraft.world.level.block.Block;
 import satisfyu.vinery.client.gui.ApplePressGui;
 import satisfyu.vinery.client.gui.FermentationBarrelGui;
 import satisfyu.vinery.client.model.MuleModel;
@@ -49,8 +51,12 @@ public class VineryClient {
                 GLOWING_WINE.get(), JO_SPECIAL_MIXTURE.get(), MEAD.get(), BOTTLE_MOJANG_NOIR.get(),
                 TABLE.get(), OAK_WINE_RACK_MID.get(), DARK_OAK_WINE_RACK_MID.get(), BIRCH_WINE_RACK_MID.get(),
                 SPRUCE_WINE_RACK_MID.get(), JUNGLE_WINE_RACK_MID.get(), MANGROVE_WINE_RACK_MID.get(), CHERRY_WINE_RACK_MID.get(),
-                ACACIA_WINE_RACK_MID.get(), MCCHERRY_WINE_RACK_MID.get(), BAMBOO_WINE_RACK_MID.get(), OAK_LATTICE.get()
+                ACACIA_WINE_RACK_MID.get(), MCCHERRY_WINE_RACK_MID.get(), BAMBOO_WINE_RACK_MID.get()
                 );
+
+        for (RegistrySupplier<Block> latticeRegistrySupplier : ObjectRegistry.LATTICE_BLOCKS) {
+            RenderTypeRegistry.register(RenderType.cutout(), latticeRegistrySupplier.get());
+        }
 
 
 

@@ -52,6 +52,9 @@ dependencies {
     modImplementation "maven.modrinth:Wd844r7Q:1.20.1-01"
     include("maven.modrinth:Wd844r7Q:1.20.1-01")
 
+    modApi("maven.modrinth:moonlight:jOzdT1LR") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+    include("maven.modrinth:moonlight:jOzdT1LR")
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }

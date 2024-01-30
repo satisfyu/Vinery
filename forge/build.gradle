@@ -15,6 +15,12 @@ loom {
         mixinConfig "vinery-common.mixins.json"
         mixinConfig "vinery.mixins.json"
     }
+    runs {
+        client {
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+        }
+    }
 }
 
 repositories {
@@ -40,8 +46,10 @@ dependencies {
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
-
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-forge"
+
+    modApi("maven.modrinth:moonlight:forge_1.20-2.9.7") { transitive false }
+    include("maven.modrinth:moonlight:forge_1.20-2.9.7")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }

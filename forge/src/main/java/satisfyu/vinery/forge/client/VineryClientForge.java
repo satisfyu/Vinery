@@ -8,7 +8,7 @@ import net.minecraftforge.registries.RegisterEvent;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.client.VineryClient;
 
-@Mod.EventBusSubscriber(MOD_ID = Vinery.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Vinery.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class VineryClientForge {
 
     @SubscribeEvent
