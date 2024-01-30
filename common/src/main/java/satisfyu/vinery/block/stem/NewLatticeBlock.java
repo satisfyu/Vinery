@@ -38,11 +38,10 @@ import satisfyu.vinery.registry.GrapeTypeRegistry;
 import satisfyu.vinery.util.ConnectingProperties;
 import satisfyu.vinery.util.LineConnectingType;
 
-public class NewLatticeBlock extends Block implements SimpleWaterloggedBlock, BonemealableBlock {
+public class NewLatticeBlock extends Block implements BonemealableBlock {
     private static final int MAX_AGE = 4;
     private static final float BREAK_SOUND_PITCH = 0.8F;
 
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty SUPPORT = BooleanProperty.create("support");
     public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
 
@@ -65,7 +64,6 @@ public class NewLatticeBlock extends Block implements SimpleWaterloggedBlock, Bo
     public NewLatticeBlock(Properties properties) {
         super(properties);
         registerDefaultState(this.stateDefinition.any()
-                .setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH)
                 .setValue(SUPPORT, true)
                 .setValue(GRAPE, GrapeTypeRegistry.NONE)
@@ -102,8 +100,9 @@ public class NewLatticeBlock extends Block implements SimpleWaterloggedBlock, Bo
         if (!bottom) {
             state = getConnection(this.defaultBlockState().setValue(FACING, facing), level, clickedPos);
         }
-        return state.setValue(WATERLOGGED, level.getFluidState(clickedPos).getType() == Fluids.WATER);
+        return state;
     }
+
 
     @Override
     @SuppressWarnings("deprecation")
@@ -191,7 +190,6 @@ public class NewLatticeBlock extends Block implements SimpleWaterloggedBlock, Bo
     @Override
     @SuppressWarnings("deprecation")
     public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
-        if (state.getValue(WATERLOGGED)) level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         return getConnection(state, level, currentPos);
     }
 
@@ -214,13 +212,7 @@ public class NewLatticeBlock extends Block implements SimpleWaterloggedBlock, Bo
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, TYPE, WATERLOGGED, SUPPORT, AGE, GRAPE, BOTTOM);
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public @NotNull FluidState getFluidState(BlockState state) {
-        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+        builder.add(FACING, TYPE, SUPPORT, AGE, GRAPE, BOTTOM);
     }
 
     @Override

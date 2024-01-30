@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:grapevine_lattice"
+          "name": "vinery:oak_lattice"
         }
       ],
       "conditions": [
