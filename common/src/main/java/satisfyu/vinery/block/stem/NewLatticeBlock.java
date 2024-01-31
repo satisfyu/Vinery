@@ -39,12 +39,8 @@ import satisfyu.vinery.util.ConnectingProperties;
 import satisfyu.vinery.util.LineConnectingType;
 
 public class NewLatticeBlock extends StemBlock {
-    private static final int MAX_AGE = 4;
-    private static final float BREAK_SOUND_PITCH = 0.8F;
-
     public static final BooleanProperty SUPPORT = BooleanProperty.create("support");
     public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
-
 
     protected static final VoxelShape EAST = Block.box(0.0D, 0.0D, 0.0D, 2.0D, 16.0D, 16.0D);
     protected static final VoxelShape WEST = Block.box(14.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
@@ -58,7 +54,6 @@ public class NewLatticeBlock extends StemBlock {
 
     private static final SoundEvent BREAK_SOUND_EVENT = SoundEvents.SWEET_BERRY_BUSH_BREAK;
     private static final SoundEvent PLACE_SOUND_EVENT = SoundEvents.SWEET_BERRY_BUSH_PLACE;
-    private static final SoundEvent PICK_BERRIES_SOUND_EVENT = SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES;
 
     public NewLatticeBlock(Properties properties) {
         super(properties);
@@ -67,14 +62,6 @@ public class NewLatticeBlock extends StemBlock {
                 .setValue(SUPPORT, true)
                 .setValue(BOTTOM, false)
                 .setValue(TYPE, LineConnectingType.NONE));
-    }
-
-    public boolean isMature(BlockState state) {
-        return state.getValue(AGE) >= MAX_AGE;
-    }
-
-    public BlockState withAge(BlockState state, int age, GrapeType type) {
-        return state.setValue(AGE, age).setValue(GRAPE, type);
     }
 
     @Nullable
@@ -114,7 +101,6 @@ public class NewLatticeBlock extends StemBlock {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!world.isClientSide && player.getItemInHand(hand).getItem() instanceof AxeItem) {
             BlockState newState = state.setValue(SUPPORT, !state.getValue(SUPPORT));
@@ -161,14 +147,16 @@ public class NewLatticeBlock extends StemBlock {
     @Override
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-        if (!isMature(state) && state.getValue(AGE) > 0) {
-            final int i;
-            if (world.getRawBrightness(pos, 0) >= 9 && (i = state.getValue(AGE)) < MAX_AGE) {
-                world.setBlock(pos, this.withAge(state,i + 1, state.getValue(GRAPE)), Block.UPDATE_CLIENTS);
-            }
+        int age = state.getValue(AGE);
+
+        if (!isMature(state) && age > 0 && age < 4) {
+            BlockState newState = this.withAge(state, age + 1, state.getValue(GRAPE));
+            world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
         }
+
         super.randomTick(state, world, pos, random);
     }
+
 
     @Override
     @SuppressWarnings("deprecation")
@@ -186,8 +174,16 @@ public class NewLatticeBlock extends StemBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
-        return getConnection(state, level, currentPos);
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+        if (!state.canSurvive(world, pos)) {
+            world.scheduleTick(pos, this, 1);
+        }
+        return getConnection(state, world, pos);
+    }
+
+    @Override
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState state, boolean bl) {
+        return !isMature(state) && state.getValue(AGE) > 0;
     }
 
     public BlockState getConnection(BlockState state, LevelAccessor level, BlockPos currentPos) {
@@ -214,11 +210,6 @@ public class NewLatticeBlock extends StemBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState state, boolean bl) {
-        return !isMature(state) && state.getValue(AGE) > 0;
-    }
-
-    @Override
     @SuppressWarnings("deprecation")
     public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
@@ -228,18 +219,5 @@ public class NewLatticeBlock extends StemBlock {
     @SuppressWarnings("deprecation")
     public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
-    }
-
-    public void dropGrapes(Level world, BlockState state, BlockPos pos) {
-        final int x = 1 + world.random.nextInt(isMature(state) ? 2 : 1);
-        final int bonus = isMature(state) ? 2 : 1;
-        Item grape = state.getValue(GRAPE).getFruit();
-        popResource(world, pos, new ItemStack(grape, x + bonus));
-        world.playSound(null, pos, PICK_BERRIES_SOUND_EVENT, SoundSource.BLOCKS, 1.0F, BREAK_SOUND_PITCH + world.random.nextFloat() * 0.4F);
-    }
-
-    public void dropGrapeSeeds(Level world, BlockState state, BlockPos pos) {
-        Item grape = state.getValue(GRAPE).getSeeds();
-        popResource(world, pos, new ItemStack(grape));
     }
 }
