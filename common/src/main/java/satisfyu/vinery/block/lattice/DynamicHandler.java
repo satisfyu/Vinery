@@ -1,5 +1,8 @@
 package satisfyu.vinery.block.lattice;
 
+import dev.architectury.platform.Platform;
+import dev.architectury.registry.registries.RegistrySupplier;
+import net.fabricmc.api.EnvType;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.core.Moonlight;
@@ -9,9 +12,11 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.WineRackStorageBlock;
 import satisfyu.vinery.block.stem.NewLatticeBlock;
+import satisfyu.vinery.client.VineryClient;
 import satisfyu.vinery.item.StandardItem;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.SoundEventRegistry;
@@ -30,7 +35,15 @@ public class DynamicHandler {
             Block block = new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(woodType.getSound()).noOcclusion());
             woodType.addChild(new VineryIdentifier("lattice").toString(), block);
 
-            ObjectRegistry.LATTICE_BLOCKS.add(registerWithItem(latticeId, () -> block));
+            RegistrySupplier<Block> currentRegistrySupplier = registerWithItem(latticeId, () -> block);
+
+            ObjectRegistry.LATTICE_BLOCKS.add(currentRegistrySupplier);
+            if (Platform.getEnvironment().toPlatform() == EnvType.CLIENT) {
+                Vinery.LOGGER.debug("Adding {} lattice block to client list", woodType.getReadableName());
+                VineryClient.LATTICE_BLOCKS.add(currentRegistrySupplier.get());
+                VineryClient.registerAsCutout(currentRegistrySupplier.get());
+                Vinery.LOGGER.debug("Added {} lattice block to cutout render list", woodType.getReadableName());
+            }
         }
     }
 }

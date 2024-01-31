@@ -1,5 +1,6 @@
 package satisfyu.vinery.client;
 
+import de.cristelknight.doapi.DoApi;
 import de.cristelknight.doapi.terraform.sign.TerraformSignHelper;
 import dev.architectury.platform.Platform;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
@@ -44,6 +45,8 @@ public class VineryClient {
 
     public static final Collection<WoodType> CLIENT_LATTICES = new ArrayList<>();
 
+    public static final Collection<Block> LATTICE_BLOCKS = new ArrayList<>();
+
     public static void onInitializeClient() {
 
         VineryNetwork.registerS2CPackets();
@@ -67,9 +70,6 @@ public class VineryClient {
                 ACACIA_WINE_RACK_MID.get(), MCCHERRY_WINE_RACK_MID.get(), BAMBOO_WINE_RACK_MID.get()
                 );
 
-        for (RegistrySupplier<Block> latticeRegistrySupplier : ObjectRegistry.LATTICE_BLOCKS) {
-            RenderTypeRegistry.register(RenderType.cutout(), latticeRegistrySupplier.get());
-        }
 
         ClientStorageTypes.init();
         RenderTypeRegistry.register(RenderType.translucent(), WINDOW.get());
@@ -124,6 +124,10 @@ public class VineryClient {
         CLIENT_LATTICES.addAll(BlockSetAPI.getBlockSet(WoodType.class).getValues());
         VineryClientResourceProvider.init();
         LOGGER.info("Resource provider initialized, side is {}", Platform.getEnvironment().toPlatform().toString());
+    }
+
+    public static void registerAsCutout(Block latticeBlock) {
+        RenderTypeRegistry.register(RenderType.cutout(), latticeBlock);
     }
 
     public static Player getClientPlayer() {

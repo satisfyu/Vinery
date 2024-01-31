@@ -33,6 +33,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.Vinery;
 import satisfyu.vinery.block.grape.GrapeType;
 import satisfyu.vinery.item.GrapeBushSeedItem;
 import satisfyu.vinery.util.ConnectingProperties;
@@ -147,13 +148,10 @@ public class NewLatticeBlock extends StemBlock {
     @Override
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        // We don't need a conditional here anymore
         int age = state.getValue(AGE);
-
-        if (!isMature(state) && age > 0 && age < 4) {
-            BlockState newState = this.withAge(state, age + 1, state.getValue(GRAPE));
-            world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
-        }
-
+        BlockState newState = this.withAge(state, age + 1, state.getValue(GRAPE));
+        world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
         super.randomTick(state, world, pos, random);
     }
 
@@ -170,6 +168,15 @@ public class NewLatticeBlock extends StemBlock {
             }
             world.destroyBlock(pos, true);
         }
+    }
+
+    @Override
+    public boolean isRandomlyTicking(BlockState state) {
+
+        int age = state.getValue(AGE);
+
+
+        return (!isMature(state) && age > 0 && age < 4);
     }
 
     @Override

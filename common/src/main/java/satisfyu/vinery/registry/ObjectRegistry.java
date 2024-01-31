@@ -265,11 +265,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> WINE_RACK_5 = registerWithItem("wine_rack_5", () -> new WineRackStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundEventRegistry.WINE_RACK_5_OPEN.get(), SoundEventRegistry.WINE_RACK_5_CLOSE.get()));
     public static final RegistrySupplier<Item>  VINERY_STANDARD = registerItem("vinery_standard", () -> new StandardItem(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
 
-    //TODO LATTICE
-
     public static final Collection<RegistrySupplier<Block>> LATTICE_BLOCKS = new ArrayList<>();
-
-    public static final Map<net.mehvahdjukaar.moonlight.api.set.wood.WoodType, RegistrySupplier<Block>> LATTICE_TYPES = new LinkedHashMap<>();
 
     public static void init() {
         Vinery.LOGGER.debug("Registering Mod Block and Items for " + Vinery.MOD_ID);
