@@ -268,9 +268,8 @@ public class ObjectRegistry {
     //TODO LATTICE
 
     public static final Collection<RegistrySupplier<Block>> LATTICE_BLOCKS = new ArrayList<>();
-    //public static final RegistrySupplier<Block> OAK_LATTICE = registerWithItem("oak_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
 
-    //public static final RegistrySupplier<Block> GRAPEVINE_LATTICE = registerWithItem("grapevine_lattice", () -> new LatticeStemBlock(getGrapevineSettings()));
+    public static final Map<net.mehvahdjukaar.moonlight.api.set.wood.WoodType, RegistrySupplier<Block>> LATTICE_TYPES = new LinkedHashMap<>();
 
     public static void init() {
         Vinery.LOGGER.debug("Registering Mod Block and Items for " + Vinery.MOD_ID);

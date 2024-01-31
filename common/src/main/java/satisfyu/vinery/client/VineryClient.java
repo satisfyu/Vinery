@@ -1,6 +1,7 @@
 package satisfyu.vinery.client;
 
 import de.cristelknight.doapi.terraform.sign.TerraformSignHelper;
+import dev.architectury.platform.Platform;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
@@ -10,6 +11,8 @@ import dev.architectury.registry.menu.MenuRegistry;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
+import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
@@ -23,13 +26,23 @@ import satisfyu.vinery.client.model.MuleModel;
 import satisfyu.vinery.client.render.block.FlowerPotBlockEntityRenderer;
 import satisfyu.vinery.client.render.entity.MuleRenderer;
 import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
+import satisfyu.vinery.dynamicassets.VineryClientResourceProvider;
 import satisfyu.vinery.network.VineryNetwork;
 import satisfyu.vinery.registry.*;
+
+import static satisfyu.vinery.Vinery.LOGGER;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static satisfyu.vinery.registry.ObjectRegistry.*;
 
 @Environment(EnvType.CLIENT)
 public class VineryClient {
+
+    public static final Collection<WoodType> CLIENT_LATTICES = new ArrayList<>();
 
     public static void onInitializeClient() {
 
@@ -57,8 +70,6 @@ public class VineryClient {
         for (RegistrySupplier<Block> latticeRegistrySupplier : ObjectRegistry.LATTICE_BLOCKS) {
             RenderTypeRegistry.register(RenderType.cutout(), latticeRegistrySupplier.get());
         }
-
-
 
         ClientStorageTypes.init();
         RenderTypeRegistry.register(RenderType.translucent(), WINDOW.get());
@@ -109,6 +120,10 @@ public class VineryClient {
         TerraformSignHelper.regsterSignSprite(BoatAndSignRegistry.CHERRY_SIGN_TEXTURE);
         EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);
         CustomArmorRegistry.registerArmorModelLayers();
+
+        CLIENT_LATTICES.addAll(BlockSetAPI.getBlockSet(WoodType.class).getValues());
+        VineryClientResourceProvider.init();
+        LOGGER.info("Resource provider initialized, side is {}", Platform.getEnvironment().toPlatform().toString());
     }
 
     public static Player getClientPlayer() {

@@ -39,6 +39,9 @@ dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.5"))
+    implementation(include("io.github.llamalad7:mixinextras-forge:0.3.5"))
+
     include(implementation("blue.endless:jankson:${jankson_version}"))
     //REI and JEI
     modImplementation "me.shedaniel:RoughlyEnoughItems-forge:$rei_version"

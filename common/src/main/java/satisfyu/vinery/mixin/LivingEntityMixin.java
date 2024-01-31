@@ -2,9 +2,11 @@ package satisfyu.vinery.mixin;
 
 import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Pair;
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -35,16 +37,14 @@ import java.util.Map;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
 
-	@Final
-	@Shadow
-	private final Map<MobEffect, MobEffectInstance> activeEffects = Maps.newHashMap();
+	@Shadow @Final private Map<MobEffect, MobEffectInstance> activeEffects;
 
 	protected LivingEntityMixin(EntityType<?> type, Level world) {
 		super(type, world);
 	}
 
 	@Unique
-	public boolean hasStatusEffect(MobEffect effect) {
+	private boolean hasStatusEffect(MobEffect effect) {
 		return activeEffects.containsKey(effect);
 	}
 	
