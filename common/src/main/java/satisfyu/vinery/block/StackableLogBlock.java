@@ -149,21 +149,22 @@ public class StackableLogBlock extends SlabBlock{
         SlabType slabType = blockState.getValue(TYPE);
         Direction facing = blockState.getValue(FACING);
 
-        VoxelShape SHAPE;
+        VoxelShape shape;
 
         switch (slabType) {
             case DOUBLE:
-                SHAPE = DOUBLE;
+                shape = SHAPE.get(facing).get(SlabType.DOUBLE);
                 break;
             case TOP:
-                SHAPE = TOP_AABB;
+                shape = SHAPE.get(facing).get(SlabType.TOP);
                 break;
             default:
-                SHAPE = BOTTOM_AABB;
+                shape = SHAPE.get(facing).get(SlabType.BOTTOM);
                 break;
         }
-        return SHAPE;
+        return shape;
     }
+
 
     private static final Supplier<VoxelShape> BOTTOM_AABB_SUPPLIER = () -> {
         VoxelShape shape = Shapes.empty();

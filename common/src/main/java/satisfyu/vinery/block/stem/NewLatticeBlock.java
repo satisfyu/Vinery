@@ -6,7 +6,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -20,33 +19,33 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.block.grape.GrapeProperty;
 import satisfyu.vinery.block.grape.GrapeType;
 import satisfyu.vinery.item.GrapeBushSeedItem;
-import satisfyu.vinery.registry.GrapeTypeRegistry;
 import satisfyu.vinery.util.ConnectingProperties;
 import satisfyu.vinery.util.LineConnectingType;
 
-public class NewLatticeBlock extends Block implements BonemealableBlock {
+public class NewLatticeBlock extends StemBlock {
     private static final int MAX_AGE = 4;
     private static final float BREAK_SOUND_PITCH = 0.8F;
 
     public static final BooleanProperty SUPPORT = BooleanProperty.create("support");
     public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
 
-    public static final GrapeProperty GRAPE = GrapeProperty.create("grape");
-    public static final IntegerProperty AGE = BlockStateProperties.AGE_4;
+
     protected static final VoxelShape EAST = Block.box(0.0D, 0.0D, 0.0D, 2.0D, 16.0D, 16.0D);
     protected static final VoxelShape WEST = Block.box(14.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
     protected static final VoxelShape SOUTH = Block.box(0.0D, 0.0D, 0.01D, 16.0D, 16.0D, 2.0D);
@@ -63,11 +62,9 @@ public class NewLatticeBlock extends Block implements BonemealableBlock {
 
     public NewLatticeBlock(Properties properties) {
         super(properties);
-        registerDefaultState(this.stateDefinition.any()
+        registerDefaultState(this.defaultBlockState()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(SUPPORT, true)
-                .setValue(GRAPE, GrapeTypeRegistry.NONE)
-                .setValue(AGE, 0)
                 .setValue(BOTTOM, false)
                 .setValue(TYPE, LineConnectingType.NONE));
     }
@@ -212,7 +209,13 @@ public class NewLatticeBlock extends Block implements BonemealableBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, TYPE, SUPPORT, AGE, GRAPE, BOTTOM);
+        super.createBlockStateDefinition(builder);
+        builder.add(FACING, TYPE, SUPPORT, BOTTOM);
+    }
+
+    @Override
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState state, boolean bl) {
+        return !isMature(state) && state.getValue(AGE) > 0;
     }
 
     @Override
@@ -238,37 +241,5 @@ public class NewLatticeBlock extends Block implements BonemealableBlock {
     public void dropGrapeSeeds(Level world, BlockState state, BlockPos pos) {
         Item grape = state.getValue(GRAPE).getSeeds();
         popResource(world, pos, new ItemStack(grape));
-    }
-
-    @Override
-    public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
-        if (state.getValue(AGE) > 2) {
-            dropGrapes(world, state, pos);
-        }
-        super.playerWillDestroy(world, pos, state, player);
-    }
-
-    @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState state, boolean bl) {
-        return !isMature(state) && levelReader.getBlockState(blockPos.below()).getBlock() == this && state.getValue(AGE) > 0;
-    }
-
-    @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
-        return true;
-    }
-
-    @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
-        boneMealGrow(world, state, pos);
-    }
-
-    private void boneMealGrow(Level world, BlockState state, BlockPos pos) {
-        int j;
-        int age = state.getValue(AGE) + Mth.nextInt(world.getRandom(), 1, 2);
-        if (age > (j = MAX_AGE)) {
-            age = j;
-        }
-        world.setBlock(pos, this.withAge(state, age, state.getValue(GRAPE)), Block.UPDATE_CLIENTS);
     }
 }
