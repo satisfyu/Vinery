@@ -3,7 +3,8 @@
 	"parent": "block/block",
 	"textures": {
 		"2": "vinery:block/lattice/lattice_support_c_oak",
-		"4": "vinery:block/lattice/lattice_leaves_stage3_red",
+		"3": "vinery:block/grapevine_overlay_red_stage1",
+		"4": "vinery:block/lattice/lattice_leaves_stage0",
 		"particle": "vinery:block/lattice/lattice_support_b_oak"
 	},
 	"elements": [
@@ -149,6 +150,26 @@
 				"up": {"uv": [0, 4, 16, 8], "texture": "#4"},
 				"down": {"uv": [0, 4, 16, 8], "texture": "#4"}
 			}
+		},
+		{
+			"name": "grape Bottom",
+			"from": [0, 0, 13],
+			"to": [16, 4, 13],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 6, 13]},
+			"faces": {
+				"north": {"uv": [0, 8, 16, 12], "texture": "#3"},
+				"south": {"uv": [16, 8, 0, 12], "texture": "#3"}
+			}
+		},
+		{
+			"name": "grape top",
+			"from": [0, 10, 12],
+			"to": [16, 15, 12],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 14, 13]},
+			"faces": {
+				"north": {"uv": [0, 2, 16, 7], "texture": "#3"},
+				"south": {"uv": [0, 2, 16, 7], "texture": "#3"}
+			}
 		}
 	],
 	"groups": [
@@ -169,6 +190,8 @@
 		},
 		8,
 		9,
-		10
+		10,
+		11,
+		12
 	]
 }
