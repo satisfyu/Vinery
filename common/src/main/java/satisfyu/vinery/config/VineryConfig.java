@@ -27,6 +27,7 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
                     Codec.intRange(1, 100).fieldOf("probability_to_keep_bone_meal").orElse(DEFAULT.probabilityToKeepBoneMeal).forGetter(c -> c.probabilityToKeepBoneMeal),
                     Codec.intRange(0, 100).fieldOf("grape_growth_speed").orElse(DEFAULT.grapeGrowthSpeed).forGetter(c -> c.grapeGrowthSpeed),
                     Codec.intRange(1, 10000).fieldOf("fermentation_barrel_time").orElse(DEFAULT.fermentationBarrelTime).forGetter(c -> c.fermentationBarrelTime),
+                    Codec.intRange(0, 100).fieldOf("grape_growth_speed").orElse(DEFAULT.grapeGrowthSpeed).forGetter(c -> c.grapeGrowthSpeed),
                     Codec.BOOL.fieldOf("enable_nether_lattices").orElse(DEFAULT.enableNetherLattices).forGetter(c -> c.enableNetherLattices)
             ).apply(builder, VineryConfig::new)
     );
