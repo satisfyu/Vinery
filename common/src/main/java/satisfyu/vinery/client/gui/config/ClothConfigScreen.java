@@ -45,7 +45,7 @@ public class ClothConfigScreen {
         private final ConfigEntryBuilder builder;
         private final ConfigCategory category;
         private final BooleanListEntry enableWineMakerSetBonus, enableNetherLattices;
-        private final IntegerListEntry wineTraderChance, yearLengthInDays, yearsPerEffectLevel, fermentationBarrelTime, damagePerUse, probabilityForDamage, probabilityToKeepBoneMeal;
+        private final IntegerListEntry wineTraderChance, yearLengthInDays, yearsPerEffectLevel, fermentationBarrelTime, damagePerUse, probabilityForDamage, probabilityToKeepBoneMeal, grapeGrowthSpeed;
 
 
 
@@ -57,6 +57,8 @@ public class ClothConfigScreen {
             yearLengthInDays = createIntField("yearLengthInDays", config.yearLengthInDays(), VineryConfig.DEFAULT.yearLengthInDays(), null, 1, 1000);
             yearsPerEffectLevel = createIntField("yearsPerEffectLevel", config.yearsPerEffectLevel(), VineryConfig.DEFAULT.yearsPerEffectLevel(), null, 1, 1000);
             fermentationBarrelTime = createIntField("fermentationBarrelTime", config.fermentationBarrelTime(), VineryConfig.DEFAULT.fermentationBarrelTime(), null, 1, 10000);
+            grapeGrowthSpeed = createIntField("grapeGrowthSpeed", config.grapeGrowthSpeed(), VineryConfig.DEFAULT.grapeGrowthSpeed(), null, 1, 100);
+            enableNetherLattices = createBooleanField("enableNetherLattices", config.enableNetherLattices(), VineryConfig.DEFAULT.enableNetherLattices(), null);
 
             SubCategoryBuilder wineMaker = new SubCategoryBuilder(Component.empty(), Component.translatable("vinery.config.subCategory.wineMaker"));
 
@@ -64,8 +66,6 @@ public class ClothConfigScreen {
             probabilityToKeepBoneMeal = createIntField("probabilityToKeepBoneMeal", config.probabilityToKeepBoneMeal(), VineryConfig.DEFAULT.probabilityToKeepBoneMeal(), wineMaker, 1, 100);
             probabilityForDamage = createIntField("probabilityForDamage", config.probabilityForDamage(), VineryConfig.DEFAULT.probabilityForDamage(), wineMaker, 0, 100);
             damagePerUse = createIntField("damagePerUse", config.damagePerUse(), VineryConfig.DEFAULT.damagePerUse(), wineMaker, 1, 1000);
-            enableNetherLattices = createBooleanField("enableNetherLattices", config.enableNetherLattices(), VineryConfig.DEFAULT.enableNetherLattices(), null);
-
 
             category.addEntry(wineMaker.build());
             linkButtons(Vinery.MOD_ID, category, builder, "https://discord.gg/Vqu6wYZwdZ", "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine", lastScreen);
@@ -73,7 +73,7 @@ public class ClothConfigScreen {
 
 
         public VineryConfig createConfig() {
-            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue(), enableNetherLattices.getValue());
+            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue(), grapeGrowthSpeed.getValue(), enableNetherLattices.getValue());
         }
 
 
