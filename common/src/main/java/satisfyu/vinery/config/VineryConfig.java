@@ -9,12 +9,12 @@ import java.util.HashMap;
 
 
 public record VineryConfig(int wineTraderChance, int yearLengthInDays, int yearsPerEffectLevel,
-                           boolean enableWineMakerSetBonus, int damagePerUse, int probabilityForDamage, int probabilityToKeepBoneMeal, int fermentationBarrelTime)
+                           boolean enableWineMakerSetBonus, int damagePerUse, int probabilityForDamage, int probabilityToKeepBoneMeal, int fermentationBarrelTime, boolean enableNetherLattices)
         implements CommentedConfig<VineryConfig> {
 
     private static VineryConfig INSTANCE = null;
 
-    public static final VineryConfig DEFAULT = new VineryConfig(50, 16, 4, true, 1, 30, 100, 50);
+    public static final VineryConfig DEFAULT = new VineryConfig(50, 16, 4, true, 1, 30, 100, 50, false);
 
     public static final Codec<VineryConfig> CODEC = RecordCodecBuilder.create(builder ->
             builder.group(
@@ -25,7 +25,8 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
                     Codec.intRange(1, 1000).fieldOf("damage_per_use").orElse(DEFAULT.damagePerUse).forGetter(c -> c.damagePerUse),
                     Codec.intRange(0, 100).fieldOf("probability_for_damage").orElse(DEFAULT.probabilityForDamage).forGetter(c -> c.probabilityForDamage),
                     Codec.intRange(1, 100).fieldOf("probability_to_keep_bone_meal").orElse(DEFAULT.probabilityToKeepBoneMeal).forGetter(c -> c.probabilityToKeepBoneMeal),
-                    Codec.intRange(1, 10000).fieldOf("fermentation_barrel_time").orElse(DEFAULT.fermentationBarrelTime).forGetter(c -> c.fermentationBarrelTime)
+                    Codec.intRange(1, 10000).fieldOf("fermentation_barrel_time").orElse(DEFAULT.fermentationBarrelTime).forGetter(c -> c.fermentationBarrelTime),
+                    Codec.BOOL.fieldOf("enable_nether_lattices").orElse(DEFAULT.enableNetherLattices).forGetter(c -> c.enableNetherLattices)
             ).apply(builder, VineryConfig::new)
     );
 
@@ -49,6 +50,8 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
                     Years per effect level""");
             map.put("fermentation_barrel_time", """
                     Ticks it takes to ferment a bottle""");
+            map.put("enable_nether_lattices", """
+                    (It is recommended to download NetherVinery instead)""");
         });
     }
 

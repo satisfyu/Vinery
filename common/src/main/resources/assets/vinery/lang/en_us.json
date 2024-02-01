@@ -276,6 +276,7 @@
   "vinery.config.entry.yearLengthInDays": "Days per Year",
   "vinery.config.entry.yearsPerEffectLevel": "Years per effect level",
   "vinery.config.entry.fermentationBarrelTime": "Fermentation Barrel Time",
+  "vinery.config.entry.enableNetherLattices": "Enable Nether Lattices (requires restart)",
   "vinery.config.subCategory.wineMaker": "Winemaker Set Bonus",
   "vinery.config.title": "Vinery",
   "vinery.tooltip.winemaker_armor": "Winemaker's Desire:",

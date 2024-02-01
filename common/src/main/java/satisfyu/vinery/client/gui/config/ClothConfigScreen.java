@@ -44,7 +44,7 @@ public class ClothConfigScreen {
     private static class ConfigEntries {
         private final ConfigEntryBuilder builder;
         private final ConfigCategory category;
-        private final BooleanListEntry enableWineMakerSetBonus;
+        private final BooleanListEntry enableWineMakerSetBonus, enableNetherLattices;
         private final IntegerListEntry wineTraderChance, yearLengthInDays, yearsPerEffectLevel, fermentationBarrelTime, damagePerUse, probabilityForDamage, probabilityToKeepBoneMeal;
 
 
@@ -64,6 +64,7 @@ public class ClothConfigScreen {
             probabilityToKeepBoneMeal = createIntField("probabilityToKeepBoneMeal", config.probabilityToKeepBoneMeal(), VineryConfig.DEFAULT.probabilityToKeepBoneMeal(), wineMaker, 1, 100);
             probabilityForDamage = createIntField("probabilityForDamage", config.probabilityForDamage(), VineryConfig.DEFAULT.probabilityForDamage(), wineMaker, 0, 100);
             damagePerUse = createIntField("damagePerUse", config.damagePerUse(), VineryConfig.DEFAULT.damagePerUse(), wineMaker, 1, 1000);
+            enableNetherLattices = createBooleanField("enableNetherLattices", config.enableNetherLattices(), VineryConfig.DEFAULT.enableNetherLattices(), null);
 
 
             category.addEntry(wineMaker.build());
@@ -72,7 +73,7 @@ public class ClothConfigScreen {
 
 
         public VineryConfig createConfig() {
-            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue());
+            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue(), enableNetherLattices.getValue());
         }
 
 
