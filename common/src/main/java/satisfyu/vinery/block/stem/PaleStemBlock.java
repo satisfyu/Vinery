@@ -27,10 +27,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.item.GrapeBushSeedItem;
 import satisfyu.vinery.registry.GrapeTypeRegistry;
 
 import java.util.List;
+import java.util.Random;
 
 public class PaleStemBlock extends StemBlock {
     private static final VoxelShape PALE_SHAPE = Block.box(6.0, 0,6.0, 10.0,  16.0, 10.0);
@@ -123,6 +125,8 @@ public class PaleStemBlock extends StemBlock {
 
     @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        Random rand = new Random();
+        if (!((rand.nextInt(100) + 1) <= VineryConfig.DEFAULT.getConfig().grapeGrowthSpeed())) return;
         if (!isMature(state) && hasTrunk(world, pos) && state.getValue(AGE) > 0) {
             final int i;
             if (world.getRawBrightness(pos, 0) >= 9 && (i = state.getValue(AGE)) < 4) {

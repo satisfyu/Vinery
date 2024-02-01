@@ -35,9 +35,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.block.grape.GrapeType;
+import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.item.GrapeBushSeedItem;
 import satisfyu.vinery.util.ConnectingProperties;
 import satisfyu.vinery.util.LineConnectingType;
+
+import java.util.Random;
 
 public class NewLatticeBlock extends StemBlock {
     public static final BooleanProperty SUPPORT = BooleanProperty.create("support");
@@ -148,7 +151,8 @@ public class NewLatticeBlock extends StemBlock {
     @Override
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-        // We don't need a conditional here anymore
+        Random rand = new Random();
+        if (!((rand.nextInt(100) + 1) <= VineryConfig.DEFAULT.getConfig().grapeGrowthSpeed())) return;
         int age = state.getValue(AGE);
         BlockState newState = this.withAge(state, age + 1, state.getValue(GRAPE));
         world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
