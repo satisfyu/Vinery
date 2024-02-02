@@ -60,4 +60,15 @@ allprojects {
     java {
         withSourcesJar()
     }
+
+    tasks.register('deleteConfigDirectory') {
+        def configDir = files("$projectDir/run/config/")
+        delete configDir
+
+        def dataDir = files("$projectDir/run/data/")
+        delete dataDir
+
+        def logsDir = files("$projectDir/run/logs/")
+        delete logsDir
+    }
 }
