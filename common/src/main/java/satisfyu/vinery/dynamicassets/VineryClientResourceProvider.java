@@ -38,6 +38,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 public class VineryClientResourceProvider {
     public static void init() {
@@ -48,8 +49,8 @@ public class VineryClientResourceProvider {
     public static class ClientAssetsGenerator extends DynClientResourcesGenerator {
 
         protected ClientAssetsGenerator() {
-            //here you pass the dynamic texture pack instance
-            super(new DynamicTexturePack(new VineryIdentifier("dynamic_resource_pack"), Pack.Position.TOP, false, false));
+            super(new DynamicTexturePack(new VineryIdentifier("dynamic_resource_pack"), Pack.Position.BOTTOM, true, true));
+            // Should be at bottom so users can override assets
         }
 
         // generate here your assets
@@ -67,20 +68,25 @@ public class VineryClientResourceProvider {
 
                 getLogger().info("Found wood path, {}", planksResourceLocation);
 
-                this.addTextureIfNotPresent(manager, String.format("vinery:block/lattice/lattice_support_a_%s", type.getTypeName()), () -> recolorTexture(manager, new VineryIdentifier("block/lattice/lattice_support_a_oak"), planksResourceLocation));
-                this.addTextureIfNotPresent(manager, String.format("vinery:block/lattice/lattice_support_b_%s", type.getTypeName()), () -> recolorTexture(manager, new VineryIdentifier("block/lattice/lattice_support_b_oak"), planksResourceLocation));
-                this.addTextureIfNotPresent(manager, String.format("vinery:block/lattice/lattice_support_c_%s", type.getTypeName()), () -> recolorTexture(manager, new VineryIdentifier("block/lattice/lattice_support_c_oak"), planksResourceLocation));
-                this.addTextureIfNotPresent(manager, String.format("vinery:block/lattice/lattice_vine_support_%s", type.getTypeName()), () -> recolorTexture(manager, new VineryIdentifier("block/lattice/lattice_vine_support_oak"), planksResourceLocation));
+                String processedLatticeId = type.getVariantId("%s");
+                if (Objects.equals(type.getNamespace(), Vinery.MOD_ID) && type.getTypeName().toLowerCase() == "cherry") {
+                    processedLatticeId = processedLatticeId.replace("cherry", "dark_cherry");
+                }
 
-                getLogger().info("Generating lattice for {} wood type", type.getTypeName());
+                this.addTextureIfNotPresent(manager, String.format("vinery:block/lattice/lattice_support_a_%s", processedLatticeId), () -> recolorTexture(manager, new VineryIdentifier("block/lattice/lattice_support_a_oak"), planksResourceLocation));
+                this.addTextureIfNotPresent(manager, String.format("vinery:block/lattice/lattice_support_b_%s", processedLatticeId), () -> recolorTexture(manager, new VineryIdentifier("block/lattice/lattice_support_b_oak"), planksResourceLocation));
+                this.addTextureIfNotPresent(manager, String.format("vinery:block/lattice/lattice_support_c_%s", processedLatticeId), () -> recolorTexture(manager, new VineryIdentifier("block/lattice/lattice_support_c_oak"), planksResourceLocation));
+                this.addTextureIfNotPresent(manager, String.format("vinery:block/lattice/lattice_vine_support_%s", processedLatticeId), () -> recolorTexture(manager, new VineryIdentifier("block/lattice/lattice_vine_support_oak"), planksResourceLocation));
+
+                getLogger().info("Generating lattice for {} wood type", processedLatticeId);
                 JsonObject json = new JsonObject();
                 json.addProperty("parent", new VineryIdentifier("block/oak_lattice").toString());
-                this.dynamicPack.addItemModel(new VineryIdentifier(String.format("%s_lattice", type.getTypeName())), json);
+                this.dynamicPack.addItemModel(new VineryIdentifier(String.format("%s_lattice", processedLatticeId)), json);
 
-                Collection<String> json_paths = List.of("blockstates/%s", "models/item/%s", "models/block/%s","models/block/%s_no_support","models/block/%s_left","models/block/%s_left_no_support","models/block/%s_middle","models/block/%s_right","models/block/%s_right_no_support","models/block/%s_bottom","models/block/%s_stage1","models/block/%s_no_support_stage1","models/block/%s_left_stage1","models/block/%s_left_no_support_stage1","models/block/%s_middle_stage1","models/block/%s_right_stage1","models/block/%s_right_no_support_stage1","models/block/%s_bottom_stage1","models/block/%s_stage2","models/block/%s_no_support_stage2","models/block/%s_left_stage2","models/block/%s_left_no_support_stage2","models/block/%s_middle_stage2","models/block/%s_right_stage2","models/block/%s_right_no_support_stage2","models/block/%s_bottom_stage2","models/block/%s_stage3_red","models/block/%s_no_support_stage3_red","models/block/%s_left_stage3_red","models/block/%s_left_no_support_stage3_red","models/block/%s_middle_stage3_red","models/block/%s_right_stage3_red","models/block/%s_right_no_support_stage3_red","models/block/%s_bottom_stage3_red","models/block/%s_stage4_red","models/block/%s_no_support_stage4_red","models/block/%s_left_stage4_red","models/block/%s_left_no_support_stage4_red","models/block/%s_middle_stage4_red","models/block/%s_right_stage4_red","models/block/%s_right_no_support_stage4_red","models/block/%s_bottom_stage4_red","models/block/%s_stage3_white","models/block/%s_no_support_stage3_white","models/block/%s_left_stage3_white","models/block/%s_left_no_support_stage3_white","models/block/%s_middle_stage3_white","models/block/%s_right_stage3_white","models/block/%s_right_no_support_stage3_white","models/block/%s_bottom_stage3_white","models/block/%s_stage4_white","models/block/%s_no_support_stage4_white","models/block/%s_left_stage4_white","models/block/%s_left_no_support_stage4_white","models/block/%s_middle_stage4_white","models/block/%s_right_stage4_white","models/block/%s_right_no_support_stage4_white","models/block/%s_bottom_stage4_white", "recipes/%s_lattice");
+                Collection<String> json_paths = List.of("blockstates/%s", "models/item/%s", "models/block/%s","models/block/%s_no_support","models/block/%s_left","models/block/%s_left_no_support","models/block/%s_middle","models/block/%s_right","models/block/%s_right_no_support","models/block/%s_bottom","models/block/%s_stage1","models/block/%s_no_support_stage1","models/block/%s_left_stage1","models/block/%s_left_no_support_stage1","models/block/%s_middle_stage1","models/block/%s_right_stage1","models/block/%s_right_no_support_stage1","models/block/%s_bottom_stage1","models/block/%s_stage2","models/block/%s_no_support_stage2","models/block/%s_left_stage2","models/block/%s_left_no_support_stage2","models/block/%s_middle_stage2","models/block/%s_right_stage2","models/block/%s_right_no_support_stage2","models/block/%s_bottom_stage2","models/block/%s_stage3_red","models/block/%s_no_support_stage3_red","models/block/%s_left_stage3_red","models/block/%s_left_no_support_stage3_red","models/block/%s_middle_stage3_red","models/block/%s_right_stage3_red","models/block/%s_right_no_support_stage3_red","models/block/%s_bottom_stage3_red","models/block/%s_stage4_red","models/block/%s_no_support_stage4_red","models/block/%s_left_stage4_red","models/block/%s_left_no_support_stage4_red","models/block/%s_middle_stage4_red","models/block/%s_right_stage4_red","models/block/%s_right_no_support_stage4_red","models/block/%s_bottom_stage4_red","models/block/%s_stage3_white","models/block/%s_no_support_stage3_white","models/block/%s_left_stage3_white","models/block/%s_left_no_support_stage3_white","models/block/%s_middle_stage3_white","models/block/%s_right_stage3_white","models/block/%s_right_no_support_stage3_white","models/block/%s_bottom_stage3_white","models/block/%s_stage4_white","models/block/%s_no_support_stage4_white","models/block/%s_left_stage4_white","models/block/%s_left_no_support_stage4_white","models/block/%s_middle_stage4_white","models/block/%s_right_stage4_white","models/block/%s_right_no_support_stage4_white","models/block/%s_bottom_stage4_white");
                 for (String jsonPath : json_paths) {
                     StaticResource currentJson = StaticResource.getOrFail(manager, new VineryIdentifier(String.format(jsonPath, "oak_lattice") + ".json"));;
-                    this.addSimilarJsonResource(manager, currentJson, "oak", type.getTypeName());
+                    this.addSimilarJsonResource(manager, currentJson, "oak", processedLatticeId);
                 }
             });
         }
@@ -90,9 +96,14 @@ public class VineryClientResourceProvider {
         public void addDynamicTranslations(AfterLanguageLoadEvent languageEvent) {
             getLogger().info("Generating lattice translations");
             BlockSetAPI.getBlockSet(WoodType.class).getValues().forEach((WoodType type) -> {
-                getLogger().info("Loading translation for {} wood type", type.getTypeName());
+                String processedLatticeId = type.getVariantId("%s");
+                if (Objects.equals(type.getNamespace(), Vinery.MOD_ID) && type.getTypeName().toLowerCase() == "cherry") {
+                    processedLatticeId = processedLatticeId.replace("cherry", "dark_cherry");
+                }
+
+                getLogger().info("Loading translation for {} wood type", processedLatticeId);
                 String latticeName = String.format(languageEvent.getEntry("block.vinery.lattice"), type.getReadableName());
-                String translationKey = String.format("block.vinery.%s_lattice", type.getTypeName());
+                String translationKey = String.format("block.vinery.%s_lattice", processedLatticeId);
                 languageEvent.addEntry(translationKey, latticeName);
                 getLogger().info("Loaded translation \"{}\" for id {}", latticeName, translationKey);
             });
@@ -154,3 +165,4 @@ public class VineryClientResourceProvider {
         }
     }
 }
+

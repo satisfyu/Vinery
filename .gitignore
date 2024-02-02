@@ -1,6 +1,6 @@
 build/
 *.ipr
-run/
+fabric/run/
 *.iws
 out/
 *.iml

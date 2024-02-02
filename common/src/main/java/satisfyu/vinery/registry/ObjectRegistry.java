@@ -5,13 +5,14 @@ import com.mojang.datafixers.util.Pair;
 import de.cristelknight.doapi.Util;
 import de.cristelknight.doapi.common.block.ChairBlock;
 import dev.architectury.core.item.ArchitecturySpawnEggItem;
+import dev.architectury.platform.Platform;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
+import net.fabricmc.api.EnvType;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
@@ -38,10 +39,11 @@ import satisfyu.vinery.block.grape.GrapeBush;
 import satisfyu.vinery.block.grape.GrapeVineBlock;
 import satisfyu.vinery.block.grape.SavannaGrapeBush;
 import satisfyu.vinery.block.grape.TaigaGrapeBush;
-import satisfyu.vinery.block.lattice.DynamicHandler;
-import satisfyu.vinery.block.stem.NewLatticeBlock;
+import satisfyu.vinery.dynamicassets.DynamicHandler;
 import satisfyu.vinery.block.stem.PaleStemBlock;
 import satisfyu.vinery.block.storage.*;
+import satisfyu.vinery.dynamicassets.VineryClientResourceProvider;
+import satisfyu.vinery.dynamicassets.VineryServerDataProvider;
 import satisfyu.vinery.item.*;
 import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.util.FoodComponent;
@@ -271,7 +273,9 @@ public class ObjectRegistry {
         Vinery.LOGGER.debug("Registering Mod Block and Items for " + Vinery.MOD_ID);
         ITEMS.register();
         BLOCKS.register();
+        DynamicHandler.addCherryWoodType();
         BlockSetAPI.addDynamicBlockRegistration(DynamicHandler::registerLatticeBlocks, DynamicHandler.woodTypeClass);
+        VineryServerDataProvider.init();
     }
 
     public static BlockBehaviour.Properties properties(float strength) {

@@ -1,9 +1,10 @@
-package satisfyu.vinery.block.lattice;
+package satisfyu.vinery.dynamicassets;
 
 import dev.architectury.platform.Platform;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.fabricmc.api.EnvType;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
+import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.mehvahdjukaar.moonlight.core.Moonlight;
@@ -43,6 +44,9 @@ public class DynamicHandler {
                 }
             }
             String latticeId = woodType.getVariantId("%s_lattice");
+            if (woodType.getNamespace() == Vinery.MOD_ID && woodType.getTypeName().toLowerCase() == "cherry") {
+                latticeId = latticeId.replace("cherry", "dark_cherry");
+            }
             Block block = new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(woodType.getSound()).noOcclusion());
             woodType.addChild(new VineryIdentifier("lattice").toString(), block);
 
@@ -56,5 +60,10 @@ public class DynamicHandler {
                 Vinery.LOGGER.debug("Added {} lattice block to cutout render list", woodType.getReadableName());
             }
         }
+    }
+
+    public static void addCherryWoodType() {
+        BlockSetAPI.addBlockTypeFinder(WoodType.class, WoodType.Finder.simple("vinery",
+                "cherry", "cherry_planks", "cherry_log"));
     }
 }

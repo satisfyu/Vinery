@@ -106,6 +106,9 @@ public class VineryClient {
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.APPLE_PRESS_GUI_HANDLER.get(), ApplePressGui::new);
 
         BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.FLOWER_POT_ENTITY.get(), FlowerPotBlockEntityRenderer::new);
+
+        CLIENT_LATTICES.addAll(BlockSetAPI.getBlockSet(WoodType.class).getValues());
+        VineryClientResourceProvider.init();
     }
 
 
@@ -121,8 +124,6 @@ public class VineryClient {
         EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);
         CustomArmorRegistry.registerArmorModelLayers();
 
-        CLIENT_LATTICES.addAll(BlockSetAPI.getBlockSet(WoodType.class).getValues());
-        VineryClientResourceProvider.init();
         LOGGER.info("Resource provider initialized, side is {}", Platform.getEnvironment().toPlatform().toString());
     }
 
