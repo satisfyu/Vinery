@@ -20,8 +20,6 @@ jobs:
   mod-build:
     name: 📦 Build mod
     runs-on: macos-14
-    outputs:
-      rootProject: ${{ steps.read_properties.outputs }}
     steps:
       - name: checkout repository
         uses: actions/checkout@v3 # This is effectively git pull
@@ -38,19 +36,24 @@ jobs:
         uses: gradle/gradle-build-action@v2 # Speeds up build time by about 5 mins :P
       - name: Execute Gradle build
         run: ./gradlew build --warning-mode all # Builds the mod into a jar file
-      - uses: actions/upload-artifact@v4
-        with:
-          name: mod-build-files
-          path: build/libs/ # Uploads built file as an artifact
-      - uses: madhead/read-java-properties@latest
-        id: read_properties
-        with:
-          file: gradle.properties
-          all: true
+      - name: Debug
+        run: |
+          echo '=== COMMON BUILD ==='
+          cd /build/libs/
+          ls -a -r
+          cd ../../
+          echo '=== FABRIC BUILD ==='
+          cd /fabric/build/libs/
+          ls -a -r
+          cd ../../../
+          echo '=== FORGE BUILD ==='
+          cd /forge/build/libs/
+          ls -a -r
+          cd ../../../
 
   publish-github:
     name: 🐙 Publish to GitHub
-    runs-on: macos-14
+    runs-on: ubuntu-latest
     if: inputs.publish_github
     needs: mod-build
     steps:
@@ -58,8 +61,11 @@ jobs:
         uses: actions/download-artifact@v4.1.0
         with:
           path: build/
-      - name: debug
-        run: mv build/mod-build-files build/libs
+      - uses: madhead/read-java-properties@latest
+        id: read_properties
+        with:
+          file: gradle.properties
+          all: true
       - name: publish
         uses: Kir-Antipov/mc-publish@v3.3
         with:
@@ -72,6 +78,6 @@ jobs:
           version: "v${{ env.mod_version }}-${{ env.mc_version }}"
           version-type: ${{ inputs.release_as_beta && 'beta' || 'release' }}
         env:
-          mod_name: ${{ needs.mod-build.outputs.rootProject.archives_base_name }}
-          mc_version: ${{ needs.mod-build.outputs.rootProject.minecraft_version }}
-          mod_version: ${{ needs.mod-build.outputs.rootProject.version }}
+          mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
+          mc_version: ${{ steps.read_properties.outputs.minecraft_version }}
+          mod_version: ${{ steps.read_properties.outputs.version }}
