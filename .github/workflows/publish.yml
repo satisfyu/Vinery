@@ -41,15 +41,15 @@ jobs:
         run: |
           ls -a -r
           echo '=== COMMON BUILD ==='
-          cd /build/libs/
+          cd build/libs/
           ls -a -r
           cd ../../
           echo '=== FABRIC BUILD ==='
-          cd /fabric/build/libs/
+          cd fabric/build/libs/
           ls -a -r
           cd ../../../
           echo '=== FORGE BUILD ==='
-          cd /forge/build/libs/
+          cd forge/build/libs/
           ls -a -r
           cd ../../../
 
