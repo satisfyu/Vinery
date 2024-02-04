@@ -22,7 +22,7 @@ jobs:
     runs-on: macos-14
     steps:
       - name: checkout repository
-        uses: actions/checkout@v3 # This is effectively git pull
+        uses: actions/checkout@v3 # This is effectively git clone
       - name: setup JDK 17
         uses: actions/setup-java@v3
         with:
@@ -66,7 +66,9 @@ jobs:
         run: |
           cd compiledmods/
           ls -a -r
-          mv ${{ env.mod_version }}-${{ env.mod_name }}.jar
+          mv ${{ env.mod_name }}-${{ env.mod_version }}.jar ${{ env.mod_name }}-${{ env.mod_version }}-common.jar
+          mv ./fabric/${{ env.mod_name }}-${{ env.mod_version }}.jar ./${{ env.mod_name }}-${{ env.mod_version }}-fabric.jar
+          mv ./forge/${{ env.mod_name }}-${{ env.mod_version }}.jar ./${{ env.mod_name }}-${{ env.mod_version }}-forge.jar
         env:
           mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
           mod_version: ${{ steps.read_properties.outputs.version }}
@@ -75,8 +77,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           files: |
-            build/libs/!(*-@(dev|sources|javadoc)).jar
-            build/libs/*-@(dev|sources|javadoc).jar
+            compiledmods/${{ env.mod_name }}-${{ env.mod_version }}-common.jar
+            compiledmods/${{ env.mod_name }}-${{ env.mod_version }}-fabric.jar
+            compiledmods/${{ env.mod_name }}-${{ env.mod_version }}-forge.jar
           github-tag: "v${{ env.mod_version }}-${{ env.mc_version }}"
           name: "v${{ env.mod_version }}-${{ env.mc_version }}"
           version: "v${{ env.mod_version }}-${{ env.mc_version }}"
