@@ -72,7 +72,7 @@ jobs:
           mv ./build-forge/${{ env.mod_name }}-${{ env.mod_version }}.jar ./${{ env.mod_name }}-${{ env.mod_version }}-forge.jar
         env:
           mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
-          mod_version: ${{ steps.read_properties.outputs.version }}
+          mod_version: ${{ steps.read_properties.outputs.mod_version }}
       - name: publish
         uses: Kir-Antipov/mc-publish@v3.3
         with:
@@ -88,4 +88,4 @@ jobs:
         env:
           mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
           mc_version: ${{ steps.read_properties.outputs.minecraft_version }}
-          mod_version: ${{ steps.read_properties.outputs.version }}
+          mod_version: ${{ steps.read_properties.outputs.mod_version }}
