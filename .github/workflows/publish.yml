@@ -1,0 +1,131 @@
+name: publish
+on:
+  workflow_dispatch:
+    inputs:
+      release_as_beta:
+        description: "Mark as pre-release"
+        required: true
+        type: boolean
+        default: true
+      publish_github:
+        description: "Publish to GitHub"
+        required: true
+        type: boolean
+        default: true
+      publish_modrinth:
+        description: "Publish to Modrinth"
+        required: true
+        type: boolean
+        default: true
+permissions:
+  contents: write
+  packages: write
+  
+jobs:
+  mod-build:
+    name: 📦 Build mod
+    runs-on: macos-14
+    outputs:
+      archives_base_name: ${{ steps.mod_properties.outputs.archives_base_name }}
+      minecraft_version: ${{ steps.mod_properties.outputs.minecraft_version }}
+      version: ${{ steps.mod_properties.outputs.version }}
+      changelog_body: ${{ steps.gen_changelog.outputs.changes }}
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3 # This is effectively git pull
+      - name: validate gradle wrapper
+        uses: gradle/wrapper-validation-action@v1 # Basically bug check stuff
+      - name: setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'temurin' # Installs java
+      - name: make gradle wrapper executable
+        run: chmod +x ./gradlew # Execution workaround for unix-based systems
+      - name: Setup gradle
+        uses: gradle/gradle-build-action@v2 # Speeds up build time by about 5 mins :P
+      - name: Execute Gradle build
+        run: ./gradlew build --warning-mode all -Xmx1024M # Builds the mod into a jar file
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mod-build-files
+          path: build/libs/ # Uploads built file as an artifact
+      - uses: madhead/read-java-properties@latest
+        id: read_properties
+        with:
+          file: gradle.properties
+          all: true
+      - name: Generate Changelog
+        id: gen_changelog
+        uses: requarks/changelog-action@v1
+        with:
+          token: ${{ github.token }}
+          fromTag: ${{ github.ref_name }}
+          toTag: ${{ steps.previousTag.outputs.tag }}
+          reverseOrder: true
+          useGitmojis: false
+          includeRefIssues: false
+      - name: Commit CHANGELOG.md
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: main
+          commit_message: "docs: Update changelog for v${{ steps.mod_properties.outputs.version }}-${{ steps.mod_properties.outputs.minecraft_version }}"
+          file_pattern: CHANGELOG.md
+          
+  publish-github:
+    name: 🐙 Publish to GitHub
+    runs-on: macos-14
+    if: inputs.publish_github
+    needs: mod-build
+    steps:
+      - name: Download build files
+        uses: actions/download-artifact@v4.1.0
+        with:
+          path: build/
+      - name: debug
+        run: mv build/mod-build-files build/libs
+      - name: publish
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            build/libs/!(*-@(dev|sources|javadoc)).jar
+            build/libs/*-@(dev|sources|javadoc).jar
+          github-tag: "v${{ env.mod_version }}-${{ env.mc_version }}"
+          name: "v${{ env.mod_version }}-${{ env.mc_version }}"
+          version: "v${{ env.mod_version }}-${{ env.mc_version }}"
+          version-type: ${{ inputs.release_as_beta && 'beta' || 'release' }}
+          changelog: ${{ needs.mod-build.outputs.changelog_body }}
+        env:
+          mod_name: ${{ needs.mod-build.outputs.archives_base_name }}
+          mc_version: ${{ needs.mod-build.outputs.minecraft_version }}
+          mod_version: ${{ needs.mod-build.outputs.version }}
+          
+  publish-modrinth:
+      name: 🟢 Publish to Modrinth
+      runs-on: macos-14
+      if: inputs.publish_modrinth
+      needs: mod-build
+      steps:
+      - name: Download build files
+        uses: actions/download-artifact@v4.1.0
+        with:
+          path: build/
+      - name: debug
+        run: mv build/mod-build-files build/libs
+      - name: publish
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: undefined
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          files: "build/libs/${{ env.mod_name }}-${{ env.mod_version }}+${{ env.mc_version }}.jar"
+          name: "v${{ env.mod_version }}-${{ env.mc_version }}"
+          loaders: "quilt"
+          game-versions: "${{ env.mc_version }}"
+          version: "v${{ env.mod_version }}-${{ env.mc_version }}"
+          version-type: ${{ inputs.release_as_beta && 'beta' || 'release' }}
+          changelog: ${{ needs.mod-build.outputs.changelog_body }}
+        env:
+          mod_name: ${{ needs.mod-build.outputs.archives_base_name }}
+          mc_version: ${{ needs.mod-build.outputs.minecraft_version }}
+          mod_version: ${{ needs.mod-build.outputs.version }}
