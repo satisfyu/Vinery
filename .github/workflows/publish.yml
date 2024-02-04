@@ -33,11 +33,12 @@ jobs:
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew # Execution workaround for unix-based systems
       - name: Setup gradle
-        uses: gradle/gradle-build-action@v2 # Speeds up build time by about 5 mins :P
+        uses: gradle/setup-gradle@v3 # Speeds up build time by about 5 mins :P
       - name: Execute Gradle build
         run: ./gradlew build --warning-mode all # Builds the mod into a jar file
       - name: Debug
         run: |
+          ls -a -r
           echo '=== COMMON BUILD ==='
           cd /build/libs/
           ls -a -r
