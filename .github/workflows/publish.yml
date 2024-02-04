@@ -37,7 +37,7 @@ jobs:
       - name: Setup gradle
         uses: gradle/gradle-build-action@v2 # Speeds up build time by about 5 mins :P
       - name: Execute Gradle build
-        run: ./gradlew build --warning-mode all -Xmx1024M # Builds the mod into a jar file
+        run: ./gradlew build --warning-mode all # Builds the mod into a jar file
       - uses: actions/upload-artifact@v4
         with:
           name: mod-build-files
