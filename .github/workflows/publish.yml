@@ -34,6 +34,9 @@ jobs:
         uses: gradle/actions/setup-gradle@v3 # Speeds up build time by about 5 mins :P
       - name: Execute Gradle build
         run: ./gradlew build --warning-mode all # Builds the mod into a jar file
+      - uses: actions/upload-artifact@v4.3.0
+        with:
+          path: ./
       - name: Debug
         run: |
           ls -a -r
