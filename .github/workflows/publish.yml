@@ -66,9 +66,9 @@ jobs:
         run: |
           cd compiledmods/
           ls -a -r
-          mv ${{ env.mod_name }}-${{ env.mod_version }}.jar ${{ env.mod_name }}-${{ env.mod_version }}-common.jar
-          mv ./fabric/${{ env.mod_name }}-${{ env.mod_version }}.jar ./${{ env.mod_name }}-${{ env.mod_version }}-fabric.jar
-          mv ./forge/${{ env.mod_name }}-${{ env.mod_version }}.jar ./${{ env.mod_name }}-${{ env.mod_version }}-forge.jar
+          mv ./build-common/${{ env.mod_name }}-${{ env.mod_version }}.jar ${{ env.mod_name }}-${{ env.mod_version }}-common.jar
+          mv ./build-fabric/${{ env.mod_name }}-${{ env.mod_version }}.jar ./${{ env.mod_name }}-${{ env.mod_version }}-fabric.jar
+          mv ./build-forge/${{ env.mod_name }}-${{ env.mod_version }}.jar ./${{ env.mod_name }}-${{ env.mod_version }}-forge.jar
         env:
           mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
           mod_version: ${{ steps.read_properties.outputs.version }}
