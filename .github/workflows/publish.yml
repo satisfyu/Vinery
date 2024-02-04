@@ -36,22 +36,16 @@ jobs:
         run: ./gradlew build --warning-mode all # Builds the mod into a jar file
       - uses: actions/upload-artifact@v4.3.0
         with:
-          path: ./
-      - name: Debug
-        run: |
-          ls -a -r
-          echo '=== COMMON BUILD ==='
-          cd build/libs/
-          ls -a -r
-          cd ../../
-          echo '=== FABRIC BUILD ==='
-          cd fabric/build/libs/
-          ls -a -r
-          cd ../../../
-          echo '=== FORGE BUILD ==='
-          cd forge/build/libs/
-          ls -a -r
-          cd ../../../
+          name: build-common
+          path: build/libs/
+      - uses: actions/upload-artifact@v4.3.0
+        with:
+          name: build-fabric
+          path: fabric/build/libs/
+      - uses: actions/upload-artifact@v4.3.0
+        with:
+          name: build-forge
+          path: forge/build/libs/
 
   publish-github:
     name: 🐙 Publish to GitHub
@@ -62,12 +56,20 @@ jobs:
       - name: Download build files
         uses: actions/download-artifact@v4.1.0
         with:
-          path: build/
+          path: compiledmods/
       - uses: madhead/read-java-properties@latest
         id: read_properties
         with:
           file: gradle.properties
           all: true
+      - name: process builds
+        run: |
+          cd compiledmods/
+          ls -a -r
+          mv ${{ env.mod_version }}-${{ env.mod_name }}.jar
+        env:
+          mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
+          mod_version: ${{ steps.read_properties.outputs.version }}
       - name: publish
         uses: Kir-Antipov/mc-publish@v3.3
         with:
