@@ -53,6 +53,7 @@ jobs:
     if: inputs.publish_github
     needs: mod-build
     steps:
+      - uses: actions/checkout@v4.1.1
       - name: Download build files
         uses: actions/download-artifact@v4.1.0
         with:
