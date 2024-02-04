@@ -12,11 +12,6 @@ on:
         required: true
         type: boolean
         default: true
-      publish_modrinth:
-        description: "Publish to Modrinth"
-        required: true
-        type: boolean
-        default: true
 permissions:
   contents: write
   packages: write
@@ -26,10 +21,7 @@ jobs:
     name: 📦 Build mod
     runs-on: macos-14
     outputs:
-      archives_base_name: ${{ steps.mod_properties.outputs.archives_base_name }}
-      minecraft_version: ${{ steps.mod_properties.outputs.minecraft_version }}
-      version: ${{ steps.mod_properties.outputs.version }}
-      changelog_body: ${{ steps.gen_changelog.outputs.changes }}
+      rootProject: ${{ steps.read_properties.outputs }}
     steps:
       - name: checkout repository
         uses: actions/checkout@v3 # This is effectively git pull
@@ -55,23 +47,7 @@ jobs:
         with:
           file: gradle.properties
           all: true
-      - name: Generate Changelog
-        id: gen_changelog
-        uses: requarks/changelog-action@v1
-        with:
-          token: ${{ github.token }}
-          fromTag: ${{ github.ref_name }}
-          toTag: ${{ steps.previousTag.outputs.tag }}
-          reverseOrder: true
-          useGitmojis: false
-          includeRefIssues: false
-      - name: Commit CHANGELOG.md
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          branch: main
-          commit_message: "docs: Update changelog for v${{ steps.mod_properties.outputs.version }}-${{ steps.mod_properties.outputs.minecraft_version }}"
-          file_pattern: CHANGELOG.md
-          
+
   publish-github:
     name: 🐙 Publish to GitHub
     runs-on: macos-14
@@ -95,37 +71,7 @@ jobs:
           name: "v${{ env.mod_version }}-${{ env.mc_version }}"
           version: "v${{ env.mod_version }}-${{ env.mc_version }}"
           version-type: ${{ inputs.release_as_beta && 'beta' || 'release' }}
-          changelog: ${{ needs.mod-build.outputs.changelog_body }}
         env:
-          mod_name: ${{ needs.mod-build.outputs.archives_base_name }}
-          mc_version: ${{ needs.mod-build.outputs.minecraft_version }}
-          mod_version: ${{ needs.mod-build.outputs.version }}
-          
-  publish-modrinth:
-      name: 🟢 Publish to Modrinth
-      runs-on: macos-14
-      if: inputs.publish_modrinth
-      needs: mod-build
-      steps:
-      - name: Download build files
-        uses: actions/download-artifact@v4.1.0
-        with:
-          path: build/
-      - name: debug
-        run: mv build/mod-build-files build/libs
-      - name: publish
-        uses: Kir-Antipov/mc-publish@v3.3
-        with:
-          modrinth-id: undefined
-          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
-          files: "build/libs/${{ env.mod_name }}-${{ env.mod_version }}+${{ env.mc_version }}.jar"
-          name: "v${{ env.mod_version }}-${{ env.mc_version }}"
-          loaders: "quilt"
-          game-versions: "${{ env.mc_version }}"
-          version: "v${{ env.mod_version }}-${{ env.mc_version }}"
-          version-type: ${{ inputs.release_as_beta && 'beta' || 'release' }}
-          changelog: ${{ needs.mod-build.outputs.changelog_body }}
-        env:
-          mod_name: ${{ needs.mod-build.outputs.archives_base_name }}
-          mc_version: ${{ needs.mod-build.outputs.minecraft_version }}
-          mod_version: ${{ needs.mod-build.outputs.version }}
+          mod_name: ${{ needs.mod-build.outputs.rootProject.archives_base_name }}
+          mc_version: ${{ needs.mod-build.outputs.rootProject.minecraft_version }}
+          mod_version: ${{ needs.mod-build.outputs.rootProject.version }}
