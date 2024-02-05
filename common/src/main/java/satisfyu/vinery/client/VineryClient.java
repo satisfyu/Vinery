@@ -12,8 +12,6 @@ import dev.architectury.registry.menu.MenuRegistry;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
@@ -29,7 +27,6 @@ import satisfyu.vinery.client.render.block.FlowerPotBlockEntityRenderer;
 import satisfyu.vinery.client.render.block.storage.BasketRenderer;
 import satisfyu.vinery.client.render.entity.MuleRenderer;
 import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
-import satisfyu.vinery.dynamicassets.VineryClientResourceProvider;
 import satisfyu.vinery.network.VineryNetwork;
 import satisfyu.vinery.registry.*;
 
@@ -44,8 +41,6 @@ import static satisfyu.vinery.registry.ObjectRegistry.*;
 
 @Environment(EnvType.CLIENT)
 public class VineryClient {
-
-    public static final Collection<WoodType> CLIENT_LATTICES = new ArrayList<>();
 
     public static final Collection<Block> LATTICE_BLOCKS = new ArrayList<>();
 
@@ -111,8 +106,6 @@ public class VineryClient {
         BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.FLOWER_POT_ENTITY.get(), FlowerPotBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.BASKET_ENTITY.get(), BasketRenderer::new);
 
-        CLIENT_LATTICES.addAll(BlockSetAPI.getBlockSet(WoodType.class).getValues());
-        VineryClientResourceProvider.init();
     }
 
 

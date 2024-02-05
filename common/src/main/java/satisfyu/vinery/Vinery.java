@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.Blocks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import satisfyu.vinery.config.VineryConfig;
-import satisfyu.vinery.dynamicassets.VineryClientResourceProvider;
 import satisfyu.vinery.event.ParticleSpawnEvent;
 import satisfyu.vinery.registry.*;
 import satisfyu.vinery.world.VineryFeatures;
