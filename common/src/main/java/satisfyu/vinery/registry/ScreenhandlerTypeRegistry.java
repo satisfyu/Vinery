@@ -9,6 +9,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.client.gui.handler.BasketGuiHandler;
 import satisfyu.vinery.client.gui.handler.FermentationBarrelGuiHandler;
 import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
 
@@ -20,6 +21,7 @@ public class ScreenhandlerTypeRegistry {
 
     public static final RegistrySupplier<MenuType<FermentationBarrelGuiHandler>> FERMENTATION_BARREL_GUI_HANDLER = register("fermentation_barrel_gui_handler", () -> new MenuType<>(FermentationBarrelGuiHandler::new, FeatureFlags.VANILLA_SET));
     public static final RegistrySupplier<MenuType<ApplePressGuiHandler>> APPLE_PRESS_GUI_HANDLER = register("apple_press_gui_handler", () -> new MenuType<>(ApplePressGuiHandler::new, FeatureFlags.VANILLA_SET));
+    public static final RegistrySupplier<MenuType<BasketGuiHandler>> BASKET_GUI_HANDLER = register("basket_gui_handler", () -> new MenuType<>(BasketGuiHandler::new, FeatureFlags.VANILLA_SET));
 
 
     public static <T extends AbstractContainerMenu> RegistrySupplier<MenuType<T>> register(String name, Supplier<MenuType<T>> menuType){

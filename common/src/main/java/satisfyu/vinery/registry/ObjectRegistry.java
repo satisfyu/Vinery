@@ -27,8 +27,10 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.Vinery;
@@ -219,7 +221,15 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> WINE_BOX = registerWithItem("wine_box", () -> new WineBox(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).noOcclusion()));
     public static final RegistrySupplier<Block> BIG_TABLE = registerWithItem("big_table", () -> new BigTableBlock(BlockBehaviour.Properties.of().strength(2.0F, 2.0F)));
     public static final RegistrySupplier<Block> SHELF = registerWithItem("shelf", () -> new ShelfBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistrySupplier<Block> BASKET = registerWithItem("basket", () -> new BasketBlock(BlockBehaviour.Properties.of().instabreak().noOcclusion(), 1));
+
+
+
+
+    public static final RegistrySupplier<Block> BASKET = registerWithoutItem("basket", () -> new BasketBlock(DyeColor.WHITE, BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BIT).strength(1.5F).sound(SoundType.WOOL).instabreak().ignitedByLava().noOcclusion()));
+    public static final RegistrySupplier<Item>  BASKET_ITEM = registerItem("basket", () -> new BasketItem(BASKET.get(), getSettings()));
+
+
+
     public static final RegistrySupplier<Block> STACKABLE_LOG = registerWithItem("stackable_log", () -> new StackableLogBlock(getLogBlockSettings().noOcclusion().lightLevel(state -> state.getValue(StackableLogBlock.FIRED) ? 13 : 0)));
     public static final RegistrySupplier<Item> STRAW_HAT = registerItem("straw_hat", () -> new StrawHatItem(getSettings().rarity(Rarity.RARE)));
     public static final RegistrySupplier<Item> WINEMAKER_APRON = registerItem("winemaker_apron", () -> new WinemakerDefaultArmorItem(ArmorMaterialRegistry.WINEMAKER_ARMOR, ArmorItem.Type.CHESTPLATE, getSettings().rarity(Rarity.EPIC)));

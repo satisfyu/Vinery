@@ -21,6 +21,7 @@ public class BlockEntityTypeRegistry {
     public static final RegistrySupplier<BlockEntityType<WineRackStorageBlockEntity>> WINE_RACK_STORAGE_ENTITY = create("wine_rack_storage", () -> BlockEntityType.Builder.of(WineRackStorageBlockEntity::new, ObjectRegistry.WINE_RACK_3.get(), ObjectRegistry.WINE_RACK_5.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<FlowerBoxBlockEntity>> FLOWER_BOX_ENTITY = create("flower_box", () -> BlockEntityType.Builder.of(FlowerBoxBlockEntity::new, ObjectRegistry.FLOWER_BOX.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<FlowerPotBlockEntity>> FLOWER_POT_ENTITY = create("flower_pot", () -> BlockEntityType.Builder.of(FlowerPotBlockEntity::new, ObjectRegistry.FLOWER_POT.get()).build(null));
+    public static final RegistrySupplier<BlockEntityType<BasketBlockEntity>> BASKET_ENTITY = create("basket", () -> BlockEntityType.Builder.of(BasketBlockEntity::new, ObjectRegistry.BASKET.get()).build(null));
 
     private static <T extends BlockEntityType<?>> RegistrySupplier<T> create(final String path, final Supplier<T> type) {
         return BLOCK_ENTITY_TYPES.register(new VineryIdentifier(path), type);

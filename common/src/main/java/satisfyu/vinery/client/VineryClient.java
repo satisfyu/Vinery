@@ -22,9 +22,11 @@ import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.block.Block;
 import satisfyu.vinery.client.gui.ApplePressGui;
+import satisfyu.vinery.client.gui.BasketGui;
 import satisfyu.vinery.client.gui.FermentationBarrelGui;
 import satisfyu.vinery.client.model.MuleModel;
 import satisfyu.vinery.client.render.block.FlowerPotBlockEntityRenderer;
+import satisfyu.vinery.client.render.block.storage.BasketRenderer;
 import satisfyu.vinery.client.render.entity.MuleRenderer;
 import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
 import satisfyu.vinery.dynamicassets.VineryClientResourceProvider;
@@ -104,8 +106,10 @@ public class VineryClient {
 
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.FERMENTATION_BARREL_GUI_HANDLER.get(), FermentationBarrelGui::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.APPLE_PRESS_GUI_HANDLER.get(), ApplePressGui::new);
+        MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.BASKET_GUI_HANDLER.get(), BasketGui::new);
 
         BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.FLOWER_POT_ENTITY.get(), FlowerPotBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.BASKET_ENTITY.get(), BasketRenderer::new);
 
         CLIENT_LATTICES.addAll(BlockSetAPI.getBlockSet(WoodType.class).getValues());
         VineryClientResourceProvider.init();
@@ -115,6 +119,7 @@ public class VineryClient {
     public static void registerEntityRenderers() {
         EntityRendererRegistry.register(EntityRegistry.MULE, MuleRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
+
     }
 
 
@@ -122,6 +127,8 @@ public class VineryClient {
         registerEntityRenderers();
         TerraformSignHelper.regsterSignSprite(BoatAndSignRegistry.CHERRY_SIGN_TEXTURE);
         EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(BasketRenderer.LAYER_LOCATION, BasketRenderer::getTexturedModelData);
+
         CustomArmorRegistry.registerArmorModelLayers();
 
         LOGGER.info("Resource provider initialized, side is {}", Platform.getEnvironment().toPlatform().toString());
