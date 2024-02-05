@@ -19,8 +19,10 @@
     <!--<a title="patreon" href="https://www.patreon.com/user?u=78595058">
         <img style="display: block; margin-left: auto; margin-right: auto;" src="https://cdn.icon-icons.com/icons2/2699/PNG/512/patreon_logo_icon_170869.png" alt="" width="" height="140" />
     </a>!-->
+    <a title="patreon" href="https://www.patreon.com/user?u=78595058">
     <picture>
       <source style="display: block; margin-left: auto; margin-right: auto;" width="" height="140" media="(prefers-color-scheme: dark)" srcset="https://i.ibb.co/4R738W0/patreon-logo-icon-170869-dark.png">
       <img style="display: block; margin-left: auto; margin-right: auto;" width="" height="140" alt="" src="https://cdn.icon-icons.com/icons2/2699/PNG/512/patreon_logo_icon_170869.png">
     </picture>
+    </a>
 </p>
