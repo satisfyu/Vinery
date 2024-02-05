@@ -2,12 +2,10 @@ package satisfyu.vinery.registry;
 
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 import satisfyu.vinery.Vinery;
 
 import static com.mojang.serialization.codecs.RecordCodecBuilder.build;
@@ -163,9 +161,15 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.MCCHERRY_WINE_RACK_SMALL.get());
                 out.accept(ObjectRegistry.MCCHERRY_WINE_RACK_BIG.get());
                 out.accept(ObjectRegistry.MCCHERRY_WINE_RACK_MID.get());
-                for (RegistrySupplier<Block> latticeRegistrySupplier : ObjectRegistry.LATTICE_BLOCKS) {
-                    out.accept(latticeRegistrySupplier.get());
-                }
+                out.accept(ObjectRegistry.OAK_LATTICE.get());
+                out.accept(ObjectRegistry.ACACIA_LATTICE.get());
+                out.accept(ObjectRegistry.BIRCH_LATTICE.get());
+                out.accept(ObjectRegistry.WARPED_LATTICE.get());
+                out.accept(ObjectRegistry.MANGROVE_LATTICE.get());
+                out.accept(ObjectRegistry.CRIMSON_LATTICE.get());
+                out.accept(ObjectRegistry.DARK_OAK_LATTICE.get());
+                out.accept(ObjectRegistry.MCCHERRY_LATTICE.get());
+                out.accept(ObjectRegistry.BAMBOO_LATTICE.get());
             })
             .build());
 
