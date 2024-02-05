@@ -1,0 +1,91 @@
+name: Publish
+on:
+  workflow_dispatch:
+    inputs:
+      release_as_beta:
+        description: "Mark as pre-release"
+        required: true
+        type: boolean
+        default: true
+      publish_github:
+        description: "Publish to GitHub"
+        required: true
+        type: boolean
+        default: true
+permissions:
+  contents: write
+  packages: write
+  
+jobs:
+  mod-build:
+    name: 📦 Build mod
+    runs-on: macos-14
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4.1.1 # This is effectively git clone
+      - name: setup JDK 17
+        uses: actions/setup-java@v4.0.0
+        with:
+          java-version: 17
+          distribution: 'temurin' # Installs java
+      - name: make gradle wrapper executable
+        run: chmod +x ./gradlew # Execution workaround for unix-based systems
+      - name: Setup gradle
+        uses: gradle/actions/setup-gradle@v3 # Speeds up build time by about 5 mins :P
+      - name: Execute Gradle build
+        run: ./gradlew build --warning-mode all # Builds the mod into a jar file
+      - uses: actions/upload-artifact@v4.3.0
+        with:
+          name: build-common
+          path: build/libs/
+      - uses: actions/upload-artifact@v4.3.0
+        with:
+          name: build-fabric
+          path: fabric/build/libs/
+      - uses: actions/upload-artifact@v4.3.0
+        with:
+          name: build-forge
+          path: forge/build/libs/
+
+  publish-github:
+    name: 🐙 Publish to GitHub
+    runs-on: ubuntu-latest
+    if: inputs.publish_github
+    needs: mod-build
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Download build files
+        uses: actions/download-artifact@v4.1.0
+        with:
+          path: compiledmods/
+      - uses: madhead/read-java-properties@latest
+        id: read_properties
+        with:
+          file: gradle.properties
+          all: true
+      - name: process builds
+        run: |
+          cd compiledmods/
+          ls -a -r
+          mv ./build-common/${{ env.mod_name }}-${{ env.mod_version }}.jar ${{ env.mod_name }}-${{ env.mod_version }}-common.jar
+          mv ./build-fabric/${{ env.mod_name }}-${{ env.mod_version }}.jar ./${{ env.mod_name }}-${{ env.mod_version }}-fabric.jar
+          mv ./build-forge/${{ env.mod_name }}-${{ env.mod_version }}.jar ./${{ env.mod_name }}-${{ env.mod_version }}-forge.jar
+        env:
+          mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
+          mod_version: ${{ steps.read_properties.outputs.mod_version }}
+      - name: publish
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            compiledmods/${{ env.mod_name }}-${{ env.mod_version }}-common.jar
+            compiledmods/${{ env.mod_name }}-${{ env.mod_version }}-fabric.jar
+            compiledmods/${{ env.mod_name }}-${{ env.mod_version }}-forge.jar
+          github-tag: "v${{ env.mod_version }}-${{ env.mc_version }}"
+          name: "v${{ env.mod_version }}-${{ env.mc_version }}"
+          version: "v${{ env.mod_version }}-${{ env.mc_version }}"
+          version-type: ${{ inputs.release_as_beta && 'beta' || 'release' }}
+        env:
+          mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
+          mc_version: ${{ steps.read_properties.outputs.minecraft_version }}
+          mod_version: ${{ steps.read_properties.outputs.mod_version }}
