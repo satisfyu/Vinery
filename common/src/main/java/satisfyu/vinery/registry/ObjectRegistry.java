@@ -92,13 +92,8 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> APPLE_TREE_SAPLING = registerWithItem("apple_tree_sapling", () -> new SaplingBlock(new AbstractTreeGrower() {
         @Override
         protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource random, boolean bees) {
-            if (random.nextBoolean()) {
-                if (bees) return VineryConfiguredFeatures.APPLE_BEE_KEY;
-                return VineryConfiguredFeatures.APPLE_KEY;
-            } else {
-                if (bees) return VineryConfiguredFeatures.APPLE_VARIANT_WITH_BEE_KEY;
-                return VineryConfiguredFeatures.APPLE_VARIANT_KEY;
-            }
+            if (random.nextBoolean()) return VineryConfiguredFeatures.APPLE_KEY;
+            return VineryConfiguredFeatures.APPLE_VARIANT_KEY;
         }
     }, BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static final RegistrySupplier<Item> CHERRY = registerItem("cherry", () -> new CherryItem(getSettings().food(Foods.COOKIE)));
