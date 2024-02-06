@@ -1,8 +1,8 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"2": "vinery:block/wine/praetorian_wine",
-		"particle": "vinery:block/wine/praetorian_wine"
+		"2": "vinery:block/wine/knulp_wine",
+		"particle": "vinery:block/wine/knulp_wine"
 	},
 	"elements": [
 		{

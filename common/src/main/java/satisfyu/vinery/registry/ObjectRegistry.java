@@ -38,7 +38,7 @@ import satisfyu.vinery.block.grape.GrapeBush;
 import satisfyu.vinery.block.grape.GrapeVineBlock;
 import satisfyu.vinery.block.grape.SavannaGrapeBush;
 import satisfyu.vinery.block.grape.TaigaGrapeBush;
-import satisfyu.vinery.block.stem.NewLatticeBlock;
+import satisfyu.vinery.block.stem.LatticeBlock;
 import satisfyu.vinery.block.stem.PaleStemBlock;
 import satisfyu.vinery.block.storage.*;
 import satisfyu.vinery.item.*;
@@ -127,7 +127,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> STRIPPED_CHERRY_WOOD = registerWithItem("stripped_cherry_wood", GeneralUtil::logBlock);
     public static final RegistrySupplier<Block> CHERRY_WOOD = registerWithItem("cherry_wood", GeneralUtil::logBlock);
     public static final RegistrySupplier<Block> CHERRY_BEAM = registerWithItem("cherry_beam", GeneralUtil::logBlock);
-    public static final RegistrySupplier<Block> CHERRY_PLANKS = registerWithItem("cherry_planks", () -> new Block(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistrySupplier<Block> CHERRY_PLANKS = registerWithItem("cherry_planks", () -> new Block(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).instrument(NoteBlockInstrument.BIT)));
     public static final RegistrySupplier<Block> CHERRY_FLOORBOARD = registerWithItem("cherry_floorboard", () -> new Block(BlockBehaviour.Properties.copy(CHERRY_PLANKS.get())));
     public static final RegistrySupplier<Block> CHERRY_STAIRS = registerWithItem("cherry_stairs", () -> new StairBlock(CHERRY_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(CHERRY_PLANKS.get())));
     public static final RegistrySupplier<Block> CHERRY_SLAB = registerWithItem("cherry_slab", () -> new SlabBlock(getSlabSettings()));
@@ -199,8 +199,8 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item>  APPLE_CIDER_ITEM = registerItem("apple_cider", () -> new DrinkBlockBigItem(APPLE_CIDER.get(), getWineItemSettings(MobEffects.HEALTH_BOOST, 1200)));
     public static final RegistrySupplier<Block> APPLE_WINE = registerWithoutItem("apple_wine", () -> new WineBottleBlock(getWineSettings() , 3));
     public static final RegistrySupplier<Item>  APPLE_WINE_ITEM = registerItem("apple_wine", () -> new DrinkBlockBigItem(APPLE_WINE.get(), getWineItemSettings(MobEffects.ABSORPTION, 1200)));
-    public static final RegistrySupplier<Block> PRAETORIAN_WINE = registerWithoutItem("praetorian_wine", () -> new WineBottleBlock(getWineSettings(), 2));
-    public static final RegistrySupplier<Item>  PRAETORIAN_WINE_ITEM = registerItem("praetorian_wine", () -> new DrinkBlockBigItem(PRAETORIAN_WINE.get(), getWineItemSettings(MobEffects.LEVITATION)));
+    public static final RegistrySupplier<Block> KNULP_WINE = registerWithoutItem("knulp_wine", () -> new WineBottleBlock(getWineSettings(), 2));
+    public static final RegistrySupplier<Item>  KNULP_WINE_ITEM = registerItem("knulp_wine", () -> new DrinkBlockBigItem(KNULP_WINE.get(), getWineItemSettings(MobEffects.LEVITATION)));
     public static final RegistrySupplier<Block> LILITU_WINE = registerWithoutItem("lilitu_wine", () -> new WineBottleBlock(getWineSettings(), 1));
     public static final RegistrySupplier<Item>  LILITU_WINE_ITEM = registerItem("lilitu_wine", () -> new DrinkBlockBigItem(LILITU_WINE.get(), getWineItemSettings(MobEffectRegistry.PARTY_EFFECT.get())));
     public static final RegistrySupplier<Block> BOTTLE_MOJANG_NOIR = registerWithoutItem("bottle_mojang_noir", () -> new WineBottleBlock(getWineSettings(), 3));
@@ -217,19 +217,14 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> BIG_TABLE = registerWithItem("big_table", () -> new BigTableBlock(BlockBehaviour.Properties.of().strength(2.0F, 2.0F)));
     public static final RegistrySupplier<Block> SHELF = registerWithItem("shelf", () -> new ShelfBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
 
-
-
-
-    public static final RegistrySupplier<Block> BASKET = registerWithoutItem("basket", () -> new BasketBlock(DyeColor.WHITE, BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BIT).strength(1.5F).sound(SoundType.WOOL).instabreak().ignitedByLava().noOcclusion()));
+    public static final RegistrySupplier<Block> BASKET = registerWithoutItem("basket", () -> new BasketBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BIT).strength(1.5F).sound(SoundType.CANDLE).ignitedByLava().noOcclusion()));
     public static final RegistrySupplier<Item>  BASKET_ITEM = registerItem("basket", () -> new BasketItem(BASKET.get(), getSettings()));
 
-
-
     public static final RegistrySupplier<Block> STACKABLE_LOG = registerWithItem("stackable_log", () -> new StackableLogBlock(getLogBlockSettings().noOcclusion().lightLevel(state -> state.getValue(StackableLogBlock.FIRED) ? 13 : 0)));
-    public static final RegistrySupplier<Item> STRAW_HAT = registerItem("straw_hat", () -> new StrawHatItem(getSettings().rarity(Rarity.RARE)));
-    public static final RegistrySupplier<Item> WINEMAKER_APRON = registerItem("winemaker_apron", () -> new WinemakerDefaultArmorItem(ArmorMaterialRegistry.WINEMAKER_ARMOR, ArmorItem.Type.CHESTPLATE, getSettings().rarity(Rarity.EPIC)));
-    public static final RegistrySupplier<Item> WINEMAKER_LEGGINGS = registerItem("winemaker_leggings", () -> new WinemakerDefaultArmorItem(ArmorMaterialRegistry.WINEMAKER_ARMOR, ArmorItem.Type.LEGGINGS, getSettings().rarity(Rarity.RARE)));
-    public static final RegistrySupplier<Item> WINEMAKER_BOOTS = registerItem("winemaker_boots", () -> new WinemakerDefaultArmorItem(ArmorMaterialRegistry.WINEMAKER_ARMOR, ArmorItem.Type.BOOTS, getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> STRAW_HAT = registerItem("straw_hat", () -> new WinemakerHatItem(getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> WINEMAKER_APRON = registerItem("winemaker_apron", () -> new WinemakerChest(ArmorMaterialRegistry.WINEMAKER_ARMOR, getSettings().rarity(Rarity.EPIC)));
+    public static final RegistrySupplier<Item> WINEMAKER_LEGGINGS = registerItem("winemaker_leggings", () -> new WinemakerLegs(ArmorMaterialRegistry.WINEMAKER_ARMOR, getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> WINEMAKER_BOOTS = registerItem("winemaker_boots", () -> new WinemakerBoots(ArmorMaterialRegistry.WINEMAKER_ARMOR, getSettings().rarity(Rarity.RARE)));
     public static final RegistrySupplier<Block> CALENDAR = registerWithItem("calendar", () -> new CalendarBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
     public static final RegistrySupplier<Item> MULE_SPAWN_EGG = registerItem("mule_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.MULE, -1, -1, getSettings()));
     public static final RegistrySupplier<Item> WANDERING_WINEMAKER_SPAWN_EGG = registerItem("wandering_winemaker_spawn_egg", () -> new ArchitecturySpawnEggItem(EntityRegistry.WANDERING_WINEMAKER, -1, -1, getSettings()));
@@ -262,7 +257,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> MCCHERRY_WINE_RACK_BIG = registerWithItem("mccherry_wine_rack_big", () -> new NineBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistrySupplier<Block> MCCHERRY_WINE_RACK_SMALL = registerWithItem("mccherry_wine_rack_small", () -> new FourBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistrySupplier<Block> MCCHERRY_WINE_RACK_MID = registerWithItem("mccherry_wine_rack_mid", () -> new BigBottleStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
-
     public static final RegistrySupplier<Block> WOOD_FIRED_OVEN = registerWithItem("wood_fired_oven", () -> new StoveBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistrySupplier<Block> STOVE = registerWithItem("stove", () -> new StoveBlock(BlockBehaviour.Properties.copy(Blocks.STONE).lightLevel(block -> 12)));
     public static final RegistrySupplier<Block> KITCHEN_SINK = registerWithItem("kitchen_sink", () -> new KitchenSinkBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
@@ -271,18 +265,17 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> WINE_RACK_3 = registerWithItem("wine_rack_3", () -> new WineRackStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundEventRegistry.WINE_RACK_3_OPEN.get(), SoundEventRegistry.WINE_RACK_3_CLOSE.get()));
     public static final RegistrySupplier<Block> WINE_RACK_5 = registerWithItem("wine_rack_5", () -> new WineRackStorageBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundEventRegistry.WINE_RACK_5_OPEN.get(), SoundEventRegistry.WINE_RACK_5_CLOSE.get()));
     public static final RegistrySupplier<Item>  VINERY_STANDARD = registerItem("vinery_standard", () -> new StandardItem(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
-
-    public static final RegistrySupplier<Block> OAK_LATTICE = registerWithItem("oak_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.OAK_PLANKS.getSoundType(Blocks.OAK_PLANKS.defaultBlockState())).noOcclusion()));
-    public static final RegistrySupplier<Block> WARPED_LATTICE = registerWithItem("warped_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.WARPED_PLANKS.getSoundType(Blocks.WARPED_PLANKS.defaultBlockState())).noOcclusion()));
-    public static final RegistrySupplier<Block> SPRUCE_LATTICE = registerWithItem("spruce_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.SPRUCE_PLANKS.getSoundType(Blocks.SPRUCE_PLANKS.defaultBlockState())).noOcclusion()));
-    public static final RegistrySupplier<Block> MCCHERRY_LATTICE = registerWithItem("cherry_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.CHERRY_PLANKS.getSoundType(Blocks.CHERRY_PLANKS.defaultBlockState())).noOcclusion()));
-    public static final RegistrySupplier<Block> BIRCH_LATTICE = registerWithItem("birch_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.BIRCH_PLANKS.getSoundType(Blocks.BIRCH_PLANKS.defaultBlockState())).noOcclusion()));
-    public static final RegistrySupplier<Block> CRIMSON_LATTICE = registerWithItem("crimson_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.CRIMSON_PLANKS.getSoundType(Blocks.CRIMSON_PLANKS.defaultBlockState())).noOcclusion()));
-    public static final RegistrySupplier<Block> DARK_OAK_LATTICE = registerWithItem("dark_oak_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.DARK_OAK_PLANKS.getSoundType(Blocks.DARK_OAK_PLANKS.defaultBlockState())).noOcclusion()));
-    public static final RegistrySupplier<Block> ACACIA_LATTICE = registerWithItem("acacia_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.ACACIA_PLANKS.getSoundType(Blocks.ACACIA_PLANKS.defaultBlockState())).noOcclusion()));
-    public static final RegistrySupplier<Block> BAMBOO_LATTICE = registerWithItem("bamboo_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.BAMBOO_PLANKS.getSoundType(Blocks.BAMBOO_PLANKS.defaultBlockState())).noOcclusion()));
-    public static final RegistrySupplier<Block> JUNGLE_LATTICE = registerWithItem("jungle_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.JUNGLE_PLANKS.getSoundType(Blocks.JUNGLE_PLANKS.defaultBlockState())).noOcclusion()));
-    public static final RegistrySupplier<Block> MANGROVE_LATTICE = registerWithItem("mangrove_lattice", () -> new NewLatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.MANGROVE_PLANKS.getSoundType(Blocks.MANGROVE_PLANKS.defaultBlockState())).noOcclusion()));
+    public static final RegistrySupplier<Block> OAK_LATTICE = registerWithItem("oak_lattice", () -> new LatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.OAK_PLANKS.getSoundType(Blocks.OAK_PLANKS.defaultBlockState())).noOcclusion()));
+    public static final RegistrySupplier<Block> WARPED_LATTICE = registerWithItem("warped_lattice", () -> new LatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.WARPED_PLANKS.getSoundType(Blocks.WARPED_PLANKS.defaultBlockState())).noOcclusion()));
+    public static final RegistrySupplier<Block> SPRUCE_LATTICE = registerWithItem("spruce_lattice", () -> new LatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.SPRUCE_PLANKS.getSoundType(Blocks.SPRUCE_PLANKS.defaultBlockState())).noOcclusion()));
+    public static final RegistrySupplier<Block> MCCHERRY_LATTICE = registerWithItem("cherry_lattice", () -> new LatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.CHERRY_PLANKS.getSoundType(Blocks.CHERRY_PLANKS.defaultBlockState())).noOcclusion()));
+    public static final RegistrySupplier<Block> BIRCH_LATTICE = registerWithItem("birch_lattice", () -> new LatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.BIRCH_PLANKS.getSoundType(Blocks.BIRCH_PLANKS.defaultBlockState())).noOcclusion()));
+    public static final RegistrySupplier<Block> CRIMSON_LATTICE = registerWithItem("crimson_lattice", () -> new LatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.CRIMSON_PLANKS.getSoundType(Blocks.CRIMSON_PLANKS.defaultBlockState())).noOcclusion()));
+    public static final RegistrySupplier<Block> DARK_OAK_LATTICE = registerWithItem("dark_oak_lattice", () -> new LatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.DARK_OAK_PLANKS.getSoundType(Blocks.DARK_OAK_PLANKS.defaultBlockState())).noOcclusion()));
+    public static final RegistrySupplier<Block> ACACIA_LATTICE = registerWithItem("acacia_lattice", () -> new LatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.ACACIA_PLANKS.getSoundType(Blocks.ACACIA_PLANKS.defaultBlockState())).noOcclusion()));
+    public static final RegistrySupplier<Block> BAMBOO_LATTICE = registerWithItem("bamboo_lattice", () -> new LatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.BAMBOO_PLANKS.getSoundType(Blocks.BAMBOO_PLANKS.defaultBlockState())).noOcclusion()));
+    public static final RegistrySupplier<Block> JUNGLE_LATTICE = registerWithItem("jungle_lattice", () -> new LatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.JUNGLE_PLANKS.getSoundType(Blocks.JUNGLE_PLANKS.defaultBlockState())).noOcclusion()));
+    public static final RegistrySupplier<Block> MANGROVE_LATTICE = registerWithItem("mangrove_lattice", () -> new LatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.MANGROVE_PLANKS.getSoundType(Blocks.MANGROVE_PLANKS.defaultBlockState())).noOcclusion()));
 
     public static void init() {
         Vinery.LOGGER.debug("Registering Mod Block and Items for " + Vinery.MOD_ID);

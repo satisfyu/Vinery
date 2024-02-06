@@ -149,9 +149,6 @@ public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, 
             inventory.setItem(i, entity.getItem(i));
         }
 
-        // Actually unnecessary because of the matches check in the recipe class
-        //boolean hasAppleInFirstSlot = recipe.input.test(entity.getItem(0));
-
         ItemStack result = recipe.getResultItem();
 
         boolean r2 = canInsertAmountIntoOutputSlot(inventory, result.getCount());

@@ -184,13 +184,13 @@
         ]
       }
     },
-    "praetorian_wine": {
+    "knulp_wine": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "vinery:praetorian_wine"
+              "vinery:knulp_wine"
             ]
           }
         ]
@@ -345,7 +345,7 @@
     "jellie_wine",
     "apple_cider",
     "red_wine",
-    "praetorian_wine",
+    "knulp_wine",
     "chenet_wine",
     "lilitu_wine",
     "mellohi_wine",

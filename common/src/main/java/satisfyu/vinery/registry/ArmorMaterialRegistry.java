@@ -1,9 +1,11 @@
 package satisfyu.vinery.registry;
 
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class ArmorMaterialRegistry {
@@ -32,7 +34,7 @@ public class ArmorMaterialRegistry {
 
         @Override
         public Ingredient getRepairIngredient() {
-            return ArmorMaterials.LEATHER.getRepairIngredient();
+            return Ingredient.of(ItemTags.WOOL);
         }
 
         @Override

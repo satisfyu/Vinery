@@ -21,6 +21,8 @@
     "vinery:cherry_fence_gate",
     "vinery:wine_box",
     "vinery:oak_lattice",
-    "#vinery:wine_racks"
+    "#vinery:wine_racks",
+    "#vinery:lattice"
+
   ]
 }

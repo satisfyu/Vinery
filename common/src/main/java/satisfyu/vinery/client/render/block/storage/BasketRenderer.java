@@ -1,6 +1,5 @@
 package satisfyu.vinery.client.render.block.storage;
 
-import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -13,18 +12,13 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.state.BlockState;
-import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.BasketBlock;
 import satisfyu.vinery.entity.blockentities.BasketBlockEntity;
 
-import java.util.List;
-import java.util.stream.Stream;
-
 public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
-    public static final List<ResourceLocation> MATERIALS;
+    private static final ResourceLocation TEXTURE = new VineryIdentifier("textures/entity/basket.png");
     private final ModelPart lidleft;
     private final ModelPart lidright;
     private final ModelPart bottom;
@@ -72,7 +66,6 @@ public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
             }
         }
 
-        ResourceLocation resourceLocation = MATERIALS.get(blockEntity.getContainerSize());
 
         poseStack.pushPose();
         poseStack.translate(0.5F, 0.5F, 0.5F);
@@ -81,7 +74,7 @@ public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
         float openNess = blockEntity.getOpenNess(f);
         openNess = 1.0F - openNess;
         openNess = 1.0F - openNess * openNess * openNess;
-        VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(resourceLocation));
+        VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
         this.handle.render(poseStack,vertexConsumer,i,j);
 
         this.renderLidPart(poseStack, vertexConsumer, this.lidleft, openNess, i, j, "north");
@@ -92,24 +85,18 @@ public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
     }
 
     private void renderLidPart(PoseStack poseStack, VertexConsumer vertexConsumer, ModelPart lidPart, float openNess, int i, int j, String direction) {
-        float maxAngle = (float) Math.toRadians(90);
+        float maxAngle = (float) Math.toRadians(55);
         float angle = Math.min(openNess * maxAngle, maxAngle);
 
         if (direction.equals("north")) {
-            lidPart.xRot = -angle;
+            lidPart.xRot = -angle; // Rotates the lid in one direction
+            lidPart.setPos(-2.0F, lidPart.y, 2.0F); // Adjust position if needed
         } else if (direction.equals("south")) {
-            angle *= 1.5;
-            lidPart.xRot = angle;
-            lidPart.setPos(14.0F, lidPart.y, 2.0F);
+            lidPart.xRot = angle; // Rotates the lid in the opposite direction
+            lidPart.setPos(14.0F, lidPart.y, 2.0F); // Adjust position if needed
         }
 
         lidPart.render(poseStack, vertexConsumer, i, j);
     }
 
-
-    static {
-        MATERIALS = Stream.of(DyeColor.values()).map((dyeColor) -> {
-            return new ResourceLocation(Vinery.MOD_ID,"textures/entity/basket.png");
-        }).collect(ImmutableList.toImmutableList());
-    }
 }

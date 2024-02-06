@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "vinery_lattices",
+    "pattern": [
+        "///",
+        " B ",
+        "/ /"
+    ],
+    "key": {
+        "/": {
+            "item": "minecraft:stick"
+        },
+        "B": {
+            "item": "minecraft:jungle_planks"
+        }
+    },
+    "result": {
+        "item": "vinery:jungle_lattice",
+        "count": 4
+    }
+}

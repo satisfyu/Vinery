@@ -1,7 +1,7 @@
 {
   "variants": {
     "fake_model=false": {
-      "model": "vinery:block/praetorian_wine"
+      "model": "vinery:block/knulp_wine"
     },
     "fake_model=true": {
       "model": "vinery:block/transparent"

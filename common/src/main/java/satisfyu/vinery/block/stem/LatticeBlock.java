@@ -11,7 +11,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -33,8 +32,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.Vinery;
-import satisfyu.vinery.block.grape.GrapeType;
 import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.item.GrapeBushSeedItem;
 import satisfyu.vinery.util.ConnectingProperties;
@@ -42,7 +39,7 @@ import satisfyu.vinery.util.LineConnectingType;
 
 import java.util.Random;
 
-public class NewLatticeBlock extends StemBlock {
+public class LatticeBlock extends StemBlock {
     public static final BooleanProperty SUPPORT = BooleanProperty.create("support");
     public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
 
@@ -59,7 +56,7 @@ public class NewLatticeBlock extends StemBlock {
     private static final SoundEvent BREAK_SOUND_EVENT = SoundEvents.SWEET_BERRY_BUSH_BREAK;
     private static final SoundEvent PLACE_SOUND_EVENT = SoundEvents.SWEET_BERRY_BUSH_PLACE;
 
-    public NewLatticeBlock(Properties properties) {
+    public LatticeBlock(Properties properties) {
         super(properties);
         registerDefaultState(this.defaultBlockState()
                 .setValue(FACING, Direction.NORTH)
@@ -79,7 +76,7 @@ public class NewLatticeBlock extends StemBlock {
         BlockPos clickedFacingPos = clickedPos.relative(clickedFace.getOpposite());
         BlockState clickedFacingState = level.getBlockState(clickedFacingPos);
 
-        if (context.getPlayer() != null && !context.getPlayer().isCrouching() && clickedFacingState.getBlock() instanceof NewLatticeBlock) {
+        if (context.getPlayer() != null && !context.getPlayer().isCrouching() && clickedFacingState.getBlock() instanceof LatticeBlock) {
             Direction clickedFacingFace = clickedFacingState.getValue(FACING);
             if (clickedFacingFace != clickedFace && clickedFacingFace.getOpposite() != clickedFace) facing = clickedFacingFace;
         }
@@ -203,8 +200,8 @@ public class NewLatticeBlock extends StemBlock {
         BlockState stateL = level.getBlockState(currentPos.relative(facing.getClockWise()));
         BlockState stateR = level.getBlockState(currentPos.relative(facing.getCounterClockWise()));
 
-        boolean sideL = (stateL.getBlock() instanceof NewLatticeBlock && (stateL.getValue(FACING) == facing || stateL.getValue(FACING) == facing.getClockWise()));
-        boolean sideR = (stateR.getBlock() instanceof NewLatticeBlock && (stateR.getValue(FACING) == facing || stateR.getValue(FACING) == facing.getCounterClockWise()));
+        boolean sideL = (stateL.getBlock() instanceof LatticeBlock && (stateL.getValue(FACING) == facing || stateL.getValue(FACING) == facing.getClockWise()));
+        boolean sideR = (stateR.getBlock() instanceof LatticeBlock && (stateR.getValue(FACING) == facing || stateR.getValue(FACING) == facing.getCounterClockWise()));
         LineConnectingType type = sideL && sideR ?
                 LineConnectingType.MIDDLE
                 : (sideR ? LineConnectingType.LEFT

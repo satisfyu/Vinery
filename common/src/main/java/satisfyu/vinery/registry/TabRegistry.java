@@ -107,7 +107,7 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.APPLE_CIDER.get());
                 out.accept(ObjectRegistry.JELLIE_WINE.get());
                 out.accept(ObjectRegistry.RED_WINE.get());
-                out.accept(ObjectRegistry.PRAETORIAN_WINE.get());
+                out.accept(ObjectRegistry.KNULP_WINE.get());
                 out.accept(ObjectRegistry.JO_SPECIAL_MIXTURE.get());
                 out.accept(ObjectRegistry.CRISTEL_WINE.get());
                 out.accept(ObjectRegistry.CREEPERS_CRUSH.get());
@@ -162,14 +162,17 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.MCCHERRY_WINE_RACK_BIG.get());
                 out.accept(ObjectRegistry.MCCHERRY_WINE_RACK_MID.get());
                 out.accept(ObjectRegistry.OAK_LATTICE.get());
-                out.accept(ObjectRegistry.ACACIA_LATTICE.get());
+                out.accept(ObjectRegistry.SPRUCE_LATTICE.get());
                 out.accept(ObjectRegistry.BIRCH_LATTICE.get());
-                out.accept(ObjectRegistry.WARPED_LATTICE.get());
-                out.accept(ObjectRegistry.MANGROVE_LATTICE.get());
-                out.accept(ObjectRegistry.CRIMSON_LATTICE.get());
+                out.accept(ObjectRegistry.JUNGLE_LATTICE.get());
+                out.accept(ObjectRegistry.ACACIA_LATTICE.get());
                 out.accept(ObjectRegistry.DARK_OAK_LATTICE.get());
-                out.accept(ObjectRegistry.MCCHERRY_LATTICE.get());
+                out.accept(ObjectRegistry.MANGROVE_LATTICE.get());
                 out.accept(ObjectRegistry.BAMBOO_LATTICE.get());
+                out.accept(ObjectRegistry.MCCHERRY_LATTICE.get());
+                out.accept(ObjectRegistry.CRIMSON_LATTICE.get());
+                out.accept(ObjectRegistry.WARPED_LATTICE.get());
+
             })
             .build());
 

@@ -50,9 +50,9 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
     public static final ResourceLocation CONTENTS;
     public static final BooleanProperty WATERLOGGED;
 
-    public BasketBlock(DyeColor dyeColor,Properties properties) {
+    public BasketBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any().setValue(FACING, Direction.NORTH)).setValue(WATERLOGGED,false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED,false));
 
     }
 
@@ -114,7 +114,7 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 
 
     public List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
-        BlockEntity blockEntity = (BlockEntity)builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+        BlockEntity blockEntity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
         if (blockEntity instanceof BasketBlockEntity basketBlockEntity) {
             builder = builder.withDynamicDrop(CONTENTS, (consumer) -> {
                 for(int i = 0; i < basketBlockEntity.getContainerSize(); ++i) {
@@ -174,17 +174,19 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
         return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(blockPos));
     }
 
-    public BlockState rotate(BlockState blockState, Rotation rotation) {
-        return (BlockState)blockState.setValue(FACING, rotation.rotate((Direction)blockState.getValue(FACING)));
+    public BlockState rotate(BlockState state, Rotation rotation) {
+        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
-    public BlockState mirror(BlockState blockState, Mirror mirror) {
-        return blockState.rotate(mirror.getRotation((Direction)blockState.getValue(FACING)));
+    public BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
+    @Nullable
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
-        return (BlockState)this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite()).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
+        return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite());
     }
 
     @Nullable
@@ -193,8 +195,9 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
         return new BasketBlockEntity(blockPos,blockState);
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING,WATERLOGGED});
+        builder.add(FACING, WATERLOGGED);
     }
 
     public boolean isPathfindable(BlockState arg, BlockGetter arg2, BlockPos arg3, PathComputationType arg4) {

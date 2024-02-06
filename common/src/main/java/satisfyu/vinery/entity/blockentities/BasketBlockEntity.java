@@ -76,9 +76,9 @@ public class BasketBlockEntity extends RandomizableContainerBlockEntity implemen
 
     @Override
     protected Component getDefaultName() {
-        return Component.translatable(Vinery.MOD_ID + ".container.basket");
+        return Component.translatable(this.getBlockState().getBlock().getDescriptionId());
     }
-
+    
     @Override
     protected AbstractContainerMenu createMenu(int i, Inventory inventory) {
         return new BasketGuiHandler(i,inventory,this);

@@ -10,7 +10,7 @@ import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import satisfyu.vinery.registry.CustomArmorRegistry;
+import satisfyu.vinery.registry.ArmorRegistry;
 import satisfyu.vinery.registry.StorageTypeRegistry;
 
 import java.util.Map;
@@ -26,11 +26,11 @@ public class VineryDoApi implements DoApiAPI {
 
     @Override
     public <T extends LivingEntity> void registerHat(Map<Item, EntityModel<T>> map, EntityModelSet entityModelSet) {
-        CustomArmorRegistry.registerHatModels(map, entityModelSet);
+        ArmorRegistry.registerHatModels(map, entityModelSet);
     }
 
     @Override
     public <T extends LivingEntity> void registerArmor(Map<FullCustomArmor, Pair<HumanoidModel<T>, HumanoidModel<T>>> models, EntityModelSet modelLoader) {
-
+        ArmorRegistry.registerArmorModels(models, modelLoader);
     }
 }

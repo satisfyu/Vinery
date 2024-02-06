@@ -6,16 +6,18 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.registry.ArmorMaterialRegistry;
+import satisfyu.vinery.registry.ArmorRegistry;
 
 import java.util.List;
 
-public class StrawHatItem extends CustomHatItem implements WineMakerArmorItem {
+public class WinemakerHatItem extends CustomHatItem {
 
 
-    public StrawHatItem(Properties settings) {
+    public WinemakerHatItem(Properties settings) {
         super(ArmorMaterialRegistry.WINEMAKER_ARMOR, Type.HELMET, settings);
     }
 
@@ -30,7 +32,9 @@ public class StrawHatItem extends CustomHatItem implements WineMakerArmorItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
-        tooltip(tooltip);
+    public void appendHoverText(ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, TooltipFlag context) {
+        if(world != null && world.isClientSide()){
+            ArmorRegistry.appendtooltip(tooltip);
+        }
     }
 }

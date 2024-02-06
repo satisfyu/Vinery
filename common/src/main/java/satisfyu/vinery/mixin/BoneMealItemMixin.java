@@ -2,7 +2,6 @@ package satisfyu.vinery.mixin;
 
 import net.minecraft.util.RandomSource;
 import satisfyu.vinery.config.VineryConfig;
-import satisfyu.vinery.item.WineMakerArmorItem;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -13,6 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import satisfyu.vinery.item.WinemakerArmorItem;
 import satisfyu.vinery.util.GeneralUtil;
 
 @Mixin(BoneMealItem.class)
@@ -30,10 +30,10 @@ public abstract class BoneMealItemMixin {
 				ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
 				ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
 				ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
-				if (helmet.getItem() instanceof WineMakerArmorItem &&
-						chestplate.getItem() instanceof WineMakerArmorItem &&
-						leggings.getItem() instanceof WineMakerArmorItem &&
-						boots.getItem() instanceof WineMakerArmorItem) {
+				if (helmet.getItem() instanceof WinemakerArmorItem &&
+						chestplate.getItem() instanceof WinemakerArmorItem &&
+						leggings.getItem() instanceof WinemakerArmorItem &&
+						boots.getItem() instanceof WinemakerArmorItem) {
 
 					if(random.nextFloat() < GeneralUtil.getInPercent(config.probabilityForDamage())){
 						int damage = config.damagePerUse();

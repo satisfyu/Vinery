@@ -141,7 +141,6 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
         }
         final ItemStack recipeOutput = recipe.getResultItem(access);
         final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
-        /** check wine year, stack, other, c**/
 
         if (outputSlotStack.isEmpty()) {
 
@@ -149,15 +148,12 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
             WineYears.setWineYear(output, this.level);
             setItem(OUTPUT_SLOT, output);
         }
-        // Decrement bottles
         final ItemStack bottle = this.getItem(BOTTLE_INPUT_SLOT);
         if (bottle.getCount() > 1) {
             removeItem(BOTTLE_INPUT_SLOT, 1);
         } else if (bottle.getCount() == 1) {
             setItem(BOTTLE_INPUT_SLOT, ItemStack.EMPTY);
         }
-
-        // Decrement ingredient
         for (Ingredient entry : recipe.getIngredients()) {
             if (entry.test(this.getItem(1))) {
                 removeItem(1, 1);

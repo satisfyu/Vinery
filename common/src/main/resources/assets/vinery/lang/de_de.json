@@ -112,7 +112,7 @@
   "block.vinery.oak_wine_rack_mid": "Eichenholzflaschenregal",
   "block.vinery.oak_wine_rack_small": "Kleines Eichenholzflaschenregal",
   "block.vinery.pink_cherry_leaves": "Pink Cherry Leaves",
-  "block.vinery.praetorian_wine": "Praetorian Wein",
+  "block.vinery.knulp_wine": "Knulpwein",
   "block.vinery.press.tooltip": "Wird verwendet um Äpfel zu pressen",
   "block.vinery.red_grape_bush": "Roter Weintraubenbusch",
   "block.vinery.red_grape_crate": "Sack Voller Roter Weintrauben",
@@ -280,5 +280,18 @@
   "vinery.tooltip.winemaker_armor": "Leidenschaft des Winzer:",
   "vinery.tooltip.winemaker_armor2": "Voller Setbonus:",
   "vinery.tooltip.winemaker_armor3": "Knochenmehl wird nicht mehr verbraucht.",
-  "vinery.advancement.apple": "Scharlachrote Versuchung"
+  "vinery.advancement.apple": "Scharlachrote Versuchung",
+  "block.vinery.acacia_lattice": "Akazienholzgitter",
+  "block.vinery.bamboo_lattice": "Bambusholzgitter",
+  "block.vinery.birch_lattice": "Birkenholzgitter",
+  "block.vinery.cherry_lattice": "Kirschholzgitter",
+  "block.vinery.crimson_lattice": "Karmesinholzgitter",
+  "block.vinery.dark_oak_lattice": "Schwarzeichenholzgitter",
+  "block.vinery.jungle_lattice": "Tropenholzgitter",
+  "block.vinery.mangrove_lattice": "Mangrovenholzgitter",
+  "block.vinery.spruce_lattice": "Fichtenholzgitter",
+  "block.vinery.warped_lattice": "Wirrholzgitter",
+  "vinery.config.entry.enableNetherLattices": "Aktiviere Netherholzgitter",
+  "vinery.config.entry.fermentationBarrelTime": "Reifefass - Reifedauer",
+  "vinery.config.entry.grapeGrowthSpeed": "Traubenwachstumsrate (in %)"
 }

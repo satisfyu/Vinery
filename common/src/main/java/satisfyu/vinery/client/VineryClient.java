@@ -59,7 +59,7 @@ public class VineryClient {
                 GRAPEVINE_STEM.get(), WINE_BOX.get(), FLOWER_POT.get(), CHAIR.get(),
                 APPLE_PRESS.get(), GRASS_SLAB.get(), CHERRY_SAPLING.get(), APPLE_TREE_SAPLING.get(),
                 KITCHEN_SINK.get(), STACKABLE_LOG.get(), APPLE_LEAVES.get(), POTTED_APPLE_TREE_SAPLING.get(),
-                POTTED_CHERRY_TREE_SAPLING.get(), RED_WINE.get(), PRAETORIAN_WINE.get(),
+                POTTED_CHERRY_TREE_SAPLING.get(), RED_WINE.get(), KNULP_WINE.get(),
                 CHAIR.get(), CRISTEL_WINE.get(), VILLAGERS_FRIGHT.get(), EISWEIN.get(), CREEPERS_CRUSH.get(),
                 GLOWING_WINE.get(), JO_SPECIAL_MIXTURE.get(), MEAD.get(), BOTTLE_MOJANG_NOIR.get(),
                 TABLE.get(), OAK_WINE_RACK_MID.get(), DARK_OAK_WINE_RACK_MID.get(), BIRCH_WINE_RACK_MID.get(),
@@ -72,7 +72,6 @@ public class VineryClient {
         RenderTypeRegistry.register(RenderType.translucent(), WINDOW.get());
 
         ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> GrassColor.get(0.5, 1.0), GRASS_SLAB);
-        ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> FoliageColor.get(0.5, 1.0), APPLE_LEAVES);
 
         ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
                     if (world == null || pos == null) {
@@ -96,7 +95,7 @@ public class VineryClient {
                     }
                     return BiomeColors.getAverageFoliageColor(world,pos);
                 }, SAVANNA_RED_GRAPE_BUSH.get(), SAVANNA_WHITE_GRAPE_BUSH.get(), JUNGLE_RED_GRAPE_BUSH.get(), JUNGLE_WHITE_GRAPE_BUSH.get(),
-                GRAPEVINE_STEM.get(),APPLE_LEAVES.get()
+                GRAPEVINE_STEM.get()
         );
 
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.FERMENTATION_BARREL_GUI_HANDLER.get(), FermentationBarrelGui::new);
@@ -122,15 +121,10 @@ public class VineryClient {
         EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);
         EntityModelLayerRegistry.register(BasketRenderer.LAYER_LOCATION, BasketRenderer::getTexturedModelData);
 
-        CustomArmorRegistry.registerArmorModelLayers();
+        ArmorRegistry.registerArmorModelLayers();
 
         LOGGER.info("Resource provider initialized, side is {}", Platform.getEnvironment().toPlatform().toString());
     }
-
-    public static void registerAsCutout(Block latticeBlock) {
-        RenderTypeRegistry.register(RenderType.cutout(), latticeBlock);
-    }
-
     public static Player getClientPlayer() {
         return Minecraft.getInstance().player;
     }
