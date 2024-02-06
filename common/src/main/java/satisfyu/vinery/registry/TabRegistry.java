@@ -7,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import satisfyu.vinery.Vinery;
+import satisfyu.vinery.config.VineryConfig;
 
 import static com.mojang.serialization.codecs.RecordCodecBuilder.build;
 
@@ -170,9 +171,10 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.MANGROVE_LATTICE.get());
                 out.accept(ObjectRegistry.BAMBOO_LATTICE.get());
                 out.accept(ObjectRegistry.MCCHERRY_LATTICE.get());
-                out.accept(ObjectRegistry.CRIMSON_LATTICE.get());
-                out.accept(ObjectRegistry.WARPED_LATTICE.get());
-
+                if (VineryConfig.DEFAULT.getConfig().enableNetherLattices()) {
+                    out.accept(ObjectRegistry.CRIMSON_LATTICE.get());
+                    out.accept(ObjectRegistry.WARPED_LATTICE.get());
+                }
             })
             .build());
 
