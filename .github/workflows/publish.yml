@@ -104,7 +104,7 @@ jobs:
   publish-modrinth:
     name: 🟢 Publish to Modrinth
     runs-on: ubuntu-latest
-    if: inputs.publish_modrinth && contains('cph101, satisfyu', github.triggering_actor)
+    if: inputs.publish_modrinth && contains('cph101, satisfyu, Cristelknight999, IamJannik, ECarrascon', github.triggering_actor)
     needs: mod-build
     steps:
       - uses: actions/checkout@v4.1.1
@@ -163,7 +163,7 @@ jobs:
   publish-cf:
     name: 🔶 Publish to Curseforge
     runs-on: ubuntu-latest
-    if: inputs.publish_cf && contains('cph101, satisfyu', github.triggering_actor)
+    if: inputs.publish_cf && contains('cph101, satisfyu, Cristelknight999, IamJannik, ECarrascon', github.triggering_actor)
     needs: mod-build
     steps:
       - uses: actions/checkout@v4.1.1
