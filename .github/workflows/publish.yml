@@ -12,10 +12,21 @@ on:
         required: true
         type: boolean
         default: true
+      publish_modrinth:
+        description: "Publish to Modrinth"
+        required: true
+        type: boolean
+        default: true
+      publish_cf:
+        description: "Publish to Curseforge"
+        required: true
+        type: boolean
+        default: true
 permissions:
   contents: write
   packages: write
-  
+
+
 jobs:
   mod-build:
     name: 📦 Build mod
@@ -89,3 +100,122 @@ jobs:
           mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
           mc_version: ${{ steps.read_properties.outputs.minecraft_version }}
           mod_version: ${{ steps.read_properties.outputs.mod_version }}
+          
+  publish-modrinth:
+    name: 🟢 Publish to Modrinth
+    runs-on: ubuntu-latest
+    if: inputs.publish_modrinth && contains('cph101, satisfyu, Cristelknight999, IamJannik, ECarrascon', github.triggering_actor)
+    needs: mod-build
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Download build files
+        uses: actions/download-artifact@v4.1.0
+        with:
+          path: compiledmods/
+      - uses: madhead/read-java-properties@latest
+        id: read_properties
+        with:
+          file: gradle.properties
+          all: true
+      - name: process builds
+        run: |
+          cd compiledmods/
+          ls -a -r
+          mv ./build-common/${{ env.mod_name }}-${{ env.mod_version }}.jar ${{ env.mod_name }}-${{ env.mod_version }}-common.jar
+          mv ./build-fabric/${{ env.mod_name }}-${{ env.mod_version }}.jar ./${{ env.mod_name }}-${{ env.mod_version }}-fabric.jar
+          mv ./build-forge/${{ env.mod_name }}-${{ env.mod_version }}.jar ./${{ env.mod_name }}-${{ env.mod_version }}-forge.jar
+        env:
+          mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
+          mod_version: ${{ steps.read_properties.outputs.mod_version }}
+      - name: Publish for Fabric
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: 1DWmBJVA
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          files: |
+            compiledmods/${{ env.mod_name }}-${{ env.mod_version }}-fabric.jar
+          name: "v${{ env.mod_version }}-${{ env.mc_version }}-fabric"
+          version: "${{ env.mod_version }}-${{ env.mc_version }}-fabric"
+          version-type: ${{ inputs.release_as_beta && 'beta' || 'release' }}
+          loaders: fabric
+          game-versions: ${{ env.mc_version }}
+        env:
+          mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
+          mc_version: ${{ steps.read_properties.outputs.minecraft_version }}
+          mod_version: ${{ steps.read_properties.outputs.mod_version }}
+      - name: Publish for Forge
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: 1DWmBJVA
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          files: |
+            compiledmods/${{ env.mod_name }}-${{ env.mod_version }}-forge.jar
+          name: "v${{ env.mod_version }}-${{ env.mc_version }}-forge"
+          version: "${{ env.mod_version }}-${{ env.mc_version }}-forge"
+          version-type: ${{ inputs.release_as_beta && 'beta' || 'release' }}
+          loaders: forge
+          game-versions: ${{ env.mc_version }}
+        env:
+          mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
+          mc_version: ${{ steps.read_properties.outputs.minecraft_version }}
+          mod_version: ${{ steps.read_properties.outputs.mod_version }}
+          
+  publish-cf:
+    name: 🔶 Publish to Curseforge
+    runs-on: ubuntu-latest
+    if: inputs.publish_cf && contains('cph101, satisfyu, Cristelknight999, IamJannik, ECarrascon', github.triggering_actor)
+    needs: mod-build
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Download build files
+        uses: actions/download-artifact@v4.1.0
+        with:
+          path: compiledmods/
+      - uses: madhead/read-java-properties@latest
+        id: read_properties
+        with:
+          file: gradle.properties
+          all: true
+      - name: process builds
+        run: |
+          cd compiledmods/
+          ls -a -r
+          mv ./build-common/${{ env.mod_name }}-${{ env.mod_version }}.jar ${{ env.mod_name }}-${{ env.mod_version }}-common.jar
+          mv ./build-fabric/${{ env.mod_name }}-${{ env.mod_version }}.jar ./${{ env.mod_name }}-${{ env.mod_version }}-fabric.jar
+          mv ./build-forge/${{ env.mod_name }}-${{ env.mod_version }}.jar ./${{ env.mod_name }}-${{ env.mod_version }}-forge.jar
+        env:
+          mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
+          mod_version: ${{ steps.read_properties.outputs.mod_version }}
+      - name: Publish for Fabric
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          curseforge-id: 704465
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          files: |
+            compiledmods/${{ env.mod_name }}-${{ env.mod_version }}-fabric.jar
+          name: "v${{ env.mod_version }}-${{ env.mc_version }}-fabric"
+          version: "${{ env.mod_version }}-${{ env.mc_version }}-fabric"
+          version-type: ${{ inputs.release_as_beta && 'beta' || 'release' }}
+          loaders: fabric
+          game-versions: ${{ env.mc_version }}
+        env:
+          mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
+          mc_version: ${{ steps.read_properties.outputs.minecraft_version }}
+          mod_version: ${{ steps.read_properties.outputs.mod_version }}
+      - name: Publish for Forge
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          curseforge-id: 704465
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          files: |
+            compiledmods/${{ env.mod_name }}-${{ env.mod_version }}-forge.jar
+          name: "v${{ env.mod_version }}-${{ env.mc_version }}-forge"
+          version: "${{ env.mod_version }}-${{ env.mc_version }}-forge"
+          version-type: ${{ inputs.release_as_beta && 'beta' || 'release' }}
+          loaders: forge
+          game-versions: ${{ env.mc_version }}
+        env:
+          mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
+          mc_version: ${{ steps.read_properties.outputs.minecraft_version }}
+          mod_version: ${{ steps.read_properties.outputs.mod_version }}
+
