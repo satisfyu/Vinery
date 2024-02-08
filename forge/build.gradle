@@ -6,6 +6,12 @@ architectury {
     forge()
 }
 
+
+def jarFileName = 'letsdo-vinery-forge'
+
+archivesBaseName = jarFileName
+
+
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
     forge {

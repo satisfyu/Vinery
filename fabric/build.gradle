@@ -11,6 +11,12 @@ loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
 }
 
+
+def jarFileName = 'letsdo-vinery-fabric'
+
+archivesBaseName = jarFileName
+
+
 configurations {
     common
     shadowCommon
