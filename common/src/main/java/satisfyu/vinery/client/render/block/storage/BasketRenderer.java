@@ -48,7 +48,7 @@ public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
                 .texOffs(0, 21).mirror().addBox(9.51F, -15.5F, 7.0F, 0.0F, 8.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false)
                 .texOffs(0, 21).mirror().addBox(-2.51F, -15.5F, 7.0F, 0.0F, 8.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(4.5F, 20.5F, 0.0F));
 
-        PartDefinition lidright = partdefinition.addOrReplaceChild("lidright", CubeListBuilder.create().texOffs(0, 15).mirror().addBox(-12.0F, -19.0F, 1.0F, 12.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 24.0F, 0.0F));
+        PartDefinition lidright = partdefinition.addOrReplaceChild("lidright", CubeListBuilder.create().texOffs(0, 15).mirror().addBox(2.0F, -19.0F, 3.0F, 12.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 24.0F, 0.0F));
 
         PartDefinition lidleft = partdefinition.addOrReplaceChild("lidleft", CubeListBuilder.create().texOffs(0, 15).mirror().addBox(2.0F, -19.0F, 8.0F, 12.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 24.0F, 0.0F));
 
@@ -66,7 +66,6 @@ public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
             }
         }
 
-
         poseStack.pushPose();
         poseStack.translate(0.5F, 0.5F, 0.5F);
         poseStack.mulPose(Axis.YP.rotationDegrees(-g));
@@ -75,28 +74,43 @@ public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
         openNess = 1.0F - openNess;
         openNess = 1.0F - openNess * openNess * openNess;
         VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
-        this.handle.render(poseStack,vertexConsumer,i,j);
 
-        this.renderLidPart(poseStack, vertexConsumer, this.lidleft, openNess, i, j, "north");
-        this.renderLidPart(poseStack, vertexConsumer, this.lidright, openNess, i, j, "south");
-
+        this.renderLid(poseStack, vertexConsumer, this.lidleft, openNess, i, j, false);
+        this.renderLid(poseStack, vertexConsumer, this.lidright, openNess, i, j, true);
         this.bottom.render(poseStack, vertexConsumer, i, j);
+        this.handle.render(poseStack,vertexConsumer,i,j);
+        this.renderLid(poseStack, vertexConsumer, this.lidleft, openNess, i, j, false);
+        this.renderLid(poseStack, vertexConsumer, this.lidright, openNess, i, j, true);
+
         poseStack.popPose();
     }
 
-    private void renderLidPart(PoseStack poseStack, VertexConsumer vertexConsumer, ModelPart lidPart, float openNess, int i, int j, String direction) {
-        float maxAngle = (float) Math.toRadians(55);
-        float angle = Math.min(openNess * maxAngle, maxAngle);
 
-        if (direction.equals("north")) {
-            lidPart.xRot = -angle; // Rotates the lid in one direction
-            lidPart.setPos(-2.0F, lidPart.y, 2.0F); // Adjust position if needed
-        } else if (direction.equals("south")) {
-            lidPart.xRot = angle; // Rotates the lid in the opposite direction
-            lidPart.setPos(14.0F, lidPart.y, 2.0F); // Adjust position if needed
+    private void renderLid(PoseStack poseStack, VertexConsumer vertexConsumer, ModelPart lid, float openNess, int i, int j, boolean isMirrored) {
+        float lidRotationAngle = -(openNess * 0.2F);
+        float lidVerticalMovement = openNess * -1.8F;
+
+        if (isMirrored) {
+            lidRotationAngle = -lidRotationAngle;
+            lidVerticalMovement = -lidVerticalMovement;
         }
 
-        lidPart.render(poseStack, vertexConsumer, i, j);
+        lid.xRot = lidRotationAngle;
+        lid.y = lid.y + lidVerticalMovement;
+        lid.render(poseStack, vertexConsumer, i, j);
+        lid.y = lid.y - lidVerticalMovement;
     }
 
+    public ModelPart getTop() {
+        return this.lidleft;
+    }
+
+    public ModelPart getHandle() {
+        return this.handle;
+    }
+
+
+    public ModelPart getBottom() {
+        return this.bottom;
+    }
 }

@@ -4,7 +4,6 @@ import de.cristelknight.doapi.DoApiExpectPlatform;
 import dev.architectury.event.events.common.PlayerEvent;
 import dev.architectury.hooks.item.tool.AxeItemHooks;
 import dev.architectury.hooks.item.tool.ShovelItemHooks;
-import dev.architectury.platform.Platform;
 import dev.architectury.registry.fuel.FuelRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;

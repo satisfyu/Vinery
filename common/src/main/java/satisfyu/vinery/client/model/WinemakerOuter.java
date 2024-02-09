@@ -10,7 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 
 public class WinemakerOuter<T extends LivingEntity> extends HumanoidModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new DoApiRL( "winemaker"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new DoApiRL( "winemaker_outer"), "main");
 
     public WinemakerOuter(ModelPart root) {
         super(root);

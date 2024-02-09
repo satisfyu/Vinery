@@ -15,7 +15,7 @@ public class MuleRenderer<T extends TraderMuleEntity> extends MobRenderer<T, Mul
     private static final ResourceLocation TEXTURE = new VineryIdentifier("textures/entity/wandering_mule.png");
 
     public MuleRenderer(EntityRendererProvider.Context context) {
-        super(context, new MuleModel<>(context.bakeLayer(MuleModel.LAYER_LOCATION)), 0.7f);
+        super(context, new MuleModel<>(context.bakeLayer(MuleModel.LAYER_LOCATION)), 0.5f);
     }
 
     @Override
