@@ -35,11 +35,11 @@ public class BasketBlockEntity extends RandomizableContainerBlockEntity implemen
         this.items = NonNullList.withSize(9, ItemStack.EMPTY);
         this.openersCounter = new ContainerOpenersCounter() {
             protected void onOpen(Level level, BlockPos blockPos, BlockState blockState) {
-                BasketBlockEntity.this.playSound(blockState, SoundEvents.BARREL_OPEN);
+                BasketBlockEntity.this.playSound(blockState, SoundEvents.BRUSH_GENERIC);
             }
 
             protected void onClose(Level level, BlockPos blockPos, BlockState blockState) {
-                BasketBlockEntity.this.playSound(blockState, SoundEvents.BARREL_CLOSE);
+                BasketBlockEntity.this.playSound(blockState, SoundEvents.BRUSH_GENERIC);
             }
 
             protected void openerCountChanged(Level level, BlockPos blockPos, BlockState blockState, int i, int j) {
