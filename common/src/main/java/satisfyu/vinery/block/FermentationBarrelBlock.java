@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.entity.blockentities.FermentationBarrelBlockEntity;
 import satisfyu.vinery.util.Util;
 import net.minecraft.ChatFormatting;
@@ -82,7 +83,7 @@ public class FermentationBarrelBlock extends HorizontalDirectionalBlock implemen
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE.get(state.getValue(FACING));
     }
 

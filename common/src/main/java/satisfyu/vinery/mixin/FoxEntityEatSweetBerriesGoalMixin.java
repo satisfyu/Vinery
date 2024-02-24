@@ -24,7 +24,7 @@ import satisfyu.vinery.block.grape.GrapeType;
 public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToBlockGoal {
     @Final
     @Shadow
-    Fox field_17975;   // Synthetic field
+    Fox field_17975;
 
     public FoxEntityEatSweetBerriesGoalMixin(PathfinderMob mob, double speed, int range) {
         super(mob, speed, range);

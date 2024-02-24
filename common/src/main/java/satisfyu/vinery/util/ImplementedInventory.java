@@ -6,6 +6,7 @@ import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -62,12 +63,12 @@ public interface ImplementedInventory extends WorldlyContainer {
     }
 
     @Override
-    default ItemStack getItem(int slot) {
+    default @NotNull ItemStack getItem(int slot) {
         return getItems().get(slot);
     }
 
     @Override
-    default ItemStack removeItem(int slot, int count) {
+    default @NotNull ItemStack removeItem(int slot, int count) {
         ItemStack result = ContainerHelper.removeItem(getItems(), slot, count);
         if (!result.isEmpty()) {
             setChanged();
@@ -77,7 +78,7 @@ public interface ImplementedInventory extends WorldlyContainer {
     }
 
     @Override
-    default ItemStack removeItemNoUpdate(int slot) {
+    default @NotNull ItemStack removeItemNoUpdate(int slot) {
         return ContainerHelper.takeItem(getItems(), slot);
     }
 

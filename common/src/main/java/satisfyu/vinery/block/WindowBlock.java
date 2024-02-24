@@ -88,21 +88,24 @@ public class WindowBlock extends IronBarsBlock {
 
 
     private void updateWindows2(LevelAccessor world, BlockPos pos){
-        int i = getWindowHeight2(world, pos);
-
-        if(i == 3){
-            world.setBlock(pos, world.getBlockState(pos).setValue(PART, 3), 3);
-            world.setBlock(pos.below(), world.getBlockState(pos.below()).setValue(PART, 2), 3);
-            world.setBlock(pos.below(2), world.getBlockState(pos.below(2)).setValue(PART, 1), 3);
-        }
-        else if(i == 2){
-            world.setBlock(pos, world.getBlockState(pos).setValue(PART, 3), 3);
-            world.setBlock(pos.below(), world.getBlockState(pos.below()).setValue(PART, 1), 3);
-        }
-        else if(i == 1){
-            world.setBlock(pos, world.getBlockState(pos).setValue(PART, 0), 3);
+        int height = getWindowHeight2(world, pos);
+        BlockState state = world.getBlockState(pos);
+        if(state.hasProperty(PART)){
+            if(height == 3){
+                world.setBlock(pos, state.setValue(PART, 3), 3);
+                world.setBlock(pos.below(), world.getBlockState(pos.below()).setValue(PART, 2), 3);
+                world.setBlock(pos.below(2), world.getBlockState(pos.below(2)).setValue(PART, 1), 3);
+            }
+            else if(height == 2){
+                world.setBlock(pos, state.setValue(PART, 3), 3);
+                world.setBlock(pos.below(), world.getBlockState(pos.below()).setValue(PART, 1), 3);
+            }
+            else if(height == 1){
+                world.setBlock(pos, state.setValue(PART, 0), 3);
+            }
         }
     }
+
 
     private BlockPos getHighestWindow2(LevelAccessor world, BlockPos pos){
         do{
