@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import satisfyu.vinery.item.WinemakerArmorItem;
+import satisfyu.vinery.item.*;
 import satisfyu.vinery.util.GeneralUtil;
 
 @Mixin(BoneMealItem.class)
@@ -30,10 +30,10 @@ public abstract class BoneMealItemMixin {
 				ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
 				ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
 				ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
-				if (helmet.getItem() instanceof WinemakerArmorItem &&
-						chestplate.getItem() instanceof WinemakerArmorItem &&
-						leggings.getItem() instanceof WinemakerArmorItem &&
-						boots.getItem() instanceof WinemakerArmorItem) {
+				if (helmet.getItem() instanceof WinemakerHatItem &&
+						chestplate.getItem() instanceof WinemakerChest &&
+						leggings.getItem() instanceof WinemakerLegs &&
+						boots.getItem() instanceof WinemakerBoots) {
 
 					if(random.nextFloat() < GeneralUtil.getInPercent(config.probabilityForDamage())){
 						int damage = config.damagePerUse();

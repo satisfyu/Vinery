@@ -20,7 +20,7 @@ import satisfyu.vinery.client.model.StrawHatModel;
 import satisfyu.vinery.client.model.WinemakerInner;
 import satisfyu.vinery.client.model.WinemakerOuter;
 import satisfyu.vinery.config.VineryConfig;
-import satisfyu.vinery.item.WinemakerArmorItem;
+import satisfyu.vinery.item.*;
 
 import java.util.List;
 import java.util.Map;
@@ -48,10 +48,10 @@ public class ArmorRegistry {
         ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
         ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
         ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
-        boolean helmetB = helmet.getItem() instanceof WinemakerArmorItem;
-        boolean chestplateB = chestplate.getItem() instanceof WinemakerArmorItem;
-        boolean leggingsB = leggings.getItem() instanceof WinemakerArmorItem;
-        boolean bootsB = boots.getItem() instanceof WinemakerArmorItem;
+        boolean helmetB = helmet.getItem() instanceof WinemakerHatItem;
+        boolean chestplateB = chestplate.getItem() instanceof WinemakerChest;
+        boolean leggingsB = leggings.getItem() instanceof WinemakerLegs;
+        boolean bootsB = boots.getItem() instanceof WinemakerBoots;
 
         tooltip.add(Component.nullToEmpty(""));
         tooltip.add(Component.nullToEmpty(ChatFormatting.AQUA + I18n.get("vinery.tooltip.winemaker_armor")));
