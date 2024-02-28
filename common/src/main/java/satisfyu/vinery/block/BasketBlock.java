@@ -35,6 +35,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.entity.blockentities.BasketBlockEntity;
 import satisfyu.vinery.registry.BlockEntityTypeRegistry;
@@ -72,18 +73,17 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
     });
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE.get(state.getValue(FACING));
     }
 
-    public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+    public @NotNull InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
             BlockEntity blockEntity = level.getBlockEntity(blockPos);
             if (blockEntity instanceof BasketBlockEntity) {
                 player.openMenu((BasketBlockEntity)blockEntity);
-                PiglinAi.angerNearbyPiglins(player, true);
             }
 
             return InteractionResult.CONSUME;
@@ -91,29 +91,23 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
     }
 
     public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
-        BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        if (blockEntity instanceof BasketBlockEntity basketBlockEntity) {
-            if (!level.isClientSide && player.isCreative() && !basketBlockEntity.isEmpty()) {
+        if (!level.isClientSide) {
+            BlockEntity blockEntity = level.getBlockEntity(blockPos);
+            if (blockEntity instanceof BasketBlockEntity basketBlockEntity) {
                 ItemStack itemStack = new ItemStack(blockState.getBlock());
-                blockEntity.saveToItem(itemStack);
-                if (basketBlockEntity.hasCustomName()) {
-                    itemStack.setHoverName(basketBlockEntity.getCustomName());
-                }
-
-                ItemEntity itemEntity = new ItemEntity(level, (double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, itemStack);
+                basketBlockEntity.saveToItem(itemStack);
+                double x = blockPos.getX() + 0.5;
+                double y = blockPos.getY() + 0.5;
+                double z = blockPos.getZ() + 0.5;
+                ItemEntity itemEntity = new ItemEntity(level, x, y, z, itemStack);
                 itemEntity.setDefaultPickUpDelay();
                 level.addFreshEntity(itemEntity);
-            } else {
-                basketBlockEntity.unpackLootTable(player);
             }
         }
-
         super.playerWillDestroy(level, blockPos, blockState, player);
     }
 
-
-
-    public List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
+    public @NotNull List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
         BlockEntity blockEntity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
         if (blockEntity instanceof BasketBlockEntity basketBlockEntity) {
             builder = builder.withDynamicDrop(CONTENTS, (consumer) -> {
@@ -154,7 +148,7 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
         }
     }
 
-    public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState) {
+    public @NotNull ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState) {
         ItemStack itemStack = super.getCloneItemStack(blockGetter, blockPos, blockState);
         blockGetter.getBlockEntity(blockPos, BlockEntityTypeRegistry.BASKET_ENTITY.get()).ifPresent((basketBlockEntity) -> {
             basketBlockEntity.saveToItem(itemStack);
@@ -162,7 +156,7 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
         return itemStack;
     }
 
-    public RenderShape getRenderShape(BlockState blockState) {
+    public @NotNull RenderShape getRenderShape(BlockState blockState) {
         return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
@@ -174,11 +168,11 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
         return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(blockPos));
     }
 
-    public BlockState rotate(BlockState state, Rotation rotation) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirror) {
+    public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
