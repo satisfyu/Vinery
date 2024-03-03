@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "vinery:loam",
+    "vinery:loam_stairs",
+    "vinery:loam_slab",
     "vinery:coarse_dirt_slab",
     "vinery:dirt_slab",
     "vinery:grass_slab"

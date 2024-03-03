@@ -32,6 +32,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.registry.SoundEventRegistry;
 import satisfyu.vinery.util.GeneralUtil;
@@ -51,25 +52,21 @@ public class KitchenSinkBlock extends Block {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		ItemStack itemStack = player.getItemInHand(hand);
 		Item item = itemStack.getItem();
-
-		// fill
 		if (itemStack.isEmpty() && !state.getValue(FILLED)) {
 			if(!world.isClientSide()){
 				world.setBlock(pos, state.setValue(FILLED, true), Block.UPDATE_ALL);
-				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEventRegistry.BLOCK_FAUCET.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
+				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0f, 1.0f);
 				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, 1.0f, 1.0f);
 			}
 			return InteractionResult.sidedSuccess(world.isClientSide());
 		}
-		// fill in
 		else if ((item == Items.WATER_BUCKET || PotionUtils.getPotion(itemStack).equals(Potions.WATER)) && !state.getValue(FILLED)) {
 			ItemStack itemReturn = item == Items.WATER_BUCKET ? new ItemStack(Items.BUCKET) : new ItemStack(Items.GLASS_BOTTLE);
 			return GeneralUtil.fillBucket(world, pos, player, hand, itemStack, itemReturn, state.setValue(FILLED, true), SoundEvents.BUCKET_EMPTY);
 		}
-		// take
 		else if ((item == Items.BUCKET || item == Items.GLASS_BOTTLE) && state.getValue(FILLED)) {
 			ItemStack itemReturn = item == Items.BUCKET ? new ItemStack(Items.WATER_BUCKET) : PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER);
 			return GeneralUtil.emptyBucket(world, pos, player, hand, itemStack, itemReturn, state.setValue(FILLED, false), SoundEvents.BUCKET_FILL);

@@ -200,6 +200,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
             }
         }
     }
+
     @Override
     public boolean stillValid(Player player) {
         if (this.level.getBlockEntity(this.worldPosition) != this) {

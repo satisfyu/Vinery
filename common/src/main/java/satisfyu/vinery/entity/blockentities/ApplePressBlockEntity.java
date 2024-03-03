@@ -157,6 +157,15 @@ public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, 
         return /*hasAppleInFirstSlot && */r2 && r3;
     }
 
+    @Override
+    public boolean stillValid(Player player) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
+            return false;
+        } else {
+            return player.distanceToSqr((double)this.worldPosition.getX() + 0.5, (double)this.worldPosition.getY() + 0.5, (double)this.worldPosition.getZ() + 0.5) <= 64.0;
+        }
+    }
+
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, Item output) {
         return inventory.getItem(1).getItem() == output || inventory.getItem(1).isEmpty();
     }

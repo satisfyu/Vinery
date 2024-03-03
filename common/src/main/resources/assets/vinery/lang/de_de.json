@@ -67,7 +67,6 @@
   "block.vinery.deprecated.tooltip": "Veraltet. Kann nicht mehr hergestellt werden.",
   "block.vinery.dirt_slab": "Erdstufe",
   "block.vinery.eiswein": "Eiswein",
-  "block.vinery.empty_red_vine": "Empty Red Vine",
   "block.vinery.expandable.tooltip": "Erweiterbar",
   "block.vinery.fermentation_barrel": "Reifefass",
   "block.vinery.fermentationbarrelblock.tooltip": "Wird verwendet um Traubensaft reifen zu lassen",
@@ -156,9 +155,7 @@
   "block.vinery.winerack.tooltip.shift_1": "Rechtsklick mit einer kleinen Weinflasche in der Hand zum füllen",
   "block.vinery.winerack.tooltip.shift_2": "Shift-Rechtsklick mit leerer Hand um Flaschen zu entnehmen",
   "block.vinery.wood_fired_oven": "Holzofen",
-  "container.storagepot": "Korb",
   "vinery.container.basket": "Korb",
-  "container.wine_rack": "Aufbewahrung",
   "creativetab.vinery.tab": "[Let's Do] Vinery",
   "effect.vinery.armor_effect": "Erhöhte Rüstung",
   "effect.vinery.climbing_effect": "Kletterer",
@@ -177,7 +174,7 @@
   "effect.vinery.teleport": "Teleport",
   "effect.vinery.trippy": "Erweitere Wahrnehmung",
   "effect.vinery.water_walker": "Wasserläufer",
-  "entity.minecraft.villager.vinery.winemaker": "Winzer",
+  "entity.minecraft.villager.winemaker": "Winzer",
   "entity.vinery.cherry_boat": "Kirschholzboot",
   "entity.vinery.cherry_chest_boat": "Kirschholztruhenboot",
   "entity.vinery.mule": "Lastesel",
@@ -293,5 +290,11 @@
   "block.vinery.warped_lattice": "Wirrholzgitter",
   "vinery.config.entry.enableNetherLattices": "Aktiviere Netherholzgitter",
   "vinery.config.entry.fermentationBarrelTime": "Reifefass - Reifedauer",
-  "vinery.config.entry.grapeGrowthSpeed": "Traubenwachstumsrate (in %)"
+  "vinery.config.entry.grapeGrowthSpeed": "Traubenwachstumsrate (in %)",
+  "vinery.container.storage": "Aufbewahrung",
+  "vinery.sound.drawer_close": "Schublade schliesst",
+  "vinery.sound.drawer_open": "Schublade öffnet",
+  "vinery.sound.cabinet_close": "Schrank schliesst",
+  "vinery.sound.cabinet_open": "Schrank öffnet"
+
 }

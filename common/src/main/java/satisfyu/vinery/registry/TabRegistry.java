@@ -171,10 +171,6 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.MANGROVE_LATTICE.get());
                 out.accept(ObjectRegistry.BAMBOO_LATTICE.get());
                 out.accept(ObjectRegistry.MCCHERRY_LATTICE.get());
-                if (VineryConfig.DEFAULT.getConfig().enableNetherLattices()) {
-                    out.accept(ObjectRegistry.CRIMSON_LATTICE.get());
-                    out.accept(ObjectRegistry.WARPED_LATTICE.get());
-                }
             })
             .build());
 

@@ -9,13 +9,14 @@
     "vinery:stackable_log",
     "vinery:fermentation_barrel",
     "vinery:cherry_floorboard",
-    "vinery:red_grape_crate",
-    "vinery:white_grape_crate",
     "vinery:flower_box",
     "vinery:apple_press",
     "vinery:barrel",
     "vinery:storage_pot",
     "vinery:cherry_sign",
+    "vinery:cherry_wall_sign",
+    "vinery:cherry_hanging_sign",
+    "vinery:cherry_wall_hanging_sign",
     "vinery:table",
     "vinery:chair",
     "vinery:cherry_fence_gate",
@@ -23,6 +24,5 @@
     "vinery:oak_lattice",
     "#vinery:wine_racks",
     "#vinery:lattice"
-
   ]
 }

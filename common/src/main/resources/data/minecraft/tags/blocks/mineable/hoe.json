@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "vinery:cherry_leaves",
-    "vinery:grapevine_leaves"
+    "vinery:grapevine_leaves",
+    "vinery:red_grape_crate",
+    "vinery:white_grape_crate",
+    "vinery:apple_crate"
   ]
 }

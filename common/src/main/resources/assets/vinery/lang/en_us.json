@@ -165,8 +165,7 @@
   "block.vinery.winerack.tooltip.shift_1": "Right-Click with a - small shaped - Wine Bottle in Hand to fill",
   "block.vinery.winerack.tooltip.shift_2": "Shift-right-click with an empty hand to take out Wine Bottles again",
   "block.vinery.wood_fired_oven": "Wood Fired Oven",
-  "container.storagepot": "Storage Pot",
-  "container.wine_rack": "Storage",
+  "vinery.container.storage":"Storage",
   "creativetab.vinery.tab": "[Let's Do] Vinery",
   "effect.vinery.armor_effect": "Armor",
   "effect.vinery.climbing_effect": "Climbing",
@@ -185,7 +184,7 @@
   "effect.vinery.teleport": "Teleport",
   "effect.vinery.trippy": "Perception",
   "effect.vinery.water_walker": "Water Walker",
-  "entity.minecraft.villager.vinery.winemaker": "Winemaker",
+  "entity.minecraft.villager.winemaker": "Winemaker",
   "entity.vinery.cherry_boat": "Cherry Boat",
   "entity.vinery.cherry_chest_boat": "Cherry Boat",
   "entity.vinery.mule": "Mule",
@@ -292,5 +291,9 @@
   "vinery.container.basket": "Basket",
   "vinery.tooltip.winemaker_armor": "Winemaker's Desire:",
   "vinery.tooltip.winemaker_armor2": "Full set bonus:",
-  "vinery.tooltip.winemaker_armor3": "Bonemeal won't get consumed anymore"
+  "vinery.tooltip.winemaker_armor3": "Bonemeal won't get consumed anymore",
+  "vinery.sound.drawer_close": "Drawer closing",
+  "vinery.sound.drawer_open": "Drawer opening",
+  "vinery.sound.cabinet_close": "Cabinet closing",
+  "vinery.sound.cabinet_open": "Cabinet opening"
 }

@@ -13,11 +13,10 @@ public class SoundEventRegistry {
     private static final Registrar<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Vinery.MOD_ID, Registries.SOUND_EVENT).getRegistrar();
 
     public static final RegistrySupplier<SoundEvent> BLOCK_GRAPEVINE_POT_SQUEEZE = create("block.grapevine_pot.squeeze");
-    public static final RegistrySupplier<SoundEvent> BLOCK_FAUCET = create("block.kitchen_sink.faucet");
-    public static final RegistrySupplier<SoundEvent> WINE_RACK_3_OPEN = create("block.wine_rack_3.open");
-    public static final RegistrySupplier<SoundEvent> WINE_RACK_3_CLOSE = create("block.wine_rack_3.close");
-    public static final RegistrySupplier<SoundEvent> WINE_RACK_5_OPEN = create("block.wine_rack_5.open");
-    public static final RegistrySupplier<SoundEvent> WINE_RACK_5_CLOSE = create("block.wine_rack_5.close");
+    public static final RegistrySupplier<SoundEvent> DRAWER_OPEN = create("drawer_open");
+    public static final RegistrySupplier<SoundEvent> DRAWER_CLOSE = create("drawer_close");
+    public static final RegistrySupplier<SoundEvent> CABINET_OPEN = create("cabinet_open");
+    public static final RegistrySupplier<SoundEvent> CABINET_CLOSE = create("cabinet_close");
 
 
     private static RegistrySupplier<SoundEvent> create(String name) {

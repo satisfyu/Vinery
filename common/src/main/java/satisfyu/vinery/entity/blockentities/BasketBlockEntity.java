@@ -6,7 +6,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
@@ -15,15 +14,17 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.BlockState;
-import satisfyu.vinery.Vinery;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.block.BasketBlock;
 import satisfyu.vinery.client.gui.handler.BasketGuiHandler;
 import satisfyu.vinery.registry.BlockEntityTypeRegistry;
+import satisfyu.vinery.registry.ObjectRegistry;
 
 public class BasketBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity {
     private NonNullList<ItemStack> items;
@@ -35,11 +36,11 @@ public class BasketBlockEntity extends RandomizableContainerBlockEntity implemen
         this.items = NonNullList.withSize(9, ItemStack.EMPTY);
         this.openersCounter = new ContainerOpenersCounter() {
             protected void onOpen(Level level, BlockPos blockPos, BlockState blockState) {
-                BasketBlockEntity.this.playSound(blockState, SoundEvents.BRUSH_GENERIC);
+                BasketBlockEntity.this.playSound(blockState);
             }
 
             protected void onClose(Level level, BlockPos blockPos, BlockState blockState) {
-                BasketBlockEntity.this.playSound(blockState, SoundEvents.BRUSH_GENERIC);
+                BasketBlockEntity.this.playSound(blockState);
             }
 
             protected void openerCountChanged(Level level, BlockPos blockPos, BlockState blockState, int i, int j) {
@@ -75,17 +76,17 @@ public class BasketBlockEntity extends RandomizableContainerBlockEntity implemen
     }
 
     @Override
-    protected Component getDefaultName() {
+    protected @NotNull Component getDefaultName() {
         return Component.translatable(this.getBlockState().getBlock().getDescriptionId());
     }
     
     @Override
-    protected AbstractContainerMenu createMenu(int i, Inventory inventory) {
+    protected @NotNull AbstractContainerMenu createMenu(int i, Inventory inventory) {
         return new BasketGuiHandler(i,inventory,this);
     }
 
     @Override
-    protected NonNullList<ItemStack> getItems() {
+    protected @NotNull NonNullList<ItemStack> getItems() {
         return this.items;
     }
 
@@ -113,12 +114,12 @@ public class BasketBlockEntity extends RandomizableContainerBlockEntity implemen
 
     }
 
-    void playSound(BlockState blockState, SoundEvent soundEvent) {
+    void playSound(BlockState blockState) {
         Vec3i vec3i = ((Direction)blockState.getValue(BasketBlock.FACING)).getNormal();
         double d = (double)this.worldPosition.getX() + 0.5D + (double)vec3i.getX() / 2.0D;
         double e = (double)this.worldPosition.getY() + 0.5D + (double)vec3i.getY() / 2.0D;
         double f = (double)this.worldPosition.getZ() + 0.5D + (double)vec3i.getZ() / 2.0D;
-        this.level.playSound((Player)null, d, e, f, soundEvent, SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
+        this.level.playSound((Player)null, d, e, f, SoundEvents.BRUSH_GENERIC, SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
     }
 
     @Override

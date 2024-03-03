@@ -17,26 +17,27 @@ import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import satisfyu.vinery.block.WineRackStorageBlock;
+import org.jetbrains.annotations.NotNull;
+import satisfyu.vinery.block.StorageBlock;
 import satisfyu.vinery.registry.BlockEntityTypeRegistry;
 
-public class WineRackStorageBlockEntity extends RandomizableContainerBlockEntity {
+public class StorageBlockEntity extends RandomizableContainerBlockEntity {
     private NonNullList<ItemStack> inventory;
-    private ContainerOpenersCounter stateManager;
+    private final ContainerOpenersCounter stateManager;
 
-    public WineRackStorageBlockEntity(BlockPos pos, BlockState state) {
+    public StorageBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityTypeRegistry.WINE_RACK_STORAGE_ENTITY.get(), pos, state);
         this.inventory = NonNullList.withSize(18, ItemStack.EMPTY);
         this.stateManager = new ContainerOpenersCounter() {
 
             @Override
             protected void onOpen(Level world, BlockPos pos, BlockState state) {
-                WineRackStorageBlockEntity.this.setOpen(state, true);
+                StorageBlockEntity.this.setOpen(state, true);
             }
 
             @Override
             protected void onClose(Level world, BlockPos pos, BlockState state) {
-                WineRackStorageBlockEntity.this.setOpen(state, false);
+                StorageBlockEntity.this.setOpen(state, false);
             }
 
             @Override
@@ -47,7 +48,7 @@ public class WineRackStorageBlockEntity extends RandomizableContainerBlockEntity
             protected boolean isOwnContainer(Player player) {
                 if (player.containerMenu instanceof ChestMenu) {
                     Container inventory = ((ChestMenu)player.containerMenu).getContainer();
-                    return inventory == WineRackStorageBlockEntity.this;
+                    return inventory == StorageBlockEntity.this;
                 } else {
                     return false;
                 }
@@ -80,7 +81,7 @@ public class WineRackStorageBlockEntity extends RandomizableContainerBlockEntity
     }
 
     @Override
-    protected NonNullList<ItemStack> getItems() {
+    protected @NotNull NonNullList<ItemStack> getItems() {
         return this.inventory;
     }
 
@@ -90,12 +91,12 @@ public class WineRackStorageBlockEntity extends RandomizableContainerBlockEntity
     }
 
     @Override
-    protected Component getDefaultName() {
-        return Component.translatable("container.wine_rack");
+    protected @NotNull Component getDefaultName() {
+        return Component.translatable(this.getBlockState().getBlock().getDescriptionId());
     }
 
     @Override
-    protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
+    protected @NotNull AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
         return new ChestMenu(MenuType.GENERIC_9x2, syncId, playerInventory, this, 2);
     }
 
@@ -120,7 +121,7 @@ public class WineRackStorageBlockEntity extends RandomizableContainerBlockEntity
     }
 
     public void setOpen(BlockState state, boolean open) {
-        if(state.getBlock() instanceof WineRackStorageBlock rack) rack.playSound(level, this.getBlockPos(), open);
+        if(state.getBlock() instanceof StorageBlock rack) rack.playSound(level, this.getBlockPos(), open);
         this.level.setBlock(this.getBlockPos(), state.setValue(BlockStateProperties.OPEN, open), 3);
     }
 

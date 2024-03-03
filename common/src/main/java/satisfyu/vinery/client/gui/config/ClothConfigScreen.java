@@ -44,7 +44,7 @@ public class ClothConfigScreen {
     private static class ConfigEntries {
         private final ConfigEntryBuilder builder;
         private final ConfigCategory category;
-        private final BooleanListEntry enableWineMakerSetBonus, enableNetherLattices;
+        private final BooleanListEntry enableWineMakerSetBonus;
         private final IntegerListEntry wineTraderChance, yearLengthInDays, yearsPerEffectLevel, fermentationBarrelTime, damagePerUse, probabilityForDamage, probabilityToKeepBoneMeal, grapeGrowthSpeed;
 
 
@@ -58,7 +58,6 @@ public class ClothConfigScreen {
             yearsPerEffectLevel = createIntField("yearsPerEffectLevel", config.yearsPerEffectLevel(), VineryConfig.DEFAULT.yearsPerEffectLevel(), null, 1, 1000);
             fermentationBarrelTime = createIntField("fermentationBarrelTime", config.fermentationBarrelTime(), VineryConfig.DEFAULT.fermentationBarrelTime(), null, 1, 10000);
             grapeGrowthSpeed = createIntField("grapeGrowthSpeed", config.grapeGrowthSpeed(), VineryConfig.DEFAULT.grapeGrowthSpeed(), null, 1, 100);
-            enableNetherLattices = createBooleanField("enableNetherLattices", config.enableNetherLattices(), VineryConfig.DEFAULT.enableNetherLattices(), null);
 
             SubCategoryBuilder wineMaker = new SubCategoryBuilder(Component.empty(), Component.translatable("vinery.config.subCategory.wineMaker"));
 
@@ -73,7 +72,7 @@ public class ClothConfigScreen {
 
 
         public VineryConfig createConfig() {
-            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue(), grapeGrowthSpeed.getValue(), enableNetherLattices.getValue());
+            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue(), grapeGrowthSpeed.getValue());
         }
 
 
