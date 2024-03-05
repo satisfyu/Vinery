@@ -3,6 +3,14 @@
   "values": [
     "vinery:jungle_grape_bush_red",
     "vinery:jungle_grape_bush_white",
-    "vinery:oak_lattice"
+    "vinery:oak_lattice",
+    "vinery:spruce_lattice",
+    "vinery:dark_oak_lattice",
+    "vinery:birch_lattice",
+    "vinery:mangrove_lattice",
+    "vinery:jungle_lattice",
+    "vinery:acacia_lattice",
+    "vinery:bamboo_lattice",
+    "vinery:cherry_lattice"
   ]
 }

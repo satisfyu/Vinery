@@ -28,6 +28,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.item.Calendar;
 
@@ -51,7 +52,7 @@ public class CalendarBlock extends FacingBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return getBoundingShape(state);
     }
 
@@ -95,7 +96,6 @@ public class CalendarBlock extends FacingBlock {
 
     private InteractionResult switchPages(LevelAccessor world, BlockPos pos, BlockState state, Player player) {
         world.playSound(null, pos, SoundEvents.BOOK_PAGE_TURN, SoundSource.PLAYERS, 0.5f, world.getRandom().nextFloat() * 0.1f + 0.9f);
-        player.getFoodData().eat(1, 0.4f);
         int currentMonth = state.getValue(MONTH);
         world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
 
@@ -115,7 +115,7 @@ public class CalendarBlock extends FacingBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         if (direction.getOpposite() == state.getValue(FACING) && !state.canSurvive(world, pos)) {
             return Blocks.AIR.defaultBlockState();
         }

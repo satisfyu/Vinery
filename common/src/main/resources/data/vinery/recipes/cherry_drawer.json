@@ -2,19 +2,22 @@
   "type": "minecraft:crafting_shaped",
   "group": "wine_rack",
   "pattern": [
-    "# #",
-    "#B#",
-    "# #"
+    "###",
+    "_B_",
+    "#B#"
   ],
   "key": {
     "#": {
       "item": "vinery:cherry_planks"
+    },
+    "_": {
+      "item": "vinery:cherry_slab"
     },
     "B": {
       "item": "minecraft:barrel"
     }
   },
   "result": {
-    "item": "vinery:cherry_drawer"
+    "item": "vinery:cherry_cabinet"
   }
 }
