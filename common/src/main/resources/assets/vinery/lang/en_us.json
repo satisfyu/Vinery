@@ -184,7 +184,7 @@
   "effect.vinery.teleport": "Teleport",
   "effect.vinery.trippy": "Perception",
   "effect.vinery.water_walker": "Water Walker",
-  "entity.minecraft.villager.winemaker": "Winemaker",
+  "entity.minecraft.villager.vinery.winemaker": "Winemaker",
   "entity.vinery.cherry_boat": "Cherry Boat",
   "entity.vinery.cherry_chest_boat": "Cherry Boat",
   "entity.vinery.mule": "Mule",

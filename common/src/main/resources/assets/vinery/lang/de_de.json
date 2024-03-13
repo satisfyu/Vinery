@@ -174,7 +174,7 @@
   "effect.vinery.teleport": "Teleport",
   "effect.vinery.trippy": "Erweitere Wahrnehmung",
   "effect.vinery.water_walker": "Wasserläufer",
-  "entity.minecraft.villager.winemaker": "Winzer",
+  "entity.minecraft.villager.vinery.winemaker": "Winzer",
   "entity.vinery.cherry_boat": "Kirschholzboot",
   "entity.vinery.cherry_chest_boat": "Kirschholztruhenboot",
   "entity.vinery.mule": "Lastesel",
@@ -296,5 +296,4 @@
   "vinery.sound.drawer_open": "Schublade öffnet",
   "vinery.sound.cabinet_close": "Schrank schliesst",
   "vinery.sound.cabinet_open": "Schrank öffnet"
-
 }

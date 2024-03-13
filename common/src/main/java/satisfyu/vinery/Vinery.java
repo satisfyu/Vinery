@@ -47,9 +47,5 @@ public class Vinery {
         AxeItemHooks.addStrippable(ObjectRegistry.APPLE_WOOD.get(), Blocks.STRIPPED_OAK_WOOD);
         ShovelItemHooks.addFlattenable(ObjectRegistry.GRASS_SLAB.get(), Blocks.DIRT_PATH.defaultBlockState());
     }
-
-    public static ResourceLocation MOD_ID(String path) {
-        return new ResourceLocation(Vinery.MOD_ID, path);
-    }
 }
 
