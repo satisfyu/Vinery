@@ -1,11 +1,10 @@
 package satisfyu.vinery.registry;
 
-import com.mojang.datafixers.util.Pair;
-import de.cristelknight.doapi.client.render.feature.FullCustomArmor;
+import de.cristelknight.doapi.client.render.feature.CustomArmorManager;
+import de.cristelknight.doapi.client.render.feature.CustomArmorSet;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
@@ -20,7 +19,10 @@ import satisfyu.vinery.client.model.StrawHatModel;
 import satisfyu.vinery.client.model.WinemakerInner;
 import satisfyu.vinery.client.model.WinemakerOuter;
 import satisfyu.vinery.config.VineryConfig;
-import satisfyu.vinery.item.*;
+import satisfyu.vinery.item.WinemakerBoots;
+import satisfyu.vinery.item.WinemakerChest;
+import satisfyu.vinery.item.WinemakerHatItem;
+import satisfyu.vinery.item.WinemakerLegs;
 
 import java.util.List;
 import java.util.Map;
@@ -32,8 +34,13 @@ public class ArmorRegistry {
         EntityModelLayerRegistry.register(WinemakerOuter.LAYER_LOCATION, WinemakerOuter::createBodyLayer);
     }
 
-    public static  <T extends LivingEntity> void registerArmorModels(Map<FullCustomArmor, Pair<HumanoidModel<T>, HumanoidModel<T>>> models, EntityModelSet modelLoader) {
-        models.put(new FullCustomArmor(ObjectRegistry.WINEMAKER_BOOTS.get(), ObjectRegistry.WINEMAKER_APRON.get(), ObjectRegistry.WINEMAKER_LEGGINGS.get(), new VineryIdentifier("textures/entity/winemaker.png")), new Pair<>(new WinemakerOuter<>(modelLoader.bakeLayer(WinemakerOuter.LAYER_LOCATION)), new WinemakerInner<>(modelLoader.bakeLayer(WinemakerInner.LAYER_LOCATION))));
+    public static <T extends LivingEntity> void registerArmorModels(CustomArmorManager<T> armors, EntityModelSet modelLoader) {
+        armors.addArmor(new CustomArmorSet<T>(ObjectRegistry.STRAW_HAT.get(), ObjectRegistry.WINEMAKER_APRON.get(), ObjectRegistry.WINEMAKER_LEGGINGS.get(), ObjectRegistry.WINEMAKER_BOOTS.get())
+                .setTexture(new VineryIdentifier("winemaker"))
+                .setOuterModel(new WinemakerOuter<>(modelLoader.bakeLayer(WinemakerOuter.LAYER_LOCATION)))
+                .setInnerModel(new WinemakerInner<>(modelLoader.bakeLayer(WinemakerInner.LAYER_LOCATION)))
+                .setHatModel(new StrawHatModel<>(modelLoader.bakeLayer(StrawHatModel.LAYER_LOCATION))));
+
     }
 
     public static  <T extends LivingEntity> void registerHatModels(Map<Item, EntityModel<T>> models, EntityModelSet modelLoader) {
