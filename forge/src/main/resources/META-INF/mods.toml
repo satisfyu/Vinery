@@ -1,6 +1,5 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
-#issueTrackerURL = ""
 license = "Custom"
 
 [[mods]]
@@ -30,7 +29,7 @@ side = "BOTH"
 [[dependencies.vinery]]
 modId = "doapi"
 mandatory = true
-versionRange = "[1.2.8,)"
+versionRange = "[1.2.9,)"
 ordering = "NONE"
 side = "BOTH"
 

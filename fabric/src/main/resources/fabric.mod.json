@@ -8,7 +8,8 @@
     "satisfy, Cristelknight, BaumeisterJO"
   ],
   "contact": {
-    "sources": "https://github.com/satisfyu/Vinery-Fabric"
+    "sources": "https://github.com/satisfyu/Vinery-Fabric",
+    "homepage": "https://legacy.curseforge.com/minecraft/mc-mods/lets-do-vinery"
   },
   "license": "ARR",
   "icon": "pack.png",
@@ -51,6 +52,6 @@
     "fabric-api": "*",
     "minecraft": ">=1.20",
     "architectury": ">=9.0.8",
-    "doapi": ">=1.2.8"
+    "doapi": ">=1.2.9"
   }
 }
