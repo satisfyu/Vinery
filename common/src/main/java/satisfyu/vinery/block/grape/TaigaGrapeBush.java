@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
+import satisfyu.vinery.config.VineryConfig;
 
 import java.util.Iterator;
 
@@ -41,7 +42,12 @@ public class TaigaGrapeBush extends GrapeBush {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
+        if (!VineryConfig.DEFAULT.entityInsideEnabled()) {
+            return;
+        }
+
         if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.makeStuckInBlock(state, new Vec3(0.800000011920929, 0.75, 0.800000011920929));
             if (!world.isClientSide && state.getValue(AGE) > 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
@@ -53,6 +59,7 @@ public class TaigaGrapeBush extends GrapeBush {
             }
         }
     }
+
 
     public boolean isPathfindable(BlockState arg, BlockGetter arg2, BlockPos arg3, PathComputationType arg4) {
         return false;

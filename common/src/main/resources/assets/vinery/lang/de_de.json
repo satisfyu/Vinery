@@ -272,6 +272,7 @@
   "vinery.config.entry.wineTraderChance": "Wandering Winemaker Spawnchance",
   "vinery.config.entry.yearLengthInDays": "Days per Year for Aging",
   "vinery.config.entry.yearsPerEffectLevel": "Jahre pro Effektstufe",
+  "vinery.config.entry.entityInsideEnabled": "Enable Taiga Grape Bush Damage",
   "vinery.config.subCategory.wineMaker": "Set-Bonus für Winzer",
   "vinery.config.title": "Vinery",
   "vinery.tooltip.winemaker_armor": "Leidenschaft des Winzer:",

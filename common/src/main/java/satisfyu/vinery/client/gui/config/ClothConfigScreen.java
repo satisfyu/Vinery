@@ -40,14 +40,12 @@ public class ClothConfigScreen {
         return builder.build();
     }
 
-
     private static class ConfigEntries {
         private final ConfigEntryBuilder builder;
         private final ConfigCategory category;
         private final BooleanListEntry enableWineMakerSetBonus;
         private final IntegerListEntry wineTraderChance, yearLengthInDays, yearsPerEffectLevel, fermentationBarrelTime, damagePerUse, probabilityForDamage, probabilityToKeepBoneMeal, grapeGrowthSpeed;
-
-
+        private final BooleanListEntry entityInsideEnabled; // Added
 
         public ConfigEntries(ConfigEntryBuilder builder, VineryConfig config, ConfigCategory category) {
             this.builder = builder;
@@ -66,13 +64,14 @@ public class ClothConfigScreen {
             probabilityForDamage = createIntField("probabilityForDamage", config.probabilityForDamage(), VineryConfig.DEFAULT.probabilityForDamage(), wineMaker, 0, 100);
             damagePerUse = createIntField("damagePerUse", config.damagePerUse(), VineryConfig.DEFAULT.damagePerUse(), wineMaker, 1, 1000);
 
+            entityInsideEnabled = createBooleanField("entityInsideEnabled", config.entityInsideEnabled(), VineryConfig.DEFAULT.entityInsideEnabled(), null);
+
             category.addEntry(wineMaker.build());
             linkButtons(Vinery.MOD_ID, category, builder, "https://discord.gg/Vqu6wYZwdZ", "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine", lastScreen);
         }
 
-
         public VineryConfig createConfig() {
-            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue(), grapeGrowthSpeed.getValue());
+            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue(), grapeGrowthSpeed.getValue(), entityInsideEnabled.getValue());
         }
 
 

@@ -9,12 +9,12 @@ import java.util.HashMap;
 
 
 public record VineryConfig(int wineTraderChance, int yearLengthInDays, int yearsPerEffectLevel,
-                           boolean enableWineMakerSetBonus, int damagePerUse, int probabilityForDamage, int probabilityToKeepBoneMeal, int fermentationBarrelTime, int grapeGrowthSpeed)
+                           boolean enableWineMakerSetBonus, int damagePerUse, int probabilityForDamage, int probabilityToKeepBoneMeal, int fermentationBarrelTime, int grapeGrowthSpeed, boolean entityInsideEnabled)
         implements CommentedConfig<VineryConfig> {
 
     private static VineryConfig INSTANCE = null;
 
-    public static final VineryConfig DEFAULT = new VineryConfig(50, 16, 4, true, 1, 30, 100, 50, 100);
+    public static final VineryConfig DEFAULT = new VineryConfig(50, 16, 4, true, 1, 30, 100, 50, 100, true);
 
     public static final Codec<VineryConfig> CODEC = RecordCodecBuilder.create(builder ->
             builder.group(
@@ -26,7 +26,8 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
                     Codec.intRange(0, 100).fieldOf("probability_for_damage").orElse(DEFAULT.probabilityForDamage).forGetter(c -> c.probabilityForDamage),
                     Codec.intRange(1, 100).fieldOf("probability_to_keep_bone_meal").orElse(DEFAULT.probabilityToKeepBoneMeal).forGetter(c -> c.probabilityToKeepBoneMeal),
                     Codec.intRange(1, 100000).fieldOf("fermentation_barrel_time").orElse(DEFAULT.fermentationBarrelTime).forGetter(c -> c.fermentationBarrelTime),
-                    Codec.intRange(0, 100).fieldOf("grape_growth_speed").orElse(DEFAULT.grapeGrowthSpeed).forGetter(c -> c.grapeGrowthSpeed)
+                    Codec.intRange(0, 100).fieldOf("grape_growth_speed").orElse(DEFAULT.grapeGrowthSpeed).forGetter(c -> c.grapeGrowthSpeed),
+                    Codec.BOOL.fieldOf("entity_inside_enabled").orElse(DEFAULT.entityInsideEnabled).forGetter(c -> c.entityInsideEnabled)
             ).apply(builder, VineryConfig::new)
     );
 
@@ -51,6 +52,9 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
                     Years per effect level""");
             map.put("fermentation_barrel_time", """
                     Ticks it takes to ferment a bottle""");
+            map.put("entity_inside_enabled", """
+                    Enable or disable entityInside effect for grape bushes.""");
+
         });
     }
 
