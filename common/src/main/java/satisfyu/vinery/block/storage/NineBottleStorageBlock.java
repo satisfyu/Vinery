@@ -53,9 +53,4 @@ public class NineBottleStorageBlock extends StorageBlock {
         int i = y >= l*2 ? 0 : y >= l ? 1 : 2;
         return nSection + i * 3;
     }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("block.vinery.winebox_small.tooltip.shift_1"));
-    }
 }

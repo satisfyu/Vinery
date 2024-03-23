@@ -14,9 +14,8 @@ import satisfyu.vinery.registry.ArmorRegistry;
 
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class WinemakerHatItem extends CustomHatItem {
-
-
     public WinemakerHatItem(Properties settings) {
         super(ArmorMaterialRegistry.WINEMAKER_ARMOR, Type.HELMET, settings);
     }

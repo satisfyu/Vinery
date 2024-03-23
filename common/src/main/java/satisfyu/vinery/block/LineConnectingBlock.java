@@ -12,13 +12,14 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.util.ConnectingProperties;
 import satisfyu.vinery.util.LineConnectingType;
 
 
+@SuppressWarnings("deprecation")
 public class LineConnectingBlock extends Block {
-
     public static final DirectionProperty FACING;
     public static final EnumProperty<LineConnectingType> TYPE;
 
@@ -76,13 +77,13 @@ public class LineConnectingBlock extends Block {
         boolean shape_right_same = right.getBlock() == state.getBlock() && right.getValue(FACING) == state.getValue(FACING);
 
         if (shape_left_same && shape_right_same) {
-            return LineConnectingType.MIDDLE.MIDDLE;
+            return LineConnectingType.MIDDLE;
         } else if (shape_left_same) {
-            return LineConnectingType.LEFT.LEFT;
+            return LineConnectingType.LEFT;
         } else if (shape_right_same) {
-            return LineConnectingType.RIGHT.RIGHT;
+            return LineConnectingType.RIGHT;
         }
-        return LineConnectingType.NONE.NONE;
+        return LineConnectingType.NONE;
     }
 
     @Override
@@ -92,12 +93,12 @@ public class LineConnectingBlock extends Block {
 
 
     @Override
-    public BlockState rotate(BlockState state, Rotation rotation) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState state, Mirror mirror) {
+    public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 

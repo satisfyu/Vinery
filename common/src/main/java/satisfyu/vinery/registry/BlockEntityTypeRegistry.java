@@ -7,7 +7,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.entity.blockentities.*;
+import satisfyu.vinery.entity.*;
 
 import java.util.function.Supplier;
 

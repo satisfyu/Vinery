@@ -21,6 +21,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.GeneralUtil;
@@ -28,6 +29,7 @@ import satisfyu.vinery.util.WineYears;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class DrinkBlockItem extends BlockItem {
     public DrinkBlockItem(Block block, Properties settings) {
@@ -35,14 +37,14 @@ public class DrinkBlockItem extends BlockItem {
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
+    public @NotNull UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.DRINK;
     }
 
 
     @Override
     protected BlockState getPlacementState(BlockPlaceContext context) {
-        if (!context.getPlayer().isCrouching()) {
+        if (!Objects.requireNonNull(context.getPlayer()).isCrouching()) {
             return null;
         }
 
@@ -136,14 +138,14 @@ public class DrinkBlockItem extends BlockItem {
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
+    public @NotNull ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
         super.finishUsingItem(itemStack, level, livingEntity);
         return GeneralUtil.convertStackAfterFinishUsing(livingEntity, itemStack, ObjectRegistry.WINE_BOTTLE.get(), this);
     }
 
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
         return ItemUtils.startUsingInstantly(level, player, interactionHand);
     }
 }

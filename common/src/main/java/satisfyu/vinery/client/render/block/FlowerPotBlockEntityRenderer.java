@@ -2,8 +2,8 @@ package satisfyu.vinery.client.render.block;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import satisfyu.vinery.block.FlowerPotBlock;
-import satisfyu.vinery.entity.blockentities.FlowerPotBlockEntity;
+import satisfyu.vinery.block.storage.FlowerPotBlock;
+import satisfyu.vinery.entity.FlowerPotBlockEntity;
 
 import static satisfyu.vinery.util.ClientUtil.renderBlock;
 

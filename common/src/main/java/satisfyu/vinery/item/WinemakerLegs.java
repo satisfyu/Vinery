@@ -12,7 +12,7 @@ import satisfyu.vinery.registry.ArmorRegistry;
 
 import java.util.List;
 
-
+@SuppressWarnings("deprecation")
 public class WinemakerLegs extends CustomArmorItem {
     public WinemakerLegs(ArmorMaterial material, Properties settings) {
         super(material, Type.LEGGINGS, settings);

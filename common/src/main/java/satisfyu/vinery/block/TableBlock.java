@@ -1,13 +1,7 @@
 package satisfyu.vinery.block;
 
-
-
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -23,11 +17,12 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.util.LineConnectingType;
 
-import java.util.List;
+import java.util.Objects;
 
-
+@SuppressWarnings("deprecation")
 public class TableBlock extends LineConnectingBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED;
     public static final VoxelShape TOP_SHAPE;
@@ -39,7 +34,7 @@ public class TableBlock extends LineConnectingBlock implements SimpleWaterlogged
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
         LineConnectingType type = state.getValue(TYPE);
 
@@ -65,7 +60,7 @@ public class TableBlock extends LineConnectingBlock implements SimpleWaterlogged
 
         Level world = context.getLevel();
         BlockPos clickedPos = context.getClickedPos();
-        return super.getStateForPlacement(context).setValue(WATERLOGGED, world.getFluidState(clickedPos).getType() == Fluids.WATER);
+        return Objects.requireNonNull(super.getStateForPlacement(context)).setValue(WATERLOGGED, world.getFluidState(clickedPos).getType() == Fluids.WATER);
     }
 
     @Override
@@ -75,7 +70,7 @@ public class TableBlock extends LineConnectingBlock implements SimpleWaterlogged
     }
 
     @Override
-    public FluidState getFluidState(BlockState state) {
+    public @NotNull FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
@@ -83,16 +78,10 @@ public class TableBlock extends LineConnectingBlock implements SimpleWaterlogged
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
         TOP_SHAPE = Block.box(0.0, 13.0, 0.0, 16.0, 16.0, 16.0);
         LEG_SHAPES = new VoxelShape[]{
-                Block.box(1.0, 0.0, 1.0, 4.0, 13.0, 4.0), //north
-                Block.box(12.0, 0.0, 1.0, 15.0, 13.0, 4.0), //east
-                Block.box(12.0, 0.0, 12.0, 15.0, 13.0, 15.0), //south
-                Block.box(1.0, 0.0, 12.0, 4.0, 13.0, 15.0) //west
+                Block.box(1.0, 0.0, 1.0, 4.0, 13.0, 4.0),
+                Block.box(12.0, 0.0, 1.0, 15.0, 13.0, 4.0),
+                Block.box(12.0, 0.0, 12.0, 15.0, 13.0, 15.0),
+                Block.box(1.0, 0.0, 12.0, 4.0, 13.0, 15.0)
         };
     }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("block.vinery.expandable.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-    }
-
 }

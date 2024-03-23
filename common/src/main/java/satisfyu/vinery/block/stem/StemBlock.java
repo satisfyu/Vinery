@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.block.grape.GrapeProperty;
 import satisfyu.vinery.block.grape.GrapeType;
 import satisfyu.vinery.registry.GrapeTypeRegistry;
@@ -48,7 +49,8 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    @SuppressWarnings("deprecation")
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         final int age = state.getValue(AGE);
         if (age > 3) {
             dropGrapes(world, state, pos);

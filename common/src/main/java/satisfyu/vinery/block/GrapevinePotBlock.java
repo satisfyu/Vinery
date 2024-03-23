@@ -23,6 +23,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import satisfyu.vinery.block.grape.GrapeProperty;
+import satisfyu.vinery.item.GrapeItem;
 import satisfyu.vinery.registry.GrapeTypeRegistry;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.SoundEventRegistry;

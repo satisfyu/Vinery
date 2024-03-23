@@ -1,4 +1,4 @@
-package satisfyu.vinery.block;
+package satisfyu.vinery.block.storage;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -23,12 +23,14 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.entity.blockentities.FlowerPotBlockEntity;
+import satisfyu.vinery.entity.FlowerPotBlockEntity;
 
 import java.util.List;
 import java.util.function.Supplier;
 
+@SuppressWarnings("deprecation")
 public class FlowerPotBlock extends Block implements EntityBlock {
 	private static final VoxelShape SHAPE;
 
@@ -47,12 +49,12 @@ public class FlowerPotBlock extends Block implements EntityBlock {
 	}
 	
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		if (hand == InteractionHand.OFF_HAND) return InteractionResult.PASS;
 		FlowerPotBlockEntity be = (FlowerPotBlockEntity)world.getBlockEntity(pos);
 		if (be == null || player.isShiftKeyDown()) return InteractionResult.PASS;

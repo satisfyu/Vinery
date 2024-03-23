@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.entity.blockentities.ApplePressBlockEntity;
+import satisfyu.vinery.entity.ApplePressBlockEntity;
 import satisfyu.vinery.registry.BlockEntityTypeRegistry;
 
 @SuppressWarnings("deprecation")

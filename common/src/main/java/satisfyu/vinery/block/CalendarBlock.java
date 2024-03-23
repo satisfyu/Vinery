@@ -35,6 +35,7 @@ import satisfyu.vinery.item.Calendar;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("deprecation")
 public class CalendarBlock extends FacingBlock {
     private static final Map<Direction, VoxelShape> BOUNDING_SHAPES = Maps.newEnumMap(ImmutableMap.of(
             Direction.NORTH, Block.box(1, 1, 15.0, 15, 15, 16.0),
@@ -82,9 +83,9 @@ public class CalendarBlock extends FacingBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (player.isDiscrete()) return InteractionResult.PASS;
-        ItemStack itemStack = player.getItemInHand(hand);
+        player.getItemInHand(hand);
         if (world.isClientSide) {
             if (switchPages(world, pos, state, player).consumesAction()) {
                 return InteractionResult.SUCCESS;

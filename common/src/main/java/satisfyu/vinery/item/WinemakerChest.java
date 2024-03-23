@@ -12,7 +12,7 @@ import satisfyu.vinery.registry.ArmorRegistry;
 
 import java.util.List;
 
-
+@SuppressWarnings("deprecation")
 public class WinemakerChest extends CustomArmorItem {
     public WinemakerChest(ArmorMaterial material, Properties settings) {
         super(material, Type.CHESTPLATE, settings);

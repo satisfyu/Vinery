@@ -17,7 +17,6 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class SavannaGrapeBush extends GrapeBush {
-
     public SavannaGrapeBush(Properties settings, GrapeType type) {
         super(settings, type, 3);
     }

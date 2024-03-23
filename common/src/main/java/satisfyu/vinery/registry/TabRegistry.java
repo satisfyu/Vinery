@@ -7,15 +7,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import satisfyu.vinery.Vinery;
-import satisfyu.vinery.config.VineryConfig;
 
-import static com.mojang.serialization.codecs.RecordCodecBuilder.build;
-
+@SuppressWarnings("unused")
 public class TabRegistry {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Vinery.MOD_ID, Registries.CREATIVE_MODE_TAB);
 
     public static final RegistrySupplier<CreativeModeTab> VINERY_TAB = CREATIVE_MODE_TABS.register("vinery", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
-            .icon(() -> new ItemStack(ObjectRegistry.JUNGLE_RED_GRAPE.get()))
+            .icon(() -> new ItemStack(ObjectRegistry.FERMENTATION_BARREL.get()))
             .title(Component.translatable("creativetab.vinery.tab"))
             .displayItems((parameters, out) -> {
                 out.accept(ObjectRegistry.CHERRY.get());

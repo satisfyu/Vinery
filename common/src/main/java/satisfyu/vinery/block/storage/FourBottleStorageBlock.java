@@ -62,10 +62,4 @@ public class FourBottleStorageBlock extends StorageBlock {
 
         return Integer.MIN_VALUE;
     }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("block.vinery.winebox_small.tooltip.shift_1"));
-
-    }
 }

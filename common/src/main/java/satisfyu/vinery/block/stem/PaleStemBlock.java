@@ -1,10 +1,7 @@
 package satisfyu.vinery.block.stem;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -15,7 +12,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -32,9 +28,9 @@ import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.item.GrapeBushSeedItem;
 import satisfyu.vinery.registry.GrapeTypeRegistry;
 
-import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("deprecation")
 public class PaleStemBlock extends StemBlock {
     private static final VoxelShape PALE_SHAPE = Block.box(6.0, 0,6.0, 10.0,  16.0, 10.0);
     public PaleStemBlock(Properties settings) {
@@ -43,25 +39,19 @@ public class PaleStemBlock extends StemBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return PALE_SHAPE;
     }
 
     @Nullable
     @Override
+    @SuppressWarnings("unused")
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         BlockState blockState;
         blockState = this.defaultBlockState();
         Level world = ctx.getLevel();
         BlockPos blockPos = ctx.getClickedPos();
         if (blockState.canSurvive(ctx.getLevel(), ctx.getClickedPos())) {
-            /*
-            ItemStack placeStack = Objects.requireNonNull(ctx.getPlayer()).getItemInHand(ctx.getHand());
-            if (placeStack != null && (ctx.getPlayer().isCreative() || placeStack.getCount() >= 2) && world.getBlockState(blockPos.below()).getBlock() != this && blockPos.getY() < world.getMaxBuildHeight() - 1 && world.getBlockState(blockPos.above()).canBeReplaced(ctx)) {
-                world.setBlock(blockPos.above(), this.defaultBlockState(), 3);
-                placeStack.shrink(1);
-            }
-             */
             return blockState;
         }
         return null;
@@ -78,7 +68,7 @@ public class PaleStemBlock extends StemBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (hand == InteractionHand.OFF_HAND) {
             return super.use(state, world, pos, player, hand, hit);
         }
@@ -148,10 +138,5 @@ public class PaleStemBlock extends StemBlock {
             world.scheduleTick(pos, this, 1);
         }
         return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("block.vinery.stem.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }

@@ -1,4 +1,4 @@
-package satisfyu.vinery.entity.blockentities;
+package satisfyu.vinery.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

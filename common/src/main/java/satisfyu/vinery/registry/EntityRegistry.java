@@ -11,8 +11,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.horse.Llama;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.entity.mule.TraderMuleEntity;
-import satisfyu.vinery.entity.wanderingwinemaker.WanderingWinemakerEntity;
+import satisfyu.vinery.entity.TraderMuleEntity;
+import satisfyu.vinery.entity.WanderingWinemakerEntity;
 
 import java.util.function.Supplier;
 

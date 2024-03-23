@@ -18,13 +18,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.registry.ObjectRegistry;
 
+import java.util.Objects;
+
 public class CherryLeaves extends LeavesBlock {
-
     public static final BooleanProperty VARIANT = BooleanProperty.create("can_have_cherries");
-
     public static final BooleanProperty HAS_CHERRIES = BooleanProperty.create("has_cherries");
 
     public CherryLeaves(Properties settings) {
@@ -33,7 +34,8 @@ public class CherryLeaves extends LeavesBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    @SuppressWarnings("deprecation")
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (state.getValue(VARIANT) && state.getValue(HAS_CHERRIES)) {
             if (!world.isClientSide()) {
                 int dropCount = world.getRandom().nextBoolean() ? Mth.nextInt(world.getRandom(), 1, 3) : 1;
@@ -64,7 +66,7 @@ public class CherryLeaves extends LeavesBlock {
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         Player p = ctx.getPlayer();
         boolean b = p != null && p.isShiftKeyDown();
-        return super.getStateForPlacement(ctx).setValue(VARIANT, ctx.getPlayer().getAbilities().instabuild && b);
+        return Objects.requireNonNull(super.getStateForPlacement(ctx)).setValue(VARIANT, ctx.getPlayer().getAbilities().instabuild && b);
     }
 
 

@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.registry.ObjectRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,8 +18,6 @@ import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.Nullable;
 
 public class WindowBlock extends IronBarsBlock {
-
-
     public static final IntegerProperty PART = IntegerProperty.create("part", 0, 3);
 
     public WindowBlock(Properties settings) {
@@ -34,7 +33,7 @@ public class WindowBlock extends IronBarsBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
 
         updateWindows2(world, getHighestWindow2(world, pos));
 
@@ -135,10 +134,10 @@ public class WindowBlock extends IronBarsBlock {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         BlockState downState = world.getBlockState(pos.below());
         BlockState downState2 = world.getBlockState(pos.below(2));
         return !downState.is(ObjectRegistry.WINDOW.get()) || downState.getValue(PART) != 3 || !downState2.is(ObjectRegistry.WINDOW.get()) || downState2.getValue(PART) != 2;
     }
-
 }

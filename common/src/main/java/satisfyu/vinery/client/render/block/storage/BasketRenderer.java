@@ -15,7 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.BasketBlock;
-import satisfyu.vinery.entity.blockentities.BasketBlockEntity;
+import satisfyu.vinery.entity.BasketBlockEntity;
 
 public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
     private static final ResourceLocation TEXTURE = new VineryIdentifier("textures/entity/basket.png");

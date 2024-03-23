@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 
 public class StorageTypeRegistry {
-
     public static final ResourceLocation BIG_BOTTLE = new VineryIdentifier("big_bottle");
     public static final ResourceLocation FOUR_BOTTLE = new VineryIdentifier("four_bottle");
     public static final ResourceLocation NINE_BOTTLE = new VineryIdentifier("nine_bottle");
@@ -16,9 +15,6 @@ public class StorageTypeRegistry {
     public static final ResourceLocation WINE_BOX = new VineryIdentifier("wine_box");
     public static final ResourceLocation FLOWER_BOX = new VineryIdentifier("flower_box");
     public static final ResourceLocation WINE_BOTTLE = new VineryIdentifier("wine_bottle");
-
-
-
 
     public static void registerBlocks(Set<Block> blocks) {
         blocks.add(ObjectRegistry.CHERRY_WINE_RACK_SMALL.get());

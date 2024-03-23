@@ -1,4 +1,4 @@
-package satisfyu.vinery.entity.blockentities;
+package satisfyu.vinery.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -14,7 +14,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -24,7 +23,6 @@ import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.block.BasketBlock;
 import satisfyu.vinery.client.gui.handler.BasketGuiHandler;
 import satisfyu.vinery.registry.BlockEntityTypeRegistry;
-import satisfyu.vinery.registry.ObjectRegistry;
 
 public class BasketBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity {
     private NonNullList<ItemStack> items;

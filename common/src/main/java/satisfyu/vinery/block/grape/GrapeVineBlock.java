@@ -22,12 +22,12 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.registry.GrapeTypeRegistry;
 import satisfyu.vinery.registry.ObjectRegistry;
 
+@SuppressWarnings("deprecation")
 public class GrapeVineBlock extends VineBlock implements BonemealableBlock {
-
-
     public static final IntegerProperty AGE;
     public static final BooleanProperty STERILIZED;
 
@@ -40,7 +40,7 @@ public class GrapeVineBlock extends VineBlock implements BonemealableBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (hand == InteractionHand.OFF_HAND) {
             return super.use(state, world, pos, player, hand, hit);
         }

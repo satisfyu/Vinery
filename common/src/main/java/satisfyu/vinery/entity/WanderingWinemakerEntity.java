@@ -1,4 +1,4 @@
-package satisfyu.vinery.entity.wanderingwinemaker;
+package satisfyu.vinery.entity;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.npc.VillagerTrades;

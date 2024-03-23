@@ -9,11 +9,13 @@ import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+@SuppressWarnings("unused")
 public class BasketItem extends BlockItem {
     public BasketItem(Block block, Properties settings) {
         super(block, new Properties().stacksTo(1));
@@ -32,7 +34,7 @@ public class BasketItem extends BlockItem {
         }
     }
 
-    public Optional<TooltipComponent> getTooltipImage(ItemStack itemStack) {
+    public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack itemStack) {
         NonNullList<ItemStack> nonNullList = NonNullList.create();
         Stream<ItemStack> var10000 = getContents(itemStack);
         Objects.requireNonNull(nonNullList);

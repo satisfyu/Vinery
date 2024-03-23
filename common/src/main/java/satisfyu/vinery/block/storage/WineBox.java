@@ -128,14 +128,5 @@ public class WineBox extends StorageBlock {
     @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
         tooltip.add(Component.translatable("block.vinery.canbeplaced.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-
-        if (Screen.hasShiftDown()) {
-            tooltip.add(Component.translatable("block.vinery.winebox.tooltip.shift_1"));
-            tooltip.add(Component.translatable("block.vinery.winebox.tooltip.shift_2"));
-            tooltip.add(Component.translatable("block.vinery.winebox.tooltip.shift_3"));
-
-        } else {
-            tooltip.add(Component.translatable("block.vinery.log.tooltip.tooltip_shift"));
-        }
     }
 }

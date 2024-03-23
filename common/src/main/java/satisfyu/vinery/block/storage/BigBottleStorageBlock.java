@@ -82,12 +82,4 @@ public class BigBottleStorageBlock extends StorageBlock {
     public int getSection(Float x, Float y) {
         return 0;
     }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-            tooltip.add(Component.translatable("block.vinery.winebox_big.tooltip.shift_1"));
-            tooltip.add(Component.translatable("block.vinery.winebox.tooltip.shift_2"));
-            tooltip.add(Component.translatable("block.vinery.winebox.tooltip.shift_3"));
-
-    }
 }

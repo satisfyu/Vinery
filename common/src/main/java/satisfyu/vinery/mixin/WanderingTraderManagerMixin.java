@@ -1,6 +1,6 @@
 package satisfyu.vinery.mixin;
 
-import satisfyu.vinery.entity.mule.TraderMuleEntity;
+import satisfyu.vinery.entity.TraderMuleEntity;
 import satisfyu.vinery.registry.EntityRegistry;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;

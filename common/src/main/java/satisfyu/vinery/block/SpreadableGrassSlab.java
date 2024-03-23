@@ -18,12 +18,11 @@ import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.level.material.Fluids;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.registry.ObjectRegistry;
 
 public class SpreadableGrassSlab extends SlabBlock implements BonemealableBlock {
-
     public static final BooleanProperty SNOWY = BlockStateProperties.SNOWY;
-
     public static final Block GRASS_BLOCK = Blocks.GRASS_BLOCK;
 
     public static Block getDirtSlabBlock(){
@@ -91,6 +90,7 @@ public class SpreadableGrassSlab extends SlabBlock implements BonemealableBlock 
 
 
     @Override
+    @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (!canSurviveNew(state, world, pos)) {
 
@@ -129,7 +129,7 @@ public class SpreadableGrassSlab extends SlabBlock implements BonemealableBlock 
         builder.add(SNOWY);
     }
 
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         if (state.getValue(WATERLOGGED)) {
             world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }

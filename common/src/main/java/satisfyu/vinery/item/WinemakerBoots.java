@@ -12,7 +12,7 @@ import satisfyu.vinery.registry.ArmorRegistry;
 
 import java.util.List;
 
-
+@SuppressWarnings("deprecation")
 public class WinemakerBoots extends CustomArmorItem {
     public WinemakerBoots(ArmorMaterial material, Properties settings) {
         super(material, Type.BOOTS, settings);

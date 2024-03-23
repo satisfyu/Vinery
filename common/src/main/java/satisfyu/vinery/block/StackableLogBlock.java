@@ -11,7 +11,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -26,7 +25,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
@@ -34,6 +35,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.util.Util;
 
@@ -42,6 +44,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@SuppressWarnings("all")
 public class StackableLogBlock extends SlabBlock{
     public static final BooleanProperty FIRED = BooleanProperty.create("fired");
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -52,9 +55,8 @@ public class StackableLogBlock extends SlabBlock{
         this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(FIRED, false).setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH));
     }
 
-    
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         final ItemStack stack = player.getItemInHand(hand);
         final SlabType stackSize = state.getValue(TYPE);
         if (stack.is(Items.FLINT_AND_STEEL) && stackSize == SlabType.DOUBLE) {
@@ -97,10 +99,10 @@ public class StackableLogBlock extends SlabBlock{
 
     @Override
     public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        if ((state.getValue(FIRED))) displayTickLikeCampfire(state, world, pos, random, world.getBlockState(pos.below()).is(Blocks.HAY_BLOCK));
+        if ((state.getValue(FIRED))) displayTickLikeCampfire(world, pos, random, world.getBlockState(pos.below()).is(Blocks.HAY_BLOCK));
     }
 
-    public static void displayTickLikeCampfire(BlockState state, Level world, BlockPos pos, RandomSource random, boolean isSignal){
+    public static void displayTickLikeCampfire(Level world, BlockPos pos, RandomSource random, boolean isSignal){
         if (random.nextFloat() < 0.80f) {
             for (int i = 0; i < random.nextInt(5) + 3; ++i) {
                 CampfireBlock.makeParticles(world, pos, isSignal, true);
@@ -145,7 +147,7 @@ public class StackableLogBlock extends SlabBlock{
     }
 
     @Override
-    public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
+    public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
         SlabType slabType = blockState.getValue(TYPE);
         Direction facing = blockState.getValue(FACING);
 
