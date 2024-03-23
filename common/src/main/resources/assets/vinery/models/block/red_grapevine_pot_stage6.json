@@ -1,10 +1,10 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"0": "vinery:block/bottom",
+		"0": "vinery:block/pot_bottom",
 		"1": "vinery:block/pot_side",
 		"2": "vinery:block/red_grapejuice",
-		"particle": "vinery:block/bottom"
+		"particle": "vinery:block/pot_bottom"
 	},
 	"elements": [
 		{

@@ -1,9 +1,9 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"2": "vinery:block/barrel_bottom",
-		"3": "vinery:block/storage_pot",
-		"particle": "vinery:block/barrel_bottom"
+		"2": "vinery:block/pot_bottom",
+		"3": "vinery:block/pot_storage",
+		"particle": "vinery:block/pot_bottom"
 	},
 	"elements": [
 		{
@@ -39,7 +39,7 @@
 			"faces": {
 				"north": {"uv": [1, 6, 15, 16], "texture": "#3", "cullface": "north"},
 				"south": {"uv": [1, 1, 11, 15], "rotation": 90, "texture": "#2"},
-				"up": {"uv": [1, 5, 15, 6], "rotation": 180, "texture": "#2"},
+				"up": {"uv": [1, 6, 15, 7], "rotation": 180, "texture": "#3"},
 				"down": {"uv": [1, 0, 15, 1], "texture": "#2", "cullface": "down"}
 			}
 		},
@@ -50,7 +50,7 @@
 			"faces": {
 				"north": {"uv": [1, 1, 11, 15], "rotation": 90, "texture": "#2"},
 				"south": {"uv": [1, 6, 15, 16], "texture": "#3", "cullface": "south"},
-				"up": {"uv": [1, 15, 15, 16], "rotation": 180, "texture": "#2"},
+				"up": {"uv": [1, 15, 15, 16], "rotation": 180, "texture": "#3"},
 				"down": {"uv": [1, 0, 15, 1], "texture": "#2", "cullface": "down"}
 			}
 		},
@@ -113,7 +113,7 @@
 			"faces": {
 				"east": {"uv": [0, 0, 4, 1], "texture": "#2"},
 				"west": {"uv": [0, 0, 4, 1], "texture": "#2", "cullface": "west"},
-				"up": {"uv": [0, 4, 1, 8], "texture": "#2"},
+				"up": {"uv": [6, 6, 10, 7], "rotation": 90, "texture": "#3"},
 				"down": {"uv": [0, 0, 1, 4], "texture": "#2"}
 			}
 		},
@@ -123,7 +123,7 @@
 			"faces": {
 				"east": {"uv": [0, 0, 4, 1], "texture": "#2", "cullface": "east"},
 				"west": {"uv": [0, 0, 4, 1], "texture": "#2"},
-				"up": {"uv": [0, 4, 1, 8], "texture": "#2"},
+				"up": {"uv": [6, 6, 10, 7], "rotation": 90, "texture": "#3"},
 				"down": {"uv": [0, 0, 1, 4], "texture": "#2"}
 			}
 		}
@@ -164,6 +164,7 @@
 			"name": "Barrel",
 			"origin": [0, 8, 0],
 			"color": 0,
+			"nbt": "{}",
 			"children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 		}
 	]

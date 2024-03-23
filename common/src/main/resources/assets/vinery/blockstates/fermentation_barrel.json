@@ -1,35 +1,33 @@
 {
   "variants": {
     "facing=east,part=foot": {
-      "y": 0,
+      "y": 90,
       "model": "vinery:block/fermentation_barrel_tap"
     },
     "facing=east,part=head": {
-      "y": 0,
+      "y": 90,
       "model": "vinery:block/fermentation_barrel"
     },
     "facing=north,part=foot": {
-      "y": 270,
       "model": "vinery:block/fermentation_barrel_tap"
     },
     "facing=north,part=head": {
-      "y": 270,
       "model": "vinery:block/fermentation_barrel"
     },
     "facing=south,part=foot": {
-      "y": 90,
+      "y": 180,
       "model": "vinery:block/fermentation_barrel_tap"
     },
     "facing=south,part=head": {
-      "y": 90,
+      "y": 180,
       "model": "vinery:block/fermentation_barrel"
     },
     "facing=west,part=foot": {
-      "y": 180,
+      "y": 270,
       "model": "vinery:block/fermentation_barrel_tap"
     },
     "facing=west,part=head": {
-      "y": 180,
+      "y": 270,
       "model": "vinery:block/fermentation_barrel"
     }
   }
