@@ -5,7 +5,6 @@ import dev.architectury.event.events.common.PlayerEvent;
 import dev.architectury.hooks.item.tool.AxeItemHooks;
 import dev.architectury.hooks.item.tool.ShovelItemHooks;
 import dev.architectury.registry.fuel.FuelRegistry;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

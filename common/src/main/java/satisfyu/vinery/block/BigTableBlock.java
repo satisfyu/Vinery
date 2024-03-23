@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.util.Util;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -34,6 +35,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@SuppressWarnings("deprecation")
 public class BigTableBlock extends HorizontalDirectionalBlock {
 	public static final EnumProperty<BedPart> PART = BlockStateProperties.BED_PART;
 
@@ -61,7 +63,7 @@ public class BigTableBlock extends HorizontalDirectionalBlock {
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(PART, BedPart.FOOT));
 	}
 
-	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+	public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
 		if (direction == getDirectionTowardsOtherPart(state.getValue(PART), state.getValue(FACING))) {
 			return neighborState.is(this) && neighborState.getValue(PART) != state.getValue(PART) ? state : Blocks.AIR.defaultBlockState();
 		} else {
@@ -90,7 +92,7 @@ public class BigTableBlock extends HorizontalDirectionalBlock {
 		return world.getBlockState(blockPos2).canBeReplaced(ctx) && world.getWorldBorder().isWithinBounds(blockPos2) ? this.defaultBlockState().setValue(FACING, direction) : null;
 	}
 
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		Direction direction = getOppositePartDirection(state).getOpposite();
 		return SHAPE.get(direction);
 	}
