@@ -5,10 +5,10 @@ license = "Custom"
 [[mods]]
 modId = "vinery"
 version = "${version}"
-displayName = "Vinery"
+displayName = "[Let's Do] Vinery"
 authors = "satisfy_u, Cristelknight, BaumeisterJO"
 description = '''
-Vinery contains nearly everything needed for not only creating wine but also for building up your own vinery.
+In Vino Veritas - it's time for wine! Build your own vineyard, produce wine, and establish your own winery.
 '''
 logoFile = "pack.png"
 

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "vinery",
   "version": "${version}",
-  "name": "Vinery",
-  "description": "Vinery contains nearly everything needed for not only creating wine but also for building up your own vinery.",
+  "name": "[Let's Do] Vinery",
+  "description": "In Vino Veritas - it's time for wine! Build your own vineyard, produce wine, and establish your own winery.",
   "authors": [
     "satisfy, Cristelknight, BaumeisterJO"
   ],
