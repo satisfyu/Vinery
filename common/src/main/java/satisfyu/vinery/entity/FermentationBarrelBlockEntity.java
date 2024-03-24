@@ -136,6 +136,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
         }
         return emptyStacks == 4;
     }
+
     private void craft(Recipe<?> recipe, RegistryAccess access) {
         if (!canCraft(recipe, access)) {
             return;
