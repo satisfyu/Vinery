@@ -2,18 +2,18 @@
   "variants": {
     "facing=east": {
       "model": "vinery:block/fermentation_barrel",
-      "y": 90
+      "y": 270
     },
     "facing=north": {
-      "model": "vinery:block/fermentation_barrel"
-    },
-    "facing=south": {
       "model": "vinery:block/fermentation_barrel",
       "y": 180
     },
+    "facing=south": {
+      "model": "vinery:block/fermentation_barrel"
+    },
     "facing=west": {
       "model": "vinery:block/fermentation_barrel",
-      "y": 270
+      "y": 90
     }
   }
 }
