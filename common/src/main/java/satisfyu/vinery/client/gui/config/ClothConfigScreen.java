@@ -57,7 +57,7 @@ public class ClothConfigScreen {
             fermentationBarrelTime = createIntField("fermentationBarrelTime", config.fermentationBarrelTime(), VineryConfig.DEFAULT.fermentationBarrelTime(), null, 1, 10000);
             grapeGrowthSpeed = createIntField("grapeGrowthSpeed", config.grapeGrowthSpeed(), VineryConfig.DEFAULT.grapeGrowthSpeed(), null, 1, 100);
 
-            SubCategoryBuilder wineMaker = new SubCategoryBuilder(Component.empty(), Component.translatable("vinery.config.subCategory.wineMaker"));
+            SubCategoryBuilder wineMaker = new SubCategoryBuilder(Component.empty(), Component.translatable("config.vinery.subCategory.wineMaker"));
 
             enableWineMakerSetBonus = createBooleanField("enableWineMakerSetBonus", config.enableWineMakerSetBonus(), VineryConfig.DEFAULT.enableWineMakerSetBonus(), wineMaker);
             probabilityToKeepBoneMeal = createIntField("probabilityToKeepBoneMeal", config.probabilityToKeepBoneMeal(), VineryConfig.DEFAULT.probabilityToKeepBoneMeal(), wineMaker, 1, 100);

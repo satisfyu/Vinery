@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.Block;
 import satisfyu.vinery.VineryIdentifier;
 
 public class BoatAndSignRegistry {
-
     public static ResourceLocation CHERRY_BOAT_TYPE = new VineryIdentifier("cherry");
 
     public static final ResourceLocation CHERRY_SIGN_TEXTURE = new VineryIdentifier("entity/signs/cherry");

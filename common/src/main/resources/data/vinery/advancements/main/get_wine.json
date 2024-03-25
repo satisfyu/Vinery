@@ -5,10 +5,10 @@
       "item": "vinery:lilitu_wine"
     },
     "title": {
-      "translate": "vinery.advancement.get_wine"
+      "translate": "advancement.vinery.get_wine"
     },
     "description": {
-      "translate": "vinery.advancement.get_wine.desc"
+      "translate": "advancement.vinery.get_wine.desc"
     },
     "frame": "task",
     "show_toast": true,

@@ -2,6 +2,7 @@ package satisfyu.vinery.util;
 
 import net.minecraft.world.item.Item;
 
+@SuppressWarnings("unused")
 public interface  IGrapevineType {
     Item getFruit();
     Item getSeeds();

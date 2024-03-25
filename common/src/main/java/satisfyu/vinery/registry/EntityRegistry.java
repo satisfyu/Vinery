@@ -17,7 +17,6 @@ import satisfyu.vinery.entity.WanderingWinemakerEntity;
 import java.util.function.Supplier;
 
 public class EntityRegistry {
-
 	private static final Registrar<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Vinery.MOD_ID, Registries.ENTITY_TYPE).getRegistrar();
 	
 	public static final RegistrySupplier<EntityType<TraderMuleEntity>> MULE = create("mule",

@@ -13,7 +13,7 @@
   "display": {
     "announce_to_chat": false,
     "description": {
-      "translate": "vinery.advancement.get_drunk.desc"
+      "translate": "advancement.vinery.get_drunk.desc"
     },
     "frame": "task",
     "hidden": false,
@@ -22,7 +22,7 @@
     },
     "show_toast": true,
     "title": {
-      "translate": "vinery.advancement.get_drunk"
+      "translate": "advancement.vinery.get_drunk"
     }
   },
   "requirements": [

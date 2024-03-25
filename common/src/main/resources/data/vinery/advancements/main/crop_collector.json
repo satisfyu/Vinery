@@ -5,10 +5,10 @@
       "item": "vinery:white_grape_crate"
     },
     "title": {
-      "translate": "vinery.advancement.crop_collector"
+      "translate": "advancement.vinery.crop_collector"
     },
     "description": {
-      "translate": "vinery.advancement.crop_collector.desc"
+      "translate": "advancement.vinery.crop_collector.desc"
     },
     "frame": "challenge",
     "show_toast": true,

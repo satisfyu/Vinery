@@ -5,10 +5,10 @@
       "item": "vinery:jellie_wine"
     },
     "title": {
-      "translate": "vinery.advancement.wine_collector"
+      "translate": "advancement.vinery.wine_collector"
     },
     "description": {
-      "translate": "vinery.advancement.wine_collector.desc"
+      "translate": "advancement.vinery.wine_collector.desc"
     },
     "frame": "challenge",
     "show_toast": true,

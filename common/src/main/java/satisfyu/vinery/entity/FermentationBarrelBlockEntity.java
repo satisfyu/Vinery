@@ -1,5 +1,6 @@
 package satisfyu.vinery.entity;
 
+import de.cristelknight.doapi.common.world.ImplementedInventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -27,7 +28,6 @@ import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.registry.BlockEntityTypeRegistry;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.RecipeTypesRegistry;
-import satisfyu.vinery.util.ImplementedInventory;
 import satisfyu.vinery.util.WineYears;
 
 public class FermentationBarrelBlockEntity extends BlockEntity implements ImplementedInventory, BlockEntityTicker<FermentationBarrelBlockEntity>, MenuProvider {
@@ -95,6 +95,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
         if (world.isClientSide) return;
         boolean dirty = false;
         Recipe<?> recipe = world.getRecipeManager().getRecipeFor(RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get(), this, world).orElse(null);
+        assert level != null;
         RegistryAccess access = level.registryAccess();
         if (canCraft(recipe, access)) {
             this.fermentationTime++;
@@ -173,7 +174,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
     }
 
     @Override
-    public int[] getSlotsForFace(Direction side) {
+    public int @NotNull [] getSlotsForFace(Direction side) {
         if(side.equals(Direction.UP)){
             return SLOTS_FOR_UP;
         } else if (side.equals(Direction.DOWN)){
@@ -205,6 +206,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
 
     @Override
     public boolean stillValid(Player player) {
+        assert this.level != null;
         if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {

@@ -5,10 +5,10 @@
       "item": "vinery:apple_mash"
     },
     "title": {
-      "translate": "vinery.advancement.apple_mash"
+      "translate": "advancement.vinery.apple_mash"
     },
     "description": {
-      "translate": "vinery.advancement.apple_mash.desc"
+      "translate": "advancement.vinery.apple_mash.desc"
     },
     "frame": "task",
     "show_toast": true,

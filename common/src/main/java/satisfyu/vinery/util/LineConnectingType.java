@@ -1,6 +1,7 @@
 package satisfyu.vinery.util;
 
 import net.minecraft.util.StringRepresentable;
+import org.jetbrains.annotations.NotNull;
 
 public enum LineConnectingType implements StringRepresentable {
     NONE("none"),
@@ -10,12 +11,12 @@ public enum LineConnectingType implements StringRepresentable {
 
     private final String name;
 
-    private LineConnectingType(String type) {
+    LineConnectingType(String type) {
         this.name = type;
     }
 
     @Override
-    public String getSerializedName() {
+    public @NotNull String getSerializedName() {
         return this.name;
     }
 }

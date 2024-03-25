@@ -47,6 +47,7 @@ import satisfyu.vinery.Vinery;
 
 import java.util.*;
 
+@SuppressWarnings({"unused", "deprecation"})
 public class GeneralUtil {
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureKey(String name) {

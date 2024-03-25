@@ -11,6 +11,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.registry.RecipeTypesRegistry;
 
 public class ApplePressRecipe implements Recipe<Container> {
@@ -30,7 +31,7 @@ public class ApplePressRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container container, RegistryAccess registryAccess) {
+    public @NotNull ItemStack assemble(Container container, RegistryAccess registryAccess) {
         return this.output.copy();
     }
 
@@ -43,7 +44,7 @@ public class ApplePressRecipe implements Recipe<Container> {
     }
 
     @Override
-    public NonNullList<Ingredient> getIngredients() {
+    public @NotNull NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> list = NonNullList.create();
         list.add(input);
         return list;
@@ -56,22 +57,22 @@ public class ApplePressRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess registryAccess) {
+    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
         return this.output;
     }
 
     @Override
-    public ResourceLocation getId() {
+    public @NotNull ResourceLocation getId() {
         return this.identifier;
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return RecipeTypesRegistry.APPLE_PRESS_RECIPE_SERIALIZER.get();
     }
 
     @Override
-    public RecipeType<?> getType() {
+    public @NotNull RecipeType<?> getType() {
         return RecipeTypesRegistry.APPLE_PRESS_RECIPE_TYPE.get();
     }
 
@@ -82,8 +83,8 @@ public class ApplePressRecipe implements Recipe<Container> {
     public static class Serializer implements RecipeSerializer<ApplePressRecipe> {
 
         @Override
-        public ApplePressRecipe fromJson(ResourceLocation id, JsonObject json) {
-            final Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));;
+        public @NotNull ApplePressRecipe fromJson(ResourceLocation id, JsonObject json) {
+            final Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
 
             if (ingredient.isEmpty()) {
                 throw new JsonParseException("No ingredients for recipe: " + id);
@@ -93,7 +94,7 @@ public class ApplePressRecipe implements Recipe<Container> {
         }
 
         @Override
-        public ApplePressRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public @NotNull ApplePressRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             return new ApplePressRecipe(id, Ingredient.fromNetwork(buf), buf.readItem());
         }
 

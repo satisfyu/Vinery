@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class ClientUtil {
-
     public static int getLightLevel(Level world, BlockPos pos) {
         int bLight = world.getBrightness(LightLayer.BLOCK, pos);
         int sLight = world.getBrightness(LightLayer.SKY, pos);
@@ -40,6 +39,7 @@ public class ClientUtil {
                 OverlayTexture.NO_OVERLAY, matrices, vertexConsumers, level, 1);
     }
 
+    @SuppressWarnings("unused")
     public static <T extends Button> void setButtonPosition(T button, int x, int y){
         button.setX(x);
         button.setY(y);

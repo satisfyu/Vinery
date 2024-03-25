@@ -16,7 +16,7 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "vinery.advancement.place_pot.desc"
+      "translate": "advancement.vinery.place_pot.desc"
     },
     "frame": "goal",
     "hidden": false,
@@ -25,7 +25,7 @@
     },
     "show_toast": true,
     "title": {
-      "translate": "vinery.advancement.place_pot"
+      "translate": "advancement.vinery.place_pot"
     }
   },
   "requirements": [

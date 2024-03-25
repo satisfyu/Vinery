@@ -5,10 +5,10 @@
       "item": "vinery:red_grapejuice_wine_bottle"
     },
     "title": {
-      "translate": "vinery.advancement.get_juice"
+      "translate": "advancement.vinery.get_juice"
     },
     "description": {
-      "translate": "vinery.advancement.get_juice.desc"
+      "translate": "advancement.vinery.get_juice.desc"
     },
     "frame": "task",
     "show_toast": true,

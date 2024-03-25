@@ -5,10 +5,10 @@
       "item": "vinery:jungle_grapes_red"
     },
     "title": {
-      "translate": "vinery.advancement.wild_crops"
+      "translate": "advancement.vinery.wild_crops"
     },
     "description": {
-      "translate": "vinery.advancement.wild_crops.desc"
+      "translate": "advancement.vinery.wild_crops.desc"
     },
     "frame": "task",
     "show_toast": true,

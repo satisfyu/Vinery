@@ -2,6 +2,7 @@ package satisfyu.vinery.util;
 
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.registry.ObjectRegistry;
 
 @Deprecated
@@ -25,7 +26,7 @@ public enum GrapevineType implements IGrapevineType, StringRepresentable {
     }
 
     @Override
-    public String getSerializedName() {
+    public @NotNull String getSerializedName() {
         return switch (this) {
             case NONE -> "none";
             case RED -> "red";

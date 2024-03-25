@@ -16,7 +16,7 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "vinery.advancement.fermentation.desc"
+      "translate": "advancement.vinery.fermentation.desc"
     },
     "frame": "task",
     "icon": {
@@ -24,7 +24,7 @@
     },
     "show_toast": true,
     "title": {
-      "translate": "vinery.advancement.fermentation"
+      "translate": "advancement.vinery.fermentation"
     }
   },
   "requirements": [

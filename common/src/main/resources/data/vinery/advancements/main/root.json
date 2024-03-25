@@ -4,10 +4,10 @@
       "item": "vinery:wine_bottle"
     },
     "title": {
-      "translate": "vinery.advancement.root"
+      "translate": "advancement.vinery.root"
     },
     "description": {
-      "translate": "vinery.advancement.root.desc"
+      "translate": "advancement.vinery.root.desc"
     },
     "frame": "task",
     "show_toast": false,

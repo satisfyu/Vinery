@@ -16,7 +16,7 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "vinery.advancement.apple_press.desc"
+      "translate": "advancement.vinery.apple_press.desc"
     },
     "frame": "goal",
     "hidden": false,
@@ -25,7 +25,7 @@
     },
     "show_toast": true,
     "title": {
-      "translate": "vinery.advancement.apple_press"
+      "translate": "advancement.vinery.apple_press"
     }
   },
   "requirements": [
