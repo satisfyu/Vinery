@@ -1,8 +1,6 @@
 package satisfyu.vinery.compat.rei.press;
 
 import com.google.common.collect.Lists;
-import net.minecraft.network.chat.Component;
-import satisfyu.vinery.registry.ObjectRegistry;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -11,6 +9,8 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
+import net.minecraft.network.chat.Component;
+import satisfyu.vinery.registry.ObjectRegistry;
 
 import java.util.List;
 

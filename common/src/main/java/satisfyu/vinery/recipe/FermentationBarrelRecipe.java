@@ -2,8 +2,6 @@ package satisfyu.vinery.recipe;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import satisfyu.vinery.registry.RecipeTypesRegistry;
-import satisfyu.vinery.util.Util;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -12,12 +10,10 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import satisfyu.vinery.registry.RecipeTypesRegistry;
+import satisfyu.vinery.util.Util;
 
 public class FermentationBarrelRecipe implements Recipe<Container> {
 

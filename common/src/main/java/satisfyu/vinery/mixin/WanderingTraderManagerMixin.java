@@ -1,16 +1,5 @@
 package satisfyu.vinery.mixin;
 
-import satisfyu.vinery.entity.TraderMuleEntity;
-import satisfyu.vinery.registry.EntityRegistry;
-import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.Optional;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -24,6 +13,17 @@ import net.minecraft.world.level.CustomSpawner;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.storage.ServerLevelData;
+import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import satisfyu.vinery.entity.TraderMuleEntity;
+import satisfyu.vinery.registry.EntityRegistry;
+
+import java.util.Optional;
 
 @Mixin(WanderingTraderSpawner.class)
 public abstract class WanderingTraderManagerMixin implements CustomSpawner {

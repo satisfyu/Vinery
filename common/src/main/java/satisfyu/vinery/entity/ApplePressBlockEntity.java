@@ -1,12 +1,7 @@
 package satisfyu.vinery.entity;
 
-import net.minecraft.core.Direction;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
-import satisfyu.vinery.recipe.ApplePressRecipe;
-import satisfyu.vinery.registry.BlockEntityTypeRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -19,10 +14,16 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
+import satisfyu.vinery.recipe.ApplePressRecipe;
+import satisfyu.vinery.registry.BlockEntityTypeRegistry;
 import satisfyu.vinery.registry.RecipeTypesRegistry;
 import satisfyu.vinery.util.ImplementedInventory;
 
@@ -72,7 +73,7 @@ public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, 
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.translatable(this.getBlockState().getBlock().getDescriptionId());
     }
 
@@ -154,11 +155,12 @@ public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, 
         boolean r2 = canInsertAmountIntoOutputSlot(inventory, result.getCount());
         boolean r3 = canInsertItemIntoOutputSlot(inventory, result.getItem());
 
-        return /*hasAppleInFirstSlot && */r2 && r3;
+        return r2 && r3;
     }
 
     @Override
     public boolean stillValid(Player player) {
+        assert this.level != null;
         if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {

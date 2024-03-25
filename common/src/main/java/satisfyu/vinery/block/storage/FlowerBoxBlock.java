@@ -21,9 +21,10 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.registry.StorageTypeRegistry;
-import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.registry.TagRegistry;
+import satisfyu.vinery.util.GeneralUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -49,7 +50,8 @@ public class FlowerBoxBlock extends StorageBlock {
 	});
 
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	@SuppressWarnings("deprecation")
+	public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE.get(state.getValue(FACING));
 	}
 

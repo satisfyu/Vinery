@@ -2,11 +2,9 @@ package satisfyu.vinery.event;
 
 import dev.architectury.event.EventResult;
 import dev.architectury.event.events.common.PlayerEvent;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;

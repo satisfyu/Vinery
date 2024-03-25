@@ -9,9 +9,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
 import satisfyu.vinery.client.gui.handler.BasketGuiHandler;
 import satisfyu.vinery.client.gui.handler.FermentationBarrelGuiHandler;
-import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
 
 import java.util.function.Supplier;
 

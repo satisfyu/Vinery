@@ -1,7 +1,5 @@
 package satisfyu.vinery.block;
 
-import org.jetbrains.annotations.NotNull;
-import satisfyu.vinery.util.Util;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,7 +26,9 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.util.Util;
 
 import java.util.HashMap;
 import java.util.List;

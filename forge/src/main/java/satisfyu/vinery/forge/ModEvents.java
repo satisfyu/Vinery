@@ -9,8 +9,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.forge.registry.VineryForgeVillagers;
-import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.MobEffectRegistry;
+import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.VillagerUtil;
 
 import java.util.HashMap;

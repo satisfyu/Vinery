@@ -1,7 +1,6 @@
 package satisfyu.vinery.mixin;
 
 import net.minecraft.util.RandomSource;
-import satisfyu.vinery.config.VineryConfig;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -12,7 +11,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import satisfyu.vinery.item.*;
+import satisfyu.vinery.config.VineryConfig;
+import satisfyu.vinery.item.WinemakerBoots;
+import satisfyu.vinery.item.WinemakerChest;
+import satisfyu.vinery.item.WinemakerHatItem;
+import satisfyu.vinery.item.WinemakerLegs;
 import satisfyu.vinery.util.GeneralUtil;
 
 @Mixin(BoneMealItem.class)

@@ -1,8 +1,5 @@
 package satisfyu.vinery.effect;
 
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
@@ -10,7 +7,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
-import satisfyu.vinery.Vinery;
+
+import java.util.List;
 
 public class MagnetEffect extends MobEffect {
     public MagnetEffect() {

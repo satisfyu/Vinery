@@ -1,9 +1,10 @@
 package satisfyu.vinery.client.gui.handler.slot;
 
-import java.util.function.Predicate;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.function.Predicate;
 
 public class ExtendedSlot extends Slot {
 

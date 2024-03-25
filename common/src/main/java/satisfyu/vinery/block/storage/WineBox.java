@@ -2,7 +2,6 @@ package satisfyu.vinery.block.storage;
 
 import de.cristelknight.doapi.common.block.StorageBlock;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;

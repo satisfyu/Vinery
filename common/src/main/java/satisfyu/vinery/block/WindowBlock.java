@@ -1,7 +1,5 @@
 package satisfyu.vinery.block;
 
-import org.jetbrains.annotations.NotNull;
-import satisfyu.vinery.registry.ObjectRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,7 +13,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Fluids;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.registry.ObjectRegistry;
 
 public class WindowBlock extends IronBarsBlock {
     public static final IntegerProperty PART = IntegerProperty.create("part", 0, 3);
