@@ -50,6 +50,7 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
             int slotIndex = 0;
             for (Slot slot : this.screenHandler.slots) {
                 if (slot.getItem().getItem() == ObjectRegistry.WINE_BOTTLE.get().asItem()) {
+                    assert Minecraft.getInstance().gameMode != null;
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, slotIndex, 0, ClickType.PICKUP, Minecraft.getInstance().player);
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, 0, 0, ClickType.PICKUP, Minecraft.getInstance().player);
                     break;
@@ -64,6 +65,7 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
                 ItemStack itemStack = slot.getItem();
 
                 if (ingredient.test(itemStack) && usedInputSlots < 5) {
+                    assert Minecraft.getInstance().gameMode != null;
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, slotIndex, 0, ClickType.PICKUP, Minecraft.getInstance().player);
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, usedInputSlots, 0, ClickType.PICKUP, Minecraft.getInstance().player);
                     ++usedInputSlots;

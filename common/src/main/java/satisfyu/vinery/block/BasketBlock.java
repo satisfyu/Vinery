@@ -42,6 +42,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@SuppressWarnings("deprecation")
 public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlock{
     public static final DirectionProperty FACING;
     public static final ResourceLocation CONTENTS;
@@ -146,9 +147,7 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 
     public @NotNull ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState) {
         ItemStack itemStack = super.getCloneItemStack(blockGetter, blockPos, blockState);
-        blockGetter.getBlockEntity(blockPos, BlockEntityTypeRegistry.BASKET_ENTITY.get()).ifPresent((basketBlockEntity) -> {
-            basketBlockEntity.saveToItem(itemStack);
-        });
+        blockGetter.getBlockEntity(blockPos, BlockEntityTypeRegistry.BASKET_ENTITY.get()).ifPresent((basketBlockEntity) -> basketBlockEntity.saveToItem(itemStack));
         return itemStack;
     }
 
@@ -174,6 +173,7 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 
     @Nullable
     @Override
+    @SuppressWarnings("unused")
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         FluidState fluidState = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
         return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite());

@@ -9,7 +9,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Items;
 
 public class StaggerEffect extends MobEffect {
-    private int effectDuration;
     private double rotationDirection, motionDirection;
 
     public StaggerEffect() {
@@ -44,7 +43,6 @@ public class StaggerEffect extends MobEffect {
 
     @Override
     public boolean isDurationEffectTick(int duration, int amplifier) {
-        this.effectDuration = duration;
         return true;
     }
 }

@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
+@SuppressWarnings("all")
 public class TeleportEffect extends InstantenousMobEffect {
 
     public TeleportEffect() {
@@ -21,18 +22,18 @@ public class TeleportEffect extends InstantenousMobEffect {
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity instanceof Player player) {
-            teleport(player, amplifier);
+            teleport(player);
         }
     }
 
     @Override
     public void applyInstantenousEffect(@Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
         if (source instanceof Player player) {
-            teleport(player, amplifier);
+            teleport(player);
         }
     }
 
-    private void teleport(Player player , int amplifier) {
+    private void teleport(Player player) {
         Level world = player.level();
         Vec3 targetVec = player.position();
         Vec3 lookVec = player.getLookAngle();

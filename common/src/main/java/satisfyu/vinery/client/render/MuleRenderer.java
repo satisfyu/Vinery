@@ -1,10 +1,11 @@
-package satisfyu.vinery.client.render.entity;
+package satisfyu.vinery.client.render;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.model.MuleModel;
 import satisfyu.vinery.entity.TraderMuleEntity;
@@ -18,7 +19,7 @@ public class MuleRenderer<T extends TraderMuleEntity> extends MobRenderer<T, Mul
     }
 
     @Override
-    public ResourceLocation getTextureLocation(TraderMuleEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(TraderMuleEntity entity) {
         return TEXTURE;
     }
 

@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.render.entity;
+package satisfyu.vinery.client.render;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.WanderingTraderRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.npc.WanderingTrader;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.VineryIdentifier;
 @Environment(EnvType.CLIENT)
 public class WanderingWinemakerRenderer extends WanderingTraderRenderer {
@@ -16,7 +17,7 @@ public class WanderingWinemakerRenderer extends WanderingTraderRenderer {
 	}
 	
 	@Override
-	public ResourceLocation getTextureLocation(WanderingTrader entity) {
+	public @NotNull ResourceLocation getTextureLocation(WanderingTrader entity) {
 		return TEXTURE;
 	}
 }

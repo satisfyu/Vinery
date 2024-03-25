@@ -19,8 +19,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+
+@SuppressWarnings("deprecation")
 public class AppleLeaves extends LeavesBlock {
 
     public static final BooleanProperty VARIANT = BooleanProperty.create("can_have_apples");
@@ -33,7 +37,7 @@ public class AppleLeaves extends LeavesBlock {
 
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (state.getValue(VARIANT) && state.getValue(HAS_APPLES)) {
             if (!world.isClientSide()) {
                 int dropCount = world.getRandom().nextBoolean() ? Mth.nextInt(world.getRandom(), 1, 3) : 1;
@@ -60,7 +64,7 @@ public class AppleLeaves extends LeavesBlock {
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         Player p = ctx.getPlayer();
         boolean b = p != null && p.isShiftKeyDown();
-        return super.getStateForPlacement(ctx).setValue(VARIANT, ctx.getPlayer().getAbilities().instabuild && b);
+        return Objects.requireNonNull(super.getStateForPlacement(ctx)).setValue(VARIANT, ctx.getPlayer().getAbilities().instabuild && b);
     }
 
 

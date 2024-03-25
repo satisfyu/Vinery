@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.render.block.storage;
+package satisfyu.vinery.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -16,6 +16,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.BasketBlock;
 import satisfyu.vinery.entity.BasketBlockEntity;
+
+import java.util.Objects;
 
 public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
     private static final ResourceLocation TEXTURE = new VineryIdentifier("textures/entity/basket.png");
@@ -35,9 +37,7 @@ public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
     }
 
 
-
-
-
+    @SuppressWarnings("unused")
     public static LayerDefinition getTexturedModelData() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
@@ -60,7 +60,7 @@ public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
         float g = 0;
 
         if(blockEntity.hasLevel()){
-            BlockState blockState = blockEntity.getLevel().getBlockState(blockEntity.getBlockPos());
+            BlockState blockState = Objects.requireNonNull(blockEntity.getLevel()).getBlockState(blockEntity.getBlockPos());
             if(blockState.getBlock() instanceof BasketBlock){
                 g = blockState.getValue(BasketBlock.FACING).toYRot();
             }
@@ -104,11 +104,6 @@ public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
     public ModelPart getTop() {
         return this.lidleft;
     }
-
-    public ModelPart getHandle() {
-        return this.handle;
-    }
-
 
     public ModelPart getBottom() {
         return this.bottom;

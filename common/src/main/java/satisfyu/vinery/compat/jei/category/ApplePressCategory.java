@@ -12,6 +12,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.client.gui.ApplePressGui;
 import satisfyu.vinery.compat.jei.VineryJEIPlugin;
@@ -40,8 +41,6 @@ public class ApplePressCategory implements IRecipeCategory<ApplePressRecipe> {
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, ApplePressRecipe recipe, IFocusGroup focuses) {
         VineryJEIPlugin.addSlot(builder, 48 - WIDTH_OF, 34 - HEIGHT_OF, recipe.input);
-
-        // Output
         builder.addSlot(RecipeIngredientRole.OUTPUT, 116 - WIDTH_OF,  35 - HEIGHT_OF).addItemStack(recipe.getResultItem());
     }
 
@@ -51,22 +50,22 @@ public class ApplePressCategory implements IRecipeCategory<ApplePressRecipe> {
     }
 
     @Override
-    public RecipeType<ApplePressRecipe> getRecipeType() {
+    public @NotNull RecipeType<ApplePressRecipe> getRecipeType() {
         return APPLE_PRESS;
     }
 
     @Override
-    public Component getTitle() {
+    public @NotNull Component getTitle() {
         return this.localizedName;
     }
 
     @Override
-    public IDrawable getBackground() {
+    public @NotNull IDrawable getBackground() {
         return this.background;
     }
 
     @Override
-    public IDrawable getIcon() {
+    public @NotNull IDrawable getIcon() {
         return this.icon;
     }
 }

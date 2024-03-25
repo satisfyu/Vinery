@@ -10,9 +10,11 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.VineryIdentifier;
 
 @Environment(EnvType.CLIENT)
+@SuppressWarnings("unused")
 public class MuleModel<T extends AbstractHorse> extends AgeableListModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("trader_mule"), "main");
 
@@ -132,12 +134,12 @@ public class MuleModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		this.body.y = 11.0F;
 	}
 
-	public Iterable<ModelPart> headParts() {
+	public @NotNull Iterable<ModelPart> headParts() {
 		return ImmutableList.of(this.headParts);
 	}
 
 	@Override
-	protected Iterable<ModelPart> bodyParts() {
+	protected @NotNull Iterable<ModelPart> bodyParts() {
 		return ImmutableList.of(this.body, this.rightHindLeg, this.leftHindLeg, this.rightFrontLeg, this.leftFrontLeg, this.rightHindBabyLeg, this.leftHindBabyLeg, this.rightFrontBabyLeg, this.leftFrontBabyLeg);
 	}
 

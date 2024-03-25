@@ -27,10 +27,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.item.DrinkBlockItem;
 import satisfyu.vinery.registry.StorageTypeRegistry;
 import satisfyu.vinery.util.GeneralUtil;
 
+@SuppressWarnings("deprecation")
 public class WineBottleBlock extends StorageBlock {
     private static final VoxelShape SHAPE = Shapes.box(0.125, 0, 0.125, 0.875, 0.875, 0.875);
 
@@ -105,7 +107,7 @@ public class WineBottleBlock extends StorageBlock {
 
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
@@ -121,7 +123,7 @@ public class WineBottleBlock extends StorageBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
+    public @NotNull BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
         if (direction == Direction.DOWN && !blockState.canSurvive(levelAccessor, blockPos)) {
             levelAccessor.destroyBlock(blockPos, true);
         }

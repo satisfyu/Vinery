@@ -25,7 +25,6 @@ import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
 import satisfyu.vinery.recipe.ApplePressRecipe;
 import satisfyu.vinery.registry.BlockEntityTypeRegistry;
 import satisfyu.vinery.registry.RecipeTypesRegistry;
-import satisfyu.vinery.util.ImplementedInventory;
 
 public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, ImplementedInventory, BlockEntityTicker<ApplePressBlockEntity> {
     private final NonNullList<ItemStack> inventory = NonNullList.withSize(2, ItemStack.EMPTY);

@@ -22,6 +22,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.block.grape.GrapeProperty;
 import satisfyu.vinery.registry.GrapeTypeRegistry;
 import satisfyu.vinery.registry.ObjectRegistry;
@@ -29,8 +30,8 @@ import satisfyu.vinery.registry.SoundEventRegistry;
 
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class GrapevinePotBlock extends Block {
-
     private static final VoxelShape FILLING_SHAPE = Shapes.or(
             Block.box(15.0, 0.0, 0.0,  16.0, 10.0, 16.0),
             Block.box(0.0, 0.0, 0.0, 1.0, 10.0,  16.0),
@@ -42,8 +43,6 @@ public class GrapevinePotBlock extends Block {
             Block.box(0, 0, 0, 0, 5, 16),
             Block.box(1, 1, 1, 15, 1, 15)
     );
-
-
 
     private static final VoxelShape SMASHING_SHAPE = Shapes.or(
             FILLING_SHAPE,
@@ -62,7 +61,7 @@ public class GrapevinePotBlock extends Block {
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         if (state.getValue(STAGE) < 3) {
             return super.getCollisionShape(state, world, pos, context);
         } else {
@@ -99,7 +98,7 @@ public class GrapevinePotBlock extends Block {
         };
     }
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         final ItemStack stack = player.getItemInHand(hand);
         if (state.getValue(STAGE) > 3 || state.getValue(STORAGE) >= MAX_STORAGE) {
             if (stack.getItem() instanceof GrapeItem) {
@@ -111,19 +110,16 @@ public class GrapevinePotBlock extends Block {
             final int stage = state.getValue(STAGE);
             final int storage = state.getValue(STORAGE);
             boolean playSound = false;
-            // Go to stage 1
             if (stage == 0) {
                 world.setBlock(pos, this.defaultBlockState().setValue(STAGE, 1).setValue(STORAGE, 1).setValue(GRAPEVINE_TYPE, grape.getType()), Block.UPDATE_ALL);
                 playSound = true;
             }
-            // Fill storage
             if (!isFilled(state)) {
                 final BlockState newState = world.getBlockState(pos);
                 world.setBlock(pos, newState.setValue(STORAGE, storage + 1), Block.UPDATE_ALL);
                 playSound = true;
             }
-            // Try to update stage
-            final BlockState newState = world.getBlockState(pos); // Updated state
+            final BlockState newState = world.getBlockState(pos);
             final int newStage = newState.getValue(STAGE);
             final int newStorage = newState.getValue(STORAGE);
             switch (newStorage) {
@@ -165,7 +161,7 @@ public class GrapevinePotBlock extends Block {
 
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         VoxelShape shape = Shapes.empty();
         shape = Shapes.or(shape, Shapes.box(0.9375, 0, 0, 1, 0.625, 1));
         shape = Shapes.or(shape, Shapes.box(0, 0, 0, 0.0625, 0.625, 1));
@@ -179,10 +175,5 @@ public class GrapevinePotBlock extends Block {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(STAGE, STORAGE, GRAPEVINE_TYPE);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("block.vinery.grapevinepotblock.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }

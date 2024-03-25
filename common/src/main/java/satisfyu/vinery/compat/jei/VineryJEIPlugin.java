@@ -12,6 +12,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeManager;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
 import satisfyu.vinery.compat.jei.category.ApplePressCategory;
@@ -49,7 +50,7 @@ public class VineryJEIPlugin implements IModPlugin {
     }
 
     @Override
-    public ResourceLocation getPluginUid() {
+    public @NotNull ResourceLocation getPluginUid() {
         return new VineryIdentifier("jei_plugin");
     }
 

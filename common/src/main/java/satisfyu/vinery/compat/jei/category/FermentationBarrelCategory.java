@@ -15,6 +15,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.crafting.Ingredient;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.client.gui.FermentationBarrelGui;
 import satisfyu.vinery.compat.jei.VineryJEIPlugin;
@@ -42,7 +43,6 @@ public class FermentationBarrelCategory implements IRecipeCategory<FermentationB
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, FermentationBarrelRecipe recipe, IFocusGroup focuses) {
-        // Wine input
         NonNullList<Ingredient> ingredients = recipe.getIngredients();
         int s = ingredients.size();
 
@@ -52,7 +52,7 @@ public class FermentationBarrelCategory implements IRecipeCategory<FermentationB
         if(s > 2) VineryJEIPlugin.addSlot(builder, 33 - WIDTH_OF, 44 - HEIGHT_OF, ingredients.get(2));
         if(s > 3) VineryJEIPlugin.addSlot(builder, 51 - WIDTH_OF, 44 - HEIGHT_OF, ingredients.get(3));
 
-        // Output
+        assert Minecraft.getInstance().level != null;
         builder.addSlot(RecipeIngredientRole.OUTPUT, 128 - WIDTH_OF,  35 - HEIGHT_OF).addItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
     }
 
@@ -62,22 +62,22 @@ public class FermentationBarrelCategory implements IRecipeCategory<FermentationB
     }
 
     @Override
-    public RecipeType<FermentationBarrelRecipe> getRecipeType() {
+    public @NotNull RecipeType<FermentationBarrelRecipe> getRecipeType() {
         return FERMENTATION_BARREL;
     }
 
     @Override
-    public Component getTitle() {
+    public @NotNull Component getTitle() {
         return this.localizedName;
     }
 
     @Override
-    public IDrawable getBackground() {
+    public @NotNull IDrawable getBackground() {
         return this.background;
     }
 
     @Override
-    public IDrawable getIcon() {
+    public @NotNull IDrawable getIcon() {
         return this.icon;
     }
 }

@@ -24,6 +24,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.item.DrinkBlockSmallItem;
 import satisfyu.vinery.registry.StorageTypeRegistry;
 
@@ -42,7 +43,8 @@ public class WineBox extends StorageBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    @SuppressWarnings("deprecation")
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return switch (state.getValue(FACING)) {
             case WEST, EAST -> SHAPE_E;
             default -> SHAPE_S;

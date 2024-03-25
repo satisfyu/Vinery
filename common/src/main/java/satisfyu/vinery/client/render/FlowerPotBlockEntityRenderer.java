@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.render.block;
+package satisfyu.vinery.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
@@ -15,9 +15,11 @@ import satisfyu.vinery.block.storage.FlowerPotBlock;
 import satisfyu.vinery.entity.FlowerPotBlockEntity;
 
 import static satisfyu.vinery.util.ClientUtil.renderBlock;
+
 @Environment(EnvType.CLIENT)
 public class FlowerPotBlockEntityRenderer implements BlockEntityRenderer<FlowerPotBlockEntity> {
 
+    @SuppressWarnings("unused")
     public FlowerPotBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
 
     }

@@ -13,6 +13,7 @@ import net.minecraft.world.entity.Entity;
 import satisfyu.vinery.VineryIdentifier;
 
 @Environment(EnvType.CLIENT)
+@SuppressWarnings("unused")
 public class StrawHatModel<T extends Entity> extends EntityModel<T> {
 
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("straw_hat"), "main");

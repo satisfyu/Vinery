@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.render.block.storage;
+package satisfyu.vinery.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;

@@ -27,6 +27,7 @@ import satisfyu.vinery.block.BasketBlock;
 import satisfyu.vinery.client.gui.handler.BasketGuiHandler;
 import satisfyu.vinery.registry.BlockEntityTypeRegistry;
 
+@SuppressWarnings("unused")
 public class BasketBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity {
     private NonNullList<ItemStack> items;
     private final ContainerOpenersCounter openersCounter;
@@ -116,11 +117,12 @@ public class BasketBlockEntity extends RandomizableContainerBlockEntity implemen
     }
 
     void playSound(BlockState blockState) {
-        Vec3i vec3i = ((Direction)blockState.getValue(BasketBlock.FACING)).getNormal();
+        Vec3i vec3i = blockState.getValue(BasketBlock.FACING).getNormal();
         double d = (double)this.worldPosition.getX() + 0.5D + (double)vec3i.getX() / 2.0D;
         double e = (double)this.worldPosition.getY() + 0.5D + (double)vec3i.getY() / 2.0D;
         double f = (double)this.worldPosition.getZ() + 0.5D + (double)vec3i.getZ() / 2.0D;
-        this.level.playSound((Player)null, d, e, f, SoundEvents.BRUSH_GENERIC, SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
+        assert this.level != null;
+        this.level.playSound(null, d, e, f, SoundEvents.BRUSH_GENERIC, SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
     }
 
     @Override

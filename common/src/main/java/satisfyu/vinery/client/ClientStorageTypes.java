@@ -3,13 +3,13 @@ package satisfyu.vinery.client;
 import de.cristelknight.doapi.client.render.block.storage.StorageBlockEntityRenderer;
 import de.cristelknight.doapi.client.render.block.storage.StorageTypeRenderer;
 import net.minecraft.resources.ResourceLocation;
-import satisfyu.vinery.client.render.block.storage.*;
+import satisfyu.vinery.client.render.*;
 import satisfyu.vinery.registry.StorageTypeRegistry;
 
 public class ClientStorageTypes {
 
-    public static ResourceLocation registerStorageType(ResourceLocation location, StorageTypeRenderer renderer){
-        return StorageBlockEntityRenderer.registerStorageType(location, renderer);
+    public static void registerStorageType(ResourceLocation location, StorageTypeRenderer renderer){
+        StorageBlockEntityRenderer.registerStorageType(location, renderer);
     }
 
     public static void init(){

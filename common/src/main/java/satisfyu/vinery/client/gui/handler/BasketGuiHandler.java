@@ -7,6 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.registry.ScreenhandlerTypeRegistry;
 
 public class BasketGuiHandler extends AbstractContainerMenu {
@@ -41,10 +42,10 @@ public class BasketGuiHandler extends AbstractContainerMenu {
     }
 
     @Override
-    public ItemStack quickMoveStack(Player player, int i) {
+    public @NotNull ItemStack quickMoveStack(Player player, int i) {
         ItemStack itemStack = ItemStack.EMPTY;
-        Slot slot = (Slot)this.slots.get(i);
-        if (slot != null && slot.hasItem()) {
+        Slot slot = this.slots.get(i);
+        if (slot.hasItem()) {
             ItemStack itemStack2 = slot.getItem();
             itemStack = itemStack2.copy();
             if (i < 9) {

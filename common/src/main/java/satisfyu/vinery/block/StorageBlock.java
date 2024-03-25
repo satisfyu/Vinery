@@ -75,7 +75,7 @@ public class StorageBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public RenderShape getRenderShape(BlockState state) {
+	public @NotNull RenderShape getRenderShape(BlockState state) {
 		return RenderShape.MODEL;
 	}
 

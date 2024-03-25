@@ -6,10 +6,10 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.entity.FermentationBarrelBlockEntity;
 
 public class StoveOutputSlot extends Slot {
-
     private final Player player;
     private int amount;
 
@@ -24,7 +24,7 @@ public class StoveOutputSlot extends Slot {
     }
 
     @Override
-    public ItemStack remove(int amount) {
+    public @NotNull ItemStack remove(int amount) {
         if (this.hasItem()) {
             this.amount += Math.min(amount, this.getItem().getCount());
         }
@@ -46,7 +46,6 @@ public class StoveOutputSlot extends Slot {
     @Override
     protected void checkTakeAchievements(ItemStack stack) {
         stack.onCraftedBy(this.player.level(), this.player, this.amount);
-        if (this.player instanceof ServerPlayer && this.container instanceof FermentationBarrelBlockEntity && player.level() instanceof ServerLevel)
-        this.amount = 0;
+        if (this.player instanceof ServerPlayer && this.container instanceof FermentationBarrelBlockEntity && player.level() instanceof ServerLevel) this.amount = 0;
     }
 }

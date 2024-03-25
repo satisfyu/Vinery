@@ -19,10 +19,10 @@ import satisfyu.vinery.client.gui.ApplePressGui;
 import satisfyu.vinery.client.gui.BasketGui;
 import satisfyu.vinery.client.gui.FermentationBarrelGui;
 import satisfyu.vinery.client.model.MuleModel;
-import satisfyu.vinery.client.render.block.FlowerPotBlockEntityRenderer;
-import satisfyu.vinery.client.render.block.storage.BasketRenderer;
-import satisfyu.vinery.client.render.entity.MuleRenderer;
-import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
+import satisfyu.vinery.client.render.FlowerPotBlockEntityRenderer;
+import satisfyu.vinery.client.render.BasketRenderer;
+import satisfyu.vinery.client.render.MuleRenderer;
+import satisfyu.vinery.client.render.WanderingWinemakerRenderer;
 import satisfyu.vinery.network.VineryNetwork;
 import satisfyu.vinery.registry.*;
 

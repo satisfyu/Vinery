@@ -22,7 +22,6 @@ import satisfyu.vinery.registry.ScreenhandlerTypeRegistry;
 import java.util.List;
 
 public class FermentationBarrelGuiHandler extends AbstractRecipeBookGUIScreenHandler {
-
     public FermentationBarrelGuiHandler(int syncId, Inventory playerInventory) {
         this(syncId, playerInventory, new SimpleContainer(6), new SimpleContainerData(2));
     }
