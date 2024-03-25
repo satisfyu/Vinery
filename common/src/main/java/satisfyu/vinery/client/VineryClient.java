@@ -1,6 +1,5 @@
 package satisfyu.vinery.client;
 
-import de.cristelknight.doapi.DoApi;
 import de.cristelknight.doapi.terraform.sign.TerraformSignHelper;
 import dev.architectury.platform.Platform;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
@@ -9,16 +8,13 @@ import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import dev.architectury.registry.client.rendering.ColorHandlerRegistry;
 import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
-import dev.architectury.registry.registries.RegistrySupplier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
-import net.minecraft.world.level.block.Block;
 import satisfyu.vinery.client.gui.ApplePressGui;
 import satisfyu.vinery.client.gui.BasketGui;
 import satisfyu.vinery.client.gui.FermentationBarrelGui;
@@ -31,19 +27,10 @@ import satisfyu.vinery.network.VineryNetwork;
 import satisfyu.vinery.registry.*;
 
 import static satisfyu.vinery.Vinery.LOGGER;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import static satisfyu.vinery.registry.ObjectRegistry.*;
 
 @Environment(EnvType.CLIENT)
 public class VineryClient {
-
-    public static final Collection<Block> LATTICE_BLOCKS = new ArrayList<>();
-
     public static void onInitializeClient() {
 
         VineryNetwork.registerS2CPackets();
@@ -58,7 +45,7 @@ public class VineryClient {
                 JUNGLE_RED_GRAPE_BUSH.get(), TAIGA_RED_GRAPE_BUSH.get(), TAIGA_WHITE_GRAPE_BUSH.get(),
                 GRAPEVINE_STEM.get(), WINE_BOX.get(), FLOWER_POT.get(), CHAIR.get(),
                 APPLE_PRESS.get(), GRASS_SLAB.get(), CHERRY_SAPLING.get(), APPLE_TREE_SAPLING.get(),
-                KITCHEN_SINK.get(), STACKABLE_LOG.get(), APPLE_LEAVES.get(), POTTED_APPLE_TREE_SAPLING.get(),
+                STACKABLE_LOG.get(), APPLE_LEAVES.get(), POTTED_APPLE_TREE_SAPLING.get(),
                 POTTED_CHERRY_TREE_SAPLING.get(), RED_WINE.get(), KNULP_WINE.get(),
                 CHAIR.get(), CRISTEL_WINE.get(), VILLAGERS_FRIGHT.get(), EISWEIN.get(), CREEPERS_CRUSH.get(),
                 GLOWING_WINE.get(), JO_SPECIAL_MIXTURE.get(), MEAD.get(), BOTTLE_MOJANG_NOIR.get(),
@@ -74,15 +61,6 @@ public class VineryClient {
         RenderTypeRegistry.register(RenderType.translucent(), WINDOW.get());
 
         ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> GrassColor.get(0.5, 1.0), GRASS_SLAB);
-
-        ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
-                    if (world == null || pos == null) {
-                        return -1;
-                    }
-                    return BiomeColors.getAverageWaterColor(world, pos);
-                }, KITCHEN_SINK.get()
-        );
-
         ColorHandlerRegistry.registerBlockColors((state,world,pos,tintIndex)->{
                     if(world== null || pos == null){
                         return -1;
