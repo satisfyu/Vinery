@@ -2,9 +2,11 @@
 
 <h1 align="center">Welcome to Vinery!</h1>
 
-<p>DGet your suncream out, we're going to the beach!
- </p>
+<p>Discover Winemaking with all the tools provided by this Mod. Build up your Winery, craft Wine, decorate. </p>
 
+<p>Vinery is your gateway to a world of creativity, craftsmanship, and the art.</p>
+
+<sub>*The elements and mechanics related to wine and alcoholic beverages contained in Vinery are solely for entertainment purposes and should not be interpreted in any way as an endorsement or glorification of alcohol consumption*</sub>
 <h1 align="center">Available for</h1>
 <p align="center"><img src="https://imgur.com/gREqi3m.png" width="240" height="120"></p>
 
