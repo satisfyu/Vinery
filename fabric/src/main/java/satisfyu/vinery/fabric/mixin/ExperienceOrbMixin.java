@@ -8,6 +8,8 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 import satisfyu.vinery.registry.MobEffectRegistry;
 
+import java.util.Objects;
+
 @Mixin(ExperienceOrb.class)
 public abstract class ExperienceOrbMixin {
 
@@ -16,7 +18,7 @@ public abstract class ExperienceOrbMixin {
     public void render(Args args) {
         Player p = args.get(0);
         if(p.hasEffect(MobEffectRegistry.EXPERIENCE_EFFECT.get())){
-            int amplifier = p.getEffect(MobEffectRegistry.EXPERIENCE_EFFECT.get()).amplifier;
+            int amplifier = Objects.requireNonNull(p.getEffect(MobEffectRegistry.EXPERIENCE_EFFECT.get())).amplifier;
             int i = args.get(1);
 
             int xp = (int) (i + (i * (1 + amplifier) * 0.5));

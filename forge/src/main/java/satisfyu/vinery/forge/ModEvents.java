@@ -16,6 +16,7 @@ import satisfyu.vinery.util.VillagerUtil;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class ModEvents {
 
@@ -60,7 +61,7 @@ public class ModEvents {
         public static void experience(PlayerXpEvent.PickupXp event) {
             Player p = event.getEntity();
             if (p.hasEffect(MobEffectRegistry.EXPERIENCE_EFFECT.get())) {
-                int amplifier = p.getEffect(MobEffectRegistry.EXPERIENCE_EFFECT.get()).amplifier;
+                int amplifier = Objects.requireNonNull(p.getEffect(MobEffectRegistry.EXPERIENCE_EFFECT.get())).amplifier;
                 ExperienceOrb e = event.getOrb();
                 int i = e.value;
                 e.value = (int) (i + (i * (1 + amplifier) * 0.5));
