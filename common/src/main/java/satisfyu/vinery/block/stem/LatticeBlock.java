@@ -149,7 +149,7 @@ public class LatticeBlock extends StemBlock {
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         Random rand = new Random();
-        if (!((rand.nextInt(100) + 1) <= VineryConfig.DEFAULT.getConfig().grapeGrowthSpeed())) return;
+        if (!((rand.nextInt(100) + 1) <= VineryConfig.DEFAULT.getConfig().grapeGrowthSpeed() || isMature(state))) return;
         int age = state.getValue(AGE);
         BlockState newState = this.withAge(state, age + 1, state.getValue(GRAPE));
         world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
