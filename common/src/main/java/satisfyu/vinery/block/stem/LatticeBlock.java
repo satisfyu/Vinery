@@ -116,12 +116,13 @@ public class LatticeBlock extends StemBlock {
             return super.use(state, world, pos, player, hand, hit);
         }
 
+        Direction hitDirection = hit.getDirection();
         if (age > 0 && stack.getItem() == Items.SHEARS) {
             stack.hurtAndBreak(1, player, player2 -> player2.broadcastBreakEvent(player.getUsedItemHand()));
             if (age > 2) {
-                dropGrapes(world, state, pos);
+                dropGrapes(world, state, pos, hitDirection);
             }
-            dropGrapeSeeds(world, state, pos);
+            dropGrapeSeeds(world, state, pos, hitDirection);
             world.setBlock(pos, state.setValue(AGE, 0), 3);
             world.playSound(player, pos, BREAK_SOUND_EVENT, SoundSource.AMBIENT, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
@@ -136,7 +137,7 @@ public class LatticeBlock extends StemBlock {
         }
         else if (age > 2) {
             stack.hurtAndBreak(1, player, player2 -> player2.broadcastBreakEvent(player.getUsedItemHand()));
-            dropGrapes(world, state, pos);
+            dropGrapes(world, state, pos, hitDirection);
             world.setBlock(pos, state.setValue(AGE, 1), 3);
             world.playSound(player, pos, BREAK_SOUND_EVENT, SoundSource.AMBIENT, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
@@ -154,7 +155,6 @@ public class LatticeBlock extends StemBlock {
         BlockState newState = this.withAge(state, age + 1, state.getValue(GRAPE));
         world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
         super.randomTick(state, world, pos, random);
-
     }
 
 
@@ -163,10 +163,10 @@ public class LatticeBlock extends StemBlock {
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (!state.canSurvive(world, pos)) {
             if (state.getValue(AGE) > 0) {
-                dropGrapeSeeds(world, state, pos);
+                dropGrapeSeeds(world, state, pos, null);
             }
             if (state.getValue(AGE) > 2) {
-                dropGrapes(world, state, pos);
+                dropGrapes(world, state, pos, null);
             }
             world.destroyBlock(pos, true);
         }

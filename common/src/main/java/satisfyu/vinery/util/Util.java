@@ -71,33 +71,4 @@ public class Util {
         }
         return buffer[0];
     }
-
-    public static Optional<Tuple<Float, Float>> getRelativeHitCoordinatesForBlockFace(BlockHitResult blockHitResult, Direction direction, Direction[] unAllowedDirections) {
-        Direction direction2 = blockHitResult.getDirection();
-        if(Arrays.stream(unAllowedDirections).toList().contains(direction2)) return Optional.empty();
-        if (direction != direction2 && direction2 != Direction.UP  && direction2 != Direction.DOWN) {
-            return Optional.empty();
-        } else {
-            BlockPos blockPos = blockHitResult.getBlockPos().relative(direction2);
-            Vec3 vec3 = blockHitResult.getLocation().subtract(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-            float d = (float) vec3.x();
-            float f = (float) vec3.z();
-
-            float y = (float) vec3.y();
-
-            if(direction2 == Direction.UP || direction2 == Direction.DOWN) direction2 = direction;
-            return switch (direction2) {
-                case NORTH -> Optional.of(new Tuple<>((float) (1.0 - d), y));
-                case SOUTH -> Optional.of(new Tuple<>(d, y));
-                case WEST -> Optional.of(new Tuple<>(f, y));
-                case EAST -> Optional.of(new Tuple<>((float) (1.0 - f), y));
-                case DOWN, UP -> Optional.empty();
-            };
-        }
-    }
-
-
-    public static boolean isFDLoaded(){
-        return Platform.isModLoaded("farmersdelight");
-    }
 }

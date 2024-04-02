@@ -2,6 +2,7 @@ package satisfyu.vinery.block.stem;
 
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -9,9 +10,13 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -25,6 +30,9 @@ import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.block.grape.GrapeProperty;
 import satisfyu.vinery.block.grape.GrapeType;
 import satisfyu.vinery.registry.GrapeTypeRegistry;
+import satisfyu.vinery.util.GeneralUtil;
+
+import java.util.function.Supplier;
 
 public abstract class StemBlock extends Block implements BonemealableBlock {
     public static final GrapeProperty GRAPE;
@@ -35,17 +43,24 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
         AGE = BlockStateProperties.AGE_4;
     }
 
-    public void dropGrapes(Level world, BlockState state, BlockPos pos) {
+    public void dropGrapes(Level world, BlockState state, BlockPos pos, Direction direction) {
         final int x = 1 + world.random.nextInt(this.isMature(state) ? 2 : 1);
         final int bonus = this.isMature(state) ? 2 : 1;
         Item grape = state.getValue(GRAPE).getFruit();
-        popResource(world, pos, new ItemStack(grape, x + bonus));
+        ItemStack stack = new ItemStack(grape, x + bonus);
+
+        if (direction == null) popResource(world, pos, stack);
+        else GeneralUtil.popResourceFromFace(world, pos, direction, stack);
+
         world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
     }
 
-    public void dropGrapeSeeds(Level world, BlockState state, BlockPos pos) {
+    public void dropGrapeSeeds(Level world, BlockState state, BlockPos pos, Direction direction) {
         Item grape = state.getValue(GRAPE).getSeeds();
-        popResource(world, pos, new ItemStack(grape));
+        ItemStack stack = new ItemStack(grape);
+
+        if (direction == null) popResource(world, pos, stack);
+        else GeneralUtil.popResourceFromFace(world, pos, direction, stack);
     }
 
     @Override
@@ -53,7 +68,7 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         final int age = state.getValue(AGE);
         if (age > 3) {
-            dropGrapes(world, state, pos);
+            dropGrapes(world, state, pos, hit.getDirection());
             world.setBlock(pos, state.setValue(AGE, 2), 2);
             return InteractionResult.sidedSuccess(world.isClientSide);
         }
@@ -65,7 +80,7 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
     @Override
     public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
         if (state.getValue(AGE) > 2) {
-            dropGrapes(world, state, pos);
+            dropGrapes(world, state, pos, null);
         }
         super.playerWillDestroy(world, pos, state, player);
     }

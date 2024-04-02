@@ -76,9 +76,9 @@ public class PaleStemBlock extends StemBlock {
         final int age = state.getValue(AGE);
         if (age > 0 && player.getItemInHand(hand).getItem() == Items.SHEARS) {
             if (age > 2) {
-                dropGrapes(world, state, pos);
+                dropGrapes(world, state, pos, hit.getDirection());
             }
-            dropGrapeSeeds(world, state, pos);
+            dropGrapeSeeds(world, state, pos, hit.getDirection());
             world.setBlock(pos, withAge(state, 0, GrapeTypeRegistry.NONE), 3);
             world.playSound(player, pos, SoundEvents.SWEET_BERRY_BUSH_BREAK, SoundSource.AMBIENT, 1.0F, 1.0F);
             return InteractionResult.sidedSuccess(world.isClientSide);
@@ -105,10 +105,10 @@ public class PaleStemBlock extends StemBlock {
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (!state.canSurvive(world, pos)) {
             if (state.getValue(AGE) > 0) {
-                dropGrapeSeeds(world, state, pos);
+                dropGrapeSeeds(world, state, pos, null);
             }
             if (state.getValue(AGE) > 2) {
-                dropGrapes(world, state, pos);
+                dropGrapes(world, state, pos, null);
             }
             world.destroyBlock(pos, true);
         }
