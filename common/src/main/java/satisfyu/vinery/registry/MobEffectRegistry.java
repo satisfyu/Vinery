@@ -9,7 +9,11 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
-import satisfyu.vinery.effect.*;
+import satisfyu.vinery.effect.NormalEffect;
+import satisfyu.vinery.effect.normal.*;
+import satisfyu.vinery.effect.instant.CreeperEffect;
+import satisfyu.vinery.effect.instant.TeleportEffect;
+import satisfyu.vinery.effect.ticking.*;
 
 import java.util.function.Supplier;
 
@@ -49,22 +53,28 @@ public class MobEffectRegistry {
     }
 
     static {
-        EXPERIENCE_EFFECT = registerEffect("experience_effect", ExperienceEffect::new);
+        //Normal
+        ARMOR_EFFECT = registerEffect("armor_effect", ArmorEffect::new);
+        HEALTH_EFFECT = registerEffect("health_effect", ImprovedHealthEffect::new);
+        LUCK_EFFECT = registerEffect("luck_effect", LuckEffect::new);
+        RESISTANCE_EFFECT = registerEffect("resistance_effect", ResistanceEffect::new);
         TRIPPY = registerEffect("trippy", TrippyEffect::new);
-        LAVA_WALKER = registerEffect("lava_walker", LavaWalkerEffect::new);
-        JELLIE = registerEffect("jellie", JellieEffect::new);
-        MAGNET = registerEffect("magnet", MagnetEffect::new);
+
+        EXPERIENCE_EFFECT = registerEffect("experience_effect", () -> new NormalEffect(MobEffectCategory.BENEFICIAL, 0x00FF00));
+        IMPROVED_JUMP_BOOST = registerEffect("double_jump", () -> new NormalEffect(MobEffectCategory.BENEFICIAL, 0x90F891));
+        PARTY_EFFECT = registerEffect("party_effect", () -> new NormalEffect(MobEffectCategory.BENEFICIAL, 0xFF0000));
+
+        //Instant
         TELEPORT = registerEffect("teleport", TeleportEffect::new);
         CREEPER_EFFECT = registerEffect("creeper_effect", CreeperEffect::new);
-        IMPROVED_JUMP_BOOST = registerEffect("double_jump", () -> new ImprovedEffect(MobEffectCategory.BENEFICIAL, 0x90F891));
-        WATER_WALKER = registerEffect("water_walker", WaterWalkerEffect::new);
-        STAGGER_EFFECT = registerEffect("staggering", StaggerEffect::new);
-        FROSTY_ARMOR_EFFECT = registerEffect("frosty_armor", FrostyArmorEffect::new);
-        PARTY_EFFECT = registerEffect("party_effect", PartyEffect::new);
+
+        //Ticking
         CLIMBING_EFFECT = registerEffect("climbing_effect", ClimbingEffect::new);
-        LUCK_EFFECT = registerEffect("luck_effect", LuckEffect::new);
-        HEALTH_EFFECT = registerEffect("health_effect", ImprovedHealthEffect::new);
-        RESISTANCE_EFFECT = registerEffect("resistance_effect", ResistanceEffect::new);
-        ARMOR_EFFECT = registerEffect("armor_effect", ArmorEffect::new);
+        FROSTY_ARMOR_EFFECT = registerEffect("frosty_armor", FrostyArmorEffect::new);
+        JELLIE = registerEffect("jellie", JellieEffect::new);
+        LAVA_WALKER = registerEffect("lava_walker", LavaWalkerEffect::new);
+        MAGNET = registerEffect("magnet", MagnetEffect::new);
+        STAGGER_EFFECT = registerEffect("staggering", StaggerEffect::new);
+        WATER_WALKER = registerEffect("water_walker", WaterWalkerEffect::new);
     }
 }

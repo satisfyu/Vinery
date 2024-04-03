@@ -1,12 +1,12 @@
-package satisfyu.vinery.effect;
+package satisfyu.vinery.effect.ticking;
 
 import net.minecraft.util.Mth;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
+import satisfyu.vinery.effect.TickingEffect;
 
-public class ClimbingEffect extends MobEffect {
+public class ClimbingEffect extends TickingEffect {
     public ClimbingEffect() {
         super(MobEffectCategory.BENEFICIAL, 0xCC3300);
     }
@@ -29,10 +29,5 @@ public class ClimbingEffect extends MobEffect {
 
             entity.setDeltaMovement(motionX, motionY, motionZ);
         }
-    }
-
-    @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
-        return true;
     }
 }

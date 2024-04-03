@@ -1,14 +1,14 @@
-package satisfyu.vinery.effect;
+package satisfyu.vinery.effect.ticking;
 
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Items;
+import satisfyu.vinery.effect.TickingEffect;
 
-public class StaggerEffect extends MobEffect {
+public class StaggerEffect extends TickingEffect {
     private double rotationDirection, motionDirection;
 
     public StaggerEffect() {
@@ -39,10 +39,5 @@ public class StaggerEffect extends MobEffect {
                     livingEntity.getX(), livingEntity.getY() + livingEntity.getBbHeight() * 0.8, livingEntity.getZ(),
                     1, 0.0, 0.0, 0.0, 0.0);
         }
-    }
-
-    @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
-        return true;
     }
 }

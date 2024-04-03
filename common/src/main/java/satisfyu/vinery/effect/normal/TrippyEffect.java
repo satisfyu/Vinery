@@ -1,4 +1,4 @@
-package satisfyu.vinery.effect;
+package satisfyu.vinery.effect.normal;
 
 
 import dev.architectury.networking.NetworkManager;
@@ -8,10 +8,11 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
+import satisfyu.vinery.effect.NormalEffect;
 import satisfyu.vinery.network.VineryNetwork;
 import satisfyu.vinery.util.GeneralUtil;
 
-public class TrippyEffect extends MobEffect {
+public class TrippyEffect extends NormalEffect {
     public TrippyEffect() {
         super(MobEffectCategory.BENEFICIAL, 0xB80070);
     }
@@ -35,10 +36,4 @@ public class TrippyEffect extends MobEffect {
         }
         super.addAttributeModifiers(livingEntity, attributeMap, i);
     }
-
-    @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
-        return true;
-    }
-
 }

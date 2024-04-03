@@ -1,4 +1,4 @@
-package satisfyu.vinery.effect;
+package satisfyu.vinery.effect.instant;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-@SuppressWarnings("all")
 public class TeleportEffect extends InstantenousMobEffect {
 
     public TeleportEffect() {
@@ -20,20 +19,18 @@ public class TeleportEffect extends InstantenousMobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
-        if (entity instanceof Player player) {
-            teleport(player);
-        }
+    public void applyInstantenousEffect(@Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
+        teleport(source);
     }
 
     @Override
-    public void applyInstantenousEffect(@Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
-        if (source instanceof Player player) {
-            teleport(player);
-        }
+    public void applyEffectTick(LivingEntity source, int i) {
+        teleport(source);
     }
 
-    private void teleport(Player player) {
+    private void teleport(Entity source) {
+        if (!(source instanceof Player player)) return;
+
         Level world = player.level();
         Vec3 targetVec = player.position();
         Vec3 lookVec = player.getLookAngle();
