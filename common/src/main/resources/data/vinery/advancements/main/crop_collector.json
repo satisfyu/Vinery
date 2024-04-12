@@ -19,33 +19,98 @@
     "experience": 75
   },
   "criteria": {
-    "get_crops": {
+    "vinery:red_grape_seeds": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": ["vinery:red_grape_seeds"]
-          },
+            "items": [
+              "vinery:red_grape_seeds"
+            ]
+          }
+        ]
+      }
+    },
+    "vinery:white_grape_seeds": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "items": ["vinery:white_grape_seeds"]
-          },
+            "items": [
+              "vinery:white_grape_seeds"
+            ]
+          }
+        ]
+      }
+    },
+    "vinery:savanna_grape_seeds_red": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "items": ["vinery:savanna_grape_seeds_red"]
-          },
+            "items": [
+              "vinery:savanna_grape_seeds_red"
+            ]
+          }
+        ]
+      }
+    },
+    "vinery:savanna_grape_seeds_white": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "items": ["vinery:savanna_grape_seeds_white"]
-          },
+            "items": [
+              "vinery:savanna_grape_seeds_white"
+            ]
+          }
+        ]
+      }
+    },
+    "vinery:taiga_grape_seeds_white": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "items": ["vinery:taiga_grape_seeds_white"]
-          },
+            "items": [
+              "vinery:taiga_grape_seeds_white"
+            ]
+          }
+        ]
+      }
+    },
+    "vinery:taiga_grape_seeds_red": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "items": ["vinery:taiga_grape_seeds_red"]
-          },
+            "items": [
+              "vinery:taiga_grape_seeds_red"
+            ]
+          }
+        ]
+      }
+    },
+    "vinery:jungle_grape_seeds_red": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "items": ["vinery:jungle_grape_seeds_red"]
-          },
+            "items": [
+              "vinery:jungle_grape_seeds_red"
+            ]
+          }
+        ]
+      }
+    },
+    "vinery:jungle_grape_seeds_white": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "items": ["vinery:jungle_grape_seeds_white"]
+            "items": [
+              "vinery:jungle_grape_seeds_white"
+            ]
           }
         ]
       }
@@ -53,7 +118,28 @@
   },
   "requirements": [
     [
-      "get_crops"
+      "vinery:red_grape_seeds"
+    ],
+    [
+      "vinery:white_grape_seeds"
+    ],
+    [
+      "vinery:savanna_grape_seeds_red"
+    ],
+    [
+      "vinery:savanna_grape_seeds_white"
+    ],
+    [
+      "vinery:taiga_grape_seeds_white"
+    ],
+    [
+      "vinery:taiga_grape_seeds_red"
+    ],
+    [
+      "vinery:jungle_grape_seeds_red"
+    ],
+    [
+      "vinery:jungle_grape_seeds_white"
     ]
   ]
 }

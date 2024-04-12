@@ -115,13 +115,27 @@
   },
   "requirements": [
     [
-      "red_grape_seeds",
-      "white_grape_seeds",
-      "white_jungle_grape_seeds",
-      "red_jungle_grape_seeds",
-      "white_savanna_grape_seeds",
-      "red_savanna_grape_seeds",
-      "white_taiga_grape_seeds",
+      "red_grape_seeds"
+    ],
+    [
+      "white_grape_seeds"
+    ],
+    [
+      "white_jungle_grape_seeds"
+    ],
+    [
+      "red_jungle_grape_seeds"
+    ],
+    [
+      "white_savanna_grape_seeds"
+    ],
+    [
+      "red_savanna_grape_seeds"
+    ],
+    [
+      "white_taiga_grape_seeds"
+    ],
+    [
       "red_taiga_grape_seeds"
     ]
   ]
