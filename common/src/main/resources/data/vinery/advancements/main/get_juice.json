@@ -115,27 +115,13 @@
   },
   "requirements": [
     [
-      "red_grape_juice"
-    ],
-    [
-      "white_grape_juice"
-    ],
-    [
-      "white_jungle_grape_juice"
-    ],
-    [
-      "red_jungle_grape_juice"
-    ],
-    [
-      "white_savanna_grape_juice"
-    ],
-    [
-      "red_savanna_grape_juice"
-    ],
-    [
-      "white_taiga_grape_juice"
-    ],
-    [
+      "red_grape_juice",
+      "white_grape_juice",
+      "white_jungle_grape_juice",
+      "red_jungle_grape_juice",
+      "white_savanna_grape_juice",
+      "red_savanna_grape_juice",
+      "white_taiga_grape_juice",
       "red_taiga_grape_juice"
     ]
   ]
