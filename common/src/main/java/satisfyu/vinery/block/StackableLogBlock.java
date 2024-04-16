@@ -1,11 +1,8 @@
 package satisfyu.vinery.block;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -17,7 +14,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShovelItem;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.BlockGetter;
@@ -40,7 +36,6 @@ import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.util.Util;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -117,21 +112,6 @@ public class StackableLogBlock extends SlabBlock{
             for (int i = 0; i < random.nextInt(4) + 3; ++i) {
                 world.addParticle(ParticleTypes.LAVA, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, random.nextFloat() / 2.0f, 5.0E-5, random.nextFloat() / 2.0f);
             }
-        }
-    }
-
-
-
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("block.vinery.log.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-
-        if (Screen.hasShiftDown()) {
-            tooltip.add(Component.translatable("block.vinery.log.tooltip.shift_1"));
-            tooltip.add(Component.translatable("block.vinery.log.tooltip.shift_2"));
-        } else {
-            tooltip.add(Component.translatable("block.vinery.log.tooltip.tooltip_shift"));
         }
     }
 
