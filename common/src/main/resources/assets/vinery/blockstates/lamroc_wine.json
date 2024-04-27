@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "fake_model=false": {
+      "model": "vinery:block/lamroc_wine"
+    },
+    "fake_model=true": {
+      "model": "vinery:block/transparent"
+    }
+  }
+}

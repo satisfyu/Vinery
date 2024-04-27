@@ -55,7 +55,7 @@ public class StorageTypeRegistry {
                 ObjectRegistry.SOLARIS_WINE.get(), ObjectRegistry.APPLE_WINE.get(), ObjectRegistry.APPLE_CIDER.get(), ObjectRegistry.STRAD_WINE.get(), ObjectRegistry.CHENET_WINE.get(), ObjectRegistry.MELLOHI_WINE.get(),
                 ObjectRegistry.LILITU_WINE.get(), ObjectRegistry.MAGNETIC_WINE.get(), ObjectRegistry.CHORUS_WINE.get(), ObjectRegistry.JELLIE_WINE.get(), ObjectRegistry.AEGIS_WINE.get(), ObjectRegistry.RED_WINE.get(),
                 ObjectRegistry.KNULP_WINE.get(), ObjectRegistry.CRISTEL_WINE.get(), ObjectRegistry.JO_SPECIAL_MIXTURE.get(), ObjectRegistry.GLOWING_WINE.get(), ObjectRegistry.CREEPERS_CRUSH.get(),
-                ObjectRegistry.BOTTLE_MOJANG_NOIR.get(), ObjectRegistry.VILLAGERS_FRIGHT.get(), ObjectRegistry.MEAD.get(), ObjectRegistry.EISWEIN.get()
+                ObjectRegistry.BOTTLE_MOJANG_NOIR.get(), ObjectRegistry.VILLAGERS_FRIGHT.get(), ObjectRegistry.MEAD.get(), ObjectRegistry.EISWEIN.get(), ObjectRegistry.LAMROC_WINE.get()
         ));
 
     }

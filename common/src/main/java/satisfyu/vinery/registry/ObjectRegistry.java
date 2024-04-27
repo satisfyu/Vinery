@@ -262,6 +262,9 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> JUNGLE_LATTICE = registerWithItem("jungle_lattice", () -> new LatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.JUNGLE_PLANKS.getSoundType(Blocks.JUNGLE_PLANKS.defaultBlockState())).noOcclusion()));
     public static final RegistrySupplier<Block> MANGROVE_LATTICE = registerWithItem("mangrove_lattice", () -> new LatticeBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(Blocks.MANGROVE_PLANKS.getSoundType(Blocks.MANGROVE_PLANKS.defaultBlockState())).noOcclusion()));
 
+    public static final RegistrySupplier<Block> LAMROC_WINE = registerWithoutItem("lamroc_wine", () -> new WineBottleBlock(getWineSettings(), 3));
+    public static final RegistrySupplier<Item>  LAMROC_WINE_ITEM = registerItem("lamroc_wine", () -> new DrinkBlockSmallItem(LAMROC_WINE.get(), getWineItemSettings(MobEffectRegistry.TRADING_EFFECT.get(), 1200)));
+
     public static void init() {
         Vinery.LOGGER.debug("Registering Mod Block and Items for " + Vinery.MOD_ID);
         ITEMS.register();

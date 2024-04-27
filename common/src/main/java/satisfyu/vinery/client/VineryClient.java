@@ -53,7 +53,7 @@ public class VineryClient {
                 SPRUCE_WINE_RACK_MID.get(), JUNGLE_WINE_RACK_MID.get(), MANGROVE_WINE_RACK_MID.get(), CHERRY_WINE_RACK_MID.get(),
                 ACACIA_WINE_RACK_MID.get(), MCCHERRY_WINE_RACK_MID.get(), BAMBOO_WINE_RACK_MID.get(), OAK_LATTICE.get(), SPRUCE_LATTICE.get(),
                 BIRCH_LATTICE.get(), DARK_OAK_LATTICE.get(), MCCHERRY_LATTICE.get(), BAMBOO_LATTICE.get(), ACACIA_LATTICE.get(), JUNGLE_LATTICE.get(),
-                MANGROVE_LATTICE.get()
+                MANGROVE_LATTICE.get(), LAMROC_WINE.get()
                 );
 
 

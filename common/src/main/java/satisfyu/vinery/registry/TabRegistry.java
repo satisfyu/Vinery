@@ -169,6 +169,7 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.MANGROVE_LATTICE.get());
                 out.accept(ObjectRegistry.BAMBOO_LATTICE.get());
                 out.accept(ObjectRegistry.MCCHERRY_LATTICE.get());
+                out.accept(ObjectRegistry.LAMROC_WINE.get());
             })
             .build());
 

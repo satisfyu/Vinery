@@ -16,6 +16,7 @@
     "PlantBlockMixin",
     "ShovelItemMixin",
     "SpreadingSnowyDirtBlockMixin",
+    "VillagerDiscountMixin",
     "WanderingTraderManagerMixin"
   ],
   "injectors": {
