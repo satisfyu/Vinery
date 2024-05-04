@@ -1,6 +1,6 @@
 package satisfyu.vinery.registry;
 
-import de.cristelknight.doapi.DoApiExpectPlatform;
+import de.cristelknight.doapi.DoApiCommonEP;
 import net.minecraft.world.level.block.Block;
 
 public class FlammableBlockRegistry {
@@ -16,7 +16,7 @@ public class FlammableBlockRegistry {
     }
 
     private static void add(int burnOdd, int igniteOdd, Block... blocks){
-        DoApiExpectPlatform.addFlammable(burnOdd, igniteOdd, blocks);
+        DoApiCommonEP.addFlammable(burnOdd, igniteOdd, blocks);
     }
 
 }

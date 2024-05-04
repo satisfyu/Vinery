@@ -1,4 +1,4 @@
-package satisfyu.vinery.entity;
+package satisfyu.vinery.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;

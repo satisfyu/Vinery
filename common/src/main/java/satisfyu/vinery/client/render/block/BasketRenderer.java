@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.render;
+package satisfyu.vinery.client.render.block;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -15,7 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.BasketBlock;
-import satisfyu.vinery.entity.BasketBlockEntity;
+import satisfyu.vinery.block.entity.BasketBlockEntity;
 
 import java.util.Objects;
 

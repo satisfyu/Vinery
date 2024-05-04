@@ -1,7 +1,8 @@
-package satisfyu.vinery.client.render;
+package satisfyu.vinery.client.render.block.storage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import de.cristelknight.doapi.client.ClientUtil;
 import de.cristelknight.doapi.client.render.block.storage.StorageTypeRenderer;
 import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
 import net.fabricmc.api.EnvType;
@@ -9,7 +10,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
-import satisfyu.vinery.util.ClientUtil;
+
 @Environment(EnvType.CLIENT)
 public class ShelfRenderer implements StorageTypeRenderer {
     @Override

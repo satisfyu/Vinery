@@ -19,10 +19,9 @@ import satisfyu.vinery.client.gui.ApplePressGui;
 import satisfyu.vinery.client.gui.BasketGui;
 import satisfyu.vinery.client.gui.FermentationBarrelGui;
 import satisfyu.vinery.client.model.MuleModel;
-import satisfyu.vinery.client.render.FlowerPotBlockEntityRenderer;
-import satisfyu.vinery.client.render.BasketRenderer;
-import satisfyu.vinery.client.render.MuleRenderer;
-import satisfyu.vinery.client.render.WanderingWinemakerRenderer;
+import satisfyu.vinery.client.render.block.BasketRenderer;
+import satisfyu.vinery.client.render.entity.MuleRenderer;
+import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
 import satisfyu.vinery.network.VineryNetwork;
 import satisfyu.vinery.registry.*;
 
@@ -43,7 +42,7 @@ public class VineryClient {
                 SAVANNA_RED_GRAPE_BUSH.get(), SAVANNA_WHITE_GRAPE_BUSH.get(),
                 CHORUS_WINE.get(), STAL_WINE.get(), MAGNETIC_WINE.get(), STRAD_WINE.get(), JUNGLE_WHITE_GRAPE_BUSH.get(),
                 JUNGLE_RED_GRAPE_BUSH.get(), TAIGA_RED_GRAPE_BUSH.get(), TAIGA_WHITE_GRAPE_BUSH.get(),
-                GRAPEVINE_STEM.get(), WINE_BOX.get(), FLOWER_POT.get(), CHAIR.get(),
+                GRAPEVINE_STEM.get(), WINE_BOX.get(), CHAIR.get(),
                 APPLE_PRESS.get(), GRASS_SLAB.get(), CHERRY_SAPLING.get(), APPLE_TREE_SAPLING.get(),
                 STACKABLE_LOG.get(), APPLE_LEAVES.get(), POTTED_APPLE_TREE_SAPLING.get(),
                 POTTED_CHERRY_TREE_SAPLING.get(), RED_WINE.get(), KNULP_WINE.get(),
@@ -82,9 +81,7 @@ public class VineryClient {
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.APPLE_PRESS_GUI_HANDLER.get(), ApplePressGui::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.BASKET_GUI_HANDLER.get(), BasketGui::new);
 
-        BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.FLOWER_POT_ENTITY.get(), FlowerPotBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.BASKET_ENTITY.get(), BasketRenderer::new);
-
     }
 
 

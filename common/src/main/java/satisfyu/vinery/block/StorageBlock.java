@@ -25,7 +25,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.entity.StorageBlockEntity;
+import satisfyu.vinery.block.entity.StorageBlockEntity;
 
 @SuppressWarnings("deprecation")
 public class StorageBlock extends BaseEntityBlock {

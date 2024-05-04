@@ -1,6 +1,6 @@
 package satisfyu.vinery;
 
-import de.cristelknight.doapi.DoApiExpectPlatform;
+import de.cristelknight.doapi.DoApiEP;
 import dev.architectury.event.events.common.PlayerEvent;
 import dev.architectury.hooks.item.tool.AxeItemHooks;
 import dev.architectury.hooks.item.tool.ShovelItemHooks;
@@ -18,6 +18,7 @@ public class Vinery {
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     
     public static void init() {
+        DataFixerRegistry.init();
         VineryConfig.DEFAULT.getConfig();
         TabRegistry.init();
         ObjectRegistry.init();
@@ -31,7 +32,7 @@ public class Vinery {
         SoundEventRegistry.init();
         ParticleSpawnEvent particleSpawnEvent = new ParticleSpawnEvent();
         PlayerEvent.ATTACK_ENTITY.register(particleSpawnEvent);
-        DoApiExpectPlatform.registerBuiltInPack(Vinery.MOD_ID, new VineryIdentifier("bushy_leaves"), false);
+        DoApiEP.registerBuiltInPack(Vinery.MOD_ID, new VineryIdentifier("bushy_leaves"), false);
     }
 
     public static void commonSetup(){

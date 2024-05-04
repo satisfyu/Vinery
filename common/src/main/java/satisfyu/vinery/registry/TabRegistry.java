@@ -120,7 +120,7 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.GRAPEVINE_STEM.get());
                 out.accept(ObjectRegistry.STORAGE_POT.get());
                 out.accept(ObjectRegistry.FLOWER_BOX.get());
-                out.accept(ObjectRegistry.FLOWER_POT.get());
+                out.accept(ObjectRegistry.FLOWER_POT_BIG.get());
                 out.accept(ObjectRegistry.WINE_BOX.get());
                 out.accept(ObjectRegistry.SHELF.get());
                 out.accept(ObjectRegistry.BIG_TABLE.get());

@@ -1,4 +1,4 @@
-package satisfyu.vinery.entity;
+package satisfyu.vinery.block.entity;
 
 import de.cristelknight.doapi.common.world.ImplementedInventory;
 import net.minecraft.core.BlockPos;

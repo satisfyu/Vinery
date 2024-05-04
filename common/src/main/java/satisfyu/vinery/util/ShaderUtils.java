@@ -9,7 +9,7 @@ import satisfyu.vinery.client.shader.Shader;
 import java.io.IOException;
 
 public class ShaderUtils {
-    public static Minecraft client = Minecraft.getInstance();
+    public static final Minecraft client = Minecraft.getInstance();
     public static PostChain shader;
     public static boolean enabled = false;
 

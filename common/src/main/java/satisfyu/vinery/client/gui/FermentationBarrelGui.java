@@ -14,7 +14,7 @@ import satisfyu.vinery.client.recipebook.FermentationPotRecipeBook;
 @Environment(EnvType.CLIENT)
 public class FermentationBarrelGui extends AbstractRecipeBookGUIScreen<FermentationBarrelGuiHandler> {
 
-    public static ResourceLocation BACKGROUND = new VineryIdentifier("textures/gui/barrel_gui.png");
+    public static final ResourceLocation BACKGROUND = new VineryIdentifier("textures/gui/barrel_gui.png");
 
     public static final int ARROW_X = 94;
     public static final int ARROW_Y = 37;

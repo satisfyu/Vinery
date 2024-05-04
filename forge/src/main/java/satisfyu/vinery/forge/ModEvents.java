@@ -11,7 +11,6 @@ import satisfyu.vinery.Vinery;
 import satisfyu.vinery.forge.registry.VineryForgeVillagers;
 import satisfyu.vinery.registry.MobEffectRegistry;
 import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.util.VillagerUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +42,7 @@ public class ModEvents {
 
                 List<VillagerTrades.ItemListing> level4 = trades.get(4);
                 level4.add(new VillagerUtil.SellItemFactory(ObjectRegistry.BASKET.get(), 4, 1, 10));
-                level4.add(new VillagerUtil.SellItemFactory(ObjectRegistry.FLOWER_POT.get(), 5, 1, 10));
+                level4.add(new VillagerUtil.SellItemFactory(ObjectRegistry.FLOWER_POT_BIG.get(), 5, 1, 10));
                 level4.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WINDOW.get(), 12, 1, 10));
                 level4.add(new VillagerUtil.SellItemFactory(ObjectRegistry.CHERRY_BEAM.get(), 6, 1, 10));
 

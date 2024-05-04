@@ -33,7 +33,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.entity.BasketBlockEntity;
+import satisfyu.vinery.block.entity.BasketBlockEntity;
 import satisfyu.vinery.registry.BlockEntityTypeRegistry;
 import satisfyu.vinery.util.Util;
 

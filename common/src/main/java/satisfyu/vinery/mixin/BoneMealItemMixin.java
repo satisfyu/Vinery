@@ -1,5 +1,6 @@
 package satisfyu.vinery.mixin;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -16,7 +17,6 @@ import satisfyu.vinery.item.WinemakerBoots;
 import satisfyu.vinery.item.WinemakerChest;
 import satisfyu.vinery.item.WinemakerHatItem;
 import satisfyu.vinery.item.WinemakerLegs;
-import satisfyu.vinery.util.GeneralUtil;
 
 @Mixin(BoneMealItem.class)
 public abstract class BoneMealItemMixin {

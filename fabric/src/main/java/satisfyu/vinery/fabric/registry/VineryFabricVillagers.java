@@ -1,5 +1,6 @@
 package satisfyu.vinery.fabric.registry;
 
+import de.cristelknight.doapi.common.util.VillagerUtil;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
@@ -12,7 +13,6 @@ import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.registry.ObjectRegistry;
-import satisfyu.vinery.util.VillagerUtil;
 
 @SuppressWarnings("deprecation")
 public class VineryFabricVillagers {
@@ -39,7 +39,7 @@ public class VineryFabricVillagers {
         });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 4, factories -> {
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.BASKET.get(), 4, 1, 10));
-            factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.FLOWER_POT.get(), 5, 1, 10));
+            factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.FLOWER_POT_BIG.get(), 5, 1, 10));
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WINDOW.get(), 12, 1, 10));
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.CHERRY_BEAM.get(), 6, 1, 10));
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.TAIGA_RED_GRAPE_SEEDS.get(), 2, 1, 5));

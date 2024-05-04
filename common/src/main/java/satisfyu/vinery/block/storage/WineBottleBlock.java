@@ -3,6 +3,7 @@ package satisfyu.vinery.block.storage;
 import com.mojang.datafixers.util.Pair;
 import de.cristelknight.doapi.common.block.StorageBlock;
 import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -30,7 +31,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.item.DrinkBlockItem;
 import satisfyu.vinery.registry.StorageTypeRegistry;
-import satisfyu.vinery.util.GeneralUtil;
 
 @SuppressWarnings("deprecation")
 public class WineBottleBlock extends StorageBlock {

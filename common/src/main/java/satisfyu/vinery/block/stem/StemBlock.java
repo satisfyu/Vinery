@@ -1,6 +1,7 @@
 package satisfyu.vinery.block.stem;
 
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -10,13 +11,9 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -30,9 +27,6 @@ import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.block.grape.GrapeProperty;
 import satisfyu.vinery.block.grape.GrapeType;
 import satisfyu.vinery.registry.GrapeTypeRegistry;
-import satisfyu.vinery.util.GeneralUtil;
-
-import java.util.function.Supplier;
 
 public abstract class StemBlock extends Block implements BonemealableBlock {
     public static final GrapeProperty GRAPE;

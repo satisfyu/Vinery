@@ -1,4 +1,4 @@
-package satisfyu.vinery.client.render;
+package satisfyu.vinery.client.render.entity;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
