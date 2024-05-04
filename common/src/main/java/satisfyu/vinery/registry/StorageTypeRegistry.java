@@ -2,7 +2,7 @@ package satisfyu.vinery.registry;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.util.VineryIdentifier;
 
 import java.util.List;
 import java.util.Set;

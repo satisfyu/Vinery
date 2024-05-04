@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.event.ParticleSpawnEvent;
 import satisfyu.vinery.registry.*;
+import satisfyu.vinery.util.VineryIdentifier;
 import satisfyu.vinery.world.VineryFeatures;
 
 public class Vinery {

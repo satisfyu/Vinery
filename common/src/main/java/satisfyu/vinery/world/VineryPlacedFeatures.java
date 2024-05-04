@@ -3,7 +3,7 @@ package satisfyu.vinery.world;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.util.VineryIdentifier;
 
 public class VineryPlacedFeatures {
     public static final ResourceKey<PlacedFeature> TREE_CHERRY_PLACED_KEY = registerKey("tree_cherry");

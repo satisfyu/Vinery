@@ -8,9 +8,9 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.registry.ArmorMaterialRegistry;
 import satisfyu.vinery.registry.ArmorRegistry;
+import satisfyu.vinery.util.VineryIdentifier;
 
 import java.util.List;
 

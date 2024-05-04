@@ -4,7 +4,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.util.VineryIdentifier;
 
 public class TagRegistry {
     public static final TagKey<Block> CAN_NOT_CONNECT = TagKey.create(Registries.BLOCK, new VineryIdentifier("can_not_connect"));

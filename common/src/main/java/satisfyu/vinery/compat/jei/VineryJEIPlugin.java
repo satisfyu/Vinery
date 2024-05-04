@@ -13,7 +13,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeManager;
 import org.jetbrains.annotations.NotNull;
-import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
 import satisfyu.vinery.compat.jei.category.ApplePressCategory;
 import satisfyu.vinery.compat.jei.category.FermentationBarrelCategory;
@@ -23,6 +22,7 @@ import satisfyu.vinery.recipe.FermentationBarrelRecipe;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.registry.RecipeTypesRegistry;
 import satisfyu.vinery.registry.ScreenhandlerTypeRegistry;
+import satisfyu.vinery.util.VineryIdentifier;
 
 import java.util.List;
 import java.util.Objects;

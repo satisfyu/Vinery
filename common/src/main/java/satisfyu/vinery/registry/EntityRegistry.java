@@ -10,9 +10,9 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.horse.Llama;
 import satisfyu.vinery.Vinery;
-import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.entity.TraderMuleEntity;
 import satisfyu.vinery.entity.WanderingWinemakerEntity;
+import satisfyu.vinery.util.VineryIdentifier;
 
 import java.util.function.Supplier;
 

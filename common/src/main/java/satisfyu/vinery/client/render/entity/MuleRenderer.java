@@ -6,9 +6,9 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
-import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.model.MuleModel;
 import satisfyu.vinery.entity.TraderMuleEntity;
+import satisfyu.vinery.util.VineryIdentifier;
 
 @Environment(value= EnvType.CLIENT)
 public class MuleRenderer<T extends TraderMuleEntity> extends MobRenderer<T, MuleModel<T>> {

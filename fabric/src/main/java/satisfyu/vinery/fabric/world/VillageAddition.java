@@ -2,7 +2,7 @@ package satisfyu.vinery.fabric.world;
 /*
 import fzzyhmstrs.structurized_reborn.impl.FabricStructurePoolRegistry;
 import net.minecraft.resources.ResourceLocation;
-import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.util.VineryIdentifier;
 
 
 public class VillageAddition {

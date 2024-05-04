@@ -13,9 +13,9 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
-import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.BasketBlock;
 import satisfyu.vinery.block.entity.BasketBlockEntity;
+import satisfyu.vinery.util.VineryIdentifier;
 
 import java.util.Objects;
 

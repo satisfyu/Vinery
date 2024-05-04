@@ -8,9 +8,9 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import satisfyu.vinery.Vinery;
-import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.recipe.ApplePressRecipe;
 import satisfyu.vinery.recipe.FermentationBarrelRecipe;
+import satisfyu.vinery.util.VineryIdentifier;
 
 import java.util.function.Supplier;
 

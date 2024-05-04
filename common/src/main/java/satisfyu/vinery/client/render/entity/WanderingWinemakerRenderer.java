@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.WanderingTraderRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.npc.WanderingTrader;
 import org.jetbrains.annotations.NotNull;
-import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.util.VineryIdentifier;
 @Environment(EnvType.CLIENT)
 public class WanderingWinemakerRenderer extends WanderingTraderRenderer {
 	private static final ResourceLocation TEXTURE = new VineryIdentifier("textures/entity/wandering_winemaker.png");

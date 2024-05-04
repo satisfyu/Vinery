@@ -9,8 +9,8 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.client.gui.handler.ApplePressGuiHandler;
+import satisfyu.vinery.util.VineryIdentifier;
 @Environment(EnvType.CLIENT)
 public class ApplePressGui extends AbstractContainerScreen<ApplePressGuiHandler> {
     public static final ResourceLocation TEXTURE =

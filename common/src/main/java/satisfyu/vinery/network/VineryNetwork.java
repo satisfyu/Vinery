@@ -3,8 +3,8 @@ package satisfyu.vinery.network;
 
 import dev.architectury.networking.NetworkManager;
 import net.minecraft.resources.ResourceLocation;
-import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.network.packet.ShaderS2CPacket;
+import satisfyu.vinery.util.VineryIdentifier;
 
 public class VineryNetwork {
     public static final ResourceLocation SHADER_S2C = new VineryIdentifier("shader");

@@ -1,6 +1,7 @@
-package satisfyu.vinery;
+package satisfyu.vinery.util;
 
 import net.minecraft.resources.ResourceLocation;
+import satisfyu.vinery.Vinery;
 
 public class VineryIdentifier extends ResourceLocation {
 

@@ -6,10 +6,10 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import satisfyu.vinery.Vinery;
-import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.block.entity.ApplePressBlockEntity;
 import satisfyu.vinery.block.entity.BasketBlockEntity;
 import satisfyu.vinery.block.entity.FermentationBarrelBlockEntity;
+import satisfyu.vinery.util.VineryIdentifier;
 
 import java.util.function.Supplier;
 

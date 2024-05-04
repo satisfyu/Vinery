@@ -7,7 +7,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import satisfyu.vinery.Vinery;
-import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.util.VineryIdentifier;
 
 public class SoundEventRegistry {
     private static final Registrar<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Vinery.MOD_ID, Registries.SOUND_EVENT).getRegistrar();

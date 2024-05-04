@@ -11,7 +11,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import org.jetbrains.annotations.NotNull;
-import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.util.VineryIdentifier;
 
 @Environment(EnvType.CLIENT)
 @SuppressWarnings("unused")

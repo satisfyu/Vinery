@@ -1,6 +1,7 @@
 package satisfyu.vinery.block;
 
 import de.cristelknight.doapi.common.block.CabinetBlock;
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -11,7 +12,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import satisfyu.vinery.util.Util;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +40,7 @@ public class StoragePotBlock extends CabinetBlock {
 
     public static final Map<Direction, VoxelShape> SHAPE = net.minecraft.Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, Util.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
         }
     });
 

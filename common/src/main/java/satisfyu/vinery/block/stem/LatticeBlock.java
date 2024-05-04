@@ -1,5 +1,6 @@
 package satisfyu.vinery.block.stem;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -34,8 +35,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.item.GrapeBushSeedItem;
-import satisfyu.vinery.util.ConnectingProperties;
-import satisfyu.vinery.util.LineConnectingType;
 
 import java.util.Random;
 
@@ -51,7 +50,7 @@ public class LatticeBlock extends StemBlock {
 
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final EnumProperty<LineConnectingType> TYPE = ConnectingProperties.VINERY_LINE_CONNECTING_TYPE;
+    public static final EnumProperty<GeneralUtil.LineConnectingType> TYPE = GeneralUtil.LINE_CONNECTING_TYPE;
 
     private static final SoundEvent BREAK_SOUND_EVENT = SoundEvents.SWEET_BERRY_BUSH_BREAK;
     private static final SoundEvent PLACE_SOUND_EVENT = SoundEvents.SWEET_BERRY_BUSH_PLACE;
@@ -62,7 +61,7 @@ public class LatticeBlock extends StemBlock {
                 .setValue(FACING, Direction.NORTH)
                 .setValue(SUPPORT, true)
                 .setValue(BOTTOM, false)
-                .setValue(TYPE, LineConnectingType.NONE));
+                .setValue(TYPE, GeneralUtil.LineConnectingType.NONE));
     }
 
     @Nullable
@@ -203,11 +202,11 @@ public class LatticeBlock extends StemBlock {
 
         boolean sideL = (stateL.getBlock() instanceof LatticeBlock && (stateL.getValue(FACING) == facing || stateL.getValue(FACING) == facing.getClockWise()));
         boolean sideR = (stateR.getBlock() instanceof LatticeBlock && (stateR.getValue(FACING) == facing || stateR.getValue(FACING) == facing.getCounterClockWise()));
-        LineConnectingType type = sideL && sideR ?
-                LineConnectingType.MIDDLE
-                : (sideR ? LineConnectingType.LEFT
-                : (sideL ? LineConnectingType.RIGHT
-                : LineConnectingType.NONE));
+        GeneralUtil.LineConnectingType type = sideL && sideR ?
+                GeneralUtil.LineConnectingType.MIDDLE
+                : (sideR ? GeneralUtil.LineConnectingType.LEFT
+                : (sideL ? GeneralUtil.LineConnectingType.RIGHT
+                : GeneralUtil.LineConnectingType.NONE));
 
         return state.setValue(TYPE, type);
     }

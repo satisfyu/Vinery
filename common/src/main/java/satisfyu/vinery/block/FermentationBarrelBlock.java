@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -24,7 +25,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.block.entity.FermentationBarrelBlockEntity;
-import satisfyu.vinery.util.Util;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,7 +45,7 @@ public class FermentationBarrelBlock extends HorizontalDirectionalBlock implemen
 
     public static final Map<Direction, VoxelShape> SHAPE = net.minecraft.Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, Util.rotateShape(Direction.SOUTH, direction, voxelShapeSupplier.get()));
+            map.put(direction, GeneralUtil.rotateShape(Direction.SOUTH, direction, voxelShapeSupplier.get()));
         }
     });
 

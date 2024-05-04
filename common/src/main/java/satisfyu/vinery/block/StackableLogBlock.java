@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -33,7 +34,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfyu.vinery.util.Util;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -186,9 +186,9 @@ public class StackableLogBlock extends SlabBlock{
     public static final Map<Direction, Map<SlabType, VoxelShape>> SHAPE = net.minecraft.Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
             map.put(direction, new HashMap<>());
-            map.get(direction).put(SlabType.DOUBLE, Util.rotateShape(Direction.NORTH, direction, DOUBLE_SUPPLIER.get()));
-            map.get(direction).put(SlabType.TOP, Util.rotateShape(Direction.NORTH, direction, TOP_AABB_SUPPLIER.get()));
-            map.get(direction).put(SlabType.BOTTOM, Util.rotateShape(Direction.NORTH, direction, BOTTOM_AABB_SUPPLIER.get()));
+            map.get(direction).put(SlabType.DOUBLE, GeneralUtil.rotateShape(Direction.NORTH, direction, DOUBLE_SUPPLIER.get()));
+            map.get(direction).put(SlabType.TOP, GeneralUtil.rotateShape(Direction.NORTH, direction, TOP_AABB_SUPPLIER.get()));
+            map.get(direction).put(SlabType.BOTTOM, GeneralUtil.rotateShape(Direction.NORTH, direction, BOTTOM_AABB_SUPPLIER.get()));
         }
     });
 

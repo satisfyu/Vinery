@@ -11,7 +11,7 @@ import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.Block;
-import satisfyu.vinery.VineryIdentifier;
+import satisfyu.vinery.util.VineryIdentifier;
 
 public class BoatAndSignRegistry {
     public static final ResourceLocation CHERRY_BOAT_TYPE = new VineryIdentifier("cherry");

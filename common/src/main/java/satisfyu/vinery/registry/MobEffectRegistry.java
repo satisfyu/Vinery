@@ -8,12 +8,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import satisfyu.vinery.Vinery;
-import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.effect.NormalEffect;
-import satisfyu.vinery.effect.normal.*;
 import satisfyu.vinery.effect.instant.CreeperEffect;
 import satisfyu.vinery.effect.instant.TeleportEffect;
+import satisfyu.vinery.effect.normal.*;
 import satisfyu.vinery.effect.ticking.*;
+import satisfyu.vinery.util.VineryIdentifier;
 
 import java.util.function.Supplier;
 
