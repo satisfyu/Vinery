@@ -65,8 +65,8 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
                
                ===========
                Discord: https://discord.gg/Vqu6wYZwdZ
-               Modrinth: https://modrinth.com/mod/vinery
-               CurseForge: https://www.curseforge.com/minecraft/mc-mods/lets-do-wine""";
+               Modrinth: https://modrinth.com/mod/lets-do-vinery
+               CurseForge: https://www.curseforge.com/minecraft/mc-mods/lets-do-vinery""";
     }
 
     @Override
