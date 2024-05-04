@@ -1,5 +1,6 @@
 package satisfyu.vinery.block;
 
+import de.cristelknight.doapi.common.block.CabinetBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -16,8 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class StoragePotBlock extends StorageBlock {
-    public StoragePotBlock(Properties settings, SoundEvent openSound, SoundEvent closeSound) {
+public class StoragePotBlock extends CabinetBlock {
+    public StoragePotBlock(Properties settings, Supplier<SoundEvent> openSound, Supplier<SoundEvent> closeSound) {
         super(settings, openSound, closeSound);
     }
 

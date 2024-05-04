@@ -6,9 +6,8 @@
     "vinery:big_table",
     "vinery:flower_box",
     "vinery:basket",
-    "vinery:flower_pot",
+    "vinery:flower_pot_big",
     "vinery:stackable_log",
     "#vinery:wine"
-
   ]
 }

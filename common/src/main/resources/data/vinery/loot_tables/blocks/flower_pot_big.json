@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:flower_pot"
+          "name": "vinery:flower_pot_big"
         }
       ],
       "conditions": [

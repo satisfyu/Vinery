@@ -1,5 +1,6 @@
 package satisfyu.vinery.forge;
 
+import de.cristelknight.doapi.common.util.VillagerUtil;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
