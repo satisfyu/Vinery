@@ -23,7 +23,7 @@ public class WanderingWinemakerEntity extends WanderingTrader {
 				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS.get(), 1, 1, 8, 1),
 				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS.get(), 1, 1, 8, 1),
 				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.JUNGLE_WHITE_GRAPE.get(), 1, 1, 8, 1),
-				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.CHERRY_SAPLING.get(), 3, 1, 8, 1),
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.DARK_CHERRY_SAPLING.get(), 3, 1, 8, 1),
 				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.APPLE_TREE_SAPLING.get(), 5, 1, 8, 1),
 				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.RED_GRAPE.get(), 2, 1, 8, 1),
 				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.RED_GRAPEJUICE_WINE_BOTTLE.get(), 4, 1, 8, 1),
@@ -33,7 +33,7 @@ public class WanderingWinemakerEntity extends WanderingTrader {
 				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.JUNGLE_RED_GRAPEJUICE_BOTTLE.get(), 4, 1, 8, 1),
 				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.COARSE_DIRT_SLAB.get(), 1, 3, 8, 1),
 				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.GRASS_SLAB.get(), 1, 3, 8, 1),
-				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.CHERRY_PLANKS.get(), 3, 4, 8, 1),
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.DARK_CHERRY_PLANKS.get(), 3, 4, 8, 1),
 				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.CHERRY_WINE.get(), 1, 1, 8, 1)
 		});
 		return trades;

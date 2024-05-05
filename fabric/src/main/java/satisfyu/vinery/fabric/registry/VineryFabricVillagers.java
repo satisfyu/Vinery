@@ -14,7 +14,7 @@ import net.minecraft.world.entity.npc.VillagerProfession;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.VineryIdentifier;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings("unused, deprecation")
 public class VineryFabricVillagers {
 
     private static final VineryIdentifier WINEMAKER_POI_IDENTIFIER = new VineryIdentifier("winemaker_poi");
@@ -28,9 +28,7 @@ public class VineryFabricVillagers {
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.RED_GRAPE_SEEDS.get(), 2, 1, 5));
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WHITE_GRAPE_SEEDS.get(), 2, 1, 5));
         });
-        TradeOfferHelper.registerVillagerOffers(WINEMAKER, 2, factories -> {
-            factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WINE_BOTTLE.get(), 1, 2, 7));
-        });
+        TradeOfferHelper.registerVillagerOffers(WINEMAKER, 2, factories -> factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WINE_BOTTLE.get(), 1, 2, 7)));
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 3, factories -> {
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.FLOWER_BOX.get(), 3, 1, 10));
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WHITE_GRAPE_CRATE.get(), 7, 1, 10));
@@ -41,7 +39,7 @@ public class VineryFabricVillagers {
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.BASKET.get(), 4, 1, 10));
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.FLOWER_POT_BIG.get(), 5, 1, 10));
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WINDOW.get(), 12, 1, 10));
-            factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.CHERRY_BEAM.get(), 6, 1, 10));
+            factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.DARK_CHERRY_BEAM.get(), 6, 1, 10));
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.TAIGA_RED_GRAPE_SEEDS.get(), 2, 1, 5));
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS.get(), 2, 1, 5));
 
@@ -51,13 +49,6 @@ public class VineryFabricVillagers {
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WINE_BOX.get(), 10, 1, 10));
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.LILITU_WINE.get(), 4, 1, 10));
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.CALENDAR.get(), 12, 1, 15));
-
-
         });
-
     }
-
-
-
-
 }

@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:stripped_cherry_wood"
+          "name": "vinery:stripped_dark_cherry_wood"
         }
       ],
       "conditions": [

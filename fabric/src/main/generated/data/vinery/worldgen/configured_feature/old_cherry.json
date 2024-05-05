@@ -20,7 +20,7 @@
       "entries": [
         {
           "data": {
-            "Name": "vinery:cherry_leaves",
+            "Name": "vinery:dark_cherry_leaves",
             "Properties": {
               "can_have_cherries": "false",
               "distance": "7",
@@ -33,7 +33,7 @@
         },
         {
           "data": {
-            "Name": "vinery:cherry_leaves",
+            "Name": "vinery:dark_cherry_leaves",
             "Properties": {
               "can_have_cherries": "true",
               "distance": "7",
@@ -46,7 +46,7 @@
         },
         {
           "data": {
-            "Name": "vinery:cherry_leaves",
+            "Name": "vinery:dark_cherry_leaves",
             "Properties": {
               "can_have_cherries": "true",
               "distance": "7",

@@ -17,9 +17,9 @@ public class StorageTypeRegistry {
     public static final ResourceLocation WINE_BOTTLE = new VineryIdentifier("wine_bottle");
 
     public static void registerBlocks(Set<Block> blocks) {
-        blocks.add(ObjectRegistry.CHERRY_WINE_RACK_SMALL.get());
-        blocks.add(ObjectRegistry.CHERRY_WINE_RACK_BIG.get());
-        blocks.add(ObjectRegistry.CHERRY_WINE_RACK_MID.get());
+        blocks.add(ObjectRegistry.DARK_CHERRY_WINE_RACK_SMALL.get());
+        blocks.add(ObjectRegistry.DARK_CHERRY_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.DARK_CHERRY_WINE_RACK_MID.get());
         blocks.add(ObjectRegistry.SHELF.get());
         blocks.add(ObjectRegistry.WINE_BOX.get());
         blocks.add(ObjectRegistry.FLOWER_BOX.get());
@@ -48,9 +48,9 @@ public class StorageTypeRegistry {
         blocks.add(ObjectRegistry.BAMBOO_WINE_RACK_BIG.get());
         blocks.add(ObjectRegistry.BAMBOO_WINE_RACK_MID.get());
         blocks.add(ObjectRegistry.BAMBOO_WINE_RACK_SMALL.get());
-        blocks.add(ObjectRegistry.MCCHERRY_WINE_RACK_BIG.get());
-        blocks.add(ObjectRegistry.MCCHERRY_WINE_RACK_MID.get());
-        blocks.add(ObjectRegistry.MCCHERRY_WINE_RACK_SMALL.get());
+        blocks.add(ObjectRegistry.CHERRY_WINE_RACK_BIG.get());
+        blocks.add(ObjectRegistry.CHERRY_WINE_RACK_MID.get());
+        blocks.add(ObjectRegistry.CHERRY_WINE_RACK_SMALL.get());
         blocks.addAll(List.of(
                 ObjectRegistry.NOIR_WINE.get(), ObjectRegistry.CLARK_WINE.get(), ObjectRegistry.BOLVAR_WINE.get(), ObjectRegistry.STAL_WINE.get(), ObjectRegistry.CHERRY_WINE.get(), ObjectRegistry.KELP_CIDER.get(),
                 ObjectRegistry.SOLARIS_WINE.get(), ObjectRegistry.APPLE_WINE.get(), ObjectRegistry.APPLE_CIDER.get(), ObjectRegistry.STRAD_WINE.get(), ObjectRegistry.CHENET_WINE.get(), ObjectRegistry.MELLOHI_WINE.get(),

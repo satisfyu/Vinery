@@ -45,7 +45,7 @@ public class ModEvents {
                 level4.add(new VillagerUtil.SellItemFactory(ObjectRegistry.BASKET.get(), 4, 1, 10));
                 level4.add(new VillagerUtil.SellItemFactory(ObjectRegistry.FLOWER_POT_BIG.get(), 5, 1, 10));
                 level4.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WINDOW.get(), 12, 1, 10));
-                level4.add(new VillagerUtil.SellItemFactory(ObjectRegistry.CHERRY_BEAM.get(), 6, 1, 10));
+                level4.add(new VillagerUtil.SellItemFactory(ObjectRegistry.DARK_CHERRY_BEAM.get(), 6, 1, 10));
 
                 List<VillagerTrades.ItemListing> level5 = trades.get(5);
                 level5.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WINE_BOX.get(), 10, 1, 10));

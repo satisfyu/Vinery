@@ -13,7 +13,7 @@
         "tag": "vinery:grapejuice_red"
       },
       {
-        "item": "vinery:cherry"
+        "item": "vinery:dark_cherry"
       },
       {
         "item": "vinery:wine_bottle"
@@ -21,7 +21,7 @@
     ],
     "results": [
       {
-        "item": "vinery:cherry_wine"
+        "item": "vinery:dark_cherry_wine"
       }
     ]
   }

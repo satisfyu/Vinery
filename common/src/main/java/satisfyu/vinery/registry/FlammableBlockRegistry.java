@@ -6,13 +6,13 @@ import net.minecraft.world.level.block.Block;
 public class FlammableBlockRegistry {
 
     public static void init(){
-        add(5, 20, ObjectRegistry.CHERRY_PLANKS.get(), ObjectRegistry.CHERRY_SLAB.get(), ObjectRegistry.CHERRY_STAIRS.get(), ObjectRegistry.CHERRY_FENCE.get(),
-                ObjectRegistry.CHERRY_FENCE_GATE.get());
+        add(5, 20, ObjectRegistry.DARK_CHERRY_PLANKS.get(), ObjectRegistry.DARK_CHERRY_SLAB.get(), ObjectRegistry.DARK_CHERRY_STAIRS.get(), ObjectRegistry.DARK_CHERRY_FENCE.get(),
+                ObjectRegistry.DARK_CHERRY_FENCE_GATE.get());
 
-        add(5, 5, ObjectRegistry.STRIPPED_CHERRY_LOG.get(), ObjectRegistry.CHERRY_LOG.get(), ObjectRegistry.APPLE_LOG.get(),
-                ObjectRegistry.STRIPPED_CHERRY_WOOD.get(), ObjectRegistry.CHERRY_WOOD.get(), ObjectRegistry.APPLE_WOOD.get());
+        add(5, 5, ObjectRegistry.STRIPPED_DARK_CHERRY_LOG.get(), ObjectRegistry.DARK_CHERRY_LOG.get(), ObjectRegistry.APPLE_LOG.get(),
+                ObjectRegistry.STRIPPED_DARK_CHERRY_WOOD.get(), ObjectRegistry.DARK_CHERRY_WOOD.get(), ObjectRegistry.APPLE_WOOD.get());
 
-        add(30, 60, ObjectRegistry.CHERRY_LEAVES.get(), ObjectRegistry.GRAPEVINE_LEAVES.get());
+        add(30, 60, ObjectRegistry.DARK_CHERRY_LEAVES.get(), ObjectRegistry.GRAPEVINE_LEAVES.get());
     }
 
     private static void add(int burnOdd, int igniteOdd, Block... blocks){

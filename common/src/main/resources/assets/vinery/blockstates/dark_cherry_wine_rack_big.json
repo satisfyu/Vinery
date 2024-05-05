@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "vinery:block/cherry_wine_rack_big",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "vinery:block/cherry_wine_rack_big"
+    },
+    "facing=south": {
+      "model": "vinery:block/cherry_wine_rack_big",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "vinery:block/cherry_wine_rack_big",
+      "y": 270
+    }
+  }
+}

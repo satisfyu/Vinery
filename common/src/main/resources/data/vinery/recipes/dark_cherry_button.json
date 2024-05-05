@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "vinery:dark_cherry_planks"
+    }
+  ],
+  "result": {
+    "item": "vinery:dark_cherry_button",
+    "count": 2
+  }
+}
