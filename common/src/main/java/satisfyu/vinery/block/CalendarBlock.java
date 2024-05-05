@@ -125,8 +125,6 @@ public class CalendarBlock extends FacingBlock {
 
     @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("block.vinery.decoration.tooltip").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-
         if (world instanceof Level level) {
             tooltip.add(Calendar.getTime(level));
         }

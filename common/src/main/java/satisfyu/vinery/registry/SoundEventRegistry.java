@@ -12,15 +12,10 @@ import satisfyu.vinery.util.VineryIdentifier;
 public class SoundEventRegistry {
     private static final Registrar<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Vinery.MOD_ID, Registries.SOUND_EVENT).getRegistrar();
 
-    public static final RegistrySupplier<SoundEvent> BLOCK_GRAPEVINE_POT_SQUEEZE = create("block.grapevine_pot.squeeze");
-    public static final RegistrySupplier<SoundEvent> DRAWER_OPEN = create("drawer_open");
-    public static final RegistrySupplier<SoundEvent> DRAWER_CLOSE = create("drawer_close");
-    public static final RegistrySupplier<SoundEvent> CABINET_OPEN = create("cabinet_open");
-    public static final RegistrySupplier<SoundEvent> CABINET_CLOSE = create("cabinet_close");
+    public static final RegistrySupplier<SoundEvent> BLOCK_GRAPEVINE_POT_SQUEEZE = create();
 
-
-    private static RegistrySupplier<SoundEvent> create(String name) {
-        final ResourceLocation id = new VineryIdentifier(name);
+    private static RegistrySupplier<SoundEvent> create() {
+        final ResourceLocation id = new VineryIdentifier("block.grapevine_pot.squeeze");
         return SOUND_EVENTS.register(id, () -> SoundEvent.createVariableRangeEvent(id));
     }
 

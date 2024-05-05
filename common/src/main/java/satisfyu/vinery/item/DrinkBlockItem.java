@@ -133,8 +133,6 @@ public class DrinkBlockItem extends BlockItem {
         }
         tooltip.add(Component.empty());
         tooltip.add(Component.translatable("tooltip.vinery.year").withStyle(ChatFormatting.WHITE).append(Component.nullToEmpty(" " + WineYears.getWineYear(stack, world))));
-        tooltip.add(Component.empty());
-        tooltip.add(Component.translatable("tooltip.vinery.canbeplaced").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 
     @Override

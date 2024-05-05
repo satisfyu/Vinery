@@ -133,9 +133,4 @@ public class BigTableBlock extends HorizontalDirectionalBlock {
 			}
 		}
 	}
-
-	@Override
-	public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-		tooltip.add(Component.translatable("tooltip.vinery.canbeplaced").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
-	}
 }

@@ -2,34 +2,10 @@
   "block.grapevine_pot.squeeze": {
     "subtitle": "subtitles.vinery.squeeze",
     "sounds": [
-      "vinery:block/grapevine_pot/squeeze1",
-      "vinery:block/grapevine_pot/squeeze2",
-      "vinery:block/grapevine_pot/squeeze3",
-      "vinery:block/grapevine_pot/squeeze4"
-    ]
-  },
-  "drawer_open": {
-    "subtitle": "sound.vinery.drawer_open",
-    "sounds": [
-      "vinery:block/drawer_open"
-    ]
-  },
-  "drawer_close": {
-    "subtitle": "sound.vinery.drawer_close",
-    "sounds": [
-      "vinery:block/drawer_close"
-    ]
-  },
-  "cabinet_open": {
-    "subtitle": "sound.vinery.cabinet_open",
-    "sounds": [
-      "vinery:block/cabinet_open"
-    ]
-  },
-  "cabinet_close": {
-    "subtitle": "sound.vinery.cabinet_close",
-    "sounds": [
-      "vinery:block/cabinet_close"
+      "vinery:squeeze1",
+      "vinery:squeeze2",
+      "vinery:squeeze3",
+      "vinery:squeeze4"
     ]
   }
 }
