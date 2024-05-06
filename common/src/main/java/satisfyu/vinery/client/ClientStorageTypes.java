@@ -1,7 +1,7 @@
 package satisfyu.vinery.client;
 
-import de.cristelknight.doapi.client.render.block.storage.StorageBlockEntityRenderer;
-import de.cristelknight.doapi.client.render.block.storage.StorageTypeRenderer;
+import de.cristelknight.doapi.client.render.block.storage.api.StorageBlockEntityRenderer;
+import de.cristelknight.doapi.client.render.block.storage.api.StorageTypeRenderer;
 import net.minecraft.resources.ResourceLocation;
 import satisfyu.vinery.client.render.block.storage.*;
 import satisfyu.vinery.registry.StorageTypeRegistry;

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "vinery:block/cherry_planks",
-    "top": "vinery:block/cherry_planks",
-    "side": "vinery:block/cherry_planks"
-  }
-}

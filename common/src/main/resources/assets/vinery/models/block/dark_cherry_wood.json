@@ -1,7 +1,7 @@
 {
+	"credit": "Made by Satisfy",
 	"parent": "minecraft:block/cube_column",
 	"textures": {
-		"end": "vinery:block/cherry_log_side",
-		"side": "vinery:block/cherry_log_side"
+		"side": "vinery:block/dark_cherry_log_side"
 	}
 }

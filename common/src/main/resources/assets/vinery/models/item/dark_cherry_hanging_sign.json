@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "vinery:item/cherry_hanging_sign"
+    "layer0": "vinery:item/dark_cherry_hanging_sign"
   }
 }

@@ -70,7 +70,7 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.DARK_CHERRY_DOOR.get());
                 out.accept(BoatAndSignRegistry.DARK_CHERRY_SIGN_ITEM.get());
                 out.accept(BoatAndSignRegistry.DARK_CHERRY_HANGING_SIGN_ITEM.get());
-                out.accept(ObjectRegistry.CRESTED_BARREL.get());
+                out.accept(ObjectRegistry.DARK_CHERRY_BARREL.get());
                 out.accept(ObjectRegistry.DARK_CHERRY_TRAPDOOR.get());
                 out.accept(ObjectRegistry.WINDOW.get());
                 out.accept(ObjectRegistry.LOAM.get());
@@ -122,8 +122,8 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.FLOWER_BOX.get());
                 out.accept(ObjectRegistry.FLOWER_POT_BIG.get());
                 out.accept(ObjectRegistry.WINE_BOX.get());
-                out.accept(ObjectRegistry.SHELF.get());
-                out.accept(ObjectRegistry.BIG_TABLE.get());
+                out.accept(ObjectRegistry.DARK_CHERRY_SHELF.get());
+                out.accept(ObjectRegistry.DARK_CHERRY_BIG_TABLE.get());
                 out.accept(ObjectRegistry.BASKET.get());
                 out.accept(ObjectRegistry.STACKABLE_LOG.get());
                 out.accept(ObjectRegistry.STRAW_HAT.get());

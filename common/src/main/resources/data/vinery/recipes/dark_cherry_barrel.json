@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "P": {
+      "item": "vinery:dark_cherry_planks"
+    },
+    "S": {
+      "item": "vinery:dark_cherry_slab"
+    }
+  },
+  "pattern": [
+    "PSP",
+    "S S",
+    "PSP"
+  ],
+  "result": {
+    "item": "vinery:dark_cherry_barrel"
+  }
+}

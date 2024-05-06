@@ -1,0 +1,7 @@
+{
+	"credit": "Made by Satisfy",
+	"parent": "minecraft:block/template_trapdoor_bottom",
+	"textures": {
+		"texture": "vinery:block/dark_cherry_trapdoor"
+	}
+}

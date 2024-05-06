@@ -20,7 +20,7 @@ public class StorageTypeRegistry {
         blocks.add(ObjectRegistry.DARK_CHERRY_WINE_RACK_SMALL.get());
         blocks.add(ObjectRegistry.DARK_CHERRY_WINE_RACK_BIG.get());
         blocks.add(ObjectRegistry.DARK_CHERRY_WINE_RACK_MID.get());
-        blocks.add(ObjectRegistry.SHELF.get());
+        blocks.add(ObjectRegistry.DARK_CHERRY_SHELF.get());
         blocks.add(ObjectRegistry.WINE_BOX.get());
         blocks.add(ObjectRegistry.FLOWER_BOX.get());
         blocks.add(ObjectRegistry.FLOWER_POT_BIG.get());

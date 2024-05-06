@@ -1,13 +1,13 @@
 {
   "variants": {
     "type=bottom": {
-      "model": "vinery:block/cherry_slab"
+      "model": "vinery:block/dark_cherry_slab"
     },
     "type=double": {
-      "model": "vinery:block/cherry_slab_double"
+      "model": "vinery:block/dark_cherry_slab_double"
     },
     "type=top": {
-      "model": "vinery:block/cherry_slab_top"
+      "model": "vinery:block/dark_cherry_slab_top"
     }
   }
 }

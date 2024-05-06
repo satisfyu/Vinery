@@ -2,10 +2,10 @@
 	"credit": "Made by Satisfy",
 	"parent": "block/block",
 	"textures": {
-		"1": "vinery:block/cherry_trapdoor",
-		"2": "vinery:block/decor",
-		"3": "vinery:block/chair",
-		"particle": "vinery:block/cherry_trapdoor"
+		"1": "vinery:block/dark_cherry_trapdoor",
+		"2": "vinery:block/dark_cherry_chair_decor",
+		"3": "vinery:block/dark_cherry_chair_top",
+		"particle": "vinery:block/dark_cherry_trapdoor"
 	},
 	"elements": [
 		{

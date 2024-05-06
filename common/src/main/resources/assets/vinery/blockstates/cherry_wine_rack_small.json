@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=east": {
-      "model": "vinery:block/mc_cherry_wine_rack_2",
+      "model": "vinery:block/cherry_wine_rack_small",
       "y": 90
     },
     "facing=north": {
-      "model": "vinery:block/mc_cherry_wine_rack_2"
+      "model": "vinery:block/cherry_wine_rack_small"
     },
     "facing=south": {
-      "model": "vinery:block/mc_cherry_wine_rack_2",
+      "model": "vinery:block/cherry_wine_rack_small",
       "y": 180
     },
     "facing=west": {
-      "model": "vinery:block/mc_cherry_wine_rack_2",
+      "model": "vinery:block/cherry_wine_rack_small",
       "y": 270
     }
   }

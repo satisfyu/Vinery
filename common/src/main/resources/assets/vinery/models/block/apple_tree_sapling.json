@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "vinery:block/apple_tree_sapling"
+    "cross": "vinery:item/apple_tree_sapling"
   }
 }

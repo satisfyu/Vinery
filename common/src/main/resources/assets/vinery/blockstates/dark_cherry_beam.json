@@ -1,15 +1,15 @@
 {
   "variants": {
     "axis=x": {
-      "model": "vinery:block/cherry_beam_horizontal",
+      "model": "vinery:block/dark_cherry_beam_horizontal",
       "x": 90,
       "y": 90
     },
     "axis=y": {
-      "model": "vinery:block/cherry_beam"
+      "model": "vinery:block/dark_cherry_beam"
     },
     "axis=z": {
-      "model": "vinery:block/cherry_beam_horizontal",
+      "model": "vinery:block/dark_cherry_beam_horizontal",
       "x": 90
     }
   }

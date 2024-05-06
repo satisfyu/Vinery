@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "vinery:block/cherry_hanging_sign"
+      "model": "vinery:block/dark_cherry_hanging_sign"
     }
   }
 }
