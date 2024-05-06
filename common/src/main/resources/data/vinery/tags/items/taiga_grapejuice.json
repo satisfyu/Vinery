@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "vinery:taiga_red_grapejuice_bottle",
-    "vinery:taiga_white_grapejuice_bottle"
+    "vinery:red_taiga_grapejuice",
+    "vinery:white_taiga_grapejuice"
   ]
 }
 

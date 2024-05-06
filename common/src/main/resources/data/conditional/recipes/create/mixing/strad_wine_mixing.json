@@ -10,7 +10,7 @@
     "type": "create:mixing",
     "ingredients": [
       {
-        "item": "vinery:jungle_white_grapejuice_bottle"
+        "item": "vinery:white_jungle_grapejuice"
       },
       {
         "item": "minecraft:cocoa_beans"

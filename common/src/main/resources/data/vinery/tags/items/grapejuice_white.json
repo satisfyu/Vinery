@@ -2,19 +2,19 @@
   "replace": false,
   "values": [
     {
-      "id": "vinery:white_grapejuice_wine_bottle",
+      "id": "vinery:white_grapejuice",
       "required": false
     },
     {
-      "id": "vinery:savanna_white_grapejuice_bottle",
+      "id": "vinery:white_savanna_grapejuice",
       "required": false
     },
     {
-      "id": "vinery:taiga_white_grapejuice_bottle",
+      "id": "vinery:white_taiga_grapejuice",
       "required": false
     },
     {
-      "id": "vinery:jungle_white_grapejuice_bottle",
+      "id": "vinery:white_jungle_grapejuice",
       "required": false
     }
   ]

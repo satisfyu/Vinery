@@ -10,7 +10,7 @@
     "type": "create:mixing",
     "ingredients": [
       {
-        "item": "vinery:taiga_red_grapejuice_bottle"
+        "item": "vinery:red_taiga_grapejuice"
       },
       {
         "item": "minecraft:honey_bottle"

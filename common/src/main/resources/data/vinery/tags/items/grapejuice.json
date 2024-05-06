@@ -1,14 +1,14 @@
 {
   "replace": false,
   "values": [
-    "vinery:red_grapejuice_wine_bottle",
-    "vinery:white_grapejuice_wine_bottle",
-    "vinery:savanna_red_grapejuice_bottle",
-    "vinery:savanna_white_grapejuice_bottle",
-    "vinery:taiga_red_grapejuice_bottle",
-    "vinery:taiga_white_grapejuice_bottle",
-    "vinery:jungle_red_grapejuice_bottle",
-    "vinery:jungle_white_grapejuice_bottle"
+    "vinery:red_grapejuice",
+    "vinery:white_grapejuice",
+    "vinery:red_savanna_grapejuice",
+    "vinery:white_savanna_grapejuice",
+    "vinery:red_taiga_grapejuice",
+    "vinery:white_taiga_grapejuice",
+    "vinery:red_jungle_grapejuice",
+    "vinery:white_jungle_grapejuice"
   ]
 }
 

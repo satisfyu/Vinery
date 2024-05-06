@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "vinery:item/taiga_red_grapejuice"
+    "layer0": "vinery:item/red_jungle_grapejuice"
   }
 }

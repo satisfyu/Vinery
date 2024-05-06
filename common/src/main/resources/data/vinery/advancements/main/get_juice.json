@@ -2,7 +2,7 @@
   "parent": "vinery:main/place_pot",
   "display": {
     "icon": {
-      "item": "vinery:red_grapejuice_wine_bottle"
+      "item": "vinery:red_grapejuice"
     },
     "title": {
       "translate": "advancement.vinery.get_juice"
@@ -22,7 +22,7 @@
         "items": [
           {
             "items": [
-              "vinery:red_grapejuice_wine_bottle"
+              "vinery:red_grapejuice"
             ]
           }
         ]
@@ -34,7 +34,7 @@
         "items": [
           {
             "items": [
-              "vinery:white_grapejuice_wine_bottle"
+              "vinery:white_grapejuice"
             ]
           }
         ]
@@ -46,7 +46,7 @@
         "items": [
           {
             "items": [
-              "vinery:savanna_red_grapejuice_bottle"
+              "vinery:red_savanna_grapejuice"
             ]
           }
         ]
@@ -58,7 +58,7 @@
         "items": [
           {
             "items": [
-              "vinery:savanna_white_grapejuice_bottle"
+              "vinery:white_savanna_grapejuice"
             ]
           }
         ]
@@ -70,7 +70,7 @@
         "items": [
           {
             "items": [
-              "vinery:taiga_red_grapejuice_bottle"
+              "vinery:red_taiga_grapejuice"
             ]
           }
         ]
@@ -82,7 +82,7 @@
         "items": [
           {
             "items": [
-              "vinery:taiga_white_grapejuice_bottle"
+              "vinery:white_taiga_grapejuice"
             ]
           }
         ]
@@ -94,7 +94,7 @@
         "items": [
           {
             "items": [
-              "vinery:jungle_red_grapejuice_bottle"
+              "vinery:red_jungle_grapejuice"
             ]
           }
         ]
@@ -106,7 +106,7 @@
         "items": [
           {
             "items": [
-              "vinery:jungle_white_grapejuice_bottle"
+              "vinery:white_jungle_grapejuice"
             ]
           }
         ]

@@ -10,7 +10,7 @@
     "type": "create:mixing",
     "ingredients": [
       {
-        "item": "vinery:savanna_white_grapejuice_bottle"
+        "item": "vinery:white_savanna_grapejuice"
       },
       {
         "item": "minecraft:spider_eye"

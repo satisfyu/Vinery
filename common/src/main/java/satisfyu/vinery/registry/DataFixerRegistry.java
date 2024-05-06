@@ -37,14 +37,20 @@ public class DataFixerRegistry {
         p.add("red_grape_crate", "red_grape_bag");
         p.add("cherry_crate", "cherry_bag");
         p.add("apple_crate", "apple_bag");
+        p.add("red_grapejuice_wine_bottle", "red_grapejuice");
+        p.add("savanna_red_grapejuice_bottle", "red_savanna_grapejuice");
+        p.add("taiga_red_grapejuice_bottle", "red_taiga_grapejuice");
+        p.add("jungle_red_grapejuice_bottle", "red_jungle_grapejuice");
+        p.add("jungle_white_grapejuice_bottle", "white_jungle_grapejuice");
+        p.add("white_grapejuice_wine_bottle", "white_grapejuice");
+        p.add("taiga_white_grapejuice_bottle", "white_taiga_grapejuice");
+        p.add("savanna_white_grapejuice_bottle", "white_savanna_grapejuice");
 
-        /**
-         *
-         * Seems like it doesn't like StorageBlocks 
-         *
-         */
         //p.add("cherry_wine_rack_big", "dark_cherry_wine_rack_big");
         //p.add("cherry_wine_rack_small", "dark_cherry_wine_rack_small");
         //p.add("cherry_wine_rack_mid", "dark_cherry_wine_rack_mid");
+        //p.add("mc_cherry_wine_rack_big", "cherry_wine_rack_big");
+        //p.add("mc_cherry_wine_rack_small", "cherry_wine_rack_small");
+        //p.add("mc_cherry_wine_rack_mid", "cherry_wine_rack_mid");
     }
 }
