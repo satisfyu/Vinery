@@ -31,8 +31,8 @@ public class VineryFabricVillagers {
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 2, factories -> factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WINE_BOTTLE.get(), 1, 2, 7)));
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 3, factories -> {
             factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.FLOWER_BOX.get(), 3, 1, 10));
-            factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WHITE_GRAPE_CRATE.get(), 7, 1, 10));
-            factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.RED_GRAPE_CRATE.get(), 7, 1, 10));
+            factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.WHITE_GRAPE_BAG.get(), 7, 1, 10));
+            factories.add(new VillagerUtil.SellItemFactory(ObjectRegistry.RED_GRAPE_BAG.get(), 7, 1, 10));
 
         });
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 4, factories -> {

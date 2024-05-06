@@ -2,7 +2,7 @@
   "parent": "vinery:main/wild_crops",
   "display": {
     "icon": {
-      "item": "vinery:white_grape_crate"
+      "item": "vinery:white_grape_bag"
     },
     "title": {
       "translate": "advancement.vinery.crop_collector"

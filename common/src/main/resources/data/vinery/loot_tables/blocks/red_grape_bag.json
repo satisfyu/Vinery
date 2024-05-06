@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vinery:apple_crate"
+          "name": "vinery:red_grape_bag"
         }
       ],
       "conditions": [

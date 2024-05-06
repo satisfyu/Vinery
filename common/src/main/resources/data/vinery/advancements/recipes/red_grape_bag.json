@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "vinery:red_grape_crate"
+      "vinery:red_grape_bag"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "vinery:red_grape_crate"
+        "recipe": "vinery:red_grape_bag"
       }
     }
   },

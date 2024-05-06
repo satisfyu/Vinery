@@ -38,10 +38,10 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.APPLE_TREE_SAPLING.get());
                 out.accept(ObjectRegistry.DARK_CHERRY_LEAVES.get());
                 out.accept(ObjectRegistry.APPLE_LEAVES.get());
-                out.accept(ObjectRegistry.WHITE_GRAPE_CRATE.get());
-                out.accept(ObjectRegistry.RED_GRAPE_CRATE.get());
-                out.accept(ObjectRegistry.CHERRY_CRATE.get());
-                out.accept(ObjectRegistry.APPLE_CRATE.get());
+                out.accept(ObjectRegistry.WHITE_GRAPE_BAG.get());
+                out.accept(ObjectRegistry.RED_GRAPE_BAG.get());
+                out.accept(ObjectRegistry.CHERRY_BAG.get());
+                out.accept(ObjectRegistry.APPLE_BAG.get());
                 out.accept(ObjectRegistry.GRAPEVINE_POT.get());
                 out.accept(ObjectRegistry.FERMENTATION_BARREL.get());
                 out.accept(ObjectRegistry.APPLE_PRESS.get());

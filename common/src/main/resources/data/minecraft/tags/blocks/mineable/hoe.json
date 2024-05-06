@@ -3,9 +3,9 @@
   "values": [
     "vinery:dark_cherry_leaves",
     "vinery:grapevine_leaves",
-    "vinery:red_grape_crate",
-    "vinery:white_grape_crate",
-    "vinery:apple_crate",
-    "vinery:cherry_crate"
+    "vinery:red_grape_bag",
+    "vinery:white_grape_bag",
+    "vinery:apple_bag",
+    "vinery:cherry_bag"
   ]
 }

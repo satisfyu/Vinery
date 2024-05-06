@@ -33,7 +33,16 @@ public class DataFixerRegistry {
         p.add("table", "dark_cherry_table");
         p.add("barrel", "dark_cherry_barrel");
         p.add("big_table", "dark_cherry_big_table");
+        p.add("white_grape_crate", "white_grape_bag");
+        p.add("red_grape_crate", "red_grape_bag");
+        p.add("cherry_crate", "cherry_bag");
+        p.add("apple_crate", "apple_bag");
 
+        /**
+         *
+         * Seems like it doesn't like StorageBlocks 
+         *
+         */
         //p.add("cherry_wine_rack_big", "dark_cherry_wine_rack_big");
         //p.add("cherry_wine_rack_small", "dark_cherry_wine_rack_small");
         //p.add("cherry_wine_rack_mid", "dark_cherry_wine_rack_mid");

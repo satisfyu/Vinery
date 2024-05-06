@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "grape_crate",
+  "group": "grape_bag",
   "pattern": [
     "###",
     "###",
@@ -12,6 +12,6 @@
     }
   },
   "result": {
-    "item": "vinery:cherry_crate"
+    "item": "vinery:cherry_bag"
   }
 }
