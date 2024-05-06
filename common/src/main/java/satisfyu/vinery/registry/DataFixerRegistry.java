@@ -45,12 +45,13 @@ public class DataFixerRegistry {
         p.add("white_grapejuice_wine_bottle", "white_grapejuice");
         p.add("taiga_white_grapejuice_bottle", "white_taiga_grapejuice");
         p.add("savanna_white_grapejuice_bottle", "white_savanna_grapejuice");
-
-        //p.add("cherry_wine_rack_big", "dark_cherry_wine_rack_big");
-        //p.add("cherry_wine_rack_small", "dark_cherry_wine_rack_small");
-        //p.add("cherry_wine_rack_mid", "dark_cherry_wine_rack_mid");
-        //p.add("mc_cherry_wine_rack_big", "cherry_wine_rack_big");
-        //p.add("mc_cherry_wine_rack_small", "cherry_wine_rack_small");
-        //p.add("mc_cherry_wine_rack_mid", "cherry_wine_rack_mid");
+        /*
+        p.add("cherry_wine_rack_big", "dark_cherry_wine_rack_big");
+        p.add("cherry_wine_rack_small", "dark_cherry_wine_rack_small");
+        p.add("cherry_wine_rack_mid", "dark_cherry_wine_rack_mid");
+        p.add("mc_cherry_wine_rack_big", "cherry_wine_rack_big");
+        p.add("mc_cherry_wine_rack_small", "cherry_wine_rack_small");
+        p.add("mc_cherry_wine_rack_mid", "cherry_wine_rack_mid");
+        */
     }
 }
