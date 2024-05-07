@@ -13,7 +13,7 @@
     "show_toast": false,
     "announce_to_chat": false,
     "hidden": false,
-    "background": "vinery:textures/block/cabinet_side.png"
+    "background": "vinery:textures/block/dark_cherry_planks.png"
   },
   "criteria": {
     "seeds": {

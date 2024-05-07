@@ -43,6 +43,7 @@ import satisfyu.vinery.block.stem.LatticeBlock;
 import satisfyu.vinery.block.stem.PaleStemBlock;
 import satisfyu.vinery.block.storage.*;
 import satisfyu.vinery.item.*;
+import satisfyu.vinery.item.GrapeItem;
 import satisfyu.vinery.util.FoodComponent;
 import satisfyu.vinery.util.VineryIdentifier;
 import satisfyu.vinery.world.VineryConfiguredFeatures;

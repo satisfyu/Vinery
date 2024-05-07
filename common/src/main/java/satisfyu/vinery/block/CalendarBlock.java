@@ -3,7 +3,6 @@ package satisfyu.vinery.block;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import de.cristelknight.doapi.common.block.FacingBlock;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;

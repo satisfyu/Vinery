@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.item.DrinkBlockBigItem;
 import satisfyu.vinery.registry.StorageTypeRegistry;
 
@@ -33,7 +34,7 @@ public class BigBottleStorageBlock extends StorageBlock {
 
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack stack = player.getItemInHand(hand);
         if (player.isShiftKeyDown() && stack.isEmpty()) {
             if (!world.isClientSide()) {

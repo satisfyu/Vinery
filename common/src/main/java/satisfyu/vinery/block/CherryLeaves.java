@@ -52,7 +52,6 @@ public class CherryLeaves extends LeavesBlock {
         return super.use(state, world, pos, player, hand, hit);
     }
 
-
     @Override
     public boolean isRandomlyTicking(BlockState state) {
         if (state.getValue(VARIANT) && !state.getValue(HAS_CHERRIES)) {
@@ -68,7 +67,6 @@ public class CherryLeaves extends LeavesBlock {
         boolean b = p != null && p.isShiftKeyDown();
         return Objects.requireNonNull(super.getStateForPlacement(ctx)).setValue(VARIANT, ctx.getPlayer().getAbilities().instabuild && b);
     }
-
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

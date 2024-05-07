@@ -40,7 +40,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 @SuppressWarnings("all")
-public class StackableLogBlock extends SlabBlock{
+public class StackableLogBlock extends SlabBlock {
     public static final BooleanProperty FIRED = BooleanProperty.create("fired");
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
@@ -83,9 +83,10 @@ public class StackableLogBlock extends SlabBlock{
             FluidState fluidState = ctx.getLevel().getFluidState(blockPos);
             BlockState blockState2 = this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(FACING, ctx.getHorizontalDirection().getOpposite()).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
             Direction direction = ctx.getClickedFace();
-            return direction != Direction.DOWN && (direction == Direction.UP || !(ctx.getClickLocation().y() - (double)blockPos.getY() > 0.5)) ? blockState2 : blockState2.setValue(TYPE, SlabType.TOP);
+            return direction != Direction.DOWN && (direction == Direction.UP || !(ctx.getClickLocation().y() - (double) blockPos.getY() > 0.5)) ? blockState2 : blockState2.setValue(TYPE, SlabType.TOP);
         }
     }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
@@ -94,10 +95,11 @@ public class StackableLogBlock extends SlabBlock{
 
     @Override
     public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        if ((state.getValue(FIRED))) displayTickLikeCampfire(world, pos, random, world.getBlockState(pos.below()).is(Blocks.HAY_BLOCK));
+        if ((state.getValue(FIRED)))
+            displayTickLikeCampfire(world, pos, random, world.getBlockState(pos.below()).is(Blocks.HAY_BLOCK));
     }
 
-    public static void displayTickLikeCampfire(Level world, BlockPos pos, RandomSource random, boolean isSignal){
+    public static void displayTickLikeCampfire(Level world, BlockPos pos, RandomSource random, boolean isSignal) {
         if (random.nextFloat() < 0.80f) {
             for (int i = 0; i < random.nextInt(5) + 3; ++i) {
                 CampfireBlock.makeParticles(world, pos, isSignal, true);
@@ -106,11 +108,11 @@ public class StackableLogBlock extends SlabBlock{
 
         }
         if (random.nextInt(10) == 0) {
-            world.playLocalSound((double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.5f + random.nextFloat(), random.nextFloat() * 0.7f + 0.6f, false);
+            world.playLocalSound((double) pos.getX() + 0.5, (double) pos.getY() + 0.5, (double) pos.getZ() + 0.5, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.5f + random.nextFloat(), random.nextFloat() * 0.7f + 0.6f, false);
         }
         if (random.nextInt(5) == 0) {
             for (int i = 0; i < random.nextInt(4) + 3; ++i) {
-                world.addParticle(ParticleTypes.LAVA, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, random.nextFloat() / 2.0f, 5.0E-5, random.nextFloat() / 2.0f);
+                world.addParticle(ParticleTypes.LAVA, (double) pos.getX() + 0.5, (double) pos.getY() + 0.5, (double) pos.getZ() + 0.5, random.nextFloat() / 2.0f, 5.0E-5, random.nextFloat() / 2.0f);
             }
         }
     }
@@ -147,7 +149,6 @@ public class StackableLogBlock extends SlabBlock{
         return shape;
     }
 
-
     private static final Supplier<VoxelShape> BOTTOM_AABB_SUPPLIER = () -> {
         VoxelShape shape = Shapes.empty();
         shape = Shapes.joinUnoptimized(shape, Shapes.box(0.0625, 0, 0, 0.3125, 0.25, 1), BooleanOp.OR);
@@ -161,7 +162,7 @@ public class StackableLogBlock extends SlabBlock{
         VoxelShape shape = Shapes.empty();
         shape = Shapes.joinUnoptimized(shape, Shapes.box(0.0625, 0.5, 0, 0.3125, 0.75, 1), BooleanOp.OR);
         shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.6875, 1, 1, 0.9375), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.6875, 1, 1, 0.9375), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.6875, 0.5, 0, 0.9375, 0.75, 1), BooleanOp.OR);
         shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.0625, 1, 1, 0.3125), BooleanOp.OR);
         return shape;
     };
@@ -169,12 +170,12 @@ public class StackableLogBlock extends SlabBlock{
     private static final Supplier<VoxelShape> DOUBLE_SUPPLIER = () -> {
         VoxelShape shape = Shapes.empty();
         shape = Shapes.joinUnoptimized(shape, Shapes.box(0.0625, 0, 0, 0.3125, 0.25, 1), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.25, 0.6875, 1, 0.5, 0.9375), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.6875, 0, 0, 0.9375, 0.25, 1), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.25, 0.0625, 1, 0.5, 0.3125), BooleanOp.OR);
         shape = Shapes.joinUnoptimized(shape, Shapes.box(0.0625, 0.5, 0, 0.3125, 0.75, 1), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.25, 0.6875, 1, 0.5, 0.9375), BooleanOp.OR);
         shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.6875, 1, 1, 0.9375), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.6875, 1, 1, 0.9375), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.6875, 0, 0, 0.9375, 0.25, 1), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.6875, 0.5, 0, 0.9375, 0.75, 1), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.25, 0.0625, 1, 0.5, 0.3125), BooleanOp.OR);
         shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.75, 0.0625, 1, 1, 0.3125), BooleanOp.OR);
         return shape;
     };

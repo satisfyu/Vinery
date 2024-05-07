@@ -31,6 +31,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.block.entity.ApplePressBlockEntity;
 import satisfyu.vinery.registry.BlockEntityTypeRegistry;
+import satisfyu.vinery.registry.ObjectRegistry;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,16 +58,40 @@ public class ApplePressBlock extends BaseEntityBlock {
 	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (!world.isClientSide) {
 			DoubleBlockHalf half = state.getValue(HALF);
-			BlockPos otherPartPos = half == DoubleBlockHalf.LOWER ? pos.above() : pos.below();
+			BlockPos otherPartPos = (half == DoubleBlockHalf.LOWER) ? pos.above() : pos.below();
 			BlockState otherPartState = world.getBlockState(otherPartPos);
+
+			boolean otherPartRemoved = otherPartState.getBlock() != this || otherPartState.getValue(HALF) == half;
+			boolean isCompleteRemoval = state.getBlock() != newState.getBlock() && newState.isAir();
 
 			if (otherPartState.getBlock() == this && otherPartState.getValue(HALF) != half) {
 				world.setBlock(otherPartPos, Blocks.AIR.defaultBlockState(), 35);
 				world.levelEvent(2001, otherPartPos, Block.getId(otherPartState));
 			}
-		}
 
+			if (isCompleteRemoval) {
+				if (half == DoubleBlockHalf.UPPER || (half == DoubleBlockHalf.LOWER && otherPartRemoved)) {
+					dropResources(state, world, pos);
+				}
+			}
+		}
 		super.onRemove(state, world, pos, newState, isMoving);
+	}
+
+	@Override
+	public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+		if (!player.isCreative() && state.getValue(HALF) == DoubleBlockHalf.UPPER) {
+			ItemStack itemStack = new ItemStack(ObjectRegistry.APPLE_PRESS.get());
+			popResource(world, pos, itemStack);
+		} else if (!player.isCreative() && state.getValue(HALF) == DoubleBlockHalf.LOWER) {
+			BlockPos upperPos = pos.above();
+			BlockState upperState = world.getBlockState(upperPos);
+			if (upperState.getBlock() == this && upperState.getValue(HALF) == DoubleBlockHalf.UPPER) {
+				ItemStack itemStack = new ItemStack(ObjectRegistry.APPLE_PRESS.get());
+				popResource(world, upperPos, itemStack);
+			}
+		}
+		super.playerWillDestroy(world, pos, state, player);
 	}
 
 	@Override
@@ -100,9 +125,9 @@ public class ApplePressBlock extends BaseEntityBlock {
 	@Nullable
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-		BlockPos blockPos = ctx.getClickedPos();
-		Level level = ctx.getLevel();
-		if (blockPos.getY() < level.getMaxBuildHeight() - 1 && level.getBlockState(blockPos.above()).canBeReplaced(ctx)) {
+		BlockGetter world = ctx.getLevel();
+		BlockPos pos = ctx.getClickedPos();
+		if (pos.getY() < world.getMaxBuildHeight() - 1 && world.getBlockState(pos.above()).canBeReplaced(ctx)) {
 			return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite()).setValue(HALF, DoubleBlockHalf.LOWER);
 		}
 		return null;
@@ -111,9 +136,9 @@ public class ApplePressBlock extends BaseEntityBlock {
 	@Override
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
-			BlockPos blockPosUpper = pos.above();
-			BlockState blockStateUpper = state.setValue(HALF, DoubleBlockHalf.UPPER);
-			world.setBlock(blockPosUpper, blockStateUpper, 3);
+			BlockPos upperPos = pos.above();
+			BlockState upperState = state.setValue(HALF, DoubleBlockHalf.UPPER);
+			world.setBlock(upperPos, upperState, 3);
 		}
 	}
 
@@ -123,6 +148,26 @@ public class ApplePressBlock extends BaseEntityBlock {
 
 	public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
 		return state.rotate(mirror.getRotation(state.getValue(FACING)));
+	}
+
+	@Override
+	public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		Direction facing = state.getValue(FACING);
+		if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
+			return TOP_SHAPES.get(facing);
+		} else {
+			return BOTTOM_SHAPES.get(facing);
+		}
+	}
+
+	static {
+		Supplier<VoxelShape> topShapeSupplier = ApplePressBlock::makeTopShape;
+		Supplier<VoxelShape> bottomShapeSupplier = ApplePressBlock::makeBottomShape;
+
+		for (Direction direction : Direction.Plane.HORIZONTAL) {
+			TOP_SHAPES.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, topShapeSupplier.get()));
+			BOTTOM_SHAPES.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, bottomShapeSupplier.get()));
+		}
 	}
 
 	private static VoxelShape makeTopShape() {
@@ -145,30 +190,6 @@ public class ApplePressBlock extends BaseEntityBlock {
 		shape = Shapes.join(shape, Shapes.box(0.875, 0.125, 0.40625, 1, 1, 0.59375), BooleanOp.OR);
 		shape = Shapes.join(shape, Shapes.box(0.1875, 0.5625, 0.1875, 0.8125, 1, 0.8125), BooleanOp.OR);
 		shape = Shapes.join(shape, Shapes.box(0.125, 0.4375, 0.125, 0.875, 0.5625, 0.875), BooleanOp.OR);
-
-
-
-
 		return shape;
-	}
-
-	@Override
-	public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		Direction facing = state.getValue(FACING);
-		if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
-			return TOP_SHAPES.get(facing);
-		} else {
-			return BOTTOM_SHAPES.get(facing);
-		}
-	}
-
-	static {
-		Supplier<VoxelShape> topShapeSupplier = ApplePressBlock::makeTopShape;
-		Supplier<VoxelShape> bottomShapeSupplier = ApplePressBlock::makeBottomShape;
-
-		for (Direction direction : Direction.Plane.HORIZONTAL) {
-			TOP_SHAPES.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, topShapeSupplier.get()));
-			BOTTOM_SHAPES.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, bottomShapeSupplier.get()));
-		}
 	}
 }
