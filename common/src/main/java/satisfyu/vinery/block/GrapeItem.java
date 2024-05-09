@@ -8,7 +8,6 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.block.grape.GrapeType;
 
-@Deprecated
 public class GrapeItem extends Item {
     private static final double CHANCE_OF_GETTING_SEEDS = 0.2;
     private final Item returnItem;
