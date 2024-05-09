@@ -8,6 +8,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import satisfyu.vinery.client.gui.handler.slot.PicnicBasketSlot;
 import satisfyu.vinery.registry.ScreenhandlerTypeRegistry;
 
 public class BasketGuiHandler extends AbstractContainerMenu {
@@ -15,12 +16,12 @@ public class BasketGuiHandler extends AbstractContainerMenu {
     private final Container container;
 
     public BasketGuiHandler(int i, Inventory inventory) {
-        this(i,inventory,new SimpleContainer(CONTAINER_SIZE));
+        this(i, inventory, new SimpleContainer(CONTAINER_SIZE));
     }
 
     public BasketGuiHandler(int i, Inventory inventory, Container container) {
         super(ScreenhandlerTypeRegistry.BASKET_GUI_HANDLER.get(), i);
-        checkContainerSize(container,CONTAINER_SIZE);
+        checkContainerSize(container, CONTAINER_SIZE);
         this.container = container;
         container.startOpen(inventory.player);
 
@@ -80,13 +81,5 @@ public class BasketGuiHandler extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return this.container.stillValid(player);
-    }
-
-    private static class PicnicBasketSlot extends Slot{
-
-        public PicnicBasketSlot(Container container, int i, int j, int k) {
-            super(container, i, j, k);
-        }
-
     }
 }

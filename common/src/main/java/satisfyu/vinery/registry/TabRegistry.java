@@ -80,14 +80,14 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.DIRT_SLAB.get());
                 out.accept(ObjectRegistry.GRASS_SLAB.get());
                 out.accept(ObjectRegistry.APPLE_JUICE.get());
-                out.accept(ObjectRegistry.red_grapejuice.get());
-                out.accept(ObjectRegistry.white_grapejuice.get());
-                out.accept(ObjectRegistry.red_taiga_grapejuice.get());
-                out.accept(ObjectRegistry.white_taiga_grapejuice.get());
-                out.accept(ObjectRegistry.red_jungle_grapejuice.get());
-                out.accept(ObjectRegistry.white_jungle_grapejuice.get());
-                out.accept(ObjectRegistry.red_savanna_grapejuice.get());
-                out.accept(ObjectRegistry.white_savanna_grapejuice.get());
+                out.accept(ObjectRegistry.RED_GRAPEJUICE.get());
+                out.accept(ObjectRegistry.WHITE_GRAPEJUICE.get());
+                out.accept(ObjectRegistry.RED_TAIGA_GRAPEJUICE.get());
+                out.accept(ObjectRegistry.WHITE_TAIGA_GRAPEJUICE.get());
+                out.accept(ObjectRegistry.RED_JUNGLE_GRAPEJUICE.get());
+                out.accept(ObjectRegistry.WHITE_JUNGLE_GRAPEJUICE.get());
+                out.accept(ObjectRegistry.RED_SAVANNA_GRAPEJUICE.get());
+                out.accept(ObjectRegistry.WHITE_SAVANNA_GRAPEJUICE.get());
                 out.accept(ObjectRegistry.CHORUS_WINE.get());
                 out.accept(ObjectRegistry.CHERRY_WINE.get());
                 out.accept(ObjectRegistry.MAGNETIC_WINE.get());
@@ -170,6 +170,8 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.BAMBOO_LATTICE.get());
                 out.accept(ObjectRegistry.CHERRY_LATTICE.get());
                 out.accept(ObjectRegistry.LAMROC_WINE.get());
+                out.accept(ObjectRegistry.VINERY_STANDARD.get());
+
             })
             .build());
 
