@@ -21,6 +21,7 @@ import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
+import net.minecraft.world.item.HoneyBottleItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.*;
@@ -141,15 +142,15 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> DIRT_SLAB = registerWithItem("dirt_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DIRT)));
     public static final RegistrySupplier<Block> GRASS_SLAB = registerWithItem("grass_slab", () -> new SpreadableGrassSlab(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
     public static final RegistrySupplier<Item> WINE_BOTTLE = registerItem("wine_bottle", () -> new Item(getSettings()));
-    public static final RegistrySupplier<Item> APPLE_JUICE = registerItem("apple_juice", () -> new Item(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
-    public static final RegistrySupplier<Item> RED_GRAPEJUICE = registerItem("red_grapejuice", () -> new Item(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
-    public static final RegistrySupplier<Item> WHITE_GRAPEJUICE = registerItem("white_grapejuice", () -> new Item(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
-    public static final RegistrySupplier<Item> RED_SAVANNA_GRAPEJUICE = registerItem("red_savanna_grapejuice", () -> new Item(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
-    public static final RegistrySupplier<Item> WHITE_SAVANNA_GRAPEJUICE = registerItem("white_savanna_grapejuice", () -> new Item(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
-    public static final RegistrySupplier<Item> RED_TAIGA_GRAPEJUICE = registerItem("red_taiga_grapejuice", () -> new Item(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
-    public static final RegistrySupplier<Item> WHITE_TAIGA_GRAPEJUICE = registerItem("white_taiga_grapejuice", () -> new Item(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
-    public static final RegistrySupplier<Item> RED_JUNGLE_GRAPEJUICE = registerItem("red_jungle_grapejuice", () -> new Item(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
-    public static final RegistrySupplier<Item> WHITE_JUNGLE_GRAPEJUICE = registerItem("white_jungle_grapejuice", () -> new Item(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
+    public static final RegistrySupplier<Item> APPLE_JUICE = registerItem("apple_juice", () -> new HoneyBottleItem(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
+    public static final RegistrySupplier<Item> RED_GRAPEJUICE = registerItem("red_grapejuice", () -> new HoneyBottleItem(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
+    public static final RegistrySupplier<Item> WHITE_GRAPEJUICE = registerItem("white_grapejuice", () -> new HoneyBottleItem(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
+    public static final RegistrySupplier<Item> RED_SAVANNA_GRAPEJUICE = registerItem("red_savanna_grapejuice", () -> new HoneyBottleItem(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
+    public static final RegistrySupplier<Item> WHITE_SAVANNA_GRAPEJUICE = registerItem("white_savanna_grapejuice", () -> new HoneyBottleItem(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
+    public static final RegistrySupplier<Item> RED_TAIGA_GRAPEJUICE = registerItem("red_taiga_grapejuice", () -> new HoneyBottleItem(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
+    public static final RegistrySupplier<Item> WHITE_TAIGA_GRAPEJUICE = registerItem("white_taiga_grapejuice", () -> new HoneyBottleItem(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
+    public static final RegistrySupplier<Item> RED_JUNGLE_GRAPEJUICE = registerItem("red_jungle_grapejuice", () -> new HoneyBottleItem(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
+    public static final RegistrySupplier<Item> WHITE_JUNGLE_GRAPEJUICE = registerItem("white_jungle_grapejuice", () -> new HoneyBottleItem(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
     public static final RegistrySupplier<Block> CHORUS_WINE = registerWithoutItem("chorus_wine", () -> new WineBottleBlock(getWineSettings(), 1));
     public static final RegistrySupplier<Item> CHORUS_WINE_ITEM = registerItem("chorus_wine", () -> new DrinkBlockBigItem(CHORUS_WINE.get(), getWineItemSettings(MobEffectRegistry.TELEPORT.get(), 1)));
     public static final RegistrySupplier<Block> CHERRY_WINE = registerWithoutItem("cherry_wine", () -> new WineBottleBlock(getWineSettings(), 3));
@@ -264,6 +265,8 @@ public class ObjectRegistry {
 
     public static final RegistrySupplier<Block> LAMROC_WINE = registerWithoutItem("lamroc_wine", () -> new WineBottleBlock(getWineSettings(), 3));
     public static final RegistrySupplier<Item> LAMROC_WINE_ITEM = registerItem("lamroc_wine", () -> new DrinkBlockSmallItem(LAMROC_WINE.get(), getWineItemSettings(MobEffectRegistry.TRADING_EFFECT.get(), 1200)));
+    public static final RegistrySupplier<Block> COUNT_ROLEESTER_SHIRAZ_WINE = registerWithoutItem("count_roleester_shiraz", () -> new WineBottleBlock(getWineSettings(), 2));
+    public static final RegistrySupplier<Item> COUNT_ROLEESTER_SHIRAZ_WINE_ITEM = registerItem("count_roleester_shiraz", () -> new DrinkBlockBigItem(COUNT_ROLEESTER_SHIRAZ_WINE.get(), getWineItemSettings(MobEffectRegistry.SHIRAAZ_EFFECT.get(), 1200)));
 
     public static void init() {
         Vinery.LOGGER.debug("Registering Mod Block and Items for " + Vinery.MOD_ID);

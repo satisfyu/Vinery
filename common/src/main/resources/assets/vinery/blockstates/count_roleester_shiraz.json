@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "fake_model=false": {
+      "model": "vinery:block/count_roleester_shiraz"
+    },
+    "fake_model=true": {
+      "model": "vinery:block/transparent"
+    }
+  }
+}

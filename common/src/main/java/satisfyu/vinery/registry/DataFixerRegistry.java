@@ -21,7 +21,6 @@ public class DataFixerRegistry {
         p.add("cherry_fence", "dark_cherry_fence");
         p.add("cherry_fence_gate", "dark_cherry_fence_gate");
         p.add("cherry_button", "dark_cherry_button");
-        p.add("cherry_pressure_plate", "dark_cherry_pressure_plate");
         p.add("cherry_door", "dark_cherry_door");
         p.add("cherry_trapdoor", "dark_cherry_trapdoor");
         p.add("cherry_leaves", "dark_cherry_leaves");

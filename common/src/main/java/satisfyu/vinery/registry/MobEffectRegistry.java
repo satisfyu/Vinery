@@ -40,6 +40,7 @@ public class MobEffectRegistry {
     public static final RegistrySupplier<MobEffect> RESISTANCE_EFFECT;
     public static final RegistrySupplier<MobEffect> ARMOR_EFFECT;
     public static final RegistrySupplier<MobEffect> TRADING_EFFECT;
+    public static final RegistrySupplier<MobEffect> SHIRAAZ_EFFECT;
 
     private static RegistrySupplier<MobEffect> registerEffect(String name, Supplier<MobEffect> effect){
         if(Platform.isForge()){
@@ -64,6 +65,7 @@ public class MobEffectRegistry {
         EXPERIENCE_EFFECT = registerEffect("experience_effect", () -> new NormalEffect(MobEffectCategory.BENEFICIAL, 0x00FF00));
         IMPROVED_JUMP_BOOST = registerEffect("double_jump", () -> new NormalEffect(MobEffectCategory.BENEFICIAL, 0x90F891));
         PARTY_EFFECT = registerEffect("party_effect", () -> new NormalEffect(MobEffectCategory.BENEFICIAL, 0xFF0000));
+        SHIRAAZ_EFFECT = registerEffect("shiraaz_effect", () -> new NormalEffect(MobEffectCategory.BENEFICIAL, 0xFF0000));
 
         //Instant
         TELEPORT = registerEffect("teleport", TeleportEffect::new);

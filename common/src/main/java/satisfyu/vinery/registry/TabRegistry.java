@@ -170,6 +170,7 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.BAMBOO_LATTICE.get());
                 out.accept(ObjectRegistry.CHERRY_LATTICE.get());
                 out.accept(ObjectRegistry.LAMROC_WINE.get());
+                out.accept(ObjectRegistry.COUNT_ROLEESTER_SHIRAZ_WINE.get());
                 out.accept(ObjectRegistry.VINERY_STANDARD.get());
 
             })
