@@ -88,13 +88,11 @@ public class SpreadableGrassSlab extends SlabBlock implements BonemealableBlock 
         block.performBonemeal(world, random, pos, state);
     }
 
-
     @Override
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (!canSurviveNew(state, world, pos)) {
-
-            world.setBlock(pos, getDirtSlabBlock().withPropertiesOf(world.getBlockState(pos)), Block.UPDATE_CLIENTS);
+            world.setBlock(pos, getDirtSlabBlock().withPropertiesOf(state), Block.UPDATE_CLIENTS);
         } else {
             if (world.getMaxLocalRawBrightness(pos.above()) >= 9) {
                 for(int i = 0; i < 4; ++i) {
@@ -105,22 +103,24 @@ public class SpreadableGrassSlab extends SlabBlock implements BonemealableBlock 
         }
     }
 
-
     public static void trySpread(ServerLevel world, BlockPos spreadPos) {
-
-        BlockState newState = null;
         BlockState oldState = world.getBlockState(spreadPos);
-        BlockState aboveState = world.getBlockState(spreadPos.above());
 
-        if (oldState.is(Blocks.DIRT)) {
-            newState = GRASS_BLOCK.defaultBlockState().setValue(BlockStateProperties.SNOWY, aboveState.is(Blocks.SNOW));
-        } else if(oldState.is(getDirtSlabBlock())){
-            newState = getGrassSlabBlock()
-                    .withPropertiesOf(oldState).setValue(BlockStateProperties.SNOWY, aboveState.is(Blocks.SNOW));
+        if (oldState.is(Blocks.DIRT) || oldState.is(getDirtSlabBlock())) {
+            BlockState aboveState = world.getBlockState(spreadPos.above());
+            boolean isSnowy = aboveState.is(Blocks.SNOW);
+            BlockState newState = null;
+
+            if (oldState.is(Blocks.DIRT)) {
+                newState = GRASS_BLOCK.defaultBlockState().setValue(BlockStateProperties.SNOWY, isSnowy);
+            } else if(oldState.is(getDirtSlabBlock())){
+                newState = getGrassSlabBlock().withPropertiesOf(oldState).setValue(BlockStateProperties.SNOWY, isSnowy);
+            }
+
+            if (newState != null && canSurviveNew(newState, world, spreadPos) && !world.getFluidState(spreadPos.above()).is(FluidTags.WATER)) {
+                world.setBlockAndUpdate(spreadPos, newState);
+            }
         }
-        if (newState != null && canSurviveNew(newState, world, spreadPos) && !world.getFluidState(spreadPos.above()).is(FluidTags.WATER))
-            world.setBlockAndUpdate(spreadPos, newState);
-
     }
 
     @Override
@@ -135,7 +135,6 @@ public class SpreadableGrassSlab extends SlabBlock implements BonemealableBlock 
         }
 
         state = state.setValue(SNOWY, world.getBlockState(pos.above()).is(BlockTags.SNOW));
-
 
         return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
     }
