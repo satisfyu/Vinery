@@ -97,6 +97,10 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
         INSTANCE = instance;
     }
 
+    public static VineryConfig getConfigInstance() {
+        return INSTANCE;
+    }
+
     public VineryConfig validate() {
         return new VineryConfig(
                 wineTraderChance,
