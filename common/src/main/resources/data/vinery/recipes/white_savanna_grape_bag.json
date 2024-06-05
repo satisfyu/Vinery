@@ -8,10 +8,10 @@
   ],
   "key": {
     "#": {
-      "item": "vinery:red_grape"
+      "item": "vinery:savanna_grapes_white"
     }
   },
   "result": {
-    "item": "vinery:red_grape_bag"
+    "item": "vinery:white_savanna_grape_bag"
   }
 }

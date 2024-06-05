@@ -8,10 +8,10 @@
   ],
   "key": {
     "#": {
-      "item": "vinery:red_grape"
+      "item": "vinery:taiga_grapes_white"
     }
   },
   "result": {
-    "item": "vinery:red_grape_bag"
+    "item": "vinery:white_taiga_grape_bag"
   }
 }

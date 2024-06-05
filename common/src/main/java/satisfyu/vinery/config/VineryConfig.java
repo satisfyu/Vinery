@@ -14,7 +14,7 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
 
     private static VineryConfig INSTANCE = null;
 
-    public static final VineryConfig DEFAULT = new VineryConfig(50, 16, 4, true, 1, 30, 100, 50, 100, true);
+    public static final VineryConfig DEFAULT = new VineryConfig(50, 16, 4, true, 1, 30, 100, 6000, 100, true);
 
     public static final Codec<VineryConfig> CODEC = RecordCodecBuilder.create(builder ->
             builder.group(

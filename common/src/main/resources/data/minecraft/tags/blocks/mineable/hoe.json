@@ -6,6 +6,12 @@
     "vinery:red_grape_bag",
     "vinery:white_grape_bag",
     "vinery:apple_bag",
-    "vinery:cherry_bag"
+    "vinery:cherry_bag",
+    "vinery:red_savanna_grape_bag",
+    "vinery:white_savanna_grape_bag",
+    "vinery:red_taiga_grape_bag",
+    "vinery:white_taiga_grape_bag",
+    "vinery:red_jungle_grape_bag",
+    "vinery:white_jungle_grape_bag"
   ]
 }
