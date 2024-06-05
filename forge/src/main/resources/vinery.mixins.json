@@ -6,6 +6,7 @@
   "client": [
   ],
   "mixins": [
+    "HatItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

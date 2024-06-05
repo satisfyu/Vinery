@@ -19,6 +19,7 @@ import satisfyu.vinery.client.gui.ApplePressGui;
 import satisfyu.vinery.client.gui.BasketGui;
 import satisfyu.vinery.client.gui.FermentationBarrelGui;
 import satisfyu.vinery.client.model.MuleModel;
+import satisfyu.vinery.client.model.StrawHatModel;
 import satisfyu.vinery.client.render.block.BasketRenderer;
 import satisfyu.vinery.client.render.entity.MuleRenderer;
 import satisfyu.vinery.client.render.entity.WanderingWinemakerRenderer;
@@ -94,6 +95,7 @@ public class VineryClient {
     public static void preInitClient(){
         registerEntityRenderers();
         TerraformSignHelper.regsterSignSprite(BoatAndSignRegistry.DARK_CHERRY_SIGN_TEXTURE);
+        EntityModelLayerRegistry.register(StrawHatModel.LAYER_LOCATION, StrawHatModel::createBodyLayer);
         EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);
         EntityModelLayerRegistry.register(BasketRenderer.LAYER_LOCATION, BasketRenderer::getTexturedModelData);
 

@@ -21,6 +21,7 @@ import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.HoneyBottleItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -216,7 +217,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> BASKET = registerWithoutItem("basket", () -> new BasketBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BIT).strength(1.5F).sound(SoundType.CANDLE).ignitedByLava().noOcclusion()));
     public static final RegistrySupplier<Item> BASKET_ITEM = registerItem("basket", () -> new BasketItem(BASKET.get(), getSettings()));
     public static final RegistrySupplier<Block> STACKABLE_LOG = registerWithItem("stackable_log", () -> new StackableLogBlock(getLogBlockSettings().noOcclusion().lightLevel(state -> state.getValue(StackableLogBlock.FIRED) ? 13 : 0)));
-    public static final RegistrySupplier<Item> STRAW_HAT = registerItem("straw_hat", () -> new WinemakerHatItem(getSettings().rarity(Rarity.RARE)));
+    public static final RegistrySupplier<Item> STRAW_HAT = registerItem("straw_hat", () -> new WinemakerHatItem(ArmorMaterialRegistry.WINEMAKER_ARMOR, ArmorItem.Type.HELMET, getSettings().rarity(Rarity.EPIC), new VineryIdentifier("textures/models/armor/straw_hat.png")));
     public static final RegistrySupplier<Item> WINEMAKER_APRON = registerItem("winemaker_apron", () -> new WinemakerChest(ArmorMaterialRegistry.WINEMAKER_ARMOR, getSettings().rarity(Rarity.EPIC)));
     public static final RegistrySupplier<Item> WINEMAKER_LEGGINGS = registerItem("winemaker_leggings", () -> new WinemakerLegs(ArmorMaterialRegistry.WINEMAKER_ARMOR, getSettings().rarity(Rarity.RARE)));
     public static final RegistrySupplier<Item> WINEMAKER_BOOTS = registerItem("winemaker_boots", () -> new WinemakerBoots(ArmorMaterialRegistry.WINEMAKER_ARMOR, getSettings().rarity(Rarity.RARE)));

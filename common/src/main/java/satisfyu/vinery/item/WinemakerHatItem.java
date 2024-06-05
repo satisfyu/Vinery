@@ -3,6 +3,9 @@ package satisfyu.vinery.item;
 import de.cristelknight.doapi.common.item.CustomHatItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -15,19 +18,18 @@ import satisfyu.vinery.util.VineryIdentifier;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
-public class WinemakerHatItem extends CustomHatItem {
-    public WinemakerHatItem(Properties settings) {
-        super(ArmorMaterialRegistry.WINEMAKER_ARMOR, Type.HELMET, settings);
+public class WinemakerHatItem extends ArmorItem {
+    private final ResourceLocation hatTexture;
+
+    public WinemakerHatItem(ArmorMaterial armorMaterial, Type type, Properties properties, ResourceLocation hatTexture) {
+        super(armorMaterial, type, properties);
+        this.hatTexture = hatTexture;
     }
 
-    @Override
-    public ResourceLocation getTexture() {
-        return new VineryIdentifier("textures/entity/straw_hat.png");
-    }
 
-    @Override
-    public Float getOffset() {
-        return -1.85f;
+    public ResourceLocation getHatTexture()
+    {
+        return hatTexture;
     }
 
     @Override
@@ -35,5 +37,10 @@ public class WinemakerHatItem extends CustomHatItem {
         if(world != null && world.isClientSide()){
             ArmorRegistry.appendtooltip(tooltip);
         }
+    }
+
+    @Override
+    public @NotNull EquipmentSlot getEquipmentSlot() {
+        return this.type.getSlot();
     }
 }

@@ -4,8 +4,11 @@ import de.cristelknight.doapi.client.render.feature.CustomArmorManager;
 import de.cristelknight.doapi.client.render.feature.CustomArmorSet;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -24,12 +27,14 @@ import satisfyu.vinery.item.WinemakerHatItem;
 import satisfyu.vinery.item.WinemakerLegs;
 import satisfyu.vinery.util.VineryIdentifier;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ArmorRegistry {
+    private static final Map<Item, StrawHatModel<?>> models = new HashMap<>();
+
     public static void registerArmorModelLayers(){
-        EntityModelLayerRegistry.register(StrawHatModel.LAYER_LOCATION, StrawHatModel::getTexturedModelData);
         EntityModelLayerRegistry.register(WinemakerInner.LAYER_LOCATION, WinemakerInner::createBodyLayer);
         EntityModelLayerRegistry.register(WinemakerOuter.LAYER_LOCATION, WinemakerOuter::createBodyLayer);
     }
@@ -38,14 +43,26 @@ public class ArmorRegistry {
         armors.addArmor(new CustomArmorSet<T>(ObjectRegistry.STRAW_HAT.get(), ObjectRegistry.WINEMAKER_APRON.get(), ObjectRegistry.WINEMAKER_LEGGINGS.get(), ObjectRegistry.WINEMAKER_BOOTS.get())
                 .setTexture(new VineryIdentifier("winemaker"))
                 .setOuterModel(new WinemakerOuter<>(modelLoader.bakeLayer(WinemakerOuter.LAYER_LOCATION)))
-                .setInnerModel(new WinemakerInner<>(modelLoader.bakeLayer(WinemakerInner.LAYER_LOCATION)))
-                .setHatModel(new StrawHatModel<>(modelLoader.bakeLayer(StrawHatModel.LAYER_LOCATION))));
+                .setInnerModel(new WinemakerInner<>(modelLoader.bakeLayer(WinemakerInner.LAYER_LOCATION))));
 
     }
 
-    public static  <T extends LivingEntity> void registerHatModels(Map<Item, EntityModel<T>> models, EntityModelSet modelLoader) {
-        models.put(ObjectRegistry.STRAW_HAT.get(), new StrawHatModel<>(modelLoader.bakeLayer(StrawHatModel.LAYER_LOCATION)));
+    public static Model getHatModel(Item item, ModelPart baseHead) {
+        EntityModelSet modelSet = Minecraft.getInstance().getEntityModels();
+        StrawHatModel<?> model = models.computeIfAbsent(item, key -> {
+            if (key == ObjectRegistry.STRAW_HAT.get()) {
+                return new StrawHatModel<>(modelSet.bakeLayer(StrawHatModel.LAYER_LOCATION));
+            } else {
+                return null;
+            }
+        });
+
+        assert model != null;
+        model.copyHead(baseHead);
+
+        return model;
     }
+
 
     public static void appendtooltip(List<Component> tooltip){
         if(!VineryConfig.DEFAULT.getConfig().enableWineMakerSetBonus()) return;
