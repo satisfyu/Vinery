@@ -41,26 +41,6 @@ public class TaigaGrapeBush extends GrapeBush {
         return true;
     }
 
-    @Override
-    @SuppressWarnings("deprecation")
-    public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
-        if (!VineryConfig.DEFAULT.entityInsideEnabled()) {
-            return;
-        }
-
-        if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
-            entity.makeStuckInBlock(state, new Vec3(0.800000011920929, 0.75, 0.800000011920929));
-            if (!world.isClientSide && state.getValue(AGE) > 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
-                double d = Math.abs(entity.getX() - entity.xOld);
-                double e = Math.abs(entity.getZ() - entity.zOld);
-                if (d >= 0.003000000026077032 || e >= 0.003000000026077032) {
-                    entity.hurt(world.damageSources().sweetBerryBush(), 1.0F);
-                }
-            }
-        }
-    }
-
-
     public boolean isPathfindable(BlockState arg, BlockGetter arg2, BlockPos arg3, PathComputationType arg4) {
         return false;
     }

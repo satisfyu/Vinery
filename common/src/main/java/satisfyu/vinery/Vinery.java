@@ -19,10 +19,12 @@ import satisfyu.vinery.world.VineryFeatures;
 public class Vinery {
     public static final String MOD_ID = "vinery";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-    
+
     public static void init() {
         DataFixerRegistry.init();
-        VineryConfig.DEFAULT.getConfig();
+        VineryConfig config = loadConfig();
+        VineryConfig validatedConfig = config.validate();
+        VineryConfig.DEFAULT.setInstance(validatedConfig);
         TabRegistry.init();
         ObjectRegistry.init();
         BoatAndSignRegistry.init();
@@ -40,7 +42,7 @@ public class Vinery {
         DoApiEP.registerBuiltInPack(Vinery.MOD_ID, new VineryIdentifier("bushy_leaves"), false);
     }
 
-    public static void commonSetup(){
+    public static void commonSetup() {
         FlammableBlockRegistry.init();
         GrapeTypeRegistry.addGrapeAttributes();
 
@@ -51,6 +53,11 @@ public class Vinery {
         AxeItemHooks.addStrippable(ObjectRegistry.APPLE_LOG.get(), Blocks.STRIPPED_OAK_LOG);
         AxeItemHooks.addStrippable(ObjectRegistry.APPLE_WOOD.get(), Blocks.STRIPPED_OAK_WOOD);
         ShovelItemHooks.addFlattenable(ObjectRegistry.GRASS_SLAB.get(), Blocks.DIRT_PATH.defaultBlockState());
+    }
+
+    private static VineryConfig loadConfig() {
+        VineryConfig config = VineryConfig.DEFAULT.getConfig();
+        return config.validate();
     }
 }
 

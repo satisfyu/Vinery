@@ -26,7 +26,7 @@ public class ClothConfigScreen {
 
     public static Screen create(Screen parent) {
         lastScreen = parent;
-        VineryConfig config = VineryConfig.DEFAULT.getConfig();
+        VineryConfig config = VineryConfig.DEFAULT.getConfig().validate();
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
                 .setDefaultBackgroundTexture(new ResourceLocation("textures/block/dirt.png"))
@@ -34,7 +34,7 @@ public class ClothConfigScreen {
 
         ConfigEntries entries = new ConfigEntries(builder.entryBuilder(), config, builder.getOrCreateCategory(CCUtil.categoryName("main", Vinery.MOD_ID)));
         builder.setSavingRunnable(() -> {
-            VineryConfig.DEFAULT.setInstance(entries.createConfig());
+            VineryConfig.DEFAULT.setInstance(entries.createConfig().validate());
             VineryConfig.DEFAULT.getConfig(true, true);
         });
         return builder.build();
@@ -45,7 +45,7 @@ public class ClothConfigScreen {
         private final ConfigCategory category;
         private final BooleanListEntry enableWineMakerSetBonus;
         private final IntegerListEntry wineTraderChance, yearLengthInDays, yearsPerEffectLevel, fermentationBarrelTime, damagePerUse, probabilityForDamage, probabilityToKeepBoneMeal, grapeGrowthSpeed;
-        private final BooleanListEntry entityInsideEnabled; // Added
+        private final IntegerListEntry wineEffectDuration, wineEffectStrength;
 
         public ConfigEntries(ConfigEntryBuilder builder, VineryConfig config, ConfigCategory category) {
             this.builder = builder;
@@ -57,6 +57,9 @@ public class ClothConfigScreen {
             fermentationBarrelTime = createIntField("fermentationBarrelTime", config.fermentationBarrelTime(), VineryConfig.DEFAULT.fermentationBarrelTime(), null, 1, 10000);
             grapeGrowthSpeed = createIntField("grapeGrowthSpeed", config.grapeGrowthSpeed(), VineryConfig.DEFAULT.grapeGrowthSpeed(), null, 1, 100);
 
+            wineEffectDuration = createIntField("wineEffectDuration", config.wineEffectDuration(), VineryConfig.DEFAULT.wineEffectDuration(), null, 1, 100000);
+            wineEffectStrength = createIntField("wineEffectStrength", config.wineEffectStrength(), VineryConfig.DEFAULT.wineEffectStrength(), null, 0, 4);
+
             SubCategoryBuilder wineMaker = new SubCategoryBuilder(Component.empty(), Component.translatable("config.vinery.subCategory.wineMaker"));
 
             enableWineMakerSetBonus = createBooleanField("enableWineMakerSetBonus", config.enableWineMakerSetBonus(), VineryConfig.DEFAULT.enableWineMakerSetBonus(), wineMaker);
@@ -64,16 +67,13 @@ public class ClothConfigScreen {
             probabilityForDamage = createIntField("probabilityForDamage", config.probabilityForDamage(), VineryConfig.DEFAULT.probabilityForDamage(), wineMaker, 0, 100);
             damagePerUse = createIntField("damagePerUse", config.damagePerUse(), VineryConfig.DEFAULT.damagePerUse(), wineMaker, 1, 1000);
 
-            entityInsideEnabled = createBooleanField("entityInsideEnabled", config.entityInsideEnabled(), VineryConfig.DEFAULT.entityInsideEnabled(), null);
-
             category.addEntry(wineMaker.build());
             linkButtons(Vinery.MOD_ID, category, builder, "https://discord.gg/Vqu6wYZwdZ", "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine", lastScreen);
         }
 
         public VineryConfig createConfig() {
-            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue(), grapeGrowthSpeed.getValue(), entityInsideEnabled.getValue());
+            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue(), grapeGrowthSpeed.getValue(), wineEffectDuration.getValue(), wineEffectStrength.getValue());
         }
-
 
         public BooleanListEntry createBooleanField(String id, boolean value, boolean defaultValue, SubCategoryBuilder subCategoryBuilder){
             BooleanListEntry e = CCUtil.createBooleanField(Vinery.MOD_ID, id, value, defaultValue, builder);

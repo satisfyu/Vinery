@@ -179,6 +179,8 @@
   "vinery.config.entry.wineTraderChance": "Wandering Winemaker Spawnchance",
   "vinery.config.entry.yearLengthInDays": "Days per Year",
   "vinery.config.entry.yearsPerEffectLevel": "Years per effect level",
+  "vinery.config.entry.wineEffectDuration": "Effect Duration",
+  "vinery.config.entry.wineEffectStrength": "Effect Strength",
   "config.vinery.subCategory.wineMaker": "Winemaker Set Bonus",
   "config.vinery.title": "Vinery",
   "creativetab.vinery.tab": "[Let's Do] Vinery",

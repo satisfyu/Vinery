@@ -7,27 +7,28 @@ import net.minecraft.Util;
 
 import java.util.HashMap;
 
-
 public record VineryConfig(int wineTraderChance, int yearLengthInDays, int yearsPerEffectLevel,
-                           boolean enableWineMakerSetBonus, int damagePerUse, int probabilityForDamage, int probabilityToKeepBoneMeal, int fermentationBarrelTime, int grapeGrowthSpeed, boolean entityInsideEnabled)
-        implements CommentedConfig<VineryConfig> {
+                           boolean enableWineMakerSetBonus, int damagePerUse, int probabilityForDamage,
+                           int probabilityToKeepBoneMeal, int fermentationBarrelTime, int grapeGrowthSpeed,
+                           int wineEffectDuration, int wineEffectStrength) implements CommentedConfig<VineryConfig> {
 
     private static VineryConfig INSTANCE = null;
 
-    public static final VineryConfig DEFAULT = new VineryConfig(50, 16, 4, true, 1, 30, 100, 6000, 100, true);
+    public static final VineryConfig DEFAULT = new VineryConfig(50, 16, 4, true, 1, 30, 100, 6000, 100, 45 * 20, 1);
 
     public static final Codec<VineryConfig> CODEC = RecordCodecBuilder.create(builder ->
             builder.group(
-                    Codec.intRange(0, 100).fieldOf("wine_trader_chance").orElse(DEFAULT.wineTraderChance).forGetter(c -> c.wineTraderChance),
-                    Codec.intRange(1, 1000).fieldOf("year_length_in_days").orElse(DEFAULT.yearLengthInDays).forGetter(c -> c.yearLengthInDays),
-                    Codec.intRange(1, 1000).fieldOf("years_per_effect_level").orElse(DEFAULT.yearsPerEffectLevel).forGetter(c -> c.yearsPerEffectLevel),
-                    Codec.BOOL.fieldOf("enable_wine_maker_set_bonus").orElse(DEFAULT.enableWineMakerSetBonus).forGetter(c -> c.enableWineMakerSetBonus),
-                    Codec.intRange(1, 1000).fieldOf("damage_per_use").orElse(DEFAULT.damagePerUse).forGetter(c -> c.damagePerUse),
-                    Codec.intRange(0, 100).fieldOf("probability_for_damage").orElse(DEFAULT.probabilityForDamage).forGetter(c -> c.probabilityForDamage),
-                    Codec.intRange(1, 100).fieldOf("probability_to_keep_bone_meal").orElse(DEFAULT.probabilityToKeepBoneMeal).forGetter(c -> c.probabilityToKeepBoneMeal),
-                    Codec.intRange(1, 100000).fieldOf("fermentation_barrel_time").orElse(DEFAULT.fermentationBarrelTime).forGetter(c -> c.fermentationBarrelTime),
-                    Codec.intRange(0, 100).fieldOf("grape_growth_speed").orElse(DEFAULT.grapeGrowthSpeed).forGetter(c -> c.grapeGrowthSpeed),
-                    Codec.BOOL.fieldOf("entity_inside_enabled").orElse(DEFAULT.entityInsideEnabled).forGetter(c -> c.entityInsideEnabled)
+                    Codec.intRange(0, 100).fieldOf("wine_trader_chance").orElse(DEFAULT.wineTraderChance).forGetter(VineryConfig::wineTraderChance),
+                    Codec.intRange(1, 1000).fieldOf("year_length_in_days").orElse(DEFAULT.yearLengthInDays).forGetter(VineryConfig::yearLengthInDays),
+                    Codec.intRange(1, 1000).fieldOf("years_per_effect_level").orElse(DEFAULT.yearsPerEffectLevel).forGetter(VineryConfig::yearsPerEffectLevel),
+                    Codec.BOOL.fieldOf("enable_wine_maker_set_bonus").orElse(DEFAULT.enableWineMakerSetBonus).forGetter(VineryConfig::enableWineMakerSetBonus),
+                    Codec.intRange(1, 1000).fieldOf("damage_per_use").orElse(DEFAULT.damagePerUse).forGetter(VineryConfig::damagePerUse),
+                    Codec.intRange(0, 100).fieldOf("probability_for_damage").orElse(DEFAULT.probabilityForDamage).forGetter(VineryConfig::probabilityForDamage),
+                    Codec.intRange(1, 100).fieldOf("probability_to_keep_bone_meal").orElse(DEFAULT.probabilityToKeepBoneMeal).forGetter(VineryConfig::probabilityToKeepBoneMeal),
+                    Codec.intRange(1, 100000).fieldOf("fermentation_barrel_time").orElse(DEFAULT.fermentationBarrelTime).forGetter(VineryConfig::fermentationBarrelTime),
+                    Codec.intRange(0, 100).fieldOf("grape_growth_speed").orElse(DEFAULT.grapeGrowthSpeed).forGetter(VineryConfig::grapeGrowthSpeed),
+                    Codec.intRange(1, 100000).fieldOf("wine_effect_duration").orElse(DEFAULT.wineEffectDuration).forGetter(VineryConfig::wineEffectDuration),
+                    Codec.intRange(0, 4).fieldOf("wine_effect_strength").orElse(DEFAULT.wineEffectStrength).forGetter(VineryConfig::wineEffectStrength)
             ).apply(builder, VineryConfig::new)
     );
 
@@ -52,9 +53,6 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
                     Years per effect level""");
             map.put("fermentation_barrel_time", """
                     Ticks it takes to ferment a bottle""");
-            map.put("entity_inside_enabled", """
-                    Enable or disable entityInside effect for grape bushes.""");
-
         });
     }
 
@@ -97,5 +95,28 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
     @Override
     public void setInstance(VineryConfig instance) {
         INSTANCE = instance;
+    }
+
+    public VineryConfig validate() {
+        return new VineryConfig(
+                wineTraderChance,
+                yearLengthInDays,
+                yearsPerEffectLevel,
+                enableWineMakerSetBonus,
+                damagePerUse,
+                probabilityForDamage,
+                probabilityToKeepBoneMeal,
+                fermentationBarrelTime,
+                grapeGrowthSpeed,
+                wineEffectDuration,
+                validateWineEffectStrength(wineEffectStrength)
+        );
+    }
+
+    private static int validateWineEffectStrength(int wineEffectStrength) {
+        if (wineEffectStrength < 0 || wineEffectStrength > 4) {
+            return DEFAULT.wineEffectStrength;
+        }
+        return wineEffectStrength;
     }
 }
