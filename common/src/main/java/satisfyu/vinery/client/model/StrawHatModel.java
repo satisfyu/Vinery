@@ -20,11 +20,15 @@ public class StrawHatModel<T extends Entity> extends EntityModel<T> {
 
     @SuppressWarnings("unused")
     public static LayerDefinition createBodyLayer() {
-        MeshDefinition modelData = new MeshDefinition();
-        PartDefinition modelPartData = modelData.getRoot();
-        PartDefinition top_part = modelPartData.addOrReplaceChild("top_part", CubeListBuilder.create().texOffs(0, 0).addBox(-4.5F, -10.0F, -4.5F, 9.0F, 4.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
-        PartDefinition lower_part = top_part.addOrReplaceChild("lower_part", CubeListBuilder.create().texOffs(-17, 13).addBox(-8.5F, -6.0F, -8.5F, 17.0F, 0.0F, 17.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
-        return LayerDefinition.create(modelData, 64, 64);
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+
+        PartDefinition brewfest_hat = partdefinition.addOrReplaceChild("brewfest_hat", CubeListBuilder.create().texOffs(-14, 15).addBox(-7.0F, 0.0F, -7.0F, 14.0F, 0.0F, 14.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 0).addBox(-4.0F, -4.2F, -4.0F, 8.0F, 4.0F, 8.0F, new CubeDeformation(0.2F))
+                .texOffs(-1, 4).addBox(-4.05F, -2.21F, -4.05F, 8.1F, 2.0F, 8.1F, new CubeDeformation(0.2F))
+                .texOffs(22, 22).addBox(4.21F, -7.4F, -1.0F, 0.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+        return LayerDefinition.create(meshdefinition, 32, 32);
     }
 
     @Override

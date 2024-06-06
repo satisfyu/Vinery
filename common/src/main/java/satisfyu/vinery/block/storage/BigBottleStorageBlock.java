@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import satisfyu.vinery.item.DrinkBlockBigItem;
+import satisfyu.vinery.item.DrinkBlockSmallItem;
 import satisfyu.vinery.registry.StorageTypeRegistry;
 
 public class BigBottleStorageBlock extends StorageBlock {
@@ -56,7 +57,7 @@ public class BigBottleStorageBlock extends StorageBlock {
 
     @Override
     public boolean canInsertStack(ItemStack stack) {
-        return stack.getItem() instanceof DrinkBlockBigItem;
+        return stack.getItem() instanceof DrinkBlockBigItem || stack.getItem() instanceof DrinkBlockSmallItem;
     }
 
     @Override

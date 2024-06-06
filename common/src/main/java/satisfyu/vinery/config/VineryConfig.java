@@ -7,6 +7,7 @@ import net.minecraft.Util;
 
 import java.util.HashMap;
 
+
 public record VineryConfig(int wineTraderChance, int yearLengthInDays, int yearsPerEffectLevel,
                            boolean enableWineMakerSetBonus, int damagePerUse, int probabilityForDamage,
                            int probabilityToKeepBoneMeal, int fermentationBarrelTime, int grapeGrowthSpeed,
@@ -18,6 +19,7 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
 
     public static final Codec<VineryConfig> CODEC = RecordCodecBuilder.create(builder ->
             builder.group(
+
                     Codec.intRange(0, 100).fieldOf("wine_trader_chance").orElse(DEFAULT.wineTraderChance).forGetter(VineryConfig::wineTraderChance),
                     Codec.intRange(1, 1000).fieldOf("year_length_in_days").orElse(DEFAULT.yearLengthInDays).forGetter(VineryConfig::yearLengthInDays),
                     Codec.intRange(1, 1000).fieldOf("years_per_effect_level").orElse(DEFAULT.yearsPerEffectLevel).forGetter(VineryConfig::yearsPerEffectLevel),

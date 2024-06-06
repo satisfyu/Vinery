@@ -24,9 +24,12 @@ public class Vinery {
         DataFixerRegistry.init();
         VineryConfig config = loadConfig();
         VineryConfig validatedConfig = config.validate();
-        VineryConfig.DEFAULT.setInstance(validatedConfig);
-        TabRegistry.init();
+        validatedConfig.setInstance(validatedConfig);
+
         ObjectRegistry.init();
+        ObjectRegistry.initItemsWithConfig();
+
+        TabRegistry.init();
         BoatAndSignRegistry.init();
         BlockEntityTypeRegistry.init();
         MobEffectRegistry.init();
@@ -35,6 +38,7 @@ public class Vinery {
         EntityRegistry.init();
         VineryFeatures.init();
         SoundEventRegistry.init();
+
         ParticleSpawnEvent particleSpawnEvent = new ParticleSpawnEvent();
         PlayerEvent.ATTACK_ENTITY.register(particleSpawnEvent);
         EntityDamageEvent entityDamageEvent = new EntityDamageEvent();
@@ -60,4 +64,3 @@ public class Vinery {
         return config.validate();
     }
 }
-
