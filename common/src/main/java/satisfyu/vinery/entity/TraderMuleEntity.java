@@ -15,7 +15,6 @@ import org.jetbrains.annotations.Nullable;
 import satisfyu.vinery.registry.EntityRegistry;
 
 public class TraderMuleEntity extends AbstractChestedHorse {
-
 	public TraderMuleEntity(EntityType<? extends TraderMuleEntity> entityType, Level world) {
 		super(entityType, world);
 	}
@@ -66,5 +65,13 @@ public class TraderMuleEntity extends AbstractChestedHorse {
 	protected SoundEvent getHurtSound(DamageSource source) {
 		super.getHurtSound(source);
 		return SoundEvents.DONKEY_HURT;
+	}
+
+	@Override
+	public void remove(RemovalReason reason) {
+		super.remove(reason);
+		if (reason == RemovalReason.DISCARDED) {
+			this.discard();
+		}
 	}
 }

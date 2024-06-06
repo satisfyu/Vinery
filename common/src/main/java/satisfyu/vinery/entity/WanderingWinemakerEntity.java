@@ -51,4 +51,15 @@ public class WanderingWinemakerEntity extends WanderingTrader {
 		this.addOffersFromItemListings(this.offers, TRADES.get(1), 8);
 	}
 
+	@Override
+	public void remove(RemovalReason reason) {
+		super.remove(reason);
+		if (reason == RemovalReason.DISCARDED) {
+			this.getPassengers().forEach(entity -> {
+				if (entity instanceof TraderMuleEntity) {
+					entity.remove(RemovalReason.DISCARDED);
+				}
+			});
+		}
+	}
 }

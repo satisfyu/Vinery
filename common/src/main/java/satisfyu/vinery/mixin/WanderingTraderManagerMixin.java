@@ -37,9 +37,8 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 	private void trySpawn(ServerLevel world, CallbackInfoReturnable<Boolean> cir) {
 		if (world.random.nextBoolean()) {
 			ServerPlayer playerEntity = world.getRandomPlayer();
-            assert playerEntity != null;
-            BlockPos blockPos = playerEntity.blockPosition();
-			int i = 48;
+			assert playerEntity != null;
+			BlockPos blockPos = playerEntity.blockPosition();
 			PoiManager pointOfInterestStorage = world.getPoiManager();
 			Optional<BlockPos> optional = pointOfInterestStorage.find(type -> type.is(PoiTypes.MEETING), pos -> true, blockPos, 48, PoiManager.Occupancy.ANY);
 			BlockPos blockPos2 = optional.orElse(blockPos);
