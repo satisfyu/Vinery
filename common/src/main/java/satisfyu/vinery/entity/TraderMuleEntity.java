@@ -30,8 +30,6 @@ public class TraderMuleEntity extends AbstractChestedHorse {
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 	}
 
-
-
 	@Override
 	public TraderMuleEntity getBreedOffspring(ServerLevel serverWorld, AgeableMob passiveEntity) {
 		return EntityRegistry.MULE.get().create(this.level());

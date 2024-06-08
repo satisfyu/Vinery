@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "vinery:block/savanna_grape_bush_stage3_red"
+  }
+}

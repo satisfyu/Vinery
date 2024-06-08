@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "vinery:block/taiga_grape_bush_stage2"
+  }
+}

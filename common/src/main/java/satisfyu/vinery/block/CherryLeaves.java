@@ -54,10 +54,7 @@ public class CherryLeaves extends LeavesBlock {
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        if (state.getValue(VARIANT) && !state.getValue(HAS_CHERRIES)) {
-            return true;
-        }
-        return super.isRandomlyTicking(state);
+        return state.getValue(VARIANT) && !state.getValue(HAS_CHERRIES) || super.isRandomlyTicking(state);
     }
 
     @Nullable
@@ -76,7 +73,9 @@ public class CherryLeaves extends LeavesBlock {
 
     @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-        if(state.getValue(VARIANT) && !state.getValue(HAS_CHERRIES) && world.getRandom().nextFloat() < 0.1f) world.setBlockAndUpdate(pos, state.setValue(HAS_CHERRIES, true));
+        if (state.getValue(VARIANT) && !state.getValue(HAS_CHERRIES) && random.nextFloat() < 0.1f) {
+            world.setBlockAndUpdate(pos, state.setValue(HAS_CHERRIES, true));
+        }
         super.randomTick(state, world, pos, random);
     }
 }
