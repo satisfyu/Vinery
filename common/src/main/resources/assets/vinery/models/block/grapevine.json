@@ -2,7 +2,6 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"2": "vinery:block/grapevine_leaves",
-		"3": "vinery:block/grapevine_leaves_stage0",
 		"6": "vinery:block/grapevine_stem",
 		"particle": "vinery:block/grapevine_stem"
 	},
@@ -23,21 +22,13 @@
 			"from": [0, -3, 0],
 			"to": [16, 13, 16],
 			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"east": {"uv": [16, 0, 0, 16], "texture": "#3"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"north": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"east": {"uv": [16, 0, 0, 16], "texture": "#2"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#2"},
 				"up": {"uv": [0, 0, 16, 16], "texture": "#2"},
 				"down": {"uv": [0, 0, 16, 16], "texture": "#2"}
 			}
-		}
-	],
-	"groups": [
-		{
-			"name": "Grapevines",
-			"origin": [8, 8, 8],
-			"color": 0,
-			"children": [0, 1]
 		}
 	]
 }

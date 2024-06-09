@@ -68,14 +68,8 @@ public class VineryClient {
                 },  GRASS_SLAB.get()
         );
 
-        ColorHandlerRegistry.registerBlockColors((state,world,pos,tintIndex)->{
-                    if(world== null || pos == null){
-                        return -1;
-                    }
-                    return BiomeColors.getAverageFoliageColor(world,pos);
-                }, SAVANNA_RED_GRAPE_BUSH.get(), SAVANNA_WHITE_GRAPE_BUSH.get(), JUNGLE_RED_GRAPE_BUSH.get(), JUNGLE_WHITE_GRAPE_BUSH.get(),
-                GRAPEVINE_STEM.get()
-        );
+        BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.BASKET_ENTITY.get(), BasketRenderer::new);
+
 
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.FERMENTATION_BARREL_GUI_HANDLER.get(), FermentationBarrelGui::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.APPLE_PRESS_GUI_HANDLER.get(), ApplePressGui::new);
@@ -87,7 +81,6 @@ public class VineryClient {
     public static void registerEntityRenderers() {
         EntityRendererRegistry.register(EntityRegistry.MULE, MuleRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
-        BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.BASKET_ENTITY.get(), BasketRenderer::new);
     }
 
 

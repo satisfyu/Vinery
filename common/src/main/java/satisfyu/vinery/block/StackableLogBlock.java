@@ -39,7 +39,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-@SuppressWarnings("all")
+@SuppressWarnings("deprecation, unused")
 public class StackableLogBlock extends SlabBlock {
     public static final BooleanProperty FIRED = BooleanProperty.create("fired");
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

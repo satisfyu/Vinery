@@ -4,90 +4,89 @@
       "model": "vinery:block/grapevine_stem"
     },
     "age=1,grape=red": {
-      "model": "vinery:block/grapevine_stage1"
+      "model": "vinery:block/grapevine"
     },
     "age=1,grape=white": {
-      "model": "vinery:block/grapevine_stage1"
+      "model": "vinery:block/grapevine"
     },
     "age=1,grape=none": {
-      "model": "vinery:block/grapevine_stage1"
+      "model": "vinery:block/grapevine"
     },
     "age=2,grape=red": {
-      "model": "vinery:block/grapevine_stage2"
+      "model": "vinery:block/grapevine"
     },
     "age=2,grape=white": {
-      "model": "vinery:block/grapevine_stage2"
+      "model": "vinery:block/grapevine"
     },
     "age=2,grape=none": {
-      "model": "vinery:block/grapevine_stage2"
+      "model": "vinery:block/grapevine"
     },
     "age=3,grape=red": {
-      "model": "vinery:block/grapevine_red_stage3"
+      "model": "vinery:block/grapevine"
     },
     "age=3,grape=white": {
-      "model": "vinery:block/grapevine_white_stage3"
+      "model": "vinery:block/grapevine"
     },
     "age=3,grape=none": {
-      "model": "vinery:block/grapevine_white_stage3"
+      "model": "vinery:block/grapevine"
     },
     "age=4,grape=red": {
-      "model": "vinery:block/grapevine_red_stage4"
+      "model": "vinery:block/grapevine_red_grown"
     },
     "age=4,grape=white": {
-      "model": "vinery:block/grapevine_white_stage4"
+      "model": "vinery:block/grapevine_white_grown"
     },
     "age=4,grape=none": {
-      "model": "vinery:block/grapevine_white_stage4"
+      "model": "vinery:block/grapevine"
     },
     "age=1,grape=taiga_red": {
-      "model": "vinery:block/taiga_grapevine_stage1"
+      "model": "vinery:block/taiga_grapevine"
     },
     "age=1,grape=taiga_white": {
-      "model": "vinery:block/taiga_grapevine_stage1"
+      "model": "vinery:block/taiga_grapevine"
     },
     "age=2,grape=taiga_red": {
-      "model": "vinery:block/taiga_grapevine_stage2"
+      "model": "vinery:block/taiga_grapevine"
     },
     "age=2,grape=taiga_white": {
-      "model": "vinery:block/taiga_grapevine_stage2"
+      "model": "vinery:block/taiga_grapevine"
     },
     "age=3,grape=taiga_red": {
-      "model": "vinery:block/taiga_grapevine_red_stage3"
+      "model": "vinery:block/taiga_grapevine"
     },
     "age=3,grape=taiga_white": {
-      "model": "vinery:block/taiga_grapevine_white_stage3"
+      "model": "vinery:block/taiga_grapevine"
     },
     "age=4,grape=taiga_red": {
-      "model": "vinery:block/taiga_grapevine_red_stage4"
+      "model": "vinery:block/taiga_grapevine_red_grown"
     },
     "age=4,grape=taiga_white": {
-      "model": "vinery:block/taiga_grapevine_white_stage4"
+      "model": "vinery:block/taiga_grapevine_white_grown"
     },
     "age=1,grape=savanna_red": {
-      "model": "vinery:block/savanna_grapevine_stage1"
+      "model": "vinery:block/savanna_grapevine"
     },
     "age=1,grape=savanna_white": {
-      "model": "vinery:block/savanna_grapevine_stage1"
+      "model": "vinery:block/savanna_grapevine"
     },
     "age=2,grape=savanna_red": {
-      "model": "vinery:block/savanna_grapevine_stage2"
+      "model": "vinery:block/savanna_grapevine"
     },
     "age=2,grape=savanna_white": {
-      "model": "vinery:block/savanna_grapevine_stage2"
+      "model": "vinery:block/savanna_grapevine"
     },
     "age=3,grape=savanna_red": {
-      "model": "vinery:block/savanna_grapevine_red_stage3"
+      "model": "vinery:block/savanna_grapevine"
     },
     "age=3,grape=savanna_white": {
-      "model": "vinery:block/savanna_grapevine_white_stage3"
+      "model": "vinery:block/savanna_grapevine"
     },
     "age=4,grape=savanna_red": {
-      "model": "vinery:block/savanna_grapevine_red_stage4"
+      "model": "vinery:block/savanna_grapevine_red_grown"
     },
     "age=4,grape=savanna_white": {
-      "model": "vinery:block/savanna_grapevine_white_stage4"
+      "model": "vinery:block/savanna_grapevine_white_grown"
     },
-    
     "age=1,grape=jungle_red": {
       "model": "vinery:block/grapevine_stem"
     },

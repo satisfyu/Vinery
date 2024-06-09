@@ -10,12 +10,12 @@
 			"to": [14, 14, 14],
 			"rotation": {"angle": 0, "axis": "y", "origin": [2, 3, 2]},
 			"faces": {
-				"north": {"uv": [4, 0, 16, 14], "texture": "#1", "tintindex": 0},
-				"east": {"uv": [0, 0, 12, 14], "texture": "#1", "tintindex": 0},
-				"south": {"uv": [4, 2, 16, 16], "texture": "#1", "tintindex": 0},
-				"west": {"uv": [0, 2, 12, 16], "texture": "#1", "tintindex": 0},
-				"up": {"uv": [2, 2, 14, 14], "texture": "#1", "tintindex": 0},
-				"down": {"uv": [2, 2, 14, 14], "texture": "#1", "tintindex": 0}
+				"north": {"uv": [4, 0, 16, 14], "texture": "#1"},
+				"east": {"uv": [0, 0, 12, 14], "texture": "#1"},
+				"south": {"uv": [4, 2, 16, 16], "texture": "#1"},
+				"west": {"uv": [0, 2, 12, 16], "texture": "#1"},
+				"up": {"uv": [2, 2, 14, 14], "texture": "#1"},
+				"down": {"uv": [2, 2, 14, 14], "texture": "#1"}
 			}
 		}
 	],
@@ -55,6 +55,7 @@
 			"name": "Grapevines",
 			"origin": [8, 8, 8],
 			"color": 0,
+			"nbt": "{}",
 			"children": [0]
 		}
 	]
