@@ -29,6 +29,7 @@ public class BoatAndSignRegistry {
 
     public static final RegistrySupplier<Item> DARK_CHERRY_BOAT = TerraformBoatItemHelper.registerBoatItem(ObjectRegistry.ITEMS, "dark_cherry_boat", DARK_CHERRY_BOAT_TYPE, false);
     public static final RegistrySupplier<Item> DARK_CHERRY_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ObjectRegistry.ITEMS, "dark_cherry_chest_boat", DARK_CHERRY_BOAT_TYPE, true);
+
     public static void init() {
         DoApiCommonEP.registerBoatType(DARK_CHERRY_BOAT_TYPE, new TerraformBoatType.Builder().item(DARK_CHERRY_BOAT).chestItem(DARK_CHERRY_CHEST_BOAT).build());
     }

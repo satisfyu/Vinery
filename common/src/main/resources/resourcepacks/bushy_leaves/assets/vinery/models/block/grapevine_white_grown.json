@@ -1,9 +1,9 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"2": "vinery:block/bushy_leaves/grapevine_leaves",
-		"3": "vinery:block/bushy_leaves/grapevine_leaves_red_stage2",
-		"4": "vinery:block/bushy_leaves/grapevine_leaves_bushy",
+		"2": "vinery:block/grapevine_leaves",
+		"3": "vinery:block/grapevine_leaves_white",
+		"4": "vinery:block/grapevine_leaves_bushy",
 		"6": "vinery:block/grapevine_stem",
 		"particle": "vinery:block/grapevine_stem"
 	},
@@ -33,19 +33,6 @@
 			}
 		},
 		{
-			"from": [-9.64645, -10, 7.93934],
-			"to": [22.35355, 22, 7.93934],
-			"rotation": {"angle": 22.5, "axis": "y", "origin": [8.35355, 25, 6.93934]},
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#4"},
-				"east": {"uv": [0, 0, 0, 16], "texture": "#4"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#4"},
-				"west": {"uv": [0, 0, 0, 16], "texture": "#4"},
-				"up": {"uv": [0, 0, 16, 0], "texture": "#4"},
-				"down": {"uv": [0, 0, 16, 0], "texture": "#4"}
-			}
-		},
-		{
 			"from": [8, -10, -9.06066],
 			"to": [8, 22, 22.93934],
 			"rotation": {"angle": 22.5, "axis": "y", "origin": [8.35355, 25, 6.93934]},
@@ -57,6 +44,19 @@
 				"up": {"uv": [0, 0, 16, 0], "rotation": 90, "texture": "#4"},
 				"down": {"uv": [0, 0, 16, 0], "rotation": 270, "texture": "#4"}
 			}
+		},
+		{
+			"from": [-9.64645, -10, 7.93934],
+			"to": [22.35355, 22, 7.93934],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [8.35355, 25, 6.93934]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#4"},
+				"east": {"uv": [0, 0, 0, 16], "texture": "#4"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#4"},
+				"west": {"uv": [0, 0, 0, 16], "texture": "#4"},
+				"up": {"uv": [0, 0, 16, 0], "texture": "#4"},
+				"down": {"uv": [0, 0, 16, 0], "texture": "#4"}
+			}
 		}
 	],
 	"groups": [
@@ -64,6 +64,7 @@
 			"name": "Grapevines",
 			"origin": [8, 8, 8],
 			"color": 0,
+			"nbt": "{}",
 			"children": [0, 1]
 		},
 		2,

@@ -25,9 +25,6 @@ public class VineryForge {
         Vinery.init();
         VineryForgeVillagers.register(modEventBus);
 
-
-
-
         modEventBus.addListener(this::commonSetup);
         if(isClothConfigLoaded()) ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory((client, parent) -> ClothConfigScreen.create(parent)));
     }
