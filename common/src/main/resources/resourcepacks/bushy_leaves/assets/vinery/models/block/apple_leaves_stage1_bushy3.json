@@ -2,8 +2,8 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"0": "vinery:block/apple_leaves_0",
-		"1": "vinery:block/bushy_leaves/apple_leaves_bushy4",
-		"2": "vinery:block/bushy_leaves/apple_leaves_bushy1",
+		"1": "vinery:block/apple_leaves_bushy4",
+		"2": "vinery:block/apple_leaves_bushy1",
 		"particle": "vinery:block/apple_leaves_0"
 	},
 	"elements": [

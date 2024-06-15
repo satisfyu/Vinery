@@ -43,7 +43,7 @@ public class ClothConfigScreen {
     private static class ConfigEntries {
         private final ConfigEntryBuilder builder;
         private final ConfigCategory category;
-        private final BooleanListEntry enableWineMakerSetBonus;
+        private final BooleanListEntry enableWineMakerSetBonus, destroyBlocks;
         private final IntegerListEntry wineTraderChance, yearLengthInDays, yearsPerEffectLevel, fermentationBarrelTime, damagePerUse, probabilityForDamage, probabilityToKeepBoneMeal, grapeGrowthSpeed;
         private final IntegerListEntry wineEffectDuration, wineEffectStrength;
 
@@ -66,13 +66,14 @@ public class ClothConfigScreen {
             probabilityToKeepBoneMeal = createIntField("probabilityToKeepBoneMeal", config.probabilityToKeepBoneMeal(), VineryConfig.DEFAULT.probabilityToKeepBoneMeal(), wineMaker, 1, 100);
             probabilityForDamage = createIntField("probabilityForDamage", config.probabilityForDamage(), VineryConfig.DEFAULT.probabilityForDamage(), wineMaker, 0, 100);
             damagePerUse = createIntField("damagePerUse", config.damagePerUse(), VineryConfig.DEFAULT.damagePerUse(), wineMaker, 1, 1000);
+            destroyBlocks = createBooleanField("destroyBlocks", config.destroyBlocks(), VineryConfig.DEFAULT.destroyBlocks(), null);
 
             category.addEntry(wineMaker.build());
             linkButtons(Vinery.MOD_ID, category, builder, "https://discord.gg/Vqu6wYZwdZ", "https://www.curseforge.com/minecraft/mc-mods/lets-do-wine", lastScreen);
         }
 
         public VineryConfig createConfig() {
-            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue(), grapeGrowthSpeed.getValue(), wineEffectDuration.getValue(), wineEffectStrength.getValue());
+            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue(), grapeGrowthSpeed.getValue(), wineEffectDuration.getValue(), wineEffectStrength.getValue(), destroyBlocks.getValue());
         }
 
         public BooleanListEntry createBooleanField(String id, boolean value, boolean defaultValue, SubCategoryBuilder subCategoryBuilder){

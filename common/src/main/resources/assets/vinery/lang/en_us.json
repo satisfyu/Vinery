@@ -267,5 +267,6 @@
   "tooltip.vinery.winemaker_armor2": "Full set bonus:",
   "tooltip.vinery.winemaker_armor3": "Bone Meal won't get consumed anymore",
   "tooltip.vinery.year": "Year of Production: ",
-  "vinery.config.title": "Experimental - To be used with caution, here be Dragons! (in other words: Bugs & Crashes)"
+  "vinery.config.entry.destroyBlocks": "Should Creepers Crush break Blocks?",
+  "vinery.config.title": "Vinery Config - Experimental"
 }
