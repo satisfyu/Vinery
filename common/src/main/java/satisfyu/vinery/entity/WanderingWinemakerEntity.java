@@ -53,10 +53,15 @@ public class WanderingWinemakerEntity extends WanderingTrader {
 
 	@Override
 	public void remove(RemovalReason reason) {
+		if (this.isRemoved()) {
+			return;
+		}
+
 		super.remove(reason);
+
 		if (reason == RemovalReason.DISCARDED) {
 			this.getPassengers().forEach(entity -> {
-				if (entity instanceof TraderMuleEntity) {
+				if (entity instanceof TraderMuleEntity && !entity.isRemoved()) {
 					entity.remove(RemovalReason.DISCARDED);
 				}
 			});

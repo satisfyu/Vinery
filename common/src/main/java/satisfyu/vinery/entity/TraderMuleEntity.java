@@ -67,9 +67,14 @@ public class TraderMuleEntity extends AbstractChestedHorse {
 
 	@Override
 	public void remove(RemovalReason reason) {
-		super.remove(reason);
-		if (reason == RemovalReason.DISCARDED) {
+		if (this.isRemoved()) {
+			return;
+		}
+
+		if (!this.level().isClientSide && reason == RemovalReason.DISCARDED) {
 			this.discard();
 		}
+
+		super.remove(reason);
 	}
 }
