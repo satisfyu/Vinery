@@ -16,25 +16,25 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "satisfyu.vinery.fabric.VineryFabric"
+      "net.satisfy.vinery.fabric.VineryFabric"
     ],
     "client": [
-      "satisfyu.vinery.fabric.client.VineryClientFabric"
+      "net.satisfy.vinery.fabric.client.VineryClientFabric"
     ],
     "preLaunch": [
-      "satisfyu.vinery.fabric.VineryFabricPre"
+      "net.satisfy.vinery.fabric.VineryFabricPre"
     ],
     "rei_client": [
-      "satisfyu.vinery.fabric.rei.VineryReiClientPluginFabric"
+      "net.satisfy.vinery.fabric.rei.VineryReiClientPluginFabric"
     ],
     "jei_mod_plugin": [
-      "satisfyu.vinery.compat.jei.VineryJEIPlugin"
+      "net.satisfy.vinery.compat.jei.VineryJEIPlugin"
     ],
     "doapi": [
-      "satisfyu.vinery.util.api.VineryDoApi"
+      "net.satisfy.vinery.util.api.VineryDoApi"
     ],
     "modmenu": [
-      "satisfyu.vinery.fabric.client.ModMenuConfig"
+      "net.satisfy.vinery.fabric.client.ModMenuConfig"
     ]
   },
   "custom": {

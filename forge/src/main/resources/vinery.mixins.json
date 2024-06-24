@@ -1,12 +1,12 @@
 {
   "required": true,
-  "package": "satisfyu.vinery.forge.mixin",
+  "package": "satisfy.vinery.forge.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [
   ],
   "mixins": [
-    "HatItemMixin"
+    "net.satisfy.vinery.forge.mixin.HatItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

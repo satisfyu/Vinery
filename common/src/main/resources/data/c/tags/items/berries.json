@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    {"id":"vinery:dark_cherry","required":false}
+    {"id":"vinery:cherry","required":false}
   ]
 }
