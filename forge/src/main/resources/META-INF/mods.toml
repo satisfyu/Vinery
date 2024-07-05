@@ -39,3 +39,6 @@ mandatory = true
 versionRange = "[9.0.8,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[incompatibleMods]]
+modId = "copperative"
