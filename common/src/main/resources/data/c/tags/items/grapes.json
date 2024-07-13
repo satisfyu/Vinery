@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "red_grape",
+    "white_grape",
+    "savanna_grapes_red",
+    "savanna_grapes_white",
+    "taiga_grapes_red",
+    "taiga_grapes_white",
+    "jungle_grapes_red",
+    "jungle_grapes_white"
+  ]
+}
