@@ -2,13 +2,12 @@
 	"credit": "Made by Satisfy",
 	"parent": "block/block",
 	"textures": {
-		"0": "vinery:block/cherry_leaves",
-		"1": "vinery:block/cherry_leaves_bushy",
-		"particle": "vinery:block/cherry_leaves"
+		"0": "vinery:block/dark_cherry_leaves_stage0",
+		"1": "vinery:block/dark_cherry_leaves_bushy",
+		"particle": "vinery:block/dark_cherry_leaves_stage0"
 	},
 	"elements": [
 		{
-			"name": "Element",
 			"from": [0, 0, 0],
 			"to": [16, 16, 16],
 			"faces": {
@@ -21,11 +20,10 @@
 			}
 		},
 		{
-			"name": "Element",
-			"from": [19.3125, -8, -6.475],
-			"to": [19.3135, 24, 25.125],
+			"from": [12, -6, -7],
+			"to": [12, 22, 25],
 			"shade": false,
-			"rotation": {"angle": -45, "axis": "y", "origin": [13.3375, -10, -6.2875]},
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [6.125, -8, 20.125]},
 			"faces": {
 				"north": {"uv": [0, 0, 0, 0], "texture": "#1"},
 				"east": {"uv": [0, 0, 16, 16], "texture": "#1", "tintindex": 0},
@@ -36,11 +34,10 @@
 			}
 		},
 		{
-			"name": "Element",
-			"from": [-7.8875, -7, -1.775],
-			"to": [23.8125, 24, -1.874],
+			"from": [-7, -6, 3],
+			"to": [25, 22, 3],
 			"shade": false,
-			"rotation": {"angle": -45, "axis": "y", "origin": [-7, -10, 2]},
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [20.125, -8, 6.125]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#1", "tintindex": 0},
 				"east": {"uv": [0, 0, 0, 0], "texture": "#1"},
