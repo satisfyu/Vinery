@@ -96,6 +96,10 @@ public class ApplePressBlock extends BaseEntityBlock {
 
 	@Override
 	public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		if (state.getValue(HALF) != DoubleBlockHalf.LOWER) {
+			return InteractionResult.PASS;
+		}
+
 		if (!world.isClientSide) {
 			MenuProvider screenHandlerFactory = state.getMenuProvider(world, pos);
 			if (screenHandlerFactory != null) {
@@ -104,6 +108,7 @@ public class ApplePressBlock extends BaseEntityBlock {
 		}
 		return InteractionResult.SUCCESS;
 	}
+
 
 	@Nullable
 	@Override
