@@ -16,10 +16,10 @@ public class VillagerDiscountMixin {
 
     @Inject(method = "updateSpecialPrices", at = @At("HEAD"))
     private void applyHasteDiscount(Player player, CallbackInfo ci) {
-        if (player.hasEffect(MobEffectRegistry.TRADING_EFFECT.get())) {
+        if (player.hasEffect(MobEffectRegistry.TRADING_EFFECT)) {
             Villager villager = (Villager) (Object) this;
             for (MerchantOffer offer : villager.getOffers()) {
-                int discountLevel = Objects.requireNonNull(player.getEffect(MobEffectRegistry.TRADING_EFFECT.get())).getAmplifier();
+                int discountLevel = Objects.requireNonNull(player.getEffect(MobEffectRegistry.TRADING_EFFECT)).getAmplifier();
                 double discountForEffect = 0.1 * (discountLevel + 1);
                 int discount = (int) Math.floor(discountForEffect * offer.getBaseCostA().getCount());
 

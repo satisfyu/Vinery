@@ -40,7 +40,7 @@ public class ArmorRegistry {
 
     public static <T extends LivingEntity> void registerArmorModels(CustomArmorManager<T> armors, EntityModelSet modelLoader) {
         armors.addArmor(new CustomArmorSet<T>(ObjectRegistry.STRAW_HAT.get(), ObjectRegistry.WINEMAKER_APRON.get(), ObjectRegistry.WINEMAKER_LEGGINGS.get(), ObjectRegistry.WINEMAKER_BOOTS.get())
-                .setTexture(new VineryIdentifier("winemaker"))
+                .setTexture(VineryIdentifier.of("winemaker"))
                 .setOuterModel(new WinemakerOuter<>(modelLoader.bakeLayer(WinemakerOuter.LAYER_LOCATION)))
                 .setInnerModel(new WinemakerInner<>(modelLoader.bakeLayer(WinemakerInner.LAYER_LOCATION))));
 

@@ -71,7 +71,7 @@ public class SpreadableGrassSlabBlock extends SlabBlock implements BonemealableB
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean bl) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         if(blockState.getValue(SlabBlock.TYPE) == SlabType.BOTTOM) return false;
 
         return levelReader.getBlockState(blockPos.above()).isAir();

@@ -2,6 +2,7 @@ package net.satisfy.vinery.event;
 
 import dev.architectury.event.EventResult;
 import dev.architectury.event.events.common.PlayerEvent;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.InteractionHand;
@@ -11,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FireworkRocketEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.satisfy.vinery.registry.MobEffectRegistry;
@@ -23,12 +25,13 @@ public class ParticleSpawnEvent implements PlayerEvent.AttackEntity {
 
     @Override
     public EventResult attack(Player player, Level level, Entity target, InteractionHand hand, @Nullable EntityHitResult result) {
-        if (player.hasEffect(MobEffectRegistry.PARTY_EFFECT.get())) {
+        if (player.hasEffect(MobEffectRegistry.PARTY_EFFECT)) {
             if (target instanceof LivingEntity entity) {
                 int color = random.nextInt(0xFFFFFF);
 
                 ItemStack fireworkStack = new ItemStack(Items.FIREWORK_ROCKET);
-                CompoundTag fireworkNbt = new CompoundTag();
+                CustomData customData = fireworkStack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY);
+                CompoundTag fireworkNbt = customData.copyTag();
                 ListTag explosions = new ListTag();
                 CompoundTag explosion = new CompoundTag();
 
@@ -37,7 +40,8 @@ public class ParticleSpawnEvent implements PlayerEvent.AttackEntity {
                 explosions.add(explosion);
                 fireworkNbt.put("Explosions", explosions);
                 fireworkNbt.putByte("Flight", (byte) 0);
-                fireworkStack.getOrCreateTagElement("Fireworks").put("Explosions", explosions);
+
+                fireworkStack.set(DataComponents.CUSTOM_DATA, CustomData.of(fireworkNbt));
 
                 FireworkRocketEntity fireworkRocket = new FireworkRocketEntity(level, fireworkStack, entity);
                 fireworkRocket.setAirSupply(0);

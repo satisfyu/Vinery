@@ -21,6 +21,6 @@ public class VineryPlacedFeatures {
 
 
     public static ResourceKey<PlacedFeature> registerKey(String name) {
-        return ResourceKey.create(Registries.PLACED_FEATURE, new VineryIdentifier(name));
+        return ResourceKey.create(Registries.PLACED_FEATURE, VineryIdentifier.of(name));
     }
 }

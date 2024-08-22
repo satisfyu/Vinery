@@ -12,7 +12,7 @@ public class ClimbingEffect extends TickingEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if(entity.horizontalCollision) {
             entity.fallDistance = 0.0F;
 
@@ -29,5 +29,6 @@ public class ClimbingEffect extends TickingEffect {
 
             entity.setDeltaMovement(motionX, motionY, motionZ);
         }
+        return true;
     }
 }

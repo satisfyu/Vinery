@@ -1,0 +1,29 @@
+{
+  "type": "doapi:conditional",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "recipe": {
+    "type": "create:mixing",
+    "ingredients": [
+      {
+        "tag": "vinery:grapejuice_white"
+      },
+      {
+        "item": "minecraft:iron_ingot"
+      },
+      {
+        "item": "vinery:wine_bottle"
+      }
+    ],
+    "results": [
+      {
+        "id": "vinery:magnetic_wine",
+        "count": 1
+      }
+    ]
+  }
+}

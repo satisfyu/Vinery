@@ -11,7 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.satisfy.vinery.util.VineryIdentifier;
 
 public class StrawHatModel<T extends Entity> extends EntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("straw_hat"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(VineryIdentifier.of("straw_hat"), "main");
     private final ModelPart top_part;
 
     public StrawHatModel(ModelPart root) {
@@ -30,15 +30,6 @@ public class StrawHatModel<T extends Entity> extends EntityModel<T> {
         return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
-
-    @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        poseStack.pushPose();
-        poseStack.scale(1.05F, 1.05F, 1.05F);
-        top_part.render(poseStack, buffer, packedLight, packedOverlay);
-        poseStack.popPose();
-    }
-
     @Override
     public void setupAnim(T entity, float f, float g, float h, float i, float j) {
 
@@ -46,5 +37,13 @@ public class StrawHatModel<T extends Entity> extends EntityModel<T> {
 
     public void copyHead(ModelPart model) {
         top_part.copyFrom(model);
+    }
+
+    @Override
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j, int k) {
+        poseStack.pushPose();
+        poseStack.scale(1.05F, 1.05F, 1.05F);
+        top_part.render(poseStack, vertexConsumer, i, j, k);
+        poseStack.popPose();
     }
 }

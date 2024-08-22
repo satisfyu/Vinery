@@ -1,0 +1,37 @@
+{
+  "parent": "vinery:main/get_juice",
+  "criteria": {
+    "fermentation_barrel": {
+      "conditions": {
+        "location": [
+          {
+            "block": "vinery:fermentation_barrel",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.vinery.fermentation.desc"
+    },
+    "frame": "task",
+    "icon": {
+      "id": "vinery:fermentation_barrel",
+      "count": 1
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.vinery.fermentation"
+    }
+  },
+  "requirements": [
+    [
+      "fermentation_barrel"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

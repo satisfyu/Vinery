@@ -11,6 +11,7 @@ import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.satisfy.vinery.client.gui.handler.ApplePressGuiHandler;
 import net.satisfy.vinery.compat.jei.category.ApplePressCategory;
@@ -24,6 +25,7 @@ import net.satisfy.vinery.registry.ScreenhandlerTypeRegistry;
 import net.satisfy.vinery.util.VineryIdentifier;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,16 +44,21 @@ public class VineryJEIPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
 
-        List<FermentationBarrelRecipe> fermentationBarrelRecipes = rm.getAllRecipesFor(RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get());
+        List<RecipeHolder<FermentationBarrelRecipe>> fermentationHolderBarrelRecipes = rm.getAllRecipesFor(RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get());
+        List<FermentationBarrelRecipe> fermentationBarrelRecipes = new ArrayList<>();
+        fermentationHolderBarrelRecipes.iterator().forEachRemaining(recipeHolder -> fermentationBarrelRecipes.add(recipeHolder.value()));
+
         registration.addRecipes(FermentationBarrelCategory.FERMENTATION_BARREL, fermentationBarrelRecipes);
 
-        List<ApplePressRecipe> applePressRecipes = rm.getAllRecipesFor(RecipeTypesRegistry.APPLE_PRESS_RECIPE_TYPE.get());
+        List<RecipeHolder<ApplePressRecipe>> applePressHolderRecipes = rm.getAllRecipesFor(RecipeTypesRegistry.APPLE_PRESS_RECIPE_TYPE.get());
+        List<ApplePressRecipe> applePressRecipes = new ArrayList<>();
+        applePressHolderRecipes.iterator().forEachRemaining(recipeHolder -> applePressRecipes.add(recipeHolder.value()));
         registration.addRecipes(ApplePressCategory.APPLE_PRESS, applePressRecipes);
     }
 
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return new VineryIdentifier("jei_plugin");
+        return VineryIdentifier.of("jei_plugin");
     }
 
     @Override

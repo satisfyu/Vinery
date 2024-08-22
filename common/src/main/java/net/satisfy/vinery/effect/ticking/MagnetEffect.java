@@ -16,7 +16,7 @@ public class MagnetEffect extends TickingEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity instanceof Player player && !player.isShiftKeyDown()) {
             List<Entity> entities = player.getCommandSenderWorld().getEntities(player, player.getBoundingBox().inflate(5 + amplifier), p -> p instanceof ItemEntity);
             for (Entity entityNearby : entities) {
@@ -39,5 +39,6 @@ public class MagnetEffect extends TickingEffect {
             }
         }
         super.applyEffectTick(entity, amplifier);
+        return true;
     }
 }

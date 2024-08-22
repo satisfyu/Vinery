@@ -1,0 +1,15 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    {
+      "tag": "vinery:grapejuice"
+    },
+    {
+      "item": "minecraft:gunpowder"
+    }
+  ],
+  "result": {
+    "id": "vinery:creepers_crush",
+    "count": 1
+  }
+}

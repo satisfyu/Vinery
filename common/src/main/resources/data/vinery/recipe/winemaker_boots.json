@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "winemaker_set",
+  "pattern": [
+    "S S",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:brown_wool"
+    },
+    "S": {
+      "item": "minecraft:rabbit_hide"
+    }
+  },
+  "result": {
+    "id": "vinery:winemaker_boots",
+    "count": 1
+  }
+}

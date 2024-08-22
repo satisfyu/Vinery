@@ -4,7 +4,7 @@ import com.mojang.authlib.GameProfile;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.world.effect.MobEffect;
+import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -30,7 +30,7 @@ public abstract class ClientPlayerEntityMixin extends AbstractClientPlayer {
 
     @Inject(method = "aiStep", at = @At("HEAD"))
     private void tickMovement(CallbackInfo info) {
-        if(this.hasEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST.get())) {
+        if(this.hasEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST)) {
             LocalPlayer player = (LocalPlayer) (Object) this;
             if (player.onGround() || player.onClimbable()) {
                 jumpCount = 1;
@@ -46,14 +46,14 @@ public abstract class ClientPlayerEntityMixin extends AbstractClientPlayer {
         }
     }
 
-    @Redirect(method = "updateAutoJump", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;hasEffect(Lnet/minecraft/world/effect/MobEffect;)Z"))
-    public boolean improvedJumpBoost(LocalPlayer livingEntity, MobEffect statusEffect) {
-        return livingEntity.hasEffect(MobEffects.JUMP) || livingEntity.hasEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST.get());
+    @Redirect(method = "updateAutoJump", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;hasEffect(Lnet/minecraft/core/Holder;)Z"))
+    public boolean improvedJumpBoost(LocalPlayer livingEntity, Holder holder) {
+        return livingEntity.hasEffect(MobEffects.JUMP) || livingEntity.hasEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST);
     }
 
-    @Redirect(method = "updateAutoJump", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getEffect(Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;"))
-    public MobEffectInstance improvedJumpBoostAmplifier(LocalPlayer livingEntity, MobEffect statusEffect) {
-        return livingEntity.hasEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST.get()) ?  livingEntity.getEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST.get()) : livingEntity.getEffect(MobEffects.JUMP);
+    @Redirect(method = "updateAutoJump", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getEffect(Lnet/minecraft/core/Holder;)Lnet/minecraft/world/effect/MobEffectInstance;"))
+    public MobEffectInstance improvedJumpBoostAmplifier(LocalPlayer livingEntity, Holder holder) {
+        return livingEntity.hasEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST) ?  livingEntity.getEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST) : livingEntity.getEffect(MobEffects.JUMP);
     }
 
     private boolean wearingUsableElytra(LocalPlayer player) {

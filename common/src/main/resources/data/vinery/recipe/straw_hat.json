@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "winemaker_set",
+  "pattern": [
+    " X ",
+    " G ",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "tag": "minecraft:straw"
+    },
+    "G": {
+      "item": "minecraft:red_wool"
+    }
+  },
+  "result": {
+    "id": "vinery:straw_hat",
+    "count": 1
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "apple_press",
+  "pattern": [
+    " # ",
+    "/B/",
+    "/ /"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_trapdoor"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "B": {
+      "item": "minecraft:barrel"
+    }
+  },
+  "result": {
+    "id": "vinery:apple_press",
+    "count": 1
+  }
+}

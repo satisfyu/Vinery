@@ -42,7 +42,7 @@ public abstract class FoxEntityEatSweetBerriesGoalMixin extends MoveToBlockGoal 
     private void eatGrapes(CallbackInfo ci) {
         final BlockState state = field_17975.level().getBlockState(this.blockPos);
         if (state.getBlock() instanceof GrapeBush bush) {
-            pickGrapes(state, bush.getType());
+            pickGrapes(state, bush.getGrapeType());
         }
     }
 

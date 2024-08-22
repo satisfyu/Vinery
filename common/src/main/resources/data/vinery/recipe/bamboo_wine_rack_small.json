@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bamboo_rack",
+  "pattern": [
+    "# #",
+    " _ ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bamboo_planks"
+    },
+    "_": {
+      "item": "minecraft:bamboo_slab"
+    }
+  },
+  "result": {
+    "id": "vinery:bamboo_wine_rack_small",
+    "count": 1
+  }
+}

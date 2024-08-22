@@ -9,7 +9,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -59,7 +58,7 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
         final int age = state.getValue(AGE);
         if (age > 3) {
             dropGrapes(world, state, pos, hit.getDirection());
@@ -72,11 +71,12 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+    public @NotNull BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
         if (state.getValue(AGE) > 2) {
             dropGrapes(world, state, pos, null);
         }
         super.playerWillDestroy(world, pos, state, player);
+        return state;
     }
 
     public boolean hasTrunk(Level world, BlockPos pos) {
@@ -107,9 +107,10 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState state, boolean bl) {
-        return !isMature(state) && levelReader.getBlockState(blockPos.below()).getBlock() == this && state.getValue(AGE) > 0;
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        return !isMature(blockState) && levelReader.getBlockState(blockPos.below()).getBlock() == this && blockState.getValue(AGE) > 0;
     }
+
     @Override
     public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return true;

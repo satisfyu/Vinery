@@ -1,6 +1,7 @@
 package net.satisfy.vinery.block.entity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
@@ -59,21 +60,21 @@ public class BasketBlockEntity extends RandomizableContainerBlockEntity implemen
         };
     }
 
-    protected void saveAdditional(CompoundTag compoundTag) {
-        super.saveAdditional(compoundTag);
+    @Override
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
         if (!this.trySaveLootTable(compoundTag)) {
-            ContainerHelper.saveAllItems(compoundTag, this.items);
+            ContainerHelper.saveAllItems(compoundTag, this.items, provider);
         }
-
     }
 
-    public void load(CompoundTag compoundTag) {
-        super.load(compoundTag);
+    @Override
+    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundTag, provider);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         if (!this.tryLoadLootTable(compoundTag)) {
-            ContainerHelper.loadAllItems(compoundTag, this.items);
+            ContainerHelper.loadAllItems(compoundTag, this.items, provider);
         }
-
     }
 
     @Override

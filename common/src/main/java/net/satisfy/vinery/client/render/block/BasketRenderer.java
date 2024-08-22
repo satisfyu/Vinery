@@ -20,13 +20,13 @@ import net.satisfy.vinery.util.VineryIdentifier;
 import java.util.Objects;
 
 public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
-    private static final ResourceLocation TEXTURE = new VineryIdentifier("textures/entity/basket.png");
+    private static final ResourceLocation TEXTURE = VineryIdentifier.of("textures/entity/basket.png");
     private final ModelPart lidleft;
     private final ModelPart lidright;
     private final ModelPart bottom;
     private final ModelPart handle;
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("basket"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(VineryIdentifier.of("basket"), "main");
 
     public BasketRenderer(BlockEntityRendererProvider.Context context) {
         ModelPart modelPart = context.bakeLayer(LAYER_LOCATION);

@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 @Environment(value= EnvType.CLIENT)
 public class MuleRenderer<T extends TraderMuleEntity> extends MobRenderer<T, MuleModel<T>> {
-    private static final ResourceLocation TEXTURE = new VineryIdentifier("textures/entity/wandering_mule.png");
+    private static final ResourceLocation TEXTURE = VineryIdentifier.of("textures/entity/wandering_mule.png");
 
     public MuleRenderer(EntityRendererProvider.Context context) {
         super(context, new MuleModel<>(context.bakeLayer(MuleModel.LAYER_LOCATION)), 0.5f);

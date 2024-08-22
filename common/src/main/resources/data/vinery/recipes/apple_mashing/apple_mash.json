@@ -1,9 +1,0 @@
-{
-  "type": "vinery:apple_mashing",
-  "input": {
-    "item": "minecraft:apple"
-  },
-  "output": {
-    "item": "vinery:apple_mash"
-  }
-}

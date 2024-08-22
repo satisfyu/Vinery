@@ -40,10 +40,10 @@ public abstract class BoneMealItemMixin {
 
 					if(random.nextFloat() < GeneralUtil.getInPercent(config.probabilityForDamage())){
 						int damage = config.damagePerUse();
-						helmet.hurtAndBreak(damage, player, (p) -> p.broadcastBreakEvent(EquipmentSlot.HEAD));
-						chestplate.hurtAndBreak(damage, player, (p) -> p.broadcastBreakEvent(EquipmentSlot.CHEST));
-						leggings.hurtAndBreak(damage, player, (p) -> p.broadcastBreakEvent(EquipmentSlot.LEGS));
-						boots.hurtAndBreak(damage, player, (p) -> p.broadcastBreakEvent(EquipmentSlot.FEET));
+						helmet.hurtAndBreak(damage, player, EquipmentSlot.HEAD);
+						chestplate.hurtAndBreak(damage, player, EquipmentSlot.CHEST);
+						leggings.hurtAndBreak(damage, player, EquipmentSlot.LEGS);
+						boots.hurtAndBreak(damage, player, EquipmentSlot.FEET);
 					}
 
 					context.getItemInHand().grow(1);

@@ -35,7 +35,8 @@ public class BigBottleStorageBlock extends StorageBlock {
 
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        InteractionHand hand = player.getUsedItemHand();
         ItemStack stack = player.getItemInHand(hand);
         if (player.isShiftKeyDown() && stack.isEmpty()) {
             if (!world.isClientSide()) {
@@ -44,7 +45,7 @@ public class BigBottleStorageBlock extends StorageBlock {
             }
             return InteractionResult.sidedSuccess(world.isClientSide());
         } else if (state.getValue(OPEN)) {
-            return super.use(state, world, pos, player, hand, hit);
+            return super.useWithoutItem(state, world, pos, player, hit);
         }
         return InteractionResult.PASS;
     }

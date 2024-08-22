@@ -1,0 +1,34 @@
+{
+  "parent": "vinery:main/get_wine",
+  "criteria": {
+    "drunk": {
+      "conditions": {
+        "effects": {
+          "vinery:trippy": {}
+        }
+      },
+      "trigger": "minecraft:effects_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancement.vinery.get_drunk.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "id": "vinery:jo_special_mixture",
+      "count": 1
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.vinery.get_drunk"
+    }
+  },
+  "requirements": [
+    [
+      "drunk"
+    ]
+  ]
+}

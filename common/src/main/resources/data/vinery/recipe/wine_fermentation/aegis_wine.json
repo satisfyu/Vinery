@@ -1,0 +1,21 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:kelp"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "vinery:white_savanna_grapejuice"
+    }
+  ],
+  "result": {
+    "id": "vinery:aegis_wine",
+    "count": 1
+  }
+}

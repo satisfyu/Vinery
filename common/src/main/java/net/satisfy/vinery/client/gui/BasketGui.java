@@ -9,7 +9,7 @@ import net.satisfy.vinery.client.gui.handler.BasketGuiHandler;
 import net.satisfy.vinery.util.VineryIdentifier;
 
 public class BasketGui extends AbstractContainerScreen<BasketGuiHandler> {
-    private static final ResourceLocation CONTAINER_LOCATION = new VineryIdentifier("textures/gui/basket.png");
+    private static final ResourceLocation CONTAINER_LOCATION = VineryIdentifier.of("textures/gui/basket.png");
     public BasketGui(BasketGuiHandler abstractContainerMenu, Inventory inventory, Component component) {
         super(abstractContainerMenu, inventory, component);
     }
@@ -20,7 +20,7 @@ public class BasketGui extends AbstractContainerScreen<BasketGuiHandler> {
     }
 
     public void render(GuiGraphics guiGraphics, int i, int j, float f) {
-        this.renderBackground(guiGraphics);
+        this.renderBackground(guiGraphics, i, j, f);
         super.render(guiGraphics, i, j, f);
         this.renderTooltip(guiGraphics, i, j);
     }

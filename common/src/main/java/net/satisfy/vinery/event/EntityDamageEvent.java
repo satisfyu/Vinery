@@ -10,7 +10,7 @@ import net.satisfy.vinery.registry.MobEffectRegistry;
 public class EntityDamageEvent implements EntityEvent.LivingHurt {
     @Override
     public EventResult hurt(LivingEntity entity, DamageSource source, float amount) {
-        MobEffectInstance effectInstance = entity.getEffect(MobEffectRegistry.SHIRAAZ_EFFECT.get());
+        MobEffectInstance effectInstance = entity.getEffect(MobEffectRegistry.SHIRAAZ_EFFECT);
         if (effectInstance != null && source.getEntity() instanceof LivingEntity attacker) {
             float reflectedDamage = amount * 0.5F;
             if (entity != attacker) {

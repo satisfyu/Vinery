@@ -7,13 +7,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Container;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.satisfy.vinery.recipe.FermentationBarrelRecipe;
 import net.satisfy.vinery.registry.ObjectRegistry;
 import net.satisfy.vinery.registry.RecipeTypesRegistry;
@@ -40,7 +37,7 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
 
 
     @Override
-    protected RecipeType<? extends Recipe<Container>> getRecipeType() {
+    protected RecipeType<? extends Recipe<RecipeInput>> getRecipeType() {
         return RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get();
     }
 
@@ -93,5 +90,10 @@ public class FermentationPotRecipeBook extends PrivateRecipeBookWidget {
     @Override
     public boolean isFocused() {
         return false;
+    }
+
+    @Override
+    public void recipesShown(List<RecipeHolder<?>> list) {
+
     }
 }

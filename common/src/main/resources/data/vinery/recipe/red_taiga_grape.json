@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#"
+    ],
+    "key": {
+        "#": {
+            "item": "vinery:red_taiga_grape_bag"
+        }
+    },
+    "result": {
+        "id": "vinery:taiga_grapes_red",
+        "count": 9
+    }
+}

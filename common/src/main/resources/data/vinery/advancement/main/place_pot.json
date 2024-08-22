@@ -1,0 +1,38 @@
+{
+  "parent": "vinery:main/root",
+  "criteria": {
+    "grapevine_pot": {
+      "conditions": {
+        "location": [
+          {
+            "block": "vinery:grapevine_pot",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.vinery.place_pot.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "id": "vinery:grapevine_pot",
+      "count": 1
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.vinery.place_pot"
+    }
+  },
+  "requirements": [
+    [
+      "grapevine_pot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,8 +1,10 @@
 package net.satisfy.vinery.block;
 
+import com.mojang.serialization.MapCodec;
 import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -44,6 +46,7 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlock{
+    public static final MapCodec<BasketBlock> CODEC = simpleCodec(BasketBlock::new);
     public static final DirectionProperty FACING;
     public static final ResourceLocation CONTENTS;
     public static final BooleanProperty WATERLOGGED;
@@ -52,6 +55,11 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED,false));
 
+    }
+
+    @Override
+    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
@@ -87,12 +95,12 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
         }
     }
 
-    public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
+    public @NotNull BlockState playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
         if (!level.isClientSide) {
             BlockEntity blockEntity = level.getBlockEntity(blockPos);
             if (blockEntity instanceof BasketBlockEntity basketBlockEntity) {
                 ItemStack itemStack = new ItemStack(blockState.getBlock());
-                basketBlockEntity.saveToItem(itemStack);
+                basketBlockEntity.saveToItem(itemStack, level.registryAccess());
                 double x = blockPos.getX() + 0.5;
                 double y = blockPos.getY() + 0.5;
                 double z = blockPos.getZ() + 0.5;
@@ -102,6 +110,7 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
             }
         }
         super.playerWillDestroy(level, blockPos, blockState, player);
+        return blockState;
     }
 
     public @NotNull List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
@@ -119,10 +128,10 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
     }
 
     public void setPlacedBy(Level level, BlockPos blockPos, BlockState blockState, LivingEntity livingEntity, ItemStack itemStack) {
-        if (itemStack.hasCustomHoverName()) {
+        if (itemStack.has(DataComponents.CUSTOM_NAME)) {
             BlockEntity blockEntity = level.getBlockEntity(blockPos);
-            if (blockEntity instanceof BasketBlockEntity) {
-                ((BasketBlockEntity)blockEntity).setCustomName(itemStack.getHoverName());
+            if (blockEntity instanceof BasketBlockEntity basketBlockEntity) {
+                basketBlockEntity.applyComponentsFromItemStack(itemStack);
             }
         }
 
@@ -143,12 +152,6 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 
             super.onRemove(blockState, level, blockPos, blockState2, bl);
         }
-    }
-
-    public @NotNull ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState) {
-        ItemStack itemStack = super.getCloneItemStack(blockGetter, blockPos, blockState);
-        blockGetter.getBlockEntity(blockPos, BlockEntityTypeRegistry.BASKET_ENTITY.get()).ifPresent((basketBlockEntity) -> basketBlockEntity.saveToItem(itemStack));
-        return itemStack;
     }
 
     public @NotNull RenderShape getRenderShape(BlockState blockState) {
@@ -197,6 +200,6 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
     static{
         FACING = HorizontalDirectionalBlock.FACING;
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
-        CONTENTS = new ResourceLocation("contents");
+        CONTENTS = ResourceLocation.withDefaultNamespace("contents");
     }
 }
