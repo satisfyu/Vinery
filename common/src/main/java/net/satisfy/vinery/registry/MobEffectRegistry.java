@@ -61,7 +61,7 @@ public class MobEffectRegistry {
         LUCK_EFFECT = registerEffect("luck_effect", LuckEffect::new);
         RESISTANCE_EFFECT = registerEffect("resistance_effect", ResistanceEffect::new);
         TRIPPY = registerEffect("trippy", TrippyEffect::new);
-        TRADING_EFFECT = registerEffect("trading", () -> new TradingEffect(MobEffectCategory.BENEFICIAL, 0xFF0000));
+        TRADING_EFFECT = registerEffect("trading", () -> new NormalEffect(MobEffectCategory.BENEFICIAL, 0xFF0000));
         EXPERIENCE_EFFECT = registerEffect("experience_effect", () -> new NormalEffect(MobEffectCategory.BENEFICIAL, 0x00FF00));
         IMPROVED_JUMP_BOOST = registerEffect("double_jump", () -> new NormalEffect(MobEffectCategory.BENEFICIAL, 0x90F891));
         PARTY_EFFECT = registerEffect("party_effect", () -> new NormalEffect(MobEffectCategory.BENEFICIAL, 0xFF0000));
