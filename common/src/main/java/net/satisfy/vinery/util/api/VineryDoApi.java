@@ -30,5 +30,6 @@ public class VineryDoApi implements DoApiAPI {
     @Override
     public <T extends LivingEntity> void registerArmor(CustomArmorManager<T> customArmorManager, EntityModelSet entityModelSet) {
         ArmorRegistry.registerArmorModels(customArmorManager, entityModelSet);
+
     }
 }

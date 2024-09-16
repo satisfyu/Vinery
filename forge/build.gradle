@@ -22,7 +22,7 @@ repositories {
 
 configurations {
     common
-    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+    shadowCommon
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
     developmentNeoForge.extendsFrom common
@@ -44,7 +44,7 @@ dependencies {
 
     forgeRuntimeLibrary("blue.endless:jankson:1.2.3")
 
-    modImplementation "maven.modrinth:do-api:${project.doapi_version}-forge"
+    modImplementation "maven.modrinth:do-api:${project.doapi_version}-neoforge"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive false }
