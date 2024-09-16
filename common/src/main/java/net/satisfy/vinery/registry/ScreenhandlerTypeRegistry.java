@@ -25,7 +25,7 @@ public class ScreenhandlerTypeRegistry {
 
 
     public static <T extends AbstractContainerMenu> RegistrySupplier<MenuType<T>> register(String name, Supplier<MenuType<T>> menuType){
-        return MENU_TYPES.register(new VineryIdentifier(name), menuType);
+        return MENU_TYPES.register(VineryIdentifier.of(name), menuType);
     }
 
     public static void init() {

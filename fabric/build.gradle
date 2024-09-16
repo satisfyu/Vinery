@@ -50,6 +50,7 @@ dependencies {
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
     modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${rootProject.terraform_wood_api_version}"
     modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }

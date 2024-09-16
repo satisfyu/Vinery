@@ -2,7 +2,6 @@ package net.satisfy.vinery.effect.ticking;
 
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.satisfy.vinery.effect.TickingEffect;
 
 public class JellieEffect extends TickingEffect {
@@ -11,8 +10,12 @@ public class JellieEffect extends TickingEffect {
         super(MobEffectCategory.BENEFICIAL, 0x98D982);
     }
 
+    public static void onRemove(LivingEntity livingEntity) {
+        livingEntity.setAbsorptionAmount(livingEntity.getAbsorptionAmount() - 4.0f);
+    }
+
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         int i = 50 >> amplifier;
         if (i > 0) {
             return duration % i == 0;
@@ -22,21 +25,16 @@ public class JellieEffect extends TickingEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity.getHealth() < entity.getMaxHealth()) {
             entity.heal(1.0f);
         }
+        return true;
     }
 
     @Override
-    public void removeAttributeModifiers(LivingEntity entity, AttributeMap attributes, int amplifier) {
-        entity.setAbsorptionAmount(entity.getAbsorptionAmount() - (float)(4 * (amplifier + 1)));
-        super.removeAttributeModifiers(entity, attributes, amplifier);
-    }
-
-    @Override
-    public void addAttributeModifiers(LivingEntity entity, AttributeMap attributes, int amplifier) {
-        entity.setAbsorptionAmount(entity.getAbsorptionAmount() + (float)(4 * (amplifier + 1)));
-        super.addAttributeModifiers(entity, attributes, amplifier);
+    public void onEffectAdded(LivingEntity livingEntity, int i) {
+        livingEntity.setAbsorptionAmount(livingEntity.getAbsorptionAmount() + (float)(4 * (i + 1)));
+        super.onEffectAdded(livingEntity, i);
     }
 }

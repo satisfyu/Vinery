@@ -10,7 +10,7 @@ import net.satisfy.vinery.util.VineryIdentifier;
 import org.jetbrains.annotations.NotNull;
 @Environment(EnvType.CLIENT)
 public class WanderingWinemakerRenderer extends WanderingTraderRenderer {
-	private static final ResourceLocation TEXTURE = new VineryIdentifier("textures/entity/wandering_winemaker.png");
+	private static final ResourceLocation TEXTURE = VineryIdentifier.of("textures/entity/wandering_winemaker.png");
 	
 	public WanderingWinemakerRenderer(EntityRendererProvider.Context context) {
 		super(context);

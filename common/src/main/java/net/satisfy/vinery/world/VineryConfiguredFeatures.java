@@ -13,7 +13,7 @@ public class VineryConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?,?>> APPLE_VARIANT_KEY = registerKey("apple_variant");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, new VineryIdentifier(name));
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, VineryIdentifier.of(name));
     }
 
 }

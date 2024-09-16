@@ -16,7 +16,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -51,7 +50,8 @@ public class StackableLogBlock extends SlabBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        InteractionHand hand = player.getUsedItemHand();
         final ItemStack stack = player.getItemInHand(hand);
         final SlabType stackSize = state.getValue(TYPE);
         if (stack.is(Items.FLINT_AND_STEEL) && stackSize == SlabType.DOUBLE) {
@@ -120,8 +120,7 @@ public class StackableLogBlock extends SlabBlock {
     @Override
     public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
         boolean isLit = world.getBlockState(pos).getValue(FIRED);
-        if (isLit && !entity.fireImmune() && entity instanceof LivingEntity livingEntity &&
-                !EnchantmentHelper.hasFrostWalker(livingEntity)) {
+        if (isLit && !entity.fireImmune() && entity instanceof LivingEntity livingEntity) {
             entity.hurt(world.damageSources().inFire(), 1.f);
         }
 

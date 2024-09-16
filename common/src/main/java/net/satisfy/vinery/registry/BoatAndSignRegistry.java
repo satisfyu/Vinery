@@ -14,14 +14,14 @@ import net.minecraft.world.level.block.Block;
 import net.satisfy.vinery.util.VineryIdentifier;
 
 public class BoatAndSignRegistry {
-    public static final ResourceLocation DARK_CHERRY_BOAT_TYPE = new VineryIdentifier("dark_cherry");
+    public static final ResourceLocation DARK_CHERRY_BOAT_TYPE = VineryIdentifier.of("dark_cherry");
 
-    public static final ResourceLocation DARK_CHERRY_SIGN_TEXTURE = new VineryIdentifier("entity/signs/dark_cherry");
+    public static final ResourceLocation DARK_CHERRY_SIGN_TEXTURE = VineryIdentifier.of("entity/signs/dark_cherry");
     public static final RegistrySupplier<Block> DARK_CHERRY_SIGN = ObjectRegistry.registerWithoutItem("dark_cherry_sign", () -> TerraformSignHelper.getSign(DARK_CHERRY_SIGN_TEXTURE));
     public static final RegistrySupplier<Block> DARK_CHERRY_WALL_SIGN = ObjectRegistry.registerWithoutItem("dark_cherry_wall_sign", () -> TerraformSignHelper.getWallSign(DARK_CHERRY_SIGN_TEXTURE));
     public static final RegistrySupplier<Item> DARK_CHERRY_SIGN_ITEM = ObjectRegistry.registerItem("dark_cherry_sign", () -> new SignItem(ObjectRegistry.getSettings().stacksTo(16), DARK_CHERRY_SIGN.get(), DARK_CHERRY_WALL_SIGN.get()));
-    public static final ResourceLocation DARK_CHERRY_HANGING_SIGN_TEXTURE = new VineryIdentifier("entity/signs/hanging/dark_cherry");
-    public static final ResourceLocation DARK_CHERRY_HANGING_SIGN_GUI_TEXTURE = new VineryIdentifier("textures/gui/hanging_signs/dark_cherry");
+    public static final ResourceLocation DARK_CHERRY_HANGING_SIGN_TEXTURE = VineryIdentifier.of("entity/signs/hanging/dark_cherry");
+    public static final ResourceLocation DARK_CHERRY_HANGING_SIGN_GUI_TEXTURE = VineryIdentifier.of("textures/gui/hanging_signs/dark_cherry");
 
     public static final RegistrySupplier<Block> DARK_CHERRY_HANGING_SIGN = ObjectRegistry.registerWithoutItem("dark_cherry_hanging_sign", () -> TerraformSignHelper.getHangingSign(DARK_CHERRY_HANGING_SIGN_TEXTURE, DARK_CHERRY_HANGING_SIGN_GUI_TEXTURE));
     public static final RegistrySupplier<Block> DARK_CHERRY_WALL_HANGING_SIGN = ObjectRegistry.registerWithoutItem("dark_cherry_wall_hanging_sign", () -> TerraformSignHelper.getWallHangingSign(DARK_CHERRY_HANGING_SIGN_TEXTURE, DARK_CHERRY_HANGING_SIGN_GUI_TEXTURE));

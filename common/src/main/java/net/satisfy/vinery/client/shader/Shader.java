@@ -48,6 +48,6 @@ public enum Shader {
         }
 
         public ResourceLocation getResource() {
-            return new ResourceLocation("shaders/post/" + this.name + ".json");
+            return ResourceLocation.withDefaultNamespace("shaders/post/" + this.name + ".json");
         }
 }

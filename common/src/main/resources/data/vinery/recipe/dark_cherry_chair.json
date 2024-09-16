@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SXS",
+    "SSS",
+    "B B"
+  ],
+  "key": {
+    "S": {
+      "item": "vinery:dark_cherry_slab"
+    },
+    "B": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "vinery:dark_cherry_planks"
+    }
+  },
+  "result": {
+    "id": "vinery:dark_cherry_chair",
+    "count": 1
+  }
+}

@@ -1,11 +1,14 @@
 package net.satisfy.vinery.block;
 
+import com.mojang.serialization.MapCodec;
 import de.cristelknight.doapi.common.block.CabinetBlock;
+import de.cristelknight.doapi.common.registry.DoApiSoundEventRegistry;
 import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -18,8 +21,19 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class StoragePotBlock extends CabinetBlock {
+    public static final MapCodec<StoragePotBlock> CODEC = simpleCodec(StoragePotBlock::new);
+
     public StoragePotBlock(Properties settings, Supplier<SoundEvent> openSound, Supplier<SoundEvent> closeSound) {
         super(settings, openSound, closeSound);
+    }
+
+    public StoragePotBlock(Properties settings) {
+        super(settings, DoApiSoundEventRegistry.CABINET_OPEN, DoApiSoundEventRegistry.CABINET_CLOSE);
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {

@@ -17,9 +17,9 @@ import net.satisfy.vinery.util.VineryIdentifier;
 @SuppressWarnings("unused, deprecation")
 public class VineryFabricVillagers {
 
-    private static final VineryIdentifier WINEMAKER_POI_IDENTIFIER = new VineryIdentifier("winemaker_poi");
+    private static final ResourceLocation WINEMAKER_POI_IDENTIFIER = VineryIdentifier.of("winemaker_poi");
     public static final PoiType WINEMAKER_POI = PointOfInterestHelper.register(WINEMAKER_POI_IDENTIFIER, 1, 12, ObjectRegistry.APPLE_PRESS.get());
-    public static final VillagerProfession WINEMAKER = Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, new ResourceLocation("vinery", "winemaker"), VillagerProfessionBuilder.create().id(new ResourceLocation("vinery", "winemaker")).workstation(ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, WINEMAKER_POI_IDENTIFIER)).build());
+    public static final VillagerProfession WINEMAKER = Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, ResourceLocation.fromNamespaceAndPath("vinery", "winemaker"), VillagerProfessionBuilder.create().id(ResourceLocation.fromNamespaceAndPath("vinery", "winemaker")).workstation(ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, WINEMAKER_POI_IDENTIFIER)).build());
 
     public static void init() {
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, 1, factories -> {

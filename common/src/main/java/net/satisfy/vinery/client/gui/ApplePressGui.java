@@ -14,7 +14,7 @@ import net.satisfy.vinery.util.VineryIdentifier;
 @Environment(EnvType.CLIENT)
 public class ApplePressGui extends AbstractContainerScreen<ApplePressGuiHandler> {
     public static final ResourceLocation TEXTURE =
-            new VineryIdentifier("textures/gui/apple_press_gui.png");
+            VineryIdentifier.of("textures/gui/apple_press_gui.png");
 
     public static final int ARROW_X = 78;
     public static final int ARROW_Y = 35;
@@ -50,7 +50,7 @@ public class ApplePressGui extends AbstractContainerScreen<ApplePressGuiHandler>
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        renderBackground(guiGraphics);
+        renderBackground(guiGraphics, mouseX, mouseY, delta);
         super.render(guiGraphics, mouseX, mouseY, delta);
         renderTooltip(guiGraphics, mouseX, mouseY);
     }

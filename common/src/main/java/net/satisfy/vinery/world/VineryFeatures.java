@@ -21,7 +21,7 @@ public class VineryFeatures {
     }
 
     private static <C extends FeatureConfiguration, F extends Feature<C>> RegistrySupplier<F> register(String name, Supplier<F> feature) {
-        return FEATURES.register(new VineryIdentifier(name), feature);
+        return FEATURES.register(VineryIdentifier.of(name), feature);
     }
 
 }

@@ -1,0 +1,26 @@
+{
+  "type": "doapi:conditional",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "recipe": {
+    "type": "create:mixing",
+    "ingredients": [
+      {
+        "tag": "vinery:grapejuice_red"
+      },
+      {
+        "item": "vinery:wine_bottle"
+      }
+    ],
+    "results": [
+      {
+        "id": "vinery:noir_wine",
+        "count": 1
+      }
+    ]
+  }
+}

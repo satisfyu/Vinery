@@ -21,7 +21,7 @@ public class BlockEntityTypeRegistry {
     public static final RegistrySupplier<BlockEntityType<BasketBlockEntity>> BASKET_ENTITY = create("basket", () -> BlockEntityType.Builder.of(BasketBlockEntity::new, ObjectRegistry.BASKET.get()).build(null));
 
     private static <T extends BlockEntityType<?>> RegistrySupplier<T> create(final String path, final Supplier<T> type) {
-        return BLOCK_ENTITY_TYPES.register(new VineryIdentifier(path), type);
+        return BLOCK_ENTITY_TYPES.register(VineryIdentifier.of(path), type);
     }
 
     public static void init() {

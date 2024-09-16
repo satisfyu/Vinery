@@ -1,0 +1,15 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    {
+      "item": "vinery:red_savanna_grapejuice"
+    },
+    {
+      "item": "minecraft:kelp"
+    }
+  ],
+  "result": {
+    "id": "vinery:kelp_cider",
+    "count": 1
+  }
+}

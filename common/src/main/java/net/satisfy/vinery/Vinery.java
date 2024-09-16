@@ -31,6 +31,7 @@ public class Vinery {
 
         TabRegistry.init();
         BoatAndSignRegistry.init();
+        ArmorMaterialRegistry.init();
         BlockEntityTypeRegistry.init();
         MobEffectRegistry.init();
         ScreenhandlerTypeRegistry.init();
@@ -43,7 +44,7 @@ public class Vinery {
         PlayerEvent.ATTACK_ENTITY.register(particleSpawnEvent);
         EntityDamageEvent entityDamageEvent = new EntityDamageEvent();
         EntityEvent.LIVING_HURT.register(entityDamageEvent);
-        DoApiEP.registerBuiltInPack(Vinery.MOD_ID, new VineryIdentifier("bushy_leaves"), false);
+        DoApiEP.registerBuiltInPack(Vinery.MOD_ID, VineryIdentifier.of("bushy_leaves"), false);
     }
 
     public static void commonSetup() {

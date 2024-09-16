@@ -68,9 +68,10 @@ public class PaleStemBlock extends StemBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        InteractionHand hand = player.getUsedItemHand();
         if (hand == InteractionHand.OFF_HAND) {
-            return super.use(state, world, pos, player, hand, hit);
+            return super.useWithoutItem(state, world, pos, player, hit);
         }
 
         final int age = state.getValue(AGE);
@@ -98,7 +99,7 @@ public class PaleStemBlock extends StemBlock {
             }
         }
 
-        return super.use(state, world, pos, player, hand, hit);
+        return super.useWithoutItem(state, world, pos, player, hit);
     }
 
     @Override

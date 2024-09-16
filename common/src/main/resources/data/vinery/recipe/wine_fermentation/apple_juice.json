@@ -1,0 +1,12 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    {
+      "item": "vinery:apple_mash"
+    }
+  ],
+  "result": {
+    "id": "vinery:apple_juice",
+    "count": 1
+  }
+}

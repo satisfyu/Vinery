@@ -1,0 +1,15 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    {
+      "item": "vinery:white_savanna_grapejuice"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "id": "vinery:clark_wine",
+    "count": 1
+  }
+}

@@ -20,17 +20,17 @@ public class EntityRegistry {
 	private static final Registrar<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Vinery.MOD_ID, Registries.ENTITY_TYPE).getRegistrar();
 	
 	public static final RegistrySupplier<EntityType<TraderMuleEntity>> MULE = create("mule",
-			() -> EntityType.Builder.of(TraderMuleEntity::new, MobCategory.CREATURE).sized(0.9f, 1.87f).clientTrackingRange(10).build(new VineryIdentifier("mule").toString())
+			() -> EntityType.Builder.of(TraderMuleEntity::new, MobCategory.CREATURE).sized(0.9f, 1.87f).clientTrackingRange(10).build(VineryIdentifier.of("mule").toString())
 	);
 	
 	public static final RegistrySupplier<EntityType<WanderingWinemakerEntity>> WANDERING_WINEMAKER = create("wandering_winemaker",
 			() -> EntityType.Builder.of(WanderingWinemakerEntity::new, MobCategory.CREATURE)
 			                       .sized(0.6f, 1.95f)
 			                       .clientTrackingRange(10)
-			                       .build(new VineryIdentifier("wandering_winemaker").toString()));
+			                       .build(VineryIdentifier.of("wandering_winemaker").toString()));
 
 	public static <T extends EntityType<?>> RegistrySupplier<T> create(final String path, final Supplier<T> type) {
-		return ENTITY_TYPES.register(new VineryIdentifier(path), type);
+		return ENTITY_TYPES.register(VineryIdentifier.of(path), type);
 	}
 	
 	public static void init() {

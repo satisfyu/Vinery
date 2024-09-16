@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "vinery:dark_cherry_planks"
+    }
+  },
+  "result": {
+    "id": "vinery:dark_cherry_slab",
+    "count": 6
+  }
+}

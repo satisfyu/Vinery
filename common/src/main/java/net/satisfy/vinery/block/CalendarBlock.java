@@ -3,6 +3,10 @@ package net.satisfy.vinery.block;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import de.cristelknight.doapi.common.block.FacingBlock;
+import dev.architectury.platform.Platform;
+import dev.architectury.utils.Env;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -11,6 +15,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -82,8 +87,9 @@ public class CalendarBlock extends FacingBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
         if (player.isDiscrete()) return InteractionResult.PASS;
+        InteractionHand hand = player.getUsedItemHand();
         player.getItemInHand(hand);
         if (world.isClientSide) {
             if (switchPages(world, pos, state, player).consumesAction()) {
@@ -123,9 +129,12 @@ public class CalendarBlock extends FacingBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        if (world instanceof Level level) {
-            tooltip.add(CalendarItem.getTime(level));
+    public void appendHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+        if(Platform.getEnvironment() == Env.CLIENT){
+            ClientLevel world = Minecraft.getInstance().level;
+            if (world != null) {
+                list.add(CalendarItem.getTime(world));
+            }
         }
     }
 }

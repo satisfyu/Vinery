@@ -1,0 +1,15 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    {
+      "tag": "vinery:grapejuice_red"
+    },
+    {
+      "item": "minecraft:emerald"
+    }
+  ],
+  "result": {
+    "id": "vinery:lamroc_wine",
+    "count": 1
+  }
+}

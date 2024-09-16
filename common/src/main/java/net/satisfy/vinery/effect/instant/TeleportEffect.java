@@ -24,8 +24,9 @@ public class TeleportEffect extends InstantenousMobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity source, int i) {
+    public boolean applyEffectTick(LivingEntity source, int i) {
         teleport(source);
+        return true;
     }
 
     private void teleport(Entity source) {
@@ -47,7 +48,7 @@ public class TeleportEffect extends InstantenousMobEffect {
         if (target != null) {
             if (!player.level().isClientSide) {
                 Vec3 teleportVec = new Vec3(target.getX(), target.getY(), target.getZ());
-                player.teleportToWithTicket(teleportVec.x + 0.5, teleportVec.y, teleportVec.z + 0.5);
+                player.teleportTo(teleportVec.x + 0.5, teleportVec.y, teleportVec.z + 0.5);
             }
             player.fallDistance = 0;
             player.playSound(SoundEvents.ENDER_EYE_DEATH, 1F, 1F);
@@ -61,6 +62,6 @@ public class TeleportEffect extends InstantenousMobEffect {
     private void oldTeleport(Player player) {
         Vec3 lookVec = player.getLookAngle();
         Vec3 teleportPos = player.position().add(lookVec.x * 30, lookVec.y * 30, lookVec.z * 30);
-        player.teleportToWithTicket(teleportPos.x, teleportPos.y, teleportPos.z);
+        player.teleportTo(teleportPos.x, teleportPos.y, teleportPos.z);
     }
 }

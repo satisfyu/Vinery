@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wine_rack",
+  "pattern": [
+    "#_#",
+    "#O#",
+    "#_#"
+  ],
+  "key": {
+    "#": {
+      "item": "vinery:dark_cherry_planks"
+    },
+    "_": {
+      "item": "vinery:dark_cherry_slab"
+    },
+    "O": {
+      "item": "vinery:dark_cherry_trapdoor"
+    }
+  },
+  "result": {
+    "id": "vinery:dark_cherry_wine_rack_big",
+    "count": 1
+  }
+}

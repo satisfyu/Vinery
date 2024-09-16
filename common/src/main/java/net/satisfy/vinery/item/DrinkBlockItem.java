@@ -4,20 +4,27 @@ import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
 import de.cristelknight.doapi.common.util.GeneralUtil;
+import dev.architectury.platform.Platform;
+import dev.architectury.utils.Env;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -61,38 +68,43 @@ public class DrinkBlockItem extends BlockItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
-        List<Pair<MobEffectInstance, Float>> list2 = getFoodProperties() != null ? getFoodProperties().getEffects() : Lists.newArrayList();
-        List<Pair<Attribute, AttributeModifier>> list3 = Lists.newArrayList();
+    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> tooltip, TooltipFlag tooltipFlag) {
+        List<FoodProperties.PossibleEffect> list2 = itemStack.has(DataComponents.FOOD) ? itemStack.get(DataComponents.FOOD).effects() : Lists.newArrayList();
+        List<Pair<Holder<Attribute>, AttributeModifier>> list3 = Lists.newArrayList();
+
+        ClientLevel world;
+        if(Platform.getEnvironment() == Env.CLIENT && Minecraft.getInstance().level != null){
+            world = Minecraft.getInstance().level;
+        } else {
+            world = null;
+        }
+
         if (list2.isEmpty()) {
             tooltip.add(Component.translatable("effect.none").withStyle(ChatFormatting.GRAY));
         } else {
-            for(Pair<MobEffectInstance, Float> statusEffectInstance : list2) {
-                MutableComponent mutableText = Component.translatable(statusEffectInstance.getFirst().getDescriptionId());
-                MobEffect statusEffect = statusEffectInstance.getFirst().getEffect();
-                Map<Attribute, AttributeModifier> map = statusEffect.getAttributeModifiers();
-                if (!map.isEmpty()) {
-                    for(Map.Entry<Attribute, AttributeModifier> entry : map.entrySet()) {
-                        AttributeModifier entityAttributeModifier = entry.getValue();
-                        AttributeModifier entityAttributeModifier2 = new AttributeModifier(
-                                entityAttributeModifier.getName(),
-                                statusEffect.getAttributeModifierValue(statusEffectInstance.getFirst().getAmplifier(), entityAttributeModifier),
-                                entityAttributeModifier.getOperation()
-                        );
-                        list3.add(new Pair<>(entry.getKey(), entityAttributeModifier2));
-                    }
-                }
+            for (FoodProperties.PossibleEffect statusEffectInstance : list2) {
+                MutableComponent mutableText = Component.translatable(statusEffectInstance.effect().getDescriptionId());
+                MobEffect statusEffect = statusEffectInstance.effect().getEffect().value();
 
-                if (world != null) {
-                    mutableText = Component.translatable(
-                            "potion.withAmplifier",
-                            mutableText, Component.translatable("potion.potency." + WineYears.getEffectLevel(stack, world)));
-                }
+                statusEffect.createModifiers(statusEffectInstance.effect().getAmplifier(), (holderx, attributeModifierx) -> {
+                    AttributeModifier entityAttributeModifier = new AttributeModifier(
+                            attributeModifierx.id(),
+                            attributeModifierx.amount() * (double)(statusEffectInstance.effect().getAmplifier() + 1),
+                            attributeModifierx.operation()
+                    );
+                    list3.add(new Pair<>(holderx, entityAttributeModifier));
+                });
 
-                if (statusEffectInstance.getFirst().getDuration() > 20) {
+                if (statusEffectInstance.effect().getDuration() > 20) {
                     mutableText = Component.translatable(
                             "potion.withDuration",
-                            mutableText, MobEffectUtil.formatDuration(statusEffectInstance.getFirst(), statusEffectInstance.getSecond()));
+                            mutableText, MobEffectUtil.formatDuration(statusEffectInstance.effect(), statusEffectInstance.probability(), tooltipContext.tickRate()));
+
+                    if(world != null){
+                        mutableText = Component.translatable(
+                                "potion.withAmplifier",
+                                mutableText, Component.translatable("potion.potency." + WineYears.getEffectLevel(itemStack, world)));
+                    }
                 }
 
                 tooltip.add(mutableText.withStyle(statusEffect.getCategory().getTooltipFormatting()));
@@ -103,36 +115,36 @@ public class DrinkBlockItem extends BlockItem {
             tooltip.add(Component.empty());
             tooltip.add(Component.translatable("potion.whenDrank").withStyle(ChatFormatting.DARK_PURPLE));
 
-            for(Pair<Attribute, AttributeModifier> pair : list3) {
+            for (Pair<Holder<Attribute>, AttributeModifier> pair : list3) {
                 AttributeModifier entityAttributeModifier3 = pair.getSecond();
-                double d = entityAttributeModifier3.getAmount();
+                double d = entityAttributeModifier3.amount();
                 double e;
-                if (entityAttributeModifier3.getOperation() != AttributeModifier.Operation.MULTIPLY_BASE && entityAttributeModifier3.getOperation() != AttributeModifier.Operation.MULTIPLY_TOTAL) {
-                    e = entityAttributeModifier3.getAmount();
+                if (entityAttributeModifier3.operation() != AttributeModifier.Operation.ADD_MULTIPLIED_BASE && entityAttributeModifier3.operation() != AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL) {
+                    e = entityAttributeModifier3.amount();
                 } else {
-                    e = entityAttributeModifier3.getAmount() * 100.0;
+                    e = entityAttributeModifier3.amount() * 100.0;
                 }
 
                 if (d > 0.0) {
                     tooltip.add(
                             Component.translatable(
-                                            "attribute.modifier.plus." + entityAttributeModifier3.getOperation().toValue(),
-                                            ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
+                                            "attribute.modifier.plus." + entityAttributeModifier3.operation().id(),
+                                            ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().value().getDescriptionId()))
                                     .withStyle(ChatFormatting.BLUE)
                     );
                 } else if (d < 0.0) {
                     e *= -1.0;
                     tooltip.add(
                             Component.translatable(
-                                            "attribute.modifier.take." + entityAttributeModifier3.getOperation().toValue(),
-                                            ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
+                                            "attribute.modifier.take." + entityAttributeModifier3.operation().id(),
+                                            ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().value().getDescriptionId()))
                                     .withStyle(ChatFormatting.RED)
                     );
                 }
             }
         }
         tooltip.add(Component.empty());
-        tooltip.add(Component.translatable("tooltip.vinery.year").withStyle(ChatFormatting.WHITE).append(Component.nullToEmpty(" " + WineYears.getWineYear(stack, world))));
+        if(world != null)tooltip.add(Component.translatable("tooltip.vinery.year").withStyle(ChatFormatting.WHITE).append(Component.nullToEmpty(" " + WineYears.getWineYear(itemStack, world))));
     }
 
     @Override

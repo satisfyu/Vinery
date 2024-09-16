@@ -43,10 +43,10 @@ public class MobEffectRegistry {
     public static final RegistrySupplier<MobEffect> SHIRAAZ_EFFECT;
 
     private static RegistrySupplier<MobEffect> registerEffect(String name, Supplier<MobEffect> effect){
-        if(Platform.isForge()){
+        if(Platform.isNeoForge()){
             return MOB_EFFECTS.register(name, effect);
         }
-        return MOB_EFFECTS_REGISTRAR.register(new VineryIdentifier(name), effect);
+        return MOB_EFFECTS_REGISTRAR.register(VineryIdentifier.of(name), effect);
     }
 
     public static void init(){

@@ -1,0 +1,50 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "Custom"
+
+[[mixins]]
+config = "vinery.mixins.json"
+
+[[mixins]]
+config = "vinery-common.mixins.json"
+
+[[mods]]
+modId = "vinery"
+version = "1.5.0"
+displayName = "[Let's Do] Vinery"
+authors = "satisfy_u, Cristelknight, BaumeisterJO"
+description = '''
+In Vino Veritas - it's time for wine! Build your own vineyard, produce wine, and establish your own winery.
+'''
+logoFile = "pack.png"
+
+[[dependencies.vinery]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.vinery]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.vinery]]
+modId = "doapi"
+type = "required"
+versionRange = "[1.3.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.vinery]]
+modId = "architectury"
+type = "required"
+versionRange = "[9.0.8,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[incompatibleMods]]
+modId = "copperative"

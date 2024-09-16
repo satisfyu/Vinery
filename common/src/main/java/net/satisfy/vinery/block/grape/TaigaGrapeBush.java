@@ -1,9 +1,11 @@
 package net.satisfy.vinery.block.grape;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 
@@ -36,6 +38,16 @@ public class TaigaGrapeBush extends GrapeBush {
     }
 
     public boolean isPathfindable(BlockState arg, BlockGetter arg2, BlockPos arg3, PathComputationType arg4) {
+        return false;
+    }
+
+    @Override
+    protected MapCodec<? extends BushBlock> codec() {
+        return null;
+    }
+
+    @Override
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         return false;
     }
 }

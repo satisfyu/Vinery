@@ -3,6 +3,7 @@ package net.satisfy.vinery.block.entity;
 import de.cristelknight.doapi.common.world.ImplementedInventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -15,7 +16,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -26,6 +29,10 @@ import net.satisfy.vinery.registry.BlockEntityTypeRegistry;
 import net.satisfy.vinery.registry.RecipeTypesRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, ImplementedInventory, BlockEntityTicker<ApplePressBlockEntity> {
     private final NonNullList<ItemStack> inventory = NonNullList.withSize(2, ItemStack.EMPTY);
@@ -84,18 +91,17 @@ public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, 
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        super.saveAdditional(nbt);
-        ContainerHelper.saveAllItems(nbt, inventory);
-        nbt.putInt("apple_press.progress", progress);
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
+        ContainerHelper.saveAllItems(compoundTag, this.inventory, provider);
+        compoundTag.putInt("progress", this.progress);
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        ContainerHelper.loadAllItems(nbt, inventory);
-        progress = nbt.getInt("apple_press.progress");
-        super.load(nbt);
-
+    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundTag, provider);
+        ContainerHelper.loadAllItems(compoundTag, this.inventory, provider);
+        this.progress = compoundTag.getInt("progress");
     }
 
     private void resetProgress() {
@@ -108,23 +114,49 @@ public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, 
     public void tick(Level world, BlockPos blockPos, BlockState state, ApplePressBlockEntity entity) {
         if(world.isClientSide()) return;
 
-        Recipe<?> r = world.getRecipeManager().getRecipeFor(RecipeTypesRegistry.APPLE_PRESS_RECIPE_TYPE.get(), this, world).orElse(null);
-        if(!(r instanceof ApplePressRecipe recipe)){
+
+        RecipeManager recipeManager = world.getRecipeManager();
+        List<RecipeHolder<ApplePressRecipe>> recipes = recipeManager.getAllRecipesFor(RecipeTypesRegistry.APPLE_PRESS_RECIPE_TYPE.get());
+
+        Optional<ApplePressRecipe> recipe = Optional.ofNullable(getRecipe(recipes, inventory));
+
+        if(recipe.isEmpty()){
             entity.resetProgress();
             setChanged(world, blockPos, state);
             return;
         }
 
-        if(hasRecipe(entity, recipe)) {
+        if(hasRecipe(entity, recipe.get())) {
             entity.progress++;
             setChanged(world, blockPos, state);
             if(entity.progress >= entity.maxProgress) {
-                craftItem(entity, recipe);
+                craftItem(entity, recipe.get());
             }
         } else {
             entity.resetProgress();
             setChanged(world, blockPos, state);
         }
+    }
+
+    private ApplePressRecipe getRecipe(List<RecipeHolder<ApplePressRecipe>> recipes, NonNullList<ItemStack> inventory) {
+        recipeLoop:
+        for (RecipeHolder<ApplePressRecipe> recipeHolder : recipes) {
+            ApplePressRecipe recipe = recipeHolder.value();
+            for (Ingredient ingredient : recipe.getIngredients()) {
+                boolean ingredientFound = false;
+                for (ItemStack slotItem : inventory) {
+                    if (ingredient.test(slotItem)) {
+                        ingredientFound = true;
+                        break;
+                    }
+                }
+                if (!ingredientFound) {
+                    continue recipeLoop;
+                }
+            }
+            return recipe;
+        }
+        return null;
     }
 
     private static void craftItem(ApplePressBlockEntity entity, ApplePressRecipe recipe) {

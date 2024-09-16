@@ -1,9 +1,9 @@
 package net.satisfy.vinery.block;
 
+import com.mojang.serialization.MapCodec;
 import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.LivingEntity;
@@ -39,6 +39,7 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 public class ApplePressBlock extends BaseEntityBlock {
+	public static final MapCodec<ApplePressBlock> CODEC = simpleCodec(ApplePressBlock::new);
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final EnumProperty<DoubleBlockHalf> HALF = EnumProperty.create("half", DoubleBlockHalf.class);
 	public static final Map<Direction, VoxelShape> TOP_SHAPES = new HashMap<>();
@@ -47,6 +48,11 @@ public class ApplePressBlock extends BaseEntityBlock {
 	public ApplePressBlock(Properties settings) {
 		super(settings);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER));
+	}
+
+	@Override
+	protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
+		return CODEC;
 	}
 
 	@Override
@@ -79,7 +85,7 @@ public class ApplePressBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+	public @NotNull BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
 		if (!player.isCreative() && state.getValue(HALF) == DoubleBlockHalf.UPPER) {
 			ItemStack itemStack = new ItemStack(ObjectRegistry.APPLE_PRESS.get());
 			popResource(world, pos, itemStack);
@@ -92,14 +98,11 @@ public class ApplePressBlock extends BaseEntityBlock {
 			}
 		}
 		super.playerWillDestroy(world, pos, state, player);
+		return state;
 	}
 
 	@Override
-	public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (state.getValue(HALF) != DoubleBlockHalf.LOWER) {
-			return InteractionResult.PASS;
-		}
-
+	public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		if (!world.isClientSide) {
 			MenuProvider screenHandlerFactory = state.getMenuProvider(world, pos);
 			if (screenHandlerFactory != null) {
@@ -108,7 +111,6 @@ public class ApplePressBlock extends BaseEntityBlock {
 		}
 		return InteractionResult.SUCCESS;
 	}
-
 
 	@Nullable
 	@Override

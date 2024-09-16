@@ -11,14 +11,15 @@ public class ShiraazEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.level().isClientSide) {
             entity.setAbsorptionAmount(entity.getAbsorptionAmount() + 4.0F);  // Absorption provides 2 hearts
         }
+        return true;
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
-        return duration % 20 == 0;
+    public boolean shouldApplyEffectTickThisTick(int i, int j) {
+        return i % 20 == 0;
     }
 }

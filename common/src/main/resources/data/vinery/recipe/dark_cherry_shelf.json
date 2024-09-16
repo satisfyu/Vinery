@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "shelf",
+  "pattern": [
+    "###",
+    "_ _",
+    "_ _"
+  ],
+  "key": {
+    "#": {
+      "item": "vinery:dark_cherry_slab"
+    },
+    "_": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "result": {
+    "id": "vinery:dark_cherry_shelf",
+    "count": 2
+  }
+}

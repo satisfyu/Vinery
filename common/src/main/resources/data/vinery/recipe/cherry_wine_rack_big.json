@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "mccherry_rack",
+  "pattern": [
+    "#_#",
+    "___",
+    "#_#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:cherry_planks"
+    },
+    "_": {
+      "item": "minecraft:cherry_slab"
+    }
+  },
+  "result": {
+    "id": "vinery:cherry_wine_rack_big",
+    "count": 1
+  }
+}

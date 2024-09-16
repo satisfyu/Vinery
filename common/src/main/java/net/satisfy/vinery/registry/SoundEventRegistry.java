@@ -15,7 +15,7 @@ public class SoundEventRegistry {
     public static final RegistrySupplier<SoundEvent> BLOCK_GRAPEVINE_POT_SQUEEZE = create();
 
     private static RegistrySupplier<SoundEvent> create() {
-        final ResourceLocation id = new VineryIdentifier("block.grapevine_pot.squeeze");
+        final ResourceLocation id = VineryIdentifier.of("block.grapevine_pot.squeeze");
         return SOUND_EVENTS.register(id, () -> SoundEvent.createVariableRangeEvent(id));
     }
 

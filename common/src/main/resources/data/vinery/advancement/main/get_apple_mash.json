@@ -1,0 +1,38 @@
+{
+  "parent": "vinery:main/apple_press",
+  "display": {
+    "icon": {
+      "id": "vinery:apple_mash",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancement.vinery.apple_mash"
+    },
+    "description": {
+      "translate": "advancement.vinery.apple_mash.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "apple_mash": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "vinery:apple_mash"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "apple_mash"
+    ]
+  ]
+}

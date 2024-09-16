@@ -1,0 +1,38 @@
+{
+  "parent": "vinery:main/root",
+  "display": {
+    "icon": {
+      "id": "minecraft:apple",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancement.vinery.apple"
+    },
+    "description": {
+      "translate": "advancement.vinery.apple.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "apple": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:apple"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "apple"
+    ]
+  ]
+}

@@ -10,13 +10,13 @@ import java.util.Set;
 import static net.satisfy.vinery.registry.ObjectRegistry.*;
 
 public class StorageTypeRegistry {
-    public static final ResourceLocation BIG_BOTTLE = new VineryIdentifier("big_bottle");
-    public static final ResourceLocation FOUR_BOTTLE = new VineryIdentifier("four_bottle");
-    public static final ResourceLocation NINE_BOTTLE = new VineryIdentifier("nine_bottle");
-    public static final ResourceLocation SHELF = new VineryIdentifier("shelf");
-    public static final ResourceLocation WINE_BOX = new VineryIdentifier("wine_box");
+    public static final ResourceLocation BIG_BOTTLE = VineryIdentifier.of("big_bottle");
+    public static final ResourceLocation FOUR_BOTTLE = VineryIdentifier.of("four_bottle");
+    public static final ResourceLocation NINE_BOTTLE = VineryIdentifier.of("nine_bottle");
+    public static final ResourceLocation SHELF = VineryIdentifier.of("shelf");
+    public static final ResourceLocation WINE_BOX = VineryIdentifier.of("wine_box");
 
-    public static final ResourceLocation WINE_BOTTLE = new VineryIdentifier("wine_bottle");
+    public static final ResourceLocation WINE_BOTTLE = VineryIdentifier.of("wine_bottle");
 
     public static void registerBlocks(Set<Block> blocks) {
         blocks.add(DARK_CHERRY_WINE_RACK_SMALL.get());

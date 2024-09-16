@@ -17,7 +17,7 @@ public class LavaWalkerEffect extends TickingEffect
     }
 
     @Override
-    public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
+    public boolean applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
         if (!(pLivingEntity instanceof Player player && player.isSpectator())) {
             Vec3 pos = pLivingEntity.position();
             Vec3 movement = pLivingEntity.getDeltaMovement();
@@ -40,5 +40,6 @@ public class LavaWalkerEffect extends TickingEffect
             }
             super.applyEffectTick(pLivingEntity, pAmplifier);
         }
+        return false;
     }
 }

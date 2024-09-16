@@ -16,8 +16,9 @@ public class StaggerEffect extends TickingEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity livingEntity, int amplifier) {
         this.distractEntity(livingEntity);
+        return true;
     }
 
 

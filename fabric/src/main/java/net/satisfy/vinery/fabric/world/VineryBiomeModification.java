@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 public class VineryBiomeModification {
 
     public static void init() {
-        BiomeModification world = BiomeModifications.create(new VineryIdentifier("world_features"));
+        BiomeModification world = BiomeModifications.create(VineryIdentifier.of("world_features"));
         Predicate<BiomeSelectionContext> plainsBiomes = getVinerySelector("spawns_grape");
         Predicate<BiomeSelectionContext> savannaBiomes = getVinerySelector("spawns_savanna_grape");
         Predicate<BiomeSelectionContext> taigaBiomes = getVinerySelector("spawns_taiga_grape");
@@ -40,7 +40,7 @@ public class VineryBiomeModification {
     }
 
     private static Predicate<BiomeSelectionContext> getVinerySelector(String path) {
-        return BiomeSelectors.tag(TagKey.create(Registries.BIOME, new VineryIdentifier(path)));
+        return BiomeSelectors.tag(TagKey.create(Registries.BIOME, VineryIdentifier.of(path)));
     }
 
 

@@ -1,5 +1,5 @@
 architectury {
-    common(rootProject.enabled_platforms.split(","))
+    common("fabric", "neoforge")
 }
 
 loom {

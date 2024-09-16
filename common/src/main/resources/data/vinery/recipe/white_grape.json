@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#"
+    ],
+    "key": {
+        "#": {
+            "item": "vinery:white_grape_bag"
+        }
+    },
+    "result": {
+        "id": "vinery:white_grape",
+        "count": 9
+    }
+}

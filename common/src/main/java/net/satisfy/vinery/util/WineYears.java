@@ -1,7 +1,9 @@
 package net.satisfy.vinery.util;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.satisfy.vinery.config.VineryConfig;
 
@@ -22,11 +24,13 @@ public class WineYears {
 	}
 
 	public static void setWineYear(ItemStack wine, Level world) {
-		wine.getOrCreateTag().putInt("Year", getYear(world));
+		CompoundTag nbt = wine.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
+		nbt.putInt("Year", getYear(world));
+		wine.set(DataComponents.CUSTOM_DATA, CustomData.of(nbt));
 	}
 
 	public static int getWineYear(ItemStack wine, Level world) {
-		CompoundTag nbt = wine.getOrCreateTag();
+		CompoundTag nbt = wine.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
 		if (!nbt.contains("Year")) setWineYear(wine, world);
 		return nbt.getInt("Year");
 	}

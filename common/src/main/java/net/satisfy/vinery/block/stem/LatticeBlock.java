@@ -101,7 +101,8 @@ public class LatticeBlock extends StemBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        InteractionHand hand = player.getUsedItemHand();
         if (!world.isClientSide && player.getItemInHand(hand).getItem() instanceof AxeItem) {
             BlockState newState = state.setValue(SUPPORT, !state.getValue(SUPPORT));
             BlockState updateState = getConnection(newState, world, pos);
@@ -112,12 +113,12 @@ public class LatticeBlock extends StemBlock {
         final int age = state.getValue(AGE);
 
         if (hand == InteractionHand.OFF_HAND) {
-            return super.use(state, world, pos, player, hand, hit);
+            return super.useWithoutItem(state, world, pos, player, hit);
         }
 
         Direction hitDirection = hit.getDirection();
         if (age > 0 && stack.getItem() == Items.SHEARS) {
-            stack.hurtAndBreak(1, player, player2 -> player2.broadcastBreakEvent(player.getUsedItemHand()));
+            stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
             if (age > 2) {
                 dropGrapes(world, state, pos, hitDirection);
             }
@@ -135,14 +136,14 @@ public class LatticeBlock extends StemBlock {
             return InteractionResult.SUCCESS;
         }
         else if (age > 2) {
-            stack.hurtAndBreak(1, player, player2 -> player2.broadcastBreakEvent(player.getUsedItemHand()));
+            stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
             dropGrapes(world, state, pos, hitDirection);
             world.setBlock(pos, state.setValue(AGE, 1), 3);
             world.playSound(player, pos, BREAK_SOUND_EVENT, SoundSource.AMBIENT, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
         }
 
-        return super.use(state, world, pos, player, hand, hit);
+        return super.useWithoutItem(state, world, pos, player, hit);
     }
 
     @Override
@@ -190,8 +191,8 @@ public class LatticeBlock extends StemBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState state, boolean bl) {
-        return !isMature(state) && state.getValue(AGE) > 0;
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        return !isMature(blockState) && blockState.getValue(AGE) > 0;
     }
 
     public BlockState getConnection(BlockState state, LevelAccessor level, BlockPos currentPos) {

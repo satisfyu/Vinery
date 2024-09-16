@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "slab",
+  "ingredients": [
+    {
+      "item": "minecraft:grass_block"
+    },
+    {
+      "item": "minecraft:grass_block"
+    },
+    {
+      "item": "minecraft:grass_block"
+    }
+  ],
+  "result": {
+    "id": "vinery:grass_slab",
+    "count": 6
+  }
+}
