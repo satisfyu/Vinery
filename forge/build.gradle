@@ -7,7 +7,7 @@ architectury {
 }
 
 
-def jarFileName = 'letsdo-vinery-forge'
+def jarFileName = 'letsdo-vinery-neoforge'
 
 archivesBaseName = jarFileName
 

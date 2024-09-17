@@ -52,7 +52,7 @@
     "fabric-api": "*",
     "minecraft": ">=1.21",
     "architectury": ">=9.0.8",
-    "doapi": ">=1.3.0"
+    "doapi": ">=1.2.0"
   },
   "conflicts": {
     "copperative": "*"
