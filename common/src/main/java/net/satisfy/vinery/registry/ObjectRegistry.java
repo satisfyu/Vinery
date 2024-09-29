@@ -151,6 +151,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> RED_JUNGLE_GRAPEJUICE = registerItem("red_jungle_grapejuice", () -> new GrapejuiceBottleItem(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
     public static final RegistrySupplier<Item> WHITE_JUNGLE_GRAPEJUICE = registerItem("white_jungle_grapejuice", () -> new GrapejuiceBottleItem(getSettings().craftRemainder(ObjectRegistry.WINE_BOTTLE.get().asItem())));
     public static final RegistrySupplier<Block> CHORUS_WINE = registerWithoutItem("chorus_wine", () -> new WineBottleBlock(getWineSettings(), 1));
+    public static final RegistrySupplier<Item> CHORUS_WINE_ITEM = registerItem("chorus_wine", () -> new DrinkBlockBigItem(CHORUS_WINE.get(), getWineItemSettings(MobEffectRegistry.TELEPORT.get(), 1, 0)));
     public static final RegistrySupplier<Block> CHERRY_WINE = registerWithoutItem("cherry_wine", () -> new WineBottleBlock(getWineSettings(), 3));
     public static final RegistrySupplier<Block> MAGNETIC_WINE = registerWithoutItem("magnetic_wine", () -> new WineBottleBlock(getWineSettings(), 1));
     public static final RegistrySupplier<Block> JO_SPECIAL_MIXTURE = registerWithoutItem("jo_special_mixture", () -> new WineBottleBlock(getWineSettings(), 1));
@@ -254,7 +255,6 @@ public class ObjectRegistry {
 
     public static void initItemsWithConfig() {
         VineryConfig config = VineryConfig.getConfigInstance();
-        registerItem("chorus_wine", () -> new DrinkBlockBigItem(CHORUS_WINE.get(), getWineItemSettings(MobEffectRegistry.TELEPORT.get(), config.wineEffectDuration(), config.wineEffectStrength())));
         registerItem("cherry_wine", () -> new DrinkBlockSmallItem(CHERRY_WINE.get(), getWineItemSettings(MobEffects.REGENERATION, config.wineEffectDuration(), config.wineEffectStrength())));
         registerItem("magnetic_wine", () -> new DrinkBlockBigItem(MAGNETIC_WINE.get(), getWineItemSettings(MobEffectRegistry.MAGNET.get(), config.wineEffectDuration(), config.wineEffectStrength())));
         registerItem("jo_special_mixture", () -> new DrinkBlockBigItem(JO_SPECIAL_MIXTURE.get(), getWineItemSettings(MobEffectRegistry.TRIPPY.get(), config.wineEffectDuration(), config.wineEffectStrength())));
