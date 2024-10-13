@@ -1,5 +1,6 @@
 package net.satisfy.vinery.entity;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -8,6 +9,7 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.horse.AbstractChestedHorse;
+import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
@@ -19,6 +21,8 @@ public class TraderMuleEntity extends AbstractChestedHorse {
 		super(entityType, world);
 	}
 
+	private int despawnDelay = 47999;
+
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
@@ -29,10 +33,50 @@ public class TraderMuleEntity extends AbstractChestedHorse {
 		this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 	}
+	public void aiStep() {
+		super.aiStep();
+		if (!this.level().isClientSide) {
+			this.maybeDespawn();
+		}
 
+	}
 	@Override
 	public TraderMuleEntity getBreedOffspring(ServerLevel serverWorld, AgeableMob passiveEntity) {
 		return EntityRegistry.MULE.get().create(this.level());
+	}
+	public void addAdditionalSaveData(CompoundTag compoundTag) {
+		super.addAdditionalSaveData(compoundTag);
+		compoundTag.putInt("DespawnDelay", this.despawnDelay);
+	}
+	public void readAdditionalSaveData(CompoundTag compoundTag) {
+		super.readAdditionalSaveData(compoundTag);
+		if (compoundTag.contains("DespawnDelay", 99)) {
+			this.despawnDelay = compoundTag.getInt("DespawnDelay");
+		}
+
+	}
+	public void setDespawnDelay(int i) {
+		this.despawnDelay = i;
+	}
+	private void maybeDespawn() {
+		if (this.canDespawn()) {
+			this.despawnDelay = this.isLeashedToWanderingTrader() ? ((WanderingTrader)this.getLeashHolder()).getDespawnDelay() - 1 : this.despawnDelay - 1;
+			if (this.despawnDelay <= 0) {
+				this.dropLeash(true, false);
+				this.discard();
+			}
+
+		}
+	}
+	private boolean canDespawn() {
+		return !this.isTamed() && !this.isLeashedToSomethingOtherThanTheWanderingTrader() && !this.hasExactlyOnePlayerPassenger();
+	}
+	private boolean isLeashedToWanderingTrader() {
+		return this.getLeashHolder() instanceof WanderingWinemakerEntity;
+	}
+
+	private boolean isLeashedToSomethingOtherThanTheWanderingTrader() {
+		return this.isLeashed() && !this.isLeashedToWanderingTrader();
 	}
 
 	@Override
