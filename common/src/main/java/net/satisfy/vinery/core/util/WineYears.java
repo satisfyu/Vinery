@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.util;
 
+import dev.architectury.injectables.annotations.PlatformOnly;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -14,12 +15,21 @@ public class WineYears {
 	public static final int YEARS_PER_EFFECT_LEVEL = PlatformHelper.getWineYearsPerEffectLevel();
 	public static final int MAX_DURATION = PlatformHelper.getWineMaxDuration();
 
+	public static final String TAG_YEAR = "Year";
+	public static final String TAG_EFFECT_LEVEL = "EffectAmplifier";
+	public static final String TAG_EFFECT_DURATION = "EffectDuration";
+
 	public static int getYear(Level world) {
 		return world != null ? YEARS_START + (int) (world.getDayTime() / 24000 / DAYS_PER_YEAR) : YEARS_START;
 	}
 
 	public static int getEffectLevel(ItemStack wine, Level world) {
-		return Math.max(0, Math.min(MAX_LEVEL, getWineAge(wine, world) / YEARS_PER_EFFECT_LEVEL));
+		if (wine.getOrCreateTag().contains(TAG_EFFECT_LEVEL)) {
+			return wine.getOrCreateTag().getInt(TAG_EFFECT_LEVEL);
+		}
+		int calculated = Math.max(0, Math.min(MAX_LEVEL, getWineAge(wine, world) / YEARS_PER_EFFECT_LEVEL));
+		wine.getOrCreateTag().putInt(TAG_EFFECT_LEVEL, calculated);
+		return calculated;
 	}
 
 	public static int getWineAge(ItemStack wine, Level world) {
@@ -30,27 +40,63 @@ public class WineYears {
 	}
 
 	public static void setWineYear(ItemStack wine, Level world) {
-		if (world != null) {
-			wine.getOrCreateTag().putInt("Year", getYear(world));
-		} else {
-			wine.getOrCreateTag().putInt("Year", YEARS_START);
-		}
+		int year = world != null ? getYear(world) : YEARS_START;
+		wine.getOrCreateTag().putInt(TAG_YEAR, year);
+		int age = getYear(world) - year;
+		int amplifier = Math.max(0, Math.min(MAX_LEVEL, age / YEARS_PER_EFFECT_LEVEL));
+		int duration = Math.min(START_DURATION + (DURATION_PER_YEAR * age), MAX_DURATION);
+		wine.getOrCreateTag().putInt(TAG_EFFECT_LEVEL, amplifier);
+		wine.getOrCreateTag().putInt(TAG_EFFECT_DURATION, duration);
 	}
 
 	public static int getWineYear(ItemStack wine) {
 		CompoundTag nbt = wine.getOrCreateTag();
-		return nbt.getInt("Year");
+		return nbt.getInt(TAG_YEAR);
 	}
 
 	public static int getEffectDuration(ItemStack wine, Level world) {
+		if (wine.getOrCreateTag().contains(TAG_EFFECT_DURATION)) {
+			return wine.getOrCreateTag().getInt(TAG_EFFECT_DURATION);
+		}
 		int age = getWineAge(wine, world);
-		int duration = START_DURATION + (DURATION_PER_YEAR * age);
-		return Math.min(duration, MAX_DURATION);
+		int calculated = Math.min(START_DURATION + (DURATION_PER_YEAR * age), MAX_DURATION);
+		wine.getOrCreateTag().putInt(TAG_EFFECT_DURATION, calculated);
+		return calculated;
 	}
-
 
 	public static boolean hasWineYear(ItemStack wine) {
-		return !wine.getOrCreateTag().contains("Year");
+		return !wine.getOrCreateTag().contains(TAG_YEAR);
+	}
+
+	@PlatformOnly(PlatformOnly.FORGE)
+	public static CompoundTag getShareTag(ItemStack stack) {
+		CompoundTag tag = new CompoundTag();
+		if (stack.getTag() != null) {
+			if (stack.getTag().contains(TAG_YEAR)) {
+				tag.putInt(TAG_YEAR, stack.getTag().getInt(TAG_YEAR));
+			}
+			if (stack.getTag().contains(TAG_EFFECT_LEVEL)) {
+				tag.putInt(TAG_EFFECT_LEVEL, stack.getTag().getInt(TAG_EFFECT_LEVEL));
+			}
+			if (stack.getTag().contains(TAG_EFFECT_DURATION)) {
+				tag.putInt(TAG_EFFECT_DURATION, stack.getTag().getInt(TAG_EFFECT_DURATION));
+			}
+		}
+		return tag;
+	}
+
+	@PlatformOnly(PlatformOnly.FORGE)
+	public static void readShareTag(ItemStack stack, CompoundTag nbt) {
+		if (nbt != null) {
+			if (nbt.contains(TAG_YEAR)) {
+				stack.getOrCreateTag().putInt(TAG_YEAR, nbt.getInt(TAG_YEAR));
+			}
+			if (nbt.contains(TAG_EFFECT_LEVEL)) {
+				stack.getOrCreateTag().putInt(TAG_EFFECT_LEVEL, nbt.getInt(TAG_EFFECT_LEVEL));
+			}
+			if (nbt.contains(TAG_EFFECT_DURATION)) {
+				stack.getOrCreateTag().putInt(TAG_EFFECT_DURATION, nbt.getInt(TAG_EFFECT_DURATION));
+			}
+		}
 	}
 }
-

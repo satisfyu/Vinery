@@ -64,7 +64,7 @@ public class DrinkBlockItem extends BlockItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
+    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag context) {
         List<Pair<MobEffectInstance, Float>> effects = getFoodProperties() != null ? getFoodProperties().getEffects() : Lists.newArrayList();
         if (effects.isEmpty()) {
             tooltip.add(Component.translatable("effect.none").withStyle(ChatFormatting.GRAY));
@@ -95,11 +95,9 @@ public class DrinkBlockItem extends BlockItem {
     }
 
     @Override
-    @SuppressWarnings("unused")
     public @NotNull ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
         if (!level.isClientSide) {
-            int age = Math.max(0, WineYears.getWineAge(itemStack, level));
-            int duration = Math.max(0, scaleDurationWithAge ? WineYears.getEffectDuration(itemStack, level) : baseDuration);
+            int duration = Math.max(0, WineYears.getEffectDuration(itemStack, level));
             int amplifier = Math.max(0, WineYears.getEffectLevel(itemStack, level));
             List<Pair<MobEffectInstance, Float>> effects = Objects.requireNonNull(getFoodProperties()).getEffects();
             for (Pair<MobEffectInstance, Float> effectPair : effects) {
@@ -155,17 +153,11 @@ public class DrinkBlockItem extends BlockItem {
 
     @PlatformOnly(PlatformOnly.FORGE)
     public CompoundTag getShareTag(ItemStack stack) {
-        CompoundTag tag = new CompoundTag();
-        if (stack.getTag() != null && stack.getTag().contains("Year")) {
-            tag.putInt("Year", stack.getTag().getInt("Year"));
-        }
-        return tag;
+        return WineYears.getShareTag(stack);
     }
 
     @PlatformOnly(PlatformOnly.FORGE)
     public void readShareTag(ItemStack stack, @Nullable CompoundTag nbt) {
-        if (nbt != null && nbt.contains("Year")) {
-            stack.getOrCreateTag().putInt("Year", nbt.getInt("Year"));
-        }
+        WineYears.readShareTag(stack, nbt);
     }
 }

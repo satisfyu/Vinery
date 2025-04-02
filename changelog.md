@@ -1,4 +1,18 @@
-[1.4.39] - 2025.02.24
+[1.4.40] - 2025.04.31
+
+**Added**
+- 
+
+**Changed**
+- Increased the `Completionist Banner` effect duration from 40 to 200
+- Updated the `Overgrown Lattices` description for better clarity
+
+**Fixed**
+- Resolved an issue where `Apple Leaves` were not properly registered as flammable
+
+***
+
+[1.4.39] - 2025.03.04
 
 **Added**
 - Added Cherry Leaves, Apple Leaves and Grapevine Leaves to the ´hoe´ mineable tag.
