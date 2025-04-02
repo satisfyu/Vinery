@@ -1,0 +1,34 @@
+{
+	"credit": "Made by Satisfy",
+	"textures": {
+		"small_wine_bottle": "vinery:block/wine/bad_omen_wine",
+		"particle": "vinery:block/wine/bad_omen_wine"
+	},
+	"elements": [
+		{
+			"name": "bottleneck",
+			"from": [7, 11, 7],
+			"to": [9, 15, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 2, 4], "texture": "#small_wine_bottle"},
+				"east": {"uv": [0, 0, 2, 4], "texture": "#small_wine_bottle"},
+				"south": {"uv": [0, 0, 2, 4], "texture": "#small_wine_bottle"},
+				"west": {"uv": [0, 0, 2, 4], "texture": "#small_wine_bottle"},
+				"up": {"uv": [2, 0, 4, 2], "texture": "#small_wine_bottle"}
+			}
+		},
+		{
+			"name": "body",
+			"from": [6, 0, 6],
+			"to": [10, 11, 10],
+			"faces": {
+				"north": {"uv": [12, 6, 16, 16], "texture": "#small_wine_bottle"},
+				"east": {"uv": [8, 6, 12, 16], "texture": "#small_wine_bottle"},
+				"south": {"uv": [8, 6, 12, 16], "texture": "#small_wine_bottle"},
+				"west": {"uv": [8, 6, 12, 16], "texture": "#small_wine_bottle"},
+				"up": {"uv": [12, 2, 16, 6], "texture": "#small_wine_bottle"},
+				"down": {"uv": [8, 2, 12, 6], "texture": "#small_wine_bottle"}
+			}
+		}
+	]
+}
