@@ -16,10 +16,7 @@ import net.satisfy.vinery.client.gui.ApplePressGui;
 import net.satisfy.vinery.client.gui.BasketGui;
 import net.satisfy.vinery.client.gui.FermentationBarrelGui;
 import net.satisfy.vinery.client.model.*;
-import net.satisfy.vinery.client.render.block.BasketRenderer;
-import net.satisfy.vinery.client.render.block.CompletionistBannerRenderer;
-import net.satisfy.vinery.client.render.block.ModHangingSignRenderer;
-import net.satisfy.vinery.client.render.block.ModSignRenderer;
+import net.satisfy.vinery.client.render.block.*;
 import net.satisfy.vinery.client.render.block.storage.*;
 import net.satisfy.vinery.client.render.entity.ChairRenderer;
 import net.satisfy.vinery.client.render.entity.DarkCherryBoatRenderer;
@@ -103,6 +100,7 @@ public class VineryClient {
         BlockEntityRendererRegistry.register(EntityTypeRegistry.STORAGE_ENTITY.get(), context -> new StorageBlockEntityRenderer());
         BlockEntityRendererRegistry.register(EntityTypeRegistry.MOD_SIGN.get(), ModSignRenderer::new);
         BlockEntityRendererRegistry.register(EntityTypeRegistry.MOD_HANGING_SIGN.get(), ModHangingSignRenderer::new);
+        BlockEntityRendererRegistry.register(EntityTypeRegistry.LATTICE.get(), LatticeRenderer::new);
     }
 
     public static void registerEntityModelLayer() {
@@ -113,6 +111,7 @@ public class VineryClient {
         EntityModelLayerRegistry.register(WinemakerLeggingsModel.LAYER_LOCATION, WinemakerLeggingsModel::createBodyLayer);
         EntityModelLayerRegistry.register(WinemakerBootsModel.LAYER_LOCATION, WinemakerBootsModel::createBodyLayer);
         EntityModelLayerRegistry.register(CompletionistBannerRenderer.LAYER_LOCATION, CompletionistBannerRenderer::createBodyLayer);
+        EntityModelLayerRegistry.register(LatticeRenderer.LAYER_LOCATION, LatticeRenderer::getTexturedModelData);
     }
 
     public static void registerEntityRenderers() {

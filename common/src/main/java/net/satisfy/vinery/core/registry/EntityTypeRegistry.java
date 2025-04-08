@@ -38,6 +38,8 @@ public class EntityTypeRegistry {
     public static final RegistrySupplier<BlockEntityType<BasketBlockEntity>> BASKET_ENTITY = registerBlockEntity("basket", () -> BlockEntityType.Builder.of(BasketBlockEntity::new, ObjectRegistry.BASKET.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<CompletionistBannerEntity>> VINERY_STANDARD = registerBlockEntity("vinery_standard", () -> BlockEntityType.Builder.of(CompletionistBannerEntity::new, ObjectRegistry.VINERY_STANDARD.get(), ObjectRegistry.VINERY_WALL_STANDARD.get()).build(null));
 
+    public static final RegistrySupplier<BlockEntityType<LatticeBlockEntity>> LATTICE = registerBlockEntity("lattice", () -> BlockEntityType.Builder.of(LatticeBlockEntity::new, ObjectRegistry.OAK_LATTICE.get(), ObjectRegistry.ACACIA_LATTICE.get()).build(null));
+
     public static final RegistrySupplier<EntityType<TraderMuleEntity>> MULE = registerEntity("mule", () -> EntityType.Builder.of(TraderMuleEntity::new, MobCategory.CREATURE).sized(0.9f, 1.87f).clientTrackingRange(10).build(new VineryIdentifier("mule").toString()));
     public static final RegistrySupplier<EntityType<WanderingWinemakerEntity>> WANDERING_WINEMAKER = registerEntity("wandering_winemaker", () -> EntityType.Builder.of(WanderingWinemakerEntity::new, MobCategory.CREATURE).sized(0.6f, 1.95f).clientTrackingRange(10).build(new VineryIdentifier("wandering_winemaker").toString()));
     public static final RegistrySupplier<EntityType<ChairEntity>> CHAIR = registerEntity("chair", () -> EntityType.Builder.of(ChairEntity::new, MobCategory.MISC).sized(0.001F, 0.001F).build((new VineryIdentifier("chair")).toString()));

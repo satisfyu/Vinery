@@ -8,27 +8,36 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import static net.satisfy.vinery.core.registry.GrapeTypeRegistry.GRAPE_TYPE_TYPES;
+
 public class GrapeType implements Comparable<GrapeType>, StringRepresentable {
     private final String id;
     private final boolean lattice;
+    private final boolean red;
     private Supplier<Item> fruit;
     private Supplier<Item> seeds;
     private Supplier<Item> bottle;
 
-    public GrapeType(String id) {
-        this(id, false);
+    public GrapeType(String id, boolean lattice, boolean red) {
+        this(id, () -> Items.AIR, () -> Items.AIR, () -> Items.AIR, lattice, red);
     }
 
-    public GrapeType(String id, boolean lattice) {
-        this(id,  () -> Items.AIR, () -> Items.AIR, () -> Items.AIR, lattice);
-    }
-
-    private GrapeType(String id, Supplier<Item> fruit, Supplier<Item> seeds, Supplier<Item> bottle, boolean lattice) {
+    private GrapeType(String id, Supplier<Item> fruit, Supplier<Item> seeds, Supplier<Item> bottle, boolean lattice, boolean red) {
         this.id = id;
         this.fruit = fruit;
         this.seeds = seeds;
         this.bottle = bottle;
         this.lattice = lattice;
+        this.red = red;
+    }
+
+    public static GrapeType fromString(String id) {
+        for (GrapeType type : GRAPE_TYPE_TYPES) {
+            if (type.getSerializedName().equals(id)) {
+                return type;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -52,6 +61,14 @@ public class GrapeType implements Comparable<GrapeType>, StringRepresentable {
         return lattice;
     }
 
+    public boolean isRed() {
+        return red;
+    }
+
+    public boolean isWhite() {
+        return !red;
+    }
+
     public void setItems(Supplier<Item> fruit, Supplier<Item> seeds, Supplier<Item> bottle) {
         this.fruit = fruit;
         this.seeds = seeds;
@@ -60,7 +77,7 @@ public class GrapeType implements Comparable<GrapeType>, StringRepresentable {
 
     @Override
     public int compareTo(@NotNull GrapeType grapeType) {
-        return 0;
+        return this.id.compareTo(grapeType.id);
     }
 
     @Override

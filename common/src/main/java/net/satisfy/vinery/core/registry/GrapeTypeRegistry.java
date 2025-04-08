@@ -7,15 +7,16 @@ import java.util.Set;
 
 public class GrapeTypeRegistry {
     public static final Set<GrapeType> GRAPE_TYPE_TYPES = new HashSet<>();
-    public static final GrapeType NONE = registerGrapeType("none");
-    public static final GrapeType RED = registerGrapeType("red");
-    public static final GrapeType WHITE = registerGrapeType("white");
-    public static final GrapeType SAVANNA_RED = registerGrapeType("savanna_red");
-    public static final GrapeType SAVANNA_WHITE = registerGrapeType("savanna_white");
-    public static final GrapeType TAIGA_RED = registerGrapeType("taiga_red");
-    public static final GrapeType TAIGA_WHITE = registerGrapeType("taiga_white");
-    public static final GrapeType JUNGLE_RED = registerGrapeType("jungle_red", true);
-    public static final GrapeType JUNGLE_WHITE = registerGrapeType("jungle_white", true);
+
+    public static final GrapeType NONE = registerGrapeType("none", false, false);
+    public static final GrapeType RED = registerGrapeType("red", false, true);
+    public static final GrapeType WHITE = registerGrapeType("white", false, false);
+    public static final GrapeType SAVANNA_RED = registerGrapeType("savanna_red", false, true);
+    public static final GrapeType SAVANNA_WHITE = registerGrapeType("savanna_white", false, false);
+    public static final GrapeType TAIGA_RED = registerGrapeType("taiga_red", false, true);
+    public static final GrapeType TAIGA_WHITE = registerGrapeType("taiga_white", false, false);
+    public static final GrapeType JUNGLE_RED = registerGrapeType("jungle_red", true, true);
+    public static final GrapeType JUNGLE_WHITE = registerGrapeType("jungle_white", true, false);
 
     public static void register() {
     }
@@ -31,12 +32,8 @@ public class GrapeTypeRegistry {
         JUNGLE_WHITE.setItems(ObjectRegistry.JUNGLE_WHITE_GRAPE, ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS, ObjectRegistry.WHITE_JUNGLE_GRAPEJUICE);
     }
 
-    public static GrapeType registerGrapeType(String id) {
-        return registerGrapeType(id, false);
-    }
-
-    public static GrapeType registerGrapeType(String id, boolean lattice) {
-        GrapeType grapeType = new GrapeType(id, lattice);
+    public static GrapeType registerGrapeType(String id, boolean lattice, boolean red) {
+        GrapeType grapeType = new GrapeType(id, lattice, red);
         GRAPE_TYPE_TYPES.add(grapeType);
         return grapeType;
     }
