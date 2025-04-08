@@ -109,7 +109,15 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
         if (stack.getItem() instanceof GrapeBushSeedItem seedItem) {
             GrapeType type = seedItem.getType();
             if (age == 0 && type.isLattice()) {
-                world.setBlock(pos, withAge(state, 1, type), 3);
+                BlockState newState = withAge(state, 1, type);
+                world.setBlock(pos, newState, 3);
+
+                BlockEntity be = world.getBlockEntity(pos);
+                if (be instanceof LatticeBlockEntity lattice) {
+                    lattice.setAge(1);
+                    lattice.setGrapeType(type);
+                }
+
                 if (!player.isCreative()) stack.shrink(1);
                 world.playSound(null, pos, PLACE_SOUND_EVENT, SoundSource.BLOCKS, 1.0F, 1.0F);
                 return InteractionResult.SUCCESS;
@@ -121,6 +129,12 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
             if (age > 2) dropGrapes(world, state, pos, hit.getDirection());
             dropGrapeSeeds(world, state, pos, hit.getDirection());
             world.setBlock(pos, state.setValue(AGE, 0), 3);
+
+            BlockEntity be = world.getBlockEntity(pos);
+            if (be instanceof LatticeBlockEntity lattice) {
+                lattice.setAge(0);
+            }
+
             world.playSound(player, pos, BREAK_SOUND_EVENT, SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
         }
@@ -129,6 +143,12 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
             stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
             dropGrapes(world, state, pos, hit.getDirection());
             world.setBlock(pos, state.setValue(AGE, 1), 3);
+
+            BlockEntity be = world.getBlockEntity(pos);
+            if (be instanceof LatticeBlockEntity lattice) {
+                lattice.setAge(1);
+            }
+
             world.playSound(player, pos, BREAK_SOUND_EVENT, SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
         }
@@ -141,8 +161,17 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
         Random rand = new Random();
         if (rand.nextInt(100) >= 98 || isMature(state)) return;
         int age = state.getValue(AGE);
-        BlockState newState = withAge(state, age + 1, state.getValue(GRAPE));
+        GrapeType type = state.getValue(GRAPE);
+
+        BlockState newState = withAge(state, age + 1, type);
         world.setBlock(pos, newState, UPDATE_CLIENTS);
+
+        BlockEntity be = world.getBlockEntity(pos);
+        if (be instanceof LatticeBlockEntity lattice) {
+            lattice.setAge(age + 1);
+            lattice.setGrapeType(type);
+        }
+
         super.randomTick(state, world, pos, random);
     }
 

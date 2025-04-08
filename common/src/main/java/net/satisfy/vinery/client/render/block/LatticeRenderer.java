@@ -92,11 +92,20 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> 
 
         PartDefinition grape_cluster = lattice_wall.addOrReplaceChild("grape_cluster", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -10.0F));
 
-        PartDefinition growing_red = grape_cluster.addOrReplaceChild("growing_red", CubeListBuilder.create().texOffs(46, 17).addBox(-15.0F, -16.0F, -0.5F, 16.0F, 16.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(7.0F, 0.0F, 17.0F));
+        PartDefinition growing_red = grape_cluster.addOrReplaceChild("growing_red",
+                CubeListBuilder.create().texOffs(46, 17)
+                        .addBox(-15.0F, -16.0F, -10.5F, 16.0F, 16.0F, 1.0F, new CubeDeformation(0.0F)),
+                PartPose.offset(7.0F, 0.0F, 17.0F));
 
-        PartDefinition sprout = grape_cluster.addOrReplaceChild("sprout", CubeListBuilder.create().texOffs(46, 0).addBox(-15.0F, -16.0F, -0.5F, 16.0F, 16.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(7.0F, 0.0F, 17.0F));
+        PartDefinition sprout = grape_cluster.addOrReplaceChild("sprout",
+                CubeListBuilder.create().texOffs(46, 0)
+                        .addBox(-15.0F, -16.0F, -10.5F, 16.0F, 16.0F, 1.0F, new CubeDeformation(0.0F)),
+                PartPose.offset(7.0F, 0.0F, 17.0F));
 
-        PartDefinition growing_white = grape_cluster.addOrReplaceChild("growing_white", CubeListBuilder.create().texOffs(46, 34).addBox(-15.0F, -16.0F, -0.5F, 16.0F, 16.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(7.0F, 0.0F, 17.0F));
+        PartDefinition growing_white = grape_cluster.addOrReplaceChild("growing_white",
+                CubeListBuilder.create().texOffs(46, 34)
+                        .addBox(-15.0F, -16.0F, -10.5F, 16.0F, 16.0F, 1.0F, new CubeDeformation(0.0F)),
+                PartPose.offset(7.0F, 0.0F, 17.0F));
 
         PartDefinition mesh = lattice_wall.addOrReplaceChild("mesh", CubeListBuilder.create().texOffs(0, 30).addBox(-30.0F, 0.0F, 2.0F, 16.0F, 2.0F, 0.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 30).addBox(-30.0F, -5.0F, 2.0F, 16.0F, 2.0F, 0.0F, new CubeDeformation(0.0F))
@@ -164,8 +173,8 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> 
         boolean bottom = state.getValue(LatticeBlock.BOTTOM);
         GeneralUtil.LineConnectingType type = state.getValue(LatticeBlock.TYPE);
 
-        int age = blockEntity.getAge();
-        GrapeType grapeType = blockEntity.getGrapeType();
+        int age = state.getValue(LatticeBlock.AGE);
+        GrapeType grapeType = state.getValue(LatticeBlock.GRAPE);
 
         poseStack.translate(0.5, -1, 0.5);
         poseStack.mulPose(Axis.YP.rotationDegrees(-direction.toYRot()));
@@ -224,4 +233,5 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> 
 
         poseStack.popPose();
     }
+
 }

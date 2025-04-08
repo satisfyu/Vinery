@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 import net.satisfy.vinery.core.registry.GrapeTypeRegistry;
 import net.satisfy.vinery.core.util.GrapeType;
+import org.jetbrains.annotations.NotNull;
 
 public class LatticeBlockEntity extends BlockEntity {
     private int age = 0;
@@ -37,12 +38,6 @@ public class LatticeBlockEntity extends BlockEntity {
         return grape;
     }
 
-    public void toggleAge() {
-        this.age = (age + 1) % 5;
-        setChanged();
-        sync();
-    }
-
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
@@ -57,7 +52,7 @@ public class LatticeBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
+    public @NotNull CompoundTag getUpdateTag() {
         CompoundTag tag = new CompoundTag();
         saveAdditional(tag);
         return tag;
