@@ -1,10 +1,16 @@
 package net.satisfy.vinery.core.block;
 
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
 import net.satisfy.vinery.core.registry.StorageTypeRegistry;
 import net.satisfy.vinery.core.registry.TagRegistry;
+
+import java.util.List;
 
 public class NineBottleStorageBlock extends StorageBlock {
 
@@ -46,5 +52,16 @@ public class NineBottleStorageBlock extends StorageBlock {
 
         int i = y >= l*2 ? 0 : y >= l ? 1 : 2;
         return nSection + i * 3;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
+        MutableComponent allBold = Component.translatable("tooltip.vinery.small_bottle_first").withStyle(style -> style.withBold(true));
+        MutableComponent allRest = Component.translatable("tooltip.vinery.small_bottle_rest");
+
+        MutableComponent combined = Component.empty().append(allBold).append(" ").append(allRest);
+        MutableComponent full = Component.translatable("tooltip.vinery.storage", combined);
+
+        tooltip.add(full);
     }
 }

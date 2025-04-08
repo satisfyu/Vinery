@@ -34,11 +34,13 @@ import java.util.Objects;
 public class DrinkBlockItem extends BlockItem {
     private final int baseDuration;
     private final boolean scaleDurationWithAge;
+    private final BottleSize bottleSize;
 
-    public DrinkBlockItem(Block block, Properties settings, int baseDuration, boolean scaleDurationWithAge) {
+    public DrinkBlockItem(Block block, Properties settings, int baseDuration, boolean scaleDurationWithAge, BottleSize bottleSize) {
         super(block, settings);
         this.baseDuration = baseDuration;
         this.scaleDurationWithAge = scaleDurationWithAge;
+        this.bottleSize = bottleSize;
     }
 
     @Override
@@ -92,6 +94,8 @@ public class DrinkBlockItem extends BlockItem {
             tooltip.add(Component.translatable("tooltip.vinery.next_upgrade", daysToNextUpgrade)
                     .withStyle(style -> style.withColor(TextColor.fromRgb(0x93c47d))));
         }
+        tooltip.add(Component.translatable("tooltip.vinery.bottle_size." + bottleSize.name().toLowerCase())
+                .withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
     }
 
     @Override
@@ -149,6 +153,10 @@ public class DrinkBlockItem extends BlockItem {
             case 9 -> "X";
             default -> String.valueOf(number);
         };
+    }
+
+    public enum BottleSize {
+        SMALL, BIG
     }
 
     @PlatformOnly(PlatformOnly.FORGE)
