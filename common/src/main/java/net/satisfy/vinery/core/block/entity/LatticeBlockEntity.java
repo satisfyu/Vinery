@@ -13,9 +13,15 @@ import org.jetbrains.annotations.NotNull;
 public class LatticeBlockEntity extends BlockEntity {
     private int age = 0;
     private GrapeType grape = GrapeTypeRegistry.NONE;
+    private boolean showHanging;
+    private boolean initialized;
 
     public LatticeBlockEntity(BlockPos pos, BlockState state) {
         super(EntityTypeRegistry.LATTICE.get(), pos, state);
+    }
+
+    public boolean shouldShowHanging() {
+        return showHanging;
     }
 
     public void setAge(int age) {
@@ -30,12 +36,12 @@ public class LatticeBlockEntity extends BlockEntity {
 
     public void setGrapeType(GrapeType grape) {
         this.grape = grape;
+        if (!initialized && level != null) {
+            this.showHanging = level.random.nextFloat() < 0.15f;
+            this.initialized = true;
+        }
         setChanged();
         sync();
-    }
-
-    public GrapeType getGrapeType() {
-        return grape;
     }
 
     @Override
@@ -43,12 +49,15 @@ public class LatticeBlockEntity extends BlockEntity {
         super.load(tag);
         this.age = tag.getInt("Age");
         this.grape = GrapeType.fromString(tag.getString("Grape"));
+        this.showHanging = tag.getBoolean("ShowHanging");
+        this.initialized = true;
     }
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
         tag.putInt("Age", age);
         tag.putString("Grape", grape.getSerializedName());
+        tag.putBoolean("ShowHanging", showHanging);
     }
 
     @Override

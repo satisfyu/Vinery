@@ -13,6 +13,8 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.satisfy.vinery.core.block.LatticeBlock;
@@ -227,16 +229,22 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> 
                 }
             }
         }
-
-        if (bottom && !grapeType.equals(GrapeTypeRegistry.NONE) && blockEntity.getLevel() != null && blockEntity.getLevel().getGameTime() % 10 == 0 && blockEntity.getLevel().random.nextFloat() < 0.15f) {
+        if (bottom && blockEntity.shouldShowHanging()) {
             poseStack.pushPose();
-            poseStack.translate(0.5, 0, 0.5);
+            poseStack.translate(0.0, 0, 0.0);
             poseStack.mulPose(Axis.YP.rotationDegrees(-direction.toYRot()));
             poseStack.scale(1.0f, -1.0f, -1.0f);
             poseStack.mulPose(Axis.ZP.rotationDegrees(180f));
-            poseStack.scale(1.0f, -1.0f, -1.0f);
+
+            RandomSource random = RandomSource.create(blockEntity.getBlockPos().asLong());
+            float offsetX = Mth.lerp(random.nextFloat(), -0.02f, 0.0f);
+            float offsetZ = Mth.lerp(random.nextFloat(), -0.02f, 0.0f);
+
+            poseStack.translate(offsetX, -0.2f, offsetZ);
+
             hanging_1_r1.render(poseStack, consumer, packedLight, packedOverlay);
             hanging_2_r1.render(poseStack, consumer, packedLight, packedOverlay);
+
             poseStack.popPose();
         }
 
