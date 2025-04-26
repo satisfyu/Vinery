@@ -203,11 +203,24 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
 
     public BlockState getConnection(BlockState state, LevelAccessor level, BlockPos currentPos) {
         Direction facing = state.getValue(FACING);
+        boolean bottom = state.getValue(BOTTOM);
+
         BlockState stateL = level.getBlockState(currentPos.relative(facing.getClockWise()));
         BlockState stateR = level.getBlockState(currentPos.relative(facing.getCounterClockWise()));
-        boolean sideL = stateL.getBlock() instanceof LatticeBlock && (stateL.getValue(FACING) == facing || stateL.getValue(FACING) == facing.getClockWise());
-        boolean sideR = stateR.getBlock() instanceof LatticeBlock && (stateR.getValue(FACING) == facing || stateR.getValue(FACING) == facing.getCounterClockWise());
-        GeneralUtil.LineConnectingType type = sideL && sideR ? GeneralUtil.LineConnectingType.MIDDLE : (sideR ? GeneralUtil.LineConnectingType.LEFT : (sideL ? GeneralUtil.LineConnectingType.RIGHT : GeneralUtil.LineConnectingType.NONE));
+
+        boolean sideL = stateL.getBlock() instanceof LatticeBlock
+                && stateL.getValue(FACING) == facing
+                && stateL.getValue(BOTTOM) == bottom;
+
+        boolean sideR = stateR.getBlock() instanceof LatticeBlock
+                && stateR.getValue(FACING) == facing
+                && stateR.getValue(BOTTOM) == bottom;
+
+        GeneralUtil.LineConnectingType type = sideL && sideR ? GeneralUtil.LineConnectingType.MIDDLE
+                : (sideR ? GeneralUtil.LineConnectingType.LEFT
+                : (sideL ? GeneralUtil.LineConnectingType.RIGHT
+                : GeneralUtil.LineConnectingType.NONE));
+
         return state.setValue(TYPE, type);
     }
 

@@ -11,6 +11,7 @@
 
 **Fixed**
 - Resolved an issue where `Apple Leaves` were not properly registered as flammable
+- `Completionist Wall Banner` not having a Loottable
 
 ***
 

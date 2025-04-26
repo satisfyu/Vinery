@@ -33,16 +33,16 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> 
     private static final Map<Block, ResourceLocation> TEXTURE_MAP = new HashMap<>();
 
     static {
-        TEXTURE_MAP.put(OAK_LATTICE.get(), new VineryIdentifier("textures/entity/lattice/oak_lattice.png"));
-        TEXTURE_MAP.put(SPRUCE_LATTICE.get(), new VineryIdentifier("textures/entity/lattice/spruce_lattice.png"));
-        TEXTURE_MAP.put(CHERRY_LATTICE.get(), new VineryIdentifier("textures/entity/lattice/cherry_lattice.png"));
-        TEXTURE_MAP.put(BIRCH_LATTICE.get(), new VineryIdentifier("textures/entity/lattice/birch_lattice.png"));
-        TEXTURE_MAP.put(DARK_OAK_LATTICE.get(), new VineryIdentifier("textures/entity/lattice/dark_oak_lattice.png"));
-        TEXTURE_MAP.put(ACACIA_LATTICE.get(), new VineryIdentifier("textures/entity/lattice/acacia_lattice.png"));
-        TEXTURE_MAP.put(BAMBOO_LATTICE.get(), new VineryIdentifier("textures/entity/lattice/bamboo_lattice.png"));
-        TEXTURE_MAP.put(JUNGLE_LATTICE.get(), new VineryIdentifier("textures/entity/lattice/jungle_lattice.png"));
-        TEXTURE_MAP.put(MANGROVE_LATTICE.get(), new VineryIdentifier("textures/entity/lattice/mangrove_lattice.png"));
-        TEXTURE_MAP.put(DARK_CHERRY_LATTICE.get(), new VineryIdentifier("textures/entity/lattice/dark_cherry_lattice.png"));
+        TEXTURE_MAP.put(OAK_LATTICE.get(), new VineryIdentifier("textures/block/lattice/oak_lattice.png"));
+        TEXTURE_MAP.put(SPRUCE_LATTICE.get(), new VineryIdentifier("textures/block/lattice/spruce_lattice.png"));
+        TEXTURE_MAP.put(CHERRY_LATTICE.get(), new VineryIdentifier("textures/block/lattice/cherry_lattice.png"));
+        TEXTURE_MAP.put(BIRCH_LATTICE.get(), new VineryIdentifier("textures/block/lattice/birch_lattice.png"));
+        TEXTURE_MAP.put(DARK_OAK_LATTICE.get(), new VineryIdentifier("textures/block/lattice/dark_oak_lattice.png"));
+        TEXTURE_MAP.put(ACACIA_LATTICE.get(), new VineryIdentifier("textures/block/lattice/acacia_lattice.png"));
+        TEXTURE_MAP.put(BAMBOO_LATTICE.get(), new VineryIdentifier("textures/block/lattice/bamboo_lattice.png"));
+        TEXTURE_MAP.put(JUNGLE_LATTICE.get(), new VineryIdentifier("textures/block/lattice/jungle_lattice.png"));
+        TEXTURE_MAP.put(MANGROVE_LATTICE.get(), new VineryIdentifier("textures/block/lattice/mangrove_lattice.png"));
+        TEXTURE_MAP.put(DARK_CHERRY_LATTICE.get(), new VineryIdentifier("textures/block/lattice/dark_cherry_lattice.png"));
     }
 
     private final ModelPart growing_red;
