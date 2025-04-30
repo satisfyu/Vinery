@@ -30,19 +30,23 @@ import java.util.Map;
 import static net.satisfy.vinery.core.registry.ObjectRegistry.*;
 
 public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> {
-    private static final Map<Block, ResourceLocation> TEXTURE_MAP = new HashMap<>();
+    private static Map<Block, ResourceLocation> textureMap;
 
-    static {
-        TEXTURE_MAP.put(OAK_LATTICE.get(), new VineryIdentifier("textures/block/lattice/oak_lattice.png"));
-        TEXTURE_MAP.put(SPRUCE_LATTICE.get(), new VineryIdentifier("textures/block/lattice/spruce_lattice.png"));
-        TEXTURE_MAP.put(CHERRY_LATTICE.get(), new VineryIdentifier("textures/block/lattice/cherry_lattice.png"));
-        TEXTURE_MAP.put(BIRCH_LATTICE.get(), new VineryIdentifier("textures/block/lattice/birch_lattice.png"));
-        TEXTURE_MAP.put(DARK_OAK_LATTICE.get(), new VineryIdentifier("textures/block/lattice/dark_oak_lattice.png"));
-        TEXTURE_MAP.put(ACACIA_LATTICE.get(), new VineryIdentifier("textures/block/lattice/acacia_lattice.png"));
-        TEXTURE_MAP.put(BAMBOO_LATTICE.get(), new VineryIdentifier("textures/block/lattice/bamboo_lattice.png"));
-        TEXTURE_MAP.put(JUNGLE_LATTICE.get(), new VineryIdentifier("textures/block/lattice/jungle_lattice.png"));
-        TEXTURE_MAP.put(MANGROVE_LATTICE.get(), new VineryIdentifier("textures/block/lattice/mangrove_lattice.png"));
-        TEXTURE_MAP.put(DARK_CHERRY_LATTICE.get(), new VineryIdentifier("textures/block/lattice/dark_cherry_lattice.png"));
+    private static Map<Block, ResourceLocation> getTextureMap() {
+        if (textureMap == null) {
+            textureMap = new HashMap<>();
+            textureMap.put(OAK_LATTICE.get(), new VineryIdentifier("textures/block/lattice/oak_lattice.png"));
+            textureMap.put(SPRUCE_LATTICE.get(), new VineryIdentifier("textures/block/lattice/spruce_lattice.png"));
+            textureMap.put(CHERRY_LATTICE.get(), new VineryIdentifier("textures/block/lattice/cherry_lattice.png"));
+            textureMap.put(BIRCH_LATTICE.get(), new VineryIdentifier("textures/block/lattice/birch_lattice.png"));
+            textureMap.put(DARK_OAK_LATTICE.get(), new VineryIdentifier("textures/block/lattice/dark_oak_lattice.png"));
+            textureMap.put(ACACIA_LATTICE.get(), new VineryIdentifier("textures/block/lattice/acacia_lattice.png"));
+            textureMap.put(BAMBOO_LATTICE.get(), new VineryIdentifier("textures/block/lattice/bamboo_lattice.png"));
+            textureMap.put(JUNGLE_LATTICE.get(), new VineryIdentifier("textures/block/lattice/jungle_lattice.png"));
+            textureMap.put(MANGROVE_LATTICE.get(), new VineryIdentifier("textures/block/lattice/mangrove_lattice.png"));
+            textureMap.put(DARK_CHERRY_LATTICE.get(), new VineryIdentifier("textures/block/lattice/dark_cherry_lattice.png"));
+        }
+        return textureMap;
     }
 
     private final ModelPart growing_red;
@@ -169,7 +173,7 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> 
         poseStack.scale(1.0f, -1.0f, -1.0f);
 
         Block block = state.getBlock();
-        ResourceLocation texture = TEXTURE_MAP.getOrDefault(block, new VineryIdentifier("textures/entity/lattice/default_lattice.png"));
+        ResourceLocation texture = getTextureMap().getOrDefault(block, new VineryIdentifier("textures/entity/lattice/default_lattice.png"));
         VertexConsumer consumer = buffer.getBuffer(RenderType.entityCutoutNoCull(texture));
 
         if (bottom) {
