@@ -1,0 +1,10 @@
+{
+	"parent": "vinery:block/template_wine_rack_1",
+	"textures": {
+		"1": "vinery:block/cherry_cabinet_side_pink",
+		"2": "vinery:block/cherry_cabinet_top_pink",
+		"3": "vinery:block/cherry_cabinet_top_pink",
+		"particle": "vinery:block/cherry_cabinet_side_pink"
+	}
+}
+
