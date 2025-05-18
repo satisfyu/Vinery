@@ -87,10 +87,10 @@ public class DrinkBlockItem extends BlockItem {
         tooltip.add(Component.empty());
         if (world != null) {
             int age = Math.max(0, WineYears.getWineAge(stack, world));
+            int ageDays = WineYears.getWineAgeDays(stack, world);
             tooltip.add(Component.translatable("tooltip.vinery.age", age).withStyle(ChatFormatting.WHITE));
             tooltip.add(Component.empty());
-            int yearsToNextUpgrade = WineYears.YEARS_PER_EFFECT_LEVEL - (age % WineYears.YEARS_PER_EFFECT_LEVEL);
-            int daysToNextUpgrade = Math.max(0, yearsToNextUpgrade * WineYears.DAYS_PER_YEAR);
+            int daysToNextUpgrade = (WineYears.YEARS_PER_EFFECT_LEVEL * WineYears.DAYS_PER_YEAR) - (ageDays % (WineYears.YEARS_PER_EFFECT_LEVEL * WineYears.DAYS_PER_YEAR));
             tooltip.add(Component.translatable("tooltip.vinery.next_upgrade", daysToNextUpgrade)
                     .withStyle(style -> style.withColor(TextColor.fromRgb(0x93c47d))));
         }
