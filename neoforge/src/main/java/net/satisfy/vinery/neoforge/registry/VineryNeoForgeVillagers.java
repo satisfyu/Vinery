@@ -14,7 +14,7 @@ import net.satisfy.vinery.registry.ObjectRegistry;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class VineryForgeVillagers {
+public class VineryNeoForgeVillagers {
     public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(BuiltInRegistries.POINT_OF_INTEREST_TYPE, Vinery.MOD_ID);
     public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS = DeferredRegister.create(BuiltInRegistries.VILLAGER_PROFESSION, Vinery.MOD_ID);
 

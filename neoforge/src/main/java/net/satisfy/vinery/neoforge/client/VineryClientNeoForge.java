@@ -14,7 +14,7 @@ import net.satisfy.vinery.client.gui.FermentationBarrelGui;
 import net.satisfy.vinery.registry.ScreenhandlerTypeRegistry;
 
 @EventBusSubscriber(modid = Vinery.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
-public class VineryClientForge {
+public class VineryClientNeoForge {
 
     @SubscribeEvent
     public static void onClientSetup(RegisterEvent event) {

@@ -9,7 +9,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.satisfy.vinery.Vinery;
-import net.satisfy.vinery.neoforge.registry.VineryForgeVillagers;
+import net.satisfy.vinery.neoforge.registry.VineryNeoForgeVillagers;
 import net.satisfy.vinery.registry.MobEffectRegistry;
 import net.satisfy.vinery.registry.ObjectRegistry;
 
@@ -24,7 +24,7 @@ public class ModEvents {
     public static class ForgeEvents {
         @SubscribeEvent
         public static void addCustomTrades(VillagerTradesEvent event) {
-            if (event.getType().equals(VineryForgeVillagers.WINEMAKER.get())) {
+            if (event.getType().equals(VineryNeoForgeVillagers.WINEMAKER.get())) {
                 Map<Integer, List<VillagerTrades.ItemListing>> trades = new HashMap<>(event.getTrades());
 
                 List<VillagerTrades.ItemListing> level1 = trades.get(1);

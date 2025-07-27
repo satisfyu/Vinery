@@ -8,7 +8,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.satisfy.vinery.Vinery;
 import net.satisfy.vinery.client.gui.config.ClothConfigScreen;
-import net.satisfy.vinery.neoforge.registry.VineryForgeVillagers;
+import net.satisfy.vinery.neoforge.registry.VineryNeoForgeVillagers;
 import net.satisfy.vinery.registry.CompostableRegistry;
 import net.satisfy.vinery.util.PreInit;
 
@@ -19,7 +19,7 @@ public class VineryNeoForge {
     public VineryNeoForge(IEventBus modEventBus) {
         PreInit.preInit();
         Vinery.init();
-        VineryForgeVillagers.register(modEventBus);
+        VineryNeoForgeVillagers.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         if (isClothConfigLoaded())

@@ -6,6 +6,13 @@ architectury {
     neoForge()
 }
 
+loom {
+    neoForge {
+        accessWidenerPath = project(":common").loom.accessWidenerPath
+        neoForge {
+        }
+    }
+}
 
 def jarFileName = 'letsdo-vinery-neoforge'
 
