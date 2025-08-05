@@ -1,22 +1,7 @@
 {
-	"credit": "Made by Satisfy",
-	"ambientocclusion": false,
+	"parent": "minecraft:block/door_top_right_open",
 	"textures": {
-		"1": "vinery:block/dark_cherry_trapdoor",
-		"particle": "vinery:block/dark_cherry_door_top",
-		"top": "vinery:block/dark_cherry_door_top"
-	},
-	"elements": [
-		{
-			"from": [0, 0, 0],
-			"to": [3, 16, 16],
-			"faces": {
-				"north": {"uv": [3, 0, 0, 16], "texture": "#1"},
-				"east": {"uv": [16, 0, 0, 16], "texture": "#top"},
-				"south": {"uv": [3, 0, 0, 16], "texture": "#1"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#top"},
-				"up": {"uv": [0, 0, 3, 16], "texture": "#1"}
-			}
-		}
-	]
+		"top": "vinery:block/dark_cherry_door_top",
+		"bottom": "vinery:block/dark_cherry_door_top"
+	}
 }

@@ -5,7 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.satisfy.vinery.core.util.VineryIdentifier;
-import net.satisfy.vinery.core.world.VineryPlacedFeatures;
+import net.satisfy.vinery.core.world.placed.VineryPlacedFeatures;
 
 import java.util.function.Predicate;
 

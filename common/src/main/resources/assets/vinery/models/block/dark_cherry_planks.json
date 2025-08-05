@@ -1,5 +1,4 @@
 {
-	"credit": "Made by Satisfy",
 	"parent": "minecraft:block/cube_all",
 	"textures": {
 		"all": "vinery:block/dark_cherry_planks"

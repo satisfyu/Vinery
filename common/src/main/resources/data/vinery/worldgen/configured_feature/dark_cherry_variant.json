@@ -1,7 +1,12 @@
 {
   "type": "minecraft:tree",
   "config": {
-    "decorators": [],
+    "decorators": [
+      {
+        "type": "minecraft:beehive",
+        "probability": 0.05
+      }
+    ],
     "dirt_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
@@ -9,10 +14,14 @@
       }
     },
     "foliage_placer": {
-      "type": "minecraft:blob_foliage_placer",
-      "height": 3,
-      "offset": 0,
-      "radius": 2
+      "type": "minecraft:cherry_foliage_placer",
+      "corner_hole_chance": 1,
+      "hanging_leaves_chance": 0.2,
+      "hanging_leaves_extension_chance": 0.9,
+      "height": 4,
+      "offset": 2,
+      "radius": 4,
+      "wide_bottom_layer_hole_chance": 0.25
     },
     "foliage_provider": {
       "type": "minecraft:weighted_state_provider",
@@ -21,11 +30,11 @@
           "data": {
             "Name": "vinery:dark_cherry_leaves",
             "Properties": {
-              "can_have_cherries": "false",
-              "distance": "7",
+              "can_grow_cherries": "false",
               "has_cherries": "false",
+              "age": "0",
               "persistent": "false",
-              "waterlogged": "false"
+              "distance": "7"
             }
           },
           "weight": 10
@@ -34,11 +43,11 @@
           "data": {
             "Name": "vinery:dark_cherry_leaves",
             "Properties": {
-              "can_have_cherries": "true",
-              "distance": "7",
+              "can_grow_cherries": "true",
               "has_cherries": "false",
+              "age": "0",
               "persistent": "false",
-              "waterlogged": "false"
+              "distance": "7"
             }
           },
           "weight": 4
@@ -47,11 +56,11 @@
           "data": {
             "Name": "vinery:dark_cherry_leaves",
             "Properties": {
-              "can_have_cherries": "true",
-              "distance": "7",
+              "can_grow_cherries": "true",
               "has_cherries": "true",
+              "age": "3",
               "persistent": "false",
-              "waterlogged": "false"
+              "distance": "7"
             }
           },
           "weight": 2
@@ -67,10 +76,10 @@
       "upper_size": 1
     },
     "trunk_placer": {
-      "type": "minecraft:straight_trunk_placer",
-      "base_height": 5,
-      "height_rand_a": 2,
-      "height_rand_b": 0
+      "type": "minecraft:fancy_trunk_placer",
+      "base_height": 8,
+      "height_rand_a": 3,
+      "height_rand_b": 5
     },
     "trunk_provider": {
       "type": "minecraft:simple_state_provider",

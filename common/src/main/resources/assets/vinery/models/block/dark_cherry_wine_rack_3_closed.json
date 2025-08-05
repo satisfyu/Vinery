@@ -1,0 +1,9 @@
+{
+	"parent": "vinery:block/template_wine_rack_3_closed",
+	"textures": {
+		"particle": "vinery:block/dark_cherry_cabinet_side",
+		"side": "vinery:block/dark_cherry_cabinet_side",
+		"top": "vinery:block/dark_cherry_cabinet_top",
+		"front": "vinery:block/dark_cherry_cabinet_front"
+	}
+}

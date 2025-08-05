@@ -1,18 +1,10 @@
 {
   "type": "minecraft:tree",
   "config": {
-    "ignore_vines": true,
-    "force_dirt": true,
-    "minimum_size": {
-      "type": "minecraft:two_layers_feature_size",
-      "limit": 1,
-      "lower_size": 0,
-      "upper_size": 2
-    },
     "dirt_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:dirt"
+        "Name": "minecraft:rooted_dirt"
       }
     },
     "trunk_provider": {
@@ -31,54 +23,79 @@
           "data": {
             "Name": "vinery:apple_leaves",
             "Properties": {
-              "can_have_apples": "false",
-              "distance": "7",
+              "can_grow_apples": "false",
+              "age": "0",
               "has_apples": "false",
+              "distance": "7",
               "persistent": "false",
               "waterlogged": "false"
             }
           },
-          "weight": 10
+          "weight": 9
         },
         {
           "data": {
             "Name": "vinery:apple_leaves",
             "Properties": {
-              "can_have_apples": "true",
-              "distance": "7",
+              "can_grow_apples": "false",
+              "age": "1",
               "has_apples": "false",
+              "distance": "7",
               "persistent": "false",
               "waterlogged": "false"
             }
           },
-          "weight": 4
+          "weight": 1
         },
         {
           "data": {
             "Name": "vinery:apple_leaves",
             "Properties": {
-              "can_have_apples": "true",
+              "can_grow_apples": "true",
+              "age": "0",
+              "has_apples": "false",
               "distance": "7",
-              "has_apples": "true",
               "persistent": "false",
               "waterlogged": "false"
             }
           },
-          "weight": 2
+          "weight": 3
         }
       ]
     },
     "trunk_placer": {
       "type": "minecraft:fancy_trunk_placer",
-      "base_height": 16,
-      "height_rand_a": 2,
+      "base_height": 10,
+      "height_rand_a": 1,
       "height_rand_b": 5
     },
     "foliage_placer": {
-      "type": "minecraft:blob_foliage_placer",
-      "height": 3,
-      "offset": 0,
-      "radius": 2
+      "type": "minecraft:cherry_foliage_placer",
+      "corner_hole_chance": 1,
+      "hanging_leaves_chance": 0.2,
+      "hanging_leaves_extension_chance": 0.9,
+      "height": 4,
+      "offset": 2,
+      "radius": 4,
+      "wide_bottom_layer_hole_chance": 0.25
+    },
+    "ignore_vines": true,
+    "force_dirt": false,
+    "minimum_size": {
+      "type": "minecraft:two_layers_feature_size",
+      "min_clipped_height": 4,
+      "limit": 0,
+      "lower_size": 0,
+      "upper_size": 0
+    },
+    "sapling_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "vinery:apple_sapling",
+        "Properties": {
+          "stage": "0"
+        }
+      }
     },
     "decorators": []
   }

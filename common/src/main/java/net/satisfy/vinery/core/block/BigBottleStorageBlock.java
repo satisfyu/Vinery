@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.block;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -85,11 +86,14 @@ public class BigBottleStorageBlock extends StorageBlock {
 
     @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        MutableComponent allBold = Component.translatable("tooltip.vinery.large_bottle_first").withStyle(style -> style.withBold(true));
-        MutableComponent allRest = Component.translatable("tooltip.vinery.large_bottle_rest");
+        MutableComponent allBold = Component.translatable("tooltip.vinery.large_bottle_first")
+                .withStyle(style -> style.withBold(true).withColor(ChatFormatting.GRAY));
+        MutableComponent allRest = Component.translatable("tooltip.vinery.large_bottle_rest")
+                .withStyle(ChatFormatting.GRAY);
 
         MutableComponent combined = Component.empty().append(allBold).append(" ").append(allRest);
-        MutableComponent full = Component.translatable("tooltip.vinery.storage", combined);
+        MutableComponent full = Component.translatable("tooltip.vinery.storage", combined)
+                .withStyle(ChatFormatting.GRAY);
 
         tooltip.add(full);
     }
