@@ -20,7 +20,7 @@ public class WineYears {
 	public static final String TAG_EFFECT_DURATION = "EffectDuration";
 
 	public static int getYear(Level world) {
-		return world != null ? YEARS_START + (int) (world.getDayTime() / 24000 / DAYS_PER_YEAR) : YEARS_START;
+		return world != null ? YEARS_START + (int) (world.getGameTime() / 24000 / DAYS_PER_YEAR) : YEARS_START;
 	}
 
 	public static int getEffectLevel(ItemStack wine, Level world) {

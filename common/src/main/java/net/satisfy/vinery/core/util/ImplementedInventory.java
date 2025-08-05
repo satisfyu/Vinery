@@ -1,4 +1,4 @@
-package net.satisfy.vinery.core.world;
+package net.satisfy.vinery.core.util;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;

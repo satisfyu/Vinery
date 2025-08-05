@@ -24,7 +24,7 @@ import net.satisfy.vinery.core.recipe.ApplePressMashingRecipe;
 import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import net.satisfy.vinery.core.registry.RecipeTypesRegistry;
-import net.satisfy.vinery.core.world.ImplementedInventory;
+import net.satisfy.vinery.core.util.ImplementedInventory;
 import net.satisfy.vinery.platform.PlatformHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

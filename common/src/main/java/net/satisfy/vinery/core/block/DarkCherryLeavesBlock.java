@@ -11,7 +11,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -26,36 +25,37 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
+import net.satisfy.vinery.core.registry.ObjectRegistry;
 import net.satisfy.vinery.platform.PlatformHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
-public class AppleLeavesBlock extends LeavesBlock implements BonemealableBlock {
-    public static final BooleanProperty CAN_GROW_APPLES = BooleanProperty.create("can_grow_apples");
-    public static final BooleanProperty HAS_APPLES = BooleanProperty.create("has_apples");
+public class DarkCherryLeavesBlock extends LeavesBlock implements BonemealableBlock {
+    public static final BooleanProperty CAN_GROW_CHERRIES = BooleanProperty.create("can_grow_cherries");
+    public static final BooleanProperty HAS_CHERRIES = BooleanProperty.create("has_cherries");
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
 
-    public AppleLeavesBlock(Properties settings) {
+    public DarkCherryLeavesBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(PERSISTENT, false)
                 .setValue(DISTANCE, 7)
-                .setValue(CAN_GROW_APPLES, false)
-                .setValue(HAS_APPLES, false)
+                .setValue(CAN_GROW_CHERRIES, false)
+                .setValue(HAS_CHERRIES, false)
                 .setValue(AGE, 0)
                 .setValue(WATERLOGGED, false));
     }
 
     @Override
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (state.getValue(HAS_APPLES) && state.getValue(AGE) == 3) {
+        if (state.getValue(HAS_CHERRIES) && state.getValue(AGE) == 3) {
             if (!world.isClientSide()) {
                 int dropCount = world.getRandom().nextBoolean() ? world.getRandom().nextInt(1, 4) : 1;
-                ItemStack dropStack = new ItemStack(Items.APPLE, dropCount);
-                AppleLeavesBlock.popResourceFromFace(world, pos, hit.getDirection(), dropStack);
+                ItemStack dropStack = new ItemStack(ObjectRegistry.CHERRY.get(), dropCount);
+                DarkCherryLeavesBlock.popResourceFromFace(world, pos, hit.getDirection(), dropStack);
                 world.playSound(null, pos, SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.BLOCKS, 1F, 1F);
-                world.setBlock(pos, state.setValue(HAS_APPLES, false).setValue(AGE, 1), 2);
+                world.setBlock(pos, state.setValue(HAS_CHERRIES, false).setValue(AGE, 1), 2);
             }
             return InteractionResult.SUCCESS;
         }
@@ -64,41 +64,41 @@ public class AppleLeavesBlock extends LeavesBlock implements BonemealableBlock {
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        boolean can = state.getValue(CAN_GROW_APPLES);
-        boolean has = state.getValue(HAS_APPLES);
+        boolean canGrow = state.getValue(CAN_GROW_CHERRIES);
+        boolean has = state.getValue(HAS_CHERRIES);
         int age = state.getValue(AGE);
-        return (can && !has && age < 2) || (has && age == 2) || super.isRandomlyTicking(state);
+        return (canGrow && !has && age < 2) || (has && age == 2) || super.isRandomlyTicking(state);
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        boolean canGrowApples = ctx.getLevel().random.nextFloat() < 0.3f;
+        boolean canGrowCherries = ctx.getLevel().random.nextFloat() < 0.3f;
         return updateDistance(this.defaultBlockState()
                 .setValue(PERSISTENT, false)
-                .setValue(CAN_GROW_APPLES, canGrowApples)
+                .setValue(CAN_GROW_CHERRIES, canGrowCherries)
                 .setValue(AGE, 0)
-                .setValue(HAS_APPLES, false)
+                .setValue(HAS_CHERRIES, false)
                 .setValue(WATERLOGGED, false), ctx.getLevel(), ctx.getClickedPos());
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(CAN_GROW_APPLES, HAS_APPLES, AGE);
+        builder.add(CAN_GROW_CHERRIES, HAS_CHERRIES, AGE);
     }
 
     @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         super.randomTick(state, world, pos, random);
 
-        boolean can = state.getValue(CAN_GROW_APPLES);
-        boolean has = state.getValue(HAS_APPLES);
+        boolean canGrow = state.getValue(CAN_GROW_CHERRIES);
+        boolean has = state.getValue(HAS_CHERRIES);
         int age = state.getValue(AGE);
-        double chance = PlatformHelper.getAppleGrowthChance();
 
-        if (can && !has && age < 2 && random.nextDouble() < chance && canGrowPlace(world, pos)) {
-            BlockState newState = age == 0 ? state.setValue(AGE, 1) : state.setValue(AGE, 2).setValue(HAS_APPLES, true);
+        double chance = PlatformHelper.getAppleGrowthChance();
+        if (canGrow && !has && age < 2 && random.nextDouble() < chance && canGrowPlace(world, pos)) {
+            BlockState newState = age == 0 ? state.setValue(AGE, 1) : state.setValue(AGE, 2).setValue(HAS_CHERRIES, true);
             world.setBlock(pos, newState, 2);
             world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(newState));
         } else if (has && age == 2 && random.nextDouble() < chance && canGrowPlace(world, pos)) {
@@ -113,9 +113,9 @@ public class AppleLeavesBlock extends LeavesBlock implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
         int age = state.getValue(AGE);
-        boolean has = state.getValue(HAS_APPLES);
+        boolean has = state.getValue(HAS_CHERRIES);
         return (age < 2 && !has) || (age == 2 && has);
     }
 
@@ -127,14 +127,16 @@ public class AppleLeavesBlock extends LeavesBlock implements BonemealableBlock {
     @Override
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
         BlockState s = state;
-        if (!s.getValue(CAN_GROW_APPLES)) {
-            s = s.setValue(CAN_GROW_APPLES, true);
+        if (!s.getValue(CAN_GROW_CHERRIES)) {
+            s = s.setValue(CAN_GROW_CHERRIES, true);
         }
         int age = s.getValue(AGE);
-        boolean has = s.getValue(HAS_APPLES);
+        boolean has = s.getValue(HAS_CHERRIES);
 
         if (!has && age < 2 && canGrowPlace(level, pos)) {
-            BlockState newState = age == 0 ? s.setValue(AGE, 1) : s.setValue(AGE, 2).setValue(HAS_APPLES, true);
+            BlockState newState = (age == 0)
+                    ? s.setValue(AGE, 1)
+                    : s.setValue(AGE, 2).setValue(HAS_CHERRIES, true);
             level.setBlock(pos, newState, 2);
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(newState));
         } else if (has && age == 2 && canGrowPlace(level, pos)) {

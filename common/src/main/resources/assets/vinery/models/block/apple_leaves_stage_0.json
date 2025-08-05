@@ -1,6 +1,6 @@
 {
 	"parent": "minecraft:block/cube_all",
 	"textures": {
-		"all": "vinery:block/dark_cherry_planks"
+		"all": "vinery:block/apple_leaves_0"
 	}
 }

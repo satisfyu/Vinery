@@ -6,7 +6,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLPaths;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.registry.CompostableRegistry;
 import net.satisfy.vinery.core.util.PreInit;
@@ -30,7 +29,9 @@ public class VineryForge {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(CompostableRegistry::registerCompostable);
-        Vinery.commonSetup();
+        event.enqueueWork(() -> {
+            CompostableRegistry.registerCompostable();
+            Vinery.commonSetup();
+        });
     }
 }

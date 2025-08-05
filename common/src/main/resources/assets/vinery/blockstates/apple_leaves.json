@@ -1,16 +1,28 @@
 {
-    "variants": {
-		"can_have_apples=false,has_apples=false": {
-			"model": "vinery:block/apple_leaves_stage0"
-		},
-		"can_have_apples=false,has_apples=true": {
-			"model": "vinery:block/apple_leaves_stage0"
-		},
-		"can_have_apples=true,has_apples=false": {
-			"model": "vinery:block/apple_leaves_stage0"
-		},
-		"can_have_apples=true,has_apples=true": {
-			"model": "vinery:block/apple_leaves_stage1"
-		}
-	}
+  "variants": {
+    "has_apples=false,age=0": {
+      "model": "vinery:block/apple_leaves_stage_0"
+    },
+    "has_apples=false,age=1": {
+      "model": "vinery:block/apple_leaves_stage_1"
+    },
+    "has_apples=false,age=2": {
+      "model": "vinery:block/apple_leaves_stage_1"
+    },
+    "has_apples=false,age=3": {
+      "model": "vinery:block/apple_leaves_stage_1"
+    },
+    "has_apples=true,age=0": {
+      "model": "vinery:block/apple_leaves_stage_0"
+    },
+    "has_apples=true,age=1": {
+      "model": "vinery:block/apple_leaves_stage_1"
+    },
+    "has_apples=true,age=2": {
+      "model": "vinery:block/apple_leaves_stage_2"
+    },
+    "has_apples=true,age=3": {
+      "model": "vinery:block/apple_leaves_stage_3"
+    }
+  }
 }

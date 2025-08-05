@@ -1,4 +1,4 @@
-package net.satisfy.vinery.core.world;
+package net.satisfy.vinery.core.world.feature;
 
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
@@ -9,6 +9,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfi
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.util.VineryIdentifier;
+import net.satisfy.vinery.core.world.feature.JungleGrapeFeature;
 
 import java.util.function.Supplier;
 

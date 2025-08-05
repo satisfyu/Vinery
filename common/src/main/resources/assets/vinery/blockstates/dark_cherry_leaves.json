@@ -1,16 +1,28 @@
 {
-    "variants": {
-		"can_have_cherries=false,has_cherries=false": {
-			"model": "vinery:block/dark_cherry_leaves"
-		},
-		"can_have_cherries=false,has_cherries=true": {
-			"model": "vinery:block/dark_cherry_leaves"
-		},
-		"can_have_cherries=true,has_cherries=false": {
-			"model": "vinery:block/dark_cherry_leaves_stage0"
-		},
-		"can_have_cherries=true,has_cherries=true": {
-			"model": "vinery:block/dark_cherry_leaves_stage1"
-		}
-	}
+  "variants": {
+    "has_cherries=false,age=0": {
+      "model": "vinery:block/dark_cherry_leaves_stage_0"
+    },
+    "has_cherries=false,age=1": {
+      "model": "vinery:block/dark_cherry_leaves_stage_1"
+    },
+    "has_cherries=false,age=2": {
+      "model": "vinery:block/dark_cherry_leaves_stage_1"
+    },
+    "has_cherries=false,age=3": {
+      "model": "vinery:block/dark_cherry_leaves_stage_1"
+    },
+    "has_cherries=true,age=0": {
+      "model": "vinery:block/dark_cherry_leaves_stage_0"
+    },
+    "has_cherries=true,age=1": {
+      "model": "vinery:block/dark_cherry_leaves_stage_1"
+    },
+    "has_cherries=true,age=2": {
+      "model": "vinery:block/dark_cherry_leaves_stage_2"
+    },
+    "has_cherries=true,age=3": {
+      "model": "vinery:block/dark_cherry_leaves_stage_3"
+    }
+  }
 }

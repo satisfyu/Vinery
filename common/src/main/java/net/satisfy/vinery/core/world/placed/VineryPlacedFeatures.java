@@ -1,4 +1,4 @@
-package net.satisfy.vinery.core.world;
+package net.satisfy.vinery.core.world.placed;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;

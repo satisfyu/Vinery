@@ -1,4 +1,4 @@
-[1.4.40] - 2025.04.09
+[1.4.40]
 
 **Added**
 - Tooltips for all wine bottles now indicate their size (`small` or `big`).
@@ -8,14 +8,19 @@
 - Added template models for most Vinery specific Blocks (e.g. Wine Racks, Wines) - this should reduce loading times 
 - Increased the `Completionist Banner` effect duration from 40 to 200
 - Updated the `Overgrown Lattices` advancement description for better clarity
+- Completely reworked Apple & Dark Cherry Trees - new Features, Textures and better functionality
+- Wine aging now uses `getGameTime()` instead of `getDayTime()` to prevent aging reset when using `/time set`
+- Stackable logs now provide `1000` smelting value, previously `300`
 
 **Fixed**
 - Resolved an issue where `Apple Leaves` were not properly registered as flammable
 - `Completionist Wall Banner` not having a Loottable
+- Fixed a crash when opening the Vinery creative tab caused by `ItemStack` entries with a count greater than `1`
+- Fixed a startup crash with Easy NPC caused by parallel modification of the strippables map during setup
 
 ***
 
-[1.4.39] - 2025.03.04
+[1.4.39]
 
 **Added**
 - Added Cherry Leaves, Apple Leaves and Grapevine Leaves to the `hoe` mineable tag.

@@ -1,4 +1,4 @@
-package net.satisfy.vinery.core.world;
+package net.satisfy.vinery.core.world.feature;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
