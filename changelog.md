@@ -3,6 +3,7 @@
 **Added**
 - Tooltips for all wine bottles now indicate their size (`small` or `big`).
 - Wine bottle storage blocks now display tooltips specifying compatible bottle sizes (`small` or `all sizes`).
+- Japanese translation _(Thanks to PExPE3)_
 
 **Changed**
 - Added template models for most Vinery specific Blocks (e.g. Wine Racks, Wines) - this should reduce loading times 
@@ -10,7 +11,9 @@
 - Updated the `Overgrown Lattices` advancement description for better clarity
 - Completely reworked Apple & Dark Cherry Trees - new Features, Textures and better functionality
 - Wine aging now uses `getGameTime()` instead of `getDayTime()` to prevent aging reset when using `/time set`
+- Wine age and upgrade progress calculation now use day-based precision instead of year rounding _(Thanks to AverageChaos)_
 - Stackable logs now provide `1000` smelting value, previously `300`
+- Jungle Grapevine Blocks now use biome foliage tint 
 
 **Fixed**
 - Resolved an issue where `Apple Leaves` were not properly registered as flammable

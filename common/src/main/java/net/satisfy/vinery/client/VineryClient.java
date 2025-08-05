@@ -62,6 +62,12 @@ public class VineryClient {
                     return BiomeColors.getAverageGrassColor(world, pos);
                 }, GRASS_SLAB.get()
         );
+        ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
+            if (world == null || pos == null) {
+                return -1;
+            }
+            return BiomeColors.getAverageFoliageColor(world, pos);
+        }, JUNGLE_RED_GRAPE_BUSH.get(), JUNGLE_WHITE_GRAPE_BUSH.get());
 
         registerStorageType();
         registerScreenFactory();
