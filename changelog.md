@@ -5,11 +5,13 @@
 - Wine bottle storage blocks now display tooltips specifying compatible bottle sizes (`small` or `all sizes`).
 - Japanese translation _(Thanks to PExPE3)_
 - Bushy Leaves resourcepack is now bundled and supplied by default for forge as well
+- Grapevine Leaves are now available again! They will grow near Grapevine Stems with Red Grape or White Grapes
 
 **Changed**
 - Added template models for most Vinery specific Blocks (e.g. Wine Racks, Wines) - this should reduce loading times 
 - Increased the `Completionist Banner` effect duration from 40 to 200
 - Updated the `Overgrown Lattices` advancement description for better clarity
+- Replace `VineryIdentifier` with `Vinery.identifier` - this should resolve Issues with Xaeros Map Mob Icons
 - Completely reworked Apple & Dark Cherry Trees - new Features, Textures and better functionality
 - Wine aging now uses `getGameTime()` instead of `getDayTime()` to prevent aging reset when using `/time set`
 - Wine age and upgrade progress calculation now use day-based precision instead of year rounding _(Thanks to AverageChaos)_

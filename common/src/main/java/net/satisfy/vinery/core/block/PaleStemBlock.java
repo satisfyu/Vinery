@@ -18,23 +18,37 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfy.vinery.core.item.GrapeBushSeedItem;
 import net.satisfy.vinery.core.registry.GrapeTypeRegistry;
+import net.satisfy.vinery.core.registry.ObjectRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3i;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
 public class PaleStemBlock extends StemBlock {
-    private static final VoxelShape PALE_SHAPE = Block.box(6.0, 0,6.0, 10.0,  16.0, 10.0);
+    private static final VoxelShape PALE_SHAPE = Block.box(6.0, 0, 6.0, 10.0, 16.0, 10.0);
+    public static final BooleanProperty LEAVES_PENDING = BooleanProperty.create("leaves_pending");
+    public static final BooleanProperty LEAVES_DONE = BooleanProperty.create("leaves_done");
+
     public PaleStemBlock(Properties settings) {
         super(settings);
-        this.registerDefaultState(this.defaultBlockState().setValue(GRAPE, GrapeTypeRegistry.NONE).setValue(AGE, 0));
+        this.registerDefaultState(this.defaultBlockState()
+                .setValue(GRAPE, GrapeTypeRegistry.NONE)
+                .setValue(AGE, 0)
+                .setValue(LEAVES_PENDING, false)
+                .setValue(LEAVES_DONE, false));
     }
 
     @Override
@@ -44,12 +58,8 @@ public class PaleStemBlock extends StemBlock {
 
     @Nullable
     @Override
-    @SuppressWarnings("unused")
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        BlockState blockState;
-        blockState = this.defaultBlockState();
-        Level world = ctx.getLevel();
-        BlockPos blockPos = ctx.getClickedPos();
+        BlockState blockState = this.defaultBlockState();
         if (blockState.canSurvive(ctx.getLevel(), ctx.getClickedPos())) {
             return blockState;
         }
@@ -58,7 +68,7 @@ public class PaleStemBlock extends StemBlock {
 
     @Override
     public void setPlacedBy(Level level, BlockPos blockPos, BlockState blockState, @Nullable LivingEntity livingEntity, ItemStack itemStack) {
-        if(livingEntity instanceof Player player){
+        if (livingEntity instanceof Player player) {
             if (itemStack != null && (player.isCreative() || itemStack.getCount() >= 2) && level.getBlockState(blockPos.below()).getBlock() != this && blockPos.getY() < level.getMaxBuildHeight() - 1 && level.getBlockState(blockPos.above()).canBeReplaced()) {
                 level.setBlock(blockPos.above(), this.defaultBlockState(), 3);
                 itemStack.shrink(1);
@@ -71,7 +81,6 @@ public class PaleStemBlock extends StemBlock {
         if (hand == InteractionHand.OFF_HAND) {
             return super.use(state, world, pos, player, hand, hit);
         }
-
         final int age = state.getValue(AGE);
         if (age > 0 && player.getItemInHand(hand).getItem() == Items.SHEARS) {
             if (age > 2) {
@@ -82,13 +91,18 @@ public class PaleStemBlock extends StemBlock {
             world.playSound(player, pos, SoundEvents.SWEET_BERRY_BUSH_BREAK, SoundSource.AMBIENT, 1.0F, 1.0F);
             return InteractionResult.sidedSuccess(world.isClientSide);
         }
-
-
         final ItemStack stack = player.getItemInHand(hand);
         if (stack.getItem() instanceof GrapeBushSeedItem seed && hasTrunk(world, pos)) {
             if (age == 0) {
                 if (!seed.getType().isLattice()) {
-                    world.setBlock(pos, withAge(state, 1, seed.getType()), 3);
+                    boolean schedule = seed.getType() == GrapeTypeRegistry.WHITE || seed.getType() == GrapeTypeRegistry.RED;
+                    BlockState ns = withAge(state, 1, seed.getType());
+                    if (schedule && !state.getValue(LEAVES_PENDING) && !state.getValue(LEAVES_DONE)) {
+                        ns = ns.setValue(LEAVES_PENDING, true);
+                        int delay = 4800 + world.random.nextInt(4801);
+                        world.scheduleTick(pos, this, delay);
+                    }
+                    world.setBlock(pos, ns, 3);
                     if (!player.isCreative()) {
                         stack.shrink(1);
                     }
@@ -97,8 +111,17 @@ public class PaleStemBlock extends StemBlock {
                 }
             }
         }
-
         return super.use(state, world, pos, player, hand, hit);
+    }
+
+    @Override
+    public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean moved) {
+        super.onPlace(state, world, pos, oldState, moved);
+        if (!world.isClientSide && (state.getValue(GRAPE) == GrapeTypeRegistry.WHITE || state.getValue(GRAPE) == GrapeTypeRegistry.RED) && !state.getValue(LEAVES_PENDING) && !state.getValue(LEAVES_DONE)) {
+            world.setBlock(pos, state.setValue(LEAVES_PENDING, true), 3);
+            int delay = 4800 + world.random.nextInt(4801);
+            world.scheduleTick(pos, this, delay);
+        }
     }
 
     @Override
@@ -111,6 +134,43 @@ public class PaleStemBlock extends StemBlock {
                 dropGrapes(world, state, pos, null);
             }
             world.destroyBlock(pos, true);
+            return;
+        }
+
+        if (state.getValue(LEAVES_PENDING)) {
+            boolean isWhite = state.getValue(GRAPE) == GrapeTypeRegistry.WHITE;
+            boolean isRed = state.getValue(GRAPE) == GrapeTypeRegistry.RED;
+
+            if (isWhite || isRed) {
+                List<Vector3i> offsets = Arrays.asList(
+                        new Vector3i(-2, 0, -1),
+                        new Vector3i(-1, 0, -2),
+                        new Vector3i(1, 0, -2),
+                        new Vector3i(2, 0, -1),
+                        new Vector3i(-2, 0, 1),
+                        new Vector3i(-1, 0, 0),
+                        new Vector3i(1, 0, 0),
+                        new Vector3i(2, 0, 1),
+                        new Vector3i(-1, 0, 2),
+                        new Vector3i(0, 0, 1),
+                        new Vector3i(1, 0, 2)
+                );
+
+                for (Vector3i v : offsets) {
+                    if (random.nextFloat() > 0.4f) continue;
+                    BlockPos ground = pos.offset(v.x, 0, v.z);
+                    while (world.isInWorldBounds(ground) && world.getBlockState(ground).isAir()) {
+                        ground = ground.below();
+                    }
+                    BlockPos placePos = ground.above();
+                    if (world.getBlockState(placePos).canBeReplaced()) {
+                        world.setBlock(placePos, ObjectRegistry.GRAPEVINE_LEAVES.get()
+                                .defaultBlockState()
+                                .setValue(LeavesBlock.PERSISTENT, true), 3);
+                    }
+                }
+            }
+            world.setBlock(pos, state.setValue(LEAVES_PENDING, false).setValue(LEAVES_DONE, true), 3);
         }
     }
 
@@ -127,7 +187,6 @@ public class PaleStemBlock extends StemBlock {
         super.randomTick(state, world, pos, random);
     }
 
-
     @Override
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         return world.getBlockState(pos.below()).isRedstoneConductor(world, pos) || world.getBlockState(pos.below()).getBlock() == this;
@@ -139,5 +198,11 @@ public class PaleStemBlock extends StemBlock {
             world.scheduleTick(pos, this, 1);
         }
         return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(LEAVES_PENDING, LEAVES_DONE);
     }
 }
