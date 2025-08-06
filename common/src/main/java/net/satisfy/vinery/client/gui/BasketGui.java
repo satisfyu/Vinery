@@ -6,10 +6,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.satisfy.vinery.client.gui.handler.BasketGuiHandler;
-import net.satisfy.vinery.core.util.VineryIdentifier;
+import net.satisfy.vinery.core.Vinery;
 
 public class BasketGui extends AbstractContainerScreen<BasketGuiHandler> {
-    private static final ResourceLocation CONTAINER_LOCATION = new VineryIdentifier("textures/gui/basket.png");
+    private static final ResourceLocation CONTAINER_LOCATION = Vinery.identifier("textures/gui/basket.png");
     public BasketGui(BasketGuiHandler abstractContainerMenu, Inventory inventory, Component component) {
         super(abstractContainerMenu, inventory, component);
     }

@@ -13,20 +13,20 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
+import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.block.BasketBlock;
 import net.satisfy.vinery.core.block.entity.BasketBlockEntity;
-import net.satisfy.vinery.core.util.VineryIdentifier;
 
 import java.util.Objects;
 
 public class BasketRenderer implements BlockEntityRenderer<BasketBlockEntity> {
-    private static final ResourceLocation TEXTURE = new VineryIdentifier("textures/entity/basket.png");
+    private static final ResourceLocation TEXTURE = Vinery.identifier("textures/entity/basket.png");
     private final ModelPart lidleft;
     private final ModelPart lidright;
     private final ModelPart bottom;
     private final ModelPart handle;
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("basket"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Vinery.identifier("basket"), "main");
 
     public BasketRenderer(BlockEntityRendererProvider.Context context) {
         ModelPart modelPart = context.bakeLayer(LAYER_LOCATION);

@@ -8,12 +8,12 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
-import net.satisfy.vinery.core.util.VineryIdentifier;
+import net.satisfy.vinery.core.Vinery;
 import org.jetbrains.annotations.NotNull;
 
 public class WinemakerLeggingsModel<T extends Entity> extends EntityModel<T> {
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("winemaker_leggings"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Vinery.identifier("winemaker_leggings"), "main");
     private final ModelPart right_leg;
     private final ModelPart left_leg;
 

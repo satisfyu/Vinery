@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.compat.jei.category.ApplePressMashingCategory;
 import net.satisfy.vinery.core.compat.jei.category.FermentationBarrelCategory;
 import net.satisfy.vinery.core.compat.jei.category.ApplePressFermentingCategory; // Import der neuen Kategorie
@@ -23,7 +24,6 @@ import net.satisfy.vinery.core.recipe.FermentationBarrelRecipe;
 import net.satisfy.vinery.core.recipe.ApplePressFermentingRecipe; // Import der neuen Rezeptklasse
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import net.satisfy.vinery.core.registry.RecipeTypesRegistry;
-import net.satisfy.vinery.core.util.VineryIdentifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class VineryJEIPlugin implements IModPlugin {
 
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return new VineryIdentifier("jei_plugin");
+        return Vinery.identifier("jei_plugin");
     }
 
     @Override

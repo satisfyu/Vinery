@@ -10,11 +10,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.satisfy.vinery.client.gui.handler.ApplePressGuiHandler;
-import net.satisfy.vinery.core.util.VineryIdentifier;
+import net.satisfy.vinery.core.Vinery;
 
 @Environment(EnvType.CLIENT)
 public class ApplePressGui extends AbstractContainerScreen<ApplePressGuiHandler> {
-    public static final ResourceLocation TEXTURE = new VineryIdentifier("textures/gui/apple_press_gui.png");
+    public static final ResourceLocation TEXTURE = Vinery.identifier("textures/gui/apple_press_gui.png");
 
     public static final int MASHING_BAR_X = 40;
     public static final int MASHING_BAR_Y = 17;

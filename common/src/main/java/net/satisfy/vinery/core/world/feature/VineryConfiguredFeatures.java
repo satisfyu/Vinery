@@ -3,7 +3,7 @@ package net.satisfy.vinery.core.world.feature;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.satisfy.vinery.core.util.VineryIdentifier;
+import net.satisfy.vinery.core.Vinery;
 
 public class VineryConfiguredFeatures {
 
@@ -13,7 +13,7 @@ public class VineryConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?,?>> APPLE_VARIANT_KEY = registerKey("apple_variant");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, new VineryIdentifier(name));
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, Vinery.identifier(name));
     }
 
 }

@@ -23,7 +23,7 @@ import net.satisfy.vinery.core.item.GrapeItem;
 import net.satisfy.vinery.core.registry.GrapeTypeRegistry;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import net.satisfy.vinery.core.registry.SoundEventRegistry;
-import net.satisfy.vinery.core.util.GrapeProperty;
+import net.satisfy.vinery.core.block.state.properties.GrapeProperty;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecation")

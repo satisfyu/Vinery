@@ -9,7 +9,6 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.effect.*;
-import net.satisfy.vinery.core.util.VineryIdentifier;
 
 import java.util.function.Supplier;
 
@@ -38,7 +37,7 @@ public class MobEffectRegistry {
         if(Platform.isForge()){
             return MOB_EFFECTS.register(name, effect);
         }
-        return MOB_EFFECTS_REGISTRAR.register(new VineryIdentifier(name), effect);
+        return MOB_EFFECTS_REGISTRAR.register(Vinery.identifier(name), effect);
     }
 
     public static void init(){

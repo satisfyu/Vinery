@@ -14,32 +14,24 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.item.Item;
+import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import net.satisfy.vinery.core.util.VillagerUtil;
-import net.satisfy.vinery.core.util.VineryIdentifier;
 import net.satisfy.vinery.fabric.config.VineryFabricConfig;
 
 public class VineryFabricVillagers {
 
-    private static final VineryIdentifier WINEMAKER_POI_IDENTIFIER = new VineryIdentifier("winemaker_poi");
+    private static final ResourceLocation WINEMAKER_POI_IDENTIFIER = Vinery.identifier("winemaker_poi");
     public static final PoiType WINEMAKER_POI;
     public static final VillagerProfession WINEMAKER;
 
     static {
         WINEMAKER_POI = PointOfInterestHelper.register(
-                WINEMAKER_POI_IDENTIFIER,
-                1,
-                12,
-                ObjectRegistry.FERMENTATION_BARREL.get()
+                WINEMAKER_POI_IDENTIFIER, 1, 12, ObjectRegistry.FERMENTATION_BARREL.get()
         );
 
         WINEMAKER = Registry.register(
-                BuiltInRegistries.VILLAGER_PROFESSION,
-                new ResourceLocation("vinery", "winemaker"),
-                VillagerProfessionBuilder.create()
-                        .id(new ResourceLocation("vinery", "winemaker"))
-                        .workstation(ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, WINEMAKER_POI_IDENTIFIER))
-                        .build()
+                BuiltInRegistries.VILLAGER_PROFESSION, new ResourceLocation("vinery", "winemaker"), VillagerProfessionBuilder.create().id(new ResourceLocation("vinery", "winemaker")).workstation(ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, WINEMAKER_POI_IDENTIFIER)).build()
         );
     }
 

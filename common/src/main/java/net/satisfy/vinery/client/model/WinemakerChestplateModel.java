@@ -8,11 +8,11 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
-import net.satisfy.vinery.core.util.VineryIdentifier;
+import net.satisfy.vinery.core.Vinery;
 import org.jetbrains.annotations.NotNull;
 
 public class WinemakerChestplateModel<T extends Entity> extends EntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("winemaker_chest"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Vinery.identifier("winemaker_chest"), "main");
     private final ModelPart body;
     private final ModelPart right_arm;
     private final ModelPart left_arm;

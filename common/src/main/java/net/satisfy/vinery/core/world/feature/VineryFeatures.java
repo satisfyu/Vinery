@@ -8,8 +8,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.satisfy.vinery.core.Vinery;
-import net.satisfy.vinery.core.util.VineryIdentifier;
-import net.satisfy.vinery.core.world.feature.JungleGrapeFeature;
 
 import java.util.function.Supplier;
 
@@ -22,7 +20,7 @@ public class VineryFeatures {
     }
 
     private static <C extends FeatureConfiguration, F extends Feature<C>> RegistrySupplier<F> register(String name, Supplier<F> feature) {
-        return FEATURES.register(new VineryIdentifier(name), feature);
+        return FEATURES.register(Vinery.identifier(name), feature);
     }
 
 }

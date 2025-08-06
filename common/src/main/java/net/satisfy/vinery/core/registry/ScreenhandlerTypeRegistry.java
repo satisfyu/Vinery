@@ -11,7 +11,6 @@ import net.satisfy.vinery.client.gui.handler.ApplePressGuiHandler;
 import net.satisfy.vinery.client.gui.handler.BasketGuiHandler;
 import net.satisfy.vinery.client.gui.handler.FermentationBarrelGuiHandler;
 import net.satisfy.vinery.core.Vinery;
-import net.satisfy.vinery.core.util.VineryIdentifier;
 
 import java.util.function.Supplier;
 
@@ -26,7 +25,7 @@ public class ScreenhandlerTypeRegistry {
 
     public static <T extends AbstractContainerMenu> RegistrySupplier<MenuType<T>> register(String name, Supplier<MenuType<T>> menuType){
 
-        return MENU_TYPES.register(new VineryIdentifier(name), menuType);
+        return MENU_TYPES.register(Vinery.identifier(name), menuType);
     }
 
     public static void init() {

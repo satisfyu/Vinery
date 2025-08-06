@@ -17,12 +17,12 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.block.LatticeBlock;
 import net.satisfy.vinery.core.block.entity.LatticeBlockEntity;
 import net.satisfy.vinery.core.registry.GrapeTypeRegistry;
 import net.satisfy.vinery.core.util.GeneralUtil;
 import net.satisfy.vinery.core.util.GrapeType;
-import net.satisfy.vinery.core.util.VineryIdentifier;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,16 +35,16 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> 
     private static Map<Block, ResourceLocation> getTextureMap() {
         if (textureMap == null) {
             textureMap = new HashMap<>();
-            textureMap.put(OAK_LATTICE.get(), new VineryIdentifier("textures/block/lattice/oak_lattice.png"));
-            textureMap.put(SPRUCE_LATTICE.get(), new VineryIdentifier("textures/block/lattice/spruce_lattice.png"));
-            textureMap.put(CHERRY_LATTICE.get(), new VineryIdentifier("textures/block/lattice/cherry_lattice.png"));
-            textureMap.put(BIRCH_LATTICE.get(), new VineryIdentifier("textures/block/lattice/birch_lattice.png"));
-            textureMap.put(DARK_OAK_LATTICE.get(), new VineryIdentifier("textures/block/lattice/dark_oak_lattice.png"));
-            textureMap.put(ACACIA_LATTICE.get(), new VineryIdentifier("textures/block/lattice/acacia_lattice.png"));
-            textureMap.put(BAMBOO_LATTICE.get(), new VineryIdentifier("textures/block/lattice/bamboo_lattice.png"));
-            textureMap.put(JUNGLE_LATTICE.get(), new VineryIdentifier("textures/block/lattice/jungle_lattice.png"));
-            textureMap.put(MANGROVE_LATTICE.get(), new VineryIdentifier("textures/block/lattice/mangrove_lattice.png"));
-            textureMap.put(DARK_CHERRY_LATTICE.get(), new VineryIdentifier("textures/block/lattice/dark_cherry_lattice.png"));
+            textureMap.put(OAK_LATTICE.get(), Vinery.identifier("textures/block/lattice/oak_lattice.png"));
+            textureMap.put(SPRUCE_LATTICE.get(), Vinery.identifier("textures/block/lattice/spruce_lattice.png"));
+            textureMap.put(CHERRY_LATTICE.get(), Vinery.identifier("textures/block/lattice/cherry_lattice.png"));
+            textureMap.put(BIRCH_LATTICE.get(), Vinery.identifier("textures/block/lattice/birch_lattice.png"));
+            textureMap.put(DARK_OAK_LATTICE.get(), Vinery.identifier("textures/block/lattice/dark_oak_lattice.png"));
+            textureMap.put(ACACIA_LATTICE.get(), Vinery.identifier("textures/block/lattice/acacia_lattice.png"));
+            textureMap.put(BAMBOO_LATTICE.get(), Vinery.identifier("textures/block/lattice/bamboo_lattice.png"));
+            textureMap.put(JUNGLE_LATTICE.get(), Vinery.identifier("textures/block/lattice/jungle_lattice.png"));
+            textureMap.put(MANGROVE_LATTICE.get(), Vinery.identifier("textures/block/lattice/mangrove_lattice.png"));
+            textureMap.put(DARK_CHERRY_LATTICE.get(), Vinery.identifier("textures/block/lattice/dark_cherry_lattice.png"));
         }
         return textureMap;
     }
@@ -64,7 +64,7 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> 
     private final ModelPart hanging_1_r1;
     private final ModelPart hanging_2_r1;
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("lattice"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Vinery.identifier("lattice"), "main");
 
     public LatticeRenderer(BlockEntityRendererProvider.Context context) {
         ModelPart root = context.bakeLayer(LAYER_LOCATION);
@@ -173,7 +173,7 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> 
         poseStack.scale(1.0f, -1.0f, -1.0f);
 
         Block block = state.getBlock();
-        ResourceLocation texture = getTextureMap().getOrDefault(block, new VineryIdentifier("textures/entity/lattice/default_lattice.png"));
+        ResourceLocation texture = getTextureMap().getOrDefault(block, Vinery.identifier("textures/entity/lattice/default_lattice.png"));
         VertexConsumer consumer = buffer.getBuffer(RenderType.entityCutoutNoCull(texture));
 
         if (bottom) {

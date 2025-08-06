@@ -3,6 +3,7 @@ package net.satisfy.vinery.core;
 import dev.architectury.hooks.item.tool.AxeItemHooks;
 import dev.architectury.hooks.item.tool.ShovelItemHooks;
 import dev.architectury.registry.fuel.FuelRegistry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.satisfy.vinery.core.event.EventHandler;
 import net.satisfy.vinery.core.registry.*;
@@ -21,6 +22,10 @@ public class Vinery {
         SoundEventRegistry.init();
         EventHandler.register();
         TabRegistry.init();
+    }
+
+    public static ResourceLocation identifier(String path) {
+        return new ResourceLocation(MOD_ID, path);
     }
 
     public static void commonSetup() {

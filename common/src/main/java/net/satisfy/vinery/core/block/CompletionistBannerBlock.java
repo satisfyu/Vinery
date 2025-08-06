@@ -22,10 +22,10 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.block.entity.CompletionistBannerEntity;
 import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
-import net.satisfy.vinery.core.util.VineryIdentifier;
 import net.satisfy.vinery.platform.PlatformHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -112,7 +112,7 @@ public class CompletionistBannerBlock extends BaseEntityBlock {
     }
 
     public ResourceLocation getRenderTexture() {
-        return new VineryIdentifier("textures/banner/vinery_banner.png");
+        return Vinery.identifier("textures/banner/vinery_banner.png");
     }
 
     @Override

@@ -8,11 +8,11 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
-import net.satisfy.vinery.core.util.VineryIdentifier;
+import net.satisfy.vinery.core.Vinery;
 import org.jetbrains.annotations.NotNull;
 
 public class StrawHatModel<T extends Entity> extends EntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new VineryIdentifier("straw_hat"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Vinery.identifier("straw_hat"), "main");
     private final ModelPart top_part;
 
     public StrawHatModel(ModelPart root) {

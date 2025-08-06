@@ -2,7 +2,7 @@ package net.satisfy.vinery.core.registry;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.satisfy.vinery.core.util.VineryIdentifier;
+import net.satisfy.vinery.core.Vinery;
 
 import java.util.List;
 import java.util.Set;
@@ -10,14 +10,14 @@ import java.util.Set;
 import static net.satisfy.vinery.core.registry.ObjectRegistry.*;
 
 public class StorageTypeRegistry {
-    public static final ResourceLocation BIG_BOTTLE = new VineryIdentifier("big_bottle");
-    public static final ResourceLocation FOUR_BOTTLE = new VineryIdentifier("four_bottle");
-    public static final ResourceLocation NINE_BOTTLE = new VineryIdentifier("nine_bottle");
-    public static final ResourceLocation SHELF = new VineryIdentifier("shelf");
-    public static final ResourceLocation WINE_BOX = new VineryIdentifier("wine_box");
-    public static final ResourceLocation WINE_BOTTLE = new VineryIdentifier("wine_bottle");
-    public static final ResourceLocation FLOWER_POT_BIG = new VineryIdentifier("flower_pot_big");
-    public static final ResourceLocation FLOWER_BOX = new VineryIdentifier("flower_box");
+    public static final ResourceLocation BIG_BOTTLE = Vinery.identifier("big_bottle");
+    public static final ResourceLocation FOUR_BOTTLE = Vinery.identifier("four_bottle");
+    public static final ResourceLocation NINE_BOTTLE = Vinery.identifier("nine_bottle");
+    public static final ResourceLocation SHELF = Vinery.identifier("shelf");
+    public static final ResourceLocation WINE_BOX = Vinery.identifier("wine_box");
+    public static final ResourceLocation WINE_BOTTLE = Vinery.identifier("wine_bottle");
+    public static final ResourceLocation FLOWER_POT_BIG = Vinery.identifier("flower_pot_big");
+    public static final ResourceLocation FLOWER_BOX = Vinery.identifier("flower_box");
 
     public static Set<Block> registerBlocks(Set<Block> blocks) {
         blocks.add(DARK_CHERRY_WINE_RACK_SMALL.get());
