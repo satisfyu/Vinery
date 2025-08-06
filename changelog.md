@@ -4,6 +4,7 @@
 - Tooltips for all wine bottles now indicate their size (`small` or `big`).
 - Wine bottle storage blocks now display tooltips specifying compatible bottle sizes (`small` or `all sizes`).
 - Japanese translation _(Thanks to PExPE3)_
+- Bushy Leaves resourcepack is now bundled and supplied by default for forge as well
 
 **Changed**
 - Added template models for most Vinery specific Blocks (e.g. Wine Racks, Wines) - this should reduce loading times 

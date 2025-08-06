@@ -39,7 +39,7 @@ public class AppleLeavesBlock extends LeavesBlock implements BonemealableBlock {
     public AppleLeavesBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(PERSISTENT, false)
+                .setValue(PERSISTENT, true)
                 .setValue(DISTANCE, 7)
                 .setValue(CAN_GROW_APPLES, false)
                 .setValue(HAS_APPLES, false)
@@ -75,7 +75,7 @@ public class AppleLeavesBlock extends LeavesBlock implements BonemealableBlock {
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         boolean canGrowApples = ctx.getLevel().random.nextFloat() < 0.3f;
         return updateDistance(this.defaultBlockState()
-                .setValue(PERSISTENT, false)
+                .setValue(PERSISTENT, true)
                 .setValue(CAN_GROW_APPLES, canGrowApples)
                 .setValue(AGE, 0)
                 .setValue(HAS_APPLES, false)

@@ -1,144 +1,148 @@
 {
-    "variants": {
-        "distance=1,can_have_cherries=false,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-				],
-		"distance=2,can_have_cherries=false,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-				],
-		"distance=3,can_have_cherries=false,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-				],
-		"distance=4,can_have_cherries=false,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-				],
-		"distance=5,can_have_cherries=false,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-				],
-		"distance=6,can_have_cherries=false,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-				],
-		"distance=7,can_have_cherries=false,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-				],
-		"distance=1,can_have_cherries=false,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-		],
-		"distance=2,can_have_cherries=false,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-		],
-		"distance=3,can_have_cherries=false,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-		],
-		"distance=4,can_have_cherries=false,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-		],
-		"distance=5,can_have_cherries=false,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-		],
-		"distance=6,can_have_cherries=false,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-		],
-		"distance=7,can_have_cherries=false,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves" },
-			{ "model": "vinery:block/dark_cherry_leaves1" },
-			{ "model": "vinery:block/dark_cherry_leaves2" }
-		],
-		"distance=1,can_have_cherries=true,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage0" }
-		],
-		"distance=2,can_have_cherries=true,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage0" }
-		],
-		"distance=3,can_have_cherries=true,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage0" }
-		],
-		"distance=4,can_have_cherries=true,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage0" }
-		],
-		"distance=5,can_have_cherries=true,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage0" }
-		],
-		"distance=6,can_have_cherries=true,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage0" }
-		],
-		"distance=7,can_have_cherries=true,has_cherries=false": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage0" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage0" }
-		],
-		"distance=1,can_have_cherries=true,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage1" }
-		],
-		"distance=2,can_have_cherries=true,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage1" }
-		],
-		"distance=3,can_have_cherries=true,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage1" }
-		],
-		"distance=4,can_have_cherries=true,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage1" }
-		],
-		"distance=5,can_have_cherries=true,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage1" }
-		],
-		"distance=6,can_have_cherries=true,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage1" }
-		],
-		"distance=7,can_have_cherries=true,has_cherries=true": [
-			{ "model": "vinery:block/dark_cherry_leaves_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves1_stage1" },
-			{ "model": "vinery:block/dark_cherry_leaves2_stage1" }
-		]
-	}
+  "variants": {
+    "has_cherries=false,age=0": [
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage0_bushy",
+        "y": 0
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage0_bushy",
+        "y": 90
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage0_bushy",
+        "y": 180
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage0_bushy",
+        "y": 270
+      }
+    ],
+    "has_cherries=false,age=1": [
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage1_bushy",
+        "y": 0
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage1_bushy",
+        "y": 90
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage1_bushy",
+        "y": 180
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage1_bushy",
+        "y": 270
+      }
+    ],
+    "has_cherries=false,age=2": [
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage2_bushy",
+        "y": 0
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage2_bushy",
+        "y": 90
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage2_bushy",
+        "y": 180
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage2_bushy",
+        "y": 270
+      }
+    ],
+    "has_cherries=false,age=3": [
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage3_bushy",
+        "y": 0
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage3_bushy",
+        "y": 90
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage3_bushy",
+        "y": 180
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage3_bushy",
+        "y": 270
+      }
+    ],
+    "has_cherries=true,age=0": [
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage0_bushy",
+        "y": 0
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage0_bushy",
+        "y": 90
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage0_bushy",
+        "y": 180
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage0_bushy",
+        "y": 270
+      }
+    ],
+    "has_cherries=true,age=1": [
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage1_bushy",
+        "y": 0
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage1_bushy",
+        "y": 90
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage1_bushy",
+        "y": 180
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage1_bushy",
+        "y": 270
+      }
+    ],
+    "has_cherries=true,age=2": [
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage2_bushy",
+        "y": 0
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage2_bushy",
+        "y": 90
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage2_bushy",
+        "y": 180
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage2_bushy",
+        "y": 270
+      }
+    ],
+    "has_cherries=true,age=3": [
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage3_bushy",
+        "y": 0
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage3_bushy",
+        "y": 90
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage3_bushy",
+        "y": 180
+      },
+      {
+        "model": "vinery:block/dark_cherry_leaves_stage3_bushy",
+        "y": 270
+      }
+    ]
+  }
 }
