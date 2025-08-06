@@ -2,7 +2,16 @@
 
 <h1 align="center">Welcome to Vinery!</h1>
 
-<p>Discover Winemaking with all the tools provided by this Mod. Build up your Winery, craft Wine, decorate. </p>
+<p>Hello there! You must be looking for a cozy extension to add onto your cozy little cottage, no? Well look no further for '[Let's Do] Vinery' offers just that!</p>
+
+<h1 align="center">What do we offer?</h1>
+<p>
+    - 8 types of grape<br>
+    - 20+ (placeable) wines<br>
+    - 10+ custom effects<br>
+    - custom aging mechanic to boost the quality of your wines and their effects<br>
+    - tons of decorative items, including but not limited to: Furniture, Wine Racks, and Grape Bags.
+</p>
 
 <sub>*The elements and mechanics related to wine and alcoholic beverages contained in Vinery are solely for entertainment purposes and should not be interpreted in any way as an endorsement or glorification of alcohol consumption*</sub>
 <h1 align="center">Available for</h1>
