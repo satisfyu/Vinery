@@ -1,3 +1,22 @@
+[1.4.41]
+
+**Fixed**
+* `JungleWineRack` open/close property being inverted
+* Wine aging did not update in tooltip or when consumed. Root causes:
+    * cached NBT never recomputed
+    * inverted `hasWineYear` prevented proper initialization
+    * getter side-effects caused stale UI values
+* `getDays`/`getYear` math stabilized; no unintended zeroing
+* `JellieWine` Texture alignment
+* 
+
+### Added
+* Debug commands for testing:
+    * `/wine info` — shows current Age (years/days), effect amplifier, and duration (ticks) for the bottle in main hand
+    * `/wine age <years>` — sets the NBT year so the item is treated as aged by `<years>` years immediately
+
+***
+
 [1.4.40]
 
 **Added**

@@ -5,6 +5,7 @@ import dev.architectury.hooks.item.tool.ShovelItemHooks;
 import dev.architectury.registry.fuel.FuelRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
+import net.satisfy.vinery.core.command.WineDebugCommands;
 import net.satisfy.vinery.core.event.EventHandler;
 import net.satisfy.vinery.core.registry.*;
 import net.satisfy.vinery.core.world.feature.VineryFeatures;
@@ -20,8 +21,9 @@ public class Vinery {
         RecipeTypesRegistry.init();
         VineryFeatures.init();
         SoundEventRegistry.init();
-        EventHandler.register();
+        EventHandler.init();
         TabRegistry.init();
+        WineDebugCommands.init();
     }
 
     public static ResourceLocation identifier(String path) {

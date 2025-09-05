@@ -55,7 +55,7 @@ public class EventHandler {
     }
 
 
-    public static void register() {
+    public static void init() {
         PlayerEvent.ATTACK_ENTITY.register(EventHandler::onAttack);
     }
 }

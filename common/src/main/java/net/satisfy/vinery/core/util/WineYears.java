@@ -20,56 +20,53 @@ public class WineYears {
     public static final String TAG_EFFECT_DURATION = "EffectDuration";
 
     public static int getYear(Level world) {
-        return world != null ? YEARS_START + (int) (world.getGameTime() / 24000 / DAYS_PER_YEAR) : YEARS_START;
+        return world != null ? YEARS_START + (int) ((world.getGameTime() / 24000L) / DAYS_PER_YEAR) : YEARS_START;
     }
 
-	public static int getDays(Level world) {
-		return (YEARS_START * DAYS_PER_YEAR) + (world != null ? (int) (world.getGameTime() / 24000) : 0);
-	}
-
-    public static int getEffectLevel(ItemStack wine, Level world) {
-        if (wine.getOrCreateTag().contains(TAG_EFFECT_LEVEL)) {
-            return wine.getOrCreateTag().getInt(TAG_EFFECT_LEVEL);
-        }
-        int calculated = Math.max(0, Math.min(MAX_LEVEL, getWineAge(wine, world) / YEARS_PER_EFFECT_LEVEL));
-        wine.getOrCreateTag().putInt(TAG_EFFECT_LEVEL, calculated);
-        return calculated;
+    public static int getDays(Level world) {
+        return world != null ? (int) (world.getGameTime() / 24000L) : 0;
     }
 
     public static int getWineAge(ItemStack wine, Level world) {
-        return getYear(world) - (!hasWineYear(wine) ? getWineYear(wine) : 0);
+        int y = hasWineYear(wine) ? getWineYear(wine) : YEARS_START;
+        return Math.max(0, getYear(world) - y);
     }
 
     public static int getWineAgeDays(ItemStack wine, Level world) {
-        return getDays(world) - ((!hasWineYear(wine) ? getWineYear(wine) : 0) * DAYS_PER_YEAR);
+        int y = hasWineYear(wine) ? getWineYear(wine) : YEARS_START;
+        return Math.max(0, getDays(world) - (y * DAYS_PER_YEAR));
+    }
+
+    public static int getEffectLevel(ItemStack wine, Level world) {
+        int age = getWineAge(wine, world);
+        return Math.max(0, Math.min(MAX_LEVEL, YEARS_PER_EFFECT_LEVEL > 0 ? age / YEARS_PER_EFFECT_LEVEL : 0));
+    }
+
+    public static int getEffectDuration(ItemStack wine, Level world) {
+        int age = getWineAge(wine, world);
+        return Math.min(MAX_DURATION, Math.max(0, START_DURATION + (DURATION_PER_YEAR * age)));
     }
 
     public static void setWineYear(ItemStack wine, Level world) {
         int year = world != null ? getYear(world) : YEARS_START;
         wine.getOrCreateTag().putInt(TAG_YEAR, year);
-        int age = getYear(world) - year;
-        int amplifier = Math.max(0, Math.min(MAX_LEVEL, age / YEARS_PER_EFFECT_LEVEL));
-        int duration = Math.min(START_DURATION + (DURATION_PER_YEAR * age), MAX_DURATION);
-        wine.getOrCreateTag().putInt(TAG_EFFECT_LEVEL, amplifier);
-        wine.getOrCreateTag().putInt(TAG_EFFECT_DURATION, duration);
+        refreshCached(wine, world);
+    }
+
+    public static void refreshCached(ItemStack wine, Level world) {
+        int amplifier = getEffectLevel(wine, world);
+        int duration = getEffectDuration(wine, world);
+        CompoundTag tag = wine.getOrCreateTag();
+        tag.putInt(TAG_EFFECT_LEVEL, amplifier);
+        tag.putInt(TAG_EFFECT_DURATION, duration);
     }
 
     public static int getWineYear(ItemStack wine) {
-        return wine.getOrCreateTag().getInt("Year");
-    }
-
-    public static int getEffectDuration(ItemStack wine, Level world) {
-        if (wine.getOrCreateTag().contains(TAG_EFFECT_DURATION)) {
-            return wine.getOrCreateTag().getInt(TAG_EFFECT_DURATION);
-        }
-        int age = getWineAge(wine, world);
-        int calculated = Math.min(START_DURATION + (DURATION_PER_YEAR * age), MAX_DURATION);
-        wine.getOrCreateTag().putInt(TAG_EFFECT_DURATION, calculated);
-        return calculated;
+        return wine.getOrCreateTag().getInt(TAG_YEAR);
     }
 
     public static boolean hasWineYear(ItemStack wine) {
-        return !wine.getOrCreateTag().contains(TAG_YEAR);
+        return wine.getOrCreateTag().contains(TAG_YEAR);
     }
 
     @PlatformOnly(PlatformOnly.FORGE)

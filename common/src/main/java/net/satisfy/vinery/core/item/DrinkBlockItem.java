@@ -134,23 +134,28 @@ public class DrinkBlockItem extends BlockItem {
     @Override
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
         super.inventoryTick(stack, world, entity, slot, selected);
-        if (world != null && WineYears.hasWineYear(stack)) {
-            WineYears.setWineYear(stack, world);
+
+        if (world != null && !world.isClientSide) {
+            if (!WineYears.hasWineYear(stack)) {
+                WineYears.setWineYear(stack, world);
+            } else if (world.getGameTime() % 200L == 0L) {
+                WineYears.refreshCached(stack, world);
+            }
         }
     }
 
     private String toRoman(int number) {
         return switch (number) {
-            case 0 -> "I";
-            case 1 -> "II";
-            case 2 -> "III";
-            case 3 -> "IV";
-            case 4 -> "V";
-            case 5 -> "VI";
-            case 6 -> "VII";
-            case 7 -> "VIII";
-            case 8 -> "IX";
-            case 9 -> "X";
+            case 1 -> "I";
+            case 2 -> "II";
+            case 3 -> "III";
+            case 4 -> "IV";
+            case 5 -> "V";
+            case 6 -> "VI";
+            case 7 -> "VII";
+            case 8 -> "VIII";
+            case 9 -> "IX";
+            case 10 -> "X";
             default -> String.valueOf(number);
         };
     }
