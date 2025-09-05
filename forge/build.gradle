@@ -1,6 +1,9 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "com.modrinth.minotaur" version "2.+"
+    id "com.matthewprenger.cursegradle" version "1.4.0"
 }
+
 architectury {
     platformSetupLoomIde()
     forge()
@@ -8,7 +11,7 @@ architectury {
 
 
 def jarFileName = 'letsdo-vinery-forge'
-
+def changelogText = rootProject.file("CHANGELOG.md").text
 archivesBaseName = jarFileName
 
 
@@ -101,5 +104,41 @@ publishing {
     }
 
     repositories {
+    }
+}
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = "lets-do-vinery"
+    versionNumber = rootProject.mod_version
+    versionName = "${rootProject.archives_base_name}-${rootProject.mod_version} [${rootProject.minecraft_version}-forge]"
+    versionType = "release"
+    changelog = rootProject.file("CHANGELOG.md").exists() ? rootProject.file("CHANGELOG.md").text : " "
+    gameVersions = [rootProject.minecraft_version]
+    loaders = ["forge"]
+    uploadFile = remapJar
+    additionalFiles = [tasks.sourcesJar.archiveFile]
+
+    dependencies {
+        required.project "architectury-api"
+    }
+}
+
+curseforge {
+    apiKey = System.getenv("CURSEFORGE_API_KEY")
+    project {
+        id = "704465"
+        releaseType = "release"
+        addGameVersion rootProject.minecraft_version
+        addGameVersion "Forge"
+        mainArtifact(remapJar) {
+            displayName = "Vinery - ${rootProject.mod_version} - FORGE - ${rootProject.minecraft_version}"
+            changelog = changelogText
+            changelogType = "markdown"
+        }
+
+        relations {
+            requiredDependency "architectury-api"
+        }
     }
 }

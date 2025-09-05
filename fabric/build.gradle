@@ -1,5 +1,7 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "com.modrinth.minotaur" version "2.+"
+    id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
 architectury {
@@ -13,7 +15,7 @@ loom {
 
 
 def jarFileName = 'letsdo-vinery-fabric'
-
+def changelogText = rootProject.file("CHANGELOG.md").text
 archivesBaseName = jarFileName
 
 
@@ -107,3 +109,124 @@ publishing {
     repositories {
     }
 }
+
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = "lets-do-vinery"
+    versionNumber = rootProject.mod_version
+    versionName = "${rootProject.archives_base_name}-${rootProject.mod_version} [${rootProject.minecraft_version}-fabric]"
+    versionType = "release"
+    changelog = rootProject.file("CHANGELOG.md").exists() ? rootProject.file("CHANGELOG.md").text : " "
+    gameVersions = [rootProject.minecraft_version]
+    loaders = ["fabric"]
+    uploadFile = remapJar
+    additionalFiles = [tasks.sourcesJar.archiveFile]
+
+    dependencies {
+        required.project "architectury-api"
+    }
+}
+
+curseforge {
+    apiKey = System.getenv("CURSEFORGE_API_KEY")
+    project {
+        id = "704465"
+        releaseType = "release"
+        addGameVersion rootProject.minecraft_version
+        addGameVersion "Fabric"
+        mainArtifact(remapJar) {
+            displayName = "Vinery - ${rootProject.mod_version} - FABRIC - ${rootProject.minecraft_version}"
+            changelog = changelogText
+            changelogType = "markdown"
+        }
+
+        relations {
+            requiredDependency "architectury-api"
+        }
+    }
+}
+
+def escapeJson = { String s ->
+    if (s == null) return ""
+    s.replace("\\", "\\\\").replace("\"", "\\\"").replace("\r", "").replace("\n", "\\n")
+}
+
+tasks.register("releaseChangelog") {
+    group = "publishing"
+    description = "Send the latest changelog block to Discord"
+
+    doLast {
+        def discordWebhookUrl = (project.findProperty("webhook") ?: System.getenv("DISCORD_WEBHOOK_URL"))?.toString()?.trim()
+        if (!discordWebhookUrl) {
+            println "No Discord webhook set. Provide -Pwebhook=... or set DISCORD_WEBHOOK_URL"
+            return
+        }
+        println "Using Discord webhook: ${discordWebhookUrl.replaceAll('/api/webhooks/[^/]+/[^/]+$', '/api/webhooks/********/********')}"
+
+        def modName = (project.findProperty("modDisplayName") ?: "Vinery").toString()
+        def versionLabel = rootProject.mod_version
+        def full = rootProject.file("CHANGELOG.md").exists() ? rootProject.file("CHANGELOG.md").text : ""
+        def m = (full =~ /(?s)(\[[^\]]+][\s\S]*?)(\n\*\*\*\n)/)
+        def block = m.find() ? m.group(1).trim() : full.trim()
+        if (block.length() > 1900) block = block.substring(0, 1900) + "…"
+
+        def linksMd = "[Modrinth](https://modrinth.com/mod/lets-do-vinery)\n[CurseForge](https://www.curseforge.com/minecraft/mc-mods/lets-do-vinery)"
+        def contentLine = "**${modName} ${versionLabel} has been released! 🎉**\n\nLearn about all changes and improvements below:"
+        def payload = """{
+  "username": "Blushy [Let’s Do] Assistant",
+    "avatar_url": "https://raw.githubusercontent.com/Let-s-Do-Collection/Vinery/1.20.1/common/src/main/resources/pack.png",
+  "content": "${escapeJson(contentLine)}",
+    "embeds": [{
+    "title": "**Changelog**",
+    "description": "${escapeJson(block)}",
+    "fields": [
+      { "name": "**Download it on**", "value": "${escapeJson(linksMd)}", "inline": false }
+    ]
+  }],
+  "components": [{
+    "type": 1,
+    "components": [
+      { "type": 2, "style": 5, "label": "Download on Modrinth",   "url": "https://modrinth.com/mod/lets-do-vinery" },
+      { "type": 2, "style": 5, "label": "Download on CurseForge", "url": "https://www.curseforge.com/minecraft/mc-mods/lets-do-vinery" }
+    ]
+  }]
+}"""
+
+        if ((project.findProperty("dryRun") ?: "false").toString().toBoolean()) {
+            println "DRY RUN — would send payload:\n${payload}"
+            return
+        }
+
+        HttpURLConnection conn = null
+        try {
+            conn = (HttpURLConnection) new URL(discordWebhookUrl).openConnection()
+            conn.setRequestMethod("POST")
+            conn.setDoOutput(true)
+            byte[] body = payload.getBytes("UTF-8")
+            conn.setRequestProperty("Content-Type", "application/json")
+            conn.setRequestProperty("Content-Length", Integer.toString(body.length))
+            conn.getOutputStream().write(body)
+            int code = conn.getResponseCode()
+            String resp = ""
+            try {
+                resp = conn.getInputStream().getText("UTF-8")
+            } catch (IOException ignored) {
+                resp = conn.getErrorStream() != null ? conn.getErrorStream().getText("UTF-8") : ""
+            }
+            println "Discord webhook response: ${code} ${conn.getResponseMessage()}"
+            if (resp) println "Response body:\n${resp}"
+            if (code == 204) println "(204 No Content is success for Discord webhooks)"
+        } finally {
+            if (conn != null) conn.disconnect()
+        }
+    }
+}
+
+tasks.named("modrinth").configure {
+    finalizedBy(tasks.named("releaseChangelog"))
+}
+
+
+
+
