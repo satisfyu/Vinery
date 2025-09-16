@@ -41,7 +41,7 @@ public class BigBottleStorageBlock extends StorageBlock {
     @Override
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack stack = player.getItemInHand(hand);
-        if (player.isShiftKeyDown() && stack.isEmpty()) {
+        if (player.isCrouching() && stack.isEmpty()) {
             if (!world.isClientSide()) {
                 world.playSound(null, pos, OPEN_SOUND, SoundSource.BLOCKS, 0.4f, 0.4f);
                 world.setBlock(pos, state.setValue(OPEN, !state.getValue(OPEN)), UPDATE_ALL);
