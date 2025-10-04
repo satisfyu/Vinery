@@ -2,6 +2,7 @@ package net.satisfy.vinery.core.event;
 
 import dev.architectury.event.EventResult;
 import dev.architectury.event.events.common.PlayerEvent;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.InteractionHand;
@@ -23,7 +24,7 @@ public class EventHandler {
     private static final Random random = new Random();
 
     public static EventResult onAttack(Player player, Level level, Entity target, InteractionHand hand, @Nullable EntityHitResult result) {
-        if (player.hasEffect(MobEffectRegistry.PARTY_EFFECT.get())) {
+        if (player.hasEffect(MobEffectRegistry.PARTY_EFFECT)) {
             if (target instanceof LivingEntity entity) {
                 int color = random.nextInt(0xFFFFFF);
 
@@ -37,7 +38,7 @@ public class EventHandler {
                 explosions.add(explosion);
                 fireworkNbt.put("Explosions", explosions);
                 fireworkNbt.putByte("Flight", (byte) 0);
-                fireworkStack.getOrCreateTagElement("Fireworks").put("Explosions", explosions);
+                fireworkStack.get(DataComponents.CUSTOM_DATA).copyTag().put("Explosions", explosions);
 
                 FireworkRocketEntity fireworkRocket = new FireworkRocketEntity(level, fireworkStack, entity);
                 fireworkRocket.setAirSupply(0);

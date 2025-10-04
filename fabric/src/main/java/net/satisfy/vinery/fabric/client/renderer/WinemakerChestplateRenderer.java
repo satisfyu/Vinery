@@ -18,7 +18,7 @@ public class WinemakerChestplateRenderer implements ArmorRenderer {
         if (stack.getItem() instanceof WinemakerChestItem chestplate) {
             Model model = ArmorRegistryClient.getChestplateModel(chestplate, contextModel.body, contextModel.leftArm, contextModel.rightArm, contextModel.leftLeg, contextModel.rightLeg);
 
-            model.renderToBuffer(matrices, vertexConsumers.getBuffer(model.renderType(chestplate.getChestplateTexture())), light, OverlayTexture.NO_OVERLAY, 1F, 1F, 1F, 1F);
+            model.renderToBuffer(matrices, vertexConsumers.getBuffer(model.renderType(chestplate.getChestplateTexture())), light, OverlayTexture.NO_OVERLAY, 1);
         }
     }
 }

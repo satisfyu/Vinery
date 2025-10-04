@@ -1,9 +1,6 @@
 package net.satisfy.vinery.core.block.entity;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -21,6 +18,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.satisfy.vinery.client.gui.handler.FermentationBarrelGuiHandler;
 import net.satisfy.vinery.core.recipe.FermentationBarrelRecipe;
+import net.satisfy.vinery.core.recipe.input.FermentationBarrelRecipeInput;
 import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import net.satisfy.vinery.core.registry.RecipeTypesRegistry;
@@ -30,6 +28,10 @@ import net.satisfy.vinery.core.util.ImplementedInventory;
 import net.satisfy.vinery.platform.PlatformHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Supplier;
 
 public class FermentationBarrelBlockEntity extends BlockEntity implements ImplementedInventory, MenuProvider {
     private static final int INVENTORY_SIZE = 6;
@@ -137,19 +139,19 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt,provider);
         this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt, this.inventory);
+        ContainerHelper.loadAllItems(nbt, this.inventory,provider);
         this.fermentationTime = nbt.getInt("FermentationTime");
         this.fluidLevel = nbt.getInt("FluidLevel");
         this.juiceType = nbt.getString("JuiceType");
     }
 
     @Override
-    public void saveAdditional(CompoundTag nbt) {
-        super.saveAdditional(nbt);
-        ContainerHelper.saveAllItems(nbt, this.inventory);
+    public void saveAdditional(CompoundTag nbt,HolderLookup.Provider provider) {
+        super.saveAdditional(nbt,provider);
+        ContainerHelper.saveAllItems(nbt, this.inventory,provider);
         nbt.putInt("FermentationTime", this.fermentationTime);
         nbt.putInt("FluidLevel", this.fluidLevel);
         nbt.putString("JuiceType", this.juiceType);
@@ -164,21 +166,39 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
 
         RegistryAccess access = world.registryAccess();
 
-        FermentationBarrelRecipe recipe = world.getRecipeManager()
-                .getRecipeFor(RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get(), blockEntity, world)
-                .orElse(null);
-
-        if (blockEntity.canCraft(recipe, access)) {
-            blockEntity.fermentationTime++;
-
-            if (blockEntity.fermentationTime >= PlatformHelper.getTotalFermentationTime()) {
-                blockEntity.fermentationTime = 0;
-                blockEntity.craft(recipe, access);
+        List<ItemStack> inputs = new java.util.ArrayList<>();
+        for (int i = 1; i <= 3; i++) {
+            ItemStack stack = blockEntity.getItem(i);
+            if (!stack.isEmpty() && blockEntity.isIngredient(stack)) {
+                inputs.add(stack);
             }
-        } else {
-            blockEntity.fermentationTime = 0;
         }
 
+        FermentationBarrelRecipeInput input = new FermentationBarrelRecipeInput(
+                inputs,
+                blockEntity.getItem(WINE_BOTTLE_SLOT),
+                new FermentationBarrelRecipeInput.JuiceData(blockEntity.juiceType, blockEntity.fluidLevel)
+        );
+
+        var recipeHolder = world.getRecipeManager()
+                .getRecipeFor(RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get(), input, world);
+
+        if (recipeHolder.isEmpty()) {
+            blockEntity.fermentationTime = 0;
+        } else {
+            FermentationBarrelRecipe recipe = recipeHolder.get().value();
+
+            if (blockEntity.canCraft(recipe, access)) {
+                blockEntity.fermentationTime++;
+
+                if (blockEntity.fermentationTime >= PlatformHelper.getTotalFermentationTime()) {
+                    blockEntity.fermentationTime = 0;
+                    blockEntity.craft(recipe, access);
+                }
+            } else {
+                blockEntity.fermentationTime = 0;
+            }
+        }
         ItemStack stack = blockEntity.getItem(GRAPEJUICE_INPUT_SLOT);
         if (JuiceUtil.isJuice(stack)) {
             String newJuiceType = JuiceUtil.getJuiceType(stack);
@@ -227,9 +247,9 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
             return false;
         } else if (areIngredientsEmpty()) {
             return false;
-        } else if (this.fluidLevel < recipe.getJuiceAmount()) {
+        } else if (this.fluidLevel < recipe.getJuiceData().amount()) {
             return false;
-        } else if (!this.juiceType.equals(recipe.getJuiceType())) {
+        } else if (!this.juiceType.equals(recipe.getJuiceData().type())) {
             return false;
         } else {
             if (recipe.isWineBottleRequired()) {
@@ -289,7 +309,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
             }
         }
 
-        int newFluidLevel = this.fluidLevel - recipe.getJuiceAmount();
+        int newFluidLevel = this.fluidLevel - recipe.getJuiceData().amount();
         this.setFluidLevel(newFluidLevel);
 
         for (Ingredient ingredient : recipe.getIngredients()) {
@@ -345,21 +365,6 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
                 player.distanceToSqr(this.worldPosition.getX() + 0.5, this.worldPosition.getY() + 0.5, this.worldPosition.getZ() + 0.5) <= 64.0;
     }
 
-    @Nullable
-    @Override
-    public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        CompoundTag tag = new CompoundTag();
-        this.saveAdditional(tag);
-        return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @Override
-    public @NotNull CompoundTag getUpdateTag() {
-        CompoundTag tag = new CompoundTag();
-        this.saveAdditional(tag);
-        return tag;
-    }
-
     @Override
     public @NotNull Component getDisplayName() {
         return Component.translatable(this.getBlockState().getBlock().getDescriptionId());
@@ -411,7 +416,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
         return level.getRecipeManager()
                 .getAllRecipesFor(RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get())
                 .stream()
-                .anyMatch(recipe -> recipe.getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
+                .anyMatch(recipe -> recipe.value().getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
     }
 
     @Override
@@ -452,7 +457,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
         if (slotStack.isEmpty()) {
             return true; 
         }
-        if (ItemStack.isSameItemSameTags(slotStack, stack)) {
+        if (ItemStack.isSameItemSameComponents(slotStack, stack)) {
             return slotStack.getCount() + stack.getCount() <= slotStack.getMaxStackSize(); 
         }
         return false; 

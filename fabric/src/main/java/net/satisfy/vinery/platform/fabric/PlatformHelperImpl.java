@@ -18,7 +18,8 @@ import net.satisfy.vinery.platform.PlatformHelper;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class PlatformHelperImpl extends PlatformHelper {
+public class PlatformHelperImpl extends PlatformHelper
+{
     public static int getTotalFermentationTime() {
         VineryFabricConfig config = AutoConfig.getConfigHolder(VineryFabricConfig.class).getConfig();
         return config.blocks.totalFermentationTime;
@@ -121,7 +122,7 @@ public class PlatformHelperImpl extends PlatformHelper {
     }
 
     public static <T extends Entity> Supplier<EntityType<T>> registerBoatType(String name, EntityType.EntityFactory<T> factory, MobCategory category, float width, float height, int clientTrackingRange) {
-        EntityType<T> registry = Registry.register(BuiltInRegistries.ENTITY_TYPE, new ResourceLocation(Vinery.MOD_ID, name), FabricEntityTypeBuilder.create(category, factory).dimensions(EntityDimensions.scalable(width, height)).trackRangeChunks(clientTrackingRange).build());
+        EntityType<T> registry = Registry.register(BuiltInRegistries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(Vinery.MOD_ID, name), FabricEntityTypeBuilder.create(category, factory).dimensions(EntityDimensions.scalable(width, height)).trackRangeChunks(clientTrackingRange).build());
         return () -> registry;
     }
 }

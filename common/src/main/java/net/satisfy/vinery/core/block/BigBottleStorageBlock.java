@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,11 +13,13 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -34,13 +37,18 @@ public class BigBottleStorageBlock extends StorageBlock {
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(OPEN, false));
     }
 
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(BigBottleStorageBlock::new);
+    }
+
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     private static final SoundEvent OPEN_SOUND = SoundEvents.BAMBOO_WOOD_DOOR_OPEN;
 
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        ItemStack stack = player.getItemInHand(hand);
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        ItemStack stack = player.getItemInHand(player.getUsedItemHand());
         if (player.isShiftKeyDown() && stack.isEmpty()) {
             if (!world.isClientSide()) {
                 world.playSound(null, pos, OPEN_SOUND, SoundSource.BLOCKS, 0.4f, 0.4f);
@@ -48,7 +56,7 @@ public class BigBottleStorageBlock extends StorageBlock {
             }
             return InteractionResult.sidedSuccess(world.isClientSide());
         } else if (state.getValue(OPEN)) {
-            return super.use(state, world, pos, player, hand, hit);
+            return super.useWithoutItem(state, world, pos, player, hit);
         }
         return InteractionResult.PASS;
     }
@@ -85,7 +93,7 @@ public class BigBottleStorageBlock extends StorageBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
+    public void appendHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
         MutableComponent allBold = Component.translatable("tooltip.vinery.large_bottle_first")
                 .withStyle(style -> style.withBold(true).withColor(ChatFormatting.GRAY));
         MutableComponent allRest = Component.translatable("tooltip.vinery.large_bottle_rest")
@@ -95,6 +103,6 @@ public class BigBottleStorageBlock extends StorageBlock {
         MutableComponent full = Component.translatable("tooltip.vinery.storage", combined)
                 .withStyle(ChatFormatting.GRAY);
 
-        tooltip.add(full);
+        list.add(full);
     }
 }

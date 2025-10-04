@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "#": {
+            "item": "minecraft:glass"
+        },
+        "$": {
+            "item": "minecraft:yellow_dye"
+        },
+        "B": {
+            "item": "minecraft:red_dye"
+        },
+        "U": {
+            "item": "minecraft:black_dye"
+        }
+    },
+    "pattern": [
+        "###",
+        "U$B",
+        "###"
+    ],
+    "result": {
+        "count": 8,
+        "id": "vinery:window_block"
+    }
+}

@@ -2,8 +2,8 @@ package net.satisfy.vinery.core.effect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeMap;
 
 public class JellieEffect extends MobEffect {
 
@@ -12,7 +12,7 @@ public class JellieEffect extends MobEffect {
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         int i = 50 >> amplifier;
         if (i > 0) {
             return duration % i == 0;
@@ -22,21 +22,22 @@ public class JellieEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity.getHealth() < entity.getMaxHealth()) {
             entity.heal(1.0f);
         }
+        return true;
     }
 
     @Override
-    public void removeAttributeModifiers(LivingEntity entity, AttributeMap attributes, int amplifier) {
-        entity.setAbsorptionAmount(entity.getAbsorptionAmount() - (float)(4 * (amplifier + 1)));
-        super.removeAttributeModifiers(entity, attributes, amplifier);
-    }
-
-    @Override
-    public void addAttributeModifiers(LivingEntity entity, AttributeMap attributes, int amplifier) {
+    public void onEffectStarted(LivingEntity entity, int amplifier) {
         entity.setAbsorptionAmount(entity.getAbsorptionAmount() + (float)(4 * (amplifier + 1)));
-        super.addAttributeModifiers(entity, attributes, amplifier);
+        super.onEffectStarted(entity, amplifier);
+    }
+
+    @Override
+    public void onEffectAdded(LivingEntity entity, int amplifier) {
+        entity.setAbsorptionAmount(entity.getAbsorptionAmount() - (float)(4 * (amplifier + 1)));
+        super.onEffectAdded(entity, amplifier);
     }
 }

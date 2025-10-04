@@ -1,6 +1,7 @@
 package net.satisfy.vinery.core.block.entity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -22,31 +23,31 @@ public class FlowerPotBlockEntity extends BlockEntity {
         super(EntityTypeRegistry.FLOWER_POT_ENTITY.get(), pos, state);
     }
 
-    public void saveAdditional(CompoundTag nbt) {
-        super.saveAdditional(nbt);
-        this.writeFlower(nbt, this.flower);
+    public void saveAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.saveAdditional(nbt,provider);
+        this.writeFlower(nbt, this.flower,provider);
     }
 
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
-        this.flower = this.readFlower(nbt);
+    public void loadAdditional(CompoundTag nbt,HolderLookup.Provider provider) {
+        super.loadAdditional(nbt,provider);
+        this.flower = this.readFlower(nbt,provider);
     }
 
-    public void writeFlower(CompoundTag nbt, Item flower) {
+    public void writeFlower(CompoundTag nbt, Item flower,HolderLookup.Provider provider) {
         CompoundTag nbtCompound = new CompoundTag();
         if (flower != null) {
-            flower.getDefaultInstance().save(nbtCompound);
+            flower.getDefaultInstance().save(provider,nbtCompound);
         }
 
         nbt.put("flower", nbtCompound);
     }
 
-    public Item readFlower(CompoundTag nbt) {
-        super.load(nbt);
+    public Item readFlower(CompoundTag nbt,HolderLookup.Provider provider) {
+        super.loadAdditional(nbt,provider);
         if (nbt.contains("flower")) {
             CompoundTag nbtCompound = nbt.getCompound("flower");
             if (!nbtCompound.isEmpty()) {
-                return ItemStack.of(nbtCompound).getItem();
+                return ItemStack.parseOptional(provider,nbtCompound).getItem();
             }
         }
 
@@ -57,8 +58,8 @@ public class FlowerPotBlockEntity extends BlockEntity {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    public @NotNull CompoundTag getUpdateTag() {
-        return this.saveWithoutMetadata();
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider provider) {
+        return this.saveWithoutMetadata(provider);
     }
 
     public void setChanged() {

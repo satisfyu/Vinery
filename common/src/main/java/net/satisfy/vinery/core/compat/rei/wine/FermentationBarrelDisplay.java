@@ -6,6 +6,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.recipe.FermentationBarrelRecipe;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
@@ -23,12 +24,12 @@ public class FermentationBarrelDisplay extends BasicDisplay {
     private final int juiceAmount;
     private final String juiceType;
 
-    public FermentationBarrelDisplay(FermentationBarrelRecipe recipe) {
-        this(prepareInputs(recipe), prepareOutputs(recipe), Optional.ofNullable(recipe.getId()), recipe.getJuiceAmount(), recipe.getJuiceType());
+    public FermentationBarrelDisplay(RecipeHolder<FermentationBarrelRecipe> recipe) {
+        this(prepareInputs(recipe.value()), prepareOutputs(recipe.value()), recipe.value().getJuiceData().amount(), recipe.value().getJuiceData().type());
     }
 
-    public FermentationBarrelDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<ResourceLocation> location, int juiceAmount, String juiceType) {
-        super(inputs, outputs, location);
+    public FermentationBarrelDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, int juiceAmount, String juiceType) {
+        super(inputs, outputs);
         this.juiceAmount = juiceAmount;
         this.juiceType = juiceType;
     }
@@ -42,14 +43,13 @@ public class FermentationBarrelDisplay extends BasicDisplay {
     }
 
     private static List<EntryIngredient> prepareInputs(FermentationBarrelRecipe recipe) {
-        List<EntryIngredient> ingredients = new ArrayList<>();
-        ingredients.addAll(EntryIngredients.ofIngredients(recipe.getIngredients()));
+        List<EntryIngredient> ingredients = new ArrayList<>(EntryIngredients.ofIngredients(recipe.getIngredients()));
         ingredients.add(EntryIngredients.of(new ItemStack(ObjectRegistry.WINE_BOTTLE.get())));
         return ingredients;
     }
 
     private static List<EntryIngredient> prepareOutputs(FermentationBarrelRecipe recipe) {
-        return Collections.singletonList(EntryIngredients.of(recipe.getResultItem(BasicDisplay.registryAccess())));
+        return Collections.singletonList(EntryIngredients.of(recipe.getResultItem(null)));
     }
 
     @Override

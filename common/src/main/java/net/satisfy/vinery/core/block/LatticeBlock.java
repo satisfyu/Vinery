@@ -9,6 +9,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
@@ -94,16 +96,15 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (hand != InteractionHand.MAIN_HAND) return InteractionResult.PASS;
-        ItemStack stack = player.getItemInHand(hand);
+    public @NotNull ItemInteractionResult useItemOn(ItemStack stack , BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (hand != InteractionHand.MAIN_HAND) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         int age = state.getValue(AGE);
 
         if (stack.getItem() instanceof AxeItem) {
             BlockState newState = state.setValue(SUPPORT, !state.getValue(SUPPORT));
             BlockState updateState = getConnection(newState, world, pos);
             world.setBlock(pos, updateState, 3);
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
 
         if (stack.getItem() instanceof GrapeBushSeedItem seedItem) {
@@ -120,12 +121,12 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
 
                 if (!player.isCreative()) stack.shrink(1);
                 world.playSound(null, pos, PLACE_SOUND_EVENT, SoundSource.BLOCKS, 1.0F, 1.0F);
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
 
         if (age > 0 && stack.getItem() == Items.SHEARS) {
-            stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+            stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
             if (age > 2) dropGrapes(world, state, pos, hit.getDirection());
             dropGrapeSeeds(world, state, pos, hit.getDirection());
             world.setBlock(pos, state.setValue(AGE, 0), 3);
@@ -136,11 +137,11 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
             }
 
             world.playSound(player, pos, BREAK_SOUND_EVENT, SoundSource.BLOCKS, 1.0F, 1.0F);
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
 
         if (age > 2) {
-            stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+            stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
             dropGrapes(world, state, pos, hit.getDirection());
             world.setBlock(pos, state.setValue(AGE, 1), 3);
 
@@ -150,10 +151,10 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
             }
 
             world.playSound(player, pos, BREAK_SOUND_EVENT, SoundSource.BLOCKS, 1.0F, 1.0F);
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
 
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
@@ -197,7 +198,7 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state) {
         return !isMature(state) && state.getValue(AGE) > 0;
     }
 

@@ -9,7 +9,7 @@ import net.satisfy.vinery.core.block.entity.ModSignBlockEntity;
 
 public class ModStandingSignBlock extends StandingSignBlock {
     public ModStandingSignBlock(Properties pProperties, WoodType pType) {
-        super(pProperties, pType);
+        super(pType, pProperties);
     }
 
     @Override

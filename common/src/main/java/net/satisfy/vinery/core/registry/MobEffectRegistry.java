@@ -1,8 +1,6 @@
 package net.satisfy.vinery.core.registry;
 
-import dev.architectury.platform.Platform;
 import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
@@ -10,55 +8,27 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.effect.*;
 
-import java.util.function.Supplier;
-
 public class MobEffectRegistry {
 
     private static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Vinery.MOD_ID, Registries.MOB_EFFECT);
-    private static final Registrar<MobEffect> MOB_EFFECTS_REGISTRAR = MOB_EFFECTS.getRegistrar();
 
-    public static final RegistrySupplier<MobEffect> JELLIE;
-    public static final RegistrySupplier<MobEffect> MAGNET;
-    public static final RegistrySupplier<MobEffect> TELEPORT;
-    public static final RegistrySupplier<MobEffect> IMPROVED_JUMP_BOOST;
-    public static final RegistrySupplier<MobEffect> WATER_WALKER;
-    public static final RegistrySupplier<MobEffect> CREEPER_EFFECT;
-    public static final RegistrySupplier<MobEffect> EXPERIENCE_EFFECT;
-    public static final RegistrySupplier<MobEffect> LAVA_WALKER;
-    public static final RegistrySupplier<MobEffect> FROSTY_ARMOR_EFFECT;
-    public static final RegistrySupplier<MobEffect> PARTY_EFFECT;
-    public static final RegistrySupplier<MobEffect> CLIMBING_EFFECT;
-    public static final RegistrySupplier<MobEffect> LUCK_EFFECT;
-    public static final RegistrySupplier<MobEffect> HEALTH_EFFECT;
-    public static final RegistrySupplier<MobEffect> RESISTANCE_EFFECT;
-    public static final RegistrySupplier<MobEffect> ARMOR_EFFECT;
-
-    private static RegistrySupplier<MobEffect> registerEffect(String name, Supplier<MobEffect> effect){
-        if(Platform.isForge()){
-            return MOB_EFFECTS.register(name, effect);
-        }
-        return MOB_EFFECTS_REGISTRAR.register(Vinery.identifier(name), effect);
-    }
+    public static final RegistrySupplier<MobEffect> ARMOR_EFFECT = MOB_EFFECTS.register("armor_effect", ArmorEffect::new);
+    public static final RegistrySupplier<MobEffect> HEALTH_EFFECT = MOB_EFFECTS.register("health_effect", ImprovedHealthEffect::new);
+    public static final RegistrySupplier<MobEffect> LUCK_EFFECT = MOB_EFFECTS.register("luck_effect", LuckEffect::new);
+    public static final RegistrySupplier<MobEffect> RESISTANCE_EFFECT = MOB_EFFECTS.register("resistance_effect", ResistanceEffect::new);
+    public static final RegistrySupplier<MobEffect> EXPERIENCE_EFFECT = MOB_EFFECTS.register("experience_effect", () -> new ExpandableEffect(MobEffectCategory.BENEFICIAL, 0x00FF00));
+    public static final RegistrySupplier<MobEffect> IMPROVED_JUMP_BOOST = MOB_EFFECTS.register("double_jump", () -> new ExpandableEffect(MobEffectCategory.BENEFICIAL, 0x00FF00));
+    public static final RegistrySupplier<MobEffect> PARTY_EFFECT = MOB_EFFECTS.register("party_effect", () -> new ExpandableEffect(MobEffectCategory.BENEFICIAL, 0xFF0000));
+    public static final RegistrySupplier<MobEffect> TELEPORT = MOB_EFFECTS.register("teleport", TeleportEffect::new);
+    public static final RegistrySupplier<MobEffect> CREEPER_EFFECT = MOB_EFFECTS.register("creeper_effect", CreeperEffect::new);
+    public static final RegistrySupplier<MobEffect> CLIMBING_EFFECT = MOB_EFFECTS.register("climbing_effect", ClimbingEffect::new);
+    public static final RegistrySupplier<MobEffect> FROSTY_ARMOR_EFFECT = MOB_EFFECTS.register("frosty_armor", FrostyArmorEffect::new);
+    public static final RegistrySupplier<MobEffect> JELLIE = MOB_EFFECTS.register("jellie", JellieEffect::new);
+    public static final RegistrySupplier<MobEffect> LAVA_WALKER = MOB_EFFECTS.register("lava_walker", LavaWalkerEffect::new);
+    public static final RegistrySupplier<MobEffect> MAGNET = MOB_EFFECTS.register("magnet", MagnetEffect::new);
+    public static final RegistrySupplier<MobEffect> WATER_WALKER = MOB_EFFECTS.register("water_walker", WaterWalkerEffect::new);
 
     public static void init(){
         MOB_EFFECTS.register();
-    }
-
-    static {
-        ARMOR_EFFECT = registerEffect("armor_effect", ArmorEffect::new);
-        HEALTH_EFFECT = registerEffect("health_effect", ImprovedHealthEffect::new);
-        LUCK_EFFECT = registerEffect("luck_effect", LuckEffect::new);
-        RESISTANCE_EFFECT = registerEffect("resistance_effect", ResistanceEffect::new);
-        EXPERIENCE_EFFECT = registerEffect("experience_effect", () -> new ExpandableEffect(MobEffectCategory.BENEFICIAL, 0x00FF00));
-        IMPROVED_JUMP_BOOST = registerEffect("double_jump", () -> new ExpandableEffect(MobEffectCategory.BENEFICIAL, 0x00FF00));
-        PARTY_EFFECT = registerEffect("party_effect", () -> new ExpandableEffect(MobEffectCategory.BENEFICIAL, 0xFF0000));
-        TELEPORT = registerEffect("teleport", TeleportEffect::new);
-        CREEPER_EFFECT = registerEffect("creeper_effect", CreeperEffect::new);
-        CLIMBING_EFFECT = registerEffect("climbing_effect", ClimbingEffect::new);
-        FROSTY_ARMOR_EFFECT = registerEffect("frosty_armor", FrostyArmorEffect::new);
-        JELLIE = registerEffect("jellie", JellieEffect::new);
-        LAVA_WALKER = registerEffect("lava_walker", LavaWalkerEffect::new);
-        MAGNET = registerEffect("magnet", MagnetEffect::new);
-        WATER_WALKER = registerEffect("water_walker", WaterWalkerEffect::new);
     }
 }

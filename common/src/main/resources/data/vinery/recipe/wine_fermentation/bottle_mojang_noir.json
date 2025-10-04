@@ -1,0 +1,25 @@
+{
+    "type": "vinery:wine_fermentation",
+    "juice": {
+        "type": "red_general",
+        "amount": 20
+    },
+    "ingredients": [
+        {
+            "item": "minecraft:honey_bottle"
+        },
+        {
+            "item": "vinery:cherry"
+        },
+        {
+            "item": "vinery:red_wine"
+        }
+    ],
+    "wine_bottle": {
+        "required": false
+    },
+    "result": {
+        "count": 1,
+        "id": "vinery:bottle_mojang_noir"
+    }
+}

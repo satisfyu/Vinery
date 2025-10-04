@@ -1,0 +1,25 @@
+{
+    "type": "vinery:wine_fermentation",
+    "juice": {
+        "type": "red_general",
+        "amount": 25
+    },
+    "ingredients": [
+        {
+            "item": "minecraft:sugar"
+        },
+        {
+            "item": "minecraft:feather"
+        },
+        {
+            "item": "minecraft:blaze_rod"
+        }
+    ],
+    "wine_bottle": {
+        "required": true
+    },
+    "result": {
+        "count": 1,
+        "id": "vinery:cristel_wine"
+    }
+}

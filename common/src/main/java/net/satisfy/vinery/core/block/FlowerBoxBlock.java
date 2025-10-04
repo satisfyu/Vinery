@@ -52,8 +52,8 @@ public class FlowerBoxBlock extends StorageBlock {
         return SHAPE.get(state.getValue(FACING));
     }
 
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return player.isShiftKeyDown() ? InteractionResult.PASS : super.use(state, world, pos, player, hand, hit);
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        return player.isShiftKeyDown() ? InteractionResult.PASS : super.useWithoutItem(state, world, pos, player, hit);
     }
 
     public int size() {

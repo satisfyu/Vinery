@@ -31,7 +31,7 @@ public class VineryFabricVillagers {
         );
 
         WINEMAKER = Registry.register(
-                BuiltInRegistries.VILLAGER_PROFESSION, new ResourceLocation("vinery", "winemaker"), VillagerProfessionBuilder.create().id(new ResourceLocation("vinery", "winemaker")).workstation(ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, WINEMAKER_POI_IDENTIFIER)).build()
+                BuiltInRegistries.VILLAGER_PROFESSION, ResourceLocation.fromNamespaceAndPath("vinery", "winemaker"), VillagerProfessionBuilder.create().id(ResourceLocation.fromNamespaceAndPath("vinery", "winemaker")).workstation(ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, WINEMAKER_POI_IDENTIFIER)).build()
         );
     }
 
@@ -56,7 +56,7 @@ public class VineryFabricVillagers {
                 if (parts.length >= 2) {
                     String modId = parts[0];
                     String itemId = parts[1];
-                    ResourceLocation rl = new ResourceLocation(modId, itemId);
+                    ResourceLocation rl = ResourceLocation.fromNamespaceAndPath(modId, itemId);
                     Item item = registryAccess.registryOrThrow(Registries.ITEM).get(rl);
                     if (item != null) {
                         if (entry.type == VineryFabricConfig.VillagerSettings.TradeType.BUY) {

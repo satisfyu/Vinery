@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
@@ -59,6 +60,11 @@ public class BigTableBlock extends HorizontalDirectionalBlock {
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(PART, BedPart.FOOT));
 	}
 
+	@Override
+	protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+		return simpleCodec(BigTableBlock::new);
+	}
+
 	public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
 		if (direction == getDirectionTowardsOtherPart(state.getValue(PART), state.getValue(FACING))) {
 			return neighborState.is(this) && neighborState.getValue(PART) != state.getValue(PART) ? state : Blocks.AIR.defaultBlockState();
@@ -71,12 +77,12 @@ public class BigTableBlock extends HorizontalDirectionalBlock {
 		return part == BedPart.FOOT ? direction : direction.getOpposite();
 	}
 
-	public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
 		if (!world.isClientSide && player.isCreative()) {
 			removeOtherPart(world, pos, state, player);
 		}
 
-		super.playerWillDestroy(world, pos, state, player);
+		return super.playerWillDestroy(world, pos, state, player);
 	}
 
 	@Nullable

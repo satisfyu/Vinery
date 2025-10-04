@@ -3,15 +3,18 @@ package net.satisfy.vinery.client.model;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HumanoidArmorModel;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.satisfy.vinery.core.Vinery;
 import org.jetbrains.annotations.NotNull;
 
-public class WinemakerBootsModel<T extends Entity> extends EntityModel<T> {
+public class WinemakerBootsModel<T extends LivingEntity> extends EntityModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Vinery.identifier("winemaker_boots"), "main");
     private final ModelPart right_leg;
     private final ModelPart left_leg;
@@ -34,12 +37,12 @@ public class WinemakerBootsModel<T extends Entity> extends EntityModel<T> {
     }
 
     @Override
-    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer buffer, int packedLight, int packedOverlay, int x) {
         poseStack.pushPose();
         poseStack.scale(1.08F, 1.08F, 1.08F);
         poseStack.translate(0F, -0.125F, 0F);
-        right_leg.render(poseStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-        left_leg.render(poseStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+        right_leg.render(poseStack, buffer, packedLight, packedOverlay, x);
+        left_leg.render(poseStack, buffer, packedLight, packedOverlay, x);
         poseStack.popPose();
     }
 

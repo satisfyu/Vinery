@@ -1,7 +1,13 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -30,6 +36,11 @@ public class CabinetBlock extends BaseEntityBlock {
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     private final SoundEvent openSound;
     private final SoundEvent closeSound;
+    public static final MapCodec<CabinetBlock> CODEC = RecordCodecBuilder.mapCodec(inst->inst.group(
+            Properties.CODEC.fieldOf("settings").forGetter(CabinetBlock::properties),
+            SoundEvent.DIRECT_CODEC.fieldOf("openSound").forGetter(CabinetBlock::getOpenSound),
+            SoundEvent.DIRECT_CODEC.fieldOf("closeSound").forGetter(CabinetBlock::getCloseSound)
+    ).apply(inst,CabinetBlock::new));
 
     public CabinetBlock(BlockBehaviour.Properties settings, SoundEvent openSound, SoundEvent closeSound) {
         super(settings);
@@ -44,7 +55,7 @@ public class CabinetBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
         if (world.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
@@ -75,6 +86,11 @@ public class CabinetBlock extends BaseEntityBlock {
     }
 
     @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
     public @NotNull RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
@@ -93,10 +109,10 @@ public class CabinetBlock extends BaseEntityBlock {
 
     @Override
     public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        if (itemStack.hasCustomHoverName()) {
+        if (itemStack.has(DataComponents.CUSTOM_NAME)) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof CabinetBlockEntity cabinetBlockEntity) {
-                cabinetBlockEntity.setCustomName(itemStack.getHoverName());
+                cabinetBlockEntity.setComponents(DataComponentMap.builder().set(DataComponents.CUSTOM_NAME,itemStack.getHoverName()).build());
             }
         }
     }
@@ -119,5 +135,13 @@ public class CabinetBlock extends BaseEntityBlock {
     @Override
     public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
+    }
+
+    public SoundEvent getOpenSound() {
+        return openSound;
+    }
+
+    public SoundEvent getCloseSound() {
+        return closeSound;
     }
 }

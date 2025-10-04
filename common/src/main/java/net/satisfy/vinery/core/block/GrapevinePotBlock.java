@@ -5,6 +5,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -94,11 +95,10 @@ public class GrapevinePotBlock extends Block {
         };
     }
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        final ItemStack stack = player.getItemInHand(hand);
+    public @NotNull ItemInteractionResult useItemOn(ItemStack stack,BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (state.getValue(STAGE) > 3 || state.getValue(STORAGE) >= MAX_STORAGE) {
             if (stack.getItem() instanceof GrapeItem) {
-                return InteractionResult.PASS;
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
         }
         if (stack.getItem() instanceof GrapeItem grape) {
@@ -128,7 +128,7 @@ public class GrapevinePotBlock extends Block {
             if (playSound) {
                 world.playSound(player, pos, SoundEvents.CORAL_BLOCK_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         } else if (stack.is(ObjectRegistry.WINE_BOTTLE.get().asItem())) {
             if (canTakeWine(state, stack)) {
                 final ItemStack output = state.getValue(GRAPEVINE_TYPE).getBottle().getDefaultInstance();
@@ -143,12 +143,12 @@ public class GrapevinePotBlock extends Block {
                 if (!player.getInventory().add(output)) {
                     player.drop(output, false, false);
                 }
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
 
 
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     private boolean isFilled(BlockState state) {

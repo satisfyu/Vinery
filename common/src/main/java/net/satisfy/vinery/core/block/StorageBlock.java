@@ -11,6 +11,7 @@ import net.minecraft.util.Tuple;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -38,33 +39,32 @@ public abstract class StorageBlock extends FacingBlock implements EntityBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull ItemInteractionResult useItemOn(ItemStack stack,BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof StorageBlockEntity shelfBlockEntity) {
             Optional<Tuple<Float, Float>> optional = GeneralUtil.getRelativeHitCoordinatesForBlockFace(hit, state.getValue(FACING), unAllowedDirections());
             if (optional.isEmpty()) {
-                return InteractionResult.PASS;
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             } else {
                 Tuple<Float, Float> ff = optional.get();
                 int i = getSection(ff.getA(), ff.getB());
                 if (i == Integer.MIN_VALUE) {
-                    return InteractionResult.PASS;
+                    return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
                 }
                 if (!shelfBlockEntity.getInventory().get(i).isEmpty()) {
                     remove(world, pos, player, shelfBlockEntity, i);
-                    return InteractionResult.sidedSuccess(world.isClientSide);
+                    return ItemInteractionResult.sidedSuccess(world.isClientSide);
                 } else {
-                    ItemStack stack = player.getItemInHand(hand);
                     if (!stack.isEmpty() && canInsertStack(stack)) {
                         add(world, pos, player, shelfBlockEntity, stack, i);
-                        return InteractionResult.sidedSuccess(world.isClientSide);
+                        return ItemInteractionResult.sidedSuccess(world.isClientSide);
                     } else {
-                        return InteractionResult.CONSUME;
+                        return ItemInteractionResult.CONSUME;
                     }
                 }
             }
         } else {
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
     }
 

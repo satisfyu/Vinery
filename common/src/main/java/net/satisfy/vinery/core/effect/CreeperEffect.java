@@ -20,8 +20,9 @@ public class CreeperEffect extends InstantenousMobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity source, int amplifier) {
+    public boolean applyEffectTick(LivingEntity source, int amplifier) {
         explode(source, amplifier);
+        return true;
     }
 
     private void explode(Entity source, int amplifier){

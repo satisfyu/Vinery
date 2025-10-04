@@ -2,36 +2,40 @@ package net.satisfy.vinery.core.recipe;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.satisfy.vinery.core.recipe.input.*;
 import net.satisfy.vinery.core.registry.RecipeTypesRegistry;
 import org.jetbrains.annotations.NotNull;
 
-public class ApplePressMashingRecipe implements Recipe<Container> {
-    private final ResourceLocation identifier;
+public class ApplePressMashingRecipe implements Recipe<ApplePressMashingRecipeInput> {
     public final Ingredient input;
     private final ItemStack output;
 
-    public ApplePressMashingRecipe(ResourceLocation identifier, Ingredient input, ItemStack output) {
-        this.identifier = identifier;
+    public ApplePressMashingRecipe(Ingredient input, ItemStack output) {
         this.input = input;
         this.output = output;
     }
 
     @Override
-    public boolean matches(Container inventory, Level world) {
+    public boolean matches(ApplePressMashingRecipeInput inventory, Level world) {
         return input.test(inventory.getItem(0));
     }
 
     @Override
-    public @NotNull ItemStack assemble(Container container, RegistryAccess registryAccess) {
+    public @NotNull ItemStack assemble(ApplePressMashingRecipeInput container, HolderLookup.Provider registryAccess) {
         return this.output.copy();
     }
 
@@ -48,14 +52,10 @@ public class ApplePressMashingRecipe implements Recipe<Container> {
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
+    public @NotNull ItemStack getResultItem(HolderLookup.Provider registryAccess) {
         return this.output.copy();
     }
 
-    @Override
-    public @NotNull ResourceLocation getId() {
-        return this.identifier;
-    }
 
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
@@ -72,26 +72,40 @@ public class ApplePressMashingRecipe implements Recipe<Container> {
         return true;
     }
 
+    public Ingredient getInput() {
+        return input;
+    }
+
+    public ItemStack getOutput() {
+        return output;
+    }
+
     public static class Serializer implements RecipeSerializer<ApplePressMashingRecipe> {
+
         @Override
-        public @NotNull ApplePressMashingRecipe fromJson(ResourceLocation id, JsonObject json) {
-            final Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
-            if (ingredient.isEmpty()) {
-                throw new JsonParseException("No ingredients for recipe: " + id);
-            } else {
-                return new ApplePressMashingRecipe(id, ingredient, ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output")));
-            }
+        public MapCodec<ApplePressMashingRecipe> codec() {
+            return RecordCodecBuilder.mapCodec(inst->inst.group(
+                    Ingredient.CODEC.fieldOf("input").forGetter(ApplePressMashingRecipe::getInput),
+                    ItemStack.CODEC.fieldOf("output").forGetter(ApplePressMashingRecipe::getOutput)
+            ).apply(inst,ApplePressMashingRecipe::new));
         }
 
         @Override
-        public @NotNull ApplePressMashingRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            return new ApplePressMashingRecipe(id, Ingredient.fromNetwork(buf), buf.readItem());
-        }
+        public StreamCodec<RegistryFriendlyByteBuf, ApplePressMashingRecipe> streamCodec() {
+            return new StreamCodec<>(){
 
-        @Override
-        public void toNetwork(FriendlyByteBuf buf, ApplePressMashingRecipe recipe) {
-            recipe.input.toNetwork(buf);
-            buf.writeItem(recipe.output);
+                @Override
+                public void encode(RegistryFriendlyByteBuf buf, ApplePressMashingRecipe recipe) {
+                    Ingredient.CONTENTS_STREAM_CODEC.encode(buf,recipe.getInput());
+                    ItemStack.STREAM_CODEC.encode(buf,recipe.getOutput());
+                }
+
+                @Override
+                public ApplePressMashingRecipe decode(RegistryFriendlyByteBuf buf) {
+                    return new ApplePressMashingRecipe(Ingredient.CONTENTS_STREAM_CODEC.decode(buf),ItemStack.STREAM_CODEC.decode(buf));                }
+            };
         }
     }
+
+
 }

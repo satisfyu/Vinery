@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#vinery:spawns_jungle_grape",
+  "features": "vinery:jungle_white_grape_bush_chance",
+  "step": "vegetal_decoration"
+}

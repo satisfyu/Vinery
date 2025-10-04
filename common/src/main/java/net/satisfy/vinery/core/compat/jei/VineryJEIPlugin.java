@@ -13,6 +13,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.compat.jei.category.ApplePressMashingCategory;
@@ -43,14 +44,14 @@ public class VineryJEIPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
 
-        List<FermentationBarrelRecipe> fermentationBarrelRecipes = rm.getAllRecipesFor(RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get());
-        registration.addRecipes(FermentationBarrelCategory.FERMENTATION_BARREL, fermentationBarrelRecipes);
+        List<RecipeHolder<FermentationBarrelRecipe>> fermentationBarrelRecipes = rm.getAllRecipesFor(RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get());
+        registration.addRecipes(FermentationBarrelCategory.FERMENTATION_BARREL, fermentationBarrelRecipes.stream().map(RecipeHolder::value).toList());
 
-        List<ApplePressFermentingRecipe> applePressRecipes = rm.getAllRecipesFor(RecipeTypesRegistry.APPLE_PRESS_FERMENTING_RECIPE_TYPE.get());
-        registration.addRecipes(ApplePressFermentingCategory.APPLE_PRESS_TYPE, applePressRecipes);
+        List<RecipeHolder<ApplePressFermentingRecipe>> applePressRecipes = rm.getAllRecipesFor(RecipeTypesRegistry.APPLE_PRESS_FERMENTING_RECIPE_TYPE.get());
+        registration.addRecipes(ApplePressFermentingCategory.APPLE_PRESS_TYPE, applePressRecipes.stream().map(RecipeHolder::value).toList());
 
-        List<ApplePressMashingRecipe> applePressMashingRecipes = rm.getAllRecipesFor(RecipeTypesRegistry.APPLE_PRESS_MASHING_RECIPE_TYPE.get());
-        registration.addRecipes(ApplePressMashingCategory.APPLE_PRESS_MASHING_TYPE, applePressMashingRecipes);
+        List<RecipeHolder<ApplePressMashingRecipe>> applePressMashingRecipes = rm.getAllRecipesFor(RecipeTypesRegistry.APPLE_PRESS_MASHING_RECIPE_TYPE.get());
+        registration.addRecipes(ApplePressMashingCategory.APPLE_PRESS_MASHING_TYPE, applePressMashingRecipes.stream().map(RecipeHolder::value).toList());
     }
 
     @Override

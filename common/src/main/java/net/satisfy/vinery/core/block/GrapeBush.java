@@ -1,5 +1,7 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -7,6 +9,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -38,7 +41,10 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
     private static final VoxelShape SHAPE;
 
     public final GrapeType type;
-
+    public static final MapCodec<GrapeBush> CODEC = RecordCodecBuilder.mapCodec(inst-> inst.group(
+            Properties.CODEC.fieldOf("settings").forGetter(GrapeBush::properties),
+            GrapeType.CODEC.fieldOf("type").forGetter(GrapeBush::grapeType)
+    ).apply(inst,GrapeBush::new));
     public GrapeBush(Properties settings, GrapeType type) {
         super(settings);
         this.type = type;
@@ -50,24 +56,29 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    public @NotNull ItemStack getCloneItemStack(BlockGetter world, BlockPos pos, BlockState state) {
-        return new ItemStack(this.getType().getSeeds());
+    protected MapCodec<? extends BushBlock> codec() {
+        return CODEC;
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        return new ItemStack(this.grapeType().getSeeds());
+    }
+
+    @Override
+    public @NotNull ItemInteractionResult useItemOn(ItemStack stack,BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         int i = state.getValue(AGE);
         boolean bl = i == 3;
-        if (!bl && player.getItemInHand(hand).is(Items.BONE_MEAL)) {
-            return InteractionResult.PASS;
+        if (!bl && stack.is(Items.BONE_MEAL)) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         } else if (i > 1) {
             int x = world.random.nextInt(2);
             popResource(world, pos, new ItemStack(getGrapeType().getItem(), x + (bl ? 1 : 0)));
             world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             world.setBlock(pos, state.setValue(AGE, 1), 2);
-            return InteractionResult.sidedSuccess(world.isClientSide);
+            return ItemInteractionResult.sidedSuccess(world.isClientSide);
         } else {
-            return super.use(state, world, pos, player, hand, hit);
+            return super.useItemOn(stack,state, world, pos, player, hand, hit);
         }
     }
 
@@ -88,7 +99,7 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean bl) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         return blockState.getValue(AGE) < 3;
     }
 
@@ -111,12 +122,12 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
         return floor.isSolidRender(world, pos);
     }
 
-    public GrapeType getType() {
+    public GrapeType grapeType() {
         return this.type;
     }
 
     public ItemStack getGrapeType() {
-        return new ItemStack(this.getType().getFruit());
+        return new ItemStack(this.grapeType().getFruit());
     }
 
 
@@ -175,7 +186,7 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
         }
 
         @Override
-        public boolean isPathfindable(BlockState arg, BlockGetter arg2, BlockPos arg3, PathComputationType arg4) {
+        protected boolean isPathfindable(BlockState blockState, PathComputationType pathComputationType) {
             return false;
         }
     }

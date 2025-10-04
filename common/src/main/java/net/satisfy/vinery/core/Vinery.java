@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.satisfy.vinery.core.command.WineDebugCommands;
 import net.satisfy.vinery.core.event.EventHandler;
 import net.satisfy.vinery.core.registry.*;
+import net.satisfy.vinery.core.util.WineEffectSetup;
 import net.satisfy.vinery.core.world.feature.VineryFeatures;
 
 public class Vinery {
@@ -15,6 +16,11 @@ public class Vinery {
 
     public static void init() {
         MobEffectRegistry.init();
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ObjectRegistry.init();
         EntityTypeRegistry.init();
         ScreenhandlerTypeRegistry.init();
@@ -24,16 +30,18 @@ public class Vinery {
         EventHandler.init();
         TabRegistry.init();
         WineDebugCommands.init();
+        DataComponentRegistry.COMPONENTS.register();
+        ArmorMaterialRegistry.ARMOR_MATERIALS.register();
     }
 
     public static ResourceLocation identifier(String path) {
-        return new ResourceLocation(MOD_ID, path);
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 
     public static void commonSetup() {
         FlammableBlockRegistry.init();
         GrapeTypeRegistry.addGrapeAttributes();
-
+        WineEffectSetup.setupWineEffects();
         FuelRegistry.register(1000, ObjectRegistry.DARK_CHERRY_FENCE.get(), ObjectRegistry.DARK_CHERRY_FENCE_GATE.get(), ObjectRegistry.STACKABLE_LOG.get(), ObjectRegistry.FERMENTATION_BARREL.get());
 
         AxeItemHooks.addStrippable(ObjectRegistry.DARK_CHERRY_LOG.get(), ObjectRegistry.STRIPPED_DARK_CHERRY_LOG.get());

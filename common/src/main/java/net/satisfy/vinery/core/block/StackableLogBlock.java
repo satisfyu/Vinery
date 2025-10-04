@@ -2,20 +2,27 @@ package net.satisfy.vinery.core.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -51,13 +58,12 @@ public class StackableLogBlock extends SlabBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        final ItemStack stack = player.getItemInHand(hand);
+    public @NotNull ItemInteractionResult useItemOn(ItemStack stack,BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         final SlabType stackSize = state.getValue(TYPE);
         if (stack.is(Items.FLINT_AND_STEEL) && stackSize == SlabType.DOUBLE) {
             world.setBlock(pos, state.setValue(FIRED, true), Block.UPDATE_ALL);
             world.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.NEUTRAL, 1.0F, 1.0F);
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         } else if (stack.getItem() instanceof ShovelItem && stackSize == SlabType.DOUBLE && state.getValue(FIRED)) {
             world.setBlockAndUpdate(pos, state.setValue(FIRED, false));
             world.playSound(player, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -67,9 +73,9 @@ public class StackableLogBlock extends SlabBlock {
                     CampfireBlock.makeParticles(world, pos, false, false);
                 }
             }
-            return InteractionResult.sidedSuccess(clientSide);
+            return ItemInteractionResult.sidedSuccess(clientSide);
         } else {
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
     }
 
@@ -120,9 +126,16 @@ public class StackableLogBlock extends SlabBlock {
     @Override
     public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
         boolean isLit = world.getBlockState(pos).getValue(FIRED);
-        if (isLit && !entity.fireImmune() && entity instanceof LivingEntity livingEntity &&
-                !EnchantmentHelper.hasFrostWalker(livingEntity)) {
-            entity.hurt(world.damageSources().inFire(), 1.f);
+
+        if (isLit && !entity.fireImmune() && entity instanceof LivingEntity livingEntity)
+        {
+            Holder<Enchantment> frostWalker = livingEntity.level()
+                    .registryAccess()
+                    .registryOrThrow(Registries.ENCHANTMENT)
+                    .getHolderOrThrow(Enchantments.FROST_WALKER);
+            if(livingEntity.getItemBySlot(EquipmentSlot.FEET).getEnchantments().getLevel(frostWalker) < 0){
+                entity.hurt(world.damageSources().inFire(), 1.f);
+            }
         }
 
         super.stepOn(world, pos, state, entity);

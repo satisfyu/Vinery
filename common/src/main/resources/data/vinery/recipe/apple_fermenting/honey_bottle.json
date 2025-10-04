@@ -1,0 +1,13 @@
+{
+  "type": "vinery:apple_fermenting",
+  "input": {
+    "item": "minecraft:honeycomb"
+  },
+  "wine_bottle": {
+    "required": true
+  },
+  "output": {
+    "id": "minecraft:honey_bottle",
+    "count": 1
+  }
+}

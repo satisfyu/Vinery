@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#vinery:spawns_savanna_grape",
+  "features": "vinery:savanna_white_grape_bush_chance",
+  "step": "vegetal_decoration"
+}

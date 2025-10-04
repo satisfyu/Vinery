@@ -2,6 +2,7 @@ package net.satisfy.vinery.core.entity;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -21,6 +22,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -57,13 +59,13 @@ public class DarkCherryChestBoatEntity extends DarkCherryBoatEntity implements H
     @Override
     protected void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-        this.addChestVehicleSaveData(pCompound);
+        this.addChestVehicleSaveData(pCompound,level().registryAccess());
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
-        this.readChestVehicleSaveData(pCompound);
+        this.readChestVehicleSaveData(pCompound,level().registryAccess());
     }
 
     @Override
@@ -159,14 +161,15 @@ public class DarkCherryChestBoatEntity extends DarkCherryBoatEntity implements H
         this.unpackChestVehicleLootTable(player);
     }
 
-    @Nullable
-    public ResourceLocation getLootTable() {
-        return this.lootTable;
+    @Override
+    public @Nullable ResourceKey<LootTable> getLootTable() {
+        return ResourceKey.create(ResourceKey.createRegistryKey(this.lootTable),lootTable);
     }
 
     @Override
-    public void setLootTable(@Nullable ResourceLocation location) {
-        this.lootTable = location;
+    public void setLootTable(@Nullable ResourceKey<LootTable> resourceKey) {
+        if(resourceKey == null) return;
+        this.lootTable = resourceKey.location();
     }
 
     @Override
