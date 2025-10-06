@@ -12,6 +12,7 @@ import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.satisfy.vinery.core.Vinery;
+import net.satisfy.vinery.core.block.StoragePotBlock;
 import net.satisfy.vinery.core.block.entity.*;
 import net.satisfy.vinery.core.entity.*;
 import net.satisfy.vinery.platform.PlatformHelper;
@@ -38,6 +39,9 @@ public class EntityTypeRegistry {
     public static final RegistrySupplier<BlockEntityType<CabinetBlockEntity>> CABINET_BLOCK_ENTITY = registerBlockEntity("cabinet", () -> {
         Block[] cabinetBlocks = StorageTypeRegistry.getCabinetBlocks();
         return BlockEntityType.Builder.of(CabinetBlockEntity::new, cabinetBlocks).build(null);
+    });
+    public static final RegistrySupplier<BlockEntityType<StoragePotBlockEntity>> STORAGE_POT_ENTITY = registerBlockEntity("cabinet", () -> {
+        return BlockEntityType.Builder.of(StoragePotBlockEntity::new, STORAGE_POT.get()).build(null);
     });
     public static final Supplier<EntityType<DarkCherryBoatEntity>> DARK_CHERRY_BOAT = PlatformHelper.registerBoatType("dark_cherry_boat", DarkCherryBoatEntity::new, MobCategory.MISC, 1.375F, 0.5625F, 10);
     public static final Supplier<EntityType<DarkCherryChestBoatEntity>> DARK_CHERRY_CHEST_BOAT = PlatformHelper.registerBoatType("dark_cherry_chest_boat", DarkCherryChestBoatEntity::new, MobCategory.MISC, 1.375F, 0.5625F, 10);

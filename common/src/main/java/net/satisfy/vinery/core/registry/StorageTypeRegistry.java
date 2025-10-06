@@ -68,7 +68,6 @@ public class StorageTypeRegistry {
 
     public static Block[] getStorageBlocks() {
         return new Block[]{
-                STORAGE_POT.get(),
                 DARK_CHERRY_WINE_RACK_SMALL.get(),
                 DARK_CHERRY_WINE_RACK_BIG.get(),
                 DARK_CHERRY_WINE_RACK_MID.get(),

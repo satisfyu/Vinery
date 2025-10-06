@@ -11,6 +11,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfy.vinery.core.block.entity.StorageBlockEntity;
+import net.satisfy.vinery.core.block.entity.StoragePotBlockEntity;
 import net.satisfy.vinery.core.util.GeneralUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -52,7 +53,7 @@ public class StoragePotBlock extends CabinetBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new StorageBlockEntity(pos,state,18);
+        return new StoragePotBlockEntity(pos,state);
     }
 
     @Override

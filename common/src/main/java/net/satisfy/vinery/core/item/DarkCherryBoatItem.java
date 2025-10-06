@@ -6,6 +6,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.BoatItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
@@ -32,8 +33,7 @@ public class DarkCherryBoatItem extends BoatItem {
         this.type = type;
     }
 
-    @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         HitResult hitresult = getPlayerPOVHitResult(pLevel, pPlayer, ClipContext.Fluid.ANY);
         if (hitresult.getType() == HitResult.Type.MISS) {
@@ -44,8 +44,8 @@ public class DarkCherryBoatItem extends BoatItem {
             if (!list.isEmpty()) {
                 Vec3 vec31 = pPlayer.getEyePosition();
 
-                for (Entity entity : list) {
-                    AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius());
+                for(Entity entity : list) {
+                    AABB aabb = entity.getBoundingBox().inflate((double)entity.getPickRadius());
                     if (aabb.contains(vec31)) {
                         return InteractionResultHolder.pass(itemstack);
                     }
@@ -53,8 +53,12 @@ public class DarkCherryBoatItem extends BoatItem {
             }
 
             if (hitresult.getType() == HitResult.Type.BLOCK) {
-                DarkCherryBoatEntity boat = this.getBoat(pLevel, hitresult);
-                boat.setWoodType(this.type);
+                Boat boat = this.getBoat(pLevel, hitresult);
+                if(boat instanceof DarkCherryChestBoatEntity chestBoat) {
+                    chestBoat.setWoodType(this.type);
+                } else if(boat instanceof DarkCherryBoatEntity) {
+                    ((DarkCherryBoatEntity)boat).setWoodType(this.type);
+                }
                 boat.setYRot(pPlayer.getYRot());
                 if (!pLevel.noCollision(boat, boat.getBoundingBox())) {
                     return InteractionResultHolder.fail(itemstack);
@@ -76,7 +80,7 @@ public class DarkCherryBoatItem extends BoatItem {
         }
     }
 
-    private DarkCherryBoatEntity getBoat(Level level, HitResult hitResult) {
+    private Boat getBoat(Level level, HitResult hitResult) {
         return this.hasChest ? new DarkCherryChestBoatEntity(level, hitResult.getLocation().x, hitResult.getLocation().y, hitResult.getLocation().z) : new DarkCherryBoatEntity(level, hitResult.getLocation().x, hitResult.getLocation().y, hitResult.getLocation().z);
     }
 }
