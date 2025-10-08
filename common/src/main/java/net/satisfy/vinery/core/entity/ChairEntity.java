@@ -34,7 +34,7 @@ public class ChairEntity extends Entity {
             BlockPos pos = GeneralUtil.getPreviousPlayerPosition(p, this);
             if (pos != null) {
                 discard();
-                return new Vec3(pos.getX() + 0.5D, pos.getY()+1.5D, pos.getZ() + 0.5D);
+                return new Vec3(pos.getX() + 0.5D, pos.getY()+3.5D, pos.getZ() + 0.5D);
             }
         }
 

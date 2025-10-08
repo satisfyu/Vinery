@@ -83,7 +83,8 @@ public class BasketBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
         return SHAPE.get(state.getValue(FACING));
     }
 
-    public @NotNull InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+    @Override
+    public @NotNull InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
