@@ -1,0 +1,19 @@
+{
+    "type": "vinery:wine_fermentation",
+    "juice": {
+        "type": "white_jungle",
+        "amount": 17
+    },
+    "ingredients": [
+        {
+            "item": "minecraft:arrow"
+        }
+    ],
+    "wine_bottle": {
+        "required": true
+    },
+    "result": {
+        "count": 1,
+        "id": "vinery:villagers_fright"
+    }
+}

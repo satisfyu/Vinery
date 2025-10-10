@@ -48,7 +48,7 @@ public class DarkCherryLeavesBlock extends LeavesBlock implements BonemealableBl
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
         if (state.getValue(HAS_CHERRIES) && state.getValue(AGE) == 3) {
             if (!world.isClientSide()) {
                 int dropCount = world.getRandom().nextBoolean() ? world.getRandom().nextInt(1, 4) : 1;
@@ -59,7 +59,7 @@ public class DarkCherryLeavesBlock extends LeavesBlock implements BonemealableBl
             }
             return InteractionResult.SUCCESS;
         }
-        return super.use(state, world, pos, player, hand, hit);
+        return super.useWithoutItem(state, world, pos, player, hit);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class DarkCherryLeavesBlock extends LeavesBlock implements BonemealableBl
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
         int age = state.getValue(AGE);
         boolean has = state.getValue(HAS_CHERRIES);
         return (age < 2 && !has) || (age == 2 && has);

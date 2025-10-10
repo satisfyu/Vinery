@@ -4,13 +4,17 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.satisfy.vinery.core.block.entity.StorageBlockEntity;
+import net.satisfy.vinery.core.block.entity.StoragePotBlockEntity;
 import net.satisfy.vinery.core.util.GeneralUtil;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,6 +49,11 @@ public class StoragePotBlock extends CabinetBlock {
         for (Direction direction : Direction.Plane.HORIZONTAL) {
             SHAPE.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, VOXEL_SHAPE));
         }
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new StoragePotBlockEntity(pos,state);
     }
 
     @Override

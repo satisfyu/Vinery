@@ -22,7 +22,7 @@ import net.satisfy.vinery.core.block.CompletionistWallBannerBlock;
 import net.satisfy.vinery.core.block.entity.CompletionistBannerEntity;
 
 public class CompletionistBannerRenderer implements BlockEntityRenderer<CompletionistBannerEntity> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(Vinery.MOD_ID, "banner"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Vinery.MOD_ID, "banner"), "main");
 
     public static final String FLAG = "flag";
     private static final String POLE = "pole";

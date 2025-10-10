@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -77,9 +78,9 @@ public class PaleStemBlock extends StemBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (hand == InteractionHand.OFF_HAND) {
-            return super.use(state, world, pos, player, hand, hit);
+            return super.useItemOn(stack,state, world, pos, player, hand, hit);
         }
         final int age = state.getValue(AGE);
         if (age > 0 && player.getItemInHand(hand).getItem() == Items.SHEARS) {
@@ -89,9 +90,8 @@ public class PaleStemBlock extends StemBlock {
             dropGrapeSeeds(world, state, pos, hit.getDirection());
             world.setBlock(pos, withAge(state, Math.max(0, age - 1), state.getValue(GRAPE)), 3);
             world.playSound(player, pos, SoundEvents.SWEET_BERRY_BUSH_BREAK, SoundSource.AMBIENT, 1.0F, 1.0F);
-            return InteractionResult.sidedSuccess(world.isClientSide);
+            return ItemInteractionResult.sidedSuccess(world.isClientSide);
         }
-        final ItemStack stack = player.getItemInHand(hand);
         if (stack.getItem() instanceof GrapeBushSeedItem seed && hasTrunk(world, pos)) {
             if (age == 0) {
                 if (!seed.getType().isLattice()) {
@@ -107,11 +107,11 @@ public class PaleStemBlock extends StemBlock {
                         stack.shrink(1);
                     }
                     world.playSound(player, pos, SoundEvents.SWEET_BERRY_BUSH_PLACE, SoundSource.AMBIENT, 1.0F, 1.0F);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             }
         }
-        return super.use(state, world, pos, player, hand, hit);
+        return super.useItemOn(stack,state, world, pos, player, hand, hit);
     }
 
     @Override

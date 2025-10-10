@@ -13,7 +13,7 @@ public class ClimbingEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if(entity.horizontalCollision) {
             entity.fallDistance = 0.0F;
 
@@ -30,10 +30,11 @@ public class ClimbingEffect extends MobEffect {
 
             entity.setDeltaMovement(motionX, motionY, motionZ);
         }
+        return true;
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int i, int j) {
         return true;
     }
 }

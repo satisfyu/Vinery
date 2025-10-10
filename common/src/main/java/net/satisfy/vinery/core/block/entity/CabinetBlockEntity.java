@@ -1,6 +1,7 @@
 package net.satisfy.vinery.core.block.entity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -13,6 +14,8 @@ import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -54,20 +57,52 @@ public class CabinetBlockEntity extends RandomizableContainerBlockEntity {
         };
     }
 
+    public CabinetBlockEntity(BlockEntityType<? extends BlockEntity> entity,BlockPos pos, BlockState state)
+    {
+        super(entity,pos,state);
+
+        this.inventory = NonNullList.withSize(18, ItemStack.EMPTY);
+        this.stateManager = new ContainerOpenersCounter() {
+            @Override
+            protected void onOpen(Level world, BlockPos pos, BlockState state) {
+                world.setBlock(pos, state.setValue(BlockStateProperties.OPEN, true), 3);
+            }
+
+            @Override
+            protected void onClose(Level world, BlockPos pos, BlockState state) {
+                world.setBlock(pos, state.setValue(BlockStateProperties.OPEN, false), 3);
+            }
+
+            @Override
+            protected void openerCountChanged(Level world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
+            }
+
+            @Override
+            protected boolean isOwnContainer(Player player) {
+                if (player.containerMenu instanceof ChestMenu) {
+                    Container inventory = ((ChestMenu) player.containerMenu).getContainer();
+                    return inventory == CabinetBlockEntity.this;
+                } else {
+                    return false;
+                }
+            }
+        };
+    }
+
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        super.saveAdditional(nbt);
+    protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.saveAdditional(nbt,provider);
         if (!this.trySaveLootTable(nbt)) {
-            ContainerHelper.saveAllItems(nbt, this.inventory);
+            ContainerHelper.saveAllItems(nbt, this.inventory,provider);
         }
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    public void loadAdditional(CompoundTag nbt,HolderLookup.Provider provider) {
+        super.loadAdditional(nbt,provider);
         this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         if (!this.tryLoadLootTable(nbt)) {
-            ContainerHelper.loadAllItems(nbt, this.inventory);
+            ContainerHelper.loadAllItems(nbt, this.inventory,provider);
         }
     }
 

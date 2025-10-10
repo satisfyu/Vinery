@@ -2,7 +2,15 @@ package net.satisfy.vinery.core.entity;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -14,6 +22,7 @@ import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.entity.vehicle.ChestBoat;
 import net.minecraft.world.entity.vehicle.ContainerEntity;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
@@ -21,17 +30,18 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.registry.EntityTypeRegistry;
+import net.satisfy.vinery.core.registry.ObjectRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class DarkCherryChestBoatEntity extends DarkCherryBoatEntity implements HasCustomInventoryScreen, ContainerEntity {
-    private static final int CONTAINER_SIZE = 27;
-    private NonNullList<ItemStack> itemStacks = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
-    @Nullable
-    private ResourceLocation lootTable;
-    private long lootTableSeed;
+import java.util.function.Supplier;
 
+public class DarkCherryChestBoatEntity extends ChestBoat {
+
+    private static final EntityDataAccessor<Integer> WOOD_TYPE = SynchedEntityData.defineId(DarkCherryChestBoatEntity.class, EntityDataSerializers.INT);
     public DarkCherryChestBoatEntity(EntityType<? extends Boat> entityType, Level level) {
         super(entityType, level);
     }
@@ -45,147 +55,41 @@ public class DarkCherryChestBoatEntity extends DarkCherryBoatEntity implements H
     }
 
     @Override
-    protected float getSinglePassengerXOffset() {
-        return 0.15F;
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(WOOD_TYPE, DarkCherryBoatEntity.Type.DARK_CHERRY.ordinal());
     }
 
     @Override
-    protected int getMaxPassengers() {
-        return 1;
+    protected void readAdditionalSaveData(CompoundTag pCompound) {
+        if (pCompound.contains("Type", 8)) {
+            this.setWoodType(DarkCherryBoatEntity.Type.byName(pCompound.getString("Type")));
+        }
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-        this.addChestVehicleSaveData(pCompound);
+        pCompound.putString("Type", this.getWoodType().getName());
     }
 
-    @Override
-    protected void readAdditionalSaveData(CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-        this.readChestVehicleSaveData(pCompound);
+    public DarkCherryBoatEntity.Type getWoodType() {
+        return DarkCherryBoatEntity.Type.byId(this.entityData.get(WOOD_TYPE));
     }
 
-    @Override
-    public void destroy(DamageSource source) {
-        super.destroy(source);
-        this.chestVehicleDestroyed(source, this.level(), this);
+    public void setWoodType(DarkCherryBoatEntity.Type type) {
+        this.entityData.set(WOOD_TYPE, type.ordinal());
     }
-
-    @Override
-    public void remove(RemovalReason pReason) {
-        if (!this.level().isClientSide() && pReason.shouldDestroy()) {
-            Containers.dropContents(this.level(), this, this);
-        }
-
-        super.remove(pReason);
+    public DarkCherryBoatEntity.Type getModVariant() {
+        return DarkCherryBoatEntity.Type.byId(this.entityData.get(WOOD_TYPE));
     }
-
-    @Override
-    public @NotNull InteractionResult interact(Player pPlayer, InteractionHand pHand) {
-        return this.canAddPassenger(pPlayer) && !pPlayer.isSecondaryUseActive() ? super.interact(pPlayer, pHand) : this.interactWithContainerVehicle(pPlayer);
-    }
-
-    @Override
-    public void openCustomInventoryScreen(Player player) {
-        player.openMenu(this);
-        if (!player.level().isClientSide()) {
-            this.gameEvent(GameEvent.CONTAINER_OPEN, player);
-            PiglinAi.angerNearbyPiglins(player, true);
-        }
-
-    }
-
     @Override
     public @NotNull Item getDropItem() {
-        return this.getWoodType().getChestItem().get();
+        return this.getWoodType().getItem().get();
     }
 
     @Override
-    public void clearContent() {
-        this.clearChestVehicleContent();
-    }
-
-    @Override
-    public int getContainerSize() {
-        return 27;
-    }
-
-    @Override
-    public @NotNull ItemStack getItem(int pIndex) {
-        return this.getChestVehicleItem(pIndex);
-    }
-
-    @Override
-    public @NotNull ItemStack removeItem(int pIndex, int pCount) {
-        return this.removeChestVehicleItem(pIndex, pCount);
-    }
-
-    @Override
-    public @NotNull ItemStack removeItemNoUpdate(int pIndex) {
-        return this.removeChestVehicleItemNoUpdate(pIndex);
-    }
-
-    @Override
-    public void setItem(int pIndex, ItemStack pStack) {
-        this.setChestVehicleItem(pIndex, pStack);
-    }
-
-    @Override
-    public @NotNull SlotAccess getSlot(int pSlot) {
-        return this.getChestVehicleSlot(pSlot);
-    }
-
-    @Override
-    public void setChanged() {
-    }
-
-    @Override
-    public boolean stillValid(Player pPlayer) {
-        return this.isChestVehicleStillValid(pPlayer);
-    }
-
-    @Nullable
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        if (this.lootTable != null && pPlayer.isSpectator()) {
-            return null;
-        } else {
-            this.unpackLootTable(pInventory.player);
-            return ChestMenu.threeRows(pContainerId, pInventory, this);
-        }
-    }
-
-    public void unpackLootTable(@Nullable Player player) {
-        this.unpackChestVehicleLootTable(player);
-    }
-
-    @Nullable
-    public ResourceLocation getLootTable() {
-        return this.lootTable;
-    }
-
-    @Override
-    public void setLootTable(@Nullable ResourceLocation location) {
-        this.lootTable = location;
-    }
-
-    @Override
-    public long getLootTableSeed() {
-        return this.lootTableSeed;
-    }
-
-    @Override
-    public void setLootTableSeed(long seed) {
-        this.lootTableSeed = seed;
-    }
-
-    @Override
-    public @NotNull NonNullList<ItemStack> getItemStacks() {
-        return this.itemStacks;
-    }
-
-    @Override
-    public void clearItemStacks() {
-        this.itemStacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity entity) {
+        return new ClientboundAddEntityPacket(this,entity);
     }
 }

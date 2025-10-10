@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "wine_bottle",
+    "pattern": [
+        "#",
+        "#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:glass_bottle"
+        }
+    },
+    "result": {
+        "count": 4,
+        "id": "vinery:wine_bottle"
+    }
+}

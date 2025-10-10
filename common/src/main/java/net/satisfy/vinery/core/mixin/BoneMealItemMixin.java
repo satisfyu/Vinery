@@ -1,11 +1,15 @@
 package net.satisfy.vinery.core.mixin;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BoneMealItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.registry.ArmorRegistry;
 import net.satisfy.vinery.core.item.WinemakerBootsItem;
 import net.satisfy.vinery.core.item.WinemakerChestItem;
@@ -17,18 +21,16 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Objects;
-
 @Mixin(BoneMealItem.class)
 public abstract class BoneMealItemMixin {
 
-    @Inject(method = "useOn", at = @At("RETURN"))
+    @Inject(method = "useOn", at = @At("RETURN"), cancellable = true)
     public void useOnBlock(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
-        if (!(context.getLevel() instanceof ServerLevel)) {
+        if (cir.getReturnValue() != InteractionResult.CONSUME) {
             return;
         }
 
-        ArmorRegistry.checkArmorSet(Objects.requireNonNull(context.getPlayer()));
-        if (cir.getReturnValue() != InteractionResult.CONSUME || !ArmorRegistry.setBonusActive) {
+        if (!(context.getLevel() instanceof ServerLevel)) {
             return;
         }
 
@@ -40,11 +42,14 @@ public abstract class BoneMealItemMixin {
         ItemStack leggings = player.getInventory().getArmor(1);
         ItemStack boots = player.getInventory().getArmor(0);
 
-        if (helmet.getItem() instanceof WinemakerHelmetItem &&
+        boolean hasFullSet = helmet.getItem() instanceof WinemakerHelmetItem &&
                 chestplate.getItem() instanceof WinemakerChestItem &&
                 leggings.getItem() instanceof WinemakerLegsItem &&
-                boots.getItem() instanceof WinemakerBootsItem) {
+                boots.getItem() instanceof WinemakerBootsItem;
 
+        if (hasFullSet) {
+            System.out.println("YES");
+            cir.setReturnValue(InteractionResult.PASS);
             ItemStack heldItem = context.getItemInHand();
             if (!heldItem.isEmpty()) {
                 heldItem.grow(1);
@@ -53,7 +58,14 @@ public abstract class BoneMealItemMixin {
             for (int i = 0; i < 4; i++) {
                 ItemStack armorPiece = player.getInventory().getArmor(i);
                 if (!armorPiece.isEmpty()) {
-                    armorPiece.hurtAndBreak(2, player, (p) -> p.broadcastBreakEvent(context.getHand()));
+                    EquipmentSlot slot = switch(i) {
+                        case 0 -> EquipmentSlot.FEET;
+                        case 1 -> EquipmentSlot.LEGS;
+                        case 2 -> EquipmentSlot.CHEST;
+                        case 3 -> EquipmentSlot.HEAD;
+                        default -> EquipmentSlot.MAINHAND;
+                    };
+                    armorPiece.hurtAndBreak(2, player, slot);
                 }
             }
         }

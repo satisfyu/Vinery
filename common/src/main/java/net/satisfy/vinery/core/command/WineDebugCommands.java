@@ -8,6 +8,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.satisfy.vinery.core.components.WineYearComponent;
+import net.satisfy.vinery.core.registry.DataComponentRegistry;
 import net.satisfy.vinery.core.util.WineYears;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -52,10 +54,11 @@ public final class WineDebugCommands {
         }
 
         Level level = player.serverLevel();
-
         int targetYear = WineYears.getYear(level) - years;
-        stack.getOrCreateTag().putInt(WineYears.TAG_YEAR, targetYear);
-        WineYears.refreshCached(stack, level);
+
+        int amplifier = WineYears.getEffectLevel(stack, level);
+        int duration = WineYears.getEffectDuration(stack, level);
+        stack.set(DataComponentRegistry.WINE_YEAR.get(), new WineYearComponent(targetYear, amplifier, duration));
 
         source.sendSuccess(() -> Component.literal("Wine age set to " + years + " years"), false);
         return 1;

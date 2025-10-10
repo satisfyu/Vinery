@@ -13,6 +13,7 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -21,68 +22,52 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.entity.DarkCherryBoatEntity;
+import net.satisfy.vinery.core.entity.DarkCherryChestBoatEntity;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Quaternionf;
 
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class DarkCherryBoatRenderer<T extends DarkCherryBoatEntity> extends EntityRenderer<T> {
+public class DarkCherryBoatRenderer<T extends DarkCherryBoatEntity> extends BoatRenderer {
     private final Map<DarkCherryBoatEntity.Type, Pair<ResourceLocation, ListModel<Boat>>> boatResources;
 
     public DarkCherryBoatRenderer(EntityRendererProvider.Context context, boolean hasChest) {
-        super(context);
+        super(context,hasChest);
         this.shadowRadius = 0.8f;
-        this.boatResources = Stream.of(DarkCherryBoatEntity.Type.values()).collect(ImmutableMap.toImmutableMap(type -> type, type ->
-                Pair.of(type.getTexture(hasChest), this.createBoatModel(context, type, hasChest))));
+        this.boatResources = Stream.of(DarkCherryBoatEntity.Type.values()).collect(ImmutableMap.toImmutableMap((type) -> type,
+                (type) -> Pair.of(ResourceLocation.fromNamespaceAndPath(Vinery.MOD_ID, getTextureLocation(type, hasChest)), this.createBoatModel(context, type, hasChest))));
     }
 
-    private ListModel<Boat> createBoatModel(EntityRendererProvider.Context context, DarkCherryBoatEntity.Type type, boolean hasChest) {
-        ModelLayerLocation modelLayerLocation = hasChest ?
-                new ModelLayerLocation(new ResourceLocation(Vinery.MOD_ID, type.getChestModelLocation()), "main")
-                : new ModelLayerLocation(new ResourceLocation(Vinery.MOD_ID, type.getModelLocation()), "main");
-        ModelPart modelPart = context.bakeLayer(modelLayerLocation);
-        return hasChest ? new ChestBoatModel(modelPart) : new BoatModel(modelPart);
+    private static String getTextureLocation(DarkCherryBoatEntity.Type pType, boolean pChestBoat) {
+        return pChestBoat ? "textures/entity/chest_boat/" + pType.getName() + ".png" : "textures/entity/boat/" + pType.getName() + ".png";
     }
 
-    @Override
-    @SuppressWarnings("unused")
-    public void render(T entity, float entityYaw, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int packedLight) {
-        float h;
-        matrixStack.pushPose();
-        matrixStack.translate(0.0f, 0.375f, 0.0f);
-        matrixStack.mulPose(Axis.YP.rotationDegrees(180.0f - entityYaw));
-        float f = (float) entity.getHurtTime() - partialTicks;
-        float g = entity.getDamage() - partialTicks;
-        if (g < 0.0f) {
-            g = 0.0f;
-        }
-        if (f > 0.0f) {
-            matrixStack.mulPose(Axis.XP.rotationDegrees(Mth.sin(f) * f * g / 10.0f * (float) entity.getHurtDir()));
-        }
-        if (!Mth.equal(entity.getBubbleAngle(partialTicks), 0.0f)) {
-            matrixStack.mulPose(new Quaternionf().setAngleAxis(entity.getBubbleAngle(partialTicks) * ((float) Math.PI / 180), 1.0f, 0.0f, 1.0f));
-        }
-        Pair<ResourceLocation, ListModel<Boat>> pair = this.boatResources.get(entity.getWoodType());
-        ResourceLocation resourceLocation = pair.getFirst();
-        ListModel<Boat> listModel = pair.getSecond();
-        matrixStack.scale(-1.0f, -1.0f, 1.0f);
-        matrixStack.mulPose(Axis.YP.rotationDegrees(90.0f));
-        listModel.setupAnim(entity, partialTicks, 0.0f, -0.1f, 0.0f, 0.0f);
-        VertexConsumer vertexConsumer = buffer.getBuffer(listModel.renderType(resourceLocation));
-        listModel.renderToBuffer(matrixStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, 1.0f);
-        if (!entity.isUnderWater()) {
-            VertexConsumer vertexConsumer2 = buffer.getBuffer(RenderType.waterMask());
-            if (listModel instanceof WaterPatchModel waterPatchModel) {
-                waterPatchModel.waterPatch().render(matrixStack, vertexConsumer2, packedLight, OverlayTexture.NO_OVERLAY);
-            }
-        }
-        matrixStack.popPose();
-        super.render(entity, entityYaw, partialTicks, matrixStack, buffer, packedLight);
+    private ListModel<Boat> createBoatModel(EntityRendererProvider.Context pContext, DarkCherryBoatEntity.Type pType, boolean pChestBoat) {
+        ModelLayerLocation modellayerlocation = pChestBoat ? DarkCherryBoatRenderer.createChestBoatModelName(pType) : DarkCherryBoatRenderer.createBoatModelName(pType);
+        ModelPart modelpart = pContext.bakeLayer(modellayerlocation);
+        return pChestBoat ? new ChestBoatModel(modelpart) : new BoatModel(modelpart);
     }
 
-    @Override
-    public @NotNull ResourceLocation getTextureLocation(DarkCherryBoatEntity boat) {
-        return boatResources.get(boat.getWoodType()).getFirst();
+    public static ModelLayerLocation createBoatModelName(DarkCherryBoatEntity.Type pType) {
+        return createLocation("boat/" + pType.getName(), "main");
+    }
+
+    public static ModelLayerLocation createChestBoatModelName(DarkCherryBoatEntity.Type pType) {
+        return createLocation("chest_boat/" + pType.getName(), "main");
+    }
+
+    private static ModelLayerLocation createLocation(String pPath, String pModel) {
+        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Vinery.MOD_ID, pPath), pModel);
+    }
+
+    public Pair<ResourceLocation, ListModel<Boat>> getModelWithLocation(Boat boat) {
+        if(boat instanceof DarkCherryBoatEntity modBoat) {
+            return this.boatResources.get(modBoat.getWoodType());
+        } else if(boat instanceof DarkCherryChestBoatEntity modChestBoatEntity) {
+            return this.boatResources.get(modChestBoatEntity.getModVariant());
+        } else {
+            return null;
+        }
     }
 }

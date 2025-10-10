@@ -1,11 +1,11 @@
 package net.satisfy.vinery.core.item;
 
-import com.google.common.collect.Lists;
-import com.mojang.datafixers.util.Pair;
-import dev.architectury.injectables.annotations.PlatformOnly;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.InteractionHand;
@@ -15,12 +15,14 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.satisfy.vinery.core.block.entity.StorageBlockEntity;
+import net.satisfy.vinery.core.registry.DataComponentRegistry;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import net.satisfy.vinery.core.util.GeneralUtil;
 import net.satisfy.vinery.core.util.WineYears;
@@ -29,18 +31,28 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Supplier;
 
-@SuppressWarnings("unused")
 public class DrinkBlockItem extends BlockItem {
-    private final int baseDuration;
-    private final boolean scaleDurationWithAge;
+    private int baseDuration;
+    private boolean scaleDurationWithAge;
     private final BottleSize bottleSize;
+    private Supplier<Holder<MobEffect>> effectSupplier;
+    private int baseAmplifier;
 
-    public DrinkBlockItem(Block block, Properties settings, int baseDuration, boolean scaleDurationWithAge, BottleSize bottleSize) {
+    public DrinkBlockItem(Block block, Properties settings, boolean scaleDurationWithAge, BottleSize bottleSize) {
         super(block, settings);
-        this.baseDuration = baseDuration;
+        this.baseDuration = 0;
         this.scaleDurationWithAge = scaleDurationWithAge;
         this.bottleSize = bottleSize;
+        this.effectSupplier = null;
+        this.baseAmplifier = 0;
+    }
+
+    public void setEffectSupplier(Supplier<Holder<MobEffect>> effectSupplier, int baseDuration, int baseAmplifier) {
+        this.effectSupplier = effectSupplier;
+        this.baseDuration = baseDuration;
+        this.baseAmplifier = baseAmplifier;
     }
 
     @Override
@@ -66,24 +78,25 @@ public class DrinkBlockItem extends BlockItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag context) {
-        List<Pair<MobEffectInstance, Float>> effects = getFoodProperties() != null ? getFoodProperties().getEffects() : Lists.newArrayList();
-        if (effects.isEmpty()) {
-            tooltip.add(Component.translatable("effect.none").withStyle(ChatFormatting.GRAY));
+    public void appendHoverText(ItemStack stack, TooltipContext tooltipContext, List<Component> tooltip, TooltipFlag tooltipFlag) {
+        Level world = Minecraft.getInstance().level;
+
+        if (effectSupplier != null && world != null) {
+            Holder<MobEffect> effectHolder = effectSupplier.get();
+            MobEffect effect = effectHolder.value();
+
+            String effectName = effect.getDisplayName().getString();
+            int amplifier = Math.max(0, WineYears.getEffectLevel(stack, world));
+            String amplifierRoman = amplifier > 0 ? " " + toRoman(amplifier) : "";
+            int durationTicks = scaleDurationWithAge ? WineYears.getEffectDuration(stack, world) : baseDuration;
+            durationTicks = Math.max(0, durationTicks);
+            String formattedDuration = formatDuration(durationTicks);
+            String tooltipText = effectName + amplifierRoman + " (" + formattedDuration + ")";
+            tooltip.add(Component.literal(tooltipText).withStyle(effect.getCategory().getTooltipFormatting()));
         } else {
-            for (Pair<MobEffectInstance, Float> effectPair : effects) {
-                MobEffectInstance effectInstance = effectPair.getFirst();
-                MobEffect effect = effectInstance.getEffect();
-                String effectName = effect.getDisplayName().getString();
-                int amplifier = Math.max(0, WineYears.getEffectLevel(stack, world));
-                String amplifierRoman = amplifier > 0 ? " " + toRoman(amplifier) : "";
-                int durationTicks = scaleDurationWithAge ? WineYears.getEffectDuration(stack, world) : baseDuration;
-                durationTicks = Math.max(0, durationTicks);
-                String formattedDuration = formatDuration(durationTicks);
-                String tooltipText = effectName + amplifierRoman + " (" + formattedDuration + ")";
-                tooltip.add(Component.literal(tooltipText).withStyle(effect.getCategory().getTooltipFormatting()));
-            }
+            tooltip.add(Component.translatable("effect.none").withStyle(ChatFormatting.GRAY));
         }
+
         tooltip.add(Component.empty());
         if (world != null) {
             int age = Math.max(0, WineYears.getWineAge(stack, world));
@@ -97,17 +110,20 @@ public class DrinkBlockItem extends BlockItem {
         tooltip.add(Component.translatable("tooltip.vinery.bottle_size." + bottleSize.name().toLowerCase())
                 .withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
     }
-
     @Override
     public @NotNull ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
-        if (!level.isClientSide) {
+        if (!level.isClientSide && effectSupplier != null) {
             int duration = scaleDurationWithAge ? Math.max(0, WineYears.getEffectDuration(itemStack, level)) : baseDuration;
-            int amplifier = Math.max(0, WineYears.getEffectLevel(itemStack, level));
-            List<Pair<MobEffectInstance, Float>> effects = Objects.requireNonNull(getFoodProperties()).getEffects();
-            for (Pair<MobEffectInstance, Float> effectPair : effects) {
-                MobEffect effect = effectPair.getFirst().getEffect();
-                livingEntity.addEffect(new MobEffectInstance(effect, duration, amplifier));
-            }
+            int amplifier = scaleDurationWithAge ? Math.max(0, WineYears.getEffectLevel(itemStack, level)) : baseAmplifier;
+
+            Holder<MobEffect> effectHolder = effectSupplier.get();
+            MobEffect effect = effectHolder.value();
+
+            Holder<MobEffect> registryHolder = level.registryAccess()
+                    .registryOrThrow(Registries.MOB_EFFECT)
+                    .wrapAsHolder(effect);
+
+            livingEntity.addEffect(new MobEffectInstance(registryHolder, duration, amplifier));
         }
         itemStack.shrink(1);
         return GeneralUtil.convertStackAfterFinishUsing(livingEntity, itemStack, ObjectRegistry.WINE_BOTTLE.get(), this);
@@ -136,7 +152,7 @@ public class DrinkBlockItem extends BlockItem {
         super.inventoryTick(stack, world, entity, slot, selected);
 
         if (world != null && !world.isClientSide) {
-            if (!WineYears.hasWineYear(stack)) {
+            if (stack.get(DataComponentRegistry.WINE_YEAR.get()) == null) {
                 WineYears.setWineYear(stack, world);
             } else if (world.getGameTime() % 200L == 0L) {
                 WineYears.refreshCached(stack, world);
@@ -162,15 +178,5 @@ public class DrinkBlockItem extends BlockItem {
 
     public enum BottleSize {
         SMALL, BIG
-    }
-
-    @PlatformOnly(PlatformOnly.FORGE)
-    public CompoundTag getShareTag(ItemStack stack) {
-        return WineYears.getShareTag(stack);
-    }
-
-    @PlatformOnly(PlatformOnly.FORGE)
-    public void readShareTag(ItemStack stack, @Nullable CompoundTag nbt) {
-        WineYears.readShareTag(stack, nbt);
     }
 }

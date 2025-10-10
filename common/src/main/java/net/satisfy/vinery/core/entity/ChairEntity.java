@@ -1,10 +1,14 @@
 package net.satisfy.vinery.core.entity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerEntity;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,7 +24,7 @@ public class ChairEntity extends Entity {
     }
 
     @Override
-    protected void defineSynchedData() {
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
 
     }
 
@@ -30,7 +34,7 @@ public class ChairEntity extends Entity {
             BlockPos pos = GeneralUtil.getPreviousPlayerPosition(p, this);
             if (pos != null) {
                 discard();
-                return new Vec3(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D);
+                return new Vec3(pos.getX() + 0.5D, pos.getY()+3.5D, pos.getZ() + 0.5D);
             }
         }
 
@@ -56,7 +60,7 @@ public class ChairEntity extends Entity {
     }
 
     @Override
-    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new ClientboundAddEntityPacket(this);
+    public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity serverEntity) {
+        return new ClientboundAddEntityPacket(this,serverEntity);
     }
 }

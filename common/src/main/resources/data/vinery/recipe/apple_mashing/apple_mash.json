@@ -1,0 +1,10 @@
+{
+  "type": "vinery:apple_mashing",
+  "input": {
+    "item": "minecraft:apple"
+  },
+  "output": {
+    "id": "vinery:apple_mash",
+    "count": 1
+  }
+}

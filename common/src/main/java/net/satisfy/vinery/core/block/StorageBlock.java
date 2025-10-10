@@ -11,6 +11,7 @@ import net.minecraft.util.Tuple;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -38,7 +39,8 @@ public abstract class StorageBlock extends FacingBlock implements EntityBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        ItemStack stack = player.getMainHandItem();
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof StorageBlockEntity shelfBlockEntity) {
             Optional<Tuple<Float, Float>> optional = GeneralUtil.getRelativeHitCoordinatesForBlockFace(hit, state.getValue(FACING), unAllowedDirections());
@@ -54,7 +56,6 @@ public abstract class StorageBlock extends FacingBlock implements EntityBlock {
                     remove(world, pos, player, shelfBlockEntity, i);
                     return InteractionResult.sidedSuccess(world.isClientSide);
                 } else {
-                    ItemStack stack = player.getItemInHand(hand);
                     if (!stack.isEmpty() && canInsertStack(stack)) {
                         add(world, pos, player, shelfBlockEntity, stack, i);
                         return InteractionResult.sidedSuccess(world.isClientSide);

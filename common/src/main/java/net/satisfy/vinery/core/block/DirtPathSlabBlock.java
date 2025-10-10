@@ -38,20 +38,17 @@ public class DirtPathSlabBlock extends SlabBlock {
 
     @Override
     public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
-        if (direction == Direction.UP && !state.canSurvive(level, pos)) {
-            level.scheduleTick(pos, this, 1);
-        }
-
         if (state.getValue(WATERLOGGED)) {
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
-
         return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
     }
 
+
+
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        FarmBlock.turnToDirt(null, state, level, pos);
+        //FarmBlock.turnToDirt(null, state, level, pos);
     }
 
     @Override
@@ -70,7 +67,7 @@ public class DirtPathSlabBlock extends SlabBlock {
     }
 
     @Override
-    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+    protected boolean isPathfindable(BlockState blockState, PathComputationType pathComputationType) {
         return false;
     }
 

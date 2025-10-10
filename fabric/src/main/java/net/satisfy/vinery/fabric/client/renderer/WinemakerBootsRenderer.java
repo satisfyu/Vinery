@@ -18,7 +18,7 @@ public class WinemakerBootsRenderer implements ArmorRenderer {
         if (stack.getItem() instanceof WinemakerBootsItem boots) {
             Model model = ArmorRegistryClient.getBootsModel(boots, contextModel.rightLeg, contextModel.leftLeg);
 
-            model.renderToBuffer(matrices, vertexConsumers.getBuffer(model.renderType(boots.getBootsTexture())), light, OverlayTexture.NO_OVERLAY, 1F, 1F, 1F, 1F);
+            model.renderToBuffer(matrices, vertexConsumers.getBuffer(model.renderType(boots.getBootsTexture())), light, OverlayTexture.NO_OVERLAY, 1);
         }
     }
 }

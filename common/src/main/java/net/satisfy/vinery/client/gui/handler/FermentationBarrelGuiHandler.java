@@ -72,7 +72,7 @@ public class FermentationBarrelGuiHandler extends AbstractContainerMenu {
         return this.level.getRecipeManager()
                 .getAllRecipesFor(RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get())
                 .stream()
-                .anyMatch(recipe -> recipe.getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
+                .anyMatch(recipe -> recipe.value().getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
     }
 
     @Override

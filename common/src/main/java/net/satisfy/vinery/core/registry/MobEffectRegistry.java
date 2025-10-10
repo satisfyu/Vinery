@@ -1,64 +1,58 @@
 package net.satisfy.vinery.core.registry;
 
-import dev.architectury.platform.Platform;
-import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.Registrar;
-import dev.architectury.registry.registries.RegistrySupplier;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.effect.*;
-
-import java.util.function.Supplier;
+import dev.architectury.registry.registries.DeferredRegister;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 
 public class MobEffectRegistry {
 
-    private static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Vinery.MOD_ID, Registries.MOB_EFFECT);
-    private static final Registrar<MobEffect> MOB_EFFECTS_REGISTRAR = MOB_EFFECTS.getRegistrar();
+    private static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(Vinery.MOD_ID,Registries.MOB_EFFECT);
 
-    public static final RegistrySupplier<MobEffect> JELLIE;
-    public static final RegistrySupplier<MobEffect> MAGNET;
-    public static final RegistrySupplier<MobEffect> TELEPORT;
-    public static final RegistrySupplier<MobEffect> IMPROVED_JUMP_BOOST;
-    public static final RegistrySupplier<MobEffect> WATER_WALKER;
-    public static final RegistrySupplier<MobEffect> CREEPER_EFFECT;
-    public static final RegistrySupplier<MobEffect> EXPERIENCE_EFFECT;
-    public static final RegistrySupplier<MobEffect> LAVA_WALKER;
-    public static final RegistrySupplier<MobEffect> FROSTY_ARMOR_EFFECT;
-    public static final RegistrySupplier<MobEffect> PARTY_EFFECT;
-    public static final RegistrySupplier<MobEffect> CLIMBING_EFFECT;
-    public static final RegistrySupplier<MobEffect> LUCK_EFFECT;
-    public static final RegistrySupplier<MobEffect> HEALTH_EFFECT;
-    public static final RegistrySupplier<MobEffect> RESISTANCE_EFFECT;
-    public static final RegistrySupplier<MobEffect> ARMOR_EFFECT;
+    public static final ResourceLocation ARMOR_EFFECT = Vinery.identifier("armor_effect");
+    public static final ResourceLocation HEALTH_EFFECT = Vinery.identifier("health_effect");
+    public static final ResourceLocation LUCK_EFFECT = Vinery.identifier("luck_effect");
+    public static final ResourceLocation RESISTANCE_EFFECT = Vinery.identifier("resistance_effect");
+    public static final ResourceLocation EXPERIENCE_EFFECT = Vinery.identifier("experience_effect");
+    public static final ResourceLocation IMPROVED_JUMP_BOOST = Vinery.identifier("double_jump");
+    public static final ResourceLocation PARTY_EFFECT = Vinery.identifier("party_effect");
+    public static final ResourceLocation TELEPORT = Vinery.identifier("teleport");
+    public static final ResourceLocation CREEPER_EFFECT = Vinery.identifier("creeper_effect");
+    public static final ResourceLocation CLIMBING_EFFECT = Vinery.identifier("climbing_effect");
+    public static final ResourceLocation FROSTY_ARMOR_EFFECT = Vinery.identifier("frosty_armor");
+    public static final ResourceLocation JELLIE = Vinery.identifier("jellie");
+    public static final ResourceLocation LAVA_WALKER = Vinery.identifier("lava_walker");
+    public static final ResourceLocation MAGNET = Vinery.identifier("magnet");
+    public static final ResourceLocation WATER_WALKER = Vinery.identifier("water_walker");
 
-    private static RegistrySupplier<MobEffect> registerEffect(String name, Supplier<MobEffect> effect){
-        if(Platform.isForge()){
-            return MOB_EFFECTS.register(name, effect);
+    public static void register() {
+        EFFECTS.register();
+        EFFECTS.register(ARMOR_EFFECT, () -> new ArmorEffect());
+        EFFECTS.register(HEALTH_EFFECT, () -> new ImprovedHealthEffect());
+        EFFECTS.register(LUCK_EFFECT, () -> new LuckEffect());
+        EFFECTS.register(RESISTANCE_EFFECT, () -> new ResistanceEffect());
+        EFFECTS.register(EXPERIENCE_EFFECT, () -> new ExpandableEffect(MobEffectCategory.BENEFICIAL, 0x00FF00));
+        EFFECTS.register(IMPROVED_JUMP_BOOST, () -> new ExpandableEffect(MobEffectCategory.BENEFICIAL, 0x00FF00));
+        EFFECTS.register(PARTY_EFFECT, () -> new ExpandableEffect(MobEffectCategory.BENEFICIAL, 0xFF0000));
+        EFFECTS.register(TELEPORT, () -> new TeleportEffect());
+        EFFECTS.register(CREEPER_EFFECT, () -> new CreeperEffect());
+        EFFECTS.register(CLIMBING_EFFECT, () -> new ClimbingEffect());
+        EFFECTS.register(FROSTY_ARMOR_EFFECT, () -> new FrostyArmorEffect());
+        EFFECTS.register(JELLIE, () -> new JellieEffect());
+        EFFECTS.register(LAVA_WALKER, () -> new LavaWalkerEffect());
+        EFFECTS.register(MAGNET, () -> new MagnetEffect());
+        EFFECTS.register(WATER_WALKER, () -> new WaterWalkerEffect());
+    }
+
+    public static Holder<MobEffect> getHolder(ResourceLocation id) {
+        Holder<MobEffect> holder = EFFECTS.getRegistrar().getHolder(id);
+        if (holder == null) {
+            throw new IllegalArgumentException("MobEffect with id " + id + " does not exist");
         }
-        return MOB_EFFECTS_REGISTRAR.register(Vinery.identifier(name), effect);
-    }
-
-    public static void init(){
-        MOB_EFFECTS.register();
-    }
-
-    static {
-        ARMOR_EFFECT = registerEffect("armor_effect", ArmorEffect::new);
-        HEALTH_EFFECT = registerEffect("health_effect", ImprovedHealthEffect::new);
-        LUCK_EFFECT = registerEffect("luck_effect", LuckEffect::new);
-        RESISTANCE_EFFECT = registerEffect("resistance_effect", ResistanceEffect::new);
-        EXPERIENCE_EFFECT = registerEffect("experience_effect", () -> new ExpandableEffect(MobEffectCategory.BENEFICIAL, 0x00FF00));
-        IMPROVED_JUMP_BOOST = registerEffect("double_jump", () -> new ExpandableEffect(MobEffectCategory.BENEFICIAL, 0x00FF00));
-        PARTY_EFFECT = registerEffect("party_effect", () -> new ExpandableEffect(MobEffectCategory.BENEFICIAL, 0xFF0000));
-        TELEPORT = registerEffect("teleport", TeleportEffect::new);
-        CREEPER_EFFECT = registerEffect("creeper_effect", CreeperEffect::new);
-        CLIMBING_EFFECT = registerEffect("climbing_effect", ClimbingEffect::new);
-        FROSTY_ARMOR_EFFECT = registerEffect("frosty_armor", FrostyArmorEffect::new);
-        JELLIE = registerEffect("jellie", JellieEffect::new);
-        LAVA_WALKER = registerEffect("lava_walker", LavaWalkerEffect::new);
-        MAGNET = registerEffect("magnet", MagnetEffect::new);
-        WATER_WALKER = registerEffect("water_walker", WaterWalkerEffect::new);
+        return holder;
     }
 }

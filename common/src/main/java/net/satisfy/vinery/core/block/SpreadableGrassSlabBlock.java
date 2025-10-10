@@ -11,6 +11,8 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -79,7 +81,7 @@ public class SpreadableGrassSlabBlock extends SlabBlock implements BonemealableB
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean bl) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         if(blockState.getValue(SlabBlock.TYPE) == SlabType.BOTTOM) return false;
 
         return levelReader.getBlockState(blockPos.above()).isAir();
@@ -133,8 +135,7 @@ public class SpreadableGrassSlabBlock extends SlabBlock implements BonemealableB
 
     @Override
     @SuppressWarnings("deprecation")
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        ItemStack heldItem = player.getItemInHand(hand);
+    public @NotNull ItemInteractionResult useItemOn(ItemStack heldItem, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 
         if (heldItem.is(ItemTags.SHOVELS)) {
             if (!world.isClientSide) {
@@ -146,13 +147,13 @@ public class SpreadableGrassSlabBlock extends SlabBlock implements BonemealableB
                 world.playSound(null, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
 
                 if (!player.isCreative()) {
-                    heldItem.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
+                    heldItem.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
                 }
             }
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
 
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override

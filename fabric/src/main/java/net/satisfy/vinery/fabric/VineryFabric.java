@@ -22,7 +22,6 @@ public class VineryFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         AutoConfig.register(VineryFabricConfig.class, GsonConfigSerializer::new);
-
         VineryFabricVillagers.registerPOIAndProfession();
 
         Vinery.init();
@@ -34,7 +33,7 @@ public class VineryFabric implements ModInitializer {
 
         Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(Vinery.MOD_ID);
         modContainer.ifPresent(container -> ResourceManagerHelper.registerBuiltinResourcePack(
-                new ResourceLocation(Vinery.MOD_ID, "bushy_leaves"),
+                ResourceLocation.fromNamespaceAndPath(Vinery.MOD_ID, "bushy_leaves"),
                 container,
                 ResourcePackActivationType.NORMAL
         ));

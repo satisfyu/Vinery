@@ -3,15 +3,17 @@ package net.satisfy.vinery.client.model;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.satisfy.vinery.core.Vinery;
 import org.jetbrains.annotations.NotNull;
 
-public class StrawHatModel<T extends Entity> extends EntityModel<T> {
+public class StrawHatModel<T extends LivingEntity> extends EntityModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Vinery.identifier("straw_hat"), "main");
     private final ModelPart top_part;
 
@@ -31,7 +33,7 @@ public class StrawHatModel<T extends Entity> extends EntityModel<T> {
     }
 
     @Override
-    public void renderToBuffer(PoseStack poseStack, @NotNull VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(PoseStack poseStack, @NotNull VertexConsumer buffer, int packedLight, int packedOverlay, int x) {
         poseStack.pushPose();
         poseStack.scale(1.05F, 1.05F, 1.05F);
         top_part.render(poseStack, buffer, packedLight, packedOverlay);

@@ -1,0 +1,19 @@
+{
+    "type": "vinery:wine_fermentation",
+    "juice": {
+        "type": "red_taiga",
+        "amount": 8
+    },
+    "ingredients": [
+        {
+            "item": "minecraft:chorus_fruit"
+        }
+    ],
+    "wine_bottle": {
+        "required": true
+    },
+    "result": {
+        "count": 1,
+        "id": "vinery:chorus_wine"
+    }
+}

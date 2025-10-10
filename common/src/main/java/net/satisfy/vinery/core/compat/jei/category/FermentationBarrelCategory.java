@@ -102,11 +102,11 @@ public class FermentationBarrelCategory implements IRecipeCategory<FermentationB
 
         IRecipeCategory.super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
 
-        if (recipe.getJuiceAmount() > 0) {
-            FermentationBarrelGui.drawJuiceBar(guiGraphics, recipe.getJuiceType(), recipe.getJuiceAmount(), 56, 31);
+        if (recipe.getJuiceData().amount() > 0) {
+            FermentationBarrelGui.drawJuiceBar(guiGraphics, recipe.getJuiceData().type(), recipe.getJuiceData().amount(), 56, 31);
 
             if (isMouseOverFluidArea((int) mouseX, (int) mouseY)) {
-                Component tooltip = getFluidTooltip(recipe.getJuiceType(), recipe.getJuiceAmount());
+                Component tooltip = getFluidTooltip(recipe.getJuiceData().type(), recipe.getJuiceData().amount());
                 guiGraphics.renderTooltip(Minecraft.getInstance().font, tooltip, (int) mouseX, (int) mouseY);
             }
         }

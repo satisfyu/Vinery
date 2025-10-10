@@ -1,0 +1,19 @@
+{
+    "type": "vinery:wine_fermentation",
+    "juice": {
+        "type": "white_general",
+        "amount": 10
+    },
+    "ingredients": [
+        {
+            "item": "minecraft:glow_berries"
+        }
+    ],
+    "wine_bottle": {
+        "required": true
+    },
+    "result": {
+        "count": 1,
+        "id": "vinery:glowing_wine"
+    }
+}

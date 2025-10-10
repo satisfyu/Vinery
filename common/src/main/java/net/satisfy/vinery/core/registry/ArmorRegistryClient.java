@@ -4,6 +4,9 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HumanoidArmorModel;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelPart;
@@ -34,7 +37,7 @@ public class ArmorRegistryClient {
     private static final Map<Item, WinemakerLeggingsModel<?>> leggingsModels = new HashMap<>();
     private static final Map<Item, WinemakerBootsModel<?>> bootsModels = new HashMap<>();
 
-    public static Model getHatModel(Item item, ModelPart baseHead) {
+    public static EntityModel<?> getHatModel(Item item, ModelPart baseHead) {
         EntityModelSet modelSet = Minecraft.getInstance().getEntityModels();
         StrawHatModel<?> model = models.computeIfAbsent(item, key -> {
             if (key == ObjectRegistry.STRAW_HAT.get()) {
@@ -51,7 +54,7 @@ public class ArmorRegistryClient {
         return model;
     }
 
-    public static Model getChestplateModel(Item item, ModelPart body, ModelPart leftArm, ModelPart rightArm, ModelPart leftLeg, ModelPart rightLeg) {
+    public static EntityModel<?> getChestplateModel(Item item, ModelPart body, ModelPart leftArm, ModelPart rightArm, ModelPart leftLeg, ModelPart rightLeg) {
         WinemakerChestplateModel<?> model = chestplateModels.computeIfAbsent(item, key -> {
             if (key == ObjectRegistry.WINEMAKER_APRON.get()) {
                 return new WinemakerChestplateModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(WinemakerChestplateModel.LAYER_LOCATION));
@@ -67,7 +70,7 @@ public class ArmorRegistryClient {
         return model;
     }
 
-    public static Model getLeggingsModel(Item item, ModelPart rightLeg, ModelPart leftLeg) {
+    public static EntityModel<?> getLeggingsModel(Item item, ModelPart rightLeg, ModelPart leftLeg) {
         WinemakerLeggingsModel<?> model = leggingsModels.computeIfAbsent(item, key -> {
             if (key == ObjectRegistry.WINEMAKER_LEGGINGS.get()) {
                 return new WinemakerLeggingsModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(WinemakerLeggingsModel.LAYER_LOCATION));
@@ -83,7 +86,7 @@ public class ArmorRegistryClient {
         return model;
     }
 
-    public static Model getBootsModel(Item item, ModelPart rightLeg, ModelPart leftLeg) {
+    public static EntityModel<?> getBootsModel(Item item, ModelPart rightLeg, ModelPart leftLeg) {
         WinemakerBootsModel<?> model = bootsModels.computeIfAbsent(item, key -> {
             if (key == ObjectRegistry.WINEMAKER_BOOTS.get()) {
                 return new WinemakerBootsModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(WinemakerBootsModel.LAYER_LOCATION));
@@ -98,6 +101,7 @@ public class ArmorRegistryClient {
 
         return model;
     }
+
 
     public static void appendToolTip(@NotNull List<Component> tooltip) {
         Player player = Minecraft.getInstance().player;

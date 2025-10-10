@@ -55,8 +55,8 @@ jobs:
           path: fabric/build/libs/
       - uses: actions/upload-artifact@v4.3.0
         with:
-          name: build-forge
-          path: forge/build/libs/
+          name: build-neoforge
+          path: neoforge/build/libs/
 
   publish-github:
     name: 🐙 Publish to GitHub
@@ -150,10 +150,10 @@ jobs:
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
           files: |
             compiledmods/${{ env.mod_name }}-${{ env.mod_version }}-forge.jar
-          name: "v${{ env.mod_version }}-${{ env.mc_version }}-forge"
-          version: "${{ env.mod_version }}-${{ env.mc_version }}-forge"
+          name: "v${{ env.mod_version }}-${{ env.mc_version }}-neoforge"
+          version: "${{ env.mod_version }}-${{ env.mc_version }}-neoforge"
           version-type: ${{ inputs.release_as_beta && 'beta' || 'release' }}
-          loaders: forge
+          loaders: neoforge
           game-versions: ${{ env.mc_version }}
         env:
           mod_name: ${{ steps.read_properties.outputs.archives_base_name }}
@@ -209,10 +209,10 @@ jobs:
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
           files: |
             compiledmods/${{ env.mod_name }}-${{ env.mod_version }}-forge.jar
-          name: "v${{ env.mod_version }}-${{ env.mc_version }}-forge"
-          version: "${{ env.mod_version }}-${{ env.mc_version }}-forge"
+          name: "v${{ env.mod_version }}-${{ env.mc_version }}-neoforge"
+          version: "${{ env.mod_version }}-${{ env.mc_version }}-neoforge"
           version-type: ${{ inputs.release_as_beta && 'beta' || 'release' }}
-          loaders: forge
+          loaders: neoforge
           game-versions: ${{ env.mc_version }}
         env:
           mod_name: ${{ steps.read_properties.outputs.archives_base_name }}

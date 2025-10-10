@@ -1,0 +1,19 @@
+{
+    "type": "vinery:wine_fermentation",
+    "juice": {
+        "type": "apple",
+        "amount": 15
+    },
+    "ingredients": [
+        {
+            "item": "vinery:apple_juice"
+        }
+    ],
+    "wine_bottle": {
+        "required": false
+    },
+    "result": {
+        "count": 1,
+        "id": "vinery:apple_wine"
+    }
+}

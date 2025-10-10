@@ -58,7 +58,7 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
         final int age = state.getValue(AGE);
         if (age > 3) {
             dropGrapes(world, state, pos, hit.getDirection());
@@ -71,11 +71,11 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+    public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
         if (state.getValue(AGE) > 2) {
             dropGrapes(world, state, pos, null);
         }
-        super.playerWillDestroy(world, pos, state, player);
+        return super.playerWillDestroy(world, pos, state, player);
     }
 
     public boolean hasTrunk(Level world, BlockPos pos) {
@@ -106,7 +106,7 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState state, boolean bl) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState state) {
         return !isMature(state) && levelReader.getBlockState(blockPos.below()).getBlock() == this && state.getValue(AGE) > 0;
     }
     @Override
