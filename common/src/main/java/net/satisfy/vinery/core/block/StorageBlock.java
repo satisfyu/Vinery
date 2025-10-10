@@ -39,32 +39,33 @@ public abstract class StorageBlock extends FacingBlock implements EntityBlock {
     }
 
     @Override
-    public @NotNull ItemInteractionResult useItemOn(ItemStack stack,BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        ItemStack stack = player.getMainHandItem();
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof StorageBlockEntity shelfBlockEntity) {
             Optional<Tuple<Float, Float>> optional = GeneralUtil.getRelativeHitCoordinatesForBlockFace(hit, state.getValue(FACING), unAllowedDirections());
             if (optional.isEmpty()) {
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                return InteractionResult.PASS;
             } else {
                 Tuple<Float, Float> ff = optional.get();
                 int i = getSection(ff.getA(), ff.getB());
                 if (i == Integer.MIN_VALUE) {
-                    return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                    return InteractionResult.PASS;
                 }
                 if (!shelfBlockEntity.getInventory().get(i).isEmpty()) {
                     remove(world, pos, player, shelfBlockEntity, i);
-                    return ItemInteractionResult.sidedSuccess(world.isClientSide);
+                    return InteractionResult.sidedSuccess(world.isClientSide);
                 } else {
                     if (!stack.isEmpty() && canInsertStack(stack)) {
                         add(world, pos, player, shelfBlockEntity, stack, i);
-                        return ItemInteractionResult.sidedSuccess(world.isClientSide);
+                        return InteractionResult.sidedSuccess(world.isClientSide);
                     } else {
-                        return ItemInteractionResult.CONSUME;
+                        return InteractionResult.CONSUME;
                     }
                 }
             }
         } else {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.PASS;
         }
     }
 

@@ -24,7 +24,7 @@ public class EventHandler {
     private static final Random random = new Random();
 
     public static EventResult onAttack(Player player, Level level, Entity target, InteractionHand hand, @Nullable EntityHitResult result) {
-        if (player.hasEffect(MobEffectRegistry.PARTY_EFFECT)) {
+        if (player.hasEffect(MobEffectRegistry.getHolder(MobEffectRegistry.PARTY_EFFECT))) {
             if (target instanceof LivingEntity entity) {
                 int color = random.nextInt(0xFFFFFF);
 
