@@ -16,8 +16,6 @@ public class StorageTypeRegistry {
     public static final ResourceLocation SHELF = Vinery.identifier("shelf");
     public static final ResourceLocation WINE_BOX = Vinery.identifier("wine_box");
     public static final ResourceLocation WINE_BOTTLE = Vinery.identifier("wine_bottle");
-    public static final ResourceLocation FLOWER_POT_BIG = Vinery.identifier("flower_pot_big");
-    public static final ResourceLocation FLOWER_BOX = Vinery.identifier("flower_box");
 
     public static Set<Block> registerBlocks(Set<Block> blocks) {
         blocks.add(DARK_CHERRY_WINE_RACK_SMALL.get());
@@ -26,8 +24,6 @@ public class StorageTypeRegistry {
         blocks.add(DARK_CHERRY_SHELF.get());
         blocks.add(STORAGE_POT.get());
         blocks.add(ObjectRegistry.WINE_BOX.get());
-        blocks.add(ObjectRegistry.FLOWER_BOX.get());
-        blocks.add(ObjectRegistry.FLOWER_POT_BIG.get());
         blocks.add(OAK_WINE_RACK_BIG.get());
         blocks.add(OAK_WINE_RACK_SMALL.get());
         blocks.add(OAK_WINE_RACK_MID.get());
@@ -100,13 +96,6 @@ public class StorageTypeRegistry {
                 CHERRY_WINE_RACK_BIG.get(),
                 CHERRY_WINE_RACK_MID.get(),
                 CHERRY_WINE_RACK_SMALL.get()
-        };
-    }
-
-    public static Block[] getFlowerPotBlocks() {
-        return new Block[]{
-                ObjectRegistry.FLOWER_BOX.get(),
-                ObjectRegistry.FLOWER_POT_BIG.get()
         };
     }
 

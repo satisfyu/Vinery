@@ -31,11 +31,6 @@ public class EntityTypeRegistry {
 
     public static final RegistrySupplier<BlockEntityType<StorageBlockEntity>> STORAGE_ENTITY = registerBlockEntity("storage", () -> BlockEntityType.Builder.of(net.satisfy.vinery.core.block.entity.StorageBlockEntity::new, StorageTypeRegistry.registerBlocks(new HashSet<>()).toArray(new Block[0])).build(null));
 
-    public static final RegistrySupplier<BlockEntityType<FlowerPotBlockEntity>> FLOWER_POT_ENTITY = registerBlockEntity("flower_pot", () -> {
-        Block[] flowerPotBlocks = StorageTypeRegistry.getFlowerPotBlocks();
-        return BlockEntityType.Builder.of(FlowerPotBlockEntity::new, flowerPotBlocks).build(null);
-    });
-
     public static final RegistrySupplier<BlockEntityType<CabinetBlockEntity>> CABINET_BLOCK_ENTITY = registerBlockEntity("cabinet", () -> {
         Block[] cabinetBlocks = StorageTypeRegistry.getCabinetBlocks();
         return BlockEntityType.Builder.of(CabinetBlockEntity::new, cabinetBlocks).build(null);
@@ -48,7 +43,6 @@ public class EntityTypeRegistry {
 
     public static final RegistrySupplier<BlockEntityType<ApplePressBlockEntity>> APPLE_PRESS_BLOCK_ENTITY = registerBlockEntity("apple_press", () -> BlockEntityType.Builder.of(ApplePressBlockEntity::new, APPLE_PRESS.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<FermentationBarrelBlockEntity>> FERMENTATION_BARREL_ENTITY = registerBlockEntity("fermentation_barrel", () -> BlockEntityType.Builder.of(FermentationBarrelBlockEntity::new, FERMENTATION_BARREL.get()).build(null));
-    public static final RegistrySupplier<BlockEntityType<BasketBlockEntity>> BASKET_ENTITY = registerBlockEntity("basket", () -> BlockEntityType.Builder.of(BasketBlockEntity::new, BASKET.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<CompletionistBannerEntity>> VINERY_STANDARD = registerBlockEntity("vinery_standard", () -> BlockEntityType.Builder.of(CompletionistBannerEntity::new, ObjectRegistry.VINERY_STANDARD.get(), VINERY_WALL_STANDARD.get()).build(null));
 
     public static final RegistrySupplier<BlockEntityType<LatticeBlockEntity>> LATTICE = registerBlockEntity("lattice", () -> BlockEntityType.Builder.of(LatticeBlockEntity::new, OAK_LATTICE.get(), SPRUCE_LATTICE.get(), CHERRY_LATTICE.get(), BIRCH_LATTICE.get(), DARK_OAK_LATTICE.get(), ACACIA_LATTICE.get(), BAMBOO_LATTICE.get(), JUNGLE_LATTICE.get(), MANGROVE_LATTICE.get(), DARK_CHERRY_LATTICE.get()).build(null));

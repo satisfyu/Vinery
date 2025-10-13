@@ -1,6 +1,5 @@
 package net.satisfy.vinery.neoforge.client;
 
-import dev.architectury.registry.menu.MenuRegistry;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -21,11 +20,11 @@ import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.satisfy.vinery.client.VineryClient;
 import net.satisfy.vinery.client.gui.ApplePressGui;
-import net.satisfy.vinery.client.gui.BasketGui;
 import net.satisfy.vinery.client.gui.FermentationBarrelGui;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.entity.DarkCherryBoatEntity;
 import net.satisfy.vinery.core.registry.ScreenhandlerTypeRegistry;
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
 import java.util.Optional;
@@ -61,12 +60,12 @@ public class VineryClientNeoForge {
 
                 Pack.ResourcesSupplier resourcesSupplier = new Pack.ResourcesSupplier() {
                     @Override
-                    public PathPackResources openPrimary(PackLocationInfo info) {
+                    public @NotNull PathPackResources openPrimary(PackLocationInfo info) {
                         return new PathPackResources(info, packPath);
                     }
 
                     @Override
-                    public PackResources openFull(PackLocationInfo info, Pack.Metadata metadata) {
+                    public @NotNull PackResources openFull(PackLocationInfo info, Pack.Metadata metadata) {
                         return new PathPackResources(info, packPath);
                     }
                 };
@@ -98,6 +97,5 @@ public class VineryClientNeoForge {
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ScreenhandlerTypeRegistry.APPLE_PRESS_GUI_HANDLER.get(), ApplePressGui::new);
         event.register(ScreenhandlerTypeRegistry.FERMENTATION_BARREL_GUI_HANDLER.get(), FermentationBarrelGui::new);
-        event.register(ScreenhandlerTypeRegistry.BASKET_GUI_HANDLER.get(), BasketGui::new);
     }
 }

@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.GrassColor;
 import net.satisfy.vinery.client.gui.ApplePressGui;
-import net.satisfy.vinery.client.gui.BasketGui;
 import net.satisfy.vinery.client.gui.FermentationBarrelGui;
 import net.satisfy.vinery.client.model.*;
 import net.satisfy.vinery.client.render.block.*;
@@ -90,18 +89,14 @@ public class VineryClient {
         registerStorageTypes(StorageTypeRegistry.SHELF, new ShelfRenderer());
         registerStorageTypes(StorageTypeRegistry.WINE_BOX, new WineBoxRenderer());
         registerStorageTypes(StorageTypeRegistry.WINE_BOTTLE, new WineBottleRenderer());
-        registerStorageTypes(StorageTypeRegistry.FLOWER_POT_BIG, new FlowerPotBigRenderer());
-        registerStorageTypes(StorageTypeRegistry.FLOWER_BOX, new FlowerBoxRenderer());
     }
 
     public static void registerScreenFactory() {
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.FERMENTATION_BARREL_GUI_HANDLER.get(), FermentationBarrelGui::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.APPLE_PRESS_GUI_HANDLER.get(), ApplePressGui::new);
-        MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.BASKET_GUI_HANDLER.get(), BasketGui::new);
     }
 
     public static void registerBlockEntityRenderer() {
-        BlockEntityRendererRegistry.register(EntityTypeRegistry.BASKET_ENTITY.get(), BasketRenderer::new);
         BlockEntityRendererRegistry.register(EntityTypeRegistry.VINERY_STANDARD.get(), CompletionistBannerRenderer::new);
         BlockEntityRendererRegistry.register(EntityTypeRegistry.STORAGE_ENTITY.get(), context -> new StorageBlockEntityRenderer());
         BlockEntityRendererRegistry.register(EntityTypeRegistry.MOD_SIGN.get(), ModSignRenderer::new);
@@ -111,7 +106,6 @@ public class VineryClient {
 
     public static void registerEntityModelLayer() {
         EntityModelLayerRegistry.register(MuleModel.LAYER_LOCATION, MuleModel::getTexturedModelData);
-        EntityModelLayerRegistry.register(BasketRenderer.LAYER_LOCATION, BasketRenderer::getTexturedModelData);
         EntityModelLayerRegistry.register(StrawHatModel.LAYER_LOCATION, StrawHatModel::createBodyLayer);
         EntityModelLayerRegistry.register(WinemakerChestplateModel.LAYER_LOCATION, WinemakerChestplateModel::createBodyLayer);
         EntityModelLayerRegistry.register(WinemakerLeggingsModel.LAYER_LOCATION, WinemakerLeggingsModel::createBodyLayer);
