@@ -64,15 +64,15 @@ public abstract class LivingEntityMixin extends Entity {
 	@Inject(method = "calculateFallDamage", at = @At("RETURN"), cancellable = true)
 	public void modifyJumpBoostFallDamage(float fallDistance, float damageMultiplier, CallbackInfoReturnable<Integer> cir) {
 		LivingEntity entity = (LivingEntity) (Object) this;
-		if (entity.hasEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST) && !entity.hasEffect(MobEffects.JUMP)) {
+		if (entity.hasEffect(MobEffectRegistry.getHolder(MobEffectRegistry.IMPROVED_JUMP_BOOST)) && !entity.hasEffect(MobEffects.JUMP)) {
 			cir.setReturnValue(Math.max(0, cir.getReturnValue() - 1));
 		}
 	}
 
 	@Inject(method = "getJumpBoostPower", at = @At(value = "HEAD"), cancellable = true)
 	private void improvedJumpBoost(CallbackInfoReturnable<Float> cir) {
-		if (this.hasStatusEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST)) {
-			MobEffectInstance effect = this.activeEffects.get(MobEffectRegistry.IMPROVED_JUMP_BOOST.value());
+		if (this.hasStatusEffect(MobEffectRegistry.getHolder(MobEffectRegistry.IMPROVED_JUMP_BOOST))) {
+			MobEffectInstance effect = this.activeEffects.get(MobEffectRegistry.getHolder(MobEffectRegistry.IMPROVED_JUMP_BOOST).value());
 			if (effect != null) {
 				cir.setReturnValue(0.1F * (float)(effect.getAmplifier() + 1));
 			}

@@ -15,12 +15,7 @@ public class Vinery {
     public static final String MOD_ID = "vinery";
 
     public static void init() {
-        MobEffectRegistry.init();
-        try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        MobEffectRegistry.register();
         ObjectRegistry.init();
         EntityTypeRegistry.init();
         ScreenhandlerTypeRegistry.init();

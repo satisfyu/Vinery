@@ -1,26 +1,40 @@
 package net.satisfy.vinery.neoforge.core.event;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.satisfy.vinery.core.Vinery;
+import net.satisfy.vinery.core.registry.MobEffectRegistry;
 import net.satisfy.vinery.core.util.VillagerUtil;
 import net.satisfy.vinery.neoforge.core.config.VineryForgeConfig;
 import net.satisfy.vinery.neoforge.core.registry.VineryNeoForgeVillagers;
+import org.lwjgl.glfw.GLFW;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @EventBusSubscriber(modid = Vinery.MOD_ID)
 public class VineryForgeEventhandler {
+
+    private static boolean hasDoubleJumped = false;
+    private static boolean wasOnGround = true;
+    private static boolean wasSpacePressed = false;
 
     public VineryForgeEventhandler() {
         NeoForge.EVENT_BUS.register(this);
@@ -66,5 +80,60 @@ public class VineryForgeEventhandler {
             }
         }
         trades.put(level, tradeList);
+    }
+
+    @EventBusSubscriber(modid = Vinery.MOD_ID, value = Dist.CLIENT)
+    public static class ClientEvents {
+
+        @SubscribeEvent
+        public static void onInput(InputEvent.Key event) {
+            Minecraft mc = Minecraft.getInstance();
+            LocalPlayer player = mc.player;
+
+            if (player == null || mc.level == null) {
+                return;
+            }
+
+            if (!player.hasEffect(MobEffectRegistry.getHolder(MobEffectRegistry.IMPROVED_JUMP_BOOST)))
+                {
+                return;
+            }
+
+            if (!canJump(player)) {
+                return;
+            }
+
+            boolean spacePressed = event.getKey() == GLFW.GLFW_KEY_SPACE && event.getAction() == GLFW.GLFW_PRESS;
+
+            if (player.onGround()) {
+                hasDoubleJumped = false;
+                wasOnGround = true;
+            } else if (wasOnGround) {
+                wasOnGround = false;
+            }
+
+            if (spacePressed && !wasSpacePressed && !player.onGround() && !hasDoubleJumped && !wasOnGround) {
+                performDoubleJump(player);
+                hasDoubleJumped = true;
+            }
+
+            wasSpacePressed = spacePressed;
+        }
+
+        private static void performDoubleJump(Player player) {
+            Vec3 motion = player.getDeltaMovement();
+            player.setDeltaMovement(motion.x, 0.42, motion.z);
+            player.hasImpulse = true;
+        }
+
+        private static boolean canJump(LocalPlayer player) {
+            return !wearingUsableElytra(player) && !player.isFallFlying() && !player.isPassenger()
+                    && !player.isInWater() && !player.hasEffect(MobEffects.LEVITATION);
+        }
+
+        private static boolean wearingUsableElytra(LocalPlayer player) {
+            ItemStack chestItemStack = player.getItemBySlot(EquipmentSlot.CHEST);
+            return chestItemStack.getItem() == Items.ELYTRA && ElytraItem.isFlyEnabled(chestItemStack);
+        }
     }
 }

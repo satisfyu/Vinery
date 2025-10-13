@@ -22,7 +22,6 @@ public class VineryFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         AutoConfig.register(VineryFabricConfig.class, GsonConfigSerializer::new);
-
         VineryFabricVillagers.registerPOIAndProfession();
 
         Vinery.init();

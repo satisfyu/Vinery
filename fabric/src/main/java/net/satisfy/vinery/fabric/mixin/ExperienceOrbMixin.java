@@ -31,8 +31,8 @@ public abstract class ExperienceOrbMixin {
             }
         }
 
-        if(player != null && xpIndex != -1 && player.hasEffect(MobEffectRegistry.EXPERIENCE_EFFECT)) {
-            MobEffectInstance effect = player.getEffect(MobEffectRegistry.EXPERIENCE_EFFECT);
+        if(player != null && xpIndex != -1 && player.hasEffect(MobEffectRegistry.getHolder(MobEffectRegistry.EXPERIENCE_EFFECT))) {
+            MobEffectInstance effect = player.getEffect(MobEffectRegistry.getHolder(MobEffectRegistry.EXPERIENCE_EFFECT));
             if(effect != null) {
                 int amplifier = effect.getAmplifier();
                 int originalXp = (Integer) args.get(xpIndex);
