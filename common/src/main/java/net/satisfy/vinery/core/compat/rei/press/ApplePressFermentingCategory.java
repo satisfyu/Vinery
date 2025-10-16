@@ -14,11 +14,11 @@ import net.satisfy.vinery.core.registry.ObjectRegistry;
 
 import java.util.List;
 
-public class ApplePressCategory implements DisplayCategory<ApplePressDisplay> {
+public class ApplePressFermentingCategory implements DisplayCategory<ApplePressFermentingDisplay> {
 
     @Override
-    public CategoryIdentifier<ApplePressDisplay> getCategoryIdentifier() {
-        return ApplePressDisplay.APPLE_PRESS_DISPLAY;
+    public CategoryIdentifier<ApplePressFermentingDisplay> getCategoryIdentifier() {
+        return ApplePressFermentingDisplay.APPLE_PRESS_DISPLAY;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ApplePressCategory implements DisplayCategory<ApplePressDisplay> {
     }
 
     @Override
-    public List<Widget> setupDisplay(ApplePressDisplay display, Rectangle bounds) {
+    public List<Widget> setupDisplay(ApplePressFermentingDisplay display, Rectangle bounds) {
         Point startPoint = new Point(bounds.getCenterX() - 41, bounds.y + 18);
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));

@@ -26,6 +26,7 @@ public class ApplePressFermentingRecipe implements Recipe<ApplePressFermentingRe
     public final Ingredient input;
     private final ItemStack output;
     private final boolean requiresBottle;
+    public static RecipeType<ApplePressFermentingRecipe> Type = RecipeTypesRegistry.APPLE_PRESS_FERMENTING_RECIPE_TYPE.get();
 
     public ApplePressFermentingRecipe(Ingredient input, ItemStack output, boolean requiresBottle) {
         this.input = input;

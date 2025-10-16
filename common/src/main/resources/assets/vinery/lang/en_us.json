@@ -349,5 +349,6 @@
   "tooltip.vinery.next_upgrade": "Days Left to Improve Quality: %s",
   "tooltip.vinery.fermentation_barrel.red_crimson_juice_with_percentage": "Crimson Red Grapejuice: %s%%",
   "tooltip.vinery.fermentation_barrel.white_warped_juice_with_percentage": "Warped White Grapejuice: %s%%",
-  "rei.vinery.fermentation_barrel_category": "Fermentation Barrel"
+  "rei.vinery.fermentation_barrel_category": "Fermentation Barrel",
+  "rei.vinery.apple_press_category": "Apple Press"
 }

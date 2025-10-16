@@ -23,6 +23,7 @@ import org.jetbrains.annotations.NotNull;
 public class ApplePressMashingRecipe implements Recipe<ApplePressMashingRecipeInput> {
     public final Ingredient input;
     private final ItemStack output;
+    public static RecipeType<ApplePressMashingRecipe> Type = RecipeTypesRegistry.APPLE_PRESS_MASHING_RECIPE_TYPE.get();
 
     public ApplePressMashingRecipe(Ingredient input, ItemStack output) {
         this.input = input;

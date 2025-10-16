@@ -2,7 +2,7 @@
   "parent": "vinery:main/fruits_of_the_field",
   "display": {
     "icon": {
-      "item": "minecraft:apple"
+      "id": "minecraft:apple"
     },
     "title": {
       "translate": "advancement.vinery.forbidden_fruit"

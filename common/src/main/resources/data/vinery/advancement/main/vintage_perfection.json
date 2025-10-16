@@ -2,7 +2,7 @@
   "parent": "vinery:main/the_noble_drop",
   "display": {
     "icon": {
-      "item": "vinery:lilitu_wine"
+      "id": "vinery:lilitu_wine"
     },
     "title": {
       "translate": "advancement.vinery.vintage_perfection"

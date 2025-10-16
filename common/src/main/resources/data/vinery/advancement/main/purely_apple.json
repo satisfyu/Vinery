@@ -2,7 +2,7 @@
   "parent": "vinery:main/the_first_press",
   "display": {
     "icon": {
-      "item": "vinery:apple_juice"
+      "id": "vinery:apple_juice"
     },
     "title": {
       "translate": "advancement.vinery.purely_apple"

@@ -20,7 +20,7 @@
     },
     "frame": "task",
     "icon": {
-      "item": "vinery:fermentation_barrel"
+      "id": "vinery:fermentation_barrel"
     },
     "show_toast": true,
     "title": {
