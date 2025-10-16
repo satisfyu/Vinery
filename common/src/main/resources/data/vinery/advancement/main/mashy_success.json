@@ -2,7 +2,7 @@
   "parent": "vinery:main/the_first_press",
   "display": {
     "icon": {
-      "item": "vinery:apple_mash"
+      "id": "vinery:apple_mash"
     },
     "title": {
       "translate": "advancement.vinery.mashy_success"

@@ -21,7 +21,7 @@
     "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "vinery:grapevine_pot"
+      "id": "vinery:grapevine_pot"
     },
     "show_toast": true,
     "title": {

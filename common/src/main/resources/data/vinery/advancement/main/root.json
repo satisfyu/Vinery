@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "vinery:wine_bottle"
+      "id": "vinery:wine_bottle"
     },
     "title": {
       "translate": "advancement.vinery.root"

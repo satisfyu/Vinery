@@ -2,7 +2,7 @@
   "parent": "vinery:main/the_magic_of_the_barrel",
   "display": {
     "icon": {
-      "item": "vinery:red_wine"
+      "id": "vinery:red_wine"
     },
     "title": {
       "translate": "advancement.vinery.the_noble_drop"
