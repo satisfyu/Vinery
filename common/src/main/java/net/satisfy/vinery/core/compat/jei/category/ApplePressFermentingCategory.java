@@ -64,6 +64,7 @@ public class ApplePressFermentingCategory implements IRecipeCategory<ApplePressF
 
     @NotNull
     @Override
+    @SuppressWarnings("removal")
     public IDrawable getBackground() {
         return background;
     }
