@@ -16,9 +16,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.InputEvent;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.registry.MobEffectRegistry;
@@ -32,13 +30,6 @@ import java.util.*;
 @EventBusSubscriber(modid = Vinery.MOD_ID)
 public class VineryForgeEventhandler {
 
-    private static boolean hasDoubleJumped = false;
-    private static boolean wasOnGround = true;
-    private static boolean wasSpacePressed = false;
-
-    public VineryForgeEventhandler() {
-        NeoForge.EVENT_BUS.register(this);
-    }
 
     @SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event) {
@@ -85,6 +76,10 @@ public class VineryForgeEventhandler {
     @EventBusSubscriber(modid = Vinery.MOD_ID, value = Dist.CLIENT)
     public static class ClientEvents {
 
+        private static boolean hasDoubleJumped = false;
+        private static boolean wasOnGround = true;
+        private static boolean wasSpacePressed = false;
+
         @SubscribeEvent
         public static void onInput(InputEvent.Key event) {
             Minecraft mc = Minecraft.getInstance();
@@ -94,8 +89,7 @@ public class VineryForgeEventhandler {
                 return;
             }
 
-            if (!player.hasEffect(MobEffectRegistry.getHolder(MobEffectRegistry.IMPROVED_JUMP_BOOST)))
-                {
+            if (!player.hasEffect(MobEffectRegistry.getHolder(MobEffectRegistry.IMPROVED_JUMP_BOOST))) {
                 return;
             }
 
