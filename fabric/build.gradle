@@ -128,24 +128,24 @@ modrinth {
     }
 }
 
-//curseforge {
-//    apiKey = System.getenv("CURSEFORGE_API_KEY")
-//    project {
-//        id = "704465"
-//        releaseType = "release"
-//        addGameVersion rootProject.minecraft_version
-//        addGameVersion "Fabric"
-//        mainArtifact(remapJar) {
-//            displayName = "Vinery - ${rootProject.mod_version} - FABRIC - ${rootProject.minecraft_version}"
-//            changelog = changelogText
-//            changelogType = "markdown"
-//        }
-//
-//        relations {
-//            requiredDependency "architectury-api"
-//        }
-//    }
-//}
+curseforge {
+    apiKey = System.getenv("CURSEFORGE_API_KEY")
+    project {
+        id = "704465"
+        releaseType = "release"
+        addGameVersion rootProject.minecraft_version
+        addGameVersion "Fabric"
+        mainArtifact(remapJar) {
+            displayName = "Vinery - ${rootProject.mod_version} - FABRIC - ${rootProject.minecraft_version}"
+            changelog = changelogText
+            changelogType = "markdown"
+        }
+
+        relations {
+            requiredDependency "architectury-api"
+        }
+    }
+}
 
 def escapeJson = { String s ->
     if (s == null) return ""

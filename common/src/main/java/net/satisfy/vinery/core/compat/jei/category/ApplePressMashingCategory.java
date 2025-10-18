@@ -50,6 +50,7 @@ public class ApplePressMashingCategory implements IRecipeCategory<ApplePressMash
 
     @NotNull
     @Override
+    @SuppressWarnings("removal")
     public IDrawable getBackground() {
         return background;
     }

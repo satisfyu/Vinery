@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -31,7 +32,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings("deprecation")
 public class ChairBlock extends Block {
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -53,24 +53,19 @@ public class ChairBlock extends Block {
 
     private static VoxelShape makeLowerShape() {
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.1875, 0.5625, 0.1875, 0.8125, 0.625, 0.8125), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.6875, 0, 0.1875, 0.8125, 0.5625, 0.3125), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.1875, 0.3125, 0.5625, 0.3125), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.6875, 0.3125, 0.5625, 0.8125), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.6875, 0, 0.6875, 0.8125, 0.5625, 0.8125), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.6875, 0.625, 0.6875, 0.8125, 1, 0.8125), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.1875, 0.625, 0.6875, 0.3125, 1, 0.8125), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.25, 0.5, 0.25, 0.75, 0.5625, 0.75), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.3125, 0.625, 0.75, 0.6875, 1, 0.8125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0.9375, 0.6875, 0.8125, 1, 0.8125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0.5, 0.1875, 0.8125, 0.625, 0.8125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.6875, 0.3125, 0.9375, 0.8125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.6875, 0, 0.6875, 0.8125, 0.9375, 0.8125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.25, 0.25, 0.25, 0.75, 0.375, 0.75), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.1875, 0.3125, 0.5, 0.3125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.6875, 0, 0.1875, 0.8125, 0.5, 0.3125), BooleanOp.OR);
         return shape;
     }
 
     private static VoxelShape makeUpperShape() {
         VoxelShape shape = Shapes.empty();
-        shape = Shapes.join(shape, Shapes.box(0.6875, 0, 0.6875, 0.8125, 0.3125, 0.8125), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.6875, 0.3125, 0.3125, 0.8125), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.25, 0.3125, 0.6875, 0.75, 0.375, 0.8125), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.3125, 0, 0.75, 0.6875, 0.3125, 0.8125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.1875, 0, 0.6875, 0.8125, 0.3125, 0.8125), BooleanOp.OR);
         return shape;
     }
 
@@ -104,15 +99,11 @@ public class ChairBlock extends Block {
     }
 
     @Override
-    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-        if (player.getUsedItemHand() == InteractionHand.OFF_HAND) {
-            return InteractionResult.PASS;
+    protected @NotNull ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+        if (blockState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+            return GeneralUtil.onUse(level, player, interactionHand, blockHitResult, -0.2);
         }
-
-        if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
-            return GeneralUtil.onUse(world, player, player.getUsedItemHand(), hit, 0);
-        }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override

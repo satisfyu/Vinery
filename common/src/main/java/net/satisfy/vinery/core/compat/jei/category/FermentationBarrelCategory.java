@@ -55,6 +55,7 @@ public class FermentationBarrelCategory implements IRecipeCategory<FermentationB
     }
 
     @Override
+    @SuppressWarnings("removal")
     public @NotNull IDrawable getBackground() {
         return this.background;
     }
