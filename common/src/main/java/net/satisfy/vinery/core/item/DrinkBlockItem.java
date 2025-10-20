@@ -1,5 +1,7 @@
 package net.satisfy.vinery.core.item;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -79,7 +81,10 @@ public class DrinkBlockItem extends BlockItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext tooltipContext, List<Component> tooltip, TooltipFlag tooltipFlag) {
-        Level world = Minecraft.getInstance().level;
+        Level world = null;
+        if(tooltipContext.registries() != null){
+            world = getLevel();
+        }
 
         if (effectSupplier != null && world != null) {
             Holder<MobEffect> effectHolder = effectSupplier.get();
@@ -110,6 +115,13 @@ public class DrinkBlockItem extends BlockItem {
         tooltip.add(Component.translatable("tooltip.vinery.bottle_size." + bottleSize.name().toLowerCase())
                 .withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
     }
+
+    @Environment(EnvType.CLIENT)
+    private Level getLevel()
+    {
+        return Minecraft.getInstance().level;
+    }
+
     @Override
     public @NotNull ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
         if (!level.isClientSide && effectSupplier != null) {
