@@ -18,7 +18,6 @@ public class WinemakerLeggingsRenderer implements ArmorRenderer {
         if (stack.getItem() instanceof WinemakerLegsItem leggings) {
             Model model = ArmorRegistryClient.getLeggingsModel(leggings, contextModel.rightLeg, contextModel.leftLeg);
 
-            model.renderToBuffer(matrices, vertexConsumers.getBuffer(model.renderType(leggings.getLeggingsTexture())), light, OverlayTexture.NO_OVERLAY,1);
-        }
+            model.renderToBuffer(matrices, vertexConsumers.getBuffer(model.renderType(leggings.getLeggingsTexture())), light, OverlayTexture.NO_OVERLAY, 0xFFFFFFFF);        }
     }
 }

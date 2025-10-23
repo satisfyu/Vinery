@@ -8,8 +8,14 @@ import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.ChestBoatModel;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.GrassColor;
 import net.satisfy.vinery.client.gui.ApplePressGui;
@@ -21,6 +27,7 @@ import net.satisfy.vinery.client.render.entity.ChairRenderer;
 import net.satisfy.vinery.client.render.entity.DarkCherryBoatRenderer;
 import net.satisfy.vinery.client.render.entity.MuleRenderer;
 import net.satisfy.vinery.client.render.entity.WanderingWinemakerRenderer;
+import net.satisfy.vinery.core.entity.DarkCherryBoatEntity;
 import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 import net.satisfy.vinery.core.registry.ScreenhandlerTypeRegistry;
 import net.satisfy.vinery.core.registry.StorageTypeRegistry;
@@ -99,8 +106,6 @@ public class VineryClient {
     public static void registerBlockEntityRenderer() {
         BlockEntityRendererRegistry.register(EntityTypeRegistry.VINERY_STANDARD.get(), CompletionistBannerRenderer::new);
         BlockEntityRendererRegistry.register(EntityTypeRegistry.STORAGE_ENTITY.get(), context -> new StorageBlockEntityRenderer());
-        BlockEntityRendererRegistry.register(EntityTypeRegistry.MOD_SIGN.get(), ModSignRenderer::new);
-        BlockEntityRendererRegistry.register(EntityTypeRegistry.MOD_HANGING_SIGN.get(), ModHangingSignRenderer::new);
         BlockEntityRendererRegistry.register(EntityTypeRegistry.LATTICE.get(), LatticeRenderer::new);
     }
 
@@ -112,13 +117,17 @@ public class VineryClient {
         EntityModelLayerRegistry.register(WinemakerBootsModel.LAYER_LOCATION, WinemakerBootsModel::createBodyLayer);
         EntityModelLayerRegistry.register(CompletionistBannerRenderer.LAYER_LOCATION, CompletionistBannerRenderer::createBodyLayer);
         EntityModelLayerRegistry.register(LatticeRenderer.LAYER_LOCATION, LatticeRenderer::getTexturedModelData);
+        EntityModelLayerRegistry.register(ModHangingSignRenderer.LAYER_LOCATION,
+                ModHangingSignRenderer::createHangingSignLayer);
+        LayerDefinition boatLayerDefinition = BoatModel.createBodyModel();
+        LayerDefinition chestBoatLayerDefinition = ChestBoatModel.createBodyModel();
     }
 
     public static void registerEntityRenderers() {
         EntityRendererRegistry.register(EntityTypeRegistry.CHAIR, ChairRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.MULE, MuleRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.WANDERING_WINEMAKER, WanderingWinemakerRenderer::new);
-        EntityRendererRegistry.register(EntityTypeRegistry.DARK_CHERRY_BOAT, context -> new DarkCherryBoatRenderer<>(context, false));
-        EntityRendererRegistry.register(EntityTypeRegistry.DARK_CHERRY_CHEST_BOAT, context -> new DarkCherryBoatRenderer<>(context, true));
+        EntityRendererRegistry.register(EntityTypeRegistry.DARK_CHERRY_BOAT, context -> new DarkCherryBoatRenderer(context, false));
+        EntityRendererRegistry.register(EntityTypeRegistry.DARK_CHERRY_CHEST_BOAT, context -> new DarkCherryBoatRenderer(context, true));
     }
 }

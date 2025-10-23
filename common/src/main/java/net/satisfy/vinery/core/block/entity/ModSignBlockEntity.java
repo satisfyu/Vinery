@@ -8,12 +8,8 @@ import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 
 public class ModSignBlockEntity extends SignBlockEntity {
 
-    public ModSignBlockEntity(BlockEntityType<? extends ModSignBlockEntity> type, BlockPos pos, BlockState state) {
-        super(type, pos, state);
-    }
-
-    public ModSignBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(EntityTypeRegistry.MOD_SIGN.get(), pPos, pBlockState);
+    public ModSignBlockEntity(BlockPos pos, BlockState state) {
+        super(pos, state);
     }
 
     @Override

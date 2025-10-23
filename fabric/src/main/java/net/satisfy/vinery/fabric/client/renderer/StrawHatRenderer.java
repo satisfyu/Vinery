@@ -19,6 +19,5 @@ public class StrawHatRenderer implements ArmorRenderer {
 
         Model model = ArmorRegistryClient.getHatModel(hat, contextModel.getHead());
 
-        model.renderToBuffer(matrices, vertexConsumers.getBuffer(model.renderType(hat.getHatTexture())), light, OverlayTexture.NO_OVERLAY, 1);
-    }
+        model.renderToBuffer(matrices, vertexConsumers.getBuffer(model.renderType(hat.getHatTexture())), light, OverlayTexture.NO_OVERLAY, 0xFFFFFFFF);    }
 }

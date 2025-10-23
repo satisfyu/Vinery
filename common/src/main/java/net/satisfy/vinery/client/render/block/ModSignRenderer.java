@@ -24,6 +24,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.FastColor.ARGB32;
@@ -33,6 +34,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.SignBlock;
 import net.minecraft.world.level.block.StandingSignBlock;
+import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.entity.SignText;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -44,25 +46,21 @@ import java.util.Map;
 import java.util.Objects;
 
 @Environment(EnvType.CLIENT)
-public class ModSignRenderer <T extends ModSignBlockEntity> implements BlockEntityRenderer<T> {
+public class ModSignRenderer<T extends SignBlockEntity> implements BlockEntityRenderer<T> {
     private static final String STICK = "stick";
     private static final int BLACK_TEXT_OUTLINE_COLOR = -988212;
     private static final int OUTLINE_RENDER_DISTANCE = Mth.square(16);
     private static final float RENDER_SCALE = 0.6666667F;
-    private static final Vec3 TEXT_OFFSET = new Vec3(0.0, 0.3333333432674408, 0.046666666865348816);
+    private static final Vec3 TEXT_OFFSET = new Vec3((double)0.0F, (double)0.33333334F, (double)0.046666667F);
     private final Map<WoodType, ModSignRenderer.SignModel> signModels;
     private final Font font;
 
     public ModSignRenderer(BlockEntityRendererProvider.Context context) {
-        this.signModels = (Map)WoodType.values().collect(ImmutableMap.toImmutableMap((woodType) -> {
-            return woodType;
-        }, (woodType) -> {
-            return new ModSignRenderer.SignModel(context.bakeLayer(ModelLayers.createSignModelName(woodType)));
-        }));
+        this.signModels = WoodType.values().collect(ImmutableMap.toImmutableMap((woodType) -> woodType, (woodType) -> new ModSignRenderer.SignModel(context.bakeLayer(ModelLayers.createSignModelName(woodType)))));
         this.font = context.getFont();
     }
 
-    public void render(ModSignBlockEntity signBlockEntity, float f, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j) {
+    public void render(T signBlockEntity, float f, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j) {
         BlockState blockState = signBlockEntity.getBlockState();
         SignBlock signBlock = (SignBlock)blockState.getBlock();
         WoodType woodType = SignBlock.getWoodType(signBlock);
@@ -79,7 +77,7 @@ public class ModSignRenderer <T extends ModSignBlockEntity> implements BlockEnti
         return 0.6666667F;
     }
 
-    void renderSignWithText(ModSignBlockEntity signBlockEntity, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j, BlockState blockState, SignBlock signBlock, WoodType woodType, Model model) {
+    void renderSignWithText(SignBlockEntity signBlockEntity, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j, BlockState blockState, SignBlock signBlock, WoodType woodType, Model model) {
         poseStack.pushPose();
         this.translateSign(poseStack, -signBlock.getYRotationDegrees(blockState), blockState);
         this.renderSign(poseStack, multiBufferSource, i, j, woodType, model);
@@ -181,7 +179,7 @@ public class ModSignRenderer <T extends ModSignBlockEntity> implements BlockEnti
         }
     }
 
-    static int getDarkColor(SignText signText) {
+    public static int getDarkColor(SignText signText) {
         int i = signText.getColor().getTextColor();
         if (i == DyeColor.BLACK.getTextColor() && signText.hasGlowingText()) {
             return -988212;
@@ -218,8 +216,7 @@ public class ModSignRenderer <T extends ModSignBlockEntity> implements BlockEnti
         }
 
         public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j, int k) {
-            this.root.render(poseStack, vertexConsumer, i,j,k);
+            this.root.render(poseStack, vertexConsumer, i, j, k);
         }
     }
 }
-

@@ -1,17 +1,25 @@
 {
   "parent": "vinery:main/wild_harvest",
   "criteria": {
-    "use_seed_on_stem": {
+    "grapevine_stem": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
-        "item": {
-          "tag": "vinery:grape_seeds"
-        },
-        "location": {
-          "block": {
-            "blocks": ["vinery:grapevine_stem"]
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "vinery:grapevine_stem"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": "#vinery:grape_seeds"
+            }
           }
-        }
+        ]
       }
     }
   },
@@ -32,7 +40,7 @@
   },
   "requirements": [
     [
-      "use_seed_on_stem"
+      "grapevine_stem"
     ]
   ]
 }

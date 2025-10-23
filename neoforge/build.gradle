@@ -56,7 +56,11 @@ dependencies {
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    shadowBundle project(path: ":common", configuration: "transformProductionNeoForge")}
+    shadowBundle project(path: ":common", configuration: "transformProductionNeoForge")
+    //modLocalRuntime "com.github.jab125.architectury-data-generation-fix:architectury-data-generation-fix-neoforge:21.0.0"
+
+}
+
 
 
 processResources {

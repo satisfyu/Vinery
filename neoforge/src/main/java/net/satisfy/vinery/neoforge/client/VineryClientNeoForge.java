@@ -3,6 +3,10 @@ package net.satisfy.vinery.neoforge.client;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.*;
@@ -22,7 +26,9 @@ import net.satisfy.vinery.client.VineryClient;
 import net.satisfy.vinery.client.gui.ApplePressGui;
 import net.satisfy.vinery.client.gui.FermentationBarrelGui;
 import net.satisfy.vinery.core.Vinery;
+import net.satisfy.vinery.core.block.state.properties.VineryWoodType;
 import net.satisfy.vinery.core.entity.DarkCherryBoatEntity;
+import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 import net.satisfy.vinery.core.registry.ScreenhandlerTypeRegistry;
 import org.jetbrains.annotations.NotNull;
 
@@ -40,6 +46,9 @@ public class VineryClientNeoForge {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         VineryClient.onInitializeClient();
+        Sheets.addWoodType(VineryWoodType.DARK_CHERRY);
+        BlockEntityRenderers.register(EntityTypeRegistry.MOD_SIGN.get(), SignRenderer::new);
+        BlockEntityRenderers.register(EntityTypeRegistry.MOD_HANGING_SIGN.get(), HangingSignRenderer::new);
     }
 
     @OnlyIn(Dist.CLIENT)

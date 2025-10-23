@@ -37,7 +37,7 @@
                   ]
                 }
               ],
-              "name": "vinery:white_grape_leaves"
+              "name": "vinery:grapevine_leaves"
             },
             {
               "type": "minecraft:item",
@@ -56,7 +56,7 @@
                   "enchantment": "minecraft:fortune"
                 }
               ],
-              "name": "vinery:white_grape_sapling"
+              "name": "vinery:white_grape_seeds"
             }
           ]
         }
@@ -189,5 +189,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "vinery:blocks/white_grape_leaves"
+  "random_sequence": "vinery:blocks/grapevine_leaves"
 }
