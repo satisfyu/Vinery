@@ -7,7 +7,6 @@ import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.Model;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -19,24 +18,20 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.resources.model.Material;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.block.SignBlock;
-import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.Vec3;
+import net.satisfy.vinery.core.block.entity.DarkCherrySignBlockEntity;
 
 import java.util.Map;
 
+@SuppressWarnings("unused")
 @Environment(EnvType.CLIENT)
-public class ModHangingSignRenderer<T extends SignBlockEntity> extends ModSignRenderer<T> {
-
-    public static final ModelLayerLocation LAYER_LOCATION =
-            new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath("vinery", "hanging_sign"), "main");
+public class DarkCherryHangingSignRenderer extends DarkCherrySignRenderer {
     private static final String PLANK = "plank";
     private static final String V_CHAINS = "vChains";
     private static final String NORMAL_CHAINS = "normalChains";
@@ -47,58 +42,46 @@ public class ModHangingSignRenderer<T extends SignBlockEntity> extends ModSignRe
     private static final String BOARD = "board";
     private static final float MODEL_RENDER_SCALE = 1.0F;
     private static final float TEXT_RENDER_SCALE = 0.9F;
-    private static final Vec3 TEXT_OFFSET = new Vec3((double)0.0F, (double)-0.32F, (double)0.073F);
-    private final Map<WoodType, ModHangingSignRenderer.HangingSignModel> hangingSignModels;
+    private static final Vec3 TEXT_OFFSET = new Vec3(0.0, -0.3199999928474426, 0.0729999989271164);
+    private final Map hangingSignModels;
 
-    public ModHangingSignRenderer(BlockEntityRendererProvider.Context context) {
+    public DarkCherryHangingSignRenderer(BlockEntityRendererProvider.Context context) {
         super(context);
-        this.hangingSignModels = WoodType.values().collect(ImmutableMap.toImmutableMap((woodType) -> woodType, (woodType) -> new ModHangingSignRenderer.HangingSignModel(context.bakeLayer(ModelLayers.createHangingSignModelName(woodType)))));
-
+        this.hangingSignModels = WoodType.values().collect(ImmutableMap.toImmutableMap((woodType) -> woodType, (woodType) -> new HangingSignModel(context.bakeLayer(ModelLayers.createHangingSignModelName(woodType)))));
     }
 
-    @Override
     public float getSignModelRenderScale() {
         return 1.0F;
     }
 
-    @Override
     public float getSignTextRenderScale() {
         return 0.9F;
     }
 
-    @Override
-    public void render(T signBlockEntity, float f, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j) {
+    public void render(DarkCherrySignBlockEntity signBlockEntity, float f, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j) {
         BlockState blockState = signBlockEntity.getBlockState();
-        SignBlock signBlock = (SignBlock)blockState.getBlock();
+        SignBlock signBlock = (SignBlock) blockState.getBlock();
         WoodType woodType = SignBlock.getWoodType(signBlock);
-        ModHangingSignRenderer.HangingSignModel hangingSignModel = this.hangingSignModels.get(woodType);
-        if (hangingSignModel != null) {
-            hangingSignModel.evaluateVisibleParts(blockState);
-            this.renderSignWithText(signBlockEntity, poseStack, multiBufferSource, i, j, blockState, signBlock, woodType, hangingSignModel);
-        }
+        HangingSignModel hangingSignModel = (HangingSignModel) this.hangingSignModels.get(woodType);
+        hangingSignModel.evaluateVisibleParts(blockState);
+        this.renderSignWithText(signBlockEntity, poseStack, multiBufferSource, i, j, blockState, signBlock, woodType, hangingSignModel);
     }
 
-    @Override
     void translateSign(PoseStack poseStack, float f, BlockState blockState) {
-        poseStack.translate((double)0.5F, (double)0.9375F, (double)0.5F);
+        poseStack.translate(0.5, 0.9375, 0.5);
         poseStack.mulPose(Axis.YP.rotationDegrees(f));
         poseStack.translate(0.0F, -0.3125F, 0.0F);
     }
 
-    @Override
     void renderSignModel(PoseStack poseStack, int i, int j, Model model, VertexConsumer vertexConsumer) {
-        if (model instanceof ModHangingSignRenderer.HangingSignModel) {
-            ModHangingSignRenderer.HangingSignModel hangingSignModel = (ModHangingSignRenderer.HangingSignModel)model;
-            hangingSignModel.root.render(poseStack, vertexConsumer, i, j);
-        }
+        HangingSignModel hangingSignModel = (HangingSignModel) model;
+        hangingSignModel.root.render(poseStack, vertexConsumer, i, j);
     }
 
-    @Override
     Material getSignMaterial(WoodType woodType) {
         return Sheets.getHangingSignMaterial(woodType);
     }
 
-    @Override
     Vec3 getTextOffset() {
         return TEXT_OFFSET;
     }
@@ -109,10 +92,10 @@ public class ModHangingSignRenderer<T extends SignBlockEntity> extends ModSignRe
         partDefinition.addOrReplaceChild("board", CubeListBuilder.create().texOffs(0, 12).addBox(-7.0F, 0.0F, -1.0F, 14.0F, 10.0F, 2.0F), PartPose.ZERO);
         partDefinition.addOrReplaceChild("plank", CubeListBuilder.create().texOffs(0, 0).addBox(-8.0F, -6.0F, -2.0F, 16.0F, 2.0F, 4.0F), PartPose.ZERO);
         PartDefinition partDefinition2 = partDefinition.addOrReplaceChild("normalChains", CubeListBuilder.create(), PartPose.ZERO);
-        partDefinition2.addOrReplaceChild("chainL1", CubeListBuilder.create().texOffs(0, 6).addBox(-1.5F, 0.0F, 0.0F, 3.0F, 6.0F, 0.0F), PartPose.offsetAndRotation(-5.0F, -6.0F, 0.0F, 0.0F, (-(float)Math.PI / 4F), 0.0F));
-        partDefinition2.addOrReplaceChild("chainL2", CubeListBuilder.create().texOffs(6, 6).addBox(-1.5F, 0.0F, 0.0F, 3.0F, 6.0F, 0.0F), PartPose.offsetAndRotation(-5.0F, -6.0F, 0.0F, 0.0F, ((float)Math.PI / 4F), 0.0F));
-        partDefinition2.addOrReplaceChild("chainR1", CubeListBuilder.create().texOffs(0, 6).addBox(-1.5F, 0.0F, 0.0F, 3.0F, 6.0F, 0.0F), PartPose.offsetAndRotation(5.0F, -6.0F, 0.0F, 0.0F, (-(float)Math.PI / 4F), 0.0F));
-        partDefinition2.addOrReplaceChild("chainR2", CubeListBuilder.create().texOffs(6, 6).addBox(-1.5F, 0.0F, 0.0F, 3.0F, 6.0F, 0.0F), PartPose.offsetAndRotation(5.0F, -6.0F, 0.0F, 0.0F, ((float)Math.PI / 4F), 0.0F));
+        partDefinition2.addOrReplaceChild("chainL1", CubeListBuilder.create().texOffs(0, 6).addBox(-1.5F, 0.0F, 0.0F, 3.0F, 6.0F, 0.0F), PartPose.offsetAndRotation(-5.0F, -6.0F, 0.0F, 0.0F, -0.7853982F, 0.0F));
+        partDefinition2.addOrReplaceChild("chainL2", CubeListBuilder.create().texOffs(6, 6).addBox(-1.5F, 0.0F, 0.0F, 3.0F, 6.0F, 0.0F), PartPose.offsetAndRotation(-5.0F, -6.0F, 0.0F, 0.0F, 0.7853982F, 0.0F));
+        partDefinition2.addOrReplaceChild("chainR1", CubeListBuilder.create().texOffs(0, 6).addBox(-1.5F, 0.0F, 0.0F, 3.0F, 6.0F, 0.0F), PartPose.offsetAndRotation(5.0F, -6.0F, 0.0F, 0.0F, -0.7853982F, 0.0F));
+        partDefinition2.addOrReplaceChild("chainR2", CubeListBuilder.create().texOffs(6, 6).addBox(-1.5F, 0.0F, 0.0F, 3.0F, 6.0F, 0.0F), PartPose.offsetAndRotation(5.0F, -6.0F, 0.0F, 0.0F, 0.7853982F, 0.0F));
         partDefinition.addOrReplaceChild("vChains", CubeListBuilder.create().texOffs(14, 6).addBox(-6.0F, -6.0F, 0.0F, 12.0F, 6.0F, 0.0F), PartPose.ZERO);
         return LayerDefinition.create(meshDefinition, 64, 32);
     }
@@ -138,15 +121,17 @@ public class ModHangingSignRenderer<T extends SignBlockEntity> extends ModSignRe
             this.vChains.visible = false;
             this.normalChains.visible = true;
             if (!bl) {
-                boolean bl2 = (Boolean)blockState.getValue(BlockStateProperties.ATTACHED);
+                boolean bl2 = blockState.getValue(BlockStateProperties.ATTACHED);
                 this.normalChains.visible = !bl2;
                 this.vChains.visible = bl2;
             }
 
         }
 
+        @Override
         public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j, int k) {
             this.root.render(poseStack, vertexConsumer, i, j, k);
         }
     }
 }
+

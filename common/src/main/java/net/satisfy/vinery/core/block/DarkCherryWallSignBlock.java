@@ -5,15 +5,15 @@ import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.satisfy.vinery.core.block.entity.ModSignBlockEntity;
+import net.satisfy.vinery.core.block.entity.DarkCherrySignBlockEntity;
 
-public class ModWallSignBlock extends WallSignBlock {
-    public ModWallSignBlock(Properties pProperties, WoodType pType) {
-        super(pType, pProperties);
+public class DarkCherryWallSignBlock extends WallSignBlock {
+    public DarkCherryWallSignBlock(Properties properties, WoodType type) {
+        super(type, properties);
     }
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new ModSignBlockEntity(pPos, pState);
+        return new DarkCherrySignBlockEntity(pPos, pState);
     }
 }

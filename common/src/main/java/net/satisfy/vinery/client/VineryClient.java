@@ -107,6 +107,9 @@ public class VineryClient {
         BlockEntityRendererRegistry.register(EntityTypeRegistry.VINERY_STANDARD.get(), CompletionistBannerRenderer::new);
         BlockEntityRendererRegistry.register(EntityTypeRegistry.STORAGE_ENTITY.get(), context -> new StorageBlockEntityRenderer());
         BlockEntityRendererRegistry.register(EntityTypeRegistry.LATTICE.get(), LatticeRenderer::new);
+        BlockEntityRendererRegistry.register(EntityTypeRegistry.MOD_SIGN.get(), DarkCherrySignRenderer::new);
+        BlockEntityRendererRegistry.register(EntityTypeRegistry.MOD_HANGING_SIGN.get(), DarkCherryHangingSignRenderer::new);
+
     }
 
     public static void registerEntityModelLayer() {
@@ -117,8 +120,6 @@ public class VineryClient {
         EntityModelLayerRegistry.register(WinemakerBootsModel.LAYER_LOCATION, WinemakerBootsModel::createBodyLayer);
         EntityModelLayerRegistry.register(CompletionistBannerRenderer.LAYER_LOCATION, CompletionistBannerRenderer::createBodyLayer);
         EntityModelLayerRegistry.register(LatticeRenderer.LAYER_LOCATION, LatticeRenderer::getTexturedModelData);
-        EntityModelLayerRegistry.register(ModHangingSignRenderer.LAYER_LOCATION,
-                ModHangingSignRenderer::createHangingSignLayer);
         LayerDefinition boatLayerDefinition = BoatModel.createBodyModel();
         LayerDefinition chestBoatLayerDefinition = ChestBoatModel.createBodyModel();
     }
