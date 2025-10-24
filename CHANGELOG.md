@@ -1,3 +1,15 @@
+[1.5.1]
+
+**Fixed**
+* Resolved multiple invalid or missing tag assignments across block and item registries
+* Corrected Cherry Boat render layer and model reference causing missing visuals
+* Fixed advancement conditions triggering on unintended player actions
+* Adjusted `DarkCherryLeavs` loot tables 
+* Fixed shader/material issue causing Winemaker Armor to render black under specific conditions
+* Corrected UV mapping and sprite reference for Hanging Sign textures
+
+*** 
+
 [1.5.0]
 
 **Welcome to 1.21.1!**

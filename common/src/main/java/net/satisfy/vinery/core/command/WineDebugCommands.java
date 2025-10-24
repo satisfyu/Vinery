@@ -11,17 +11,14 @@ import net.minecraft.world.level.Level;
 import net.satisfy.vinery.core.components.WineYearComponent;
 import net.satisfy.vinery.core.registry.DataComponentRegistry;
 import net.satisfy.vinery.core.util.WineYears;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public final class WineDebugCommands {
-    private static final Logger LOGGER = LogManager.getLogger("Vinery");
 
     public static void init() {
         CommandRegistrationEvent.EVENT.register((dispatcher, registryAccess, selection) -> {
             dispatcher.register(
                     Commands.literal("wine")
-                            .requires(src -> true)
+                            .requires(src -> src.hasPermission(2))
                             .then(
                                     Commands.literal("age")
                                             .then(
@@ -37,7 +34,6 @@ public final class WineDebugCommands {
                                             .executes(ctx -> infoHeld(ctx.getSource()))
                             )
             );
-            LOGGER.info("Registered /wine command");
         });
     }
 

@@ -10,7 +10,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "minecraft:plains"
+                "biomes": "minecraft:plains"
               }
             }
           }
@@ -18,6 +18,11 @@
       }
     }
   },
+  "requirements": [
+    [
+      "fruits_of_the_field"
+    ]
+  ],
   "display": {
     "announce_to_chat": true,
     "description": {
@@ -26,20 +31,16 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "id": "vinery:apple_tree_sapling"
+      "id": "vinery:apple_tree_sapling",
+      "count": 1
     },
     "show_toast": true,
     "title": {
       "translate": "advancement.vinery.fruits_of_the_field"
     }
   },
-  "requirements": [
-    [
-      "fruits_of_the_field"
-    ]
-  ],
   "rewards": {
-    "experience": 10
+    "experience": 5
   },
   "sends_telemetry_event": true
 }

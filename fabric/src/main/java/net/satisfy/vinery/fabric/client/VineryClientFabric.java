@@ -46,8 +46,6 @@ public class VineryClientFabric implements ClientModInitializer {
         VineryClient.preInitClient();
         VineryClient.onInitializeClient();
         registerBoatModels();
-        Sheets.SIGN_MATERIALS.put(VineryWoodType.DARK_CHERRY,Sheets.getSignMaterial(VineryWoodType.DARK_CHERRY));
-        Sheets.HANGING_SIGN_MATERIALS.put(VineryWoodType.DARK_CHERRY,Sheets.getSignMaterial(VineryWoodType.DARK_CHERRY));
         BlockEntityRenderers.register(EntityTypeRegistry.MOD_SIGN.get(), SignRenderer::new);
         BlockEntityRenderers.register(EntityTypeRegistry.MOD_HANGING_SIGN.get(), HangingSignRenderer::new);
         ArmorRenderer.register(new StrawHatRenderer(), ObjectRegistry.STRAW_HAT.get());
@@ -64,7 +62,6 @@ public class VineryClientFabric implements ClientModInitializer {
             if (!player.hasEffect(MobEffectRegistry.getHolder(MobEffectRegistry.IMPROVED_JUMP_BOOST))) return;
             if (!canJump(player)) return;
 
-            //boolean spacePressed1 = client.options.keyJump;
 
             boolean spacePressed = client.options.keyJump.isDown();
 
