@@ -2,6 +2,7 @@ package net.satisfy.vinery.core.event;
 
 import dev.architectury.event.EventResult;
 import dev.architectury.event.events.common.PlayerEvent;
+import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -36,9 +37,20 @@ public class EventHandler {
                 explosion.putIntArray("Colors", new int[]{color});
                 explosion.putByte("Type", (byte) 0);
                 explosions.add(explosion);
-                fireworkNbt.put("Explosions", explosions);
-                fireworkNbt.putByte("Flight", (byte) 0);
-                fireworkStack.get(DataComponents.CUSTOM_DATA).copyTag().put("Explosions", explosions);
+
+                CompoundTag fireworksTag = new CompoundTag();
+                fireworksTag.put("Explosions", explosions);
+                fireworksTag.putByte("Flight", (byte) 0);
+
+                fireworkStack.set(DataComponents.FIREWORKS, new net.minecraft.world.item.component.Fireworks(0, explosions.stream()
+                        .map(tag -> new net.minecraft.world.item.component.FireworkExplosion(
+                                net.minecraft.world.item.component.FireworkExplosion.Shape.SMALL_BALL,
+                                IntList.of(color),
+                                IntList.of(),
+                                false,
+                                false
+                        ))
+                        .toList()));
 
                 FireworkRocketEntity fireworkRocket = new FireworkRocketEntity(level, fireworkStack, entity);
                 fireworkRocket.setAirSupply(0);

@@ -33,6 +33,7 @@ public class VineryForge {
         event.enqueueWork(() -> {
             CompostableRegistry.registerCompostable();
             Vinery.commonSetup();
+            //VineryNeoForgeVillagers.registerPOIs();
         });
     }
 

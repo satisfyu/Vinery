@@ -14,6 +14,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import net.satisfy.vinery.core.util.VillagerUtil;
@@ -52,21 +53,37 @@ public class VineryFabricVillagers {
     private static void registerTradesForLevel(VineryFabricConfig.VillagerSettings.TradeLevelSettings tradeLevelSettings, int level, RegistryAccess registryAccess) {
         TradeOfferHelper.registerVillagerOffers(WINEMAKER, level, factories -> {
             for (VineryFabricConfig.VillagerSettings.TradeEntry entry : tradeLevelSettings.trades) {
+                // Validate price is within valid range (1-99)
+                if (entry.price < 1 || entry.price > 99) {
+                    System.err.println("Vinery Villager Trade has invalid price: " + entry.price + " (must be 1-99). Skipping trade for item: " + entry.item);
+                    continue;
+                }
+
+                // Validate max uses is positive
+                if (entry.maxUses < 1) {
+                    System.err.println("Vinery Villager Trade has invalid maxUses: " + entry.maxUses + " (must be >= 1). Skipping trade for item: " + entry.item);
+                    continue;
+                }
+
                 String[] parts = entry.item.split(":");
                 if (parts.length >= 2) {
                     String modId = parts[0];
                     String itemId = parts[1];
                     ResourceLocation rl = ResourceLocation.fromNamespaceAndPath(modId, itemId);
                     Item item = registryAccess.registryOrThrow(Registries.ITEM).get(rl);
-                    if (item != null) {
+
+                    // Validate item exists and is not air
+                    if (item != null && item != Items.AIR) {
                         if (entry.type == VineryFabricConfig.VillagerSettings.TradeType.BUY) {
                             factories.add(new VillagerUtil.BuyForOneEmeraldFactory(item, entry.price, entry.maxUses, entry.experience));
                         } else if (entry.type == VineryFabricConfig.VillagerSettings.TradeType.SELL) {
                             factories.add(new VillagerUtil.SellItemFactory(item, entry.price, entry.maxUses, entry.experience));
                         }
                     } else {
-                        System.err.println("Vinery Villager Trade Item not found: " + rl);
+                        System.err.println("Vinery Villager Trade Item not found or is AIR: " + rl);
                     }
+                } else {
+                    System.err.println("Vinery Villager Trade has invalid item format: " + entry.item);
                 }
             }
         });

@@ -112,39 +112,39 @@ publishing {
     repositories {
     }
 }
-
-modrinth {
-    token = System.getenv("MODRINTH_TOKEN")
-    projectId = "lets-do-vinery"
-    versionNumber = rootProject.mod_version
-    versionName = "${rootProject.archives_base_name}-${rootProject.mod_version} [${rootProject.minecraft_version}-neoforge]"
-    versionType = "beta"
-    changelog = rootProject.file("CHANGELOG.md").exists() ? rootProject.file("CHANGELOG.md").text : " "
-    gameVersions = [rootProject.minecraft_version]
-    loaders = ["neoforge"]
-    uploadFile = remapJar
-    additionalFiles = [tasks.sourcesJar.archiveFile]
-
-    dependencies {
-        required.project "architectury-api"
-    }
-}
-
-curseforge {
-    apiKey = System.getenv("CURSEFORGE_API_KEY")
-    project {
-        id = "704465"
-        releaseType = "beta"
-        addGameVersion rootProject.minecraft_version
-        addGameVersion "NeoForge"
-        mainArtifact(remapJar) {
-            displayName = "Vinery - ${rootProject.mod_version} - FORGE - ${rootProject.minecraft_version}"
-            changelog = changelogText
-            changelogType = "markdown"
-        }
-
-        relations {
-            requiredDependency "architectury-api"
-        }
-    }
-}
+//
+//modrinth {
+//    token = System.getenv("MODRINTH_TOKEN")
+//    projectId = "lets-do-vinery"
+//    versionNumber = rootProject.mod_version
+//    versionName = "${rootProject.archives_base_name}-${rootProject.mod_version} [${rootProject.minecraft_version}-neoforge]"
+//    versionType = "beta"
+//    changelog = rootProject.file("CHANGELOG.md").exists() ? rootProject.file("CHANGELOG.md").text : " "
+//    gameVersions = [rootProject.minecraft_version]
+//    loaders = ["neoforge"]
+//    uploadFile = remapJar
+//    additionalFiles = [tasks.sourcesJar.archiveFile]
+//
+//    dependencies {
+//        required.project "architectury-api"
+//    }
+//}
+//
+//curseforge {
+//    apiKey = System.getenv("CURSEFORGE_API_KEY")
+//    project {
+//        id = "704465"
+//        releaseType = "beta"
+//        addGameVersion rootProject.minecraft_version
+//        addGameVersion "NeoForge"
+//        mainArtifact(remapJar) {
+//            displayName = "Vinery - ${rootProject.mod_version} - FORGE - ${rootProject.minecraft_version}"
+//            changelog = changelogText
+//            changelogType = "markdown"
+//        }
+//
+//        relations {
+//            requiredDependency "architectury-api"
+//        }
+//    }
+//}
