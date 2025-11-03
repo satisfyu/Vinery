@@ -1,12 +1,9 @@
 package net.satisfy.vinery.neoforge.core.config;
 
-import com.electronwill.nightconfig.core.file.CommentedFileConfig;
-import com.electronwill.nightconfig.core.io.WritingMode;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-import java.io.File;
 import java.util.List;
 
 public class VineryForgeConfig {
@@ -269,19 +266,13 @@ public class VineryForgeConfig {
     }
 
     @SubscribeEvent
-    public static void onLoad(ModConfigEvent.Loading e) {
-        if (e.getConfig().getSpec() instanceof ModConfigSpec s) {
-            loadConfig(s, e.getConfig().getFileName());
-            updateCache();
-        }
+    public static void onLoad(ModConfigEvent.Loading event) {
+        updateCache();
     }
 
     @SubscribeEvent
-    public static void onReload(ModConfigEvent.Reloading e) {
-        if (e.getConfig().getSpec() instanceof ModConfigSpec s) {
-            loadConfig(s, e.getConfig().getFileName());
-            updateCache();
-        }
+    public static void onReload(ModConfigEvent.Reloading event) {
+        updateCache();
     }
 
     private static void updateCache() {
@@ -310,17 +301,5 @@ public class VineryForgeConfig {
         level4TradesCache = LEVEL4_TRADES.get();
         level5TradesCache = LEVEL5_TRADES.get();
         basketBlacklistCache = BASKET_BLACKLIST.get();
-    }
-
-    public static void loadConfig(ModConfigSpec spec, String path) {
-        final CommentedFileConfig file = CommentedFileConfig.builder(new File(path))
-                .sync()
-                .preserveInsertionOrder()
-                .autosave()
-                .writingMode(WritingMode.REPLACE)
-                .build();
-        file.load();
-        spec.correct(file);
-        file.save();
     }
 }
