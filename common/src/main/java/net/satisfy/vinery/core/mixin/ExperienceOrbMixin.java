@@ -16,7 +16,7 @@ public abstract class ExperienceOrbMixin {
     @Inject(method = "playerTouch", at = @At("HEAD"))
     public void onPlayerTouch(Player player, CallbackInfo ci) {
         if (player.hasEffect(MobEffectRegistry.getHolder(MobEffectRegistry.EXPERIENCE_EFFECT))) {
-            int amplifier = Objects.requireNonNull(player.getEffect(MobEffectRegistry.getHolder(MobEffectRegistry.EXPERIENCE_EFFECT))).amplifier;
+            int amplifier = Objects.requireNonNull(player.getEffect(MobEffectRegistry.getHolder(MobEffectRegistry.EXPERIENCE_EFFECT))).getAmplifier();
 
             int multiplier = amplifier + 1;
             ExperienceOrb self = (ExperienceOrb) (Object) this;
@@ -26,4 +26,3 @@ public abstract class ExperienceOrbMixin {
         }
     }
 }
-
