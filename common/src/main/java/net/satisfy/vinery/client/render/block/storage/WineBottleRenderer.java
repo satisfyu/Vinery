@@ -41,7 +41,11 @@ public class WineBottleRenderer implements StorageTypeRenderer {
     }
 
     private static BlockState getState(DrinkBlockItem item){
-        return item.getBlock().defaultBlockState().setValue(WineBottleBlock.FAKE_MODEL, false);
+        BlockState state = item.getBlock().defaultBlockState();
+        if (state.hasProperty(WineBottleBlock.FAKE_MODEL)) {
+            state = state.setValue(WineBottleBlock.FAKE_MODEL, false);
+        }
+        return state;
     }
 
     private void renderTwo(StorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> nonNullList) {
@@ -62,7 +66,7 @@ public class WineBottleRenderer implements StorageTypeRenderer {
     private void renderThree(StorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> nonNullList) {
         DrinkBlockItem item1 = nonNullList.get(0).getItem() instanceof DrinkBlockItem item ? item : null;
         DrinkBlockItem item2 = nonNullList.get(1).getItem() instanceof DrinkBlockItem item ? item : null;
-        DrinkBlockItem item3 = nonNullList.get(1).getItem() instanceof DrinkBlockItem item ? item : null;
+        DrinkBlockItem item3 = nonNullList.get(2).getItem() instanceof DrinkBlockItem item ? item : null;  // Fixed: was getting index 1 again
         matrices.translate(-0.25f, 0f, -0.25f);
         if(item1 != null){
             ClientUtil.renderBlock(getState(item1), matrices, vertexConsumers, entity);
