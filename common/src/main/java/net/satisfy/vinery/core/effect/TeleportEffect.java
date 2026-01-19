@@ -33,25 +33,28 @@ public class TeleportEffect extends InstantenousMobEffect {
         if (!(source instanceof Player player)) return;
 
         Level world = player.level();
-        Vec3 targetVec = player.position();
-        Vec3 lookVec = player.getLookAngle();
-        BlockPos target = null;
-        for (double i = 12; i >= 2; i -= 0.5) {
-            Vec3 v3d = targetVec.add(lookVec.multiply(i, i, i));
-            target = new BlockPos((int) Math.round(v3d.x), (int) Math.round(v3d.y), (int) Math.round(v3d.z));
-            if (!fullBlockAt(world, target) && !fullBlockAt(world, target.above())) {
-                break;
-            } else {
-                target = null;
+
+        for (int attempt = 0; attempt < 16; attempt++) {
+            double x = player.getX() + (player.getRandom().nextDouble() - 0.5) * 16.0;
+            double y = player.getY() + (player.getRandom().nextDouble() - 0.5) * 16.0;
+            double z = player.getZ() + (player.getRandom().nextDouble() - 0.5) * 16.0;
+
+            BlockPos pos = new BlockPos((int) Math.floor(x), (int) Math.floor(y), (int) Math.floor(z));
+
+            if (world.isInWorldBounds(pos) &&
+                    !world.getBlockState(pos).liquid() &&
+                    !world.getBlockState(pos.above()).liquid() &&
+                    !fullBlockAt(world, pos) &&
+                    !fullBlockAt(world, pos.above()) &&
+                    fullBlockAt(world, pos.below())) {
+
+                if (!player.level().isClientSide) {
+                    player.teleportTo(x + 0.5, pos.getY() + 0.5, z + 0.5);
+                }
+                player.fallDistance = 0;
+                player.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
+                return;
             }
-        }
-        if (target != null) {
-            if (!player.level().isClientSide) {
-                Vec3 teleportVec = new Vec3(target.getX(), target.getY(), target.getZ());
-                player.teleportRelative(teleportVec.x + 0.5, teleportVec.y, teleportVec.z + 0.5);
-            }
-            player.fallDistance = 0;
-            player.playSound(SoundEvents.ENDER_EYE_DEATH, 1F, 1F);
         }
     }
 
