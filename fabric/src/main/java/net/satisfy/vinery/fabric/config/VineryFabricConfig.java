@@ -17,9 +17,11 @@ public class VineryFabricConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public ItemsSettings items = new ItemsSettings();
 
-
     @ConfigEntry.Gui.CollapsibleObject
     public VillagerSettings villager = new VillagerSettings();
+
+    @ConfigEntry.Gui.CollapsibleObject
+    public TraderSettings trader = new TraderSettings();
 
     public static class BlocksSettings {
         @ConfigEntry.BoundedDiscrete(min = 1, max = 10000)
@@ -45,6 +47,9 @@ public class VineryFabricConfig implements ConfigData {
 
         @ConfigEntry.BoundedDiscrete(min = 0, max = 1)
         public double grapeGrowthChance = 0.5;
+
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 10)
+        public double grapeGrowthMultiplier = 1.0;
     }
 
     public static class ItemsSettings {
@@ -53,9 +58,6 @@ public class VineryFabricConfig implements ConfigData {
 
         @ConfigEntry.Gui.CollapsibleObject
         public BannerSettings banner = new BannerSettings();
-
-        @ConfigEntry.Gui.CollapsibleObject
-        public BasketSettings basket = new BasketSettings();
 
         public static class WineSettings {
             @ConfigEntry.BoundedDiscrete(min = 1, max = 100000)
@@ -79,9 +81,7 @@ public class VineryFabricConfig implements ConfigData {
     }
 
     public static class BannerSettings {
-
         public boolean giveEffect = true;
-
         public boolean showTooltip = true;
 
         public boolean isShowTooltipEnabled() {
@@ -89,12 +89,12 @@ public class VineryFabricConfig implements ConfigData {
         }
     }
 
-    @ConfigEntry.Gui.CollapsibleObject
-    public TraderSettings trader = new TraderSettings();
     public static class TraderSettings {
         @ConfigEntry.BoundedDiscrete(min = 0, max = 1)
         public double spawnChance = 0.5;
+
         public boolean spawnWithMules = true;
+
         @ConfigEntry.BoundedDiscrete(min = 0, max = 72000)
         public int spawnDelay = 48000;
     }
@@ -123,28 +123,32 @@ public class VineryFabricConfig implements ConfigData {
             public TradeLevelSettings(int level) {
                 this.level = level;
                 this.trades = new ArrayList<>();
+
                 if (level == 1) {
                     trades.add(new TradeEntry("vinery:red_grape", TradeType.BUY, 15, 1, 4, 5));
                     trades.add(new TradeEntry("vinery:white_grape", TradeType.BUY, 15, 1, 4, 5));
                     trades.add(new TradeEntry("vinery:red_grape_seeds", TradeType.SELL, 2, 1, 1, 5));
                     trades.add(new TradeEntry("vinery:white_grape_seeds", TradeType.SELL, 2, 1, 1, 5));
                 } else if (level == 2) {
-                    trades.add(new TradeEntry("vinery:wine_bottle", TradeType.SELL, 1, 1, 2, 7));
+                    trades.add(new TradeEntry("vinery:wine_bottle", TradeType.SELL, 1, 1, 4, 7));
+                    trades.add(new TradeEntry("vinery:cherry", TradeType.BUY, 12, 1, 4, 6));
+                    trades.add(new TradeEntry("vinery:apple_mash", TradeType.SELL, 1, 1, 4, 6));
                 } else if (level == 3) {
-                    trades.add(new TradeEntry("vinery:flower_box", TradeType.SELL, 3, 1, 1, 10));
-                    trades.add(new TradeEntry("vinery:white_grape_bag", TradeType.SELL, 7, 1, 1, 10));
-                    trades.add(new TradeEntry("vinery:red_grape_bag", TradeType.SELL, 7, 1, 1, 10));
+                    trades.add(new TradeEntry("vinery:white_grape_bag", TradeType.SELL, 7, 1, 2, 10));
+                    trades.add(new TradeEntry("vinery:red_grape_bag", TradeType.SELL, 7, 1, 2, 10));
+                    trades.add(new TradeEntry("vinery:cherry_bag", TradeType.SELL, 7, 1, 2, 10));
+                    trades.add(new TradeEntry("vinery:apple_bag", TradeType.SELL, 7, 1, 2, 10));
                 } else if (level == 4) {
-                    trades.add(new TradeEntry("vinery:basket", TradeType.SELL, 4, 1, 1, 10));
-                    trades.add(new TradeEntry("vinery:flower_pot_big", TradeType.SELL, 5, 1, 1, 10));
-                    trades.add(new TradeEntry("vinery:window", TradeType.SELL, 12, 1, 1, 10));
-                    trades.add(new TradeEntry("vinery:dark_cherry_beam", TradeType.SELL, 6, 1, 1, 10));
-                    trades.add(new TradeEntry("vinery:taiga_red_grape_seeds", TradeType.SELL, 2, 1, 1, 5));
-                    trades.add(new TradeEntry("vinery:taiga_white_grape_seeds", TradeType.SELL, 2, 1, 1, 5));
+                    trades.add(new TradeEntry("vinery:window", TradeType.SELL, 12, 1, 2, 10));
+                    trades.add(new TradeEntry("vinery:dark_cherry_beam", TradeType.SELL, 6, 4, 2, 10));
+                    trades.add(new TradeEntry("vinery:grapevine_pot", TradeType.SELL, 6, 1, 2, 10));
+                    trades.add(new TradeEntry("vinery:taiga_red_grape_seeds", TradeType.SELL, 2, 1, 2, 5));
+                    trades.add(new TradeEntry("vinery:taiga_white_grape_seeds", TradeType.SELL, 2, 1, 2, 5));
                 } else if (level == 5) {
-                    trades.add(new TradeEntry("vinery:wine_box", TradeType.SELL, 10, 1, 1, 10));
-                    trades.add(new TradeEntry("vinery:lilitu_wine", TradeType.SELL, 4, 1, 1, 10));
-                    trades.add(new TradeEntry("vinery:calendar", TradeType.SELL, 12, 1, 1, 15));
+                    trades.add(new TradeEntry("vinery:wine_box", TradeType.SELL, 10, 1, 2, 10));
+                    trades.add(new TradeEntry("vinery:lilitu_wine", TradeType.SELL, 4, 1, 2, 10));
+                    trades.add(new TradeEntry("vinery:winemaker_apron", TradeType.SELL, 18, 1, 1, 15));
+                    trades.add(new TradeEntry("vinery:straw_hat", TradeType.SELL, 12, 1, 1, 12));
                 }
             }
         }
@@ -157,7 +161,8 @@ public class VineryFabricConfig implements ConfigData {
             public int maxUses = 1;
             public int experience = 1;
 
-            public TradeEntry() {}
+            public TradeEntry() {
+            }
 
             public TradeEntry(String item, TradeType type, int price, int count, int maxUses, int experience) {
                 this.item = item;
@@ -170,21 +175,7 @@ public class VineryFabricConfig implements ConfigData {
         }
 
         public enum TradeType {
-            BUY,
-            SELL
-        }
-    }
-
-    public static class BasketSettings {
-        @ConfigEntry.Gui.CollapsibleObject
-        @ConfigEntry.Category("Items/Basket")
-        public BasketBlacklistSettings blacklist = new BasketBlacklistSettings();
-        public static class BasketBlacklistSettings {
-            public List<String> basketBlacklist = new ArrayList<>();
-            public BasketBlacklistSettings() {
-                basketBlacklist.add("minecraft:shulker_box");
-                basketBlacklist.add("vinery:basket");
-            }
+            BUY, SELL
         }
     }
 }

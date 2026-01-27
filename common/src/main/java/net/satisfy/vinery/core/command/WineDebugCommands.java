@@ -11,30 +11,19 @@ import net.minecraft.world.level.Level;
 import net.satisfy.vinery.core.components.WineYearComponent;
 import net.satisfy.vinery.core.registry.DataComponentRegistry;
 import net.satisfy.vinery.core.util.WineYears;
+import net.satisfy.vinery.platform.PlatformHelper;
 
 public final class WineDebugCommands {
 
     public static void init() {
-        CommandRegistrationEvent.EVENT.register((dispatcher, registryAccess, selection) -> {
-            dispatcher.register(
-                    Commands.literal("wine")
-                            .requires(src -> src.hasPermission(2))
-                            .then(
-                                    Commands.literal("age")
-                                            .then(
-                                                    Commands.argument("years", IntegerArgumentType.integer(0, 100000))
-                                                            .executes(ctx -> ageHeld(
-                                                                    ctx.getSource(),
-                                                                    IntegerArgumentType.getInteger(ctx, "years")
-                                                            ))
-                                            )
-                            )
-                            .then(
-                                    Commands.literal("info")
-                                            .executes(ctx -> infoHeld(ctx.getSource()))
-                            )
-            );
-        });
+        CommandRegistrationEvent.EVENT.register((dispatcher, registryAccess, selection) -> dispatcher.register(
+                Commands.literal("wine")
+                        .requires(source -> source.hasPermission(2) && source.getEntity() instanceof ServerPlayer)
+                        .then(Commands.literal("age")
+                                .then(Commands.argument("years", IntegerArgumentType.integer(0, 100000))
+                                        .executes(ctx -> ageHeld(ctx.getSource(), IntegerArgumentType.getInteger(ctx, "years")))))
+                        .then(Commands.literal("info").executes(ctx -> infoHeld(ctx.getSource())))
+        ));
     }
 
     private static int ageHeld(CommandSourceStack source, int years) {
@@ -43,6 +32,7 @@ public final class WineDebugCommands {
             source.sendFailure(Component.literal("Player required"));
             return 0;
         }
+
         ItemStack stack = player.getMainHandItem();
         if (stack.isEmpty()) {
             source.sendFailure(Component.literal("No item in main hand"));
@@ -50,13 +40,24 @@ public final class WineDebugCommands {
         }
 
         Level level = player.serverLevel();
-        int targetYear = WineYears.getYear(level) - years;
+        WineYearComponent component = getOrCreateComponent(stack, level);
 
-        int amplifier = WineYears.getEffectLevel(stack, level);
-        int duration = WineYears.getEffectDuration(stack, level);
-        stack.set(DataComponentRegistry.WINE_YEAR.get(), new WineYearComponent(targetYear, amplifier, duration));
+        int currentDay = WineYears.getDays(level);
+        int safeDaysPerYear = Math.max(1, component.daysPerYear());
+        int targetBrewedDay = Math.max(0, currentDay - (years * safeDaysPerYear));
 
-        source.sendSuccess(() -> Component.literal("Wine age set to " + years + " years"), false);
+        stack.set(DataComponentRegistry.WINE_YEAR.get(), new WineYearComponent(
+                targetBrewedDay,
+                component.daysPerYear(),
+                component.yearsPerEffectLevel(),
+                component.startDuration(),
+                component.durationPerYear(),
+                component.maxDuration(),
+                component.maxLevel()
+        ));
+
+        String message = "Wine age set to " + years + " years";
+        source.sendSuccess(() -> Component.literal(message), false);
         return 1;
     }
 
@@ -66,17 +67,53 @@ public final class WineDebugCommands {
             source.sendFailure(Component.literal("Player required"));
             return 0;
         }
+
         ItemStack stack = player.getMainHandItem();
         if (stack.isEmpty()) {
             source.sendFailure(Component.literal("No item in main hand"));
             return 0;
         }
+
         Level level = player.serverLevel();
-        int age = WineYears.getWineAge(stack, level);
-        int days = WineYears.getWineAgeDays(stack, level);
+        WineYearComponent component = getOrCreateComponent(stack, level);
+
+        int ageYears = WineYears.getWineAgeYears(stack, level);
+        int ageDays = WineYears.getWineAgeDays(stack, level);
         int amplifier = WineYears.getEffectLevel(stack, level);
-        int duration = WineYears.getEffectDuration(stack, level);
-        source.sendSuccess(() -> Component.literal("Age: " + age + "y, " + days + "d | Amp: " + amplifier + " | Dur: " + duration + " ticks"), false);
+        int durationTicks = WineYears.getEffectDuration(stack, level);
+
+        String message = "Age: " + ageYears + "y, " + ageDays + "d | Amp: " + amplifier + " | Dur: " + durationTicks + " ticks"
+                + " | brewedDay: " + component.brewedDay()
+                + " | daysPerYear: " + component.daysPerYear()
+                + " | yearsPerEffectLevel: " + component.yearsPerEffectLevel()
+                + " | startDuration: " + component.startDuration()
+                + " | durationPerYear: " + component.durationPerYear()
+                + " | maxDuration: " + component.maxDuration()
+                + " | maxLevel: " + component.maxLevel();
+
+        source.sendSuccess(() -> Component.literal(message), false);
         return 1;
+    }
+
+    private static WineYearComponent getOrCreateComponent(ItemStack stack, Level level) {
+        WineYearComponent existing = stack.get(DataComponentRegistry.WINE_YEAR.get());
+        if (existing != null) {
+            return existing;
+        }
+
+        int brewedDay = WineYears.getDays(level);
+
+        WineYearComponent created = new WineYearComponent(
+                brewedDay,
+                Math.max(1, PlatformHelper.getWineDaysPerYear()),
+                Math.max(1, PlatformHelper.getWineYearsPerEffectLevel()),
+                Math.max(0, PlatformHelper.getWineStartDuration()),
+                Math.max(0, PlatformHelper.getWineDurationPerYear()),
+                Math.max(0, PlatformHelper.getWineMaxDuration()),
+                Math.max(0, PlatformHelper.getWineMaxLevel())
+        );
+
+        stack.set(DataComponentRegistry.WINE_YEAR.get(), created);
+        return created;
     }
 }

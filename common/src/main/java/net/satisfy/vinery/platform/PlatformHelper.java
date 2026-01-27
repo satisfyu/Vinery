@@ -4,12 +4,12 @@ import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.level.block.Block;
 
 import java.util.List;
 import java.util.function.Supplier;
 
 public class PlatformHelper {
+
     @ExpectPlatform
     public static int getTotalFermentationTime() {
         throw new AssertionError();
@@ -91,21 +91,16 @@ public class PlatformHelper {
     }
 
     @ExpectPlatform
-    public static List<String> getBasketBlacklist() {
-        throw new AssertionError();
-    }
-
-    @ExpectPlatform
     public static double getTraderSpawnChance() {
         throw new AssertionError();
     }
-    @ExpectPlatform
 
+    @ExpectPlatform
     public static boolean shouldSpawnWithMules() {
         throw new AssertionError();
     }
-    @ExpectPlatform
 
+    @ExpectPlatform
     public static int getTraderSpawnDelay() {
         throw new AssertionError();
     }

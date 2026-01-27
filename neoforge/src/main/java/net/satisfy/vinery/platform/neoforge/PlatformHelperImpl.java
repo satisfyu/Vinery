@@ -7,11 +7,13 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.neoforge.core.config.VineryForgeConfig;
+import net.satisfy.vinery.platform.PlatformHelper;
 
-import java.util.List;
 import java.util.function.Supplier;
 
-public class PlatformHelperImpl {
+@SuppressWarnings("unused")
+public class PlatformHelperImpl extends PlatformHelper {
+
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Vinery.MOD_ID, Registries.ENTITY_TYPE);
 
     public static int getTotalFermentationTime() {
@@ -46,6 +48,10 @@ public class PlatformHelperImpl {
         return VineryForgeConfig.grapeGrowthChanceCache;
     }
 
+    public static double getGrapeGrowthMultiplier() {
+        return VineryForgeConfig.grapeGrowthMultiplierCache;
+    }
+
     public static int getWineMaxLevel() {
         return VineryForgeConfig.maxLevelCache;
     }
@@ -76,10 +82,6 @@ public class PlatformHelperImpl {
 
     public static boolean shouldShowTooltip() {
         return VineryForgeConfig.giveEffectCache && VineryForgeConfig.showTooltipCache;
-    }
-
-    public static List<? extends String> getBasketBlacklist() {
-        return VineryForgeConfig.basketBlacklistCache;
     }
 
     public static double getTraderSpawnChance() {

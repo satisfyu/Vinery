@@ -1,10 +1,24 @@
+[1.5.3]
+
+**Fixed**
+* Lattice blocks now render correctly with see-through parts by using proper occlusion settings
+* Vinery Items not being compostable
+* Removed deprecated and invalid item IDs from default trade configs
+* Dark Cherry Saplings now correctly grow Dark Cherry Trees instead of Apple Trees 
+* Wine aging is now stored per-bottle using server values, preventing pre-aged wines and client-dependent aging/effects on servers
+
+**Changed**
+* /wine command now requires OP level 2 
+
+** 
+
 [1.5.1]
 
 **Fixed**
 * Resolved multiple invalid or missing tag assignments across block and item registries
 * Corrected Cherry Boat render layer and model reference causing missing visuals
 * Fixed advancement conditions triggering on unintended player actions
-* Adjusted `DarkCherryLeavs` loot tables 
+* Adjusted `DarkCherryLeaves` loot tables 
 * Fixed shader/material issue causing Winemaker Armor to render black under specific conditions
 * Corrected UV mapping and sprite reference for Hanging Sign textures
 

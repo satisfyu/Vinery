@@ -8,6 +8,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item.Properties;
 
 public class WineSettings {
+    
     private final Properties properties;
     private final int baseDuration;
 
