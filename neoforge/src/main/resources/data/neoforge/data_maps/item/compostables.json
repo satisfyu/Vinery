@@ -39,40 +39,40 @@
     "vinery:straw_hat": {
       "chance": 0.4
     },
-    "vinery:jungle_red_grape_seeds": {
+    "vinery:jungle_grape_seeds_red": {
       "chance": 0.4
     },
-    "vinery:jungle_red_grape": {
+    "vinery:jungle_grapes_red": {
       "chance": 0.4
     },
-    "vinery:jungle_white_grape_seeds": {
+    "vinery:jungle_grape_seeds_white": {
       "chance": 0.4
     },
-    "vinery:jungle_white_grape": {
+    "vinery:jungle_grapes_white": {
       "chance": 0.4
     },
-    "vinery:taiga_red_grape_seeds": {
+    "vinery:taiga_grape_seeds_red": {
       "chance": 0.4
     },
-    "vinery:taiga_red_grape": {
+    "vinery:taiga_grapes_red": {
       "chance": 0.4
     },
-    "vinery:taiga_white_grape_seeds": {
+    "vinery:taiga_grape_seeds_white": {
       "chance": 0.4
     },
-    "vinery:taiga_white_grape": {
+    "vinery:taiga_grapes_white": {
       "chance": 0.4
     },
-    "vinery:savanna_red_grape_seeds": {
+    "vinery:savanna_grape_seeds_red": {
       "chance": 0.4
     },
-    "vinery:savanna_red_grape": {
+    "vinery:savanna_grapes_red": {
       "chance": 0.4
     },
-    "vinery:savanna_white_grape_seeds": {
+    "vinery:savanna_grape_seeds_white": {
       "chance": 0.4
     },
-    "vinery:savanna_white_grape": {
+    "vinery:savanna_grapes_white": {
       "chance": 0.4
     }
   }
