@@ -13,7 +13,6 @@ import net.satisfy.vinery.client.util.ClientUtil;
 import net.satisfy.vinery.core.block.WineBottleBlock;
 import net.satisfy.vinery.core.block.entity.StorageBlockEntity;
 
-@Environment(EnvType.CLIENT)
 public class FourBottleRenderer implements StorageTypeRenderer {
     @Override
     public void render(StorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> itemStacks) {

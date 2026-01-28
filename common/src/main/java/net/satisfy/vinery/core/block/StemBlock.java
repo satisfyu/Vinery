@@ -69,7 +69,7 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+    public @NotNull BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
         if (state.getValue(AGE) > 2) {
             dropGrapes(world, state, pos, null);
         }

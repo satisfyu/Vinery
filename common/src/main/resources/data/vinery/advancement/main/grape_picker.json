@@ -19,27 +19,74 @@
     "experience": 100
   },
   "criteria": {
-    "has_the_items": {
+    "has_red_grape": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": ["vinery:red_grape"]
-          },
+            "items": [
+              "vinery:red_grape"
+            ]
+          }
+        ]
+      }
+    },
+    "has_white_grape": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "items": ["vinery:white_grape"]
-          },
+            "items": [
+              "vinery:white_grape"
+            ]
+          }
+        ]
+      }
+    },
+    "has_taiga_red": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "items": ["vinery:taiga_grapes_red"]
-          },
+            "items": [
+              "vinery:taiga_grapes_red"
+            ]
+          }
+        ]
+      }
+    },
+    "has_taiga_white": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "items": ["vinery:taiga_grapes_white"]
-          },
+            "items": [
+              "vinery:taiga_grapes_white"
+            ]
+          }
+        ]
+      }
+    },
+    "has_savanna_red": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "items": ["vinery:savanna_grapes_red"]
-          },
+            "items": [
+              "vinery:savanna_grapes_red"
+            ]
+          }
+        ]
+      }
+    },
+    "has_savanna_white": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "items": ["vinery:savanna_grapes_white"]
+            "items": [
+              "vinery:savanna_grapes_white"
+            ]
           }
         ]
       }
@@ -47,7 +94,22 @@
   },
   "requirements": [
     [
-      "has_the_items"
+      "has_red_grape"
+    ],
+    [
+      "has_white_grape"
+    ],
+    [
+      "has_taiga_red"
+    ],
+    [
+      "has_taiga_white"
+    ],
+    [
+      "has_savanna_red"
+    ],
+    [
+      "has_savanna_white"
     ]
   ]
 }

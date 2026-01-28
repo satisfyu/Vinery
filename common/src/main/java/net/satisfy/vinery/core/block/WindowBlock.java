@@ -82,7 +82,6 @@ public class WindowBlock extends IronBarsBlock {
         return pos;
     }
 
-    @SuppressWarnings("deprecation")
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
         super.neighborChanged(state, world, pos, block, fromPos, isMoving);
         if (!world.isClientSide()) {

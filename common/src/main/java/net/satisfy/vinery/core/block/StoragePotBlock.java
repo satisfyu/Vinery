@@ -19,7 +19,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings("deprecation")
 public class StoragePotBlock extends CabinetBlock {
     public StoragePotBlock(Properties settings, SoundEvent openSound, SoundEvent closeSound) {
         super(settings, openSound, closeSound);

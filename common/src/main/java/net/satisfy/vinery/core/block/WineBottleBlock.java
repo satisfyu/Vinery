@@ -30,7 +30,6 @@ import net.satisfy.vinery.core.registry.StorageTypeRegistry;
 import net.satisfy.vinery.core.registry.TagRegistry;
 import org.jetbrains.annotations.NotNull;
 
-@SuppressWarnings("deprecation")
 public class WineBottleBlock extends StorageBlock {
     private static final VoxelShape SHAPE = Shapes.box(0.125, 0, 0.125, 0.875, 0.875, 0.875);
 

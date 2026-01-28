@@ -135,7 +135,6 @@ public class WineBoxBlock extends StorageBlock {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         Direction facing = state.getValue(FACING);
         boolean isOpen = state.getValue(OPEN);

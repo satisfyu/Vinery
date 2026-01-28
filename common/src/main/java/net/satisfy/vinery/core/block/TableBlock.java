@@ -22,7 +22,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-@SuppressWarnings("deprecation")
 public class TableBlock extends LineConnectingBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED;
     public static final VoxelShape TOP_SHAPE;

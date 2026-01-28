@@ -6,11 +6,14 @@
 * Removed deprecated and invalid item IDs from default trade configs
 * Dark Cherry Saplings now correctly grow Dark Cherry Trees instead of Apple Trees 
 * Wine aging is now stored per-bottle using server values, preventing pre-aged wines and client-dependent aging/effects on servers
+* Added missing loottables for potted Vinery saplings (thanks to AraneaeDiscordia)
+* Fixed a crash when inserting non-Vinery bottles into Wine Boxes, which could prevent worlds from loading
+* Fixed multiple Vinery advancements not progressing or completing correctly due to invalid criterias
 
 **Changed**
 * /wine command now requires OP level 2 
 
-** 
+***
 
 [1.5.1]
 

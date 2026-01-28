@@ -30,7 +30,6 @@ import net.satisfy.vinery.platform.PlatformHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@SuppressWarnings("deprecation")
 public class AppleLeavesBlock extends LeavesBlock implements BonemealableBlock {
     public static final BooleanProperty CAN_GROW_APPLES = BooleanProperty.create("can_grow_apples");
     public static final BooleanProperty HAS_APPLES = BooleanProperty.create("has_apples");
