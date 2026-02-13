@@ -1,32 +1,122 @@
-<p align="center"><img src="https://imgur.com/szd6rGi.png" width="1200"></p>
+![Vinery](https://lets-do.ch/assets/mod-logos/vinery.png)
 
-<h1 align="center">Welcome to Vinery!</h1>
-
-<p>Hello there! You must be looking for a cozy extension to add onto your cozy little cottage, no? Well look no further for '[Let's Do] Vinery' offers just that!</p>
-
-<h1 align="center">What do we offer?</h1>
-<p>
-    - 8 types of grape<br>
-    - 20+ (placeable) wines<br>
-    - 10+ custom effects<br>
-    - custom aging mechanic to boost the quality of your wines and their effects<br>
-    - tons of decorative items, including but not limited to: Furniture, Wine Racks, and Grape Bags.
-</p>
-
-<sub>*The elements and mechanics related to wine and alcoholic beverages contained in Vinery are solely for entertainment purposes and should not be interpreted in any way as an endorsement or glorification of alcohol consumption*</sub>
-<h1 align="center">Available for</h1>
-<p align="center"><img src="https://imgur.com/gREqi3m.png" width="240" height="120"></p>
-
-<h1 align="center">Be Part of Our Journey</h1>
+<br>
 
 <p align="center">
-    <a title="discord" href="https://discord.gg/Vqu6wYZwdZ">
-        <img style="display: block; margin-left: auto; margin-right: auto;" src="https://1000logos.net/wp-content/uploads/2021/06/Discord-logo-2015.png" alt="" width="" height="140" />
-    </a>
-    <a title="patreon" href="https://www.patreon.com/user?u=78595058">
-    <picture>
-      <source style="display: block; margin-left: auto; margin-right: auto;" width="" height="140" media="(prefers-color-scheme: dark)" srcset="https://i.ibb.co/4R738W0/patreon-logo-icon-170869-dark.png">
-      <img style="display: block; margin-left: auto; margin-right: auto;" width="" height="140" alt="" src="https://cdn.icon-icons.com/icons2/2699/PNG/512/patreon_logo_icon_170869.png">
-    </picture>
-    </a>
+  <strong>Fine Wine & Sophisticated Decor</strong>
+</p>
+
+<p align="center">
+  <em>The mod that started the Let's Do collection</em>
+</p>
+
+<br>
+
+<p align="center">
+  <em>"Life, pressed gently"</em>
+</p>
+
+<br>
+
+Vinery adds a brand new way of creating luxurious beverages using intuitive mechanics. You reap the vines, press the grapes, ferment the wine, and time ages it for you.
+
+<br>
+
+Ferment wine to your heart's desire. Cherrish time.
+
+<br>
+
+Vinery is the mod that started the creation of the Let's Do collection and serves to expand the world of potion effects and luxurious drinks. No more need for simple water and honey!
+
+<br>
+
+## Plucking the Vine
+
+<br>
+
+- Variety of wild grapes found across your world  
+- Vine stems to decorate your vineyard  
+- New cherry trees that yield actual cherries  
+
+<br>
+
+Grab your basket, raid the vineyard.
+
+<br>
+
+## Fermenting perfection
+
+<br>
+
+- A Grapevine Pot to press the grapes  
+- A Fermenting Barrel to ferment the grapejuice into wine  
+- An Applepress to mash apples into applejuice  
+
+<br>
+
+Pressing, fermenting, and aging, that is the vine of life.
+
+<br>
+
+## Decorative Elements
+
+<br>
+
+- Lattices for your vineyard  
+- Furniture for your cottage  
+- A brand new cherry wood  
+- Winemaker's attire to fit the part  
+- Displays to display your grand cru  
+- And the dirt slabs we've all been asking for ;)  
+
+<br>
+
+<p align="center">
+  <strong>Reap what you've sown.</strong>
+</p>
+
+<p align="center">
+  <strong>Put in the work.</strong>
+</p>
+
+<p align="center">
+  <strong>Cherish every minute.</strong>
+</p>
+
+<br>
+
+<p align="center">
+  <em>Dedicated to MissLilitu</em>
+</p>
+
+<br>
+
+<div align="center">
+
+# The Let’s Do Collection
+
+<br>
+
+<a href="https://lets-do.ch/mods/">
+  <img src="https://github.com/Let-s-Do-Collection/Let-s-Do-Collection/raw/main/LOGO.png?raw=true" width="350" alt="The Let’s Do Collection">
+</a>
+
+<br>
+
+# Support & Community
+
+</div>
+
+<br>
+
+<p align="center">
+  Let’s Do grows through its community.
+</p>
+
+<br>
+
+<p align="center">
+  <a href="https://github.com/Let-s-Do-Collection/Let-s-Do-Collection">GitHub</a> •
+  <a href="https://discord.gg/Jb2bgpYr">Discord</a> •
+  <a href="https://www.patreon.com/c/u78595058">Patreon</a>
 </p>
