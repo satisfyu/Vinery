@@ -1,4 +1,4 @@
-![Vinery](https://lets-do.ch/assets/mod-logos/vinery.png)
+![Vinery](https://lets-do.ch/assets/mod-logos/vinery.webp)
 
 <br>
 
