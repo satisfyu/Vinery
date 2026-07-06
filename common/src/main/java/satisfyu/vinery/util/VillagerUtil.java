@@ -1,5 +1,6 @@
 package satisfyu.vinery.util;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -9,6 +10,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import satisfyu.vinery.config.VineryConfig;
 
 public class VillagerUtil {
 
@@ -73,6 +75,10 @@ public class VillagerUtil {
 
         @Override
         public MerchantOffer getOffer(Entity entity, RandomSource random) {
+            if (VineryConfig.isDisabled(BuiltInRegistries.ITEM.getKey(this.sell.getItem()))) {
+                // Don't offer disabled wines; vanilla trade generation skips null offers.
+                return null;
+            }
             return new MerchantOffer(
                     new ItemStack(Items.EMERALD, this.price), new ItemStack(this.sell.getItem(), this.count), this.maxUses, this.experience, this.multiplier
             );

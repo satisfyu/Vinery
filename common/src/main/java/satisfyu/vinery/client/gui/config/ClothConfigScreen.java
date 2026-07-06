@@ -8,6 +8,7 @@ import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
 import me.shedaniel.clothconfig2.gui.entries.IntegerListEntry;
+import me.shedaniel.clothconfig2.gui.entries.StringListListEntry;
 import me.shedaniel.clothconfig2.gui.entries.TextListEntry;
 import me.shedaniel.clothconfig2.impl.builders.SubCategoryBuilder;
 import net.minecraft.ChatFormatting;
@@ -19,6 +20,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.config.VineryConfig;
+
+import java.util.List;
 
 public class ClothConfigScreen {
 
@@ -46,6 +49,7 @@ public class ClothConfigScreen {
         private final ConfigCategory category;
         private final BooleanListEntry enableWineMakerSetBonus, enableNetherLattices;
         private final IntegerListEntry wineTraderChance, yearLengthInDays, yearsPerEffectLevel, fermentationBarrelTime, damagePerUse, probabilityForDamage, probabilityToKeepBoneMeal, grapeGrowthSpeed;
+        private final StringListListEntry disabledWines;
 
 
 
@@ -60,6 +64,12 @@ public class ClothConfigScreen {
             grapeGrowthSpeed = createIntField("grapeGrowthSpeed", config.grapeGrowthSpeed(), VineryConfig.DEFAULT.grapeGrowthSpeed(), null, 1, 100);
             enableNetherLattices = createBooleanField("enableNetherLattices", config.enableNetherLattices(), VineryConfig.DEFAULT.enableNetherLattices(), null);
 
+            disabledWines = builder.startStrList(Component.translatable("vinery.config.entry.disabledWines"), config.disabledWines())
+                    .setDefaultValue(VineryConfig.DEFAULT.disabledWines())
+                    .setTooltip(Component.translatable("vinery.config.entry.disabledWines.tooltip"))
+                    .build();
+            category.addEntry(disabledWines);
+
             SubCategoryBuilder wineMaker = new SubCategoryBuilder(Component.empty(), Component.translatable("vinery.config.subCategory.wineMaker"));
 
             enableWineMakerSetBonus = createBooleanField("enableWineMakerSetBonus", config.enableWineMakerSetBonus(), VineryConfig.DEFAULT.enableWineMakerSetBonus(), wineMaker);
@@ -73,7 +83,7 @@ public class ClothConfigScreen {
 
 
         public VineryConfig createConfig() {
-            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue(), grapeGrowthSpeed.getValue(), enableNetherLattices.getValue());
+            return new VineryConfig(wineTraderChance.getValue(), yearLengthInDays.getValue(), yearsPerEffectLevel.getValue(), enableWineMakerSetBonus.getValue(), damagePerUse.getValue(), probabilityForDamage.getValue(), probabilityToKeepBoneMeal.getValue(), fermentationBarrelTime.getValue(), grapeGrowthSpeed.getValue(), enableNetherLattices.getValue(), disabledWines.getValue());
         }
 
 

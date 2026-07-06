@@ -278,6 +278,8 @@
   "vinery.config.entry.fermentationBarrelTime": "Fermentation Barrel Time",
   "vinery.config.entry.grapeGrowthSpeed": "Grape Growth speed (in %)",
   "vinery.config.entry.enableNetherLattices": "Enable Nether Lattices",
+  "vinery.config.entry.disabledWines": "Disabled Wines",
+  "vinery.config.entry.disabledWines.tooltip": "Wine item IDs to completely disable (e.g. vinery:eiswein). Disabled wines can't be crafted or traded, are hidden from the creative menu and JEI/REI, and existing bottles can't be drunk.",
   "vinery.config.subCategory.wineMaker": "Winemaker Set Bonus",
   "vinery.config.title": "Vinery",
   "vinery.tooltip.winemaker_armor": "Winemaker's Desire:",

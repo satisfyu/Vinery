@@ -3,12 +3,15 @@ package satisfyu.vinery.registry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import satisfyu.vinery.Vinery;
+import satisfyu.vinery.config.VineryConfig;
 
 import static com.mojang.serialization.codecs.RecordCodecBuilder.build;
 
@@ -91,33 +94,33 @@ public class TabRegistry {
                 out.accept(ObjectRegistry.JUNGLE_WHITE_GRAPEJUICE_BOTTLE.get());
                 out.accept(ObjectRegistry.SAVANNA_RED_GRAPEJUICE_BOTTLE.get());
                 out.accept(ObjectRegistry.SAVANNA_WHITE_GRAPEJUICE_BOTTLE.get());
-                out.accept(ObjectRegistry.CHORUS_WINE.get());
-                out.accept(ObjectRegistry.CHERRY_WINE.get());
-                out.accept(ObjectRegistry.MAGNETIC_WINE.get());
-                out.accept(ObjectRegistry.NOIR_WINE.get());
-                out.accept(ObjectRegistry.LILITU_WINE.get());
-                out.accept(ObjectRegistry.MELLOHI_WINE.get());
-                out.accept(ObjectRegistry.STAL_WINE.get());
-                out.accept(ObjectRegistry.STRAD_WINE.get());
-                out.accept(ObjectRegistry.SOLARIS_WINE.get());
-                out.accept(ObjectRegistry.BOLVAR_WINE.get());
-                out.accept(ObjectRegistry.AEGIS_WINE.get());
-                out.accept(ObjectRegistry.CLARK_WINE.get());
-                out.accept(ObjectRegistry.CHENET_WINE.get());
-                out.accept(ObjectRegistry.KELP_CIDER.get());
-                out.accept(ObjectRegistry.APPLE_WINE.get());
-                out.accept(ObjectRegistry.APPLE_CIDER.get());
-                out.accept(ObjectRegistry.JELLIE_WINE.get());
-                out.accept(ObjectRegistry.RED_WINE.get());
-                out.accept(ObjectRegistry.PRAETORIAN_WINE.get());
-                out.accept(ObjectRegistry.JO_SPECIAL_MIXTURE.get());
-                out.accept(ObjectRegistry.CRISTEL_WINE.get());
-                out.accept(ObjectRegistry.CREEPERS_CRUSH.get());
-                out.accept(ObjectRegistry.VILLAGERS_FRIGHT.get());
-                out.accept(ObjectRegistry.GLOWING_WINE.get());
-                out.accept(ObjectRegistry.MEAD.get());
-                out.accept(ObjectRegistry.BOTTLE_MOJANG_NOIR.get());
-                out.accept(ObjectRegistry.EISWEIN.get());
+                acceptWine(out, ObjectRegistry.CHORUS_WINE.get());
+                acceptWine(out, ObjectRegistry.CHERRY_WINE.get());
+                acceptWine(out, ObjectRegistry.MAGNETIC_WINE.get());
+                acceptWine(out, ObjectRegistry.NOIR_WINE.get());
+                acceptWine(out, ObjectRegistry.LILITU_WINE.get());
+                acceptWine(out, ObjectRegistry.MELLOHI_WINE.get());
+                acceptWine(out, ObjectRegistry.STAL_WINE.get());
+                acceptWine(out, ObjectRegistry.STRAD_WINE.get());
+                acceptWine(out, ObjectRegistry.SOLARIS_WINE.get());
+                acceptWine(out, ObjectRegistry.BOLVAR_WINE.get());
+                acceptWine(out, ObjectRegistry.AEGIS_WINE.get());
+                acceptWine(out, ObjectRegistry.CLARK_WINE.get());
+                acceptWine(out, ObjectRegistry.CHENET_WINE.get());
+                acceptWine(out, ObjectRegistry.KELP_CIDER.get());
+                acceptWine(out, ObjectRegistry.APPLE_WINE.get());
+                acceptWine(out, ObjectRegistry.APPLE_CIDER.get());
+                acceptWine(out, ObjectRegistry.JELLIE_WINE.get());
+                acceptWine(out, ObjectRegistry.RED_WINE.get());
+                acceptWine(out, ObjectRegistry.PRAETORIAN_WINE.get());
+                acceptWine(out, ObjectRegistry.JO_SPECIAL_MIXTURE.get());
+                acceptWine(out, ObjectRegistry.CRISTEL_WINE.get());
+                acceptWine(out, ObjectRegistry.CREEPERS_CRUSH.get());
+                acceptWine(out, ObjectRegistry.VILLAGERS_FRIGHT.get());
+                acceptWine(out, ObjectRegistry.GLOWING_WINE.get());
+                acceptWine(out, ObjectRegistry.MEAD.get());
+                acceptWine(out, ObjectRegistry.BOTTLE_MOJANG_NOIR.get());
+                acceptWine(out, ObjectRegistry.EISWEIN.get());
                 out.accept(ObjectRegistry.WINE_BOTTLE.get());
                 out.accept(ObjectRegistry.APPLE_MASH.get());
                 out.accept(ObjectRegistry.GRAPEVINE_STEM.get());
@@ -168,6 +171,13 @@ public class TabRegistry {
                 }
             })
             .build());
+
+    /** Adds a wine to the creative tab only if it is not listed in {@code disabled_wines}. */
+    private static void acceptWine(CreativeModeTab.Output out, ItemLike wine) {
+        if (!VineryConfig.isDisabled(BuiltInRegistries.ITEM.getKey(wine.asItem()))) {
+            out.accept(wine);
+        }
+    }
 
     public static void init() {
         CREATIVE_MODE_TABS.register();

@@ -4,17 +4,20 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import de.cristelknight.doapi.config.jankson.config.CommentedConfig;
 import net.minecraft.Util;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.HashMap;
+import java.util.List;
 
 
 public record VineryConfig(int wineTraderChance, int yearLengthInDays, int yearsPerEffectLevel,
-                           boolean enableWineMakerSetBonus, int damagePerUse, int probabilityForDamage, int probabilityToKeepBoneMeal, int fermentationBarrelTime, int grapeGrowthSpeed, boolean enableNetherLattices)
+                           boolean enableWineMakerSetBonus, int damagePerUse, int probabilityForDamage, int probabilityToKeepBoneMeal, int fermentationBarrelTime, int grapeGrowthSpeed, boolean enableNetherLattices,
+                           List<String> disabledWines)
         implements CommentedConfig<VineryConfig> {
 
     private static VineryConfig INSTANCE = null;
 
-    public static final VineryConfig DEFAULT = new VineryConfig(50, 16, 4, true, 1, 30, 100, 50, 100, false);
+    public static final VineryConfig DEFAULT = new VineryConfig(50, 16, 4, true, 1, 30, 100, 50, 100, false, List.of());
 
     public static final Codec<VineryConfig> CODEC = RecordCodecBuilder.create(builder ->
             builder.group(
@@ -27,7 +30,8 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
                     Codec.intRange(1, 100).fieldOf("probability_to_keep_bone_meal").orElse(DEFAULT.probabilityToKeepBoneMeal).forGetter(c -> c.probabilityToKeepBoneMeal),
                     Codec.intRange(1, 10000).fieldOf("fermentation_barrel_time").orElse(DEFAULT.fermentationBarrelTime).forGetter(c -> c.fermentationBarrelTime),
                     Codec.intRange(0, 100).fieldOf("grape_growth_speed").orElse(DEFAULT.grapeGrowthSpeed).forGetter(c -> c.grapeGrowthSpeed),
-                    Codec.BOOL.fieldOf("enable_nether_lattices").orElse(DEFAULT.enableNetherLattices).forGetter(c -> c.enableNetherLattices)
+                    Codec.BOOL.fieldOf("enable_nether_lattices").orElse(DEFAULT.enableNetherLattices).forGetter(c -> c.enableNetherLattices),
+                    Codec.STRING.listOf().fieldOf("disabled_wines").orElse(DEFAULT.disabledWines).forGetter(c -> c.disabledWines)
             ).apply(builder, VineryConfig::new)
     );
 
@@ -55,6 +59,9 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
                     Ticks it takes to ferment a bottle""");
             map.put("enable_nether_lattices", """
                     (It is recommended to download NetherVinery instead)""");
+            map.put("disabled_wines", """
+                    List of wine item IDs to completely disable (e.g. vinery:eiswein).
+                    Disabled wines can't be crafted, are hidden from the creative menu / JEI / REI / villager trades, and existing bottles can't be drunk.""");
         });
     }
 
@@ -97,5 +104,16 @@ public record VineryConfig(int wineTraderChance, int yearLengthInDays, int years
     @Override
     public void setInstance(VineryConfig instance) {
         INSTANCE = instance;
+    }
+
+    /** True if the given item id is listed in {@code disabled_wines}. */
+    public boolean isWineDisabled(ResourceLocation id) {
+        return id != null && this.disabledWines.contains(id.toString());
+    }
+
+    /** Convenience accessor against the currently-loaded config; safe to call before the config is loaded. */
+    public static boolean isDisabled(ResourceLocation id) {
+        VineryConfig config = DEFAULT.getConfig();
+        return config != null && config.isWineDisabled(id);
     }
 }

@@ -5,6 +5,8 @@ import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
+import net.minecraft.core.registries.BuiltInRegistries;
+import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.registry.ObjectRegistry;
 
 import java.util.HashMap;
@@ -49,6 +51,7 @@ public class WanderingWinemakerEntity extends WanderingTrader {
 			this.offers = new MerchantOffers();
 		}
 		this.addOffersFromItemListings(this.offers, TRADES.get(1), 8);
+		this.offers.removeIf(offer -> VineryConfig.isDisabled(BuiltInRegistries.ITEM.getKey(offer.getResult().getItem())));
 	}
 
 }

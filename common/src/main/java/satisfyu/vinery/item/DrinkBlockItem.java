@@ -5,6 +5,7 @@ import com.mojang.datafixers.util.Pair;
 import de.cristelknight.doapi.common.block.entity.StorageBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.InteractionHand;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
+import satisfyu.vinery.config.VineryConfig;
 import satisfyu.vinery.registry.ObjectRegistry;
 import satisfyu.vinery.util.GeneralUtil;
 import satisfyu.vinery.util.WineYears;
@@ -144,6 +146,10 @@ public class DrinkBlockItem extends BlockItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
+        if (VineryConfig.isDisabled(BuiltInRegistries.ITEM.getKey(this))) {
+            // Disabled wines are inert: any existing bottle can't be drunk.
+            return InteractionResultHolder.fail(player.getItemInHand(interactionHand));
+        }
         return ItemUtils.startUsingInstantly(level, player, interactionHand);
     }
 }

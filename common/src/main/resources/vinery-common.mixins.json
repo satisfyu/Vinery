@@ -16,7 +16,8 @@
     "PlantBlockMixin",
     "ShovelItemMixin",
     "SpreadingSnowyDirtBlockMixin",
-    "WanderingTraderManagerMixin"
+    "WanderingTraderManagerMixin",
+    "RecipeManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

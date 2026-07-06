@@ -6,13 +6,18 @@ import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicTexturePack;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.util.GsonHelper;
 import org.apache.logging.log4j.Logger;
 import satisfyu.vinery.Vinery;
 import satisfyu.vinery.VineryIdentifier;
 import satisfyu.vinery.config.VineryConfig;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class VineryServerDataProvider {
@@ -55,6 +60,43 @@ public class VineryServerDataProvider {
                 latticeCount.getAndIncrement();
             });
             this.getLogger().debug("Generated {} lattice recipes", latticeCount);
+
+            // Keep the "wine_collector" advancement completable when wines are disabled: its single
+            // criterion requires holding every wine at once, so drop any disabled wine's requirement.
+            List<String> disabledWines = VineryConfig.DEFAULT.getConfig().disabledWines();
+            if (disabledWines != null && !disabledWines.isEmpty()) {
+                try {
+                    StaticResource wineCollector = StaticResource.getOrFail(resourceManager, new VineryIdentifier("advancements/main/wine_collector.json"));
+                    this.addSimilarJsonResource(resourceManager, wineCollector,
+                            content -> filterWineCollector(content, disabledWines),
+                            path -> path);
+                    this.getLogger().info("Patched wine_collector advancement to skip {} disabled wine(s)", disabledWines.size());
+                } catch (Exception e) {
+                    this.getLogger().error("Failed to patch wine_collector advancement for disabled wines", e);
+                }
+            }
+        }
+
+        /** Removes any {@code inventory_changed} item predicate that references a disabled wine. */
+        private static String filterWineCollector(String json, List<String> disabledWines) {
+            JsonObject obj = GsonHelper.parse(json);
+            JsonObject conditions = obj.getAsJsonObject("criteria").getAsJsonObject("get_wines").getAsJsonObject("conditions");
+            JsonArray items = conditions.getAsJsonArray("items");
+            JsonArray kept = new JsonArray();
+            for (JsonElement entry : items) {
+                boolean disabled = false;
+                for (JsonElement id : entry.getAsJsonObject().getAsJsonArray("items")) {
+                    if (disabledWines.contains(id.getAsString())) {
+                        disabled = true;
+                        break;
+                    }
+                }
+                if (!disabled) {
+                    kept.add(entry);
+                }
+            }
+            conditions.add("items", kept);
+            return obj.toString();
         }
     }
 }
